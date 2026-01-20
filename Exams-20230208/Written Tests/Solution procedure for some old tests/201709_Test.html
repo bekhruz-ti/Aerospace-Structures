@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures - Written Test, September 11th, 2017</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+            font-style: italic;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #007bff;
+            page-break-inside: avoid;
+        }
+
+        .exercise h2 {
+            margin-top: 0;
+            border-bottom: none;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Times New Roman', Times, serif;
+            color: #000;
+        }
+
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            page-break-inside: avoid;
+        }
+
+        .question h2 {
+            margin-top: 0;
+            border-bottom: none;
+            color: #856404;
+        }
+
+        .answer-solution {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .answer-solution h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            figure {
+                page-break-inside: avoid;
+            }
+            
+            .exercise, .question {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="metadata">Written test, September 11th, 2017</p>
+            <p class="metadata">Extracted from: 201709_Test</p>
+        </header>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            
+            <p>The structure in the figure is composed of three beams of length \(l\), which are charaterized by the same elastic properties. In particular, the bending and torsional stiffnesses are denoted with \(EJ\) and \(GJ\), respectively. The structure is elastically supported by a torsional spring of stiffness \(k_t\) at one end. A linearly varying force per unit length is applied along one of the beams, as illustrateci in the sketch. The force per unit length is equa! to zero at one end, and is equa! to \(q\) at the other end. Determine the reaction forces and plot the internal actions.</p>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_1.png" alt="Semi-monocoque beam cross-section showing rectangular configuration with four corner stringers">
+                <figcaption>
+                    <strong>Semi-monocoque beam cross-section showing rectangular configuration with four corner stringers. Two stringer types labeled: A₁ (appears at two corners) and A₂ (appears at two other corners). Point B marked at upper right stringer location. Cross-section dimensions indicated by width 'a' and height 'a'. Coordinate system shows y-axis vertical and z-axis horizontal (into page).</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_2.png" alt="Cantilever beam with fixed support at left end and free right end">
+                <figcaption>
+                    <strong>Cantilever beam with fixed support (hatched) at left end and free right end. Vertical downward point force F = 5000 N applied at free end. Beam length l = 12000 mm with square cross-section dimension a = 400 mm. Coordinate system shows z-axis along beam length.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_3.png" alt="Square cross-section diagram with dimension 'a' on each side">
+                <figcaption>
+                    <strong>Square cross-section diagram with dimension 'a' on each side. Coordinate system shows y-axis vertical and x-axis horizontal. Simple geometric representation of beam cross-sectional profile.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_4.png" alt="Beam with distributed load q(x) shown by vertical arrows along top surface">
+                <figcaption>
+                    <strong>Beam with distributed load q(x) shown by vertical arrows along top surface. Fixed support (hatched) at left end and roller support at right end. Beam length indicated as 'l'. Load distribution appears uniform across the span.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_5.png" alt="Beam with triangular distributed load varying linearly along length">
+                <figcaption>
+                    <strong>Beam with triangular distributed load varying linearly along length. Fixed support (hatched) at left end. Load intensity increases from left to right, shown by increasing arrow lengths. Beam length 'l' and load parameter 'q' labeled.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_6.png" alt="Beam with butterfly-shaped distributed load creating null resultant">
+                <figcaption>
+                    <strong>Beam with butterfly-shaped distributed load q(x) = -q + 2qx/l creating null resultant. Hinged support at left end with axial pre-stress force Fₓ. Load varies linearly from -q (downward) at left to +q (upward) at right. Beam length 'l' with rotational spring constant kₜ at right end.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_7.png" alt="Beam system with inclined member connecting fixed support to hinged support">
+                <figcaption>
+                    <strong>Beam system with inclined member of length 'l' connecting fixed support (hatched, upper right) to hinged support (lower left). Triangular distributed load 'q' applied to horizontal beam segment of length 'l'. Rotational spring kₜ shown at lower right connection point.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_8.png" alt="Horizontal beam with fixed support at left end and pinned support at right end">
+                <figcaption>
+                    <strong>Horizontal beam with fixed support (hatched) at left end and pinned support at right end. Vertical upward point force P applied at right end. Beam length indicated, with coordinate system showing x-axis along beam. Simple two-support configuration.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_9.png" alt="Structural system with two inclined members forming triangular configuration">
+                <figcaption>
+                    <strong>Structural system with two inclined members of length 'l' forming triangular configuration. Fixed support (hatched) at upper right. Triangular distributed load 'q' applied to horizontal beam segment of length 'l'. Hinged support at lower left with rotational spring kₜ at lower right junction.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_10.png" alt="Beam with axial force applied at left end and distributed load along top surface">
+                <figcaption>
+                    <strong>Beam with axial force Fₓ applied at left end and distributed load q along top surface. Fixed support (hatched) at right end. Beam length 'l' indicated. Load shown by vertical arrows pointing downward along span.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_11.png" alt="Beam with applied moment at left end and distributed load along span">
+                <figcaption>
+                    <strong>Beam with applied moment M at left end and distributed load q along span. Fixed support (hatched) at right end. Beam length 'l' shown. Moment indicated by curved arrow, distributed load by vertical arrows.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_12.png" alt="Simple beam with point load applied at left end and fixed support at right end">
+                <figcaption>
+                    <strong>Simple beam with point load P applied at left end and fixed support (hatched) at right end. Beam length 'l' indicated. Minimal configuration showing single concentrated force and cantilever-like boundary condition.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_13.png" alt="Beam with applied moment at left end and fixed support at right end">
+                <figcaption>
+                    <strong>Beam with applied moment M at left end and fixed support (hatched) at right end. Beam length 'l' shown. Moment represented by curved arrow at free end.</strong>
+                </figcaption>
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201709_Test/page_1_img_14.png" alt="Horizontal beam with fixed support at left end and pinned support at right end">
+                <figcaption>
+                    <strong>Horizontal beam with fixed support (hatched) at left end and pinned support at right end. Vertical upward force P applied at right pinned connection. Coordinate axes show x horizontal and y vertical. Beam length indicated between supports.</strong>
+                </figcaption>
+            </figure>
+
+            <p>\(l\)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(EJ = 72e6\, \text{N mm}^2\)<br>
+                \(GJ = EJ/2\)<br>
+                \(k_t = 72\, \text{Nmm}\)<br>
+                \(l = 1000\, \text{mm}\)<br>
+                \(q = 100\, \text{N/mm}\)
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p><strong>Reference System and Beam Numbering:</strong></p>
+                <p>The structure is divided into three beams with local coordinates \((z_1, z_2, z_3)\). Let \(X\) be the torsional moment (unknown hyperstatic reaction) and \(Y\) be the vertical reaction force.</p>
+                
+                <p><strong>Load Distribution:</strong></p>
+                \[q(z_1) = \frac{\bar{q}}{l} z_1\]
+                
+                <p><strong>Internal Actions (Real System):</strong></p>
+                
+                <p><em>Beam 1:</em></p>
+                \[M_x^{(1)} = -\frac{\bar{q}}{6l} z_1^3\]
+                \[M_z^{(1)} = X\]
+                
+                <p><em>Beam 2:</em></p>
+                \[M_x^{(2)} = -Y z_2\]
+                
+                <p><em>Beam 3:</em></p>
+                \[M_x^{(3)} = X - \left(\frac{\bar{q}l}{2} + Y\right) z_3\]
+                \[M_z^{(3)} = \frac{\bar{q}l^2}{6} - Yl\]
+                
+                <p><strong>Virtual Work Analysis:</strong></p>
+                
+                <p><em>Dummy System #1</em> (unit rotation at spring):</p>
+                \[{}^1\delta M_z^{(1)} = 1, \quad {}^1\delta M_x^{(3)} = 1\]
+                
+                <p><em>Dummy System #2</em> (unit vertical displacement):</p>
+                \[{}^2\delta M_x^{(2)} = -z_2, \quad {}^2\delta M_x^{(3)} = -z_3, \quad {}^2\delta M_z^{(3)} = -l\]
+                
+                <p><strong>PCVW Equations:</strong></p>
+                
+                <p>Equation 1:</p>
+                \[\left(\frac{l}{GJ} + \frac{l}{EJ} + \frac{1}{k_t}\right)X - \frac{l^2}{2EJ}Y = \frac{\bar{q}l^3}{4EJ}\]
+                
+                <p>Equation 2:</p>
+                \[\frac{l^2}{2EJ}X - \left(\frac{2l^3}{3EJ} + \frac{l^3}{GJ}\right)Y = \frac{l^3}{3EJ} \cdot \frac{\bar{q}l}{2} - \frac{l^4\bar{q}}{6GJ}\]
+                
+                <p><strong>Final Results:</strong></p>
+                \[\boxed{X = 28043.5\, \text{N}\cdot\text{mm}}\]
+                \[\boxed{Y = 6255.3\, \text{N}}\]
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            
+            <p>The beam in the figure is made of an isotropie materiai with modulus \(E\) and Poisson's coefficient 11. It is characterized by a square cross section of dimensiona, where \(a(x) = \gamma\sqrt{a_0 + (a_1 - a_0)y}\), and \(x \in [0, Z]\). The first end of the beam is fixed; the second one is free to transiate along the transverse direction, while the rotation is prevented. A concentrateci load of magnitude \(P\) is applied at \(x = l\).</p>
+            
+            <p>Assume a Euler-Bernoulli beam model, and determine: the transverse displacement at \(x = l\); the maxi­mum stress at \(x = l/4\). To this aim, apply the method of Ritz and, using polynomial functions, and solve the problem by considering one single shape function.</p>
+            
+            <p>Discuss how the problem can be formulateci if two shape functions are adopted (report the relevant equa­tions; no calculations are required).</p>
+
+            <p>Qla</p>
+
+            <p>\(a\)<br>
+            \(l\)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(E = 72000\, \text{N mm}^2\)<br>
+                \(l = 1000\, \text{mm}\)<br>
+                \(\gamma\)<br>
+                \(10\, \text{mm}\)<br>
+                \(a_0 = 1\)<br>
+                \(a_1 = 16\)
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p><strong>Variable Cross-Section:</strong></p>
+                \[a(x) = \gamma \sqrt[4]{a_0 + (a_1 - a_0)\frac{x}{l}}\]
+                
+                <p><strong>Bending Stiffness:</strong></p>
+                \[EJ = \frac{1}{12}a^4 E = \frac{1}{12}E\left(\gamma^4 a_0 + (a_1 - a_0)\frac{x}{l}\right)\]
+                
+                <p>This can be written as:</p>
+                \[EJ = EJ_0 + EJ_1\left(\frac{x}{l}\right)\]
+                
+                <p>where:</p>
+                \[EJ_0 = \frac{1}{12}E\gamma^4 a_0\]
+                \[EJ_1 = \frac{1}{12}E\gamma^4 (a_1 - a_0)\]
+                
+                <p><strong>Trial Functions (Polynomial):</strong></p>
+                \[w = C_0 + C_1 x + C_2 x^2 + C_3 x^3\]
+                
+                <p><strong>Essential Boundary Conditions:</strong></p>
+                \[w(0) = 0\]
+                \[w_x(0) = 0\]
+                \[w_x(l) = 0\]
+                
+                <p>Applying these conditions yields:</p>
+                \[w = C_3\left(x^3 - \frac{3}{2}lx^2\right)\]
+                
+                <p><strong>Non-dimensional Trial Function:</strong></p>
+                \[w = C\left(\left(\frac{x}{l}\right)^3 - \frac{3}{2}\left(\frac{x}{l}\right)^2\right) = C \cdot \phi\]
+                
+                <p>where \(\phi = \left(\frac{x}{l}\right)^3 - \frac{3}{2}\left(\frac{x}{l}\right)^2\)</p>
+                
+                <p><strong>Stiffness Matrix:</strong></p>
+                \[\delta W_i = \int_0^l \delta w_{xx} \, EJ \, w_{xx} \, dx = \delta C \cdot k \cdot C\]
+                
+                <p>where:</p>
+                \[k = \int_0^l \left[EJ_0 + EJ_1\left(\frac{x}{l}\right)\right]\phi_{xx}^2 \, dx = \frac{1}{l^3}\left(3EJ_0 + \frac{3}{2}EJ_1\right)\]
+                
+                <p><strong>External Loads (Virtual Work):</strong></p>
+                \[\delta W_e = \delta w(l) \cdot P = \delta C \cdot f\]
+                
+                <p>where \(f = -\frac{1}{2}P\)</p>
+                
+                <p><strong>Solution for C:</strong></p>
+                \[C = \frac{f}{k} = -\frac{l^3}{2} \cdot \frac{P}{3EJ_0 + \frac{3}{2}EJ_1} = -32.68\, \text{mm}\]
+                
+                <p><strong>Displacement at \(x = l\):</strong></p>
+                \[w = -32.68 \cdot \phi(l) = -32.68 \times \left(1 - \frac{3}{2}\right) = -32.68 \times \left(-\frac{1}{2}\right)\]
+                \[\boxed{w(l) = 16.34\, \text{mm}}\]
+                
+                <p><strong>Stress at \(x = l/4\):</strong></p>
+                \[\sigma = E\varepsilon = E(-y \cdot w_{xx}) = E(-y \cdot \phi_{xx}) \cdot C\]
+                
+                \[\sigma\left(\frac{l}{4}\right) = -E \cdot y \cdot \phi_{xx}\left(\frac{l}{4}\right) \cdot C\]
+                
+                <p>The maximum stress is obtained at \(y = \frac{a}{2}\):</p>
+                \[\sigma\left(\frac{l}{4}\right) = -E \cdot \frac{a}{2} \cdot \phi_{xx}\left(\frac{l}{4}\right) \cdot C\]
+                
+                \[\boxed{\sigma\left(\frac{l}{4}\right) = 26.05\, \text{MPa}}\]
+                
+                <p>where \(a = 14.76\, \text{mm}\) at \(x = l/4\).</p>
+                
+                <p><strong>Two Shape Functions Formulation:</strong></p>
+                <p>If two shape functions \(\phi_1\) and \(\phi_2\) are adopted, the displacement becomes:</p>
+                \[w = C_1 \phi_1 + C_2 \phi_2\]
+                
+                <p>The stiffness matrix becomes a \(2 \times 2\) system:</p>
+                \[k_{ij} = \int_0^l EJ \, \phi_{i,xx} \, \phi_{j,xx} \, dx\]
+                
+                <p>And the equilibrium equations become:</p>
+                \[\begin{bmatrix} k_{11} & k_{12} \\ k_{21} & k_{22} \end{bmatrix} \begin{bmatrix} C_1 \\ C_2 \end{bmatrix} = \begin{bmatrix} f_1 \\ f_2 \end{bmatrix}\]
+            </div>
+        </section>
+
+        <section class="question">
+            <h2>Question 1</h2>
+            <p>Illustrate the relation between the stress measures according to Cauchy, Piola-Kirchhoff I and Piola­Kirchhoff II.</p>
+            
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                <p><em>No solution provided in the available solution pages.</em></p>
+            </div>
+        </section>
+
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; text-align: center; font-size: 0.9em; color: #666;">
+            <p>1</p>
+        </footer>
+    </article>
+</body>
+</html>

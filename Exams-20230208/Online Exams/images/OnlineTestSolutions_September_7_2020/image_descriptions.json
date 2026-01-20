@@ -1,0 +1,62 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "l_frame_beam_distributed_load_fixed_pinned",
+    "description": "L-shaped frame structure with fixed support at upper left end and pinned support at lower right end. Distributed load applied over length L/2 on horizontal segment. Total length L with vertical segment containing properties EA₃ and EJ, horizontal segments with EA₁, EA₂ and EJ. Coordinate system shows x-axis horizontal and vertical force P. Problem asks to determine axial force at x = L/2. Data provided: L = 1200(1+D/10) mm, EA₁ = 2.0·10⁴ N, EA₂ = 1.0·10⁴ N, EA₃ = 2.9·10⁴ N, EJ = 1.5·10¹⁰ N·mm², P = 1200(1+F/10) N. Solution section shows \"Real\" and \"Dummy\" coordinate systems with z₁, z₂, y₁, y₂ axes labeled."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "axial_force_calculation_equations",
+    "description": "Handwritten calculation page showing force and moment equilibrium equations for beam analysis. Equations include N = -X (beam 1), M_x = -(P+X)z₂ (beam 2), δN = -1, δM_x = -z₂. Virtual work integral equation shown: ∫₀ᴸ (N·δN)/(EA₃) dz₁ + ∫₀ᴸ (M_x·δM_x)/(EJ) dz₂ = 0. Final result calculated as X = -PL²/3 / (EJ·L²/3 + EA₃) = -577.59 N."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "semi_monocoque_panel_shear_flow",
+    "description": "Three-dimensional semi-monocoque structural panel with rectangular cross-section showing ribs #1, #2, and #3 along length L. Panel has width a, height h, and includes four corner stringers labeled A with skin thickness t₁ and t₂. Vertical force P applied at upper left corner, with coordinate axis x shown. Problem asks to evaluate shear flow in panel with thickness t₂ at x = 0. Data: A = 700 mm², b = 600 mm, h = 150 mm, t₁ = 1 mm, L = 1800(1+A/10) mm, p = 2.5·10⁻²(1+B/10) N/mm². Solution (A = B = 0) shows shear at x = 0 is T = p·L'(b-2h) and from symmetry q = T/(2h) = 45 N/mm."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "rigid_link_beam_ritz_method",
+    "description": "Cantilever beam with rigid link at free end, showing length L, variable properties EJ(x) and EA(x), dimension d, and applied force P. Problem instructs to use Ritz method with 1-DOF polynomial approximation for displacement component. Data: L = 1200 mm, d = 45 mm, EA₀ = 1.15·10⁶ N, EA₁ = 6.5·10⁵(1+B/10) N, EJ₀ = 1.5·10⁹ N·mm², EJ₁ = 7.5·10⁹ N·mm², P = 800 N. Note states EA and EJ vary linearly with x from EA₀/EJ₀ to EA₁/EJ₁. Solution (B = 0) shows approximations u = q₁x, w = q₂x², with EJ(x) = α + βx and EA(x) = S + Yx, where α = EJ₀, β = (EJ₁-EJ₀)/L, S = EA₀, Y = (EA₁-EA₀)/L."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "virtual_work_stiffness_matrix",
+    "description": "Handwritten calculation showing virtual work integral equation: ∫₀ᴸ (δu_x·EA(x)·u_x + δw_xx·EJ(x)·w_xx) dx = -δu(L)P - δw_x(L)Pd. After substitution of approximations, results in 2×2 stiffness matrix equation [K]{q} = {f}, where K has elements [SL+YL²/2, 0; 0, 4(αL+βL²/2)] and force vector {-PL; -2LPd}. Solution for q and evaluation of displacement U provides: U = (1/2)qᵀKq = 599.47 N·mm."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "box_beam_rib_bending_moment",
+    "description": "Three-dimensional box beam structure with rectangular cross-section (dimensions a × b) showing two ribs (#1 and #2) along length L. Four corner stringers labeled A with skin thickness t. Vertical force P applied at front left corner, coordinate axis x shown. Problem asks to model Rib #2 as beam and evaluate bending moment at x = a/3. Data: a = 500(1+A/10) mm, b = 250 mm, t = 0.6 mm, A = 500 mm², L = 2000 mm, P = 1000 N. Solution (A = 0) shows equilibrating shear flows with diagram indicating force distribution: 1/4 P/b at top, 3/4 P/b at sides, resulting in moment M = 0 condition and shear flow pattern with 1/4 P at corners."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "two_member_frame_torsional_stiffness",
+    "description": "Two-member frame structure with horizontal member (length L₁, properties EJ₁/GJ₁) connected to inclined member (length L₂, properties EJ₂/GJ₂ = 7/L₂). Vertical force P applied at left end, horizontal force P at joint, and shear force S at upper end. Problem asks to find ratio GJ₂/GJ₁ such that S = S_max. Data: L₁ = 300 mm, L₂ = 750 mm, EJ₁ = 2·10⁹ N·mm², EJ₂ = 3·10⁹ N·mm², GJ₁ = 9·10⁹ N·mm², P = 1200 N, S_max = 15(1+F/10). Solution (F = 0) shows \"Real\" and \"Dummy\" coordinate systems with labeled nodes and force directions."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "frame_moment_equations_solution",
+    "description": "Handwritten solution showing moment equations for two-member frame: M = -Pz₁ (beam 1), M_z = -2PL₁ (beam 2), with virtual moment expressions δM = -z₁, δM₂ = -L₁. Strain energy equation: ∫₀^L₁ (δM·M)/(EJ₁) dz₁ + ∫₀^L₂ (δM₂·M₂)/(GJ₂) dz₂ = S = S_max. Solution yields GJ₂ = (2PL₁²L₂)/(S_max - PL₁³/(3EJ₁)), with final numerical result GJ₂/GJ₁ = 187.5."
+  },
+  "page_9_img_1.png": {
+    "suggested_name": "circular_tube_shear_deformability",
+    "description": "Circular tube structure with radius R (diameter 2R) and length L, showing four corner stringers labeled A with skin thickness t. Vertical force P applied at upper left stringer, coordinate axes S and x shown. Problem asks to evaluate contribution of shear deformability to displacement S. Data: L = 2300 mm, R = 150 mm, t = 0.8(1+A/10) mm, P = 1700(1+B/10) N, G = 27000 MPa. Solution (A = B = 0) shows cross-sectional area A* = (π·t·R)/π and shear displacement S_shear = PL/(GA*) = 0.4739 mm."
+  },
+  "l_shaped_frame_distributed_point_loads.png": {
+    "suggested_name": "l_shaped_frame_distributed_point_loads",
+    "description": "L-shaped frame structure with fixed support at left, distributed load on horizontal segment, point load P at right end, and pin support at bottom. Shows three segments with different EA and EJ properties labeled."
+  },
+  "arch_panel_three_ribs_cross_section.png": {
+    "suggested_name": "arch_panel_three_ribs_cross_section",
+    "description": "Three-dimensional arch structure showing panel with thickness t2, supported by three ribs labeled Rib #1, #2, and #3. Cross-sectional view shows dimensions h, b, and thickness parameters t1 and t2."
+  },
+  "cantilever_beam_rigid_link_point_load.png": {
+    "suggested_name": "cantilever_beam_rigid_link_point_load",
+    "description": "Cantilever beam with rigid link at free end, showing length L, distance d, point load P at end, and varying EJ(x) and EA(x) properties along length."
+  },
+  "rectangular_frame_two_ribs_point_loads.png": {
+    "suggested_name": "rectangular_frame_two_ribs_point_loads",
+    "description": "Three-dimensional rectangular frame structure with dimensions a and b, thickness t, showing two ribs (#1 and #2) with point loads P at corners. Includes coordinate system with x-axis indicated."
+  },
+  "two_segment_beam_inclined_point_loads.png": {
+    "suggested_name": "two_segment_beam_inclined_point_loads",
+    "description": "Two-segment beam structure with horizontal segment L1 and inclined segment L2. Shows point loads P at left end and junction, with different EJ and GJ properties for each segment. Includes S force arrow at left."
+  },
+  "cylindrical_tube_circular_cross_section.png": {
+    "suggested_name": "cylindrical_tube_circular_cross_section",
+    "description": "Cylindrical tube structure of length L with circular cross-section of radius 2R. Shows four points labeled A around circumference with thickness t, coordinate axes S and P, and cross-sectional end view."
+  }
+}

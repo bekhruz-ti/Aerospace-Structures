@@ -1,0 +1,54 @@
+{
+  "page_7_img_1.png": {
+    "suggested_name": "beam_pinned_fixed_uniform_distributed_load",
+    "description": "Beam with pinned support at left end and fixed support at right end, subjected to uniform distributed load q = 12 N/mm acting downward across entire length. Beam properties include length l = 1200 mm, flexural rigidity EI_y = 10^12 N·mm², and elastic foundation stiffness k = 750(1+6/10) N/mm. Central point load V = ? shown at mid-span. Problem asks to determine the vertical displacement v. Coordinate system shows z-axis along beam length."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "beam_analysis_moment_shear_diagrams",
+    "description": "Analysis of beam with pinned support at left end and fixed support at right end under uniform distributed load q. Top diagram shows original beam configuration with unknown vertical displacement V at mid-span and coordinate axes z_L and z_1. Middle section shows free body diagrams for two beam segments with reaction forces ql at supports and moment expressions M_1 = -ql·x_1 + q·x_1²/2 and M_2 = -ql·x_2 + q·x_2²/2. Bottom diagram illustrates shear force distribution with reactions V_2 at both ends, downward unit load, and shear moment expressions SM_1 = -1/2·x_1 and SM_2 = -1/2·x_2."
+  },
+  "page_17_img_1.png": {
+    "suggested_name": "rib_box_section_force_loading",
+    "description": "Three-dimensional box section rib with rectangular cross-section subjected to vertical forces F at corners. Left view shows isometric perspective with dimensions l_1 (length), l_3 (height), and l_2/2 (half-width on each side). Forces F applied at four corners labeled A, with thickness t indicated. Right view shows cross-sectional elevation with width l_1, height l_3, and x-axis orientation. Problem statement requests modeling the rib as a beam and determining bending moment at x = l_1/2. Given data: l_1 = 500 mm, l_2 = 1500 mm, l_3 = 150 mm, t = 1.0 mm, F = 6000 N, A = 500 mm²."
+  },
+  "page_19_img_1.png": {
+    "suggested_name": "rib_equilibrium_shear_flow_beam_model",
+    "description": "Superposition analysis showing equilibrating shear flows in rectangular rib cross-section. Top diagram shows four corner forces with magnitudes 3F/4·l_3 (vertical) and F/4·l_3 (horizontal), with internal shear flows F/4l_3 along edges. Bottom diagram shows equilibrium configuration with reversed flow directions. Final beam model representation shows rib as beam with upward force F/4 at right end, downward force 3F/4 at left end, and moment M indicated by curved arrows in cross-section. Coordinate system with x-axis shown. Moment equation given as M(x) = F/4·x - Fx/4 = 0."
+  },
+  "two_segment_beam_prescribed_displacement.png": {
+    "suggested_name": "two_segment_beam_prescribed_displacement",
+    "description": "Structural diagram of a two-segment beam with fixed support on left, roller support in middle, and prescribed displacement at right end. Shows EI and ℓ properties for each segment with downward displacement ū indicated."
+  },
+  "inclined_beam_vertical_load_moment.png": {
+    "suggested_name": "inclined_beam_vertical_load_moment",
+    "description": "Inclined beam member with fixed support at base, pin support at top, vertical load V at top, and applied moment Hₑ. Shows length ℓ, angle θ, and material properties EI and GJ."
+  },
+  "beam_distributed_load_spring_support.png": {
+    "suggested_name": "beam_distributed_load_spring_support",
+    "description": "Beam with fixed support on left, spring support on right, distributed load q along top surface, and unknown vertical displacement V. Shows two equal segments with properties EI and ℓ, and spring constant k."
+  },
+  "l_shaped_rigid_link_vertical_force.png": {
+    "suggested_name": "l_shaped_rigid_link_vertical_force",
+    "description": "L-shaped rigid link structure with pin support at base (angle θ), vertical force F at corner, and rigid link connection at top. Shows beam segment with properties ℓ, EI, and GJ(x)."
+  },
+  "rigid_link_solution_diagram.png": {
+    "suggested_name": "rigid_link_solution_diagram",
+    "description": "Solution diagram showing L-shaped rigid link with coordinate system (x,z), pin support at base with angle θ, vertical force F, and beam properties ℓ, EI, GJ(x). Includes essential boundary conditions listed."
+  },
+  "circular_bar_distributed_moment.png": {
+    "suggested_name": "circular_bar_distributed_moment",
+    "description": "Circular bar cross-section diagram showing distributed moment Mₜ applied along length, with properties ℓ and GJ, and angle θ indicated. Shows coordinate system with x and z axes."
+  },
+  "three_dimensional_rib_structure.png": {
+    "suggested_name": "three_dimensional_rib_structure",
+    "description": "Three-dimensional rib structure showing isometric view and cross-section. Isometric shows rectangular rib with forces F at corners, dimensions ℓ₁, ℓ₂, ℓ₃, and thickness t. Cross-section shows rectangular profile with width ℓ₁ and height ℓ₃."
+  },
+  "rectangular_frame_shear_flow_decomposition.png": {
+    "suggested_name": "rectangular_frame_shear_flow_decomposition",
+    "description": "Beam model decomposition showing rectangular frame with force F, broken into symmetric and antisymmetric loading cases. Shows shear flow distributions and equilibrium conditions for torsion analysis."
+  },
+  "frame_superposition_beam_model.png": {
+    "suggested_name": "frame_superposition_beam_model",
+    "description": "Superposition of effects diagram showing rectangular frame with distributed forces F/4ℓ₃ and F/4 at corners. Shows equilibrating flows and final beam model with moment H and distributed load."
+  }
+}

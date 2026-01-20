@@ -1,0 +1,321 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema_11_02_2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .student-info span {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problem {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .problem h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .problem-parts {
+            margin: 15px 0;
+        }
+
+        .problem-parts ol {
+            margin-left: 20px;
+        }
+
+        .problem-parts li {
+            margin: 10px 0;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #555;
+            text-align: center;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .diagram-description {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            font-size: 0.9em;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 1px solid #333;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        .note {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <div class="student-info">
+                _____________________ Name _____________________ Surname _____________________ Id
+            </div>
+            <h1>AEROSPACE STRUCTURES</h1>
+            <p class="metadata">Written test February 11 2019</p>
+        </header>
+
+        <section class="problem">
+            <h2>1.</h2>
+            <p>The semi-momocoque wing of Figure 1 is loaded by a concentrated force \(F\). Refer to Table 1 for the problem data, and assume reasonable values for any missing constant. Compute</p>
+            
+            <div class="problem-parts">
+                <ol type="a">
+                    <li>the stress of the stringers at a distance \(l/2\) from the loaded end;</li>
+                    <li>the average shear stress of the two rivets with diameter \(d_1\) and \(d_2\) connecting the panels to the stringer. The rivets are spaced with pitch \(p_1\) and \(p_2\), respectively. Assume the area \(A_1\) to belong to the L-shaped stringer only.</li>
+                </ol>
+            </div>
+
+            <div class="diagram-description">
+                <pre>
+A1
+
+A2
+
+w
+
+l
+
+t1
+
+t1  t1  t1
+
+A1
+
+A2
+
+w
+
+d1, p1
+
+d2, p2
+
+F
+                </pre>
+            </div>
+
+            <figcaption><strong>Figure 1:</strong> Loaded wing</figcaption>
+
+            <table>
+                <caption><strong>Table 1:</strong> Semi-momocoque wing data</caption>
+                <tbody>
+                    <tr>
+                        <td>\(A_1\)</td>
+                        <td>\(300\, \text{mm}^2\)</td>
+                        <td>\(l\)</td>
+                        <td>\(1500\, \text{mm}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(A_2\)</td>
+                        <td>\(150\, \text{mm}^2\)</td>
+                        <td>\(d_1\)</td>
+                        <td>\(2\, \text{mm}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(t_1\)</td>
+                        <td>\(1.5\, \text{mm}\)</td>
+                        <td>\(d_2\)</td>
+                        <td>\(3\, \text{mm}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(w\)</td>
+                        <td>\(100\, \text{mm}\)</td>
+                        <td>\(p_1\)</td>
+                        <td>\(10\, \text{mm}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(E\)</td>
+                        <td>\(72000\, \text{MPa}\)</td>
+                        <td>\(p_2\)</td>
+                        <td>\(12\, \text{mm}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\nu\)</td>
+                        <td>\(0.3\)</td>
+                        <td>\(F\)</td>
+                        <td>\(15\, \text{kN}\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="problem">
+            <h2>2.</h2>
+            <p>The slender beam of Figure 2 is supported by two springs of stiﬀness \(k_x\) and \(k_y\) at one of its extremity, and clamped at the other. A force \(F\) with components \(F_x\), \(F_y\) and \(F_z\) is applied at \(l/3\). The beam axial stiﬀness is \(EA\), while the bending stiﬀnesses are \(EJ_{xx}\) and \(EJ_{yy}\) <span class="note">(note: \(EJ_{xy} = 0\))</span>. Compute the unknown reaction forces and the strain energy of the system (including the strain energy of the springs).</p>
+
+            <div class="diagram-description">
+                <pre>
+kx  ky
+
+l
+
+x
+
+F  l/3
+
+y
+
+z
+                </pre>
+            </div>
+
+            <figcaption><strong>Figure 2:</strong> Cantilever bending</figcaption>
+
+            <table>
+                <caption><strong>Table 2:</strong> Cantilever bending data</caption>
+                <tbody>
+                    <tr>
+                        <td>\(l\)</td>
+                        <td>\(2000\, \text{mm}\)</td>
+                        <td>\(F_x\)</td>
+                        <td>\(100\, \text{N}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(EJ_{xx}\)</td>
+                        <td>\(8 \times 10^9\, \text{Nmm}^2\)</td>
+                        <td>\(F_y\)</td>
+                        <td>\(150\, \text{N}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(EJ_{yy}\)</td>
+                        <td>\(5 \times 10^9\, \text{Nmm}^2\)</td>
+                        <td>\(F_z\)</td>
+                        <td>\(10000\, \text{N}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(EJ_{xy}\)</td>
+                        <td>\(0\, \text{Nmm}^2\)</td>
+                        <td>\(k_x\)</td>
+                        <td>\(2\, \text{N/mm}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(EA\)</td>
+                        <td>\(7 \times 10^7\, \text{N}\)</td>
+                        <td>\(k_y\)</td>
+                        <td>\(5\, \text{N/mm}\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="problem">
+            <h2>3.</h2>
+            <p>Derive the principle of virtual work starting from the indeﬁnite equilibrium equation of a three dimensional solid.</p>
+        </section>
+    </article>
+</body>
+</html>
+```

@@ -1,0 +1,222 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema_10_02_2020</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .course-info {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            line-height: 1.8;
+        }
+
+        .diagram {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .diagram-text {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            text-align: left;
+            display: inline-block;
+            line-height: 1.4;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 40px;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff8e1;
+            border-left: 4px solid #ffa000;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Tema_10_02_2020</h1>
+            <p class="metadata">Extracted from: C:\Users\bekhr\Downloads\Aerospace Structres\Exams-20230208\Written Tests\Tema_10_02_2020.pdf</p>
+            <p class="metadata">Total pages: 1</p>
+        </header>
+
+        <p class="course-info">Course of Aerospace Structures Written test, Feb 10th, 2020</p>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            <p>The semi-monocoque two-cell structure in the ﬁgure has a rotated square cross section, with sides of lenght \(l\). It is loaded by a a force \(F\) whose line of action goes through a point that is at a distance \(d\) with respect to the vertical panel of the structure. Compute the displacement of the point of application of the force.</p>
+
+            <div class="diagram">
+                <div class="diagram-text">
+F
+
+A1
+
+t1
+
+d
+
+l
+
+Encastred wing root
+
+L A2
+
+A3
+
+A4
+
+t2
+
+t3 t4
+
+t5
+                </div>
+            </div>
+
+            <div class="data-section">
+<strong>Data</strong> \(L = 2000\, \text{mm}\); \(l = 200\, \text{mm}\); \(E = 70000\, \text{MPa}\); \(\nu = 0.3\); \(A_2 = A_4 = 400\, \text{mm}^2\); \(A_1 = A_3 = 500\, \text{mm}^2\); \(t_1 = t_2 = 0.8\, \text{mm}\); \(t_3 = t_4 = 1.0\, \text{mm}\); \(t_5 = 1.1\, \text{mm}\); \(d = 500\, \text{mm}\); \(F = 1 \times 10^3\, \text{N}\);
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            
+            <p>1. Consider the encastred beam in the ﬁgure below on the left. A concentrated force \(F\) is applied at a distance \(l\) from the constraint. The axial, bending and torsional cross-section stiﬀness properties are equal to \(EA_1\), \(EJ_1\) and \(GJ_1\) in the portion of the beam between the constraint and the point of application of the force, and to \(EA_2\), \(EJ_2\) and \(GJ_2\) from there to the beam tip. Solve the problem using the Ritz method and compute:</p>
+
+            <ul>
+                <li>an approximate solution for the whole structure, by assuming a quadratic transverse displace- ment for the whole beam;</li>
+                <li>an approximate solution for the whole structure, by assuming a quadratic transverse displace- ment for the ﬁrst half of the beam and a diﬀerent quadratic transverse displacement for the second half.</li>
+            </ul>
+
+            <p>2. Consider now the L-shaped beam on the right. The two beams are connected by an hinge. The vertical beam is subject the a distributed axial load per unit of lenght \(f\). Compute an approximate solution for the whole structure by assuming, for both beams, quadratic transverse displacement and linear axial displacement ﬁelds.</p>
+
+            <div class="diagram">
+                <div class="diagram-text">
+l
+
+EA1, EJ1, GJ1
+
+l
+
+EA2, EJ2, GJ2
+
+F
+
+EA1 EJ1 GJ1
+
+EA2, EJ2, GJ2
+
+l
+
+l f
+                </div>
+            </div>
+        </section>
+
+        <section class="question">
+            <h2>Question 1</h2>
+            <p>Illustrate the relation between the Principle of Complementary Virtual Work and the compatibility equations.</p>
+        </section>
+
+    </article>
+</body>
+</html>
+```

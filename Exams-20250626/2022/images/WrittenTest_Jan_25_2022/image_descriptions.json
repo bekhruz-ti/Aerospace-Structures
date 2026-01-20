@@ -1,0 +1,62 @@
+{
+  "two_beams_hinged_connection_force_p.png": {
+    "suggested_name": "two_beams_hinged_connection_force_p",
+    "description": "3D structural diagram showing two beams connected at middle with four hinges, subjected to force P and reaction force R, with dimensions labeled as ℓ and ℓ/2"
+  },
+  "simply_supported_beam_center_load.png": {
+    "suggested_name": "simply_supported_beam_center_load",
+    "description": "Simply supported beam diagram with point load P at center, showing reaction forces P/2 at both supports and length L with EJ notation"
+  },
+  "beam_system_spring_representation.png": {
+    "suggested_name": "beam_system_spring_representation",
+    "description": "3D structural diagram showing two beams with hinged connection represented as spring system with stiffness k1 and k2, subjected to force P"
+  },
+  "simply_supported_beam_reaction_forces.png": {
+    "suggested_name": "simply_supported_beam_reaction_forces",
+    "description": "Simply supported beam diagram showing distributed load 8/9 P with reaction forces R at supports, span divided into ℓ/2 segments"
+  },
+  "l_shaped_frame_fixed_support.png": {
+    "suggested_name": "l_shaped_frame_fixed_support",
+    "description": "L-shaped frame structure with fixed support, showing vertical and diagonal members with dimensions 2ℓ, forces 2P and P, and distributed load q"
+  },
+  "l_frame_real_system_simplified.png": {
+    "suggested_name": "l_frame_real_system_simplified",
+    "description": "L-shaped frame structure showing real system and simplified representation with distributed load qℓ and moment 9ℓ²/2"
+  },
+  "l_frame_dummy_system_unit_load.png": {
+    "suggested_name": "l_frame_dummy_system_unit_load",
+    "description": "L-shaped frame structure with dimensions 2ℓ and ℓ, showing unit load application for dummy system analysis"
+  },
+  "cantilever_beam_spring_supports.png": {
+    "suggested_name": "cantilever_beam_spring_supports",
+    "description": "Cantilever beam with spring supports showing force F, moment m_t, dimensions ℓ, d, and spring stiffness k, with EJ and GJ properties labeled"
+  },
+  "cantilever_beam_3d_coordinate_system.png": {
+    "suggested_name": "cantilever_beam_3d_coordinate_system",
+    "description": "Cantilever beam with 3D coordinate system (x,y,z,w,v,θ) showing force F, moment m_t, spring supports k, and force Fd with dimensional parameters"
+  },
+  "cantilever_beam_3d_system_duplicate.png": {
+    "suggested_name": "cantilever_beam_3d_system_duplicate",
+    "description": "Cantilever beam with 3D coordinate system showing force F, moment m_t, spring supports k, and force Fd - duplicate of page 11 diagram"
+  },
+  "beam_varying_axial_stiffness.png": {
+    "suggested_name": "beam_varying_axial_stiffness",
+    "description": "Beam element with distributed axial load showing varying stiffness EA(x) between two spring supports k1 and k2"
+  },
+  "rectangular_hollow_cross_section.png": {
+    "suggested_name": "rectangular_hollow_cross_section",
+    "description": "Rectangular hollow beam cross-section showing dimensions b, a (1/3 a and 2/3 a), with area labels 2A, A at corners and coordinate axes x, y"
+  },
+  "cross_section_shear_flow_analysis.png": {
+    "suggested_name": "cross_section_shear_flow_analysis",
+    "description": "Rectangular hollow cross-section with area distribution (2A, A) and shear flow analysis showing dimensions and centroid location y_c"
+  },
+  "cantilever_beam_hollow_section.png": {
+    "suggested_name": "cantilever_beam_hollow_section",
+    "description": "Cantilever beam with force F and displacement S, showing rectangular hollow cross-section with dimensions b, a and area distribution 2A, A"
+  },
+  "inclined_beam_free_body_diagrams.png": {
+    "suggested_name": "inclined_beam_free_body_diagrams",
+    "description": "Free body diagrams showing real system and dummy system for inclined beam with forces F, moments, and reactions at supports"
+  }
+}

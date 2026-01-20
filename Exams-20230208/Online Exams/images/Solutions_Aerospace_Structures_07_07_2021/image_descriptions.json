@@ -1,0 +1,102 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "two_segment_beam_fixed_support_distributed_load",
+    "description": "Two-segment beam system with fixed support at left end and free right end, subjected to uniform distributed load q and concentrated force X. Left segment has properties EA₂, EI₂, length ℓ₂ = 1500 mm. Right segment has properties EA₁, EI₁, length ℓ₁ = 1000(1 + b/10) mm. Distributed load q = 1 N/mm and axial force P = 1000 N applied. Material properties: EA₁ = 1·10⁶ N, EA₂ = 1·10⁷ N, EI₁ = 1·10¹² N·mm², EI₂ = 1·10¹² N·mm². Problem asks to determine concentrated force X such that vertical displacement at corresponding point of application is zero."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "two_beam_free_body_diagrams_solution",
+    "description": "Solution showing real system decomposition into two beam segments. Top diagram shows complete system with coordinate axes z₁ and z₂. Beam 1 free body diagram shows distributed load q, axial force P, normal force N₁ = P, and moment M₁ = -qz₁²/2. Beam 2 free body diagram shows distributed load over length qℓ₁²/2, axial force P, forces N₂ and M₂, with applied force X + qℓ₁ at right end. Moment expression M₂ = -Pℓ₁²/2 - (X + qℓ₁)z₂."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "beam_fixed_spring_distributed_load",
+    "description": "Cantilever beam with fixed support at left end, spring support with stiffness k at intermediate location, and free right end. Uniform distributed load q applied over left portion of length ℓ. Beam has properties EI and length ℓ for each segment. Problem asks to determine vertical displacement w in correspondence of the spring. Data: ℓ = 1000 mm, EI = 10¹² N·mm², k = 1500(1 + b/10) N/mm, q = 15 N/mm."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "cantilever_beam_solution_diagrams",
+    "description": "Solution showing real system and dummy system for cantilever beam analysis. Real system shows beam with fixed support, distributed load q over length ℓ, and vertical reaction force Y at spring location. Moment expression M = -Yz - qz²/2. Dummy system shows beam with fixed support and unit vertical force (1) at spring location, with moment expression δM = -z. Coordinate system with z-axis shown."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "beam_spring_supports_distributed_load",
+    "description": "Simply supported beam with torsional spring support k_t at left end and pinned support at right end. Uniform distributed load q applied over entire beam length ℓ. Beam has properties EI and length ℓ. Problem asks to determine strain energy stored in spring of torsional stiffness k_t. Data: ℓ = 1000 mm, EI = 10¹² N·mm², k_t = 10⁷ N, q = 1 N/mm."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "simply_supported_beam_analysis_solution",
+    "description": "Solution showing real system analysis for simply supported beam with distributed load q. Free body diagram shows beam with pinned supports at both ends, vertical reactions V and W, and applied moment X at left support. Equilibrium equations: V + W = qℓ and X = qℓ²/2 - Wℓ, leading to V = qℓ/2 + X/ℓ. Moment expression M = -X + Vz - qz²/2. Dummy system shows beam with unit moment (1) at left end and reaction force 1/ℓ, with moment expression δM = -1 + (1/2)z."
+  },
+  "page_14_img_1.png": {
+    "suggested_name": "simply_supported_beam_ritz_approximation",
+    "description": "Simply supported beam with pinned supports at both ends, subjected to uniform distributed load q over entire length ℓ. Beam has properties EI and length ℓ. Problem asks to determine vertical displacement at middle using Ritz approximation with one trigonometric trial function. Includes integral table reference: ∫₀ᵃ(sin πx/a)³dx = 4a/3π. Data: ℓ = 1700(1 + c/10) mm, EI₀ = 10¹² N·mm², q = 15 N/mm."
+  },
+  "page_15_img_1.png": {
+    "suggested_name": "simply_supported_beam_boundary_conditions",
+    "description": "Solution setup for simply supported beam showing essential and natural boundary conditions. Essential conditions: w(0) = 0 and w(ℓ) = 0 (zero displacement at supports). Natural conditions: w″(0) = 0 and w″(ℓ) = 0 (zero moment at pinned ends). Assumed displacement function w(x) = a sin(πx/ℓ) satisfies both essential and natural conditions. Includes application of principle of virtual work (PVW): ∫₀ℓ δw″ EI(x)w″dx = ∫₀ℓ δw q dx."
+  },
+  "page_17_img_1.png": {
+    "suggested_name": "cantilever_beam_rectangular_cross_section",
+    "description": "Cantilever beam with fixed support at left end subjected to uniform distributed load p over entire length ℓ. Right diagram shows rectangular cross-section with dimensions a × b, with four corner points labeled A. Problem asks to determine dimension a such that maximum displacement is u = 3 mm. Data: ℓ = 3000(1 + A/10) mm, a = 200 mm, b = 150 mm, t = 1.2 mm, p = 1.6·10⁻³ N/mm², E = 72000 MPa, G = 27000 MPa."
+  },
+  "page_18_img_1.png": {
+    "suggested_name": "cantilever_beam_shear_bending_analysis",
+    "description": "Solution showing cantilever beam analysis with distributed load q = pa. Real system shows beam with fixed support and coordinate axis z. Free body diagram shows shear force T = -qz and bending moment M = -qz²/2. Dummy system shows beam with unit vertical force (1) at free end, with virtual shear δT = -1 and virtual moment δM = -z. Application of principle of complementary virtual work (PCVW): ∫₀ℓ(δM M/EI + δT T/GA*)dx = u, leading to displacement expression u = qℓ⁴/8EI + qℓ²/2GA*."
+  },
+  "page_19_img_1.png": {
+    "suggested_name": "rectangular_cross_section_properties_calculation",
+    "description": "Calculation showing cross-sectional properties for rectangular hollow section. Bending stiffness EI = EA(b/2)⁴ = EAb². Shear stiffness GA* = G(T²)/(Σᵢqᵢ²ℓᵢ/tᵢ) = G·2bt, where 2bt is total area of vertical webs. Right diagram shows rectangular cross-section with corner points A, dimensions a × b, wall thickness T, and shear flow T/2b. Final calculation yields cross-sectional area A = qℓ⁴/(8Eb²)·1/(u - qℓ²/4Gbt) = 701.3 mm²."
+  },
+  "cantilever_beam_two_segments_distributed_load.png": {
+    "suggested_name": "cantilever_beam_two_segments_distributed_load",
+    "description": "Cantilever beam with fixed support at left, distributed load on top, point load P at right end, and concentrated force X. Shows two beam segments with different properties (EA₁, EI₁, ℓ₁) and (EA₂, EI₂, ℓ₂)"
+  },
+  "beam_system_two_segments_fixed_support.png": {
+    "suggested_name": "beam_system_two_segments_fixed_support",
+    "description": "Structural diagram showing cantilever beam system with two segments, fixed support, distributed load, and coordinate system with forces X and P labeled"
+  },
+  "dummy_system_cantilever_beam.png": {
+    "suggested_name": "dummy_system_cantilever_beam",
+    "description": "Simplified cantilever beam diagram showing two segments with different properties (EA₂, EI₂, ℓ₂) and (EA₁, EI₁, ℓ₁) with force labeled as 1"
+  },
+  "cantilever_beam_elastic_foundation.png": {
+    "suggested_name": "cantilever_beam_elastic_foundation",
+    "description": "Cantilever beam with fixed support at left, distributed load on top, elastic foundation support (spring k), and two segments with properties EI and ℓ"
+  },
+  "cantilever_beam_coordinate_system.png": {
+    "suggested_name": "cantilever_beam_coordinate_system",
+    "description": "Cantilever beam with fixed support, distributed load, and coordinate system showing x and y axes"
+  },
+  "simply_supported_beam_distributed_load.png": {
+    "suggested_name": "simply_supported_beam_distributed_load",
+    "description": "Simply supported beam with distributed load, pin supports at both ends, showing properties EI and ℓ with torsional stiffness K_t at left support"
+  },
+  "simply_supported_beam_reactions.png": {
+    "suggested_name": "simply_supported_beam_reactions",
+    "description": "Simply supported beam with distributed load showing reaction forces V and W at supports, moment X, and beam properties EI and ℓ"
+  },
+  "frame_structure_rigid_links_spring_support.png": {
+    "suggested_name": "frame_structure_rigid_links_spring_support",
+    "description": "Frame structure with rigid links, spring support k, point load P, and three segments with lengths ℓ₁, ℓ₂, ℓ₃. Shows variable torsional stiffness GJ(x) in inclined member"
+  },
+  "frame_structure_boundary_conditions.png": {
+    "suggested_name": "frame_structure_boundary_conditions",
+    "description": "Frame structure showing rigid links, spring support k, point load P, variable properties EJ and GJ(x), with essential boundary conditions listed"
+  },
+  "simply_supported_beam_rectangular_section.png": {
+    "suggested_name": "simply_supported_beam_rectangular_section",
+    "description": "Simply supported beam with distributed load q and properties EI and ℓ, with cross-sectional diagram showing rectangular dimensions a and b"
+  },
+  "simply_supported_beam_pin_supports.png": {
+    "suggested_name": "simply_supported_beam_pin_supports",
+    "description": "Simply supported beam with distributed load q, pin supports at ends, properties EI and ℓ, with coordinate system"
+  },
+  "cantilever_beam_rectangular_cross_section.png": {
+    "suggested_name": "cantilever_beam_rectangular_cross_section",
+    "description": "Cantilever beam with distributed load p and rectangular cross-section showing dimensions a and b. Left diagram shows side view, right diagram shows cross-sectional view"
+  },
+  "cantilever_beam_fixed_support_distributed_load.png": {
+    "suggested_name": "cantilever_beam_fixed_support_distributed_load",
+    "description": "Cantilever beam with fixed support at left, distributed load q, and coordinate system showing x-axis"
+  },
+  "rectangular_cross_section_vertical_web.png": {
+    "suggested_name": "rectangular_cross_section_vertical_web",
+    "description": "Rectangular cross-section diagram showing dimensions with points A at corners, dimension labels T/2b, and total area 2bt for vertical web"
+  }
+}

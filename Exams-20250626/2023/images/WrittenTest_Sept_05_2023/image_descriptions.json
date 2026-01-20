@@ -1,0 +1,26 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "rectangular_frame_point_load_cross_section",
+    "description": "Left: Rectangular frame structure with height dimension d and width dimension b, showing diagonal bracing member. Fixed support at base (indicated by hatching). Vertical downward point load F applied at mid-height on right side. Distributed load δ shown across top edge. Right: Cross-sectional detail showing rectangular hollow section with outer dimension e and inner dimension e₁, with wall thickness e₁. Overall height dimension a shown for reference. Cross-section appears to represent the frame member profile."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "truss_structure_coordinate_system",
+    "description": "Planar truss structure with four nodes labeled A, B, C, and D. Node A shows fixed support (hatching). Diagonal member connects nodes B and A. Vertical force F applied at node C with offset dimension v shown. Three-dimensional coordinate system shown at node A with x, y, and z axes. Additional coordinate system shown in upper right with x₄ axis indicated. Structure forms triangulated configuration with nodes B, C, and D."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "truss_internal_forces_symmetric_loading",
+    "description": "Truss structure with total span a divided into two equal segments a/2. Pin supports at left (³⁄₂A) and right (³⁄₂A) ends. Vertical upward force F applied at center bottom node. Internal member forces labeled q₁ through q₇ with directional arrows. Diagonal members form triangulated pattern. Height dimension b shown on right side. Horizontal member force qₛ shown at top. Structure shows symmetric geometry with member forces q₁, q₂, q₃, q₄ in lower members and q₅, q₆, q₇ in diagonal and upper members. Cross-sectional area A indicated at multiple nodes."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "frame_structure_uniform_spacing_shear_force",
+    "description": "Vertical frame structure with four horizontal members equally spaced at dimension a. Pin joints indicated by circles at member intersections. Width dimension b shown at bottom. Coordinate system with x and y axes shown at lower left. Vertical shear force Fᵧ indicated with upward arrow. Structure consists of four rectangular bays stacked vertically, each with height a, forming a multi-story frame configuration."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "two_segment_column_axial_load_stiffness",
+    "description": "Vertical column divided into two equal segments of length l. Fixed supports (hatching) at top and bottom ends. Roller support (circle) at mid-height where axial force F is applied downward. Upper segment has flexural rigidity EJₓₓ₂ and axial rigidity EA₂. Lower segment has flexural rigidity EJₓₓ₁ and axial rigidity EA₁. Total column length 2l with different stiffness properties in each segment."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "beam_distributed_load_elastic_foundation",
+    "description": "Beam with total length l supported on elastic foundation. Fixed support (hatching) at left end, roller support at right end. Distributed downward load f applied over left half (l/2) of beam span. Seven elastic spring supports (stiffness k) shown beneath beam with hatched ground. Coordinate system shows y-axis vertical and z-axis horizontal. Beam subjected to combined distributed loading and elastic foundation reaction, representing Winkler foundation model."
+  }
+}

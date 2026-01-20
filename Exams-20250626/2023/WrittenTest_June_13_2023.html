@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Written Test - June 13, 2023 - Course of Aerospace Structures</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .student-info {
+            margin: 30px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            font-size: 0.95em;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border: 2px solid #007bff;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 2px solid #000;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: inline-block;
+            color: #006400;
+            font-weight: bold;
+            margin-left: 10px;
+            padding: 2px 8px;
+            background: #e8f5e9;
+            border-radius: 3px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .true-false {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .true-false li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .multiple-choice {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .multiple-choice li {
+            margin: 20px 0;
+        }
+
+        .multiple-choice ol {
+            list-style-type: lower-alpha;
+            margin-top: 10px;
+        }
+
+        .multiple-choice ol li {
+            margin: 8px 0;
+        }
+
+        .multiple-choice ol li.correct-answer {
+            color: #006400;
+            font-weight: bold;
+            background: #e8f5e9;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures<br>Written test, June 13th, 2023</h1>
+            <p class="metadata">Extracted from: WrittenTest_June_13_2023.pdf</p>
+        </header>
+
+        <div class="student-info">
+            <p>Name</p>
+            <p>Surname</p>
+            <p>Person code:</p>
+        </div>
+
+        <figure class="diagram">
+            <img src="images/WrittenTest_June_13_2023/page_1_img_1.png" alt="Frame structure with four labeled points (A, B, C, D) forming a rectangular configuration with an inclined member">
+            <figcaption>
+                <strong>Frame structure with four labeled points (A, B, C, D) forming a rectangular configuration with an inclined member.</strong> Point A has a fixed support (left side) indicated by hatching and restraint symbols. Point B is at the upper right corner of the horizontal member. Point C is at the lower right corner where a vertical member connects. Point D has a roller support (right side) shown with hatching at an inclined orientation. The diagram includes a coordinate system with x, y, and z axes shown at bottom left. Member F is labeled on the right inclined section.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            <p>The beam structure sketched in the figure is loaded at point C by the force F, applied the x direction. Compute the displacement, in the x direction, of point C. Neglect shear deformation. The coordinates of the points are given, with respect to the sketched reference system, in the data. (Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                A : (0; 1000; 0) mm<br>
+                B : (1000; 1000; 0) mm<br>
+                C : (1000; 0; 0) mm<br>
+                D : (1000; 0; 1000) mm<br>
+                \(F = 1000.0\, \text{N}\)<br>
+                \(EI_{xx} = EI_{yy} = GJ = 1 \times 10^{10}\, \text{N mm}^2\)<br>
+                \(EA = 1 \times 10^4\, \text{N}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(u = 29.167\, \text{mm}\)</span></p>
+                <p><strong>Solution:</strong><br>
+                Using the principle of virtual work with \(l = 1000\, \text{mm}\):<br>
+                Internal forces in each member:<br>
+                • Member 1 (A-B): \(N_1 = X\), \(M_{yy,1} = M_{zz,1} = M_{xx,1} = 0\)<br>
+                • Member 2 (B-C): \(N_2 = 0\), \(M_{xx,2} = X \cdot z_2\), \(M_{yy,2} = 0\)<br>
+                • Member 3 (C-D): \(N_3 = 0\), \(M_{xx,3} = (X-F)z_3\), \(M_{zz,3} = X \cdot l\)<br><br>
+                Solving for reaction \(X\):
+                \[X = \frac{\frac{1}{3}\frac{F l^3}{EI_{xx}}}{\frac{l}{EA} + \frac{2}{3}\frac{l^3}{EI_{xx}} + \frac{l^3}{GJ}}\]
+                Displacement using virtual work with \(\tilde{M}_{xx,3} = -z_3\):
+                \[u = \frac{1}{3}\frac{(F-X)l^3}{EI_{xx}} = 29.167\, \text{mm}\]
+                </p>
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/WrittenTest_June_13_2023/page_1_img_2.png" alt="Vertical column with fixed supports at top and bottom, with downward force F applied at the top">
+            <figcaption>
+                <strong>Vertical column with fixed supports at top and bottom, indicated by hatching and pinned connection symbols.</strong> Downward force F applied at the top. The column shows internal force distribution with Roman numerals I and II marking different segments. Upward and downward arrows indicate axial forces along the length. Dimension ℓ marks the total height. Coordinate system at bottom shows z-axis vertical, y-axis horizontal, and x-axis into the page. Lower portion shows a pinned support with coordinate axes.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            <p>Compute the critical buckling load F of the beam structure sketched in the figure. Note that the hinge and the two sliders prevent the out of plane displacement both in the x and y directions. (Unit for result: N)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 4\, \text{m}\)<br>
+                \(EI_{xx} = 3 \times 10^{10}\, \text{N mm}^2\)<br>
+                \(EI_{yy} = 2 \times 10^{10}\, \text{N mm}^2\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(F_{cr} = 49348\, \text{N}\)</span></p>
+                <p><strong>Solution:</strong><br>
+                The boundary conditions (hinge at top, slider at bottom) give an effective length factor of 0.5:<br>
+                \[\hat{l} = \frac{l}{2} = 2\, \text{m} = 2000\, \text{mm}\]
+                Buckling occurs about the weaker axis (y-y direction) where \(EI_{yy} = 2 \times 10^{10}\, \text{N mm}^2\).<br>
+                Critical buckling load (Euler formula):
+                \[F_{cr} = \frac{\pi^2 EI_{yy}}{\hat{l}^2} = \frac{\pi^2 \times 2 \times 10^{10}}{(2000)^2} = 49348\, \text{N}\]
+                </p>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/WrittenTest_June_13_2023/page_2_img_1.png" alt="Rectangular frame structure with four corner points labeled with subscript notation">
+            <figcaption>
+                <strong>Rectangular frame structure with four corner points labeled A₁, A₂ (bottom corners) and A₁, A₂ (top corners, with subscript notation).</strong> All corners shown as pinned joints (filled circles). Horizontal dimension labeled as t between vertical members and ℓ₂ for top span. Vertical dimension labeled as t for each side, with total height ℓ₁ marked on right side. Coordinate system shows y-axis vertical and x-axis horizontal at bottom left.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 3</h3>
+            <p>Consider the semi-monocoque cross-section sketched in the figure. All the paneles have thickness equal to t. Compute, with respect to the sketched reference system, the x coordinate of the shear center. (Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(t = 1\, \text{mm}\)<br>
+                \(A_1 = 500\, \text{mm}^2\)<br>
+                \(A_2 = 250\, \text{mm}^2\)<br>
+                \(l_1 = 200\, \text{mm}\)<br>
+                \(l_2 = 300\, \text{mm}\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(x_{SC} = 140\, \text{mm}\)</span></p>
+                <p><strong>Solution:</strong><br>
+                Centroid location: \(x_{CG} = \frac{2 A_2 l_2}{2(A_1 + A_2)}\)<br><br>
+                Second moment of area about centroid: \(I_{xx,G} = 2(A_1 + A_2)\left(\frac{l_1}{2}\right)^2\)<br><br>
+                Shear flows due to unit shear force \(F\):<br>
+                \[\tilde{q}_1 = \frac{A_1 \cdot \frac{l_1}{2}}{I_{xx,G}} F, \quad \tilde{q}_2 = \frac{A_2 \cdot \frac{l_2}{2}}{I_{xx,G}} F, \quad \tilde{q}_3 = 0\]
+                Equilibrium and zero twist condition for shear center:
+                \[F \cdot x = \tilde{q}_2 \cdot l_1 \cdot l_2 + 2q^* \cdot l_1 \cdot l_2\]
+                Setting twist rate \(\theta' = 0\) for the closed section and solving:
+                \[x = \left[\tilde{q}_1 l_1 - \tilde{q}_2 l_1 + \tilde{q}_2(l_1 + l_2)\right] \frac{l_1 l_2}{(l_1 + l_2)F} = 140\, \text{mm}\]
+                </p>
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/WrittenTest_June_13_2023/page_2_img_2.png" alt="Triangular truss structure with three members meeting at apex">
+            <figcaption>
+                <strong>Triangular truss structure with three members meeting at apex.</strong> Left member labeled with length ℓ and point A with circled number (3). Bottom horizontal member has two points: left point A with circled (1) and right point A with circled (2). Right side shows distributed load pattern indicated by horizontal arrows of varying lengths. Bottom shows dimension ℓ with double-headed arrow. Members labeled as η (left diagonal), J (center/apex region), and numbered sections 1, 2, 3 on right side. Fixed support symbol shown at bottom left.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 4</h3>
+            <p>Consider the 3-D beam semi-monocoque beam model sketched in the figure, loaded at its extremity by the vertical force F, that is aligned to the panel going from stringer #1 to stringer #3. Compute the axial force in the concentrated area #1 (area equal to A) at a distance equal to s/2 from the clamp. (Unit for result: N)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(A = 100\, \text{mm}^2\)<br>
+                \(t = 1\, \text{mm}\)<br>
+                \(l = 0.3\, \text{m}\)<br>
+                \(s = 10\, \text{m}\)<br>
+                \(F = 1000\, \text{N}\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\);
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(N_1 = 16667\, \text{N}\)</span></p>
+                <p><strong>Solution:</strong><br>
+                For the triangular cross-section with side \(l\):<br>
+                Centroid location: \(x_{CG} = \frac{1}{3}l\), \(y_{CG} = \frac{1}{3}l\)<br><br>
+                Distance from centroid to stringer #1: \(d = \frac{\sqrt{2}}{3}l\)<br><br>
+                Second moment of area about the neutral axis \(\hat{u}\):
+                \[I_{\hat{u}\hat{u}} = \frac{A l^2}{3}\]
+                Force decomposition (force aligned with panel 1-3):
+                \[F_{\hat{y}} = \frac{F}{\sqrt{2}}\]
+                Bending moment at \(z = s/2\):
+                \[M_{\hat{x}} = F_{\hat{y}} \cdot \frac{s}{2}\]
+                Axial force in stringer #1:
+                \[N_1 = \frac{M_{\hat{x}}}{I_{\hat{u}\hat{u}}} \cdot A \cdot d = 16667\, \text{N}\]
+                </p>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">2</p>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/WrittenTest_June_13_2023/page_3_img_1.png" alt="L-shaped or bent frame structure with fixed support at left end">
+            <figcaption>
+                <strong>L-shaped or bent frame structure with fixed support at left end (indicated by hatching).</strong> Horizontal member of length ℓ extends to the right, then bends upward at an angle. Point force F applied downward at the bend location. The inclined member has length ℓ extending upward and to the right. Coordinate system shows y-axis vertical, x-axis horizontal, and z-axis at the fixed support. Double-headed arrow at bottom indicates the horizontal span dimension ℓ.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 5</h3>
+            <p>Consider the three-dimensional beam sketched in the figure, and loaded by the vertical force F. By re- sorting to the Ritz method, and adopting the simplest possible polynomial approximations for the vertical displacement and the torsional rotation, accounting for the torsional strain energy and for the bending strain energy of both beams, compute the approximated vertical displacement of the point of application of the force. Neglect shear deformability. (Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 1\, \text{m}\)<br>
+                \(F = 1000\, \text{N}\)<br>
+                \(GJ = 1 \times 10^{10}\, \text{N mm}^2\)<br>
+                \(EI_{xx} = EI_{yy} = 1 \times 10^{10}\, \text{N mm}^2\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(v_2 = -450\, \text{mm}\)</span></p>
+                <p><strong>Solution:</strong><br>
+                Using Ritz method with simplest polynomial approximations:<br><br>
+                <strong>Beam 1 (horizontal, torsion + bending):</strong><br>
+                \[\theta_1 = a \cdot z_1, \quad v_1 = b \cdot z_1^2\]
+                <strong>Beam 2 (inclined, bending):</strong><br>
+                \[v_2 = c + d \cdot z_2 + e \cdot z_2^2\]
+                <strong>Continuity conditions:</strong><br>
+                • \(v_2(0) = v_1(l)\) → \(c = b l^2\)<br>
+                • \(v_2'(0) = \theta_1(l)\) → \(d = a l\)<br><br>
+                Thus: \(v_2 = b l^2 + a l z_2 + e z_2^2\)<br><br>
+                Curvatures: \(\theta_1' = a\), \(v_1'' = 2b\), \(v_2'' = 2e\)<br><br>
+                <strong>Virtual work principle:</strong>
+                \[\int_0^l \delta\theta_1' GJ \theta_1' + \delta v_1'' EI v_1'' \, dz_1 + \int_0^l \delta v_2'' EI v_2'' \, dz_2 = -\delta v_2(l) \cdot F\]
+                Solving the system:
+                \[a = \frac{-l F}{GJ}, \quad b = \frac{-l F}{4EI}, \quad e = \frac{-l F}{4EI}\]
+                Displacement at force application point:
+                \[v_2(l) = b l^2 + a l^2 + e l^2 = -450\, \text{mm}\]
+                </p>
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/WrittenTest_June_13_2023/page_3_img_2.png" alt="Parabolic arch structure with pinned supports at both ends">
+            <figcaption>
+                <strong>Parabolic arch structure with pinned supports at both ends (shown as filled circles).</strong> Distributed upward load shown by vertical arrows along the arch length, with varying arrow heights suggesting non-uniform distribution. Load function given as ℓ(x) = -4x² + 4x. Support reactions labeled as μ₁ (left) and μ₂ (right) shown as upward arrows below the arch. Horizontal x-axis shown at bottom with origin at 0 and point 1 marked. The arch spans horizontally with symmetric parabolic profile.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 6</h3>
+            <p>The two-node finite element sketched in the figure is loaded by the distributed force f(x). Compute the virtual work of the force for the virtual displacement of node #2. The overall lenght of the finite element is equal to 1 mm (Unit for result: N mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(f(x) = -4x^2 + 4x\, \text{N/mm}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(W = \frac{1}{3}\, \text{N mm}\)</span></p>
+                <p><strong>Solution:</strong><br>
+                For a two-node linear element, the shape functions are:<br>
+                \[N_1(x) = 1 - x, \quad N_2(x) = x\]
+                The virtual work for virtual displacement of node #2:
+                \[\delta W = \int_0^1 \delta u_2 \cdot N_2(x) \cdot f(x) \, dx\]
+                \[= \delta u_2 \int_0^1 x \cdot (-4x^2 + 4x) \, dx\]
+                \[= \delta u_2 \int_0^1 (-4x^3 + 4x^2) \, dx\]
+                \[= \delta u_2 \left[-x^4 + \frac{4x^3}{3}\right]_0^1\]
+                \[= \delta u_2 \left(-1 + \frac{4}{3}\right) = \delta u_2 \cdot \frac{1}{3}\]
+                Virtual work: \(W = \frac{1}{3}\, \text{N mm}\)
+                </p>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">3</p>
+
+        <div class="page-break"></div>
+
+        <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+
+        <ol class="true-false">
+            <li>whenever a slender structure works in plane strain the axial deformation is null: <span class="answer-solution">T</span></li>
+            
+            <li>the critical buckling force for a simply supported compressed beam is inversely proportional to its slenderness (\(\propto 1/\lambda\)): <span class="answer-solution">F</span><br>
+            <em>(The critical buckling force is proportional to \(1/\lambda^2\), not \(1/\lambda\))</em></li>
+            
+            <li>the relation \(\sigma_{zz} = E\varepsilon_{zz}\), where E is the elastic modulus, is correct only for a state of plane stress: <span class="answer-solution">F</span><br>
+            <em>(This relation is also valid for uniaxial stress states, not only plane stress)</em></li>
+        </ol>
+
+        <h2>Multiple Choice questions (Circle the correct answer)</h2>
+
+        <ol class="multiple-choice">
+            <li>
+                <p>A "simply supported" plate has:</p>
+                <ol>
+                    <li>transverse displacement and bending rotation prevented on one of its boundary sides</li>
+                    <li>transverse displacement and bending rotation prevented on all of its boundary sides</li>
+                    <li>transverse displacement prevented on two opposite boundary sides, bending rotation left free</li>
+                    <li class="correct-answer">transverse displacement prevented on all of its boundary sides, bending rotation left free ✓</li>
+                    <li>transverse displacement and bending rotation prevented on two opposite boundary sides, trans- verse displacement prevented and bending rotation left free on the other two</li>
+                    <li>none of the above</li>
+                </ol>
+            </li>
+            
+            <li>
+                <p>When a clamped beam is loaded at its extemity by a shear force whose line of action goes through the shear center:</p>
+                <ol>
+                    <li>the shear stress is null</li>
+                    <li>the axial stress is null</li>
+                    <li>the bending deformation is null</li>
+                    <li class="correct-answer">the torsion is null ✓</li>
+                    <li>it is not possible to load a beam in that way unless it has a thin-walled opene cross-section</li>
+                    <li>none of the above</li>
+                </ol>
+            </li>
+            
+            <li>
+                <p>When a torsional moment is applied to a thin-walled beam, without any other load:</p>
+                <ol>
+                    <li>the shear flows are null</li>
+                    <li>the torsion is null</li>
+                    <li>the torsion is different from zero, but only if the cross-section is free to warp</li>
+                    <li class="correct-answer">the torsion is different from zero ✓</li>
+                    <li>the torsion is different from zero only if the transverse shear deformability is not negligible</li>
+                    <li>the beam is able to whitstand the torsional moment only if it is slender enough</li>
+                    <li>none of the above</li>
+                </ol>
+            </li>
+        </ol>
+
+        <p style="text-align: right; margin-top: 40px;">4</p>
+
+    </article>
+</body>
+</html>

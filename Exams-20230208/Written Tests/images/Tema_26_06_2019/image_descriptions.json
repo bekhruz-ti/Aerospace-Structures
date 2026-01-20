@@ -1,0 +1,10 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "triangular_distributed_load_multiple_views",
+    "description": "Three views showing triangular distributed load patterns on structural members. Top view shows a triangular load distribution decreasing from left to right along a tapered beam element, with upward-pointing force vectors indicating the distributed load intensity. Middle view displays a gray rectangular cross-section with a diagonal line, likely representing a section cut or internal geometry. Bottom view shows the same triangular load distribution pattern on a rectangular beam element, with uniform upward force vectors that decrease in magnitude from left to right following the triangular distribution envelope shown above."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "blank_diagram_placeholder",
+    "description": "Empty black image with no visible engineering content, diagrams, or technical information. This appears to be a blank placeholder or separator page."
+  }
+}

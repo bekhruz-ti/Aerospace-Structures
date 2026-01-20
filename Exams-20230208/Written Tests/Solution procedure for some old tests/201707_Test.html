@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>201707_Test - Spacecraft Structures Written Test</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .metadata {
+            font-size: 0.95em;
+            color: #666;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            line-height: 1.8;
+        }
+
+        figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff8e1;
+            border-left: 4px solid #ffa000;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .answer-solution {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .answer-solution h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .exercise, .question {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="metadata">Written test, July 10th, 2017</p>
+        </header>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            <p>Consider the structure in the figure. The three beams are characterizcd by axial st,iffness \(EA\), bending stiffness \(EJ\) and torsional stiffness \(GJ\). The two ends are fixed, while two forces of intensity \(P\) are applied as illustrated in the sketch. Determine the reaction forces at the two fixed ends and plot the internal actions.</p>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_1.png" alt="Structural diagram showing three beams with fixed ends and applied forces">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_2.png" alt="Additional structural detail">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_3.png" alt="Force application detail">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_4.png" alt="Structural configuration">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_5.png" alt="Beam geometry">
+            </figure>
+
+            <p>pt  pi  ......, ________  -,::.. _ _,,__</p>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(EA = 1.8\text{e}6\, \text{N}\)<br>
+                \(EJ_{xx} = EJ_{yy} = EJ = 3.75\text{e}6\, \text{Nmm}^2\)<br>
+                \(GJ = 3.00\text{e}6\, \text{N mm}^2\)<br>
+                <br>
+                \(l = 1000\, \text{mm}\)<br>
+                \(P = 1.5\, \text{kN}\)
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p><strong>Method:</strong> Principle of Complementary Virtual Works (PCVW) with dummy load cases</p>
+                
+                <p><strong>Step 1: Define dummy load systems</strong></p>
+                <p>Three dummy load cases are considered:</p>
+                <ul>
+                    <li><strong>Dummy #1:</strong> \(\delta M_y^{(0)} = -z\), \(\delta M_y^{(0)} = -l/z\), \(\delta T_z^{(0)} = -1\)</li>
+                    <li><strong>Dummy #2:</strong> \(\delta M_x^{(0)} = z\), \(\delta M_x^{(0)} = zz\), \(\delta M_z^{(0)} = -l/z\)</li>
+                    <li><strong>Dummy #3:</strong> \(\delta H_z^{(0)} = 1\), \(\delta M_x^{(0)} = 1\)</li>
+                </ul>
+                
+                <p><strong>Step 2: Apply PCVW</strong></p>
+                <p>From PCVW: \(X = 0\)</p>
+                
+                <p>The governing equations are:</p>
+                \[
+                \left(\frac{65l^3}{24EJ} + \frac{l^3}{2GJ}\right)Y + \frac{2l^2}{EJ}W = \frac{8}{3}\frac{Pl^3}{EJ}
+                \]
+                \[
+                \frac{2l^2}{EJ}Y + \left(\frac{l}{2GJ} + \frac{2l}{EJ}\right)W = \frac{2Pl^2}{EJ}
+                \]
+                
+                <p><strong>Step 3: Solve for unknowns</strong></p>
+                <p>Solving the system of equations:</p>
+                \[
+                Y = 947.36\, \text{N}
+                \]
+                \[
+                W = 421052\, \text{Nmm}
+                \]
+                
+                <p><strong>Step 4: Reaction forces at the fixed end</strong></p>
+                <p>The reaction forces are obtained by evaluating internal actions of beam #2 at \(z_2 = 2l\):</p>
+                \[
+                M_x^{(0)}(2l) = W + (Y-P) \cdot 2l = -684948\, \text{Nmm}
+                \]
+                \[
+                M_y^{(0)}(2l) = -X \cdot l/z = 0\, \text{Nmm}
+                \]
+                \[
+                M_z^{(0)}(2l) = -Y \cdot l/z = -473500\, \text{Nmm}
+                \]
+                \[
+                T_y^{(0)}(z) = Y - P = -553\, \text{N}
+                \]
+                
+                <p><strong>Step 5: Internal action diagrams</strong></p>
+                
+                <p><em>Shear force \(T_y\):</em></p>
+                <ul>
+                    <li>\(T_y^{(i)} = 947\, \text{N}\)</li>
+                    <li>\(T_y^{(ii)} = -553\, \text{N}\)</li>
+                </ul>
+                
+                <p><em>Bending moment \(M_x\):</em></p>
+                <ul>
+                    <li>\(M_x^{(i)} = 947 \cdot z_1\, \text{Nmm}\)</li>
+                    <li>\(M_x^{(ii)} = 421052 - 553 \cdot z_2\, \text{Nmm}\)</li>
+                </ul>
+                
+                <p><em>Torsional moment \(M_z\):</em></p>
+                <ul>
+                    <li>\(M_z^{(i)} = 421052\, \text{Nmm}\) (constant)</li>
+                    <li>\(M_z^{(ii)} = -473500\, \text{Nmm}\) (constant)</li>
+                </ul>
+                
+                <p><strong>Summary of Reaction Forces:</strong></p>
+                <table style="border-collapse: collapse; margin: 10px 0;">
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">Force/Moment</td><td style="padding: 5px; border: 1px solid #ccc;">Value</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(Y\)</td><td style="padding: 5px; border: 1px solid #ccc;">\(947\, \text{N}\)</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(M_x\)</td><td style="padding: 5px; border: 1px solid #ccc;">\(-684948\, \text{Nmm}\)</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(M_z\)</td><td style="padding: 5px; border: 1px solid #ccc;">\(-473500\, \text{Nmm}\)</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(W\)</td><td style="padding: 5px; border: 1px solid #ccc;">\(421052\, \text{Nmm}\)</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            <p>A thin-walled beam section is modeled according to the semi-monocoque scheme, as reported in the fig­ure. All the panels have thickness equa] to \(1\, \text{mm}\), while the lumped area of the stringers, viz. including the contribution of the panels, is equa! to \(A\); the dimensions \(a\), \(b\) and \(e\) are reported below. An internal shear force \(T\) is considered as reported in the figure.</p>
+            
+            <p>Determine: 1. the state of internal shear stress; 2. the position of the shear center of the section.</p>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_6.png" alt="Thin-walled beam section diagram">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_7.png" alt="Section geometry detail">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_8.png" alt="Dimension labels">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_9.png" alt="Cross-section view">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_10.png" alt="Shear force application">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_11.png" alt="Section dimensions a, e, b">
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(A = 200\, \text{mm}^2\)<br>
+                \(a = 300\, \text{mm}\)<br>
+                \(b = 200\, \text{mm}\)<br>
+                <br>
+                \(a\)  \(e\)<br>
+                <br>
+                \(b\)<br>
+                <br>
+                \(e = 100\, \text{mm}\)<br>
+                \(T = 3000\, \text{N}\)
+            </div>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_12.png" alt="Additional section detail">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_13.png" alt="Geometric configuration">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_14.png" alt="Dimension reference">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_15.png" alt="Section analysis">
+            </figure>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p><strong>Solution Procedure:</strong></p>
+                <ol>
+                    <li>Evaluate \(x_{sc}\) (shear center x-coordinate)</li>
+                    <li>Determine the shear flows by setting \(x_{sc} = 0\)</li>
+                </ol>
+                
+                <p><strong>Step 1: Section Properties</strong></p>
+                \[
+                J_{xx} = Ab^2
+                \]
+                <p>Static moments:</p>
+                \[
+                S_{x1} = -\frac{Ab}{2}, \quad S_{x2} = -Ab, \quad S_{x3} = -Ab, \quad S_{x4} = -\frac{Ab}{2}
+                \]
+                
+                <p><strong>Step 2: Shear Flows for Shear Center Calculation (Open Section)</strong></p>
+                \[
+                q_1' = -\frac{F}{2b}, \quad q_2' = -\frac{F}{b}, \quad q_3' = -\frac{F}{b}, \quad q_4' = -\frac{F}{2b}
+                \]
+                
+                <p><strong>Step 3: Equilibrium and Compatibility Equations</strong></p>
+                
+                <p>Equivalence with respect to x-axis:</p>
+                \[
+                2ab \cdot q_1^* + bc \cdot q_2^* - Fl = F\frac{a}{2} + Fc
+                \]
+                <p>where \(l = a - x_{sc}\)</p>
+                
+                <p>Compatibility equation \((\theta_1' = \theta_2')\):</p>
+                \[
+                \left[2(a+b) + \bar{\Omega}b\right]q_1^* - \left[b + \bar{\Omega}(2d+b)\right]q_2^* = F\left(\frac{a}{b} - 2\bar{\Omega}\frac{d}{b}\right)
+                \]
+                <p>where \(\bar{\Omega} = \sqrt{\frac{A_{cell1}}{A_{cell2}}}\)</p>
+                
+                <p>Compatibility equation \((\theta_1' = 0)\):</p>
+                \[
+                2q_1^*(a+b) - q_2^* \cdot b = F\frac{a}{b}
+                \]
+                
+                <p><strong>Step 4: Solve System of Equations</strong></p>
+                <p>The solving equations (dividing by \(1 \times 10^7\)):</p>
+                \[
+                \begin{cases}
+                1.2q_1^* + 0.2q_2^* - 0.03l = 75 \\
+                0.022q_1^* - 0.031q_2^* = -0.2086 \\
+                0.01q_1^* - 0.002q_2^o = 0.045
+                \end{cases}
+                \]
+                
+                <p>From which:</p>
+                \[
+                l = 100.32\, \text{mm}
+                \]
+                
+                <p><strong>Part 2 - Shear Center Position:</strong></p>
+                \[
+                \boxed{x_{sc} = 199.68\, \text{mm}}
+                \]
+                <p>From symmetry:</p>
+                \[
+                \boxed{y_{sc} = 0}
+                \]
+                
+                <p><strong>Step 5: Calculate Final Shear Flows</strong></p>
+                
+                <p>The solving equations for shear flows:</p>
+                \[
+                \begin{cases}
+                2ab \cdot q_1^* + bc \cdot q_2^* = \frac{3}{2}Fa + Fc \\
+                \left[2(a+b) + \bar{\Omega}b\right]q_1^* - \left[b + \bar{\Omega}(2d+b)\right]q_2^* = F\left(\frac{a}{b} - 2\bar{\Omega}\frac{d}{b}\right)
+                \end{cases}
+                \]
+                
+                <p>From which:</p>
+                \[
+                q_1^* = 11.29\, \text{N/mm}
+                \]
+                \[
+                q_2^* = 14.78\, \text{N/mm}
+                \]
+                
+                <p><strong>Part 1 - Internal Shear Stress (Final Shear Flows):</strong></p>
+                \[
+                q_1 = q_1' + q_1^* = \boxed{3.79\, \text{N/mm}}
+                \]
+                \[
+                q_2 = q_2' + q_2^* = \boxed{-0.22\, \text{N/mm}}
+                \]
+                \[
+                q_3 = q_3' + q_2^* = \boxed{-0.72\, \text{N/mm}}
+                \]
+                \[
+                q_4 = q_4' + q_1^* = \boxed{3.79\, \text{N/mm}}
+                \]
+                \[
+                q_5 = q_1^* = \boxed{11.29\, \text{N/mm}}
+                \]
+                \[
+                q_6 = q_1^* - q_2^* = \boxed{-3.49\, \text{N/mm}}
+                \]
+                
+                <p><strong>Summary:</strong></p>
+                <table style="border-collapse: collapse; margin: 10px 0;">
+                    <tr style="background: #e8f5e9;"><th style="padding: 8px; border: 1px solid #ccc;">Shear Flow</th><th style="padding: 8px; border: 1px solid #ccc;">Value (N/mm)</th></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(q_1\)</td><td style="padding: 5px; border: 1px solid #ccc;">3.79</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(q_2\)</td><td style="padding: 5px; border: 1px solid #ccc;">-0.22</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(q_3\)</td><td style="padding: 5px; border: 1px solid #ccc;">-0.72</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(q_4\)</td><td style="padding: 5px; border: 1px solid #ccc;">3.79</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(q_5\)</td><td style="padding: 5px; border: 1px solid #ccc;">11.29</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #ccc;">\(q_6\)</td><td style="padding: 5px; border: 1px solid #ccc;">-3.49</td></tr>
+                </table>
+                <p>Shear Center: \(x_{sc} = 199.68\, \text{mm}\), \(y_{sc} = 0\)</p>
+            </div>
+        </section>
+
+        <section class="question">
+            <h2>Question 1</h2>
+            <p>Discuss and illustrate mathematically the relation between the Principle of Complementary Virtual Works (PCVW) and the compatibility conditions.</p>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_16.png" alt="Mathematical illustration">
+            </figure>
+
+            <figure class="diagram">
+                <img src="images/201707_Test/page_1_img_17.png" alt="Additional detail">
+            </figure>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p><strong>Principle of Complementary Virtual Works (PCVW):</strong></p>
+                
+                <p>The PCVW states that for a system in equilibrium, the complementary virtual work done by equilibrated virtual stresses on actual strains equals zero:</p>
+                \[
+                \delta W^* = \int_V \delta\sigma_{ij} \cdot \varepsilon_{ij} \, dV - \int_{\partial V_u} \delta T_i \cdot u_i \, dS = 0
+                \]
+                
+                <p><strong>Relation to Compatibility:</strong></p>
+                
+                <p>The PCVW is the weak form of the compatibility equations. While the strong form requires:</p>
+                \[
+                \varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}\right)
+                \]
+                
+                <p>The PCVW enforces compatibility in an integral (average) sense. When PCVW is satisfied for all admissible virtual stress fields, it implies that:</p>
+                <ol>
+                    <li>The strain field is compatible with a displacement field</li>
+                    <li>Geometric boundary conditions are satisfied</li>
+                </ol>
+                
+                <p><strong>Mathematical Demonstration (as shown in Exercise 1):</strong></p>
+                
+                <p>The PCVW was applied with dummy load systems to determine the unknown redundants. The compatibility is enforced through equations such as:</p>
+                \[
+                \left(\frac{65l^3}{24EJ} + \frac{l^3}{2GJ}\right)Y + \frac{2l^2}{EJ}W = \frac{8}{3}\frac{Pl^3}{EJ}
+                \]
+                
+                <p>This equation represents the compatibility condition that ensures the structure remains continuous (no gaps or overlaps) at the points where the redundant forces act.</p>
+                
+                <p><strong>Key Points:</strong></p>
+                <ul>
+                    <li>PCVW uses statically admissible virtual stress fields</li>
+                    <li>The principle naturally enforces kinematic compatibility</li>
+                    <li>It provides a systematic method for solving statically indeterminate structures</li>
+                    <li>The compatibility equations emerge as the conditions for zero complementary virtual work</li>
+                </ul>
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/201707_Test/page_1_img_18.png" alt="Page footer or additional content">
+        </figure>
+
+        <p style="text-align: center; margin-top: 40px;">1</p>
+
+        <figure class="diagram">
+            <img src="images/201707_Test/page_2_img_1.png" alt="Page 2 content">
+        </figure>
+
+    </article>
+</body>
+</html>

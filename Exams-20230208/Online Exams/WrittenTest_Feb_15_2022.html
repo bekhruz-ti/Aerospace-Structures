@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Written Test - February 15, 2022</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            background: #fafafa;
+            color: #333;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a237e;
+            border-bottom: 3px solid #1a237e;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #283593;
+            border-left: 5px solid #3f51b5;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: #303f9f;
+            margin-top: 25px;
+        }
+        
+        h4 {
+            color: #1b5e20;
+            margin-top: 20px;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #f5f5f5;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: #e8f5e9;
+            border-top: 3px solid #4caf50;
+        }
+        
+        .given-data {
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .given-data strong {
+            color: #1565c0;
+        }
+        
+        figure {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        figcaption {
+            margin-top: 12px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .equation-box {
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            overflow-x: auto;
+        }
+        
+        .boundary-conditions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        
+        .bc-column {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .final-answer {
+            font-size: 1.15em;
+            color: #1b5e20;
+            font-weight: bold;
+            padding: 15px 20px;
+            background: #c8e6c9;
+            border-left: 5px solid #4caf50;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding: 10px 0;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .coefficients {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .coeff-column {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .multiple-choice {
+            background: #fff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+        
+        .mc-question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .mc-question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .mc-option {
+            margin: 8px 0 8px 20px;
+        }
+        
+        .correct-answer {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        .note {
+            font-style: italic;
+            color: #666;
+            background: #fff9c4;
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #fbc02d;
+        }
+        
+        ul.choose-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        ul.choose-list li {
+            margin: 5px 0;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 700px) {
+            .boundary-conditions, .coefficients, .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Written Test — February 15, 2022</h1>
+
+<!-- ============================================ -->
+<!-- PROBLEM 1: Force-based #1 -->
+<!-- ============================================ -->
+<section class="problem-solution-pair">
+    <div class="problem">
+        <h2>Problem 1: Force-based #1</h2>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/cantilever_beam_fixed_support_moment.png" alt="Cantilever beam with fixed support and applied moment">
+            <figcaption>Cantilever beam with fixed support on left, showing \(EJ\) and \(\ell\) labels, with applied moment \(\hat{\theta}\) at free end</figcaption>
+        </figure>
+        
+        <p>Determine the bending moment at \(x = \ell/2\).</p>
+        
+        <p>Solve the problem using:</p>
+        <ol type="a">
+            <li>a displacement-based approach</li>
+            <li>a force-based approach</li>
+        </ol>
+        
+        <p>Assume that shearing deformation is negligible.</p>
+        
+        <div class="given-data">
+            <strong>Data:</strong><br>
+            \(\ell = 1000\, \text{mm}\) &emsp;&emsp; \(\hat{\theta} = 10\, \text{deg}\)<br>
+            \(EJ = 10^{12}\, \text{Nmm}^2\)
+        </div>
+    </div>
+    
+    <div class="solution">
+        <h3>Solution (Displacement-based Approach)</h3>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/two_segment_beam_displacement_based.png" alt="Two-segment beam with displacement variables">
+            <figcaption>Two-segment beam showing displacement variables \(z_1, w_1\) and \(z_2, w_2\) at segment boundaries</figcaption>
+        </figure>
+        
+        <div class="step">
+            <p class="step-title">Governing Equations:</p>
+            <div class="two-column">
+                <div>\[EJ\, w_1^{IV} = 0\]</div>
+                <div>\[EJ\, w_2^{IV} = 0\]</div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Boundary Conditions:</p>
+            <div class="boundary-conditions">
+                <div class="bc-column">
+                    <p><strong>Beam 1:</strong></p>
+                    \(w_1(0) = 0\) &emsp; (1)<br>
+                    \(w_1'(0) = 0\) &emsp; (2)<br>
+                    \(w_1(\ell) = 0\) &emsp; (3)
+                </div>
+                <div class="bc-column">
+                    <p><strong>Beam 2:</strong></p>
+                    \(w_2(0) = 0\) &emsp; (4)<br>
+                    \(w_2'''(\ell) = 0\) &emsp; (5)<br>
+                    \(w_2'(\ell) = -\hat{\theta}\) &emsp; (6)
+                </div>
+            </div>
+            
+            <p><strong>Continuity Conditions:</strong></p>
+            \[w_1''(\ell) = w_2''(0) \quad (7)\]
+            \[w_1'(\ell) = w_2'(0) \quad (8)\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">General Solution of the ODEs:</p>
+            \[w_1 = A_0 + A_1 x_1 + A_2 x_1^2 + A_3 x_1^3\]
+            \[w_2 = B_0 + B_1 x_2 + B_2 x_2^2 + B_3 x_2^3\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Derivatives:</p>
+            <div class="two-column">
+                <div class="equation-box">
+                    \(w_1' = A_1 + 2A_2 x_1 + 3A_3 x_1^2\)<br>
+                    \(w_1'' = 2A_2 + 6A_3 x_1\)<br>
+                    \(w_1''' = 6A_3\)
+                </div>
+                <div class="equation-box">
+                    \(w_2' = B_1 + 2B_2 x_2 + 3B_3 x_2^2\)<br>
+                    \(w_2'' = 2B_2 + 6B_3 x_2\)<br>
+                    \(w_2''' = 6B_3\)
+                </div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Applying Boundary Conditions:</p>
+            <div class="equation-box">
+                (1)-(2): \(A_0 = A_1 = 0\)<br><br>
+                (3): \(A_2 + A_3 \ell = 0\)<br><br>
+                (4): \(B_0 = 0\)<br><br>
+                (5): \(B_3 = 0\)<br><br>
+                (6): \(B_1 + 2B_2 \ell = -\hat{\theta}\)<br><br>
+                (7): \(2A_2 + 6A_3 \ell = 2B_2\)<br><br>
+                (8): \(2A_2 \ell + 3A_3 \ell^2 = B_1\)
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Solving the System:</p>
+            <div class="equation-box">
+                \(A_2 + A_3 \ell = 0 \quad \Rightarrow \quad A_2 = -A_3 \ell\)<br><br>
+                \(B_1 + 2B_2 \ell = -\hat{\theta} \quad \Rightarrow \quad B_1 = -\hat{\theta} - 2B_2 \ell\)<br><br>
+                \(2A_2 + 6A_3 \ell - 2B_2 = 0 \quad \Rightarrow \quad 2A_3 \ell = B_2\)<br><br>
+                \(2A_2 \ell + 3A_3 \ell^2 - B_1 = 0 \quad \Rightarrow \quad A_3 = -\dfrac{\hat{\theta}}{5\ell^2}\)
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Final Coefficients:</p>
+            <div class="coefficients">
+                <div class="coeff-column">
+                    \(A_0 = 0\)<br>
+                    \(A_1 = 0\)<br>
+                    \(A_2 = \dfrac{\hat{\theta}}{5\ell}\)<br>
+                    \(A_3 = -\dfrac{\hat{\theta}}{5\ell^2}\)
+                </div>
+                <div class="coeff-column">
+                    \(B_0 = 0\)<br>
+                    \(B_1 = -\dfrac{\hat{\theta}}{5}\)<br>
+                    \(B_2 = -\dfrac{2\hat{\theta}}{5\ell}\)<br>
+                    \(B_3 = 0\)
+                </div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Bending Moment at \(x_2 = \ell/2\):</p>
+            
+            <figure>
+                <img src="images/WrittenTest_Feb_15_2022/cantilever_beam_bending_moment.png" alt="Beam showing bending moment calculation">
+                <figcaption>Cantilever beam showing bending moment calculation at \(x_2 = \ell/2\)</figcaption>
+            </figure>
+            
+            \[M = -EJ\, w_2''(\ell/2)\]
+            \[= -EJ\left(2B_2 + 3B_3 \ell\right) = EJ \cdot \frac{4}{5} \cdot \frac{\hat{\theta}}{\ell}\]
+        </div>
+        
+        <p class="final-answer">
+            \[M = 1.3963 \times 10^8\, \text{Nmm}\]
+        </p>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PROBLEM 2: Force-based #6 -->
+<!-- ============================================ -->
+<section class="problem-solution-pair">
+    <div class="problem">
+        <h2>Problem 2: Force-based #6</h2>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/l_shaped_frame_distributed_point_loads.png" alt="L-shaped frame with distributed and point loads">
+            <figcaption>L-shaped frame structure with distributed load \(q\), point loads \(2P\) and \(P\), showing dimensions \(2\ell\) horizontal and \(2\ell\) vertical segments with fixed support at bottom left</figcaption>
+        </figure>
+        
+        <p>Use a force-based approach to determine the displacement \(S\). The contribution of shear deformability is negligible.</p>
+        
+        <div class="given-data">
+            <strong>Data:</strong><br>
+            \(\ell = 1200\, \text{mm}\) &emsp;&emsp; \(q = 2\, \text{N/mm}\)<br>
+            \(EJ = 10^{12}\, \text{Nmm}^2\) &emsp;&emsp; \(P = 2000\, \text{N}\)
+        </div>
+    </div>
+    
+    <div class="solution">
+        <h3>Solution</h3>
+        
+        <p>As in the previous exercise, only the real forces producing a not null energy contribution are reported.</p>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/frame_free_body_diagram_decomposition.png" alt="Free body diagram decomposition">
+            <figcaption>Free body diagram decomposition showing real and dummy force systems with moment and shear force diagrams</figcaption>
+        </figure>
+        
+        <div class="step">
+            <p class="step-title">Moment Expressions:</p>
+            <p><strong>Real system:</strong></p>
+            \[M = -Px\]
+            
+            <p><strong>Dummy system:</strong></p>
+            \[\delta M = -x\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">The PCVW reads:</p>
+            \[\int_0^{2\ell} \delta M \cdot \frac{M}{EJ}\, dx = S\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Computing the integral:</p>
+            \[S = \frac{8}{3} \cdot \frac{P\ell^3}{EJ}\]
+        </div>
+        
+        <p class="final-answer">
+            \[S = 9.22\, \text{mm}\]
+        </p>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PROBLEM 3: Ritz #4 -->
+<!-- ============================================ -->
+<section class="problem-solution-pair">
+    <div class="problem">
+        <h2>Problem 3: Ritz #4</h2>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/portal_frame_distributed_load.png" alt="Portal frame with distributed load">
+            <figcaption>Portal frame with distributed load \(q\) on horizontal beam, two vertical columns with \(EJ\) stiffness, pin supports at base showing coordinates \(z_1, w_1\) and \(z_3, w_3\)</figcaption>
+        </figure>
+        
+        <p>Determine the downward deflection of the point A, at the middle of the horizontal beam.</p>
+        
+        <p>For this purpose, use the Ritz method where the deflection for beams #1 and #3 is taken as:</p>
+        \[w_1 = C\, \phi(z_1) \quad \text{and} \quad w_3 = C\, \phi(z_3)\]
+        
+        <p class="note"><strong>Note:</strong> \(C\) is the same owing to the symmetry of the problem.</p>
+        
+        <p>Formulate the problem using the only dof \(C\) and choose between:</p>
+        <ul class="choose-list">
+            <li>\(\phi(z) = z/\ell\)</li>
+            <li>\(\phi(z) = \sin\dfrac{\pi z}{\ell}\)</li>
+            <li>\(\phi(z) = (z/\ell)^2\)</li>
+        </ul>
+        
+        <p>Neglect the axial energy contributions.</p>
+        
+        <div class="given-data">
+            <strong>Data:</strong><br>
+            \(\ell = 2000\, \text{mm}\)<br>
+            \(EJ = 10^{12}\, \text{Nmm}^2\)<br>
+            \(q = 50\, \text{N/mm}\)
+        </div>
+    </div>
+    
+    <div class="solution">
+        <h3>Solution</h3>
+        
+        <div class="step">
+            <p class="step-title">Essential Boundary Conditions:</p>
+            <p>The essential conditions of the problem require that:</p>
+            <div class="two-column">
+                <div class="equation-box">
+                    \(w_1(0) = 0\)<br>
+                    \(w_1'(0) = 0\)
+                </div>
+                <div class="equation-box">
+                    \(w_3(0) = 0\)<br>
+                    \(w_3'(0) = 0\)
+                </div>
+            </div>
+            <p>It follows that \(\phi(z) = \left(\dfrac{z}{\ell}\right)^2\)</p>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Approximation for Beam 2 (Horizontal):</p>
+            <p>In addition, the approximation of the bending displacement in the second beam is taken as:</p>
+            \[w_2 = a_0 + a_1 \frac{x}{\ell} + a_2 \left(\frac{x}{\ell}\right)^2\]
+        </div>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/portal_frame_bending_displacement.png" alt="Portal frame with bending displacement diagram">
+            <figcaption>Portal frame with additional bending displacement diagram showing \(EJ\) stiffness for vertical and horizontal members with boundary conditions</figcaption>
+        </figure>
+        
+        <div class="step">
+            <p class="step-title">Additional Essential Conditions for Beam 2:</p>
+            <div class="equation-box">
+                \(w_2(0) = 0\)<br>
+                \(w_2(\ell) = 0\)<br>
+                \(w_2'(0) = w_1'(\ell)\)<br>
+                \(w_2'(\ell) = -w_3'(\ell)\)
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Applying Conditions:</p>
+            <p>Note: \(C\left(\dfrac{z}{\ell}\right)^2 \rightarrow C \cdot \dfrac{2z}{\ell^2}\)</p>
+            <div class="equation-box">
+                \(a_0 = 0\)<br>
+                \(a_1 + a_2 = 0\)<br>
+                \(\dfrac{1}{\ell} a_1 = \dfrac{2}{\ell} C\)<br>
+                \(\dfrac{1}{\ell} a_1 + \dfrac{2}{\ell} a_2 = -\dfrac{2}{\ell} C\)
+            </div>
+            <p>Solving: \(a_1 = 2C\), \(a_2 = -2C\)</p>
+            <p class="note">(Note: one equation is redundant due to the assumed symmetry of the solution)</p>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Displacement Approximations:</p>
+            \[w_1 = C\left(\frac{x_1}{\ell}\right)^2\]
+            \[w_3 = C\left(\frac{x_3}{\ell}\right)^2\]
+            \[w_2 = C \cdot 2\left[\frac{x_2}{\ell} - \left(\frac{x_2}{\ell}\right)^2\right]\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Principle of Virtual Work:</p>
+            <p>The PVW reads: \(\delta W_i = \delta W_e\) with:</p>
+            \[\delta W_i = \int_0^{\ell} \delta w_1'' \, EJ \, w_1'' \, dx_1 + \int_0^{\ell} \delta w_2'' \, EJ \, w_2'' \, dx_2 + \int_0^{\ell} \delta w_3'' \, EJ \, w_3'' \, dx_3\]
+            \[\delta W_e = -\int_0^{\ell} \delta w_2 \, q \, dx_2\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">After Substitution:</p>
+            <p>Upon substitution of the approximations above, one obtains:</p>
+            \[\frac{24\, EJ}{\ell^3} C = -\frac{q\ell}{3}\]
+            
+            <p>And so:</p>
+            \[C = -\frac{q\ell^4}{72\, EJ}\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Downward Deflection at Point A:</p>
+            <p>The downward deflection in the point A is then:</p>
+            \[w_A = -w_2\left(\frac{\ell}{2}\right) = -C \cdot 2\left[\frac{x_2}{\ell} - \left(\frac{x_2}{\ell}\right)^2\right]\Bigg|_{x_2=\ell/2}\]
+            \[= -\frac{C}{2}\]
+        </div>
+        
+        <p class="final-answer">
+            \[w_A = 5.56\, \text{mm}\]
+        </p>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PROBLEM 4: Ritz #5 -->
+<!-- ============================================ -->
+<section class="problem-solution-pair">
+    <div class="problem">
+        <h2>Problem 4: Ritz #5</h2>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/simply_supported_beam_variable_stiffness.png" alt="Simply supported beam with variable stiffness">
+            <figcaption>Simply supported beam with point load \(P\) at center, two segments with different stiffness \(EJ_1\) and \(EJ_2\), pin and roller supports at ends</figcaption>
+        </figure>
+        
+        <p>Determine the vertical displacement in the middle of the beam using the Ritz method. Approximate the displacement field using the simplest polynomial approximation.</p>
+        
+        <div class="given-data">
+            <strong>Data:</strong><br>
+            \(\ell = 1500\, \text{mm}\) &emsp;&emsp; \(P = 3000\, \text{N}\)<br>
+            \(EJ_1 = 10^{10}\, \text{Nmm}^2\)<br>
+            \(EJ_2 = 3 \times 10^{10}\, \text{Nmm}^2\)
+        </div>
+    </div>
+    
+    <div class="solution">
+        <h3>Solution</h3>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/beam_boundary_conditions_coordinate_system.png" alt="Beam with coordinate system and boundary conditions">
+            <figcaption>Simply supported beam showing coordinate system and boundary conditions for displacement analysis</figcaption>
+        </figure>
+        
+        <div class="step">
+            <p class="step-title">Essential Boundary Conditions:</p>
+            <div class="equation-box">
+                \(w(0) = 0\)<br>
+                \(w'(0) = 0\)<br>
+                \(w(\ell) = 0\)
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Polynomial Approximation:</p>
+            <p>The simplest polynomial approximation reads:</p>
+            \[w = a_0 + a_1 \left(\frac{x}{\ell}\right) + a_2 \left(\frac{x}{\ell}\right)^2 + a_3 \left(\frac{x}{\ell}\right)^3\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Applying Boundary Conditions:</p>
+            <div class="equation-box">
+                \(a_0 = 0\)<br>
+                \(a_1 = 0\)<br>
+                \(a_2 + a_3 = 0\)
+            </div>
+            
+            <p>And so:</p>
+            \[w = a_2 \left[\left(\frac{x}{\ell}\right)^2 - \left(\frac{x}{\ell}\right)^3\right]\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Principle of Virtual Work:</p>
+            <p>The PVW is \(\delta W_i = \delta W_e\), with:</p>
+            \[\delta W_i = \int_0^{\ell/2} \delta w'' \, EJ_2 \, w'' \, dx + \int_{\ell/2}^{\ell} \delta w'' \, EJ_1 \, w'' \, dx\]
+            \[\delta W_e = \delta w\left(\frac{\ell}{2}\right) P\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">After Evaluation:</p>
+            <p>From which:</p>
+            \[\delta a_2 \cdot \frac{7EJ_1 + EJ_2}{2\ell^3} = \delta a_2 \cdot \frac{P}{8} \quad \forall\, \delta a_2\]
+            
+            <p>And then:</p>
+            \[\frac{7EJ_1 + EJ_2}{2\ell^3} a_2 = \frac{P}{8} \quad \Rightarrow \quad a_2 = 25.31\, \text{mm}\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Displacement at Middle:</p>
+            <p>The displacement in the middle is then:</p>
+            \[w = a_2 \left[\left(\frac{x}{\ell}\right)^2 - \left(\frac{x}{\ell}\right)^3\right]\Bigg|_{x=\ell/2}\]
+            \[= \frac{a_2}{8}\]
+        </div>
+        
+        <p class="final-answer">
+            \[w = 3.16\, \text{mm}\]
+        </p>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PROBLEM 5: Semi #5 -->
+<!-- ============================================ -->
+<section class="problem-solution-pair">
+    <div class="problem">
+        <h2>Problem 5: Semi #5 (Shear Center)</h2>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/rectangular_frame_shear_center.png" alt="Rectangular frame for shear center analysis">
+            <figcaption>Rectangular frame structure with four nodes labeled \(2A\) and \(A\), showing dimensions \(a\) and \(d\), with coordinate system for shear center analysis</figcaption>
+        </figure>
+        
+        <p>Determine the horizontal position of the shear center (report the coordinate \(x\)).</p>
+        
+        <div class="given-data">
+            <strong>Data:</strong><br>
+            \(a = 400\, \text{mm}\)<br>
+            \(t = 1.3\, \text{mm}\)<br>
+            \(A = 800\, \text{mm}^2\)
+        </div>
+    </div>
+    
+    <div class="solution">
+        <h3>Solution</h3>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/frame_shear_flow_analysis.png" alt="Frame shear flow analysis">
+            <figcaption>Rectangular frame with numbered nodes 1-4, showing shear flow \(q\) and internal moment distribution with coordinate axes</figcaption>
+        </figure>
+        
+        <p>The position of the \(x\) axis (principal system) is available from the symmetry of the section.</p>
+        
+        <div class="step">
+            <p class="step-title">Section Properties:</p>
+            \[J_{xx} = 6A\left(\frac{a}{2}\right)^2 = \frac{3}{2} A a^2\]
+            \[S_{x_1}' = \frac{1}{2} A a\]
+            \[S_{x_2}' = \frac{3}{2} A a\]
+            \[S_{x_3}' = \frac{1}{2} A a\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">• Shear Flow Equations:</p>
+            \[q_1' = -T \frac{S_{x_1}'}{J_{xx}} = -\frac{1}{3} \frac{T}{a}\]
+            \[q_2' = -T \frac{S_{x_2}'}{J_{xx}} = -\frac{T}{a}\]
+            \[q_3' = -T \frac{S_{x_3}'}{J_{xx}} = -\frac{1}{3} \frac{T}{a}\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">• Equivalence with Internal Moment (refer to stringer 3):</p>
+            \[2q_1' \Omega_1 + 2q^* \Omega_c = Tx\]
+            
+            <p>with:</p>
+            \[\Omega_1 = \frac{a^2}{2} \quad ; \quad \Omega_c = a^2\]
+            
+            <p>So:</p>
+            <div class="equation-box">
+                \[-\frac{1}{3} Ta + 2q^* a^2 = Tx\]
+            </div>
+        </div>
+        
+        <div class="step">
+            <p class="step-title">• Compatibility (\(\theta' = 0\)):</p>
+            \[q_1' a + q_2' \frac{a}{2} + q_3' a + q^*(2a + a) = 0\]
+            \[-\frac{1}{3} T - \frac{1}{2} T - \frac{1}{3} T + 3a\, q^* = 0\]
+            \[3a\, q^* = \frac{7}{6} T \quad \Rightarrow \quad q^* = \frac{7}{18} \frac{T}{a}\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Shear Center Position:</p>
+            <p>And upon substitution in the equivalence to moment:</p>
+            \[x = \frac{4}{9} a\]
+        </div>
+        
+        <p class="final-answer">
+            \[x = 177.78\, \text{mm}\]
+        </p>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- PROBLEM 6: Semi #6 -->
+<!-- ============================================ -->
+<section class="problem-solution-pair">
+    <div class="problem">
+        <h2>Problem 6: Semi #6 (Axial Force in Stringer)</h2>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/inclined_frame_3d_structure.png" alt="3D inclined frame structure">
+            <figcaption>3D inclined frame structure showing two parallel members with cross-sectional area \(3A\), dimensions \(a\), \(b\), and \(\ell/2\), with applied load \(P\) at top</figcaption>
+        </figure>
+        
+        <p>Evaluate the axial force carried by the top-right stringer at \(z = \ell/2\).</p>
+        
+        <div class="given-data">
+            <strong>Data:</strong><br>
+            \(a = 250\, \text{mm}\) &emsp;&emsp; \(A = 400\, \text{mm}^2\)<br>
+            \(b = 550\, \text{mm}\)<br>
+            \(\ell = 3000\, \text{mm}\) &emsp;&emsp; \(P = 10\, \text{kN}\)
+        </div>
+    </div>
+    
+    <div class="solution">
+        <h3>Solution</h3>
+        
+        <figure>
+            <img src="images/WrittenTest_Feb_15_2022/frame_cross_section_internal_actions.png" alt="Cross-section and internal actions">
+            <figcaption>Cross-sectional view and internal action diagrams for inclined frame showing moment \(H\), shear forces, and stress distribution at \(z = \ell/2\)</figcaption>
+        </figure>
+        
+        <div class="step">
+            <p class="step-title">Centroid Location:</p>
+            \[y_{sc} = \frac{6Aa}{8A} = \frac{3}{4} a\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Second Moment of Area:</p>
+            \[J_{xx} = 6A\left(\frac{1}{4} a\right)^2 + 2A\left(\frac{3}{4} a\right)^2 = \frac{3}{2} A a^2\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Internal Actions:</p>
+            <p>The internal actions are obtained as:</p>
+            \[M(z) = Pz\]
+            <p>and so:</p>
+            \[M\left(\frac{\ell}{2}\right) = \frac{P\ell}{2}\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Stress on Stringer 3:</p>
+            <p>The stress on stringer 3 is then:</p>
+            \[\sigma_{zz}\left(\frac{\ell}{2}\right) = \frac{M(\ell/2)}{J_{xx}} \cdot \frac{1}{4} a = \frac{P\ell}{12\, Aa} = 25\, \text{MPa}\]
+        </div>
+        
+        <div class="step">
+            <p class="step-title">Axial Force:</p>
+            <p>The axial force is:</p>
+            \[N = \sigma_{zz} \cdot 3A = \frac{P\ell}{12a}\]
+        </div>
+        
+        <p class="final-answer">
+            \[N = 30\, \text{kN}\]
+        </p>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- MULTIPLE CHOICE QUESTIONS -->
+<!-- ============================================ -->
+<section class="multiple-choice">
+    <h2>Multiple Choice Questions</h2>
+    
+    <div class="mc-question">
+        <p>• The axial stress of a bent beam is function of the its material elastic modulus</p>
+        <div class="mc-option correct-answer">— False ✓</div>
+    </div>
+    
+    <div class="mc-question">
+        <p>• When using a displacement-based method the Natural (Neumann) boundary conditions may not be satisfied exactly</p>
+        <div class="mc-option correct-answer">— True ✓</div>
+    </div>
+    
+    <div class="mc-question">
+        <p>• The cross-sections of a beam subject to a torsional moment do always rotate around the area center</p>
+        <div class="mc-option correct-answer">— False ✓</div>
+    </div>
+    
+    <div class="mc-question">
+        <p>• The PCVW allows to</p>
+        <div class="mc-option correct-answer">— find the compatible solution among the equilibrated ones ✓</div>
+        <div class="mc-option">— find the equilibrated solution among the compatible ones</div>
+        <div class="mc-option">— find the compatible and equilibrated solutions among all the possible independent stress and displacement fields</div>
+        <div class="mc-option">— none of the above</div>
+    </div>
+    
+    <div class="mc-question">
+        <p>• Shear deformability needs to be accounted for</p>
+        <div class="mc-option">— never</div>
+        <div class="mc-option">— always</div>
+        <div class="mc-option correct-answer">— it depends on the beam at hand ✓</div>
+    </div>
+    
+    <div class="mc-question">
+        <p>• When a torsional moment is applied to a thin-walled beam, without any other load</p>
+        <div class="mc-option">— the shear flows are null</div>
+        <div class="mc-option">— the torsion is null</div>
+        <div class="mc-option">— the torsion is different from zero, but only if the cross-section is free to warp</div>
+        <div class="mc-option correct-answer">— the torsion is different from zero ✓</div>
+        <div class="mc-option">— the torsion is different from zero only if the transverse shear deformability is not negligible</div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "curved_beam_coordinate_system",
+    "description": "Curved structural element showing coordinate system with x and z axes. Point T marked on the curved geometry. The diagram appears to represent a curved beam or arc segment with local coordinate reference frame."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "empty_placeholder_image",
+    "description": "Empty or blank image with no visible engineering content."
+  },
+  "page_1_img_3.png": {
+    "suggested_name": "empty_placeholder_image",
+    "description": "Empty or blank image with no visible engineering content."
+  },
+  "page_1_img_4.png": {
+    "suggested_name": "empty_placeholder_image",
+    "description": "Empty or blank image with no visible engineering content."
+  },
+  "page_1_img_5.png": {
+    "suggested_name": "empty_placeholder_image",
+    "description": "Empty or blank image with no visible engineering content."
+  },
+  "page_1_img_6.png": {
+    "suggested_name": "cantilever_beam_fixed_support_truss",
+    "description": "Cantilever beam with fixed support (hatched pattern) at right end. Rectangular cross-section showing height dimension A at left end and 2A at an intermediate location. Internal diagonal truss members visible within the beam depth. Beam length labeled as l. Three-dimensional perspective view showing depth of structural element."
+  },
+  "page_1_img_7.png": {
+    "suggested_name": "beam_spring_supports_force_components",
+    "description": "Beam of length l with fixed support (hatched) at right end and spring supports at left end. Two springs shown: ky (vertical) and kx (horizontal) with ground symbols. Three-dimensional coordinate system (x, y, z axes) shown at upper right. Force vector P decomposed into components Px, Py, and Pz shown in detail inset. Beam appears to be subjected to multi-axial loading condition."
+  },
+  "page_1_img_8.png": {
+    "suggested_name": "empty_placeholder_image",
+    "description": "Empty or blank image with no visible engineering content."
+  },
+  "page_1_img_9.png": {
+    "suggested_name": "empty_placeholder_image",
+    "description": "Empty or blank image with no visible engineering content."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "truss_analysis_four_member_structure",
+    "description": "Handwritten structural analysis of a four-member truss. Top diagram shows square configuration with nodes numbered 1-4 and diagonal member. Bottom diagram shows same truss rotated 45 degrees with force vectors and member labels. Accompanying calculations show member areas (A = a/2 for various members), equilibrium equations, and force relationships. Analysis includes expressions for S₁, S₂, S₃, S₄ member forces and compatibility conditions."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "truss_force_analysis_handwritten_calculations",
+    "description": "Handwritten structural analysis showing diamond-shaped truss with four nodes and diagonal members. Force vectors labeled q₁, q₂, q₃, q₄ shown at nodes with directional arrows. Extensive calculations on left side include equilibrium equations, force relationships, and compatibility conditions. Analysis shows member force expressions and geometric relationships for the statically indeterminate truss system."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "truss_geometry_force_calculations",
+    "description": "Diamond-shaped truss structure with coordinate system (x-y axes shown). Four nodes with members connecting in diamond pattern, including diagonal members. Handwritten calculations show geometric relationships, member forces, and trigonometric expressions. Analysis includes force equilibrium equations and compatibility conditions with expressions involving member lengths and angles."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "handwritten_structural_equations",
+    "description": "Handwritten mathematical expressions showing structural analysis equations. Multiple lines of calculations involving variables x, y, and various subscripted terms. Expressions include summations, products, and algebraic manipulations typical of displacement method or force method structural analysis."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "beam_diagrams_force_analysis_sketches",
+    "description": "Multiple hand-drawn beam diagrams with force analysis. Top right shows inclined beam with force vectors and coordinate system. Center shows vertical cantilever beam with fixed support at base and forces P applied at height z₁ and z₂. Bottom shows force vector diagram with components. Handwritten calculations and expressions accompany the sketches, including equilibrium equations and moment relationships."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "beam_loading_equilibrium_handwritten",
+    "description": "Handwritten structural analysis with beam loading diagrams. Shows vertical beam segments with distributed loads and force calculations. Multiple equilibrium equations written showing relationships between forces, moments, and distributed loads. Expressions include summations and products involving load intensities and geometric parameters. Analysis appears to focus on internal force distributions and compatibility conditions."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "handwritten_force_equations_minimal",
+    "description": "Sparse handwritten calculations showing force and displacement relationships. Expressions include subscripted variables (U, N, EA) with algebraic manipulations. Minimal diagram content with focus on mathematical expressions for structural analysis."
+  }
+}

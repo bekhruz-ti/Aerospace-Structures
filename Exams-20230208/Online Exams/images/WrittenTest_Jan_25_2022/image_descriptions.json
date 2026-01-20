@@ -1,0 +1,62 @@
+{
+  "two_beams_connected_hinges_force_p.png": {
+    "suggested_name": "two_beams_connected_hinges_force_p",
+    "description": "3D structural diagram showing two beams connected at middle with four hinges, subjected to force P and reaction force R, with dimensions labeled as ℓ and ℓ/2"
+  },
+  "simply_supported_beam_center_load.png": {
+    "suggested_name": "simply_supported_beam_center_load",
+    "description": "Simply supported beam diagram with point load P at center, showing reaction forces P/2 at both supports and length L with EJ notation"
+  },
+  "beam_system_spring_equivalent.png": {
+    "suggested_name": "beam_system_spring_equivalent",
+    "description": "3D structural system showing two beams connected with hinges, represented as equivalent spring system with stiffnesses k1 and k2, subjected to force P"
+  },
+  "beam_load_reaction_forces.png": {
+    "suggested_name": "beam_load_reaction_forces",
+    "description": "Simply supported beam with point load 8/9 P at center, showing reaction forces R at supports and span dimensions ℓ/2 on each side"
+  },
+  "l_shaped_frame_multiple_loads.png": {
+    "suggested_name": "l_shaped_frame_multiple_loads",
+    "description": "L-shaped frame structure with fixed support at left, vertical and horizontal segments of length 2ℓ each, subjected to forces 2P at corner and P at bottom, with distributed load q on horizontal segment"
+  },
+  "l_frame_real_simplified_system.png": {
+    "suggested_name": "l_frame_real_simplified_system",
+    "description": "L-shaped frame showing real system on left and simplified system on right with distributed load 9ℓ and moment 9ℓ²/2"
+  },
+  "l_frame_unit_load.png": {
+    "suggested_name": "l_frame_unit_load",
+    "description": "L-shaped frame structure with fixed support, showing horizontal segment 2ℓ and vertical segment 2ℓ, with unit load applied at corner"
+  },
+  "cantilever_beam_force_moment_springs.png": {
+    "suggested_name": "cantilever_beam_force_moment_springs",
+    "description": "Cantilever beam with length ℓ, showing force F, moment m_t, and spring supports k at free end, with dimensions d and EJ, GJ properties labeled"
+  },
+  "cantilever_beam_coordinate_system.png": {
+    "suggested_name": "cantilever_beam_coordinate_system",
+    "description": "Cantilever beam system showing original structure on left and 3D coordinate system (x,y,z,w) on right with force F, moment Fd, and spring supports k"
+  },
+  "cantilever_beam_3d_analysis.png": {
+    "suggested_name": "cantilever_beam_3d_analysis",
+    "description": "Cantilever beam system with coordinate system showing force F, moment Fd, spring supports k, and 3D axes (x,y,z,w)"
+  },
+  "beam_varying_axial_stiffness.png": {
+    "suggested_name": "beam_varying_axial_stiffness",
+    "description": "Beam element with distributed axial load and spring supports k1 and k2 at ends, showing varying axial stiffness EA(x) along length ℓ"
+  },
+  "rectangular_cross_section_area_distribution.png": {
+    "suggested_name": "rectangular_cross_section_area_distribution",
+    "description": "Rectangular thin-walled beam cross-section showing dimensions b and a, with area distribution 2A at top corners, A at middle sides, and coordinate axes x-y"
+  },
+  "cross_section_shear_flow_analysis.png": {
+    "suggested_name": "cross_section_shear_flow_analysis",
+    "description": "Rectangular cross-section with area distribution (2A at corners, A at sides) showing centroid location and shear flow analysis with dimensions b, a/3, and 2a/3"
+  },
+  "cantilever_beam_rectangular_section.png": {
+    "suggested_name": "cantilever_beam_rectangular_section",
+    "description": "Cantilever beam with rectangular cross-section showing force F at tip, displacement S, and cross-sectional dimensions b, a/3, 2a/3 with area distribution 2A and A"
+  },
+  "inclined_beam_free_body_diagrams.png": {
+    "suggested_name": "inclined_beam_free_body_diagrams",
+    "description": "Free body diagrams showing real system and dummy system for inclined beam with force F, reactions Fb/2 and b/2, including moment and shear diagrams"
+  }
+}

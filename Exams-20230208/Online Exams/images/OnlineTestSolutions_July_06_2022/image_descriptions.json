@@ -1,0 +1,46 @@
+{
+  "beam_structure_3d_coordinate_system.png": {
+    "suggested_name": "beam_structure_3d_coordinate_system",
+    "description": "Three-dimensional structural diagram showing beam configuration with coordinate system, points A and B, forces, and displacement components in x, y, and z directions"
+  },
+  "beam_element_force_analysis.png": {
+    "suggested_name": "beam_element_force_analysis",
+    "description": "Structural analysis diagram showing beam element with force components, coordinate axes, and numbered nodes with reaction forces"
+  },
+  "free_body_diagram_angled_force.png": {
+    "suggested_name": "free_body_diagram_angled_force",
+    "description": "Free body diagram showing force F at an angle with coordinate system and reaction forces at support point"
+  },
+  "cantilever_beam_point_load.png": {
+    "suggested_name": "cantilever_beam_point_load",
+    "description": "Cantilever beam with fixed support at left end, point load F at distance from support, showing displacement components and coordinate system"
+  },
+  "cantilever_support_reactions.png": {
+    "suggested_name": "cantilever_support_reactions",
+    "description": "Small cantilever beam diagram showing reaction forces and moment at fixed support with applied force F"
+  },
+  "semi_monocoque_beam_pressure_load.png": {
+    "suggested_name": "semi_monocoque_beam_pressure_load",
+    "description": "Three-dimensional semi-monocoque beam model showing rectangular cross-section with distributed pressure load on upper surface, coordinate axes, and dimensional labels"
+  },
+  "rectangular_cross_section_stress.png": {
+    "suggested_name": "rectangular_cross_section_stress",
+    "description": "Cross-sectional view of rectangular beam section showing stress components and coordinate system with labeled dimensions"
+  },
+  "two_cell_truss_section.png": {
+    "suggested_name": "two_cell_truss_section",
+    "description": "Two-cell semi-monocoque truss section showing rectangular configuration with labeled nodes A and B, dimensions a and b, and cell numbering"
+  },
+  "semi_monocoque_beam_rivet_connection.png": {
+    "suggested_name": "semi_monocoque_beam_rivet_connection",
+    "description": "Three-dimensional semi-monocoque beam model with distributed pressure load, showing rivet connections at distance 2l from clamp, with coordinate system and dimensional annotations"
+  },
+  "rectangular_section_stress_flow.png": {
+    "suggested_name": "rectangular_section_stress_flow",
+    "description": "Rectangular cross-section diagram showing stress flow components at corners with coordinate system and labeled stress directions"
+  },
+  "three_node_parabolic_element.png": {
+    "suggested_name": "three_node_parabolic_element",
+    "description": "Three-node parabolic beam element with distributed load, showing nodes numbered 1, 2, 3 at positions x=-2, 0, 2 with coordinate system"
+  }
+}

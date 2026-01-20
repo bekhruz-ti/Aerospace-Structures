@@ -1,0 +1,74 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "beam_fixed_ends_triangular_distributed_load",
+    "description": "Beam with fixed supports at both ends subjected to triangular distributed load h varying linearly from maximum at left end to zero at right end. Beam length L with material properties EA (axial rigidity) and EJ (flexural rigidity) labeled. Coordinate system shows x-axis along beam length. Problem data includes L = 2000 mm, EA = 1.8·10⁶ N, EJ = 1.8·10⁶ N·mm², and h = 2(1+F/10) N/mm. Solution approach shows free body diagrams for \"Real\" and \"Dummy\" systems with axial force N = X + hx²/2L and normalized force ξN = 1. Problem asks to find displacement at x = L/3."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "beam_displacement_calculation_solution",
+    "description": "Continuation of beam displacement analysis showing integration of axial strain energy equation ∫(NξN/EA)dx = 0 yielding X = -hL/6. Diagrams show beam configuration in both \"Real\" coordinate system (x) and normalized system (ξ) with location markers at L/2 and 2/3L. Integration from 2/3L to L gives displacement equation S = (54X + 19Lh)/(162EA) with final result L = 0.274 mm. Includes condition ξN = +1 for x ≥ 2/3L."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "closed_section_shear_stress_analysis",
+    "description": "Closed rectangular cross-section with four corner points labeled A, connected by panels of thickness t₁ (vertical and horizontal sides) and t₂ (top panel). Dimensions show width b and height h. Applied torque Mt shown with curved arrow. Problem asks to determine shear stress τ in panel of thickness t₂. Data provided: A = 500 mm², h = 200(1+E/10) mm, b = 150 mm, t₁ = 1.3 mm, t₂ = 1.6 mm, Mt = 10⁷ N·mm. Solution shows shear flow equation 2qΩ = Mt with Ω = bh + πh²/4, yielding τ = q/t₂ = 50.88 MPa."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "rectangular_section_shear_flow_calculation",
+    "description": "Rectangular cross-section with corners labeled A (area A at three corners) and 2A (area 2A at one corner), showing panel thicknesses t₁ and t₂. Dimensions a (height) and b (width) marked. Applied vertical force T at bottom. Problem asks to calculate shear flow q₂. Data: A = 600(1+A/10) mm², T = 7600 N, a = 250 mm, b = 600 mm, t₁ = 1 mm, t₂ = 2(1+C/10) mm. Lower diagram shows numbered nodes (1-4) with shear flow directions q₃' and q₄' marked, including equations for Jxx = (3/2)Aa², Sx₃ = Aa/2, Sx₄ = (3/2)Aa, and Sx₁ = Sx₃."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "shear_flow_equilibrium_equations",
+    "description": "Solution page showing application of shear flow equations q₃' = -T(Sx₃/Jxx) = -T/3a and q₄' = -T(Sx₄/Jxx) = -T/a, with condition q₁' = q₃'. Equilibrium equation for node 2: 2Ωcq* + 2q₃'Ω₃ + 2q₄'Ω₄ = 0, where Ωc = ab, Ω₃ = Ω₄ = ab/2. Simplifies to 2q* + q₃' + q₄' = 0, yielding q* = (2T)/(3a) = 20.27 N/mm. Final result: q₂ = q* = 20.27 N/mm."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "beam_spring_support_ritz_method",
+    "description": "Beam with fixed support at left end and spring support (stiffness k) at midpoint L/2, with triangular distributed load q decreasing linearly from left to right. Beam has two segments with different flexural rigidities: EJ for left half and ξEJ for right half (where ξ is shown with tilde). Total length L with coordinate x from left. Problem statement indicates use of Ritz method with 1-DOF polynomial approximation to determine vertical displacement at spring location. Data: L = 750 mm, EJ = 1.25·10⁶ N·mm², k = 50(1+A/10) N/mm, q = 2."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "cantilever_beam_stepped_stiffness_point_load",
+    "description": "Cantilever beam with fixed support at left end and free right end, subjected to point load P at angle of 45° at free end. Beam has two segments: upper segment with properties L, EA₁, EJ and lower segment with properties L, EA₂, EJ. Coordinate system shows x₁ horizontal and x₂ vertical. Problem asks to use Ritz method and simplest polynomial approximation for evaluating displacement S. Data: L = 730 mm, EA₁ = 1.15·10⁶(1+F/10) N, EA₂ = 3·10⁵ N, EJ = 1.8·10⁷ N·mm², P = 2500(1+A/10) N. Note indicates uncoupling between axial and bending allows considering only axial response of beam 1 and bending of beam 2."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "two_beam_displacement_compatibility_solution",
+    "description": "Solution showing displacement approximations U₁ = q₁x and W₂ = q₂x² for two beam segments with compatibility condition U₁(L) = W₂(L) yielding q₁ = q₂L. Substituted forms U₁ = q₂xL and W₂ = q₂x²/2. Energy equation integrates axial and bending strain energy: ∫₀ᴸ δU₁ₓEA₁U₁ₓdx₁ + ∫₀ᴸ δW₂ₓₓEJW₂ₓₓdx₂ = δU₁(L)Pₓ. Leads to (EA₁L³ + 4EJL)q₂ = PₓL². Final displacement result: S = W₂(L) = q₂L² = 1.12 mm."
+  },
+  "page_9_img_1.png": {
+    "suggested_name": "space_frame_two_ribs_bending_moment",
+    "description": "Three-dimensional space frame structure showing two parallel ribs (Rib #1 and Rib #2) of length L separated by distances a, b, and c in orthogonal directions. Coordinate system shows x, y, z axes. Point load P applied vertically at corner location with distributed load q shown on upper rib. Problem asks to model Rib #2 as a beam and evaluate bending moment at x = a/2 as M/Mref. Data: a = 700 mm, b = 200 mm, c = 100 mm, L = 2000 mm, t = 0.6 mm, A = 700 mm², P = 2000 N, q = 2(1+F/10) N/mm, Mref = 9.8·10⁵ N·mm."
+  },
+  "page_10_img_1.png": {
+    "suggested_name": "rib_equilibrium_shear_flow_bending_moment",
+    "description": "Analysis of equilibrating shear flows on Rib #2 showing cross-sectional view with upward force qa and downward forces qa/2b at edges. Beam model shows distributed load q along length with downward reactions qa/2 at ends. Free body diagram shows section with upward force q and downward force qa/2, with coordinate x. Bending moment equation M(x) = qax/2 - qx²/2. Final result: M(a/2)/Mref = 0.125."
+  },
+  "beam_triangular_load_fixed_pin_supports.png": {
+    "suggested_name": "beam_triangular_load_fixed_pin_supports",
+    "description": "Structural diagram of a beam with triangular distributed load, fixed support on left and pin support on right, with length L and material properties EA and EJ labeled"
+  },
+  "beam_displacement_analysis_coordinates.png": {
+    "suggested_name": "beam_displacement_analysis_coordinates",
+    "description": "Beam diagram showing displacement analysis with coordinate system and dimensional annotations at L/2 and 2L/3"
+  },
+  "rectangular_cross_section_torque.png": {
+    "suggested_name": "rectangular_cross_section_torque",
+    "description": "Rectangular cross-section diagram showing thickness dimensions t1, t2, and torque Mt, with height h and width b labeled"
+  },
+  "rectangular_frame_shear_flow.png": {
+    "suggested_name": "rectangular_frame_shear_flow",
+    "description": "Rectangular frame structure with pin joints at corners labeled A, showing thickness t1 and t2, dimensions a and b, with applied force T"
+  },
+  "beam_triangular_load_spring_support.png": {
+    "suggested_name": "beam_triangular_load_spring_support",
+    "description": "Beam with triangular distributed load and spring support at midpoint, showing fixed support on left, length L/2 segments, and spring constant k"
+  },
+  "l_shaped_cantilever_angled_load.png": {
+    "suggested_name": "l_shaped_cantilever_angled_load",
+    "description": "L-shaped cantilever beam with fixed support at left, vertical segment with properties EA2 and EJ, horizontal segment with EA1 and EJ, and angled load P at 45 degrees"
+  },
+  "three_dimensional_rib_structure.png": {
+    "suggested_name": "three_dimensional_rib_structure",
+    "description": "Three-dimensional structural diagram showing two parallel ribs (Rib #1 and Rib #2) connected by members, with dimensions a, b, c, and L labeled, coordinate system shown, and load P applied"
+  },
+  "beam_distributed_load_equilibrium.png": {
+    "suggested_name": "beam_distributed_load_equilibrium",
+    "description": "Beam model showing distributed load q with reaction forces qa/2 at supports, representing equilibrating shear flows for structural analysis"
+  }
+}

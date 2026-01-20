@@ -1,0 +1,74 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "beam_two_moments_pinned_roller_supports",
+    "description": "Beam of total length l with two support conditions and applied moments. Left end has pinned support with counterclockwise moment M₁ applied. Right end has roller support (shown with circles indicating rolling capability) with clockwise moment M₂ applied. Beam spans are marked as l/2 for each half. Central point shows rotation θ. Horizontal arrows below indicate the full span length l with intermediate dimension l/2 marked."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "truss_diagonal_members_pinned_fixed_supports",
+    "description": "Truss structure with diagonal members forming triangular configuration. Left end has pinned support, right end has fixed support (indicated by hatching). Point A marked at left support location. Diagonal members of length l connect supports, with horizontal span dimension l/2 marked. Coordinate system shown in lower left with y-axis vertical and x-axis horizontal. Total horizontal span is length l."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "semi_monocoque_beam_stringer_cross_section",
+    "description": "Semi-monocoque beam analysis showing elevation view (left) and cross-section detail (right). Elevation view shows rectangular beam of height b and length a with four corner points labeled A, internal moment M, and stringer dimensions l₁, l₃, l₄. Upper portion shows hatched region indicating structural element. Cross-section view displays rectangular configuration with dimension a, showing stringer locations l₁ and l₄, with notation indicating \"stringers with cross-section area = A\". Diagonal arrows indicate coordinate directions."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "square_frame_diagonal_orientation_corner_loads",
+    "description": "Square frame structure oriented at 45 degrees with side dimension a. Four corners labeled A with circular markers indicating joints. Applied moment θ shown at upper left corner. Vertical force F applied at bottom center. Diagonal dimension l marked across frame. Frame corners marked with circled numbers (1) at three locations. Coordinate system shows vertical dimension a on left side. Horizontal span dimension a marked at bottom."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "continuous_beam_four_roller_supports_moments_force",
+    "description": "Continuous beam with four equally-spaced roller supports (shown with triangles on hatched ground). Left end has pinned connection (circle). Applied loading includes rotation θ at second support, moment M at third support, and vertical force F at right end with horizontal dimension l₂. Each span between supports has length l. Total beam length is 4l as indicated by horizontal arrows below showing span divisions."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "truss_triangular_distributed_load_pattern",
+    "description": "Truss structure with rectangular base of width b and height a. Base consists of two horizontal levels connected by vertical and diagonal members, with joints indicated by circles. Upper portion shows triangular distributed load pattern with varying intensity across span, represented by vertical arrows of increasing then decreasing magnitude. One diagonal member marked with X indicating zero-force member or removed element. Overall dimensions show width b horizontally and height a vertically."
+  },
+  "beam_two_concentrated_moments.png": {
+    "suggested_name": "beam_two_concentrated_moments",
+    "description": "Beam structure with two concentrated moments M1 and M2, showing pin support on left, roller support in middle, and applied moment M2 on right end, with length dimensions l/2 and l"
+  },
+  "beam_fixed_support_force_3d.png": {
+    "suggested_name": "beam_fixed_support_force_3d",
+    "description": "3D beam structure with fixed support, showing force F applied at free end, with coordinate system and length dimensions in local reference frame"
+  },
+  "semi_monocoque_beam_stringers.png": {
+    "suggested_name": "semi_monocoque_beam_stringers",
+    "description": "Semi-monocoque beam model with five stringers, showing cross-sectional details with riveted panels, concentrated moment M at free end, and detailed stringer positioning"
+  },
+  "cross_section_diamond_stringers.png": {
+    "suggested_name": "cross_section_diamond_stringers",
+    "description": "Semi-monocoque cross-section showing diamond-shaped stringer arrangement with force F, dimensions a and d, and stringer areas A labeled"
+  },
+  "multi_span_beam_moment_force.png": {
+    "suggested_name": "multi_span_beam_moment_force",
+    "description": "Multi-span beam with four equal spans, showing concentrated moment M and force F, with roller supports at each span and pin support at left end"
+  },
+  "nine_node_parabolic_element.png": {
+    "suggested_name": "nine_node_parabolic_element",
+    "description": "Nine-node parabolic finite element with triangular distributed load, showing node arrangement and dimensions a and b"
+  },
+  "beam_moments_rotation_analysis.png": {
+    "suggested_name": "beam_moments_rotation_analysis",
+    "description": "Beam with two concentrated moments M1 and M2, pin support on left, roller support in middle, showing rotation angle theta and reaction forces"
+  },
+  "beam_3d_displacement_analysis.png": {
+    "suggested_name": "beam_3d_displacement_analysis",
+    "description": "3D beam structure showing fixed support, force F, and coordinate system with local reference axes for displacement analysis"
+  },
+  "semi_monocoque_detailed_cross_section.png": {
+    "suggested_name": "semi_monocoque_detailed_cross_section",
+    "description": "Semi-monocoque beam cross-section with detailed stringer and panel configuration, showing riveted connections and cross-sectional area annotations"
+  },
+  "diamond_cross_section_four_stringers.png": {
+    "suggested_name": "diamond_cross_section_four_stringers",
+    "description": "Diamond-shaped cross-section with four stringers at corners, force F applied at bottom, showing dimensions a, d, and local coordinate system"
+  },
+  "multi_span_beam_displacement_method.png": {
+    "suggested_name": "multi_span_beam_displacement_method",
+    "description": "Multi-span continuous beam with four equal spans, showing rotation angle theta, moment M, force F, and roller supports with trigonometric displacement analysis"
+  },
+  "parabolic_element_virtual_work.png": {
+    "suggested_name": "parabolic_element_virtual_work",
+    "description": "Nine-node parabolic finite element showing triangular distributed load pattern with node positions and dimension annotations"
+  }
+}

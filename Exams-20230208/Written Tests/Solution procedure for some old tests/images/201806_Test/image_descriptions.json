@@ -1,0 +1,34 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "blank_black_image",
+    "description": "Completely black image with no visible engineering content, diagrams, or technical information."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "beam_uniform_axial_tension_load",
+    "description": "Rectangular beam shown in elevation view with six equally-spaced horizontal arrows pointing to the right, representing uniform axial tension or distributed axial loading along the beam length. The arrows are evenly distributed across the beam's length, indicating a constant axial force distribution."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "curved_beam_force_diagram_handwritten",
+    "description": "Handwritten engineering diagram showing a curved beam element with force vectors. The diagram includes a curved section with points labeled q₁, q₂, q₃, and q₄ at corners, with force arrows P = 1000 N indicated. Coordinate system shows x and y axes. Handwritten equations and calculations appear on the left side, including expressions for G₁, M, A, and force components. The diagram appears to be analyzing a curved structural member under applied loading with reference to \"Elevation of Refuel Airfoil\" noted."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "curved_beam_modular_analysis_handwritten",
+    "description": "Handwritten structural analysis diagram showing a curved beam section with four corner points labeled with force components q₁, q₂, q₃, and q₄. The diagram includes coordinate axes and dimensional parameters labeled as \"A for axial\" and \"M for modular\". Handwritten calculations appear on the left side showing relationships between variables including expressions with q₁, q₂, q₃, q₄ and dimensional parameters. The curved section shows internal force distributions with arrows indicating directions."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "rotation_transformation_diagrams_handwritten",
+    "description": "Handwritten engineering diagrams showing coordinate system rotations and transformations. Two main diagrams are shown: upper diagram depicts a curved beam element with force vectors P and coordinate axes X and Y, with rotation angle indicated; lower diagram shows a detailed view of force components and rotational relationships with axes x₁, x₂, y₁, y₂ and force vectors P. Handwritten equations on the left relate to rotation matrices and transformations, including expressions for P(X), P(Y), and trigonometric relationships. The diagrams illustrate coordinate transformation for structural analysis."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "matrix_algebra_summation_handwritten",
+    "description": "Handwritten mathematical expressions showing matrix algebra and summation operations. The page contains multiple grouped terms with subscripted variables (G₁, G₂, G₃, etc.) and summation expressions. Equations show relationships between variables with addition operations, including terms like \"5 + 6 + 7 + 8\" and grouped expressions in parentheses. The notation includes summation symbols (Σ) and matrix-like groupings. Variables N and X appear with relationships N + 2 = Y and N = 98 + N noted."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "matrix_work_equations_handwritten",
+    "description": "Handwritten mathematical expressions showing work and matrix formulations. The page contains equations relating to W (work), with expressions including \"W₁₄ = K\" and matrix notation. Multiple grouped terms appear with variables φ, P, and subscripted indices. The notation includes expressions like \"c = φ(x)\" and \"u₁ = c\" with various mathematical relationships. References to \"Vectors\" and \"Matrix work\" are visible, along with summation-type expressions involving multiple terms."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "binomial_expansion_handwritten",
+    "description": "Handwritten mathematical expressions showing binomial expansion and related calculations. The page contains expressions for C = 1/c = 0.80 with subsequent calculations involving binomial terms. Equations show relationships including \"c = 1/c (2/c)²\" and \"A(y/c) = (P + M/c)\" with additional algebraic manipulations. The notation includes terms with exponents and fractional expressions, appearing to relate to a mathematical derivation or proof."
+  }
+}

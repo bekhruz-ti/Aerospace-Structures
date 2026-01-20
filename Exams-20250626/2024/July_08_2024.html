@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 08 2024</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        article {
+            background: white;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .metadata {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 100px;
+            border-bottom: 1px solid #333;
+            margin: 0 5px;
+        }
+
+        .answer-solution {
+            display: inline-block;
+            color: #006400;
+            font-weight: bold;
+            padding: 0 5px;
+            margin: 0 5px;
+        }
+
+        .solution-box {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            border-radius: 4px;
+        }
+
+        .solution-box h4 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        ol, ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        ol li, ul li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .true-false {
+            list-style-type: decimal;
+        }
+
+        .multiple-choice {
+            list-style-type: decimal;
+        }
+
+        .multiple-choice ol {
+            list-style-type: lower-alpha;
+            margin-top: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .page-break {
+            margin: 40px 0;
+            border-top: 2px dashed #ccc;
+            padding-top: 40px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        @media print {
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>July 08 2024</h1>
+            <p class="metadata">Extracted from: July_08_2024.pdf</p>
+        </header>
+
+        <section>
+            <h2>Page 1</h2>
+            
+            <figure class="diagram">
+                <img src="images/July_08_2024/page_1_img_1.png" alt="Semi-monocoque structure with circular cross-section showing two cross-sectional views (clamped end and loaded end). Structure has four stringers with concentrated area A = 400 mm² and four panels with thickness t = 0.3 mm. Left end is clamped (fixed support), right end has vertical downward force F = 1000 N applied to rightmost stringer. Beam length l = 2000 mm, radius r = 100 mm. Material properties: E = 72000 MPa, ν = 0.3. Problem asks for vertical displacement v of leftmost stringer at loaded extremity.">
+                <figcaption>
+                    <strong>Semi-monocoque structure with circular cross-section showing two cross-sectional views (clamped end and loaded end). Structure has four stringers with concentrated area \(A = 400\, \text{mm}^2\) and four panels with thickness \(t = 0.3\, \text{mm}\). Left end is clamped (fixed support), right end has vertical downward force \(F = 1000\, \text{N}\) applied to rightmost stringer. Beam length \(l = 2000\, \text{mm}\), radius \(r = 100\, \text{mm}\). Material properties: \(E = 72000\, \text{MPa}\), \(\nu = 0.3\). Problem asks for vertical displacement \(v\) of leftmost stringer at loaded extremity.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="solution-box">
+                <h4>Solution:</h4>
+                <p><strong>Step 1: Calculate section properties</strong></p>
+                <p>\[J_{xx} = 2Ar^2 = 2 \times 400 \times 100^2 = 8 \times 10^6\, \text{mm}^4\]</p>
+                <p>\[S_{x_3} = -S_{x_1} = Ar = 400 \times 100 = 4 \times 10^4\, \text{mm}^3\]</p>
+                
+                <p><strong>Step 2: Calculate shear flows (dummy load \(T_y' = 1\))</strong></p>
+                <p>\[q_1' = 0\]</p>
+                <p>\[q_2' = -T_y \frac{S_{x_1}}{J_{xx}} = T_y \frac{Ar}{2Ar^2} = \frac{1}{2} \cdot \frac{T_y}{r}\]</p>
+                <p>\[q_3' = q_2' = \frac{1}{2} \cdot \frac{T_y}{r}\]</p>
+                
+                <p><strong>Step 3: Moment equivalence for closed cell flow \(q^*\)</strong></p>
+                <p>\[H_z = 2q^* \cdot \Omega_{cell} + \left(2q_3' \cdot \frac{l}{4} \cdot \Omega_{cell}\right) \cdot z\]</p>
+                <p>\[H_z = 2q^* \cdot \pi r^2 + \frac{1}{2} T_y \pi r \cdot z\]</p>
+                <p>\[q^* = \frac{H_z - \frac{1}{2}T_y \pi r}{2\pi r^2}\]</p>
+                
+                <p><strong>Step 4: Real and Dummy loading</strong></p>
+                <p>Real: \(T_y = -F\), \(H_z = F \cdot r\), \(M_x = -F \cdot z\)</p>
+                <p>Dummy: \(T_y' = -1\), \(H_z' = -1 \cdot r\), \(M_x' = -z\)</p>
+                
+                <p><strong>Step 5: Virtual Work Method</strong></p>
+                <p>\[\delta W_e = 1 \cdot v\]</p>
+                <p>\[\delta W_i = \int \delta\tau \cdot \frac{\tau}{G}\, dV + \int_0^l M_x' \cdot \frac{M_x}{EJ}\, dz\]</p>
+                <p>\[= \sum_i \int_0^l \frac{1}{2}\pi r \cdot t \cdot \frac{\delta q_i \cdot q_i}{Gt^2}\, dz + \int_0^l M_x' \cdot \frac{M_x}{EJ}\, dz\]</p>
+                
+                <p><strong>Final Answer:</strong> \(\boxed{v = 5.1919\, \text{mm}}\)</p>
+            </div>
+        </section>
+
+        <section class="page-break">
+            <h2>Page 2</h2>
+            
+            <figure class="diagram">
+                <img src="images/July_08_2024/page_2_img_1.png" alt="Semi-monocoque cross-section with three panels (thickness t = 1 mm) and three stringers (concentrated area A = 100 mm²) arranged in an L-shaped configuration. Coordinate system shows y-axis vertical and x-axis horizontal. Dimensions: vertical leg height a = 100 mm, horizontal leg width b = 150 mm. Material properties: E = 72000 MPa, ν = 0.3. Problem requires calculation of x-position of shear center.">
+                <figcaption>
+                    <strong>Semi-monocoque cross-section with three panels (thickness \(t = 1\, \text{mm}\)) and three stringers (concentrated area \(A = 100\, \text{mm}^2\)) arranged in an L-shaped configuration. Coordinate system shows y-axis vertical and x-axis horizontal. Dimensions: vertical leg height \(a = 100\, \text{mm}\), horizontal leg width \(b = 150\, \text{mm}\). Material properties: \(E = 72000\, \text{MPa}\), \(\nu = 0.3\). Problem requires calculation of x-position of shear center.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="solution-box">
+                <h4>Solution:</h4>
+                <p><strong>Note:</strong> Consider only equivalence of internal actions when panel is open.</p>
+                
+                <p><strong>Step 1: Open section shear flows for unit \(F_y = 1\)</strong></p>
+                <p>\[q_1' = \frac{F}{a}\]</p>
+                <p>\[q_2' = 0\]</p>
+                
+                <p><strong>Step 2: Apply \(F_y\) at shear center position \(x_{sc}\)</strong></p>
+                <p>For moment equilibrium with closed cell flow \(q^*\):</p>
+                <p>\[F_y \cdot x_{sc} = q^* \cdot ab \cdot \frac{\text{perimeter}}{\ell}\]</p>
+                <p>\[q^* = \frac{F_y \cdot x_{sc}}{ab}\]</p>
+                
+                <p><strong>Step 3: Rotation condition for shear center (\(\theta' = 0\))</strong></p>
+                <p>\[\theta' = \frac{1}{2Gt \cdot \Omega_{cell}} \cdot \left(-q_1' \cdot a + q_2' \cdot b + q^* \cdot \left(a + b + \sqrt{a^2 + b^2}\right)\right) = 0\]</p>
+                
+                <p><strong>Step 4: Solve with \(G = \frac{E}{2(1+\nu)}\)</strong></p>
+                <p>\[G = \frac{72000}{2(1+0.3)} = 27692.3\, \text{MPa}\]</p>
+                
+                <p><strong>Final Answer:</strong> \(\boxed{x_{sc} = 34.86\, \text{mm}}\)</p>
+            </div>
+        </section>
+
+        <section class="page-break">
+            <h2>Page 3</h2>
+            
+            <figure class="diagram">
+                <img src="images/July_08_2024/page_3_img_1.png" alt="Slender beam structure with fixed support at left end, spring support (stiffness K = 1×10³ N/mm) at distance a = 1000 mm from left, and roller support at distance l from left. Horizontal force F = 1000 N applied at right end. Total beam length l = 1500 mm from spring to roller, with additional segment b = 1500 mm extending right of roller. Material properties: EA = 1×10¹⁰ N, EI_xx = EI_yy = 1×10¹³ N·mm², GJ = 7×10⁹ N·mm². Problem asks for displacement u of spring extremity, neglecting shear deformability.">
+                <figcaption>
+                    <strong>Slender beam structure with fixed support at left end, spring support (stiffness \(K = 1 \times 10^3\, \text{N/mm}\)) at distance \(a = 1000\, \text{mm}\) from left, and roller support at distance \(l\) from left. Horizontal force \(F = 1000\, \text{N}\) applied at right end. Total beam length \(l = 1500\, \text{mm}\) from spring to roller, with additional segment \(b = 1500\, \text{mm}\) extending right of roller. Material properties: \(EA = 1 \times 10^{10}\, \text{N}\), \(EI_{xx} = EI_{yy} = 1 \times 10^{13}\, \text{N} \cdot \text{mm}^2\), \(GJ = 7 \times 10^9\, \text{N} \cdot \text{mm}^2\). Problem asks for displacement \(u\) of spring extremity, neglecting shear deformability.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="solution-box">
+                <h4>Solution:</h4>
+                <p><strong>Step 1: Define the hyperstatic unknown \(H_x\) (spring reaction)</strong></p>
+                
+                <p><strong>Step 2: Equilibrium equations</strong></p>
+                <p>\[X: H_x - F + R_{x_B} = 0\]</p>
+                <p>\[Y: R_{y_A} + R_{y_B} = 0\]</p>
+                <p>\[M@B: F \cdot a - H_x \cdot a - R_{y_A} \cdot b = 0\]</p>
+                <p>\[R_{y_A} = (F - H_x) \frac{a}{b}\]</p>
+                
+                <p><strong>Step 3: Internal forces for each segment</strong></p>
+                <p>Segment \(z_1\): \(T_{z_1} = -(F - H_x)\frac{a}{b}\), \(T_{z_1}' = +\frac{a}{b}\)</p>
+                <p>Segment \(z_2\): \(T_{z_2} = -H_x\), \(T_{z_2}' = -1\)</p>
+                <p>\(M_{x_2} = -(F - H_x)\frac{a}{b} \cdot z_2\), \(M_{x_2}' = +\frac{a}{b} \cdot z_2\)</p>
+                <p>Segment \(z_3\): \(T_{z_3} = (F - H_x)\frac{a}{b}\), \(T_{z_3}' = -\frac{a}{b}\)</p>
+                <p>\(M_{x_3} = -H_x \cdot z_3 + F \cdot z_3 - (F - H_x)\frac{a}{b} \cdot b\), \(M_{x_3}' = -z_3 + \frac{a}{b} \cdot b\)</p>
+                
+                <p><strong>Step 4: Apply PVW (compatibility)</strong></p>
+                <p>\[1 \cdot \left(-\frac{H_x}{K}\right) = \int_0^a \frac{(F-H_x)}{EA} \cdot \frac{a^2}{b^2}\, dz_1 + \int_0^b \frac{H_x}{EA} \cdot (-1) + \frac{(F-H_x)}{EJ} \cdot \frac{a^2}{b^2} \cdot z_2^2\, dz_2 + \ldots\]</p>
+                
+                <p><strong>Step 5: Solve for \(H_x\)</strong></p>
+                <p>\[-\frac{H_x}{K} = \frac{H_x a^3}{EAb^2} + \frac{Fa^3}{EAb^2} + \frac{H_x}{EA} \cdot b + \frac{1}{3}\frac{H_x a^2 b^3}{EJb^4} - \frac{Fa^2 b^3}{3EJb^4} + \frac{H_x a^3}{EAb^2} - \frac{Fa^3}{EAb^2} + \ldots\]</p>
+                
+                <p><strong>Final Answer:</strong> \(\boxed{u = -\frac{H_x}{K} = -7.699 \times 10^{-2}\, \text{mm}}\)</p>
+            </div>
+        </section>
+
+        <section class="page-break">
+            <h2>Page 4</h2>
+
+            <h3>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h3>
+
+            <ol class="true-false">
+                <li>Linear finite elements have linear convergence of the displacement wrt the dimension of the elements. <span class="answer-solution">F</span></li>
+
+                <li>The small strain tensor components are equal to zero for arbitrary rigid body motions. <span class="answer-solution">F</span></li>
+
+                <li>The critical compressive buckling stress of a simply supported plate is inversely proportional to the second power of plate thickness. <span class="answer-solution">F</span></li>
+            </ol>
+
+            <h3>Multiple Choice questions (Circle the correct answer)</h3>
+
+            <ol class="multiple-choice">
+                <li>
+                    <p>An open semi-monocoque cross section is clamped at one extremity and loaded by a torsional moment; the torsional rotation angle is:</p>
+                    <ol>
+                        <li>infinite, because the torsional stiffness is null</li>
+                        <li>polynomial (linear) because of differential bending</li>
+                        <li>polynomial (linear) because of differential torsion</li>
+                        <li>polynomial (quadratic) because of differential bending</li>
+                        <li>polynomial (quadratic) because of differential torsion</li>
+                        <li><strong style="color: green;">polynomial (cubic) because of differential bending ✓</strong></li>
+                        <li>polynomial (cubic) because of differential torsion</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+
+                <li>
+                    <p>Isoparamentric elements means that:</p>
+                    <ol>
+                        <li>the stress components have the same value all over the element</li>
+                        <li>the strain components have the same value all over the element</li>
+                        <li>the displacement components have the same value all over the element</li>
+                        <li>the strain components are interpolated using the same shape functions used for the undeformed position components</li>
+                        <li><strong style="color: green;">the displacement components are interpolated using the same shape functions used for the undeformed position components ✓</strong></li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+
+                <li>
+                    <p>A system of slender beams can be modeled by beams finite elements:</p>
+                    <ol>
+                        <li>false</li>
+                        <li>true only if the structure can sustain the loads through an internal axial load path</li>
+                        <li>true only if shear deformability is not negligible</li>
+                        <li><strong style="color: green;">true ✓</strong></li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+            </ol>
+
+            <p>An open cross section semi-monocoque beam is clamped...</p>
+        </section>
+    </article>
+</body>
+</html>

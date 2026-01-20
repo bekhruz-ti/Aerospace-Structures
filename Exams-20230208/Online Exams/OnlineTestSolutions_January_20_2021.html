@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Test Solutions - January 20, 2021</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.8;
+            background-color: #fafafa;
+            color: #333;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            border-bottom: 3px solid #4a90a4;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #16213e;
+            border-left: 5px solid #4a90a4;
+            padding-left: 15px;
+            margin-top: 50px;
+        }
+        
+        h3 {
+            color: #1a1a2e;
+            margin-top: 25px;
+        }
+        
+        h4 {
+            color: #2d4059;
+            margin-top: 20px;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #f8f9fa;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            border-top: 3px solid #4caf50;
+        }
+        
+        .given-data {
+            background: #fff3e0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .given-data strong {
+            color: #e65100;
+        }
+        
+        figure {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        figcaption {
+            margin-top: 12px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .final-answer {
+            font-size: 1.15em;
+            color: #1b5e20;
+            font-weight: bold;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+            border-left: 5px solid #2e7d32;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+        
+        .equation-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .multiple-choice {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .mc-question {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .mc-question p {
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+        
+        .correct {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        .incorrect {
+            color: #c62828;
+            text-decoration: line-through;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        ul li::before {
+            content: "–";
+            margin-right: 10px;
+        }
+        
+        .note {
+            background: #e3f2fd;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.95em;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Test Solutions - January 20, 2021</h1>
+    
+    <!-- PROBLEM 1 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h2>Problem 1: Beam with Spring Support - Vertical Displacement</h2>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/beam_distributed_load_spring_support_square_section.png" alt="Beam structure with distributed triangular load, spring support, and square cross-section">
+                <figcaption>Beam structure with distributed triangular load, spring support at distance 2ℓ from left end, and diamond-shaped cross-section with area A at corners</figcaption>
+            </figure>
+            
+            <p>Consider the structure in the figure. It is loaded with a distributed load, which is introduced continuously. The section is square with dimension \(a\); all the panels have thickness \(t\), while the lumped area of the stringers, including the contribution of the panels, is \(A\). The Young and shear moduli of the material are \(E\) and \(G\), respectively.</p>
+            
+            <p>Determine the vertical displacement \(v\) in correspondence of the spring by taking shear deformability effects into account. For this purpose, refer to a semi-monocoque model of the section.</p>
+            
+            <p><strong>(Unit for result: mm)</strong></p>
+            
+            <div class="given-data">
+                <strong>Given Data (solution for B = 0):</strong><br>
+                \(\ell = 200\, \text{mm}\)<br>
+                \(a = 40\, \text{mm}\)<br>
+                \(t = 0.2\, \text{mm}\)<br>
+                \(A = 400\, \text{mm}^2\)<br>
+                \(G = 28000\, \text{MPa}\)<br>
+                \(E = 72000\, \text{MPa}\)<br>
+                \(k = 2000 \times (1 + B/10) = 2000\, \text{N/mm}\)<br>
+                \(q = 100\, \text{N/mm}\)<br>
+                \(W = 4.0 \times 10^6\, \text{N·mm}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Step 1: Beam Section Properties</h4>
+            
+            <p>The bending stiffness is:</p>
+            \[EJ = E \cdot 2A \cdot \left(\frac{a}{\sqrt{2}}\right)^2 = EA \cdot a^2\]
+            
+            <h4>Step 2: Shear Stiffness \(GA^*\)</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/diamond_cross_section_shear_forces.png" alt="Diamond-shaped cross-section with shear flow distribution">
+                <figcaption>Diamond-shaped cross-section showing shear force distribution with dimensions \(a/\sqrt{2}\) and shear flow \(q\) at corners</figcaption>
+            </figure>
+            
+            <p>Due to the symmetry of the section, the shear flows due to the shear force \(T\) (applied at the shear center) are:</p>
+            
+            \[q \cdot \frac{a}{\sqrt{2}} \cdot 4 = T\]
+            
+            <p>So:</p>
+            \[q = \frac{T}{4a} \cdot \sqrt{2}\]
+            
+            <p>From which the shear stiffness is:</p>
+            \[GA^* = G \cdot \frac{T^2}{\sum_i q_i^2 \ell_i / t_i} = G \cdot \frac{T^2}{4q^2 a/t} = G \cdot 2at\]
+            
+            <h4>Step 3: Real System Analysis</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/beam_segment_free_body_diagram.png" alt="Free body diagram of beam segment">
+                <figcaption>Free body diagram of beam segment showing distributed load, moment \(W\), shear force \(T\), and reaction forces</figcaption>
+            </figure>
+            
+            <p>Internal forces in the right portion (with coordinate \(x\) measured from the spring):</p>
+            \[T = -\left(X + \frac{q\ell}{2}\right)\]
+            \[M = -W - \frac{q\ell^2}{6} - \left(X + \frac{q\ell}{2}\right)x\]
+            
+            <h4>Step 4: Dummy System</h4>
+            <p>Applying a unit load at the spring location:</p>
+            \[\delta T = -1\]
+            \[\delta M = -x\]
+            
+            <h4>Step 5: Application of the Principle of Virtual Work (PCVW)</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/beam_spring_support_reactions.png" alt="Beam with spring support showing reaction forces">
+                <figcaption>Beam with spring support showing reaction force \(X\) and spring displacement \(S\)</figcaption>
+            </figure>
+            
+            \[\int_0^{2\ell} \left(\delta M \cdot \frac{M}{EJ} + \delta T \cdot \frac{T}{GA^*}\right) dx + \frac{X}{k} = 0\]
+            
+            <p>After integration:</p>
+            \[\frac{\ell^2}{3EJ}\left(5q\ell^2 + 8X\ell + 6W\right) + \frac{\ell}{GA^*}\left(q\ell + 2X\right) + \frac{X}{k} = 0\]
+            
+            <p>Rearranging:</p>
+            \[\left(\frac{\ell^3}{3EJ} \cdot 8 + \frac{\ell}{GA^*} \cdot 2 + \frac{1}{k}\right) X = -\frac{\ell^2}{3EJ}\left(5q\ell^2 + 6W\right) - \frac{\ell}{GA^*} \cdot q\ell\]
+            
+            <p>Solving for \(X\):</p>
+            \[X = -12615\, \text{N}\]
+            
+            <h4>Step 6: Calculate Displacement</h4>
+            <p>The spring displacement is:</p>
+            \[S = \frac{X}{k} = \frac{-12615}{2000} = -5.84\, \text{mm}\]
+            
+            <p class="note">Note: \(S\) is positive in the downward direction.</p>
+            
+            <p class="final-answer">Final Answer: \(v = 5.84\, \text{mm}\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 2 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h2>Problem 2: Rectangular Frame - Reaction Force</h2>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/rectangular_frame_three_beams.png" alt="Rectangular frame structure with three beams">
+                <figcaption>Rectangular frame structure with three beams, horizontal force \(P\) at left, pin supports at corners, and unknown reaction force \(H\) at right</figcaption>
+            </figure>
+            
+            <p>The structure in the figure is composed of three beams with same length \(L\), bending stiffness \(EJ\) and axial stiffness \(EA\). Shear deformability is negligible.</p>
+            
+            <p>Determine the reaction force \(H\).</p>
+            
+            <p><strong>(Unit for result: N)</strong></p>
+            
+            <div class="given-data">
+                <strong>Given Data (solution for D = 0):</strong><br>
+                \(\ell = 1000 \times (1 + D/10) = 1000\, \text{mm}\)<br>
+                \(EJ = 1.0 \times 10^{12}\, \text{N·mm}^2\)<br>
+                \(EA = 1.0 \times 10^6\, \text{N}\)<br>
+                \(P = 500\, \text{N}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Step 1: Real System Analysis</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/frame_real_system_numbered_joints.png" alt="Real system diagram with numbered joints">
+                <figcaption>Real system showing rectangular frame with force \(P\), numbered joints (1,2,3), pin supports, and vertical reaction \(V = P\)</figcaption>
+            </figure>
+            
+            <p><strong>Beam 1</strong> (right vertical beam):</p>
+            \[N = -V\]
+            \[M = -Xx_1\]
+            
+            <p><strong>Beam 2</strong> (top horizontal beam):</p>
+            \[N = X\]
+            \[M = -X\ell - Vx_2\]
+            
+            <p><strong>Beam 3</strong> (left vertical beam):</p>
+            \[N = V\]
+            \[M = (P + X)x_3 - (V + X)\ell\]
+            
+            <h4>Step 2: Dummy System</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/frame_dummy_system_unit_load.png" alt="Dummy system with unit load">
+                <figcaption>Dummy system showing rectangular frame with pin supports and unit horizontal load at right support</figcaption>
+            </figure>
+            
+            <p><strong>Beam 1:</strong> \(\delta N = 0\), \(\delta M = -x_1\)</p>
+            
+            <p><strong>Beam 2:</strong> \(\delta N = 1\), \(\delta M = -\ell\)</p>
+            
+            <p><strong>Beam 3:</strong> \(\delta N = 0\), \(\delta M = -\ell + x_3\)</p>
+            
+            <h4>Step 3: Application of PCVW</h4>
+            
+            \[\int_0^\ell \delta N \cdot \frac{N}{EA}\, dx_2 + \sum_{i=1}^{3} \int_0^\ell \delta M \cdot \frac{M}{EJ}\, dx_i = 0\]
+            
+            <p>This leads to:</p>
+            \[\frac{X\ell}{EA} + \frac{5}{3EJ}\ell^3 X + \frac{5}{6EJ}\ell^3 P = 0\]
+            
+            <p>Rearranging:</p>
+            \[X\left(\frac{\ell}{EA} + \frac{5\ell^3}{3EJ}\right) = -\frac{5}{6EJ}\ell^3 P\]
+            
+            <p>Solving:</p>
+            \[X = -5 \cdot \frac{EA\ell^2}{6EJ + 10EA\ell^2} \cdot P\]
+            
+            <p class="final-answer">Final Answer: \(X = -156.25\, \text{N}\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 3 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h2>Problem 3: Two-Beam Hinged System - Ritz Method</h2>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/two_beam_hinged_system_springs.png" alt="Two-beam hinged system with springs">
+                <figcaption>Two-beam hinged system with vertical force \(F\), spring supports \(k\) and \(k_t\), showing beam #1 (\(EJ, \ell\)) and beam #2 (\(2EJ, \ell\)) connected by hinges</figcaption>
+            </figure>
+            
+            <p>Two beams are hinged through an inextensible joint (see figure). Determine the vertical displacement \(w\) in correspondence of the applied force \(F\) using the Euler-Bernoulli beam model in conjunction with the Ritz method. For this purpose, adopt a polynomial expansion of the displacement field where:</p>
+            <ul>
+                <li>the displacement is expanded up to the third order for the first beam</li>
+                <li>the displacement is expanded up to the second order for the second beam</li>
+            </ul>
+            
+            <p><strong>(Unit for result: mm)</strong></p>
+            
+            <div class="given-data">
+                <strong>Given Data (solution for E = 0):</strong><br>
+                \(\ell = 500\, \text{mm}\)<br>
+                \(EJ = 1.0 \times 10^{10}\, \text{N·mm}^2\)<br>
+                \(k = 80 \times (1 + E/10) = 80\, \text{N/mm}\)<br>
+                \(k_t = 2.0 \times 10^7\, \text{N·mm}\)<br>
+                \(F = 2500\, \text{N}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Step 1: Displacement Field Expansion</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/two_beam_displacement_field_coordinates.png" alt="Solution diagram showing displacement field coordinates">
+                <figcaption>Solution diagram for two-beam system showing displacement field coordinates and spring supports</figcaption>
+            </figure>
+            
+            <p>The displacement field is expanded as:</p>
+            \[w_1 = C_1\left(\frac{x_1}{\ell}\right)^2 + C_2\left(\frac{x_1}{\ell}\right)^3; \quad w_2 = C_3\left(\frac{x_2}{\ell}\right)^2\]
+            
+            <p>The two expansions do not include the constant and linear terms to guarantee the fulfillment of the essential conditions:</p>
+            \[\begin{cases} w_1(0) = 0 \\ w_2(0) = 0 \end{cases}\]
+            
+            <h4>Step 2: Continuity Condition at Joint</h4>
+            <p>The additional essential condition introduced by the joint is:</p>
+            \[w_1(\ell) = w_2(\ell) = 0\]
+            
+            <p>So:</p>
+            \[C_1 + C_2 = C_3\]
+            
+            <p>And then:</p>
+            \[w_1 = C_1\left(\frac{x_1}{\ell}\right)^2 + C_2\left(\frac{x_1}{\ell}\right)^3\]
+            \[w_2 = (C_1 + C_2)\left(\frac{x_2}{\ell}\right)^2\]
+            
+            <h4>Step 3: Derivatives</h4>
+            \[w_1' = C_1 \cdot \frac{2x_1}{\ell^2} + C_2 \cdot \frac{3x_1^2}{\ell^3}; \quad w_2' = (C_1 + C_2) \cdot \frac{2x_2}{\ell^2}\]
+            \[w_1'' = C_1 \cdot \frac{2}{\ell^2} + C_2 \cdot \frac{6x_1}{\ell^3}; \quad w_2'' = (C_1 + C_2) \cdot \frac{2}{\ell^2}\]
+            
+            <h4>Step 4: Principle of Virtual Work</h4>
+            \[\int_0^\ell \delta w_1'' EJ\, w_1''\, dx_1 + \int_0^\ell \delta w_2'' \cdot 2EJ\, w_2''\, dx_2 + \delta w_2(\ell)\, k\, w_2(\ell) + \delta w_1'(\ell)\, k_t\, w_1'(\ell) = \delta w_2(\ell)\, F\]
+            
+            <p>After working out the integrals:</p>
+            \[\delta C_1\left(k + \frac{12EJ}{\ell^3} + \frac{4k_t}{\ell^2}\right)C_1 + \delta C_1\left(k + \frac{14EJ}{\ell^3} + \frac{4k_t}{\ell^2}\right)C_2 +\]
+            \[\delta C_2\left(k + \frac{14EJ}{\ell^3} + \frac{4k_t}{\ell^2}\right)C_1 + \delta C_2\left(k + \frac{20EJ}{\ell^3} + \frac{4k_t}{\ell^2}\right)C_2 = \delta C_1 F + \delta C_2 F\]
+            
+            <h4>Step 5: Solve Linear System</h4>
+            <p>Defining \(\hat{k} = \frac{k\ell^3}{EJ}\) and \(\hat{k}_t = \frac{k_t \ell}{EJ}\), the linear system is:</p>
+            
+            \[\begin{bmatrix} \hat{k} + 12 + 4\hat{k}_t & \hat{k} + 14 + 4\hat{k}_t \\ \hat{k} + 14 + 4\hat{k}_t & \hat{k} + 20 + 4\hat{k}_t \end{bmatrix} \begin{Bmatrix} C_1 \\ C_2 \end{Bmatrix} = \begin{Bmatrix} 1 \\ 1 \end{Bmatrix} \frac{F\ell^3}{EJ}\]
+            
+            <p>With numerical values:</p>
+            \[\begin{bmatrix} 17.00 & 19.00 \\ 19.00 & 25.00 \end{bmatrix} \begin{Bmatrix} C_1 \\ C_2 \end{Bmatrix} = \begin{Bmatrix} 31.25 \\ 31.25 \end{Bmatrix}\]
+            
+            <p>From which:</p>
+            \[C_1 = 2.93\, \text{mm}\]
+            \[C_2 = -0.98\, \text{mm}\]
+            
+            <h4>Step 6: Calculate Displacement</h4>
+            <p>The displacement at \(x_2 = \ell\) is:</p>
+            \[w_2 = (C_1 + C_2)\left(\frac{\ell}{\ell}\right)^2 = C_1 + C_2\]
+            
+            <p class="final-answer">Final Answer: \(w = 1.95\, \text{mm}\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 4 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h2>Problem 4: Three-Cell Section - Torsional Stiffness</h2>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/three_cell_rectangular_section.png" alt="Three-cell rectangular cross-section">
+                <figcaption>Three-cell rectangular cross-section showing dimensions \(a\) (width of each cell) and \(a\) (height), with pin joints at corners</figcaption>
+            </figure>
+            
+            <p>Determine the torsional stiffness \(GJ\) of the three-cell section in the figure. All the panels have thickness \(t\), while the lumped area of the stringers, including the contribution of the panels, is \(A\). The shear modulus of the material is \(G\).</p>
+            
+            <p>To solve the exercise, use a semi-monocoque approximation of the section.</p>
+            
+            <p>Report the result as \(GJ/GJ_{ref}\), where \(GJ_{ref}\) is reference value available in the data.</p>
+            
+            <p><strong>(Unit for result: adim)</strong></p>
+            
+            <div class="given-data">
+                <strong>Given Data (solution for B = 0):</strong><br>
+                \(a = 100 \times (1 + B/10) = 100\, \text{mm}\)<br>
+                \(t = 1.5\, \text{mm}\)<br>
+                \(A = 400\, \text{mm}^2\)<br>
+                \(G = 27000\, \text{MPa}\)<br>
+                \(GJ_{ref} = 1.0 \times 10^{10}\, \text{N·mm}^2\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Step 1: Set Up Shear Flows</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/three_cell_section_shear_flows.png" alt="Three-cell section with shear flows">
+                <figcaption>Three-cell section solution diagram showing applied moment \(M_t\) and shear flows \(q_1^*\), \(q_2^*\), \(q_3^*\) with rotation arrows in each cell</figcaption>
+            </figure>
+            
+            <h4>Step 2: Moment Equivalence</h4>
+            \[2\Omega(q_1^* + q_2^* + q_3^*) = M_t \quad \text{with } \Omega = a^2\]
+            
+            <h4>Step 3: Compatibility Equations</h4>
+            \[2G\Omega t\theta_1' = 4aq_1^* - aq_2^*\]
+            \[2G\Omega t\theta_2' = 4aq_2^* - aq_1^* - aq_3^*\]
+            \[2G\Omega t\theta_3' = 4aq_3^* - aq_2^*\]
+            
+            <p>From which:</p>
+            \[\theta_1' = \theta_2' \Rightarrow 5q_1^* - 5q_2^* + q_3^* = 0\]
+            \[\theta_1' = \theta_3' \Rightarrow q_1^* = q_3^*\]
+            
+            <h4>Step 4: Solve System</h4>
+            \[\begin{cases} 6q_1^* - 5q_2^* = 0 \\ 2q_1^* + q_2^* = \frac{M_t}{2\Omega} \end{cases}\]
+            
+            <p>From which:</p>
+            \[q_1^* = \frac{5}{16} \cdot \frac{M_t}{2\Omega}\]
+            \[q_2^* = \frac{3}{8} \cdot \frac{M_t}{2\Omega}\]
+            
+            <h4>Step 5: Calculate \(GJ\)</h4>
+            <p>Recalling that \(M_t = GJ\theta'\), so \(GJ = M_t/\theta'\)</p>
+            
+            <p>With \(\theta' = \theta_1'\):</p>
+            \[2G\Omega t\theta_1' = 4aq_1^* - aq_2^*\]
+            
+            \[\theta_1' = \frac{1}{2G\Omega t} \cdot \frac{M_t \cdot a}{2\Omega}\left(\frac{5}{4} - \frac{3}{8}\right) = \frac{7}{32} \cdot \frac{M_t}{Ga^3t}\]
+            
+            <p>So:</p>
+            \[GJ = \frac{M_t}{\theta_1'} = G \cdot \frac{32}{7} \cdot a^3t = 1.85 \times 10^{11}\, \text{N·mm}^2\]
+            
+            <p class="final-answer">Final Answer: \(GJ/GJ_{ref} = 18.51\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 5 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h2>Problem 5: Thin-Walled Beam - Shear Stress</h2>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/thin_walled_beam_uniform_pressure_trapezoidal_section.png" alt="Thin-walled beam with uniform pressure and trapezoidal section">
+                <figcaption>Thin-walled beam with uniform pressure \(p\) on top, showing side view with Section A marked at \(\ell/6\) from left support, and trapezoidal cross-section with dimensions \(a\), \(b\), \(c\)</figcaption>
+            </figure>
+            
+            <p>The thin-walled beam in the figure is loaded with a uniform pressure \(p\). The section is modeled with a semi-monocoque approximation, where the lumped stringers (including the contribution of the panels) have area \(A\), and the thickness of the panels is \(t\). Assuming that the load is introduced in correspondence of the ribs, determine the shear stress in the panel indicated in the figure at the section A.</p>
+            
+            <p><strong>(Unit for result: MPa)</strong></p>
+            
+            <div class="given-data">
+                <strong>Given Data (solution for D = 0):</strong><br>
+                \(\ell = 2000 \times (1 + D/10) = 2000\, \text{mm}\)<br>
+                \(a = 70\, \text{mm}\)<br>
+                \(b = 100\, \text{mm}\)<br>
+                \(c = 30\, \text{mm}\)<br>
+                \(t = 1.2\, \text{mm}\)<br>
+                \(A = 400\, \text{mm}^2\)<br>
+                \(p = 1.0 \times 10^{-2}\, \text{N/mm}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Step 1: Convert Distributed Load to Concentrated Forces</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/beam_pressure_to_rib_forces.png" alt="Beam with pressure converted to rib forces">
+                <figcaption>Side view of thin-walled beam showing distributed pressure \(p\) converted to concentrated forces \(F\) at ribs, with Section A marked</figcaption>
+            </figure>
+            
+            \[F = p \cdot a \cdot \frac{\ell}{6} = 233.33\, \text{N}\]
+            
+            <h4>Step 2: Calculate Shear Force at Section A</h4>
+            <p>The shear force at the section A is:</p>
+            \[T = \frac{5}{2}F = 583.33\, \text{N}\]
+            
+            <h4>Step 3: Analyze Shear Flow</h4>
+            <p>Due to the symmetry of the section, the torsional moment with respect to the shear center is null.</p>
+            
+            <p>The shear flows are readily available by exploiting the symmetry of the section:</p>
+            \[q = \frac{T}{2c} = 9.72\, \text{N/mm}\]
+            
+            <h4>Step 4: Calculate Shear Stress</h4>
+            \[\tau = \frac{q}{t} = \frac{9.72}{1.2}\]
+            
+            <p class="final-answer">Final Answer: \(\tau = 8.10\, \text{MPa}\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 6 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h2>Problem 6: Cantilever Thin-Walled Beam - Rotation Angle</h2>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/cantilever_beam_distributed_load_square_section.png" alt="Cantilever thin-walled beam with distributed load">
+                <figcaption>Cantilever thin-walled beam with distributed load \(q\) along length \(\ell\), showing 3D isometric view with \(\ell/6\) segment and square cross-section with dimension \(a\) and panel thickness \(t\)</figcaption>
+            </figure>
+            
+            <p>The thin-walled beam in the figure is loaded with a force per unit length \(q\). The lumped stringers, including the contribution of the panels, have area \(A\), and the thickness of the panels is \(t\). The shear modulus of the material is \(G\). Assume that the load is introduced in correspondence of the ribs. By using a semi-monocoque approximation, determine the rotation of the section at \(x = \ell/3\).</p>
+            
+            <p>Report the absolute value of the rotation angle expressed in degrees.</p>
+            
+            <p><strong>(Unit for result: deg - absolute value)</strong></p>
+            
+            <div class="given-data">
+                <strong>Given Data (solution for E = 0):</strong><br>
+                \(\ell = 2500\, \text{mm}\)<br>
+                \(a = 150 \times (1 + E/10) = 150\, \text{mm}\)<br>
+                \(A = 500\, \text{mm}^2\)<br>
+                \(t = 1.2\, \text{mm}\)<br>
+                \(G = 27000\, \text{MPa}\)<br>
+                \(q = 100\, \text{N/mm}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Step 1: Calculate Torsional Constant</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/cantilever_load_distribution_rib_forces.png" alt="Cantilever beam with load distribution">
+                <figcaption>Solution diagram showing cantilever beam with distributed load \(q\) converted to concentrated forces \(F\), \(F/2\) at ribs</figcaption>
+            </figure>
+            
+            <p>This is a 1-cell section, so Bredt's formula can be applied:</p>
+            \[J = \frac{4\Omega^2}{\oint \frac{1}{t}\, d\Gamma} = \frac{4a^4 t}{4a} = a^3 t\]
+            
+            <h4>Step 2: Analyze Torsion</h4>
+            <p>The torsion \(\theta'\) is evaluated by referring to the section's shear center, which is readily available due to the section's symmetry.</p>
+            
+            <figure>
+                <img src="images/OnlineTestSolutions_January_20_2021/beam_segment_rib_forces_rotations.png" alt="Beam segment with rib forces and rotations">
+                <figcaption>Beam segment showing concentrated forces \(F\) at ribs with rotation angles \(\theta_1'\) and \(\theta_2'\) marked at supports</figcaption>
+            </figure>
+            
+            <p>The loading can be decomposed: a force \(T\) at the corner produces a torsional moment:</p>
+            \[M_t = T \cdot \frac{a}{2}\]
+            
+            <h4>Step 3: Rate of Twist</h4>
+            \[\theta' = \frac{M_t}{GJ} \quad \text{with } M_t = T\frac{a}{2}\]
+            
+            \[\theta' = \frac{Ta}{2} \cdot \frac{1}{Ga^3t} = \frac{T}{2Ga^2t}\]
+            
+            <h4>Step 4: Calculate Forces in Each Bay</h4>
+            \[F = \frac{q\ell}{6}\]
+            
+            <p>For the first bay:</p>
+            \[T_1 = \left(5 + \frac{1}{2}\right)F\]
+            
+            <p>For the second bay:</p>
+            \[T_2 = \left(4 + \frac{1}{2}\right)F\]
+            
+            <h4>Step 5: Calculate Rotations</h4>
+            \[\theta_1' = \frac{T_1}{2Ga^3t}\]
+            \[\theta_2' = \frac{T_2}{2Ga^2t}\]
+            
+            <h4>Step 6: Total Rotation</h4>
+            <p>The rotation at \(x = \ell/3\) is:</p>
+            \[\theta = \theta_1' \cdot \frac{\ell}{6} + \theta_2' \cdot \frac{\ell}{6}\]
+            
+            <p class="final-answer">Final Answer: \(\theta = 6.82\, \text{deg}\)</p>
+        </div>
+    </section>
+    
+    <!-- MULTIPLE CHOICE QUESTIONS -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h2>Multiple Choice Questions</h2>
+        </div>
+        
+        <div class="solution">
+            <div class="multiple-choice">
+                <div class="mc-question">
+                    <p>• The Principle of Virtual Work:</p>
+                    <ul>
+                        <li><span class="correct">is used to impose the equilibrium</span> ✓</li>
+                        <li><span class="incorrect">is used to impose the equilibrium and compatibility</span></li>
+                        <li><span class="incorrect">is used to impose the compatibility</span></li>
+                    </ul>
+                </div>
+                
+                <div class="mc-question">
+                    <p>• The shear force in an Euler-Bernoulli beam:</p>
+                    <ul>
+                        <li><span class="incorrect">is null because the shear deformation is negligible</span></li>
+                        <li><span class="correct">is different from zero and can be computed from the derivative of the bending moment</span> ✓</li>
+                        <li><span class="incorrect">is infinite so that the shear deformation is null</span></li>
+                        <li><span class="incorrect">cannot be computed</span></li>
+                    </ul>
+                </div>
+                
+                <div class="mc-question">
+                    <p>• In a thin-walled beam, a rib contributes to:</p>
+                    <ul>
+                        <li><span class="correct">preserve the shape of the section</span> ✓</li>
+                        <li><span class="incorrect">reduce the shear flows in the panels</span></li>
+                        <li><span class="incorrect">reduce the force carried by the stringers</span></li>
+                    </ul>
+                </div>
+                
+                <div class="mc-question">
+                    <p>• The Finite Element method requires the natural boundary conditions to be identically fulfilled</p>
+                    <ul>
+                        <li><span class="incorrect">True</span></li>
+                        <li><span class="correct">False</span> ✓</li>
+                    </ul>
+                </div>
+                
+                <div class="mc-question">
+                    <p>• The trial functions used in the Ritz approximation must be part of a complete set of functions</p>
+                    <ul>
+                        <li><span class="correct">True</span> ✓</li>
+                        <li><span class="incorrect">False</span></li>
+                    </ul>
+                </div>
+                
+                <div class="mc-question">
+                    <p>• The position of the shear center depends on the loading conditions</p>
+                    <ul>
+                        <li><span class="incorrect">True</span></li>
+                        <li><span class="correct">False</span> ✓</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>

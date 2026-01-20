@@ -1,0 +1,26 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "beam_system_distributed_load_cross_section",
+    "description": "Composite diagram showing two views: Left side depicts a beam of length l with pinned support at left end and roller support at right end, subjected to uniform upward distributed load q along its top surface. Coordinate system shows y-axis vertical, x and z axes horizontal. Applied moment A shown at left end. Right side shows a rectangular cross-section labeled \"SECT A-A\" with dimensions a × a, divided into regions E₁ and E₂ with diagonal hatching patterns indicating different material properties or stress distributions."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "cantilever_beam_distributed_loads",
+    "description": "Cantilever beam of length l with fixed support at bottom end. Beam subjected to multiple loading conditions: distributed load t on left portion, distributed load w on upper left section, and distributed load k on right portion extending downward. Coordinate system not explicitly shown. Beam appears to be analyzed for combined loading effects."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "rectangular_frame_diagonal_member",
+    "description": "Rectangular frame structure with width a and height d, showing four corner nodes labeled A at each corner. Frame includes a diagonal member labeled E connecting upper left to lower right corner. Vertical members on left and right sides labeled t. Coordinate system shows upward vertical arrow and rightward horizontal arrow at left side. Pin or hinge connections indicated at corner nodes by circular symbols."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "truss_structure_distributed_loads_isometric",
+    "description": "Three-dimensional truss structure shown in isometric view with square base dimension a. Structure consists of diagonal members labeled l connecting corner nodes labeled A. Point B marked at interior location. Multiple upward distributed loads shown along top edges and diagonal members. Dimension a indicated at base. Coordinate arrows showing spatial orientation with l directions marked along various members. Pin connections indicated at corner nodes. Problem labeled as φ in upper left corner."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "cantilever_beam_end_moment",
+    "description": "Cantilever beam of length l with fixed support at left end (indicated by hatched wall symbol). Beam extends horizontally along z-axis with applied moment M_z shown as curved arrow at free right end. Coordinate system shows y-axis vertical, z-axis horizontal, and x-axis into page. Dimension t marked below beam indicating thickness or time parameter."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "beam_spring_support_roller_force",
+    "description": "Horizontal beam of length l with pinned support at left end and roller support at right end. Spring element with stiffness k located at mid-span, attached to fixed ground support (hatched symbol). Horizontal force F applied at right end. Beam segment of length l/2 marked on left portion. Coordinate arrows indicate beam length l spans horizontally."
+  }
+}

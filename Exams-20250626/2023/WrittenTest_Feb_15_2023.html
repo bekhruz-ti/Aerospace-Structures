@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Written Test - February 15, 2023</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .student-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h2 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            font-size: 0.95em;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border: 2px solid #007bff;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 2px solid #333;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: block;
+            background: #e8f5e9;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 4px solid #28a745;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .questions-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #28a745;
+        }
+
+        .questions-section h2 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #28a745;
+        }
+
+        ol, ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        ol li, ul li {
+            margin: 10px 0;
+        }
+
+        .true-false {
+            list-style-type: decimal;
+        }
+
+        .multiple-choice {
+            list-style-type: decimal;
+        }
+
+        .multiple-choice ul {
+            list-style-type: lower-alpha;
+            margin-top: 8px;
+        }
+
+        .note {
+            font-style: italic;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .exercise {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures Written test, Feb 15th, 2023</h1>
+        </header>
+
+        <div class="student-info">
+            <p>Name</p>
+            <p>Surname</p>
+            <p>Person code:</p>
+        </div>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Feb_15_2023/page_1_img_1.png" alt="Semi-monocoque beam cross-section showing rectangular configuration with four corner stringers labeled A₁ and A₂. Point B marked at upper center location of the cross-section. Cross-section has square dimensions with width a and height a. Coordinate system shows y-axis vertical, z-axis horizontal (along beam length), and x-axis into the page. Hatching at top right indicates fixed boundary or continuation of structure. Force F shown as vertical arrow at bottom of cross-section.">
+                <figcaption>
+                    <strong>Semi-monocoque beam cross-section showing rectangular configuration with four corner stringers labeled \(A_1\) and \(A_2\). Point \(B\) marked at upper center location of the cross-section. Cross-section has square dimensions with width \(a\) and height \(a\). Coordinate system shows \(y\)-axis vertical, \(z\)-axis horizontal (along beam length), and \(x\)-axis into the page. Hatching at top right indicates fixed boundary or continuation of structure. Force \(F\) shown as vertical arrow at bottom of cross-section.</strong>
+                </figcaption>
+            </figure>
+
+            <p>The semi-monocoque beam sketched in the figure is loaded at the free end by the vertical force \(F\), applied along the lefmost panel. Compute the upper right stringer axial stress \(\sigma_{zz}\) at point \(B\). (Unit for result: MPa)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 400\, \text{mm}\)<br>
+                \(l = 12000\, \text{mm}\)<br>
+                \(E = 70000.0\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(A_1 = 200\, \text{mm}^2\)<br>
+                <br>
+                \(A_2 = 400\, \text{mm}^2\)<br>
+                <br>
+                \(F = 5000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br><br>
+                    Point \(B\) is located at \(z = \frac{l}{2}\) from the clamp.<br><br>
+                    
+                    The force \(F\) is applied at an angle, with components \(\frac{F}{\sqrt{2}}\) in both \(x\) and \(y\) directions.<br><br>
+                    
+                    <strong>Step 1:</strong> Calculate the bending moment at \(z = \frac{l}{2}\):
+                    \[M_y\left(\frac{l}{2}\right) = -\frac{F}{\sqrt{2}} \cdot \frac{l}{2}\]
+                    
+                    <strong>Step 2:</strong> Calculate the second moment of area:
+                    \[I_{xx} = A_1 \cdot 2 \cdot \left(\frac{a}{2}\right)^2 = A_1 \cdot a^2 \cdot \frac{1}{2} = A_1 \cdot a^2\]
+                    (considering the contribution of stringers \(A_1\) at distance \(\frac{a}{2}\) from neutral axis)
+                    <br><br>
+                    
+                    <strong>Step 3:</strong> Calculate stress at point \(B\) (located at \(y = \frac{a}{2}\), \(x = \frac{a}{2}\)):
+                    \[\sigma_{zz}(B) = \frac{M_y\left(\frac{l}{2}\right)}{I_{xx}} \cdot \frac{a}{\sqrt{2}} = -\frac{F}{\sqrt{2}} \cdot \frac{l}{2} \cdot \frac{1}{A_1 a^2} \cdot \frac{a}{\sqrt{2}}\]
+                    
+                    \[\sigma_{zz}(B) = -\frac{F \cdot l}{4 \cdot A_1 \cdot a}\]
+                    
+                    <strong>Step 4:</strong> Substitute numerical values:
+                    \[\sigma_{zz}(B) = -\frac{5000 \times 12000}{4 \times 200 \times 400} = -\frac{60000000}{320000} = -187.5\, \text{MPa}\]
+                    
+                    <br><strong>Final Answer:</strong> \(\sigma_{zz} = -187\, \text{MPa}\)
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Feb_15_2023/page_1_img_2.png" alt="Beam with butterfly-shaped distributed load q(x) showing linear variation from -q̄ at left end to +q̄ at right end, creating antisymmetric loading pattern. Beam has length ℓ with hinged/pinned support (circle symbol) at left end labeled EA ET. Axial pre-stress force shown at left support. Load distribution varies continuously along beam length with upward arrows at right and downward arrows at left. Coordinate system shows y-axis vertical and x-axis horizontal. Additional notation shows ℓ₂ segment length and triangular symbol with ooo at right end indicating specific boundary condition.">
+                <figcaption>
+                    <strong>Beam with butterfly-shaped distributed load \(q(x)\) showing linear variation from \(-\bar{q}\) at left end to \(+\bar{q}\) at right end, creating antisymmetric loading pattern. Beam has length \(\ell\) with hinged/pinned support (circle symbol) at left end labeled "EA ET". Axial pre-stress force shown at left support. Load distribution varies continuously along beam length with upward arrows at right and downward arrows at left. Coordinate system shows \(y\)-axis vertical and \(x\)-axis horizontal. Additional notation shows \(\ell_2\) segment length and triangular symbol with "ooo" at right end indicating specific boundary condition.</strong>
+                </figcaption>
+            </figure>
+
+            <p>The beam sketched in the figure is loaded by a distributed force for unit of length with butterfly distri- bution and null resultant \(q(x) = -q + 2qx/l\). By resorting to the displacement method, and using a trigonometric approximation for the vertical dis- placement \(v\), with the first and second term (i.e. \(v \approx a \sin(\pi x/l) + b \sin(2\pi x/l)\) ), estimate the rotation \(\theta\) at point \(A\) (the point at \(x = l/2\) from the hinge). Account for the axial pre-stress. Note: \(\int \sin(\frac{c\pi x}{l})x dx = -\frac{lx}{c\pi} \cos(\frac{c\pi x}{l}) + \frac{l^2}{\pi^2 c^2} \sin(\frac{c\pi x}{l})\). (Unit for result: rad)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(q = 100\, \text{N/mm}\)<br>
+                \(F_x = 10000\, \text{N}\)<br>
+                \(EA = 1 \times 10^8\, \text{N}\)<br>
+                \(EI = 1 \times 10^{11}\, \text{Nmm}^2\)<br>
+                <br>
+                \(l = 4000\, \text{mm}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br><br>
+                    Using the Principle of Virtual Work (PVW) with the displacement approximation:<br>
+                    \[w = a \sin\left(\frac{\pi x}{l}\right) + b \sin\left(\frac{2\pi x}{l}\right)\]
+                    
+                    <strong>Step 1:</strong> Compute derivatives:
+                    \[w' = \frac{\pi}{l} a \cos\left(\frac{\pi x}{l}\right) + \frac{2\pi}{l} b \cos\left(\frac{2\pi x}{l}\right)\]
+                    \[w'' = -\frac{\pi^2}{l^2} a \sin\left(\frac{\pi x}{l}\right) - \frac{4\pi^2}{l^2} b \sin\left(\frac{2\pi x}{l}\right)\]
+                    
+                    <strong>Step 2:</strong> Apply PVW:
+                    \[\int_0^l \left(\delta w'' \cdot EI \cdot w'' + \delta w' \cdot F_x \cdot w'\right) dx = \int_0^l \delta w \cdot q(x)\, dx\]
+                    
+                    <strong>Step 3:</strong> Equation for coefficient \(a\) (\(\delta a\)):
+                    \[\left[\left(\frac{\pi}{l}\right)^4 EI \cdot \frac{l}{2} + \left(\frac{\pi}{l}\right)^2 F_x \cdot \frac{l}{2}\right] a = 0\]
+                    This gives: \(a = 0\)
+                    
+                    <strong>Step 4:</strong> Equation for coefficient \(b\) (\(\delta b\)):
+                    \[\left[\left(\frac{2\pi}{l}\right)^4 EI \cdot \frac{l}{2} + \left(\frac{2\pi}{l}\right)^2 F_x \cdot \frac{l}{2}\right] b = -\frac{l\bar{q}}{\pi}\]
+                    
+                    \[b = -\frac{\bar{q}}{\pi} \cdot \frac{2}{\left(\frac{2\pi}{l}\right)^4 EI + \left(\frac{2\pi}{l}\right)^2 F_x}\]
+                    
+                    <strong>Step 5:</strong> Calculate rotation at \(x = \frac{l}{2}\):
+                    \[\theta = w'\left(\frac{l}{2}\right) = \frac{2\pi}{l} b \cos(\pi) = -\frac{2\pi}{l} b\]
+                    
+                    <strong>Step 6:</strong> Substitute values and compute:
+                    \[\theta = 0.15\, \text{rad}\]
+                    
+                    <br><strong>Final Answer:</strong> \(\theta = 0.15\, \text{rad}\)
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 3</h2>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Feb_15_2023/page_2_img_1.png" alt="Two loading scenarios shown side by side. Left: beam with fixed support (hatching) at left end and three equal horizontal axial forces ℓ applied along the length, total beam length ℓ. Right: triangular distributed load with maximum intensity a at apex, applied over base width a, showing vertical loading pattern with multiple upward arrows indicating distributed force intensity.">
+                <figcaption>
+                    <strong>Two loading scenarios shown side by side. Left: beam with fixed support (hatching) at left end and three equal horizontal axial forces \(\ell\) applied along the length, total beam length \(\ell\). Right: triangular distributed load with maximum intensity \(a\) at apex, applied over base width \(a\), showing vertical loading pattern with multiple upward arrows indicating distributed force intensity.</strong>
+                </figcaption>
+            </figure>
+
+            <p>The beam in the figure, with the sketched triangular cross section, is loaded by a distributed traction force per unit of length \(f\). By resorting to a FE model of the beam with one linear element estimate the axial displacement of the free end. (Unit for result: mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 1\, \text{cm}\)<br>
+                \(l = 1\, \text{m}\)<br>
+                \(f = 100 \times 10^2\, \text{N/m}\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br><br>
+                    Using a single linear finite element to model the beam.<br><br>
+                    
+                    <strong>Step 1:</strong> Convert units:
+                    \[a = 1\, \text{cm} = 10\, \text{mm}\]
+                    \[l = 1\, \text{m} = 1000\, \text{mm}\]
+                    \[f = 100 \times 10^2\, \text{N/m} = 10\, \text{N/mm}\]
+                    
+                    <strong>Step 2:</strong> Calculate cross-sectional area (triangular):
+                    \[A = \frac{a^2}{2} = \frac{10^2}{2} = 50\, \text{mm}^2\]
+                    
+                    <strong>Step 3:</strong> Calculate axial stiffness:
+                    \[EA = 70000 \times 50 = 3.5 \times 10^6\, \text{N}\]
+                    
+                    <strong>Step 4:</strong> For linear element, shape function at node 2:
+                    \[N_2(x) = \frac{x}{l} = \frac{x}{1000}\]
+                    
+                    <strong>Step 5:</strong> Calculate equivalent nodal force from distributed load:
+                    \[\delta \mathcal{L}_e = \int_0^{1000} \delta u_2 \cdot \frac{x}{1000} \cdot f\, dx = \delta u_2 \cdot 500 f\]
+                    
+                    <strong>Step 6:</strong> Apply equilibrium equation:
+                    \[\frac{EA}{l} u_2 = 500 f\]
+                    
+                    <strong>Step 7:</strong> Solve for displacement:
+                    \[u_2 = \frac{500 \cdot l \cdot f}{EA} = \frac{500 \times 1000 \times 10}{3.5 \times 10^6} = \frac{5 \times 10^6}{3.5 \times 10^6} = 1.43\, \text{mm}\]
+                    
+                    <br><strong>Final Answer:</strong> \(u_2 = 1.43\, \text{mm}\)
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 4</h2>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Feb_15_2023/page_2_img_2.png" alt="Three-member frame structure forming triangular configuration. Member 1 (ℓ₁) extends diagonally from lower left to upper right with fixed support (hatching) at top end. Member 2 is horizontal at bottom with spring support (zigzag symbol) at left end. Member 3 (ℓ₃) is vertical on right side with force F applied downward at top. Horizontal span labeled ℓ₂. Members are numbered 1, 2, and 3 in circles at their respective locations. Question ν = ? indicates Poisson's ratio or displacement to be determined.">
+                <figcaption>
+                    <strong>Three-member frame structure forming triangular configuration. Member 1 (\(\ell_1\)) extends diagonally from lower left to upper right with fixed support (hatching) at top end. Member 2 is horizontal at bottom with spring support (zigzag symbol) at left end. Member 3 (\(\ell_3\)) is vertical on right side with force \(F\) applied downward at top. Horizontal span labeled \(\ell_2\). Members are numbered 1, 2, and 3 in circles at their respective locations. Question "\(\nu = ?\)" indicates Poisson's ratio or displacement to be determined.</strong>
+                </figcaption>
+            </figure>
+
+            <p>Consider the 3-D beam sketched in the figure, loaded by the force \(F\). The axial stiffness \(EA\), torsional stiffness \(GJ\) and bending stiffnesses \(EI_{xx}\) and \(EI_{yy}\) are the same for the three beams. The spring has stiffness \(K\). Compute the vertical displacement \(v\) at the extremity of beam 1. (Unit for result: mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(l_1 = 1000\, \text{mm}\)<br>
+                \(l_2 = 500\, \text{mm}\)<br>
+                \(l_3 = 250\, \text{mm}\)<br>
+                \(EA = 800 * E\, \text{N}\)<br>
+                \(GJ = 1000 * G\, \text{Nmm}^2\)<br>
+                <br>
+                \(EI_{xx} = EI_{yy} = 10000 * E\, \text{Nmm}^2\)<br>
+                <br>
+                \(K = 10\, \text{N/mm}\)<br>
+                \(F = 1000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br><br>
+                    Analyzing the 3D frame structure with spring support.<br><br>
+                    
+                    <strong>Step 1:</strong> Define internal forces. Let \(X\) be the reaction at the spring.<br>
+                    Moment equations in the beams:
+                    \[M_{y3} = F z_3, \quad M_{y2} = -F l_3, \quad M_{x2} = -F z_2\]
+                    \[M_{x1}' = -z_1, \quad M_{y1} = F l_2, \quad M_{x1} = -X z_1 + F l_3\]
+                    
+                    <strong>Step 2:</strong> Apply virtual work / compatibility at the spring:
+                    \[\int_0^{l_1} \frac{X z_1^2}{EI_{xx1}} dz_1 - \int_0^{l_1} \frac{F l_3 z_1}{EI_{xx1}} dz_1 + \frac{X}{K} = 0\]
+                    
+                    <strong>Step 3:</strong> Solve the compatibility equation:
+                    \[\left(\frac{1}{3} l_1^3 + \frac{EI_{xx1}}{K}\right) X = \frac{1}{2} F l_3 l_1^2\]
+                    
+                    \[X = \frac{\frac{1}{2} F l_3 l_1^2}{\frac{1}{3} l_1^3 + \frac{EI_{xx1}}{K}}\]
+                    
+                    <strong>Step 4:</strong> Calculate numerical values:
+                    \[EI_{xx1} = 10000 \times 70000 = 7 \times 10^8\, \text{Nmm}^2\]
+                    \[\frac{EI_{xx1}}{K} = \frac{7 \times 10^8}{10} = 7 \times 10^7\, \text{mm}^3\]
+                    \[\frac{1}{3} l_1^3 = \frac{1}{3} \times 10^9 = 3.33 \times 10^8\, \text{mm}^3\]
+                    
+                    <strong>Step 5:</strong> Calculate vertical displacement:
+                    \[v = -\frac{X}{K}\]
+                    
+                    <br><strong>Final Answer:</strong> \(v = -71\, \text{mm}\)
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 5</h2>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Feb_15_2023/page_3_img_1.png" alt="Circular wheel or disk structure with central hub and eight radial spokes extending to outer rim. Spokes are pinned at both hub (center) and rim (outer circle) connections, shown by small circles at joints. Central force F applied vertically downward at hub. Distributed tangential load ℓ shown by arrows around the outer circumference, indicating uniform loading around the rim. Structure appears to be a spoke wheel subjected to combined central and peripheral loading.">
+                <figcaption>
+                    <strong>Circular wheel or disk structure with central hub and eight radial spokes extending to outer rim. Spokes are pinned at both hub (center) and rim (outer circle) connections, shown by small circles at joints. Central force \(F\) applied vertically downward at hub. Distributed tangential load \(\ell\) shown by arrows around the outer circumference, indicating uniform loading around the rim. Structure appears to be a spoke wheel subjected to combined central and peripheral loading.</strong>
+                </figcaption>
+            </figure>
+
+            <p>Enterprise's antimatter containment chamber (the inner circle in the figure, to be considered as rigid) is held in place by a web of eight equal beams of lenght \(l\), each hinged at both extremities. The outer ring onto which the beams are hinged is rigid and fully constrained. The beams material have eleastic modulus \(E\) and Poisson coefficient \(\nu\). Their cross section area is \(A\), their bending stiffness are \(E_{xx}\) and \(E_{yy}\), and their torsional stiffness is \(GJ\) The beams are arranged in such a way that the angle between them is equal to 45 deg. The first vertical beam is aligned with a force \(F\) that is applied to the antimatter containment chamber. Compute the overall vertical displacement of the antimatter containment chamber in the direction of the force. (Unit for result: mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 1\, \text{m}\)<br>
+                \(A = 150\, \text{mm}^2\)<br>
+                <br>
+                \(E = 210000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(EI_{xx} = EI_{yy} = 1000*E\, \text{Nmm}^2\)<br>
+                <br>
+                \(GJ = 1000 * G\, \text{Nmm}^2\)<br>
+                <br>
+                \(F = 1 \times 10^5\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br><br>
+                    Since the beams are pinned at both ends, they can only carry axial forces (no bending).<br><br>
+                    
+                    <strong>Step 1:</strong> Define the axial stiffness of each beam:
+                    \[k = \frac{EA}{l} = \frac{210000 \times 150}{1000} = 31500\, \text{N/mm}\]
+                    
+                    <strong>Step 2:</strong> Analyze the geometry. With 8 beams at 45° intervals:
+                    - 1 beam aligned with force (vertical, 0°)
+                    - 2 beams at ±45° from vertical
+                    - 2 beams at ±90° (horizontal)
+                    - 2 beams at ±135° from vertical
+                    - 1 beam at 180° (opposite vertical)
+                    
+                    <strong>Step 3:</strong> For vertical displacement \(u\), the axial elongation of diagonal beams:
+                    \[\bar{w} = \frac{u}{\sqrt{2}}\] (for beams at 45°)
+                    
+                    <strong>Step 4:</strong> Force equilibrium in vertical direction:
+                    - Vertical beam contribution: \(2 \cdot k \cdot u\) (top and bottom beams)
+                    - Diagonal beams contribution: \(4 \cdot k \cdot \frac{u}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}} = 4 \cdot k \cdot \frac{u}{2} = 2ku\)
+                    - Horizontal beams: no contribution to vertical force
+                    
+                    \[\left(2 + \frac{4}{2}\right) k \cdot u = F\]
+                    \[4 \cdot k \cdot u = F\]
+                    
+                    <strong>Step 5:</strong> Solve for displacement:
+                    \[u = \frac{F}{4k} = \frac{1 \times 10^5}{4 \times 31500} = \frac{100000}{126000} = 0.79\, \text{mm}\]
+                    
+                    <br><strong>Final Answer:</strong> \(u = 0.79\, \text{mm}\)
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 6</h2>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Feb_15_2023/page_3_img_2.png" alt="Two related diagrams showing truss analysis. Top: diamond-shaped truss structure oriented at 45° with pinned joints at all nodes (shown as dots). Members have length ℓ with diagonal dimension ℓ/2. Coordinate system shows x and z axes. Force F shown with curved arrow indicating moment or rotation. Hatching at upper right indicates fixed boundary. Bottom: detail view of single truss element A₁ showing four-member diamond configuration with nodes labeled A₁, A₂, A₃, A₄ and forces q₁, q₂, q₃, q₄ applied at respective nodes. Dimension a indicates characteristic length of diamond element.">
+                <figcaption>
+                    <strong>Two related diagrams showing truss analysis. Top: diamond-shaped truss structure oriented at 45° with pinned joints at all nodes (shown as dots). Members have length \(\ell\) with diagonal dimension \(\ell/2\). Coordinate system shows \(x\) and \(z\) axes. Force \(F\) shown with curved arrow indicating moment or rotation. Hatching at upper right indicates fixed boundary. Bottom: detail view of single truss element \(A_1\) showing four-member diamond configuration with nodes labeled \(A_1\), \(A_2\), \(A_3\), \(A_4\) and forces \(q_1\), \(q_2\), \(q_3\), \(q_4\) applied at respective nodes. Dimension \(a\) indicates characteristic length of diamond element.</strong>
+                </figcaption>
+            </figure>
+
+            <p>The semi-monocoque beam sketched in the figure, with the square cross section drawn below, is loaded by a vertical force \(F\) aligned with the vertical cross-section diagonal and applied at the free end, and an horizontal force \(2F\) aligned with the horizontal cross-section diagonal and applied in the middle of the beam. All panels have the same thickness \(t\). Compute the shear stress \(\tau\) in the panel 4 (the one with flux \(q_4\)) at \(z = 3/4l\) (i.e. at a distance of \(1/4l\) from the clamp). (Unit for result: MPa)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(F = 1 \times 10^5\, \text{N}\)<br>
+                \(l = 5\, \text{m}\)<br>
+                \(a = 50\, \text{cm}\)<br>
+                \(A_1 = 1500\, \text{mm}^2\)<br>
+                <br>
+                \(A_2 = 1000\, \text{mm}^2\)<br>
+                <br>
+                \(t = 2\, \text{mm}\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br><br>
+                    At \(z = \frac{3l}{4}\), we need to consider both loading contributions.<br>
+                    Convert: \(a = 50\, \text{cm} = 500\, \text{mm}\)<br><br>
+                    
+                    <strong>Step 1:</strong> Shear flow from vertical force \(F\) (applied at free end):
+                    
+                    For the diamond cross-section with vertical force along the diagonal:
+                    \[\bar{q} = \frac{F}{2} \cdot \frac{\sqrt{2}}{2a} = \frac{F}{2\sqrt{2} \cdot a}\]
+                    
+                    <strong>Step 2:</strong> Shear flow from horizontal force \(2F\) (applied at \(z = l/2\)):
+                    
+                    At \(z = \frac{3l}{4}\), the horizontal force \(2F\) does contribute (since \(\frac{3l}{4} > \frac{l}{2}\)):
+                    \[\tilde{q} = \frac{2F}{2} \cdot \frac{\sqrt{2}}{2a} = \frac{F}{\sqrt{2} \cdot a}\]
+                    
+                    <strong>Step 3:</strong> Calculate the shear flow in panel 4:
+                    
+                    The flows combine based on the cross-section geometry:
+                    \[q_4 = \tilde{q} - \bar{q} = \frac{F}{\sqrt{2} \cdot a} - \frac{F}{2\sqrt{2} \cdot a} = \frac{F}{2\sqrt{2} \cdot a}\]
+                    
+                    <strong>Step 4:</strong> Calculate shear stress:
+                    \[\tau_4 = \frac{q_4}{t} = \frac{F}{2\sqrt{2} \cdot a \cdot t}\]
+                    
+                    <strong>Step 5:</strong> Substitute numerical values:
+                    \[\tau_4 = \frac{1 \times 10^5}{2\sqrt{2} \times 500 \times 2} = \frac{100000}{2828.4} = 35.35\, \text{MPa}\]
+                    
+                    <br><strong>Final Answer:</strong> \(\tau_4 = 35.35\, \text{MPa}\)
+                </span>
+            </div>
+        </section>
+
+        <section class="questions-section">
+            <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+            
+            <ol class="true-false">
+                <li>thin plates typically work in plane strain conditions: <span class="answer-solution" style="display: inline; background: #e8f5e9; padding: 2px 8px; border-left: none;"><strong>F (False)</strong></span></li>
+                <li>the stress field predicted by a FE solution is continuous: <span class="answer-solution" style="display: inline; background: #e8f5e9; padding: 2px 8px; border-left: none;"><strong>F (False)</strong></span></li>
+                <li>the cross section of a beam subject to shear has an out-of-plane warping: <span class="answer-solution" style="display: inline; background: #e8f5e9; padding: 2px 8px; border-left: none;"><strong>T (True)</strong></span></li>
+            </ol>
+        </section>
+
+        <section class="questions-section">
+            <h2>Multiple Choice questions (Circle the correct answer)</h2>
+            
+            <ol class="multiple-choice">
+                <li>
+                    <p>A riveted connection between two panels loaded in-plane cannot fail because of:</p>
+                    <ul>
+                        <li>(a) shear stress in the panels</li>
+                        <li>(b) shear stress in the rivet</li>
+                        <li style="background: #e8f5e9; padding: 2px 5px;"><strong>(c) axial stress in the rivet ✓</strong></li>
+                        <li>(d) bearing stress in the rivet</li>
+                        <li>(e) axial stress in the panels</li>
+                        <li>(f) none of the above</li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p>Shear deformability is important for:</p>
+                    <ul>
+                        <li>(a) slender compact cross-section beams</li>
+                        <li style="background: #e8f5e9; padding: 2px 5px;"><strong>(b) thin-walled beams ✓</strong></li>
+                        <li>(c) thin panels</li>
+                        <li>(d) any kind of beam</li>
+                        <li>(e) any kind of panel</li>
+                        <li>(f) none of the above</li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p>The critical buckling compression force for the Euler instability of a beam is function of:</p>
+                    <ul>
+                        <li>(a) only the beam length and the constraints</li>
+                        <li>(b) only the beam bending stiffness and the constraints</li>
+                        <li>(c) only the beam torsional stiffness and the constraints</li>
+                        <li>(d) only the beam axial stiffness and the constraints</li>
+                        <li>(e) the beam length, the axial stiffness and the constraints</li>
+                        <li style="background: #e8f5e9; padding: 2px 5px;"><strong>(f) the beam length, the bending stiffness and the constraints ✓</strong></li>
+                        <li>(g) the beam length, the bending stiffness, the cross-section area and the constraints</li>
+                        <li>(h) the beam length, the torsional stiffness and the constraints</li>
+                        <li>(i) none of the above</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+    </article>
+</body>
+</html>

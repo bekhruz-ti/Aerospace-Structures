@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Written Test - September 5th, 2023</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .student-info {
+            margin: 30px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            line-height: 1.8;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 1px solid #000;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .true-false {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .true-false li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .multiple-choice {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .multiple-choice li {
+            margin: 20px 0;
+        }
+
+        .multiple-choice ol {
+            list-style-type: lower-alpha;
+            margin-top: 10px;
+            padding-left: 30px;
+        }
+
+        .multiple-choice ol li {
+            margin: 8px 0;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        .unit-note {
+            font-style: italic;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures</h1>
+            <p>Written test, September 5th, 2023</p>
+        </header>
+
+        <div class="student-info">
+            <p>Name</p>
+            <p>Surname</p>
+            <p>Person code:</p>
+        </div>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Sept_05_2023/page_1_img_1.png" alt="Rectangular frame structure with height dimension d and width dimension b, showing diagonal bracing member. Fixed support at base. Vertical downward point load F applied at mid-height on right side. Cross-sectional detail showing rectangular hollow section with outer dimension e and inner dimension e₁.">
+                <figcaption>
+                    <strong>Left:</strong> Rectangular frame structure with height dimension \(d\) and width dimension \(b\), showing diagonal bracing member. Fixed support at base (indicated by hatching). Vertical downward point load \(F\) applied at mid-height on right side. Distributed load \(\delta\) shown across top edge. <strong>Right:</strong> Cross-sectional detail showing rectangular hollow section with outer dimension \(e\) and inner dimension \(e_1\), with wall thickness \(e_1\). Overall height dimension \(a\) shown for reference. Cross-section appears to represent the frame member profile.
+                </figcaption>
+            </figure>
+
+            <p>The beam structure sketched in the figure is made with a thin-walled square cross section, and is designed to whitstand a maximum load equal to \(F\). Compute the maximum value of the beam compressive stress at the clamp. Be careful with the measurement units.</p>
+
+            <p class="unit-note">(Unit for result: MPa)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(e = 0.3\, \text{m}\)<br>
+                \(e_1 = 0.29\, \text{m}\)<br>
+                \(a = 3.0\, \text{m}\)<br>
+                \(d = 0.4\, \text{m}\)<br>
+                \(b = 1.0\, \text{m}\)<br>
+                \(c = 0.8\, \text{m}\)<br>
+                \(F = 2300\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    The stress formula for combined axial load and bending:
+                    \[\sigma_{zz} = \frac{F_z}{A} + \frac{M_x}{I_{xx}} \cdot y\]
+                    
+                    Moment of inertia for hollow square section:
+                    \[I_{xx} = \frac{1}{12}\left(e^4 - e_1^4\right)\]
+                    
+                    Maximum distance from neutral axis:
+                    \[y_{max} = \frac{e}{2}\]
+                    
+                    <strong>Final Answer:</strong> \(\sigma_{zz} = -4.4202\, \text{MPa}\)
+                </span></p>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Sept_05_2023/page_1_img_2.png" alt="Planar truss structure with four nodes labeled A, B, C, and D. Node A shows fixed support. Diagonal member connects nodes B and A. Vertical force F applied at node C with offset dimension v shown. Three-dimensional coordinate system shown at node A with x, y, and z axes.">
+                <figcaption>
+                    <strong>Planar truss structure with four nodes labeled A, B, C, and D.</strong> Node A shows fixed support (hatching). Diagonal member connects nodes B and A. Vertical force \(F\) applied at node C with offset dimension \(v\) shown. Three-dimensional coordinate system shown at node A with \(x\), \(y\), and \(z\) axes. Additional coordinate system shown in upper right with \(x_4\) axis indicated. Structure forms triangulated configuration with nodes B, C, and D.
+                </figcaption>
+            </figure>
+
+            <p>The structure sketched in the figure is composed by two beams; the first one has a L shape, and is clamped at one extremity; the second one is hinged at both extremities, i.e. to the ground and to the corner of the first one. Compute the vertical displacement \(v\) at the point of application of the force \(F\). Neglect shear deformation. The coordinates of the points are given, with respect to the sketched reference system, in the data. The bending and torsional stiffness of the beams are given with respect to local reference systems, with the \(z\) axis aligned with the beam axis.</p>
+
+            <p class="unit-note">(Unit for result: mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(A : (0; 1000; 0)\, \text{mm}\)<br>
+                \(B : (1000; 1000; 0)\, \text{mm}\)<br>
+                \(C : (1000; 1000; -1000)\, \text{mm}\)<br>
+                \(D : (1000; 1500; 0000)\, \text{mm}\)<br>
+                \(EA = 1 \times 10^5\, \text{N}\)<br>
+                \(EI_{xx} = EI_{yy} = 1 \times 10^{10}\, \text{N mm}^2\)<br>
+                \(GJ = 2 \times 10^{11}\, \text{N mm}^2\)<br>
+                \(F = 1000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    Using the Principle of Virtual Work with dummy load method.<br><br>
+                    
+                    Beam segment lengths: \(l_1 = 1000\, \text{mm}\), \(l_2 = 1000\, \text{mm}\), \(l_3 = 500\, \text{mm}\)<br><br>
+                    
+                    <em>Segment 1 (A-B):</em><br>
+                    \(T_{z_1} = 0\), \(T_{y_1} = -F\), \(M_{x_1} = -Fz_1\)<br>
+                    Dummy: \(T'_{z_1} = 0\), \(T'_{y_1} = -1\), \(M'_{x_1} = -z_1\)<br><br>
+                    
+                    <em>Segment 2 (B-C):</em><br>
+                    \(T_{y_2} = H_B - F\), \(M_{x_2} = (H_B - F)z_2\), \(M_{z_2} = F \cdot l\)<br>
+                    Dummy: \(T'_{y_2} = -1\), \(M'_{x_2} = -z_2\), \(M''_{x_2} = +z_2\)<br><br>
+                    
+                    <em>Segment 3 (rod B-D):</em><br>
+                    \(w = \int_0^{l/2} \frac{F}{EA} \cdot \frac{2EA}{l} \, dz_3 = \frac{F \cdot l}{2EA}\)<br><br>
+                    
+                    Apply PVW: \(\delta W_{e_1} = 1 \cdot v\)<br>
+                    \[\delta W_{i_1} = \int_0^l M'_{x_1} \cdot \frac{M_{x_1}}{EI_{xx}} dz_1 + \int_0^l M'_{x_2} \cdot \frac{M_{x_2}}{EI_{xx}} dz_2 + \int_0^l M'_{z_2} \cdot \frac{M_{z_2}}{GJ} dz_2\]
+                    
+                    Solve system of equations for \(v\) and \(H_B\).<br><br>
+                    
+                    <strong>Final Answer:</strong> \(v = 42.6812\, \text{mm}\)
+                </span></p>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <section class="exercise">
+            <h3>Exercise 3</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Sept_05_2023/page_2_img_1.png" alt="Truss structure with total span a divided into two equal segments a/2. Pin supports at left and right ends. Vertical upward force F applied at center bottom node. Internal member forces labeled q₁ through q₇ with directional arrows.">
+                <figcaption>
+                    <strong>Truss structure with total span \(a\) divided into two equal segments \(a/2\).</strong> Pin supports at left (\(^3/_2A\)) and right (\(^3/_2A\)) ends. Vertical upward force \(F\) applied at center bottom node. Internal member forces labeled \(q_1\) through \(q_7\) with directional arrows. Diagonal members form triangulated pattern. Height dimension \(b\) shown on right side. Horizontal member force \(q_s\) shown at top. Structure shows symmetric geometry with member forces \(q_1\), \(q_2\), \(q_3\), \(q_4\) in lower members and \(q_5\), \(q_6\), \(q_7\) in diagonal and upper members. Cross-sectional area \(A\) indicated at multiple nodes.
+                </figcaption>
+            </figure>
+
+            <p>The semi-monocoque structure sketched in the figure is loaded by the force \(F\). All panels have thickness equal to \(t\). Compute the flux \(q_1\).</p>
+
+            <p class="unit-note">(Unit for result: N/mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 3000\, \text{mm}\)<br>
+                \(b = 300\, \text{mm}\)<br>
+                \(A = 500\, \text{mm}^2\)<br>
+                \(t = 3\, \text{mm}\)<br>
+                \(F = 30000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    By symmetry of the structure:<br>
+                    \(q_1 = q_2\), \(q_3 = q_4\), \(q_6 = q_7\), \(q_5 = 0\)<br><br>
+                    
+                    Vertical equilibrium:
+                    \[b(2q'_1 + 2q'_6) = F\]
+                    
+                    Diagonal member length:
+                    \[l_6 = \sqrt{\frac{a^2}{4} + b^2}\]
+                    
+                    From compatibility and equilibrium, calculate the open section flow \(q^0_1\):
+                    \[q^0_1 = \frac{-q'_6 \cdot l_6 + q'_1 \cdot b}{b + \frac{a}{2} + l_6}\]
+                    
+                    Final shear flux:
+                    \[q_1 = q'_1 - q^0_1\]
+                    
+                    <strong>Final Answer:</strong> \(q_1 = 37.987\, \text{N/mm}\)
+                </span></p>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 4</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Sept_05_2023/page_2_img_2.png" alt="Vertical frame structure with four horizontal members equally spaced at dimension a. Pin joints indicated by circles at member intersections. Width dimension b shown at bottom. Coordinate system with x and y axes shown at lower left. Vertical shear force Fᵧ indicated with upward arrow.">
+                <figcaption>
+                    <strong>Vertical frame structure with four horizontal members equally spaced at dimension \(a\).</strong> Pin joints indicated by circles at member intersections. Width dimension \(b\) shown at bottom. Coordinate system with \(x\) and \(y\) axes shown at lower left. Vertical shear force \(F_y\) indicated with upward arrow. Structure consists of four rectangular bays stacked vertically, each with height \(a\), forming a multi-story frame configuration.
+                </figcaption>
+            </figure>
+
+            <p>Consider the semi-monocoque beam open cross section sketched in the figure; all panels have thickness equal to \(t\); all the concentrated areas are equal to \(A\). Compute the \(x\) position of the shear center.</p>
+
+            <p class="unit-note">(Unit for result: mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 1000\, \text{mm}\)<br>
+                \(b = 500\, \text{mm}\)<br>
+                \(t = 1\, \text{mm}\)<br>
+                \(A = 300\, \text{mm}^2\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    Second moment of area about x-axis:
+                    \[J_{xx} = 4A\left(\frac{a}{2}\right)^2 + 4A\left(\frac{3a}{2}\right)^2\]
+                    
+                    Static moments of areas:
+                    \[S_{x_{12}} = -A\frac{3}{2}a, \quad S_{x_{78}} = A\frac{3}{2}a\]
+                    \[S_{x_{34}} = -A\frac{1}{2}a, \quad S_{x_{56}} = A\frac{1}{2}a\]
+                    
+                    Shear flows from open section analysis:
+                    \[q_1 = -F \cdot \frac{S_{x_1}}{J_{xx}} = +q_7\]
+                    \[q_2 = q_1 - F\frac{S_{x_2}}{J_{xx}} = q_6\]
+                    \[q_3 = q_2 - F\frac{S_{x_3}}{J_{xx}} = q_5\]
+                    \[q_4 = q_3 - F\frac{S_{x_4}}{J_{xx}}\]
+                    
+                    Rotational equilibrium about centroid:
+                    \[F \cdot x_{SC} = -q_3 \cdot 2\left(\frac{ab}{2}\right) + q_4 \cdot 2\left(\frac{ab}{2}\right) + q_5 \cdot 2\left(\frac{b \cdot 2a}{2}\right) - q_7 \cdot 2\left(\frac{b \cdot 3a}{2}\right)\]
+                    
+                    <strong>Final Answer:</strong> \(x_{SC} = 150\, \text{mm}\)
+                </span></p>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">2</p>
+
+        <div class="page-break"></div>
+
+        <section class="exercise">
+            <h3>Exercise 5</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Sept_05_2023/page_3_img_1.png" alt="Vertical column divided into two equal segments of length l. Fixed supports at top and bottom ends. Roller support at mid-height where axial force F is applied downward. Upper segment has flexural rigidity EJₓₓ₂ and axial rigidity EA₂. Lower segment has flexural rigidity EJₓₓ₁ and axial rigidity EA₁.">
+                <figcaption>
+                    <strong>Vertical column divided into two equal segments of length \(l\).</strong> Fixed supports (hatching) at top and bottom ends. Roller support (circle) at mid-height where axial force \(F\) is applied downward. Upper segment has flexural rigidity \(EJ_{xx2}\) and axial rigidity \(EA_2\). Lower segment has flexural rigidity \(EJ_{xx1}\) and axial rigidity \(EA_1\). Total column length \(2l\) with different stiffness properties in each segment.
+                </figcaption>
+            </figure>
+
+            <p>The two beams sketched in the figure are constrained by means of two clamps and one hinge connecting them together. A force \(F\) is applied to the hinge in the middle. By resorting to a parabolic approximation for each beam (two different parabolic functions, at least in principle), compute the approximated value of the critical buckling load \(F\).</p>
+
+            <p class="unit-note">(Unit for result: N)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(EA_1 = 3.5 \times 10^7\, \text{N}\)<br>
+                \(EA_2 = 1.4 \times 10^7\, \text{N}\)<br>
+                \(EI_{xx1} = 1.5 \times 10^{11}\, \text{N mm}^2\)<br>
+                \(EI_{xx2} = 1.5 \times 10^{11}\, \text{N mm}^2\)<br>
+                \(l = 3500\, \text{mm}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    Axial displacement compatibility at hinge:
+                    \[\mu = \frac{F \cdot l}{EA_1 + EA_2}\]
+                    
+                    Axial forces in each segment:
+                    \[N_1 = -\mu \cdot EA_1 = \frac{EA_1 \cdot l}{EA_1 + EA_2} \cdot F = d_1 \cdot F\]
+                    \[N_2 = \mu \cdot EA_2 = \frac{EA_2 \cdot l}{EA_1 + EA_2} \cdot F = d_2 \cdot F\]
+                    
+                    Parabolic approximation for lateral displacement:
+                    \[v_1 = a_1 z_1^2, \quad v_2 = a_2 z_2^2\]
+                    
+                    Matching condition at hinge: \(v_1(l) = v_2(l)\)
+                    \[\Rightarrow a_1 = a_2 = a\]
+                    
+                    Principle of Virtual Work:
+                    \[\int_0^l \left(\delta v_1'' \cdot EI_1 \cdot v_1'' + \delta v_1' \cdot N_1 \cdot v_1'\right) dz_1 + \int_0^l \left(\delta v_2'' \cdot EI_2 \cdot v_2'' + \delta v_2' \cdot N_2 \cdot v_2'\right) dz_2 = 0\]
+                    
+                    Critical buckling load:
+                    \[F = \frac{-8l \cdot EI_{11}}{(d_1 + d_2) \cdot \frac{4}{3} l^3}\]
+                    
+                    <strong>Final Answer:</strong> \(F = 1.7143 \times 10^5\, \text{N}\)
+                </span></p>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 6</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Sept_05_2023/page_3_img_2.png" alt="Beam with total length l supported on elastic foundation. Fixed support at left end, roller support at right end. Distributed downward load f applied over left half (l/2) of beam span. Seven elastic spring supports (stiffness k) shown beneath beam with hatched ground.">
+                <figcaption>
+                    <strong>Beam with total length \(l\) supported on elastic foundation.</strong> Fixed support (hatching) at left end, roller support at right end. Distributed downward load \(f\) applied over left half (\(l/2\)) of beam span. Seven elastic spring supports (stiffness \(k\)) shown beneath beam with hatched ground. Coordinate system shows \(y\)-axis vertical and \(z\)-axis horizontal. Beam subjected to combined distributed loading and elastic foundation reaction, representing Winkler foundation model.
+                </figcaption>
+            </figure>
+
+            <p>The beam sketched in the figure is hinged at both extremities, and has a continuous elastic support, with stiffness \(k\), underneath (you see different springs in the figure, but they are meant to represent a contiunuous support, not a set of discrete springs). The beam is loaded by the vertical force per unit of length \(f\). By resorting to a trigonometric approximation of the transverse displacement, truncated to a single term, compute the approximated vertical displacement \(v\) in the middle of the beam.</p>
+
+            <p class="unit-note">(Unit for result: mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 1000\, \text{mm}\)<br>
+                \(EI = 1 \times 10^{12}\, \text{N mm}^2\)<br>
+                \(k = 8\, \text{MPa}\)<br>
+                \(f = 100\, \text{N/mm}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    Trigonometric approximation (single term):
+                    \[v = a \sin\left(\frac{\pi z}{l}\right)\]
+                    
+                    Derivatives:
+                    \[v' = \frac{\pi}{l} a \cos\left(\frac{\pi z}{l}\right)\]
+                    \[v'' = -\frac{\pi^2}{l^2} a \sin\left(\frac{\pi z}{l}\right)\]
+                    
+                    Principle of Virtual Work:
+                    \[\int_0^l \left(\delta v'' \cdot EI \cdot v'' + \delta v \cdot k \cdot v\right) dz = \int_0^l \delta v \cdot (-f) \, dz\]
+                    
+                    Integrate and solve for coefficient \(a\):
+                    \[a = \frac{-2fl}{\pi} \cdot \frac{1}{\frac{1}{2}\frac{\pi^4}{l^3} \cdot EI + \frac{1}{2} k l}\]
+                    
+                    At midpoint \(z = l/2\): \(\sin(\pi/2) = 1\), so \(v = a\)
+                    
+                    <strong>Final Answer:</strong> \(v = -1.1079\, \text{mm}\)
+                </span></p>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">3</p>
+
+        <div class="page-break"></div>
+
+        <section>
+            <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+
+            <ol class="true-false">
+                <li>The internal forces in a statically determined beam structure depend on the material elastic properties <span class="answer-solution"><strong>F</strong> (False)</span></li>
+
+                <li>The Timoshenko beam model does not account for transverse shear deformation <span class="answer-solution"><strong>F</strong> (False)</span></li>
+
+                <li>The position of the shear center of a thin-walled beam depends on the loading conditions <span class="answer-solution"><strong>F</strong> (False)</span></li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Multiple Choice questions (Circle the correct answer)</h2>
+
+            <ol class="multiple-choice">
+                <li>
+                    The shear flows acting on a rib are:
+                    <ol>
+                        <li>the flows equivalent to the load introduced by the rib</li>
+                        <li>the flows equivalent to the load applied to the whole structure</li>
+                        <li>the flows computed from the torsional equivalence equation</li>
+                        <li>the flows computed by resorting to the bending equations</li>
+                        <li>the flows equilibrating the load introduced by the rib <span class="answer-solution"><strong>✓ Correct</strong></span></li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+
+                <li>
+                    The Principle of Virtual Work:
+                    <ol>
+                        <li>is used to impose the equilibrium <span class="answer-solution"><strong>✓ Correct</strong></span></li>
+                        <li>is used to impose the equilibrium and the compatibility</li>
+                        <li>is used to impose the compatibility</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+
+                <li>
+                    A structure is modeled using finite elements. It is unconstrained and subjected to a set of loads in self equilibrium. The solution of the linear static problem:
+                    <ol>
+                        <li>is stress-free</li>
+                        <li>can be obtained, up to a rigid body motion, after constraining the structure isostatically <span class="answer-solution"><strong>✓ Correct</strong></span></li>
+                        <li>can be obtained only if the loads are concentrated</li>
+                        <li>can be obtained, up to a rigid body motion, only if the loads are distribuited</li>
+                        <li>is defined up to a rigid body motion; thus, not being unique, can never be obtained</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">4</p>
+
+        <p style="margin-top: 20px;">the stress and displacement fields can never be computed</p>
+
+    </article>
+</body>
+</html>

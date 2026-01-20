@@ -1,0 +1,98 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "frame_structure_distributed_loads_pinned_supports",
+    "description": "Frame structure composed of three beams with bending stiffnesses EJ and GJ, where shear deformability is negligible. Left inclined member has distributed load q₁ over length 2ℓ. Horizontal top member spans length ℓ with distributed load q₂ = 12q₁. Right vertical member has length ℓ with point A marked at top. Structure has pinned support at lower left and pinned support at junction of horizontal and vertical members. Vertical displacement v is to be determined at the location shown. Problem includes material properties: l = 1000 mm, EJ = 1.0 × 10¹² N·mm², GJ = 1.0 × 10¹² N·mm², q1 = 1.0 N/mm."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "three_beam_frame_spring_support",
+    "description": "Rectangular frame structure composed of three beams, each with length l and bending stiffness EJ. Horizontal force P applied at upper left corner. Spring with stiffness k attached at upper right corner. Left vertical member has pinned support at base (shown with circle symbol). Right vertical member has fixed support at base (shown with hatched symbol). All three beams labeled with properties ℓ, EJ. Problem states shear deformability and axial stiffness contributions are negligible. Task is to determine strain energy stored in the spring. Given data: l = 1000 mm, EJ = 1.0 × 10¹² N·mm², k = 1000 N/mm, P = 1000 N."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "frame_equilibrium_solution_free_body_diagrams",
+    "description": "Solution page showing free body diagrams and equilibrium analysis for rectangular frame structure. Top diagram shows complete frame with numbered nodes (1, 2, 3) and unknown reaction forces X and V. Equilibrium equation shown: -Vℓ + Xℓ - Pℓ = 0, yielding V = X - P. Three separate beam free body diagrams labeled \"Beam 1\", \"Beam 2\", and \"Beam 3\" show internal forces and moments. Beam 1 shows axial force N = +V. Beam 2 shows N = -X and moment M = +Vx₂. Beam 3 shows N = -V and moment M = +Vℓ + (P - X)x₃. Handwritten solution work for structural analysis problem."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "frame_dynamic_system_equilibrium_analysis",
+    "description": "Continuation of solution showing dynamic system analysis of rectangular frame. Top diagram shows frame with numbered nodes and unit forces (arrows labeled \"1\"). Three beam free body diagrams presented: Beam 1 with ΣN = 1, Beam 2 with ΣN = -1 and ΣM = x₂, and Beam 3 with unit vertical force, moment ℓ, and rotation e. Equations shown: ΣN = -1 and ΣM = ℓ - x₃. Handwritten solution work demonstrating unit load method or virtual work analysis for structural mechanics problem."
+  },
+  "page_10_img_1.png": {
+    "suggested_name": "continuous_beam_distributed_load_cantilever",
+    "description": "Continuous beam with two spans and cantilever extension. Left span has length l with bending stiffness EJ₁ and pinned support at left end. Middle support is pinned at distance l from left end. Right span has length l with bending stiffness EJ₂. Cantilever extension beyond right support carries distributed load q shown with upward arrows over rectangular section, and point load W at free end. Total system shows three upward arrows indicating distributed loading pattern on cantilever portion."
+  },
+  "page_11_img_1.png": {
+    "suggested_name": "continuous_beam_solution_moment_diagrams",
+    "description": "Solution page for continuous beam problem showing simplified structural diagrams and equilibrium analysis. Top diagram shows beam with two pinned supports (triangles) at distances ℓ and e, with bending stiffnesses EJ₁ and EJ₂ labeled. Distributed load q shown with upward arrows on right cantilever section. Middle diagram shows same beam with reaction force V at middle support. Equilibrium equation: qℓ - ½ℓ + Vℓ = 0, yielding V = -½qℓ. Bottom section labeled \"Real system\" shows beam with distributed load and moment diagram notation. Free body diagram shows moment H = -qx₁²/2 and additional expressions for moment distribution."
+  },
+  "page_13_img_1.png": {
+    "suggested_name": "thin_walled_beam_shear_stress_oval_section",
+    "description": "Thin-walled beam with oval cross-section subjected to internal shear force P. Cross-section shows elongated oval shape with straight sides of length a and semicircular ends of radius R, giving total height 2R. Six stringers marked with dots around perimeter. Shear center location marked as \"sc\" with unknown position τ = ? to be determined. Point labeled \"t\" indicates panel thickness. Problem asks to determine shear stress in indicated panel using semi-monocoque approximation. Given data: a = 200 mm, R = 45 mm, t = 1.2 mm, P = 9000 N. Total stringer area including panel contribution equals A."
+  },
+  "page_15_img_1.png": {
+    "suggested_name": "two_cell_section_torsional_stiffness",
+    "description": "Two-cell rectangular cross-section with dimensions a (height) by 3a (width). Section divided into two cells: left cell has width a, right cell has width 2a. Six stringers shown as dots at corners and cell junction points. Lumped stringer area including panel contribution equals A, with panel thickness t. Shear modulus of material is G. Problem asks to determine torsional stiffness GJ using semi-monocoque approximation, with result reported as GJ/GJref where GJref is reference value. Given data: a = 100 mm, t = 1.5 mm, A = 400 mm², G = 27000 MPa, GJref = 1.0 × 10¹⁰ N·mm²."
+  },
+  "page_18_img_1.png": {
+    "suggested_name": "circular_thin_walled_beam_torsion_rotation",
+    "description": "Thin-walled circular beam with two concentrated forces F1 and F2 applied at free end. Left diagram shows beam of length l with fixed support at right end (hatched symbol), with segment length ℓ/6 marked near free end. Circular cross-section shown with radius R. Right diagram shows cross-section view with four stringers labeled A at cardinal points and four panels labeled t between stringers. Lumped stringer area including panel contribution equals A, with panel thickness t and shear modulus G. Problem asks to determine rotation of section at distance l/3 from free end using semi-monocoque approximation. Given data: l = 2500 mm, R = 25 mm, t = 0.6 mm, A = 500 mm², G = 27000 MPa, F1 = 2000 N, F2 = 5000 N."
+  },
+  "page_19_img_1.png": {
+    "suggested_name": "circular_beam_torsion_solution_bredt_formula",
+    "description": "Solution page for circular thin-walled beam torsion problem. Top diagram shows beam with shaded segment of length ℓ/3 between forces F1 and F2, with fixed support at right end. Text explains shear center position is readily available due to section symmetry, and torsional moment evaluated with respect to shear center. Diagram shows distributed torsional loading: F₁R over left segment and (F₁+F₂)R over right segment. Bottom section shows Bredt's formula for torsion: J = 4Ω²/(∮ds/t), where Ω = πR², yielding J = 2πR³t. Final equation for rotation: θ' = (F₁ + F₂)R/GJ, relating applied torque to angular rotation per unit length."
+  },
+  "two_beam_frame_distributed_loads.png": {
+    "suggested_name": "two_beam_frame_distributed_loads",
+    "description": "Structural diagram showing two-beam frame structure with fixed support on left diagonal member, pin support on right vertical member, distributed load q1 on diagonal beam, and distributed load q2=12q1 on horizontal beam with vertical displacement v indicated"
+  },
+  "frame_solution_diagram_coordinates.png": {
+    "suggested_name": "frame_solution_diagram_coordinates",
+    "description": "Solution diagram showing same two-beam frame structure with coordinate system and force annotations for structural analysis"
+  },
+  "dummy_system_unit_load.png": {
+    "suggested_name": "dummy_system_unit_load",
+    "description": "Dummy system diagram showing simplified frame structure with applied unit load for virtual work analysis"
+  },
+  "dummy_system_displacement_analysis.png": {
+    "suggested_name": "dummy_system_displacement_analysis",
+    "description": "Second dummy system diagram for displacement evaluation with unit load configuration"
+  },
+  "three_beam_frame_spring_support.png": {
+    "suggested_name": "three_beam_frame_spring_support",
+    "description": "Three-beam rectangular frame structure with horizontal force P, spring support k at top right, fixed support at bottom left, and pin support at bottom right, all members with stiffness l,EJ"
+  },
+  "real_system_force_distribution.png": {
+    "suggested_name": "real_system_force_distribution",
+    "description": "Real system diagram showing rectangular frame with force P and internal force distributions for strain energy analysis"
+  },
+  "dummy_system_frame_unit_loads.png": {
+    "suggested_name": "dummy_system_frame_unit_loads",
+    "description": "Dummy system diagram for frame structure showing unit load application and virtual displacement configuration"
+  },
+  "two_span_continuous_beam_distributed_load.png": {
+    "suggested_name": "two_span_continuous_beam_distributed_load",
+    "description": "Two-span continuous beam with pin supports at ends and middle, subjected to uniformly distributed load q and w over each span with bending stiffnesses EJ1 and EJ2"
+  },
+  "thin_walled_obround_cross_section.png": {
+    "suggested_name": "thin_walled_obround_cross_section",
+    "description": "Thin-walled beam cross-section showing obround/racetrack shape with vertical force P at shear center, dimensions a (width) and 2R (height), with panel thickness t indicated"
+  },
+  "obround_section_shear_flow.png": {
+    "suggested_name": "obround_section_shear_flow",
+    "description": "Solution diagram showing thin-walled obround cross-section with shear flow distribution q indicated at multiple points around the perimeter"
+  },
+  "two_cell_rectangular_section.png": {
+    "suggested_name": "two_cell_rectangular_section",
+    "description": "Two-cell rectangular thin-walled cross-section with dimensions a (width of each cell) and 2a (total width), height a, showing cell divisions and panel thickness t"
+  },
+  "two_cell_section_shear_flows.png": {
+    "suggested_name": "two_cell_section_shear_flows",
+    "description": "Two-cell section solution diagram showing shear flow distributions q1 and q2 in each cell for torsional stiffness analysis"
+  },
+  "circular_beam_concentrated_forces.png": {
+    "suggested_name": "circular_beam_concentrated_forces",
+    "description": "Thin-walled circular beam with concentrated forces F1 and F2, showing cross-section with radius R and four stringers at positions A and t, length l/6 and l indicated"
+  },
+  "circular_beam_torsion_analysis.png": {
+    "suggested_name": "circular_beam_torsion_analysis",
+    "description": "Solution diagram showing thin-walled circular beam with forces F1 and F2, including torsional moment distribution diagram for rotation analysis"
+  }
+}

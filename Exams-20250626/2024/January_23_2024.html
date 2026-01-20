@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, January 23rd, 2024</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .student-info {
+            margin: 30px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #666;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            font-size: 0.95em;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 1px solid #000;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: inline-block;
+            color: #006400;
+            font-weight: bold;
+            margin-left: 10px;
+            padding: 5px 10px;
+            background: #e8f5e9;
+            border-radius: 4px;
+        }
+
+        .unit-note {
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .questions-section {
+            margin-top: 40px;
+        }
+
+        .questions-section h2 {
+            border-bottom: 3px solid #000;
+        }
+
+        ol, ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        ol li, ul li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .true-false li {
+            margin: 15px 0;
+        }
+
+        .multiple-choice {
+            margin: 20px 0;
+        }
+
+        .multiple-choice li {
+            margin: 8px 0;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        @media print {
+            .page-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures<br>Written test, January 23th, 2024</h1>
+        </header>
+
+        <div class="student-info">
+            <p><strong>Name</strong></p>
+            <p><strong>Surname</strong></p>
+            <p><strong>Person code:</strong></p>
+        </div>
+
+        <figure class="diagram">
+            <img src="images/January_23_2024/page_1_img_1.png" alt="Cylindrical shaft shown in isometric view with applied torsional moments">
+            <figcaption>
+                <strong>Cylindrical shaft shown in isometric view with applied torsional moments.</strong> Two opposing moments labeled \(M_z\) are applied at the ends of the shaft, indicated by curved arrows showing rotational direction. The shaft has length \(\ell\) marked along its axis. Red arrows on the circular cross-sections indicate the direction of shear stress distribution due to torsion. Coordinate system shows z-axis along the shaft length. The diagram illustrates a torsion loading scenario on a circular shaft.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/January_23_2024/page_1_img_2.png" alt="Right triangular plate with coordinate system">
+            <figcaption>
+                <strong>Right triangular plate with coordinate system showing x and y axes at the lower left corner.</strong> The triangle has base dimension \(a\) (horizontal) and height \(a\) (vertical). The hypotenuse is labeled with length \(\sqrt{2}a\). Point \(A\) marks each vertex of the triangle. Dimension \(\ell\) is marked along the vertical edge, and dimension \(b\) is marked along the horizontal base. The diagram shows the geometric configuration and dimensional relationships of the triangular element.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            <p>The figure represents a semi-monocoque model of a fuselage trunk of length \(2l\). It has three circular frames, each with outer radius \(r_1\) and inner radius \(r_2\), and eight uniformly spaced stringers, each with concentrated area \(A\). The outer cylindrical thin panel thickness is equal to \(t\). The panel is connected to the central frame by means of sixteen uniformly spaced rivets, each with shank diameter \(d\), and repre- sented by the red dots in the figure. The outer cylindrical thin panel in continuous across the central rib (there is not a junction between a "forward" and "rear" panel), thus the rivets do only connect the rib to the continuous panel. The fuselage is transmitting a constant torsional moment \(M_z\). Compute the shear stress in the rivet shank highlighted by the red arrow.</p>
+            
+            <p class="unit-note">(Unit for result: MPa)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(r_1 = 1.5\, \text{m}\)<br>
+                \(r_2 = 1.45\, \text{m}\)<br>
+                \(l = 1\, \text{m}\)<br>
+                \(d = 3\, \text{mm}\)<br>
+                \(A = 10\, \text{cm}^2\)<br>
+                \(t = 1.5\, \text{mm}\)<br>
+                \(M_z = 15000\, \text{N m}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(\tau_{zz} = 0\, \text{MPa}\)</span></p>
+                <p style="font-size: 0.9em; color: #555; margin-top: 10px;"><em>Explanation: Since the outer cylindrical thin panel is continuous across the central rib, there is no shear flow discontinuity at the rivet location. The rivets connect the rib to the continuous panel, but the torsional shear flow in the panel passes continuously without being transferred through the rivets. Therefore, the shear stress in the rivet shank is zero.</em></p>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            <p>The semi-monocoque cross section sketched in the figure has three concentrated areas \(A\), two panels with thickness \(t\) and one panel with thickness \(2t\). Compute, with respect to the reference system sketched in the figure, the \(x\) coordinate of the shear center.</p>
+            
+            <p class="unit-note">(Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(a = 1\, \text{m}\)<br>
+                \(A = 4\, \text{cm}^2\)<br>
+                \(E = 7 \times 10^4\, \text{MPa}\)<br>
+                \(\nu = 0.3\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(x_{SC} = 369.4\, \text{mm}\)</span></p>
+                <p style="font-size: 0.9em; color: #555; margin-top: 10px;"><em>Solution approach: Using the open cell shear flow distribution and equilibrium equations. With \(b = \frac{\sqrt{2}}{2}a\), \(c = 2b = \sqrt{2}a\), and \(J_{xx} = 2Ab^2\):
+                \[x_{SC} = \frac{2a}{4 + \sqrt{2}} = 369.4\, \text{mm}\]</em></p>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/January_23_2024/page_2_img_1.png" alt="Square plate with spring support and applied forces">
+            <figcaption>
+                <strong>Square plate with side dimension \(a\), supported by a spring (labeled \(k\)) at the lower left corner with fixed ground support.</strong> Two equal forces \(F\) are applied at opposite corners of the plate, shown by arrows pointing outward. The plate has length \(b\) marked along one edge. Coordinate system shows z-axis at an angle. A rotation angle \(\theta\) is indicated at the right side. The spring support symbol shows a zigzag pattern with hatched ground connection.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/January_23_2024/page_2_img_2.png" alt="Beam with triangular distributed load and roller supports">
+            <figcaption>
+                <strong>Beam with triangular distributed load \(p(z)\) varying linearly along its length.</strong> The beam is divided into three equal segments of length \(\ell/3\) each. Two roller supports are shown beneath the beam at the \(\ell/3\) and \(2\ell/3\) positions. A horizontal force \(i\) is applied at the left end. The distributed load increases from left to right, shown by vertical arrows of increasing length. Total beam length is \(\ell\).
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 3</h3>
+            <p>Consider the thin beam model sketched in the figure, and loaded by the two forces \(F\). All the beams have the same cross-section. Compute the rotation \(\theta\) of the point where the beam of length \(b\) is joined to the two beams of length \(a\). Neglect shear deformability.</p>
+            
+            <p class="unit-note">(Unit for result: rad)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(a = 1\, \text{m}\)<br>
+                \(b = 2\, \text{m}\)<br>
+                \(c = 3\, \text{m}\)<br>
+                \(EI_{xx} = EI_{yy} = 12 \times 10^{14}\, \text{N mm}^2\)<br>
+                \(EA = 6 \times 10^{10}\, \text{N}\)<br>
+                \(GJ = 7 \times 10^{14}\, \text{N mm}^2\)<br>
+                \(K = 1 \times 10^6\, \text{N/mm}\)<br>
+                \(F = 10000\, \text{N}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(\theta = 7.4 \times 10^{-5}\, \text{rad}\)</span></p>
+                <p style="font-size: 0.9em; color: #555; margin-top: 10px;"><em>Solution: Using the Principle of Complementary Virtual Work (PCVW). First compute the spring reaction \(X = 8817.5\, \text{N}\), then:
+                \[\theta = \frac{2F_a \cdot b}{GJ} - \frac{X \cdot c^2}{2EI} + \frac{2F_a \cdot c}{EI} = 7.4 \times 10^{-5}\, \text{rad}\]</em></p>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 4</h3>
+            <p>Consider the simply supported thin beam model sketched in the figure, with overall length \(l\), and loaded by the linearly varying force per unit of length \(f(z)\), with maximum value equal to \(a\). Compute the exact vertical displacement \(v(l/2)\) in the middle of the beam. Neglect shear deformability.</p>
+            
+            <p class="unit-note">(Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(a = 1000\, \text{N/mm}\)<br>
+                \(l = 2000\, \text{mm}\)<br>
+                \(EI = 12 \times 10^{12}\, \text{N mm}^2\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(v(l/2) = -0.04\, \text{mm}\)</span></p>
+                <p style="font-size: 0.9em; color: #555; margin-top: 10px;"><em>Solution: The load distribution is triangular with peak at mid-span:
+                \[f(z) = \frac{2a}{l}z \quad \text{for } z \in \left[0, \frac{l}{2}\right]\]
+                \[f(z) = a\left(1 - \frac{2z}{l}\right) \quad \text{for } z \in \left[\frac{l}{2}, l\right]\]
+                Using PCVW with virtual unit load at \(z = l/2\):
+                \[v = -\frac{7al^4}{233280 \cdot EI} = -0.04\, \text{mm}\]
+                (Negative sign indicates downward displacement)</em></p>
+            </div>
+        </section>
+
+        <p style="text-align: center; margin-top: 40px;">2</p>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/January_23_2024/page_3_img_1.png" alt="Vertical column with spring support and applied force">
+            <figcaption>
+                <strong>Vertical column of total length \(2\ell\) with multiple support conditions.</strong> Fixed support (hatched) at top with angle \(\theta\) marked. Vertical downward force \(F\) applied near the top. The column is divided into two segments of length \(\ell\) each. A pinned/hinged support is shown at the bottom. A horizontal spring with stiffness \(k\) connects to a fixed wall (hatched) at the mid-height position. The diagram shows a statically indeterminate column system.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/January_23_2024/page_3_img_2.png" alt="Beam with fixed support and distributed moment loading">
+            <figcaption>
+                <strong>Horizontal beam of length \(\ell\) with fixed support (hatched) at the left end.</strong> A distributed moment loading \(\ell\) is applied along a portion of the beam, shown by curved arrows. Horizontal force \(i\) is applied at the left support. The beam has a free end at the right side. Coordinate system shows horizontal and vertical directions. The diagram illustrates a cantilever-type configuration with moment loading.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 5</h3>
+            <p>The thin beam sketched in the figure, of length \(2l\), is loaded by the compressive force \(F\). A spring with stiffness \(K\) is connected in the middle of the beam, and helps increasing the beam buckling load. Compute the approximated value of critical buckling load by resorting to a suitable polynomial approximation of the transverse displacement truncated to the first non-null term.</p>
+            
+            <p class="unit-note">(Unit for result: N)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 2000\, \text{mm}\)<br>
+                \(EA = 6 \times 10^{10}\, \text{N}\)<br>
+                \(EI = 12 \times 10^{10}\, \text{N mm}^2\)<br>
+                \(K = 1 \times 10^3\, \text{N/mm}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(F_{cr} = 84000\, \text{N}\)</span></p>
+                <p style="font-size: 0.9em; color: #555; margin-top: 10px;"><em>Solution: Using polynomial approximation \(v = Az^2 + Bz + C\) with boundary conditions \(v(0) = 0\) and \(v(2l) = 0\), leading to \(v = A(z^2 - 2lz)\). Applying the Principle of Virtual Work with the Green-Lagrange strain tensor for buckling analysis:
+                \[F_{cr} = \frac{8EI/l + Kl^4}{(8-4+32/3)l^3} = 84000\, \text{N}\]</em></p>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 6</h3>
+            <p>The clamped beam sketched in the figure has a varying axial stiffness \(EA(z) = a + bz\), and is loaded by the constant force per unit of length \(f\). By resorting to a polynomial approximation of the axial dis- placement, truncated to one term, estimate the axial displacement \(w(l)\) at the free extremity of the beam.</p>
+            
+            <p class="unit-note">(Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 4000\, \text{mm}\)<br>
+                \(f = 1000\, \text{N/mm}\)<br>
+                \(a = 6 \times 10^{10}\, \text{N}\)<br>
+                \(b = 2.5 \times 10^7\, \text{N/mm}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong> <span class="answer-solution">\(w(l) = 0.0727\, \text{mm}\)</span></p>
+                <p style="font-size: 0.9em; color: #555; margin-top: 10px;"><em>Solution: Using 1-term polynomial approximation \(w = cz\) with \(w' = c\). From PVW:
+                \[\int_0^l \delta c \cdot (a + bz) \cdot c \, dz = \int_0^l \delta c \cdot f \cdot z \, dz\]
+                \[\left(al + \frac{1}{2}bl^2\right)c = \frac{1}{2}fl^2\]
+                \[c = \frac{fl}{2\left(a + \frac{1}{2}bl\right)}\]
+                \[w(l) = c \cdot l = \frac{fl^2}{2\left(a + \frac{1}{2}bl\right)} = 0.0727\, \text{mm}\]</em></p>
+            </div>
+        </section>
+
+        <p style="text-align: center; margin-top: 40px;">3</p>
+
+        <div class="page-break"></div>
+
+        <section class="questions-section">
+            <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+            
+            <ol class="true-false">
+                <li>The axial stress of beam that is transmitting a constant bending moment \(M_x\) does not depend on the material elastic modulus \(E\) <span class="answer-solution">T</span></li>
+                
+                <li>The Timoshenko model is used to compute the critical buckling stress of a simply supported com- pressed plate <span class="answer-solution">F</span></li>
+                
+                <li>Hermitian shape functions are \(C^2\) (continuous, and with continuous first and second derivatives) <span class="answer-solution">F</span></li>
+            </ol>
+        </section>
+
+        <section class="questions-section">
+            <h2>Multiple Choice questions (Circle the correct answer)</h2>
+            
+            <div class="multiple-choice">
+                <p><strong>1. "Crippling" is:</strong></p>
+                <ol type="a">
+                    <li><strong style="color: #006400; background: #e8f5e9; padding: 2px 6px; border-radius: 3px;">✓ a failure mode of thin-walled compressed beam</strong></li>
+                    <li>a failure mode of compact compressed beam</li>
+                    <li>a failure mode affecting the fuselage of Boeing 737 MAX</li>
+                    <li>a failure mode of railways</li>
+                    <li>a special design technique preventing the buckling of beams</li>
+                    <li>none of the above</li>
+                </ol>
+            </div>
+
+            <div class="multiple-choice">
+                <p><strong>2. Assume that the solution of a given three dimensional elastic problem has a finite \(H^1_0\) norm; an approximated solution, obtained with quadratic finite elements with average dimension \(h\):</strong></p>
+                <ol type="a">
+                    <li><strong style="color: #006400; background: #e8f5e9; padding: 2px 6px; border-radius: 3px;">✓ has quadratic convergence of the stress with respect to \(h\)</strong></li>
+                    <li>has cubic convergence of the stress with respect to \(h\)</li>
+                    <li>has linear convergence of the displacement with respect to \(h\)</li>
+                    <li>has quadratic convergence of the displacement with respect to \(h\)</li>
+                    <li>none of the above</li>
+                </ol>
+            </div>
+
+            <div class="multiple-choice">
+                <p><strong>3. A structure is modeled using finite elements. It is unconstrained and subjected to a set of loads in self equilibrium. The solution of the linear static problem:</strong></p>
+                <ol type="a">
+                    <li>is stress-free because the loads have null resultant and moment resultant</li>
+                    <li>can be computed, up to a rigid body motion, after constraining the displacement of the struc- ture all over its boundary</li>
+                    <li>can be computed only if the loads are concentrated</li>
+                    <li>can be computed, up to a rigid body motion, only if the loads are distributed</li>
+                    <li>is defined up to a rigid body motion; thus, not being unique, it is not possible to compute the stress and strain fields</li>
+                    <li><strong style="color: #006400; background: #e8f5e9; padding: 2px 6px; border-radius: 3px;">✓ none of the above</strong></li>
+                </ol>
+            </div>
+        </section>
+
+        <p style="text-align: center; margin-top: 40px;">4</p>
+
+    </article>
+</body>
+</html>

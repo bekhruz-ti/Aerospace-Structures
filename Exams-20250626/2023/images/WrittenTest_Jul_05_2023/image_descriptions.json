@@ -1,0 +1,26 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "beam_coordinate_system_length_dimensions",
+    "description": "Beam schematic showing coordinate system and dimensional notation. Left end shows fixed support with hatching marks. Coordinate system at left with y-axis vertical, z-axis horizontal along beam length, and x-axis at angle labeled γₓ. Total beam length labeled as l with horizontal arrows indicating extent. Additional dimension l/3 marked at bottom left. Right end shows wavy line indicating continuation or boundary condition."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "two_member_frame_fixed_roller_supports",
+    "description": "Two-member frame structure with point A at left showing fixed support (hatching marks) and point C at upper right. Horizontal member from A to point B, then inclined member from B to C. Point B shows roller support symbol (circle with hatching below). Coordinate system at lower left shows y-axis vertical, z-axis horizontal, and x-axis labeled γᵦ. Curved arrow at point C labeled θ₂ indicates rotation or moment. Triangle symbol at B suggests pin connection or reference point."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "frame_spring_force_system",
+    "description": "Structural frame with fixed support at upper left (hatching marks) and fixed support at lower right (hatching marks). Horizontal member at top with spring element (zigzag symbol) labeled k, followed by vertical downward force F. Vertical member on right with length l indicated by vertical arrow. Horizontal member at bottom with dimension l marked. Label EI appears on vertical member indicating flexural rigidity. Overall L-shaped or rectangular frame configuration."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "semi_monocoque_beam_cross_section",
+    "description": "Semi-monocoque beam cross-section showing rectangular configuration with four corner stringers. Three stringers labeled A₁ at corners and one labeled A₂. Cross-section height dimension b shown on left with vertical arrow. Bottom dimensions show two segments of length a each. Moment M₂ indicated with curved arrow at lower left. Coordinate system shows y-axis vertical and z-axis horizontal along beam length l. Hatching pattern on top surface indicates fixed or loaded boundary. Right side shows fixed support with hatching marks."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "frame_assembly_multiple_elements",
+    "description": "Frame assembly showing multiple structural elements labeled El#1, El#2, and El#3. Vertical member in center with height b indicated by vertical arrow. Horizontal dimension a shown at bottom with bidirectional arrows. Elements El#2 shown at lower left and lower right corners. Central vertical member labeled with γᵢᵥ#1. Upward force F shown at bottom center. Pin or hinge connections indicated at joints. Diagonal hatching on inclined members at top and sides suggesting fixed boundaries or structural panels."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "beam_distributed_point_loads_three_supports",
+    "description": "Beam with three support points labeled (1), (2), and (3) from left to right. Fixed support at left end (point 1) shown with hatching. Distributed horizontal load shown as multiple rightward arrows along top of beam. Single downward point load k at center-top. Total beam length l with supports at l/2 intervals. Horizontal arrows below beam indicate axial effects or reference directions. Points (2) and (3) appear to be roller or pin supports allowing rotation."
+  }
+}

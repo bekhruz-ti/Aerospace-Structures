@@ -1,0 +1,10 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "triangular_distributed_load_decreasing",
+    "description": "Triangular distributed load diagram showing a linearly decreasing load distribution along a horizontal beam or structural member. The load intensity is maximum at the left end (shown by the tallest vertical arrow) and decreases linearly to zero at the right end, forming a triangular load envelope. Multiple vertical arrows of decreasing height represent the distributed nature of the load acting perpendicular to the member axis. The diagram shows both a detailed view (upper right) and a simplified schematic view (lower left) of the same loading condition."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "triangular_distributed_load_with_diagonal_element",
+    "description": "Triangular distributed load diagram on a horizontal structural member with an additional diagonal element shown in dark gray. The distributed load decreases linearly from left to right, represented by vertical arrows of decreasing magnitude forming a triangular envelope. The diagonal element extends from the left support region toward the right, intersecting the loaded member. The load pattern shows maximum intensity at the left end tapering to zero at the right end, with the vertical arrows indicating upward-acting forces perpendicular to the member axis."
+  }
+}

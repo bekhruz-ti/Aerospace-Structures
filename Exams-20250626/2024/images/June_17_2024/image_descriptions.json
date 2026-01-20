@@ -1,0 +1,26 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "inclined_beam_spring_mass_system",
+    "description": "Inclined structural system showing a beam of length ℓ supported at the base with a fixed support (indicated by hatching). A spring with stiffness k₀ connects the fixed support to a mass block (shown as square with hatching) positioned partway up the incline. The beam extends further to length ℓ with two segments marked as ℓ. A vertical downward force F is applied at the right end, and a normal force N is shown acting perpendicular to the beam surface. The system appears to be oriented at an angle to the horizontal."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "rectangular_frame_axial_force_loading",
+    "description": "Three-dimensional rectangular frame structure with dimensions a (width) and ℓ (depth). The frame consists of vertical and horizontal members connected at nodes (shown as filled circles). The right side of the frame is fixed to a wall (indicated by hatching). A horizontal force F acts at the left face, with dimension b marked on the left side showing two equal segments. A distributed load q is indicated on one of the internal members. The frame appears to represent a box-like structure subjected to axial loading."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "beam_pulley_two_springs_system",
+    "description": "Horizontal beam of length ℓ with fixed supports at both ends (indicated by hatching). A pulley system is positioned at the center with a vertical downward force F applied through the pulley. Two springs with stiffnesses k₁ and k₂ are connected in series below the beam, with the lower spring k₂ attached to a fixed support at the bottom. The dimension ℓ₁ marks the distance from the right support to the right end of the beam. This represents a statically indeterminate system with elastic supports."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "cantilever_beam_spring_damper_midspan",
+    "description": "Cantilever beam of total length ℓ with fixed support at the left end (indicated by hatching). A spring-damper system (spring with stiffness k₀ and damper with coefficient δ) is attached at the midpoint (ℓ/2) of the beam, with the spring-damper connected to a fixed support below. A vertical downward force F is applied at the free right end of the beam. This configuration represents a vibration or dynamic analysis problem with elastic and damping elements at mid-span."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "rectangular_frame_two_forces_point_b",
+    "description": "Three-dimensional rectangular frame structure with dimensions a (width), b (height with two equal segments), and ℓ (depth). The frame consists of vertical and horizontal members connected at nodes (shown as filled circles), with the right side fixed to a wall (indicated by hatching). Point B is marked at the upper right corner. Two forces are applied: horizontal force F₁ acting to the left at the mid-height of the left face, and vertical upward force F₂ applied at the bottom center of the structure. The frame represents a statically indeterminate spatial structure under combined loading."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "beam_circular_cross_section_end_forces",
+    "description": "Horizontal beam of length ℓ with fixed support at the left end (indicated by hatching) and free right end. Coordinate system shows x-axis along beam length and y-axis vertical. A vertical downward force F is applied at approximately mid-span. The right end detail shows a circular cross-section (indicated by hatched circle) with diameter 2a, subjected to vertical force F downward and horizontal force F to the left, along with dimension z marked horizontally. This represents a beam bending problem with end loading and circular cross-sectional geometry."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "page_3_img_1.png": {
+    "suggested_name": "rectangular_frame_stringer_area_calculations",
+    "description": "Handwritten engineering calculations showing a rectangular frame structure with four corner nodes (labeled 1-4) and dimensional annotations. Left side contains algebraic expressions for stringer areas with variables A₁, A₂, A₃, A₄ and corresponding calculations involving terms like a²/2, a²/3, and numerical results (3040 mm², 5680 mm², 3040 mm²). Center shows a rectangular frame diagram with nodes at corners and internal divisions. Right side displays \"Exercise 1\" with a similar rectangular frame showing numbered corners (1-4) and a downward force arrow, with notation A = (l + l)(a-l). Additional notes reference \"Stringer area\" and equations relating to cross-sectional properties."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "beam_loading_internal_actions_diagram",
+    "description": "Handwritten structural analysis showing multiple related diagrams. Left side contains expressions for internal actions including q₁ = -qa (10.50), q₂ = q(2+b) with value 2100000 N/mm. Center shows a vertical beam element with distributed loads qa applied at multiple points along its length, with annotations for \"Internal actions\" and \"Assumed actions\". Right side displays two rectangular frame diagrams labeled \"Exercise 2\" - upper frame shows deflection with arrows indicating deformation direction, lower frame shows coordinate system with x-y axes and numbered corners (1-4), with notation l/3 and b/c(l+a)."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "cantilever_frame_force_analysis",
+    "description": "Handwritten structural mechanics problem showing a rectangular frame with annotations. Left side shows a frame diagram with horizontal force T applied at upper left corner, with dimensions labeled and nodes at corners. Frame has notation \"l₀/c\" and \"n/3 b/c(l)\". Right side contains extensive handwritten notes describing the problem setup, including text about \"Cantilever here that do if I take\" and references to \"left side\", \"right side\", \"can take location\", and \"but I can't predict it\". Notes discuss force analysis and structural behavior with expressions relating to the cantilever configuration."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "frame_structure_force_distribution",
+    "description": "Handwritten structural analysis showing a rectangular frame with force distributions. Left side contains algebraic expressions for forces at different locations: A₁ = A (Focus the &), A₂ = A with fractions involving 2/3, and calculations showing values like 2825 N and 4704 N. Center displays a rectangular frame diagram with horizontal force arrows pointing inward at multiple locations along the vertical edges, labeled with dimensions including l/c, 2.5+, and coordinate markers. Right side shows another frame diagram labeled \"(All units in N/mm²)\" with similar force distribution pattern and dimensional annotations including 100, 1.00, and 1.00+. Notes reference \"Vertical as\" and force calculations."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "equilibrium_equations_cantilever_analysis",
+    "description": "Handwritten structural mechanics calculations showing equilibrium analysis. Left side displays a simple cantilever beam sketch with two circular nodes labeled A and B at top and bottom, with dimension notations. Center contains extensive algebraic expressions including \"3 equilibrium equations\", \"4 displacement equations\", and \"4 def approx = 4 [Betas 5 14]\". Equations show relationships involving w₁(x), w₂(x), w₃(x) with expressions like \"w₁(x) = 0\", \"w₂(x) = 0\", and \"w₃ = 3x + 2x\". Additional terms include \"large height\" and \"we expect about 60% be arrived\". Right side shows expressions with C terms and dimensional analysis including \"W = C₁Φ\" and matrix notation [2 1 2]."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "matrix_equations_structural_analysis",
+    "description": "Handwritten mathematical expressions showing matrix and vector equations for structural analysis. Left side contains matrix notation [2 1 2] = [X|2] with expressions involving C₁, C₂, and displacement variables. Center shows equations including \"W = 60+34\" and \"C = 1/c\" with additional terms relating to \"displacement\" and \"Equilibrium\". Right side displays expressions with W₁₁ᵀ notation and equations involving C₁, C₂, C₃ with terms like \"k = C\" and \"k₁ = C + Φ₁k₁ + Φ\". Additional algebraic manipulations show relationships between variables with expressions like \"(Φ)k(Φ) + (Φ)k(Φ) + (Φ)Φ + Φ\" and \"k₁ = 23 + b\"."
+  }
+}

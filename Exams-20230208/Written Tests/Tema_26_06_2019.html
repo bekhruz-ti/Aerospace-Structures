@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema_26_06_2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff9e6;
+            border-left: 4px solid #ffa500;
+        }
+
+        .question h3 {
+            margin-top: 0;
+            color: #ffa500;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Tema_26_06_2019</h1>
+            <p class="metadata">Extracted from: C:\Users\bekhr\Downloads\Aerospace Structres\Exams-20230208\Written Tests\Tema_26_06_2019.pdf</p>
+            <p class="metadata">Total pages: 1</p>
+        </header>
+
+        <h2>Course of Aerospace Structures Written test, June 26th, 2019</h2>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            <p>Consider the single-cell, thin-walled beam in the figure. The beam length is equal to \(2l\); the section has dimensions \(a \times b\), and is stiffened by four stringers, each characterized by lumped area equal to \(A_1\) (at the bottom) and \(A_2\) (at the top). The thickness of the panels is denoted with \(t_1\), \(t_2\) and \(t_3\), as illustrated in the figure. Referring to the loading conditions reported in the sketch:</p>
+
+            <ul>
+                <li>determine the shear stresses in the panels and the axial stresses in the stringers for the section at a distance \(l/2\) from the constraint;</li>
+                <li>plot the internal actions on the rib at the mid-span, assuming that the rib can be modeled as a beam.</li>
+            </ul>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 1500\, \text{mm}\); \(a = 400\, \text{mm}\); \(b = 250\, \text{mm}\); \(t_1 = 1\, \text{mm}\); \(t_2 = 2\, \text{mm}\); \(t_3 = 1.5\, \text{mm}\); \(A_1 = 2000\, \text{mm}^2\); \(A_2 = 1000\, \text{mm}^2\); \(q_1 = 90\, \text{N/mm}\); \(q_2 = 300\, \text{N/mm}\); \(F = 10\, \text{kN}\);
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/Tema_26_06_2019/page_1_img_1.png" alt="Three views showing triangular distributed load patterns on structural members">
+            <figcaption>
+                <strong>Figure 1:</strong> Three views showing triangular distributed load patterns on structural members. Top view shows a triangular load distribution decreasing from left to right along a tapered beam element, with upward-pointing force vectors indicating the distributed load intensity. Middle view displays a gray rectangular cross-section with a diagonal line, likely representing a section cut or internal geometry. Bottom view shows the same triangular load distribution pattern on a rectangular beam element, with uniform upward force vectors that decrease in magnitude from left to right following the triangular distribution envelope shown above.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            <p>A structure is composed of three beams of length \(l_1\) and \(l_2\). All the beams are characterized by a square section – see the figure –, with panels of thickness \(t\) and stiffened by four stringers, each of lumped area \(A\). One end is fixed, the other is grounded by means of an elastic constraint of stiffness \(k\), and the third end is loaded with a concentrated load \(P\). Determine:</p>
+
+            <ul>
+                <li>the vertical displacement in correspondence of the spring, with and without accounting for the beam shearing stiffness contribution</li>
+                <li>the strain energy stored in the structure (including the spring)</li>
+            </ul>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l_1 = 1000\, \text{mm}\); \(l_2 = 500\, \text{mm}\); \(a = 100\, \text{mm}\); \(t = 1\, \text{mm}\); \(A = 200\, \text{mm}^2\); \(E = 70\, \text{GPa}\); \(\nu = 0.3\); \(P = 2\, \text{kN}\); \(k = 400\, \text{N/mm}\);
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/Tema_26_06_2019/page_1_img_2.png" alt="Empty black image with no visible engineering content">
+            <figcaption>
+                <strong>Figure 2:</strong> Empty black image with no visible engineering content, diagrams, or technical information. This appears to be a blank placeholder or separator page.
+            </figcaption>
+        </figure>
+
+        <section class="question">
+            <h3>Question 1</h3>
+            <p>Discuss and illustrate the compatibility condition for a semi-monocoque beam with \(N\) cells.</p>
+        </section>
+
+    </article>
+</body>
+</html>

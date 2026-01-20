@@ -1,0 +1,74 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "cantilever_beam_fixed_support_moment_load",
+    "description": "Cantilever beam with fixed support (hatched) at left end and free right end. Beam has uniform properties EJ and length ℓ, with coordinate z measured from fixed end. Moment load θ̂ applied at free end. Problem asks to determine bending moment at x = ℓ/2 using both displacement-based and force-based approaches, assuming negligible shear deformation. Given data: ℓ = 1000 mm, θ̂ = 10 deg, EJ = 10¹² N·mm²."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "two_segment_beam_displacement_boundary_conditions",
+    "description": "Two-segment beam system with fixed support at left end showing displacement-based solution setup. Beam divided into segments with properties EJ, ℓ at positions x₁ and x₂, with vertical displacements z₁,w₁ and z₂,w₂. Applied moment θ̂ at right free end. Eight boundary conditions listed: w₁(0)=0, w₁'(0)=0, w₁(ℓ)=0 for left segment; w₂(0)=0, w₂'''(ℓ)=0, w₂'(ℓ)=-θ̂ for right segment; plus continuity conditions w₁''(ℓ)=w₂''(0) and w₁'(ℓ)=w₂'(0). Solution expressed as cubic polynomials with coefficients A₀ through A₃ and B₀ through B₃, with derivatives shown."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "frame_structure_distributed_load_force_analysis",
+    "description": "L-shaped frame structure with fixed support (hatched) at upper left. Horizontal member extends 2ℓ with distributed load q applied downward over length ℓ (shown as shaded rectangle). Vertical member extends 2ℓ downward with point load P at bottom. Diagonal member of length ℓ connects at angle, with unknown displacement S marked with question mark. Coordinate system shows vertical (V) and horizontal (P) directions. Problem uses force-based approach to determine displacement S, with shear deformability considered negligible. Given data: ℓ = 1200 mm, q = 2 N/mm, EJ = 10¹² N·mm², P = 2000 N."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "frame_structure_force_decomposition_real_dummy",
+    "description": "Force-based solution showing decomposition of L-shaped frame into real and dummy load cases. Left diagram shows original structure with distributed load q, point loads 2P, and unknown displacement S. Right side shows two separate cases: \"Real\" case with horizontal force P, and \"Dummy\" case with unit force 1. Below are two beam diagrams showing internal force conventions: moment M = -Px and shear SM = -x. Text notes that only real forces producing non-null energy contribution are reported."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "rectangular_frame_ritz_method_deflection",
+    "description": "Rectangular frame structure with distributed load q applied downward on top horizontal beam. Frame has uniform properties EJ, ℓ for all members. Vertical members at positions z₁ and z₃ have pinned supports at base with displacements w₁ and w₃. Point A marked at center of top beam. Problem asks to determine downward deflection of point A at middle of horizontal beam using Ritz method, where deflection for beams #1 and #3 is taken as w₁ = C φ(z₁) and w₃ = C φ(z₃). Note indicates C is same due to problem symmetry. Formulate using single degree of freedom C and choose between φ(z) = z/ℓ or φ(z) = sin(πz/ℓ) or φ(z) = (z/ℓ)². Neglect axial energy contributions."
+  },
+  "cantilever_beam_fixed_support_moment.png": {
+    "suggested_name": "cantilever_beam_fixed_support_moment",
+    "description": "Cantilever beam diagram with fixed support on left, showing EJ and ℓ labels, with applied moment θ at free end and coordinate system"
+  },
+  "two_segment_beam_displacement_based.png": {
+    "suggested_name": "two_segment_beam_displacement_based",
+    "description": "Two-segment beam with fixed support showing displacement variables z1,w1 and z2,w2 at segment boundaries, with EJ and ℓ labels and applied moment θ"
+  },
+  "cantilever_beam_bending_moment.png": {
+    "suggested_name": "cantilever_beam_bending_moment",
+    "description": "Cantilever beam showing bending moment calculation at x2=ℓ/2 with displacement variables and coordinate system"
+  },
+  "l_shaped_frame_distributed_point_loads.png": {
+    "suggested_name": "l_shaped_frame_distributed_point_loads",
+    "description": "L-shaped frame structure with distributed load q, point loads 2P and P, showing dimensions 2ℓ horizontal and 2ℓ vertical segments with fixed support at bottom left"
+  },
+  "frame_free_body_diagram_decomposition.png": {
+    "suggested_name": "frame_free_body_diagram_decomposition",
+    "description": "Free body diagram decomposition of L-shaped frame showing real and dummy force systems with moment and shear force diagrams"
+  },
+  "portal_frame_distributed_load.png": {
+    "suggested_name": "portal_frame_distributed_load",
+    "description": "Portal frame with distributed load q on horizontal beam, two vertical columns with EJ stiffness, pin supports at base showing coordinates z1,w1 and z3,w3"
+  },
+  "portal_frame_bending_displacement.png": {
+    "suggested_name": "portal_frame_bending_displacement",
+    "description": "Portal frame with additional bending displacement diagram showing EJ stiffness for vertical and horizontal members with boundary conditions"
+  },
+  "simply_supported_beam_variable_stiffness.png": {
+    "suggested_name": "simply_supported_beam_variable_stiffness",
+    "description": "Simply supported beam with point load P at right end, two segments with different stiffness EJ1 and EJ2, pin and roller supports at ends"
+  },
+  "beam_boundary_conditions_coordinate_system.png": {
+    "suggested_name": "beam_boundary_conditions_coordinate_system",
+    "description": "Simply supported beam showing coordinate system and boundary conditions for displacement analysis with variable stiffness sections"
+  },
+  "rectangular_frame_shear_center.png": {
+    "suggested_name": "rectangular_frame_shear_center",
+    "description": "Rectangular frame structure with four nodes labeled 2A and A, showing dimensions a and d, with coordinate system for shear center analysis"
+  },
+  "frame_shear_flow_analysis.png": {
+    "suggested_name": "frame_shear_flow_analysis",
+    "description": "Rectangular frame with numbered nodes 1-4, showing shear flow q and internal moment distribution with coordinate axes"
+  },
+  "inclined_frame_3d_structure.png": {
+    "suggested_name": "inclined_frame_3d_structure",
+    "description": "3D inclined frame structure showing two parallel members with cross-sectional area 3A, dimensions a, b, and ℓ/2, with applied load P at top"
+  },
+  "frame_cross_section_internal_actions.png": {
+    "suggested_name": "frame_cross_section_internal_actions",
+    "description": "Cross-sectional view and internal action diagrams for inclined frame showing moment H, shear forces, and stress distribution at z=ℓ/2"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "truss_frame_distributed_load_force",
+    "description": "Truss or frame structure with four pin-jointed nodes forming a quadrilateral configuration. Upper horizontal member shows distributed load (indicated by hatching/arrows). Vertical force F applied at bottom center node, pointing downward. Dimensions labeled as ℓ₁ (vertical height on left), ℓ₁ (horizontal length at bottom), and ℓ (diagonal member length on right). Dashed lines indicate internal members or construction lines connecting nodes."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "square_plate_spring_supports_force",
+    "description": "Square plate or panel with cross-hatched interior pattern, supported by four spring elements (k) at each corner, with fixed supports (ground symbols) at three corners. Horizontal force F applied at right side with displacement Δx indicated. Additional spring k shown at bottom center. Coordinate system not explicitly shown but implied horizontal-vertical orientation."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "triangular_truss_three_members_pinned",
+    "description": "Triangular truss structure with three pin-jointed nodes. Top left node has fixed support (ground symbol), bottom left node has pinned support (ground symbol), and right node is free with roller support indicated. Members labeled with length ℓ. Angular displacement θ shown at top joint. Dimensions indicate height ℓ on left side and horizontal length ℓ on bottom. Variables t and u labeled on right side."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "two_story_frame_springs_force",
+    "description": "Two-story vertical frame structure with fixed support (ground symbol) at base. Spring elements k₁ and k₂ shown at different levels. Vertical force F applied downward at upper level. Height dimensions labeled as ℓ₁ (upper segment), ℓ₂ (middle segment), and ℓ₁ (lower segment), with total height ℓ₂ indicated on right side. Spring k₁ at top level connected to fixed support, spring k₂ at middle level."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "beam_spring_support_two_rollers_force",
+    "description": "Horizontal beam with spring support (k) at left end connected to fixed support (ground symbol). Beam supported by two roller supports (circular symbols with ground) at positions along length. Horizontal force F applied at right end. Vertical dimension a shown on right side. Horizontal dimension b spans the beam length. Small displacement u indicated at left spring location."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "rectangular_frame_fixed_base_point_load",
+    "description": "Rectangular frame structure with fixed support (ground symbol with hatching) at bottom. Vertical force F applied downward at top center. Dimensions labeled as ℓ₁ (left vertical height), u₁ (horizontal displacement at top), a (horizontal width), and x (horizontal coordinate). Frame appears to have pin joints at corners indicated by circular symbols."
+  },
+  "page_10_img_1.png": {
+    "suggested_name": "beam_analysis_shear_moment_diagrams",
+    "description": "Hand-drawn structural analysis showing two beam configurations with supports and loading. Top beam has spring support (k) at left, span length b, force F at distance x from left, and dimension a on right. Bottom beam shows spring support at left with span b. Multiple equations listed below showing shear force (N) and bending moment (M) calculations at different locations, including expressions with variables x, F, b, and a. Equations include N₁ = (x+F)a/2, M₁ = a/2, and various other moment and shear relationships."
+  },
+  "page_10_img_2.png": {
+    "suggested_name": "displacement_compatibility_equations",
+    "description": "Hand-drawn mathematical expressions showing displacement compatibility equations. Integral expressions with terms involving N₁N₁'/EA and M₁M₁'/EI integrated over length. Variables include x, u, and k. Final expressions show x = and u = x/k relationships. Equations appear to relate axial and bending deformations in structural analysis."
+  },
+  "page_11_img_1.png": {
+    "suggested_name": "frame_analysis_equilibrium_equations",
+    "description": "Structural analysis problem dated 2024-07-08 Ex 3 showing rectangular frame with dimensions a and b. Frame has fixed support at bottom left, pin joints at corners (indicated by circles), and applied loads. Extensive hand-written equilibrium equations below diagram showing force and moment balance calculations. Equations include terms with K₁₂, T₁, T₂, U₁, U₂, and various moment expressions. Solution section shows integral expressions for calculating displacements using virtual work method with terms involving Fa/EA and Fa³/EI."
+  },
+  "page_11_img_2.png": {
+    "suggested_name": "displacement_calculation_solution",
+    "description": "Hand-written continuation of structural analysis calculations showing detailed algebraic manipulation of displacement equations. Multiple terms involving Fa³/EI, Fa/EA, and various fractions being combined and simplified. Final boxed solution shows u₁ = u₂/k = -1089·10⁻⁷ mm. Equations demonstrate step-by-step reduction of complex expressions involving elastic modulus E, moment of inertia I, cross-sectional area A, force F, and dimension a."
+  },
+  "page_13_img_1.png": {
+    "suggested_name": "rectangular_frame_force_displacement_coordinates",
+    "description": "Rectangular frame structure with pin joints at four corners (indicated by circles). Fixed support (ground symbol with hatching) at bottom left corner. Vertical downward force F applied at top center. Horizontal displacement u₁ indicated at top right corner. Dimensions labeled as ℓ₁ (left vertical height), a (horizontal width), and y (vertical coordinate axis). Coordinate system shows x-axis horizontal and y-axis vertical."
+  }
+}

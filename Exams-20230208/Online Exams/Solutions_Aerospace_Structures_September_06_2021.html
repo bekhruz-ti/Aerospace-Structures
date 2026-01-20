@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerospace Structures Exam Solutions - September 6, 2021</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            background: #fafafa;
+            color: #333;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a237e;
+            border-bottom: 3px solid #1a237e;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #283593;
+            margin-top: 50px;
+            padding: 10px 15px;
+            background: #e8eaf6;
+            border-left: 5px solid #3f51b5;
+        }
+        
+        h3 {
+            color: #303f9f;
+            margin-top: 25px;
+        }
+        
+        h4 {
+            color: #1b5e20;
+            margin-top: 20px;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #bdbdbd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #ffffff;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: #e8f5e9;
+            border-top: 3px solid #4caf50;
+        }
+        
+        .given-data {
+            background: #fff3e0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 5px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .final-answer {
+            font-size: 1.15em;
+            color: #1b5e20;
+            font-weight: bold;
+            padding: 15px 20px;
+            background: #c8e6c9;
+            border-left: 5px solid #4caf50;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+        
+        .matrix {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .essential-conditions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .multiple-choice {
+            margin: 30px 0;
+        }
+        
+        .mc-question {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .mc-question p {
+            margin-bottom: 10px;
+        }
+        
+        .mc-answer {
+            color: #2e7d32;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+        
+        .governing-eqs {
+            background: #f3e5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #9c27b0;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>Aerospace Structures Exam Solutions<br>September 6, 2021</h1>
+
+        <!-- Exercise 6 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 6</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/two_segment_beam_prescribed_displacement.png" alt="Two-segment beam with prescribed displacement">
+                    <figcaption>Two-segment beam with fixed support, roller support, and prescribed displacement \(\bar{u}\)</figcaption>
+                </figure>
+                
+                <p>Determine the reaction force in the figure. The structure is loaded with a prescribed displacement \(\bar{u}\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1500\left(1 + \frac{E}{10}\right)\, \text{mm}\)<br>
+                    \(EJ = 10^{11}\)<br>
+                    \(\bar{u} = 10\, \text{mm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="step">
+                    <div class="step-title">Real System Analysis</div>
+                    <p>Setting up the equilibrium equations with reaction forces \(X\) (at fixed support), \(Y\) (at roller), and applied force \(F\) (corresponding to prescribed displacement):</p>
+                    \[\begin{cases} X + Y = F \\ Y\ell - 2F\ell = 0 \end{cases}\]
+                    <p>Solving:</p>
+                    \[\Rightarrow \begin{cases} X = F - Y = -F \\ Y = 2F \end{cases}\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Moment Expressions</div>
+                    <p>For segment 1 (coordinate \(x_1\) from left):</p>
+                    \[M_1 = Fx_1\]
+                    <p>For segment 2 (coordinate \(x_2\) from middle):</p>
+                    \[M_2 = F\ell - Fx_2\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Dummy System</div>
+                    <p>Apply unit load at the prescribed displacement location.</p>
+                    <p>Virtual moment expressions:</p>
+                    \[\delta M_1 = x_1\]
+                    \[\delta M_2 = \ell - x_2\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Application of PCVW (Principle of Complementary Virtual Work)</div>
+                    \[\int_0^{\ell} \frac{\delta M_1 M_1}{EJ}\, dx_1 + \int_0^{\ell} \frac{\delta M_2 M_2}{EJ}\, dx_2 = \bar{u}\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Solving for F</div>
+                    \[F = \frac{3EJ\bar{u}}{2\ell^3} = 444.44\, \text{N}\]
+                </div>
+                
+                <p class="final-answer">
+                    Final Answer: \(Y = 2F = 888.88\, \text{N}\)
+                </p>
+            </div>
+        </section>
+
+        <!-- Exercise 7 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 7</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/inclined_beam_vertical_load_moment.png" alt="Inclined beam with applied torsional moment">
+                    <figcaption>L-shaped frame with inclined member and applied torsional moment \(\hat{H}_t\)</figcaption>
+                </figure>
+                
+                <p>Determine the vertical displacement (positive in the downward direction) due to a torsional moment \(\hat{H}_t\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1200\, \text{mm}\)<br>
+                    \(EJ = 10^{10}\, \text{Nmm}^2\)<br>
+                    \(GJ = 10^8\, \text{Nmm}^2\)<br>
+                    \(\hat{H}_t = 10^5\left(1 + \frac{F}{10}\right)\, \text{Nmm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="step">
+                    <div class="step-title">Real System Analysis</div>
+                    <p>Internal moment distributions:</p>
+                    <p>Torsion in horizontal member:</p>
+                    \[M_{t_1} = \hat{H}_t\]
+                    <p>Bending moment in inclined member:</p>
+                    \[M_2 = \hat{H}_t\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Dummy System</div>
+                    <p>Apply unit vertical load at the corner. The virtual moment in the inclined member (coordinate \(x_2\)):</p>
+                    \[\delta M_2 = x_2\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Application of PCVW</div>
+                    \[\int_0^{\ell} \frac{\delta M_2 \cdot M_2}{EJ}\, dx_2 = V\]
+                </div>
+                
+                <p class="final-answer">
+                    Final Answer: \(V = \frac{M_t}{EJ} \cdot \frac{\ell^2}{2} = 7.20\, \text{mm}\)
+                </p>
+            </div>
+        </section>
+
+        <!-- Exercise 8 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 8</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/beam_distributed_load_spring_support.png" alt="Beam with distributed load and spring support">
+                    <figcaption>Beam with fixed support, distributed load \(q\), and spring support \(k\)</figcaption>
+                </figure>
+                
+                <p>Determine the vertical displacement \(V\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1200\, \text{mm}\)<br>
+                    \(EJ = 10^{12}\, \text{Nmm}^2\)<br>
+                    \(k = 750\left(1 + \frac{G}{10}\right)\, \text{N/mm}\)<br>
+                    \(q = 12\, \text{N/mm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="step">
+                    <div class="step-title">Real System Analysis</div>
+                    <p>With reactions \(q\ell\) at both supports:</p>
+                    <p>Moment expressions (with distributed load \(q\)):</p>
+                    \[M_1 = -q\ell x_1 + \frac{qx_1^2}{2}\]
+                    \[M_2 = -q\ell x_2 + \frac{qx_2^2}{2}\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Dummy System</div>
+                    <p>Apply unit load at midpoint with reactions \(\frac{1}{2}\) at each end:</p>
+                    \[\delta M_1 = -\frac{1}{2}x_1\]
+                    \[\delta M_2 = -\frac{1}{2}x_2\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Application of PCVW</div>
+                    \[\int_0^{\ell} \frac{\delta M_1 M_1}{EJ}\, dx_1 + \int_0^{\ell} \frac{\delta M_2 M_2}{EJ}\, dx_2 + \frac{\delta F_s \cdot F_s}{k} = V\]
+                    <p>where:</p>
+                    \[\delta F_s = \frac{1}{2}\]
+                    \[F_s = q\ell\]
+                </div>
+                
+                <p class="final-answer">
+                    Final Answer: \(V = \frac{5}{24} \cdot \frac{q\ell^4}{EJ} + \frac{q\ell}{2k} = 14.78\, \text{mm}\)
+                </p>
+            </div>
+        </section>
+
+        <!-- Exercise 11 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 11</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/l_shaped_rigid_link_vertical_force.png" alt="L-shaped structure with rigid link">
+                    <figcaption>L-shaped structure with rigid link, vertical force \(F\), and variable torsional stiffness \(GJ(x)\)</figcaption>
+                </figure>
+                
+                <p>Determine the vertical displacement \(V\) in correspondence of the Tip of the rigid link in the figure.</p>
+                <p>The rigid body is located at \(x = \ell/2\), i.e. in the middle of the beam.</p>
+                <p>Use Ritz with polynomial expansion and the lowest possible number of dofs.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1200\, \text{mm}\)<br>
+                    \(L = 200\, \text{mm}\)<br>
+                    \(EJ = 10^{11}\, \text{Nmm}^2\)<br>
+                    \(GJ_0 = 10^{10}\, \text{Nmm}^2\)<br>
+                    \(GJ_1 = 2 \cdot 10^{10}\, \text{Nmm}^2\)<br>
+                    \(\hat{\theta} = 10\, \text{deg}\)<br>
+                    \(F = 5000\left(1 + \frac{B}{10}\right)\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/rigid_link_solution_diagram.png" alt="Solution diagram with coordinate system">
+                    <figcaption>Solution diagram showing coordinate system and essential boundary conditions</figcaption>
+                </figure>
+                
+                <div class="essential-conditions">
+                    <strong>Essential Conditions:</strong><br>
+                    \(\theta(0) = 0\) &emsp; \(w(0) = 0\)<br>
+                    \(\theta(\ell) = \hat{\theta}\) &emsp; \(w'(0) = 0\)
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">1) Trial Function for Displacement \(w\)</div>
+                    <p>Starting with:</p>
+                    \[w = a_0 + a_1\left(\frac{x}{\ell}\right) + a_2\left(\frac{x}{\ell}\right)^2\]
+                    <p>Imposing \(w(0) = 0\) and \(w'(0) = 0\), one obtains:</p>
+                    \[w = a_2\left(\frac{x}{\ell}\right)^2 \quad \text{so:} \quad w'' = a_2 \cdot \frac{2}{\ell^2}\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">2) Trial Function for Rotation \(\theta\)</div>
+                    <p>The expansion can be represented as:</p>
+                    \[\theta = \theta_H + \theta_P\]
+                    <p>where \(\theta_P\) is the term restoring the non-homogeneous condition, and \(\theta_H\) is the expansion where non-homogeneous conditions are replaced by homogeneous ones.</p>
+                    
+                    <p>Boundary conditions for \(\theta_H\):</p>
+                    \[\theta_H(0) = 0, \quad \theta_H(\ell) = 0\]
+                    
+                    <p>Setting \(\theta_H = b_0 + b_1\left(\frac{x}{\ell}\right) + b_2\left(\frac{x}{\ell}\right)^2\):</p>
+                    \[\theta_H(0) = b_0 = 0\]
+                    \[\theta_H(\ell) = b_1 + b_2 = 0 \Rightarrow b_1 = -b_2\]
+                    
+                    <p>Therefore:</p>
+                    \[\theta_H(\ell) = \left[\left(\frac{x}{\ell}\right)^2 - \left(\frac{x}{\ell}\right)\right]b_2\]
+                    
+                    <p>Particular solution:</p>
+                    \[\theta_P(x) = \frac{x}{\ell}\hat{\theta}\]
+                    
+                    <p>Complete solution:</p>
+                    \[\theta(x) = \left[\left(\frac{x}{\ell}\right)^2 - \left(\frac{x}{\ell}\right)\right]b_2 + \frac{x}{\ell}\hat{\theta}\]
+                    
+                    \[\theta' = \frac{1}{\ell}\left(\frac{2x}{\ell} - 1\right)b_2 + \frac{1}{\ell}\hat{\theta}\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Application of PVW (Principle of Virtual Work)</div>
+                    \[\int_0^{\ell} \delta w'' EJ w''\, dx + \int_0^{\ell} \delta\theta' GJ \theta'\, dx = -\delta w(\ell)F\]
+                    
+                    <p>This leads to \(\underline{\underline{K}}\,\underline{u} = \underline{F}\), where:</p>
+                    
+                    \[\underline{\underline{K}} = \begin{bmatrix} \frac{4EJ}{\ell^3} & 0 \\ 0 & \frac{2GJ_0 + GJ_1}{6\ell} \end{bmatrix}\]
+                    
+                    \[\underline{F} = \begin{Bmatrix} -F \\ -\frac{GJ\hat{\theta}}{6\ell} \end{Bmatrix} \qquad \underline{u} = \begin{Bmatrix} a_2 \\ b_2 \end{Bmatrix}\]
+                </div>
+                
+                <p class="final-answer">
+                    Final Answer: \(V = -w(\ell/2) + \theta(\ell/2) \cdot L = 27.22\, \text{mm}\)
+                </p>
+            </div>
+        </section>
+
+        <!-- Exercise 12 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 12</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/circular_bar_distributed_moment.png" alt="Circular bar with distributed moment">
+                    <figcaption>Circular bar with distributed moment \(M_t\) along length</figcaption>
+                </figure>
+                
+                <p>Evaluate the rotation \(\theta\) at \(x = \ell/2\) solving the problem exactly (circular bar).</p>
+                <p>Report the result in <u>deg</u>.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1500\, \text{mm}\)<br>
+                    \(GJ = 10^9\, \text{Nmm}^2\)<br>
+                    \(M_t = 200\left(1 + \frac{B}{10}\right)\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="governing-eqs">
+                    <strong>The governing equations are:</strong>
+                    \[\begin{cases} GJ\theta'' + M_t = 0 \\ \theta(0) = 0 \\ GJ\theta'(\ell) = 0 \end{cases}\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">General Solution</div>
+                    <p>The solution of the system is found as:</p>
+                    \[\theta = \theta_H + \theta_P\]
+                    
+                    <p><strong>a) Homogeneous solution:</strong></p>
+                    \[GJ\theta_H'' = 0 \quad \Rightarrow \quad \theta_H' = a_0, \quad \theta_H = a_0 x + a_1\]
+                    
+                    <p><strong>b) Particular solution:</strong></p>
+                    \[GJ\theta_P'' = -M_t \quad \Rightarrow \quad \theta_P' = -\frac{M_t}{GJ}x, \quad \theta_P = -\frac{1}{2}\frac{M_t}{GJ}x^2\]
+                    
+                    <p><strong>Complete solution:</strong></p>
+                    \[\theta = a_1 + a_0 x - \frac{1}{2}\frac{M_t}{GJ}x^2\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Applying Boundary Conditions</div>
+                    <p>Imposing \(\theta(0) = 0\):</p>
+                    \[a_1 = 0\]
+                    
+                    <p>Imposing \(\theta'(\ell) = 0\):</p>
+                    \[a_0 = \frac{M_t \ell}{GJ}\]
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Final Expression</div>
+                    <p>Therefore:</p>
+                    \[\theta = \frac{M_t}{GJ}\left(\ell x - \frac{1}{2}x^2\right)\]
+                </div>
+                
+                <p class="final-answer">
+                    Final Answer: \(\theta(\ell/2) = \frac{M_t}{GJ} \cdot \frac{3\ell^2}{8} = 9.67\, \text{deg}\)
+                </p>
+            </div>
+        </section>
+
+        <!-- Exercise 24 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 24</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/three_dimensional_rib_structure.png" alt="Three-dimensional rib structure">
+                    <figcaption>Three-dimensional rib structure with forces \(F\) at corners, showing isometric view and cross-section</figcaption>
+                </figure>
+                
+                <p>Model the rib as a beam and determine the bending moment at \(x = \ell_1/2\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell_1 = 500\, \text{mm}\)<br>
+                    \(\ell_2 = 1500\, \text{mm}\)<br>
+                    \(\ell_3 = 150\, \text{mm}\)<br>
+                    \(t = 1.0\, \text{mm}\)<br>
+                    \(A = 500\, \text{mm}^2\)<br>
+                    \(F = 6000\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/rectangular_frame_shear_flow_decomposition.png" alt="Shear flow decomposition">
+                    <figcaption>Decomposition of loading into symmetric and antisymmetric (torsion) components</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <div class="step-title">Load Decomposition</div>
+                    <p>The loading is decomposed into symmetric loading plus torsion (moment \(F\ell_1/2\)).</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Shear Flow Determination</div>
+                    <p>The shear flows are readily determined as:</p>
+                    <ul>
+                        <li>Vertical webs: \(\frac{F}{2\ell_3}\)</li>
+                        <li>Horizontal flows from torsion: \(\frac{F}{4\ell_3}\)</li>
+                    </ul>
+                    
+                    <p>The shear flows for torsion were derived as:</p>
+                    \[\frac{F\ell_1}{2} = 2q\Omega_c \quad \Rightarrow \quad q = \frac{F\ell_1}{4\ell_1\ell_3} = \frac{F}{4\ell_3}\]
+                </div>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_September_06_2021/frame_superposition_beam_model.png" alt="Superposition and beam model">
+                    <figcaption>Superposition of effects and resulting beam model</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <div class="step-title">Superposition of Effects</div>
+                    <p>By superposition of effects, combining the shear flows:</p>
+                    <ul>
+                        <li>Left side: \(\frac{3F}{4\ell_3}\)</li>
+                        <li>Right side: \(\frac{F}{4\ell_3}\)</li>
+                        <li>Horizontal flows: \(\frac{F}{4\ell_3}\)</li>
+                    </ul>
+                    
+                    <p>The equilibrating flows are equal and opposite.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Beam Model</div>
+                    <p>The beam model of the rib has:</p>
+                    <ul>
+                        <li>Force \(F\) up at left</li>
+                        <li>Force \(\frac{3}{4}F\) down at left</li>
+                        <li>Distributed load \(\frac{F}{4}\)</li>
+                        <li>Moment \(M\) at right</li>
+                    </ul>
+                </div>
+                
+                <p class="final-answer">
+                    Final Answer: \(M(x) = \frac{F}{4}x - \frac{F}{4}x = 0\)
+                </p>
+            </div>
+        </section>
+
+        <!-- Multiple Choice Questions -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Theory Questions (Multiple Choice)</h2>
+            </div>
+            
+            <div class="solution">
+                <div class="multiple-choice">
+                    <div class="mc-question">
+                        <p><strong>•</strong> A truss is fixed at both the ends and is loaded with a uniformly distributed axial load. The axial displacement:</p>
+                        <p class="mc-answer">– is quadratic</p>
+                    </div>
+                    
+                    <div class="mc-question">
+                        <p><strong>•</strong> The natural boundary conditions associated with the Timoshenko beam model:</p>
+                        <p class="mc-answer">– involve shear and bending equilibrium</p>
+                    </div>
+                    
+                    <div class="mc-question">
+                        <p><strong>•</strong> The transverse shear deformability for a thin-walled beam:</p>
+                        <p class="mc-answer">– is generally larger with respect to a corresponding (same dimensions and bending stiffness) compact section</p>
+                    </div>
+                    
+                    <div class="mc-question">
+                        <p><strong>•</strong> The assumption of plane stress imply that the deformation along the thickness is zero:</p>
+                        <p class="mc-answer">– False</p>
+                    </div>
+                    
+                    <div class="mc-question">
+                        <p><strong>•</strong> The equilibrium equations can be obtained by integrating by parts the Principle of Virtual Work:</p>
+                        <p class="mc-answer">– True</p>
+                    </div>
+                    
+                    <div class="mc-question">
+                        <p><strong>•</strong> According to the semi-monocoque scheme, the shear stresses are constant along the thickness of the panel:</p>
+                        <p class="mc-answer">– True</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </article>
+</body>
+</html>

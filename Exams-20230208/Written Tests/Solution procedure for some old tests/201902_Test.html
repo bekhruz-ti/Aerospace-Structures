@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures - Written Test, February 11th, 2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .metadata {
+            font-size: 0.95em;
+            color: #666;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #007bff;
+            border-radius: 4px;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff8e1;
+            border-left: 5px solid #ffc107;
+            border-radius: 4px;
+        }
+
+        strong {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .page-number {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .answer-solution {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .answer-solution h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="metadata">Written test, February 11th, 2019</p>
+        </header>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_1.png" alt="Curved structural element showing coordinate system with x and z axes">
+            <figcaption>
+                <strong>Curved beam coordinate system:</strong> Curved structural element showing coordinate system with x and z axes. Point T marked on the curved geometry. The diagram appears to represent a curved beam or arc segment with local coordinate reference frame.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_2.png" alt="Empty placeholder image">
+            <figcaption>
+                <strong>Placeholder:</strong> Empty or blank image with no visible engineering content.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_3.png" alt="Empty placeholder image">
+            <figcaption>
+                <strong>Placeholder:</strong> Empty or blank image with no visible engineering content.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_4.png" alt="Empty placeholder image">
+            <figcaption>
+                <strong>Placeholder:</strong> Empty or blank image with no visible engineering content.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_5.png" alt="Empty placeholder image">
+            <figcaption>
+                <strong>Placeholder:</strong> Empty or blank image with no visible engineering content.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_6.png" alt="Cantilever beam with fixed support and truss members">
+            <figcaption>
+                <strong>Cantilever beam structure:</strong> Cantilever beam with fixed support (hatched pattern) at right end. Rectangular cross-section showing height dimension A at left end and 2A at an intermediate location. Internal diagonal truss members visible within the beam depth. Beam length labeled as l. Three-dimensional perspective view showing depth of structural element.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            
+            <p>The two-cell beam in the figure is composed of five panels of thickness \(t\), and four stringers of areas \(A\) and \(2A\) (note: the area is the lumped one). The section is square and has dimension \(h\). The material is a light aluminum alloy, whose elastic properties are provided in terms of Young's modulus and Poisson's coefficient, denoted with \(E\) and \(v\), respectively. The beam is fixed at one end and free at the other one, and is loaded with a concentrated forces of magnitude \(P\). Determine the internal stresses at a distance \(l/2\) from the free end.</p>
+
+            <p style="text-align: center;">
+                \(h\)<br>
+                <br>
+                \(2A\) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(p\)
+            </p>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(h = 100\, \text{mm}\); \(l = 1500\, \text{mm}\); \(t = 1.5\, \text{mm}\); \(A = 150\, \text{mm}^2\); \(E = 72000\, \text{MPa}\); \(v = 0.3\); \(P = 15\, \text{kN}\);
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <h4>Section Properties</h4>
+                <p>The principal axes are available from the symmetry of the section. The cross-section is a square rotated 45° with stringers at corners numbered 1-4.</p>
+                
+                <p>Diagonal dimension:</p>
+                \[a = h\sqrt{2} = 100\sqrt{2} = 141.42\, \text{mm}\]
+                
+                <p>Second moments of area (using lumped stringer areas):</p>
+                \[J_{xx} = 2A\left(\frac{a}{2}\right)^2 = 2 \times 150 \times \left(\frac{141.42}{2}\right)^2 = 1.5 \times 10^6\, \text{mm}^4\]
+                \[J_{yy} = 4A\left(\frac{a}{2}\right)^2 = 4 \times 150 \times \left(\frac{141.42}{2}\right)^2 = 3.0 \times 10^6\, \text{mm}^4\]
+                
+                <p>Static moments for each stringer:</p>
+                \[S_{x_1} = 0, \quad S_{y_1} = -Aa\]
+                \[S_{x_2} = A\frac{a}{2}, \quad S_{y_2} = -Aa\]
+                \[S_{x_3} = A\frac{a}{2}, \quad S_{y_3} = 0\]
+                \[S_{x_4} = 0, \quad S_{y_4} = 0\]
+                
+                <h4>Shear Flows</h4>
+                <p>Open section shear flows (cutting one web):</p>
+                \[q_1' = \frac{P_x S_{y_1}}{J_{yy}} + \frac{P_y S_{x_1}}{J_{xx}} = -\frac{P_x}{a} = -\frac{10607}{141.42} = -75\, \text{N/mm}\]
+                \[q_2' = 0\, \text{N/mm}\]
+                \[q_3' = \frac{P_y}{a} = \frac{10607}{141.42} = 75\, \text{N/mm}\]
+                \[q_4' = q_5' = 0\]
+                
+                <p><strong>Equivalence condition</strong> (with respect to cell 1):</p>
+                \[2\Omega_2 q_2' + 2\Omega_3 q_3' + 2\Omega_{c_1} q_1^* + 2\Omega_{c_2} q_2^* = 0\]
+                <p>Where \(\Omega_2 = \Omega_3 = \Omega_{c_1} = \Omega_{c_2} = \frac{a^2}{2}\), so:</p>
+                \[q_2' + q_3' + q_1^* + q_2^* = 0\]
+                \[\boxed{q_1^* + q_2^* = -75}\]
+                
+                <p><strong>Compatibility condition:</strong></p>
+                \[q_1^* - q_2^* = \frac{(q_3' - q_1')h}{2(h + a)}\]
+                \[\boxed{q_1^* - q_2^* = 31.07}\]
+                
+                <p><strong>Solving the system:</strong></p>
+                \[\begin{cases} q_1^* + q_2^* = -75 \\ q_1^* - q_2^* = 31.07 \end{cases} \Rightarrow q_1^* = -21.97\, \text{N/mm}, \quad q_2^* = -53.04\, \text{N/mm}\]
+                
+                <p><strong>Total shear flows and shear stresses:</strong></p>
+                \[q_1 = q_1' + q_1^* = -96.97\, \text{N/mm} \quad \Rightarrow \quad \tau_1 = \frac{|q_1|}{t} = 64.65\, \text{MPa}\]
+                \[q_2 = q_2^* = -53.04\, \text{N/mm} \quad \Rightarrow \quad \tau_2 = 35.36\, \text{MPa}\]
+                \[q_3 = q_3' + q_2^* = 21.96\, \text{N/mm} \quad \Rightarrow \quad \tau_3 = 14.64\, \text{MPa}\]
+                \[q_4 = q_1^* = -21.97\, \text{N/mm} \quad \Rightarrow \quad \tau_4 = 14.65\, \text{MPa}\]
+                \[q_5 = q_2^* - q_1^* = -31.08\, \text{N/mm} \quad \Rightarrow \quad \tau_5 = 20.72\, \text{MPa}\]
+                
+                <h4>Normal Stresses \(\sigma_{zz}\)</h4>
+                <p>Referring to the principal axes, the bending moments at \(z = l/2\) are:</p>
+                \[M_x = P_y \cdot \frac{l}{2}, \quad M_y = P_x \cdot \frac{l}{2}\]
+                
+                <p>The normal stress formula:</p>
+                \[\sigma_{zz} = \frac{M_x}{J_{xx}}y - \frac{M_y}{J_{yy}}x\]
+                
+                <p><strong>Stringers 2, 4:</strong> \(x = 0\), \(y = \pm\frac{a}{2}\)</p>
+                \[\sigma_{zz} = \frac{M_x}{J_{xx}}\left(\pm\frac{a}{2}\right) = \pm 375\, \text{MPa}\]
+                
+                <p><strong>Stringers 1, 3:</strong> \(x = \pm\frac{a}{2}\), \(y = 0\)</p>
+                \[\sigma_{zz} = -\frac{M_y}{J_{yy}}\left(\pm\frac{a}{2}\right) = \mp 187.5\, \text{MPa}\]
+                
+                <h4>Final Answers</h4>
+                <p><strong>Shear stresses:</strong></p>
+                <ul>
+                    <li>\(\tau_1 = 64.65\, \text{MPa}\)</li>
+                    <li>\(\tau_2 = 35.36\, \text{MPa}\)</li>
+                    <li>\(\tau_3 = 14.64\, \text{MPa}\)</li>
+                    <li>\(\tau_4 = 14.65\, \text{MPa}\)</li>
+                    <li>\(\tau_5 = 20.72\, \text{MPa}\)</li>
+                </ul>
+                <p><strong>Normal stresses in stringers:</strong></p>
+                <ul>
+                    <li>Stringers 2, 4: \(\sigma_{zz} = \pm 375\, \text{MPa}\)</li>
+                    <li>Stringers 1, 3: \(\sigma_{zz} = \mp 187.5\, \text{MPa}\)</li>
+                </ul>
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_7.png" alt="Beam with spring supports and force components">
+            <figcaption>
+                <strong>Beam with spring supports:</strong> Beam of length l with fixed support (hatched) at right end and spring supports at left end. Two springs shown: ky (vertical) and kx (horizontal) with ground symbols. Three-dimensional coordinate system (x, y, z axes) shown at upper right. Force vector P decomposed into components Px, Py, and Pz shown in detail inset. Beam appears to be subjected to multi-axial loading condition.
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            
+            <p style="text-align: right;">\(A\)</p>
+
+            <p>The slender beam in the figure is fixed at one end, and is elastically supported by two springs of stiffness \(k_x\) and \(k_y\) at the other end. The beam axial stiffness is \(EA\), while the bending stiffnesses are \(EJ_{xx}\) and \(EJ_{yy}\) (note: \(EJ_{xy} = 0\)). A concentrated force \(P\), whose components are \(P_x\), \(P_y\) and \(P_z\), is applied at the middle. Determine the unknown reactions forces and the strain energy stored in the structure (including the springs).</p>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 1000\, \text{mm}\); \(EA = 7 \times 10^7\, \text{N}\); \(EJ_{xx} = 5 \times 10^9\, \text{Nmm}^2\); \(EJ_{yy} = 8 \times 10^9\, \text{Nmm}^2\); \(k_x = 5\, \text{N/mm}\); \(k_y = 2\, \text{N/mm}\); \(P_x = 150\, \text{N}\); \(P_y = 100\, \text{N}\); \(P_z = 10000\, \text{N}\);
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p>The structure is 2 times statically indeterminate. Let \(X\) be the spring reaction in the x-direction and \(Y\) be the spring reaction in the y-direction.</p>
+                
+                <h4>XZ-Plane Analysis</h4>
+                <p>Using the Principle of Complementary Virtual Work (PCVW):</p>
+                
+                <p>Bending moments in the real structure:</p>
+                <ul>
+                    <li>Region 1 (\(0 \leq z_1 \leq l\)): \(M_y^1 = X z_1\)</li>
+                    <li>Region 2 (\(0 \leq z_2 \leq l\)): \(M_y^2 = Xl + (X + P_x)z_2\)</li>
+                </ul>
+                
+                <p>Virtual bending moments (unit load in x-direction):</p>
+                <ul>
+                    <li>\(\delta M_y^1 = z_1\)</li>
+                    <li>\(\delta M_y^2 = z_2 + l\)</li>
+                </ul>
+                
+                <p>PCVW equation:</p>
+                \[\int_0^l \frac{M_y^1 \cdot \delta M_y^1}{EJ_{yy}} dz_1 + \int_0^l \frac{M_y^2 \cdot \delta M_y^2}{EJ_{yy}} dz_2 + \frac{X}{k_x} = 0\]
+                
+                <p>After integration:</p>
+                \[X\left(\frac{8}{3}l^3 + \frac{EJ_{yy}}{k_x}\right) + \frac{5}{6}P_x l^3 = 0\]
+                
+                <h4>YZ-Plane Analysis</h4>
+                <p>By analogy with the XZ-plane:</p>
+                \[Y\left(\frac{8}{3}l^3 + \frac{EJ_{xx}}{k_y}\right) + \frac{5}{6}P_y l^3 = 0\]
+                
+                <h4>Reaction Forces</h4>
+                <p>Solving for the spring reactions:</p>
+                \[\boxed{X = -29.27\, \text{N}}\]
+                \[\boxed{Y = -16.13\, \text{N}}\]
+                
+                <h4>Strain Energy</h4>
+                <p>Total strain energy:</p>
+                \[U = U_{bxz} + U_{byz} + U_{ax} + U_{springs}\]
+                
+                <p><strong>Bending energy in XZ-plane:</strong></p>
+                \[U_{bxz} = \frac{1}{EJ_{yy}}\left(\frac{2}{3}X^2 l^3 + \frac{1}{6}(X+P_x)^2 l^3 + \frac{1}{2}X(X+P_x)l^3\right) = 0.154\, \text{J}\]
+                
+                <p><strong>Bending energy in YZ-plane:</strong></p>
+                \[U_{byz} = \frac{1}{EJ_{xx}}\left(\frac{2}{3}Y^2 l^3 + \frac{1}{6}(Y+P_y)^2 l^3 + \frac{1}{2}Y(Y+P_y)l^3\right) = 0.133\, \text{J}\]
+                
+                <p><strong>Axial strain energy:</strong></p>
+                \[U_{ax} = \frac{1}{2}\int_0^l \frac{P_z \cdot P_z}{EA} dz = \frac{1}{2}\frac{P_z^2}{EA}l = \frac{1}{2} \times \frac{(10000)^2}{7 \times 10^7} \times 1000 = 0.714\, \text{J}\]
+                
+                <p><strong>Spring strain energy:</strong></p>
+                \[U_{springs} = \frac{1}{2}\frac{X^2}{k_x} + \frac{1}{2}\frac{Y^2}{k_y} = \frac{1}{2}\frac{(-29.27)^2}{5} + \frac{1}{2}\frac{(-16.13)^2}{2} = 0.150\, \text{J}\]
+                
+                <h4>Final Answers</h4>
+                <p><strong>Spring reaction forces:</strong></p>
+                <ul>
+                    <li>\(X = -29.27\, \text{N}\) (horizontal spring)</li>
+                    <li>\(Y = -16.13\, \text{N}\) (vertical spring)</li>
+                </ul>
+                
+                <p><strong>Total strain energy:</strong></p>
+                \[U = 0.154 + 0.133 + 0.714 + 0.150 = \boxed{1.151\, \text{J}}\]
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_8.png" alt="Empty placeholder image">
+            <figcaption>
+                <strong>Placeholder:</strong> Empty or blank image with no visible engineering content.
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/201902_Test/page_1_img_9.png" alt="Empty placeholder image">
+            <figcaption>
+                <strong>Placeholder:</strong> Empty or blank image with no visible engineering content.
+            </figcaption>
+        </figure>
+
+        <section class="question">
+            <h2>Question 1</h2>
+            
+            <p>Illustrate how to determine the torsional and transverse shear stiffnesses for a thin-walled beam in the context of the semi-monocoque approximation.</p>
+        </section>
+
+        <div class="page-number">1</div>
+    </article>
+</body>
+</html>

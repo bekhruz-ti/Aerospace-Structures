@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerospace Structures Exam - August 29, 2022 - Solutions</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #333;
+            background: #fefefe;
+        }
+        
+        header {
+            text-align: center;
+            border-bottom: 3px double #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            color: #1a1a2e;
+        }
+        
+        header .date {
+            font-style: italic;
+            color: #555;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #f8f9fa;
+        }
+        
+        .problem h3 {
+            color: #1a1a2e;
+            margin-top: 0;
+            font-size: 1.3em;
+            border-bottom: 2px solid #1a1a2e;
+            padding-bottom: 8px;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            border-top: 3px solid #4caf50;
+        }
+        
+        .solution h4 {
+            color: #2e7d32;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        
+        .given-data {
+            background: #fff;
+            padding: 15px 20px;
+            border-left: 4px solid #2196f3;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .given-data strong {
+            color: #1565c0;
+        }
+        
+        figure.diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        figure.diagram img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+        
+        figure.diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .final-answer {
+            font-size: 1.1em;
+            color: #1b5e20;
+            font-weight: bold;
+            padding: 15px;
+            background: #c8e6c9;
+            border-left: 5px solid #4caf50;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding: 10px 0;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #1565c0;
+        }
+        
+        .tf-section, .mc-section {
+            margin: 40px 0;
+            padding: 25px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+        
+        .tf-section h3, .mc-section h3 {
+            color: #1a1a2e;
+            border-bottom: 2px solid #1a1a2e;
+            padding-bottom: 8px;
+        }
+        
+        .question-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .answer-correct {
+            color: #2e7d32;
+            font-weight: bold;
+            background: #e8f5e9;
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+        
+        .options {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .options p {
+            margin: 5px 0;
+        }
+        
+        .options p.selected {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        .note {
+            background: #fff3e0;
+            padding: 10px 15px;
+            border-left: 4px solid #ff9800;
+            margin: 10px 0;
+            font-size: 0.95em;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Course of Aerospace Structures</h1>
+        <p class="date">Written test, August 29<sup>th</sup>, 2022</p>
+    </header>
+
+    <article>
+        <!-- Exercise 1 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Exercise 1</h3>
+                <p>The beam sketched in the figure is loaded by the two concentrated moments \(M_1\) and \(M_2\). Compute the rotation \(\theta\) in the middle of the beam.</p>
+                <p><em>(Unit for result: rad)</em></p>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/beam_two_concentrated_moments.png" alt="Beam with two concentrated moments">
+                    <figcaption>Beam structure with moments \(M_1\) and \(M_2\), pin support on left, roller support in middle</figcaption>
+                </figure>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(l = 400\, \text{mm}\)<br>
+                    \(M_1 = 50000\, \text{Nmm}\)<br>
+                    \(M_2 = 20000\, \text{Nmm}\)<br>
+                    \(EJ = 6.0 \times 10^6\, \text{Nmm}^2\)<br>
+                    \(EA = 7.2 \times 10^7\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution:</h4>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/beam_moments_rotation_analysis.png" alt="Beam analysis diagram">
+                    <figcaption>Free body diagram and analysis setup</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <p class="step-title">Step 1: Calculate reaction force \(F_2\)</p>
+                    <p>From equilibrium:</p>
+                    \[F_2 = \frac{M_1 + M_2}{l}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 2: Express bending moment \(M_x\)</p>
+                    \[M_x = -M_1 + F_2 \cdot z\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 3: Define virtual moment distribution</p>
+                    <p>For \(0 < z < \frac{l}{2}\):</p>
+                    \[M'_{x_1} = \frac{1}{l} z\]
+                    
+                    <p>For \(\frac{l}{2} < z < l\):</p>
+                    \[M'_{x_2} = -1 + \frac{1}{l} z\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 4: Apply virtual work principle</p>
+                    \[\theta = \int_0^{l/2} \frac{M'_{x_1} \cdot M_x}{EJ}\, dz + \int_{l/2}^{l} \frac{M'_{x_2} \cdot M_x}{EJ}\, dz\]
+                </div>
+                
+                <p class="final-answer">Apply the integral with given values to obtain \(\theta\) in radians.</p>
+            </div>
+        </section>
+
+        <!-- Exercise 2 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Exercise 2</h3>
+                <p>The beam sketched in the figure is loaded by the concentrated force \(F\). Compute the beam displacement \(w\) in the \(z\) direction of point \(A\).</p>
+                <p><em>(Unit for result: mm)</em></p>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/beam_fixed_support_force_3d.png" alt="3D beam with fixed support">
+                    <figcaption>3D beam structure with fixed support and force \(F\) applied at free end</figcaption>
+                </figure>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(l = 1400\, \text{mm}\)<br>
+                    \(F = 2500\, \text{N}\)<br>
+                    \(EJ_{xx} = EJ_{yy} = 6.0 \times 10^{10}\, \text{Nmm}^2\)<br>
+                    \(GJ = 8.0 \times 10^{10}\, \text{Nmm}^2\)<br>
+                    \(EA = 1.0 \times 10^5\, \text{N}\)
+                </div>
+                
+                <p class="note"><strong>Note:</strong> the beam cross-section stiffness properties are given in a local reference system.</p>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution:</h4>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/beam_3d_displacement_analysis.png" alt="3D beam displacement analysis">
+                    <figcaption>Analysis with local coordinate systems for each beam segment</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <p class="step-title">Step 1: Define internal moments in local coordinates</p>
+                    \[M_{z_1} = -F \cdot z_1\]
+                    \[M_{t_2} = F \cdot l\]
+                    \[M_{x_2} = -(F + R) \cdot z_2\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 2: Define virtual moment</p>
+                    \[M'_{x_2} = -z_2\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 3: Apply compatibility condition</p>
+                    \[\int_0^{2l} \frac{(F + R) \cdot z_2^2}{EJ}\, dz_2 = 0 \quad \Rightarrow \quad R = -F\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 4: Calculate torsional rotation</p>
+                    <p>With \(M_{x_1} = 0\) and \(M'_{t_2} = -1\):</p>
+                    \[\theta(z_2 = l) = \int_l^{2l} \frac{-F \cdot l}{GJ}\, dz_2 = -\frac{F \cdot l^2}{GJ}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 5: Calculate displacement at point A</p>
+                    <p>\(\psi_z(z_1 = l) = 0\) because \(M_{z_1} = 0\)</p>
+                    \[\psi = \theta(z_2 = l) \cdot \frac{l}{2} = -\frac{F \cdot l^3}{GJ \cdot 2}\]
+                </div>
+                
+                <p class="final-answer">Final Answer: \(w = -\dfrac{F \cdot l^3}{2 \cdot GJ}\) mm</p>
+            </div>
+        </section>
+
+        <!-- Exercise 3 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Exercise 3</h3>
+                <p>The semi-monocoque beam model in the figure is loaded at the free extremity by a concentrated moment \(M\). It has five stringers, each with concentrated area \(A\). The upper face is made by two panels, that are connected through the stringer positioned in the middle at \(a/2\). Carefully check the detailed sketch on the right, and in case of doubt ask for a clarification!</p>
+                <p>These two panels are connected to the stringer by means of rivets, spaced by \(p\), and with a diameter \(d\).</p>
+                <p>Compute the shear stress of one rivet.</p>
+                <p><em>(Unit for result: MPa)</em></p>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/semi_monocoque_beam_stringers.png" alt="Semi-monocoque beam with stringers">
+                    <figcaption>Semi-monocoque beam model with five stringers and riveted panels (stringers with cross-section area = A)</figcaption>
+                </figure>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(a = 600\, \text{mm}\), \(b = 100\, \text{mm}\), \(t_1 = 1\, \text{mm}\), \(t_2 = 2\, \text{mm}\)<br>
+                    \(t_3 = 2.5\, \text{mm}\), \(t_4 = 3\, \text{mm}\), \(t_5 = 1\, \text{mm}\), \(A = 100\, \text{mm}^2\)<br>
+                    \(M = 1 \times 10^5\, \text{Nmm}\), \(p = 30\, \text{mm}\), \(d = 2\, \text{mm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution:</h4>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/semi_monocoque_detailed_cross_section.png" alt="Detailed cross-section">
+                    <figcaption>Detailed cross-section showing stringer and panel configuration</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <p class="step-title">Step 1: Calculate shear flow</p>
+                    \[q = \frac{M}{2ab}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 2: Calculate force on rivet</p>
+                    \[F = q \cdot p\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 3: Calculate shear stress in rivet</p>
+                    \[\tau = \frac{F}{\pi \cdot d^2/4} = \frac{4F}{\pi d^2}\]
+                </div>
+                
+                <p class="final-answer">Final Answer: \(\tau = \dfrac{4 \cdot q \cdot p}{\pi d^2} = \dfrac{4M \cdot p}{2ab \cdot \pi d^2} = \dfrac{2Mp}{\pi a b d^2}\) MPa</p>
+            </div>
+        </section>
+
+        <!-- Exercise 4 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Exercise 4</h3>
+                <p>Consider the semi-monocoque cross section model sketched in the figure. Compute the axial stress of stringer number 2 at a distance of \(l/2\) from the clamp.</p>
+                <p><em>(Unit for result: MPa)</em></p>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/cross_section_diamond_stringers.png" alt="Diamond cross-section with stringers">
+                    <figcaption>Semi-monocoque cross-section with diamond-shaped stringer arrangement</figcaption>
+                </figure>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(A = 400\, \text{mm}^2\)<br>
+                    \(a = 200\, \text{mm}\)<br>
+                    \(t = 2\, \text{mm}\)<br>
+                    \(l = 6000\, \text{mm}\)<br>
+                    \(F = 2000\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution:</h4>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/diamond_cross_section_four_stringers.png" alt="Diamond cross-section analysis">
+                    <figcaption>Diamond cross-section with coordinate system transformation</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <p class="step-title">Step 1: Locate centroid</p>
+                    \[y_{CG} = \frac{a}{3}\]
+                    \[y'_{CG} = \frac{a}{3}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 2: Transform to principal axes (45° rotation for symmetry)</p>
+                    \[F_{x'} = \frac{F}{\sqrt{2}}\]
+                    \[F_{y'} = \frac{F}{\sqrt{2}}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 3: Calculate second moments of area</p>
+                    \[J_{x'x'} = A\left(\frac{a}{3\sqrt{2}}\right)^2 + 2A\left(\frac{a}{\sqrt{2}} - \frac{a}{3\sqrt{2}}\right)^2 = \frac{1}{3}A \cdot a^2\]
+                    \[J_{y'y'} = 2A\left(\frac{a}{\sqrt{2}}\right)^2 = A \cdot a^2\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 4: Calculate moments at \(z = l/2\)</p>
+                    \[M_{x'}\left(\frac{l}{2}\right) = -F_{y'} \cdot \frac{l}{2}\]
+                    \[M_{y'}\left(\frac{l}{2}\right) = F_{x'} \cdot \frac{l}{2}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 5: Position of stringer 2</p>
+                    \[x'(2) = \frac{a}{\sqrt{2}}\]
+                    \[y'(2) = \frac{a}{3\sqrt{2}}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 6: Calculate axial stress</p>
+                    \[\sigma_{zz}\left(2, z = \frac{l}{2}\right) = \frac{M_{x'} \cdot y'}{J_{x'x'}} - \frac{M_{y'} \cdot x'}{J_{y'y'}}\]
+                </div>
+                
+                <p class="final-answer">Apply values to obtain \(\sigma_{zz}\) at stringer 2 in MPa.</p>
+            </div>
+        </section>
+
+        <!-- Exercise 5 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Exercise 5</h3>
+                <p>The beam sketched in the figure is loaded by the concentrated moment \(M\) at \(z = 2l\) from the leftmost hinge and by the concentrated force \(F\) at \(z = 7l/2\).</p>
+                <p>By resorting to the displacement method, and using a trigonometric approximation with only one term, estimate the rotation \(\theta\) of point \(A\) (the point at \(z = l\) from the leftmost hinge).</p>
+                <p><em>(Unit for result: rad)</em></p>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/multi_span_beam_moment_force.png" alt="Multi-span beam">
+                    <figcaption>Multi-span beam with four equal spans, moment \(M\) and force \(F\)</figcaption>
+                </figure>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(l = 1000\, \text{mm}\)<br>
+                    \(EJ = 6 \times 10^8\, \text{Nmm}^2\)<br>
+                    \(M = 4 \times 10^5\, \text{Nmm}\)<br>
+                    \(F = 2000\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution:</h4>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/multi_span_beam_displacement_method.png" alt="Displacement method analysis">
+                    <figcaption>Analysis using trigonometric displacement approximation</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <p class="step-title">Step 1: Assume displacement shape function</p>
+                    \[v = \ell \cdot \sin\left(\frac{\pi z}{l}\right)\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 2: Calculate derivatives</p>
+                    \[v' = \ell \cdot \frac{\pi}{l} \cos\left(\frac{\pi z}{l}\right)\]
+                    \[v'' = -\ell \cdot \frac{\pi^2}{l^2} \sin\left(\frac{\pi z}{l}\right)\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 3: Apply virtual work principle</p>
+                    \[\int_0^{4l} \delta\ell \cdot \sin^2\left(\frac{\pi z}{l}\right) \cdot \ell \cdot EJ \cdot \frac{\pi^4}{l^4}\, dz = -\delta\ell \cdot \frac{\pi}{l} \cos(2\pi) \cdot M + \delta\ell \cdot \sin\left(\frac{7\pi}{2}\right)\]
+                    \[= -\delta\ell \cdot \frac{\pi}{l} M - \delta\ell \cdot F\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 4: Solve for amplitude \(\ell\)</p>
+                    \[\frac{2l \pi^4 EJ}{l^4} \cdot \ell = -M \frac{\pi}{l} - F\]
+                    \[\ell = \left(-\frac{M\pi}{l} - F\right) \bigg/ \left(\frac{2l\pi^4 EJ}{l^4}\right)\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 5: Calculate rotation at point A</p>
+                    \[\theta = -v' = \ell \cdot \frac{\pi}{l}\]
+                </div>
+                
+                <p class="final-answer">Final Answer: \(\theta = \ell \cdot \dfrac{\pi}{l}\) rad, where \(\ell = \dfrac{-M\pi/l - F}{2\pi^4 EJ/l^3}\)</p>
+            </div>
+        </section>
+
+        <!-- Exercise 6 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Exercise 6</h3>
+                <p>The nine-nodes parabolic element sketched in the figure is loaded by a triangular force per unit of length, going from \(0\, \text{N/mm}\) to \(p\, \text{N/mm}\).</p>
+                <p>Compute the virtual work of the load for a unit virtual displacement in the direction of the load for the upper middle node (i.e. the node identified by an "X" in the sketch).</p>
+                <p><em>(Unit for result: Nmm)</em></p>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/nine_node_parabolic_element.png" alt="Nine-node parabolic element">
+                    <figcaption>Nine-node parabolic finite element with triangular distributed load</figcaption>
+                </figure>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(a = 2\, \text{mm}\)<br>
+                    \(b = 3\, \text{mm}\)<br>
+                    \(p = 10\, \text{N/mm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution:</h4>
+                
+                <figure class="diagram">
+                    <img src="images/Solutions_Aerospace_Structures_August_29_2022/parabolic_element_virtual_work.png" alt="Virtual work calculation">
+                    <figcaption>Element with coordinate system for virtual work calculation</figcaption>
+                </figure>
+                
+                <div class="step">
+                    <p class="step-title">Step 1: Define shape function for upper middle node</p>
+                    <p>Using local coordinate \(x\) ranging from \(-1.5\) to \(1.5\) (with \(b = 3\) mm):</p>
+                    \[N_x = 1 - \frac{x^2}{2.25}\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 2: Express triangular load distribution</p>
+                    \[\hat{p} = \frac{p}{b}\left(x + \frac{b}{2}\right)\]
+                </div>
+                
+                <div class="step">
+                    <p class="step-title">Step 3: Calculate virtual work</p>
+                    \[\delta\phi_e = \int_{-1.5}^{1.5} \left(1 - \frac{x^2}{2.25}\right)\left(x + 1.5\right) \cdot \frac{p}{3}\, dx = ... = p\]
+                </div>
+                
+                <p class="final-answer">Final Answer: \(\delta\phi_e = p = 10\, \text{Nmm}\)</p>
+            </div>
+        </section>
+
+        <!-- True/False Questions -->
+        <section class="tf-section">
+            <h3>True/False Questions</h3>
+            <p><em>(Put a T (true) or F (false) at the end of the sentence)</em></p>
+            
+            <div class="question-item">
+                <p><strong>1.</strong> The axial stress \(\sigma_{zz}\) is always null for a beam in plane strain:</p>
+                <p><span class="answer-correct">Answer: False</span></p>
+            </div>
+            
+            <div class="question-item">
+                <p><strong>2.</strong> The reaction forces of over-constrained structures cannot be computed by resorting to the displacement method:</p>
+                <p><span class="answer-correct">Answer: False</span></p>
+            </div>
+            
+            <div class="question-item">
+                <p><strong>3.</strong> The stress \(\sigma_{zz}\) of an isotropic material is only a function of the corresponding deformation \(\varepsilon_{zz}\):</p>
+                <p><span class="answer-correct">Answer: False</span></p>
+            </div>
+        </section>
+
+        <!-- Multiple Choice Questions -->
+        <section class="mc-section">
+            <h3>Multiple Choice Questions</h3>
+            <p><em>(Circle the correct answer)</em></p>
+            
+            <div class="question-item">
+                <p><strong>1.</strong> The shear stress in a thin panel is equal to:</p>
+                <div class="options">
+                    <p class="selected">(a) the shear flux divided by the panel thickness ✓</p>
+                    <p>(b) the shear flux multiplied by the panel thickness</p>
+                    <p>(c) the shear flux</p>
+                    <p>(d) the derivative of the axial stress in the panel</p>
+                    <p>(e) none of the above</p>
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <p><strong>2.</strong> The shear deformability of a thin-walled beam is:</p>
+                <div class="options">
+                    <p>(a) always negligible</p>
+                    <p>(b) always more significant than the bending stiffness</p>
+                    <p>(c) equal to the axial stiffness</p>
+                    <p>(d) equal to the bending stiffness</p>
+                    <p>(e) equal to the torsional stiffness</p>
+                    <p class="selected">(f) often not negligible ✓</p>
+                    <p>(g) none of the above</p>
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <p><strong>3.</strong> The axial stiffness for a thin-walled beam:</p>
+                <div class="options">
+                    <p>(a) is null</p>
+                    <p>(b) is generally larger with respect to a corresponding (same material and cross-section area of the material) compact section</p>
+                    <p>(c) is generally smaller with respect to a corresponding (same material and cross-section area of the material) compact section</p>
+                    <p class="selected">(d) is equal to that of a corresponding (same material and cross-section area of the material) compact section ✓</p>
+                    <p>(e) can be neglected</p>
+                    <p>(f) none of the above</p>
+                </div>
+            </div>
+        </section>
+
+    </article>
+</body>
+</html>

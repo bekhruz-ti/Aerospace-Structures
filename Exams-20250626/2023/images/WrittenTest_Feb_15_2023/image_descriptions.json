@@ -1,0 +1,26 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "semi_monocoque_beam_cross_section",
+    "description": "Semi-monocoque beam cross-section showing rectangular configuration with four corner stringers labeled A₁ and A₂. Point B marked at upper center location of the cross-section. Cross-section has square dimensions with width a and height a. Coordinate system shows y-axis vertical, z-axis horizontal (along beam length), and x-axis into the page. Hatching at top right indicates fixed boundary or continuation of structure. Force F shown as vertical arrow at bottom of cross-section."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "beam_butterfly_distributed_load_hinged",
+    "description": "Beam with butterfly-shaped distributed load q(x) showing linear variation from -q̄ at left end to +q̄ at right end, creating antisymmetric loading pattern. Beam has length ℓ with hinged/pinned support (circle symbol) at left end labeled \"EA ET\". Axial pre-stress force shown at left support. Load distribution varies continuously along beam length with upward arrows at right and downward arrows at left. Coordinate system shows y-axis vertical and x-axis horizontal. Additional notation shows ℓ₂ segment length and triangular symbol with \"ooo\" at right end indicating specific boundary condition."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "beam_axial_load_triangular_distributed_load",
+    "description": "Two loading scenarios shown side by side. Left: beam with fixed support (hatching) at left end and three equal horizontal axial forces ℓ applied along the length, total beam length ℓ. Right: triangular distributed load with maximum intensity a at apex, applied over base width a, showing vertical loading pattern with multiple upward arrows indicating distributed force intensity."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "three_member_frame_structure_supports",
+    "description": "Three-member frame structure forming triangular configuration. Member 1 (ℓ₁) extends diagonally from lower left to upper right with fixed support (hatching) at top end. Member 2 is horizontal at bottom with spring support (zigzag symbol) at left end. Member 3 (ℓ₃) is vertical on right side with force F applied downward at top. Horizontal span labeled ℓ₂. Members are numbered 1, 2, and 3 in circles at their respective locations. Question \"ν = ?\" indicates Poisson's ratio or displacement to be determined."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "circular_wheel_radial_spokes_distributed_load",
+    "description": "Circular wheel or disk structure with central hub and eight radial spokes extending to outer rim. Spokes are pinned at both hub (center) and rim (outer circle) connections, shown by small circles at joints. Central force F applied vertically downward at hub. Distributed tangential load ℓ shown by arrows around the outer circumference, indicating uniform loading around the rim. Structure appears to be a spoke wheel subjected to combined central and peripheral loading."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "truss_structure_diamond_configuration_forces",
+    "description": "Two related diagrams showing truss analysis. Top: diamond-shaped truss structure oriented at 45° with pinned joints at all nodes (shown as dots). Members have length ℓ with diagonal dimension ℓ/2. Coordinate system shows x and z axes. Force F shown with curved arrow indicating moment or rotation. Hatching at upper right indicates fixed boundary. Bottom: detail view of single truss element A₁ showing four-member diamond configuration with nodes labeled A₁, A₂, A₃, A₄ and forces q₁, q₂, q₃, q₄ applied at respective nodes. Dimension a indicates characteristic length of diamond element."
+  }
+}

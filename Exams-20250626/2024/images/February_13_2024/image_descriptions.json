@@ -1,0 +1,26 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "rectangular_plate_distributed_pressure_loading",
+    "description": "Rectangular plate structure with dimensions a (width), b (length), and h (height/thickness) shown in 3D isometric view. The top surface is subjected to distributed pressure loading indicated by upward-pointing arrows across the surface. The plate shows diagonal hatching pattern indicating the structural element. A length dimension of 4ℓ is marked along one edge. Coordinate system shows vertical h-axis and horizontal dimensions a and b."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "truss_frame_fixed_support_point_load",
+    "description": "Three-dimensional truss or frame structure with pinned joints at nodes. Vertical member of height b connects to lower node, with diagonal members forming triangulated configuration. Point A marked at upper left joint, point G at lower left joint, and point A at lower right joint. Vertical force F applied upward at lower left support. Horizontal dimension a shown at base. Right side shows fixed support indicated by hatching marks. Coordinate system shows z-axis horizontal and a-axis vertical. Internal diagonal member labeled 2ℓ."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "spring_mass_system_fixed_base_axial_load",
+    "description": "Vertical spring-mass system with fixed support (hatched) at base. Spring with stiffness k connects to point A where vertical force F is applied upward. Mass element shown above point A with dimension a marked vertically. Length ℓ indicates the vertical extent of the system. Upper left shows inclined member of length L at an angle. Right side shows a circular cross-section detail with dimension θ and notation ν, θ. System appears to represent a vibration or dynamics problem setup."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "beam_three_span_alternating_distributed_loads",
+    "description": "Continuous beam with three equal spans, each of length ℓ/3, for total length ℓ. Left end shows fixed support (hatched). Alternating distributed loads applied: upward load xu on left span, downward load xu on middle span, and upward load xu on right span. Dimension a marked vertically at both left and right ends. Coordinate system shows z-axis vertical and horizontal span direction. Problem setup suggests analysis of continuous beam under alternating loading pattern."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "parallel_spring_system_axial_stiffness",
+    "description": "Mechanical system showing two springs in parallel configuration between fixed supports. Left spring k₂ connects from fixed support (hatched) horizontally. Center vertical member with spring k₁ at top (fixed support) connects to point where downward force F is applied. Notation EA and EĀ shown on vertical member indicating axial stiffness properties. Right side shows vertical dimension ℓ with length l₁ marked at top. Dimension i marked at lower left. System represents parallel spring stiffness analysis problem."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "cantilever_beam_uniform_distributed_load",
+    "description": "Cantilever beam with fixed support (hatched) at left end and free right end. Uniform distributed load applied upward across entire beam length ℓ, indicated by evenly-spaced vertical arrows. Beam shows slight deflection curve. Coordinate system shows z-axis vertical and horizontal length dimension ℓ. Simple cantilever beam problem under uniform loading."
+  }
+}

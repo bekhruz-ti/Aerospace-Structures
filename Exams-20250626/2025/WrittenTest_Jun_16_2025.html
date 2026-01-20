@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Written Test - January 16th, 2025 - Course of Aerospace Structures</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            line-height: 1.8;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 1px solid #000;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .solution-block {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .student-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        .true-false, .multiple-choice {
+            margin: 20px 0;
+        }
+
+        .true-false li, .multiple-choice li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        ol {
+            padding-left: 25px;
+        }
+
+        ul {
+            padding-left: 25px;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .question-section {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures<br>Written test, January 16th, 2025</h1>
+        </header>
+
+        <div class="student-info">
+            <p><strong>Name</strong> <span class="answer-space"></span></p>
+            <p><strong>Surname</strong> <span class="answer-space"></span></p>
+            <p><strong>Person code:</strong> <span class="answer-space"></span></p>
+        </div>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jun_16_2025/page_1_img_1.png" alt="L-shaped beam diagram for Exercise 1">
+            </figure>
+            
+            <p>The L-shaped beam in the figure is loaded by the force \(F\) at the free extremity. Compute the displacement \(u\) at the point of application of the external load. Neglect shear deformability.</p>
+            
+            <p>(Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 1000\, \text{mm}\)<br>
+                \(F = 1000\, \text{N}\)<br>
+                \(EI = 1 \times 10^{11}\, \text{N mm}^2\)<br>
+                \(EA = 1 \times 10^6\, \text{N}\)
+            </div>
+            
+            <p><strong>Answer</strong> <span class="answer-solution">\(u \approx 1.833\, \text{mm}\)</span></p>
+            
+            <div class="solution-block">
+                <strong>Solution:</strong><br><br>
+                Using the Principle of Virtual Work with a unit dummy load at the point of interest:<br><br>
+                <strong>1) Reaction Forces (Real):</strong> \(R_{yA} = 0\), \(R_{zA} = -F\), \(R_{zC} = 2F\)<br><br>
+                <strong>2) Internal Actions:</strong><br>
+                Section I: \(T_{yI} = F\), \(M_{xI} = F \cdot z_I\)<br>
+                Section II: \(T_{yII} = -F\), \(M_{xII} = F\left(\frac{l}{2} - z_{II}\right)\)<br>
+                Section III: \(T_{zIII} = -F\), \(M_{xIII} = 0\)<br><br>
+                <strong>3) PCVW Integration:</strong>
+                \[u = \int_0^{l/2} \frac{M_{xI} \cdot M'_{xI}}{EI}\, dz_I + \int_0^{l/2} \frac{M_{xII} \cdot M'_{xII}}{EI}\, dz_{II} + \int_0^{l} \frac{T_{zIII} \cdot T'_{zIII}}{EA}\, dz_{III}\]
+                \[u = \frac{F \cdot l^3}{24EI} + \frac{F \cdot l^3}{24EI} + \frac{F \cdot l}{EA} = \frac{Fl^3}{12EI} + \frac{Fl}{EA}\]
+                <strong>4) Numerical Calculation:</strong>
+                \[u = \frac{10^3 \cdot 10^9}{12 \cdot 10^{11}} + \frac{10^3 \cdot 10^3}{10^6} = \frac{10}{12} + 1 = \frac{11}{6} \approx 1.833\, \text{mm}\]
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jun_16_2025/page_1_img_2.png" alt="L-shaped beam diagram for Exercise 2">
+            </figure>
+            
+            <p>The L-shaped beam in the figure is loaded by the force \(F\) at the free extremity. Compute the displacement \(u\) at the point of application of the external load. Neglect shear deformability.</p>
+            
+            <p>(Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 1000\, \text{mm}\)<br>
+                \(F = 1000\, \text{N}\)<br>
+                \(EI = 1 \times 10^{11}\, \text{N mm}^2\)<br>
+                \(EA = 1 \times 10^6\, \text{N}\)<br>
+                \(K = 1 \times 10^5\, \text{N/mm}\)
+            </div>
+            
+            <p><strong>Answer</strong> <span class="answer-solution">\(u \approx 0.863\, \text{mm}\)</span></p>
+            
+            <div class="solution-block">
+                <strong>Solution:</strong><br><br>
+                The spring at point B introduces a reaction \(R_z = H\) (spring force).<br><br>
+                <strong>1) Spring Force Calculation:</strong><br>
+                From compatibility at spring: \(\frac{Fl}{EA} + H\left(\frac{l}{EA} + \frac{1}{K}\right) = 0\)
+                \[H = -\frac{Fl}{EA} \cdot \left(\frac{l}{EA} + \frac{1}{K}\right)^{-1} = -\frac{FlK}{lK + EA}\]
+                \[H = -\frac{10^3 \cdot 10^3 \cdot 10^5}{10^3 \cdot 10^5 + 10^6} = -\frac{10^{11}}{10^8 + 10^6} = -\frac{10^5}{101} \approx -990.1\, \text{N}\]
+                (The lower beam is in tension)<br><br>
+                <strong>2) Displacement using PCVW:</strong>
+                \[u = \frac{Fl^3}{12EI} + \frac{(F+H) \cdot l}{EA}\]
+                \[u = \frac{10^3 \cdot 10^9}{12 \cdot 10^{11}} + \frac{(1000 - 990.1) \cdot 10^3}{10^6}\]
+                \[u = \frac{5}{6} + 0.0099 \approx 0.863\, \text{mm}\]
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <section class="exercise">
+            <h3>Exercise 3</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jun_16_2025/page_2_img_1.png" alt="Semi-monocoque beam diagram for Exercise 3">
+            </figure>
+            
+            <p>The semi-monocoque beam sketched in the figure, with overall length \(l\), has four panels, each with thickness \(t\), and four concentrated areas, each with area \(A\). It is loaded by the concentrated force \(F\), applied along the right panel, as shown in the figure. Compute the vertical displacement of the right bottom concentrated area. Be careful with the measurement units. (Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 1000\, \text{mm}\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(a = 100\, \text{mm}\)<br>
+                \(t = 0.4\, \text{mm}\)<br>
+                \(A = 1000\, \text{mm}^2\)<br>
+                \(F = 1000\, \text{N}\)
+            </div>
+            
+            <p><strong>Answer</strong> <span class="answer-solution">\(u \approx 1.172\, \text{mm}\)</span></p>
+            
+            <div class="solution-block">
+                <strong>Solution:</strong><br><br>
+                <strong>1) Centroid:</strong> \(C(x_c, y_c)\) with \(x_c = \frac{a}{2}\), \(y_c = \frac{a}{2}\)<br><br>
+                <strong>2) Inertia:</strong> \(J_{xx} = \sum_i A_i \cdot y_i^2 = 4A \cdot \frac{a^2}{4} = Aa^2\)<br><br>
+                <strong>3) Open Cell Shear Flows:</strong><br>
+                \(q_1' = -F\frac{S_{x1}}{J_{xx}} = +\frac{F}{2a}\), \(q_2' = +\frac{F}{2a}\), \(q_3' = q_4' = 0\)<br><br>
+                <strong>4) Closed Cell Correction:</strong> \(q^* = +\frac{F}{4a}\)<br><br>
+                <strong>5) Twist Rate:</strong>
+                \[\frac{d\theta}{dz} = \frac{1}{2\Omega_{cell}} \cdot \sum_i \frac{q_i \cdot l_i}{G \cdot t} = \frac{S}{aGt} = \frac{S \cdot 2(1+\nu)}{aEt}\]
+                \[\theta = \frac{d\theta}{dz} \cdot l = 0.00464\, \text{rad}\]
+                <strong>6) Torsional Displacement:</strong>
+                \[\delta z = \theta \cdot \frac{a}{2} = 6.96 \times 10^{-3} \cdot 50 \approx 0.232\, \text{mm}\]
+                <strong>7) Flexural Displacement:</strong>
+                \[u_{fl} = \frac{2Fl(1+\nu)}{EA^*} + \frac{Fl^3}{3EJ} = 0.464 + \frac{100}{210} \approx 0.94\, \text{mm}\]
+                <strong>8) Total:</strong> \(u_{tot} = u_{fl} + \delta z = 0.94 + 0.232 = 1.172\, \text{mm}\)
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 4</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jun_16_2025/page_2_img_2.png" alt="Semi-monocoque beam cross section for Exercise 4">
+            </figure>
+            
+            <p>The semi-monocoque beam cross section sketched in the figure, has three panels, each with thickness \(t\), and three concentrated areas; each of the two areas at the bottom is equal to \(A_1\). The cross section is loaded by the bending moment \(M_x\). Compute the value of the top area \(A_2\) such that the axial stress there is equal to the design value \(\sigma_y\). (Unit for result: mm\(^2\))</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(\sigma_y = 120\, \text{MPa}\)<br>
+                \(t = 1\, \text{mm}\)<br>
+                \(l = 100\, \text{mm}\)<br>
+                \(h = 200\, \text{mm}\)<br>
+                \(A_1 = 100\, \text{mm}^2\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(M_x = 1 \times 10^6\, \text{N mm}\)
+            </div>
+            
+            <p><strong>Answer</strong> <span class="answer-solution">\(A_2 = 41.67\, \text{mm}^2\)</span></p>
+            
+            <div class="solution-block">
+                <strong>Solution:</strong><br><br>
+                <strong>1) Centroid:</strong> \(x_c = \frac{l}{2}\), \(y_c = \frac{A_2 \cdot h}{2A_1 + A_2}\)<br><br>
+                <strong>2) Axial Stress Formula:</strong>
+                \[\sigma_{zz} = \frac{T_z}{\sum_i A_i} + \frac{M_x \cdot y_i}{J_{xx}} + \frac{M_y \cdot x_i}{J_{yy}}\]
+                Since \(T_z = 0\) and \(M_y = 0\):<br>
+                At point \(A_2\): \(\sigma_{A_2} = \sigma_y = \frac{M_x \cdot y}{J_{xx}}\)<br><br>
+                <strong>3) For the triangular section with A₂ at top:</strong><br>
+                The second moment of area: \(J_{xx} = A_2 \cdot h\) (simplified for boom-only idealization)<br>
+                \[\sigma_y = \frac{M_x \cdot h}{A_2 \cdot h^2} = \frac{M_x}{A_2 \cdot h}\]
+                <strong>4) Solving for \(A_2\):</strong>
+                \[A_2 = \frac{M_x}{\sigma_y \cdot h} = \frac{1 \times 10^6}{120 \times 200} = \frac{10^6}{24000} = 41.67\, \text{mm}^2\]
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <section class="exercise">
+            <h3>Exercise 5</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jun_16_2025/page_3_img_1.png" alt="Slender beam structure for Exercise 5">
+            </figure>
+            
+            <p>Consider the slender beam structure of the figure, loaded the distributed force per unit of length \(f\), as sketched. Estimate the rotation \(\theta\) at the middle hinge by assuming a suitable trigonometric approximation of the transverse displacement truncated to the first non null term. Neglect shear deformability. Be careful with the measurement units.</p>
+            
+            <p>(Unit for result: deg)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(l = 3000\, \text{mm}\)<br>
+                \(f = 100\, \text{N/mm}\)<br>
+                \(EI = 1 \times 10^{11}\, \text{N mm}\)
+            </div>
+            
+            <p><strong>Answer</strong> <span class="answer-solution">\(\theta \approx 7.9^\circ\)</span></p>
+            
+            <div class="solution-block">
+                <strong>Solution:</strong><br><br>
+                <strong>1) Approximation:</strong> Use antisymmetric mode \(v(z) = C \cdot \sin\left(\frac{2\pi z}{l}\right)\)<br><br>
+                <strong>2) Essential Boundary Conditions:</strong><br>
+                \(\phi(0) = 0\), \(\phi(l/2) = 0\), \(\phi(l) = 0\) → satisfied by \(\sin(2\pi z/l)\)<br><br>
+                <strong>3) Derivatives:</strong>
+                \[v'(z) = \frac{2\pi C}{l} \cos\left(\frac{2\pi z}{l}\right)\]
+                \[v''(z) = -\frac{4\pi^2 C}{l^2} \sin\left(\frac{2\pi z}{l}\right)\]
+                <strong>4) Virtual Work - External:</strong>
+                \[\delta W_e = 2 \int_0^{l/2} f \cdot \delta v\, dz = -\frac{2fl}{\pi} \cdot \delta C\]
+                <strong>5) Virtual Work - Internal:</strong>
+                \[\delta W_i = \int_0^l EI \cdot v'' \cdot \delta v''\, dz = \frac{8\pi^4 EI \cdot C \cdot \delta C}{l^3}\]
+                <strong>6) Equilibrium:</strong>
+                \[-\frac{2fl}{\pi} = \frac{8\pi^4 EI \cdot C}{l^3} \implies C = -\frac{fl^4}{4\pi^5 EI}\]
+                \[C = -\frac{100 \cdot 81 \times 10^{12}}{4\pi^5 \times 10^{11}} = -66.17\, \text{mm}\]
+                <strong>7) Rotation at \(z = l/2\):</strong>
+                \[\theta = v'\left(\frac{l}{2}\right) = \frac{2\pi C}{l} \cdot \cos(\pi) = -\frac{2\pi C}{l}\]
+                \[\theta = -\frac{2\pi \times (-66.17)}{3000} = 0.1386\, \text{rad} = 7.94^\circ \approx 7.9^\circ\]
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 6</h3>
+            
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jun_16_2025/page_3_img_2.png" alt="Spring system for Exercise 6">
+            </figure>
+            
+            <p>The spring system drawn in the figure, each with stiffness \(K\), is loaded at point A by the horizontal force \(F\). Compute the displacement in the horizontal direction of point B.</p>
+            
+            <p>(Unit for result: mm)</p>
+            
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(K = 10000\, \text{N/mm}\)<br>
+                \(F = 10000\, \text{N}\)
+            </div>
+            
+            <p><strong>Answer</strong> <span class="answer-solution">\(u_B = \frac{1}{9}\, \text{mm} \approx 0.111\, \text{mm}\)</span></p>
+            
+            <div class="solution-block">
+                <strong>Solution:</strong><br><br>
+                <strong>1) Springs in Parallel (3,4,5,6):</strong> \(K_{36} = 4K\)<br><br>
+                <strong>2) Springs in Series (2 and 36):</strong>
+                \[\frac{1}{K_{26}} = \frac{1}{K_2} + \frac{1}{K_{36}} = \frac{1}{K} + \frac{1}{4K} = \frac{5}{4K} \implies K_{26} = \frac{4K}{5}\]
+                <strong>3) Total Stiffness (1 parallel to 26):</strong>
+                \[K_{tot} = K_1 + K_{26} = K + \frac{4K}{5} = \frac{9K}{5}\]
+                <strong>4) Stiffness Matrix:</strong>
+                \[K\begin{bmatrix}2 & -1\\-1 & 5\end{bmatrix}\begin{Bmatrix}u_1\\u_2\end{Bmatrix} = \begin{Bmatrix}F\\0\end{Bmatrix}\]
+                <strong>5) Solving:</strong>
+                \[\begin{Bmatrix}u_1\\u_2\end{Bmatrix} = \frac{1}{9K}\begin{bmatrix}5 & 1\\1 & 2\end{bmatrix}\begin{Bmatrix}F\\0\end{Bmatrix}\]
+                <strong>6) Displacement of B:</strong>
+                \[u_2 = u_B = \frac{F}{9K} = \frac{10000}{9 \times 10000} = \frac{1}{9}\, \text{mm} \approx 0.111\, \text{mm}\]
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <section class="question-section">
+            <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+            
+            <ol class="true-false">
+                <li>The compressive buckling stress of an Euler-Bernoulli beam is proportional to the minimum bending stiffness \(EI_{\text{min}}\) of the cross section. <span class="answer-solution">F</span>
+                <br><em>(The buckling stress \(\sigma_{cr} = \frac{\pi^2 EI_{min}}{AL_e^2}\) is proportional to \(EI_{min}/L^2\), not just \(EI_{min}\))</em></li>
+                
+                <li>Consider a clamped Timoshenko beam loaded by a concentrated force applied at the free extremity. The shear strain at the clamp is null. <span class="answer-solution">F</span>
+                <br><em>(In Timoshenko beam theory, the shear strain \(\gamma = T/(GA^*)\) is constant along the beam and NOT zero at the clamp)</em></li>
+                
+                <li>The torsional stiffness of a square cross section is equal to \(GJ\), where \(G\) is the shear modulus and \(J\) the polar area moment of the cross section. <span class="answer-solution">F</span>
+                <br><em>(For non-circular cross sections, the torsional constant \(J_t \neq J_{polar}\). The torsional stiffness involves a different constant.)</em></li>
+            </ol>
+        </section>
+
+        <section class="question-section">
+            <h2>Multiple Choice questions (Circle the correct answer)</h2>
+            
+            <ol class="multiple-choice">
+                <li>
+                    <p>The elastic problem can be formulated in terms of displacements:</p>
+                    <p><strong style="color: #2e7d32;">(a) always;</strong> ✓</p>
+                    <p>(b) only for statically determinate problems;</p>
+                    <p>(c) only within the framework of the finite element method;</p>
+                    <p>(d) never;</p>
+                    <p>(e) none of the above.</p>
+                </li>
+                
+                <li>
+                    <p>The linear static response of simply-supported beam with stiffness \(EJ\) and loaded with a uniform load:</p>
+                    <p><strong style="color: #2e7d32;">(a) can be analyzed by imposing symmetry conditions;</strong> ✓</p>
+                    <p>(b) cannot be analyzed by imposing symmetry conditions because even vibration modes are anti-symmetric;</p>
+                    <p>(c) can be analyzed by imposing symmetry conditions because odd vibration modes are symmetric;</p>
+                    <p>(d) none of the above.</p>
+                </li>
+                
+                <li>
+                    <p>In a finite element procedure, the stress tensor:</p>
+                    <p>(a) cannot be computed;</p>
+                    <p>(b) is part of the solution;</p>
+                    <p><strong style="color: #2e7d32;">(c) can be recovered from the solution;</strong> ✓</p>
+                    <p>(d) none of the above.</p>
+                    <p><em>(Stresses are computed from displacements via strain-displacement and constitutive relations)</em></p>
+                </li>
+            </ol>
+        </section>
+
+    </article>
+</body>
+</html>

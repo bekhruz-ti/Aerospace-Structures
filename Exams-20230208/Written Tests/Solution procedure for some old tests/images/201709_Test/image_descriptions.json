@@ -1,0 +1,78 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "semi_monocoque_beam_cross_section",
+    "description": "Semi-monocoque beam cross-section showing rectangular configuration with four corner stringers. Two stringer types labeled: A₁ (appears at two corners) and A₂ (appears at two other corners). Point B marked at upper right stringer location. Cross-section dimensions indicated by width 'a' and height 'a'. Coordinate system shows y-axis vertical and z-axis horizontal (into page)."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "beam_fixed_support_point_load",
+    "description": "Cantilever beam with fixed support (hatched) at left end and free right end. Vertical downward point force F = 5000 N applied at free end. Beam length l = 12000 mm with square cross-section dimension a = 400 mm. Coordinate system shows z-axis along beam length."
+  },
+  "page_1_img_3.png": {
+    "suggested_name": "beam_cross_section_square",
+    "description": "Square cross-section diagram with dimension 'a' on each side. Coordinate system shows y-axis vertical and x-axis horizontal. Simple geometric representation of beam cross-sectional profile."
+  },
+  "page_1_img_4.png": {
+    "suggested_name": "beam_distributed_load_supports",
+    "description": "Beam with distributed load q(x) shown by vertical arrows along top surface. Fixed support (hatched) at left end and roller support at right end. Beam length indicated as 'l'. Load distribution appears uniform across the span."
+  },
+  "page_1_img_5.png": {
+    "suggested_name": "beam_triangular_distributed_load",
+    "description": "Beam with triangular distributed load varying linearly along length. Fixed support (hatched) at left end. Load intensity increases from left to right, shown by increasing arrow lengths. Beam length 'l' and load parameter 'q' labeled."
+  },
+  "page_1_img_6.png": {
+    "suggested_name": "beam_butterfly_distributed_load",
+    "description": "Beam with butterfly-shaped distributed load q(x) = -q + 2qx/l creating null resultant. Hinged support at left end with axial pre-stress force Fₓ. Load varies linearly from -q (downward) at left to +q (upward) at right. Beam length 'l' with rotational spring constant kₜ at right end."
+  },
+  "page_1_img_7.png": {
+    "suggested_name": "beam_inclined_support_distributed_load",
+    "description": "Beam system with inclined member of length 'l' connecting fixed support (hatched, upper right) to hinged support (lower left). Triangular distributed load 'q' applied to horizontal beam segment of length 'l'. Rotational spring kₜ shown at lower right connection point."
+  },
+  "page_1_img_8.png": {
+    "suggested_name": "beam_fixed_pinned_point_load",
+    "description": "Horizontal beam with fixed support (hatched) at left end and pinned support at right end. Vertical upward point force P applied at right end. Beam length indicated, with coordinate system showing x-axis along beam. Simple two-support configuration."
+  },
+  "page_1_img_9.png": {
+    "suggested_name": "beam_inclined_members_distributed_load",
+    "description": "Structural system with two inclined members of length 'l' forming triangular configuration. Fixed support (hatched) at upper right. Triangular distributed load 'q' applied to horizontal beam segment of length 'l'. Hinged support at lower left with rotational spring kₜ at lower right junction."
+  },
+  "page_1_img_10.png": {
+    "suggested_name": "beam_axial_force_distributed_load",
+    "description": "Beam with axial force Fₓ applied at left end and distributed load q along top surface. Fixed support (hatched) at right end. Beam length 'l' indicated. Load shown by vertical arrows pointing downward along span."
+  },
+  "page_1_img_11.png": {
+    "suggested_name": "beam_moment_distributed_load",
+    "description": "Beam with applied moment M at left end and distributed load q along span. Fixed support (hatched) at right end. Beam length 'l' shown. Moment indicated by curved arrow, distributed load by vertical arrows."
+  },
+  "page_1_img_12.png": {
+    "suggested_name": "beam_point_load_fixed_support",
+    "description": "Simple beam with point load P applied at left end and fixed support (hatched) at right end. Beam length 'l' indicated. Minimal configuration showing single concentrated force and cantilever-like boundary condition."
+  },
+  "page_1_img_13.png": {
+    "suggested_name": "beam_moment_load_fixed_support",
+    "description": "Beam with applied moment M at left end and fixed support (hatched) at right end. Beam length 'l' shown. Moment represented by curved arrow at free end."
+  },
+  "page_1_img_14.png": {
+    "suggested_name": "beam_fixed_pinned_vertical_load",
+    "description": "Horizontal beam with fixed support (hatched) at left end and pinned support at right end. Vertical upward force P applied at right pinned connection. Coordinate axes show x horizontal and y vertical. Beam length indicated between supports."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "handwritten_calculations_truss_analysis",
+    "description": "Handwritten engineering calculations showing truss analysis with multiple force diagrams. Contains algebraic expressions, force equilibrium equations, and small sketches of truss members with force vectors. Calculations include terms like k₁, k₂, force components, and equilibrium conditions. Multiple small diagrams show pin-jointed members with force arrows and angle notations."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "handwritten_calculations_force_analysis",
+    "description": "Handwritten calculations with force analysis diagrams. Shows algebraic manipulations and small sketches of structural members with force vectors. Contains expressions with variables X, force components, and equilibrium equations. Two small diagrams on right side show inclined members with force arrows and dimensional annotations."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "handwritten_calculations_beam_element",
+    "description": "Handwritten engineering calculations with algebraic expressions and equations. Right side shows small diagram of beam element with coordinate system (x-axis horizontal, y-axis vertical) and force/moment notation. Lower right contains small cross-section sketch with hatching and dimensional labels P and a."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "handwritten_calculations_matrix_equations",
+    "description": "Handwritten calculations showing matrix equations and algebraic expressions. Contains terms with subscripts, force components, and equilibrium relationships. Mathematical expressions include matrix notation with parentheses and multiple variables. Calculations appear to relate to structural analysis with force and displacement terms."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "handwritten_calculations_force_equilibrium",
+    "description": "Handwritten calculations showing force equilibrium equations and algebraic manipulations. Contains expressions with force components, subscripted variables, and mathematical operations. Calculations include terms like φ (phi), force ratios, and equilibrium conditions. Multiple lines of algebraic derivations with parenthetical expressions."
+  }
+}

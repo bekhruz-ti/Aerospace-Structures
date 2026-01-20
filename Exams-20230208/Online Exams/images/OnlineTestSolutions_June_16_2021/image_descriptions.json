@@ -1,0 +1,86 @@
+{
+  "page_5_img_1.png": {
+    "suggested_name": "beam_fixed_ends_uniform_distributed_load",
+    "description": "Beam with fixed supports at both ends (indicated by hatching at left and right) subjected to uniform upward distributed load q. Beam has length ℓ, axial rigidity EA, and flexural rigidity EJ. Unknown reaction force X marked at left support with red annotation. Problem data provided: ℓ = 1000(1+c/10) mm, q = 0.1 N/mm, EA = 1·10⁶ N, EJ = 1·10⁹ Nmm². Exercise asks to determine the unknown reaction force X."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "beam_symmetry_decomposition_solution",
+    "description": "Solution approach showing symmetry exploitation for beam problem. Original beam with fixed ends and uniform upward distributed load q is decomposed into two symmetric half-length beams (ℓ/2 each) with properties EA, EJ. Left half-beam shows moment M at right end, right half-beam shows moment M and force W at left end. Equations shown: M = -W - qx²/2 for flexural system, and constraint equation ²ᵍM = -1 for boundary conditions. Demonstrates use of symmetry to simplify analysis."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "l_frame_distributed_load_vertical_displacement",
+    "description": "L-shaped frame structure with fixed support at bottom left. Vertical member has height h with properties EA₁, EJ₁, and length ℓ. Horizontal member has length ℓ with properties EA₂, EJ₂, and ℓ, with fixed support at right end. Uniform upward distributed load q applied along horizontal member. Problem asks to determine vertical displacement v at x = ℓ/2 using Ritz method with polynomial representation and smaller possible number of degrees of freedom. Data provided: ℓ = 1300(1+h/10) mm, q = 100 N/mm, h = 70 N/mm, EA₁ = 3·10⁶ N, EJ₁ = 4·10¹² Nmm², EA₂ = 6·10⁶ N, EJ₂ = 8·10¹² Nmm²."
+  },
+  "page_9_img_1.png": {
+    "suggested_name": "l_frame_displacement_field_solution",
+    "description": "Solution for L-frame showing displacement field formulation. Diagram shows frame with vertical member (z₁ coordinate) and horizontal member (z₂ coordinate) with displacement functions u₁, w₁ for vertical member and u₂, w₂ for horizontal member. Boundary conditions specified: d₂ = -c₁ℓ, d₁ = -c₁, with compatibility conditions u₁(ℓ) = d₁ and w₂(ℓ) = d₂. Trial functions shown with 10 degrees of freedom using polynomial expressions with coefficients a₀, a₁, b₀, b₁, b₂, c₀, c₁, d₀, d₁, d₂. Essential boundary conditions listed: u₁(0)=0, w₁(0)=0, w₁'(0)=0, leading to 6 constraints."
+  },
+  "page_12_img_1.png": {
+    "suggested_name": "space_truss_triangular_section_torsion",
+    "description": "Three-dimensional space truss with length ℓ showing three parallel members connected by diagonal bracing forming triangular cross-sections. Vertical force P applied at bottom left node. Cross-section views show triangular configuration with dimensions d₁ and d₂, with second section rotated 45° relative to first. Problem asks to compute rotation of loaded end. Data provided: ℓ = 5000 mm, t = 0.8 mm, d₁ = 500(1+F/10) mm, d₂ = 250(1+E/6) mm, A = 500 mm², P = 8000 N, G = 27000 MPa."
+  },
+  "page_13_img_1.png": {
+    "suggested_name": "space_truss_torsion_solution_geometry",
+    "description": "Solution for space truss torsion problem showing geometric analysis of triangular cross-section. Diagram shows section with nodes A at corners, dimensions d₁, d₂, d₃, and diagonal dimensions d and d̄. Geometric relationships derived: Ω = d₁d₂/2, d₃ = √((d₁/2)² + (d₂/2)²), d = d₂/2 cos45°. Torsional constant calculation using Bredt's formula: J = 4Ω²/(∮ₚ(1/t)dn) = 4Ω²/(4d₃/t) = Ω²t/d₃. Angle calculation shows θₜ = Pd = GJ, leading to θ' = Pd/GJ and final result θ = θ'ℓ = 0.674 deg."
+  },
+  "page_14_img_1.png": {
+    "suggested_name": "beam_triangular_distributed_load_simply_supported",
+    "description": "Simply supported beam with pinned supports at both ends (indicated by sun symbols) subjected to triangular distributed load varying linearly from zero at left to maximum q = x/ℓ·a at right end. Beam has length ℓ, flexural rigidity EJ, with coordinate x measured from left support. Problem asks to compute vertical displacement at x = ℓ/2 using Ritz method and choosing between approximations listed. Data provided: ℓ = 1500(1+A/10) mm, EJ = 10¹⁰ Nmm², a = 1.0 N/mm."
+  },
+  "page_15_img_1.png": {
+    "suggested_name": "triangular_load_ritz_approximation_solution",
+    "description": "Solution for triangular distributed load problem using Ritz approximation w = Cx(x-ℓ). Beam shown with pinned supports at both ends and triangular load q = x/ℓ·a. Derivatives calculated: w' = C2x - Cℓ and w'' = C2. Principle of virtual work (PVW) equation: ∫₀ˡ δw''EJw''dx = ∫₀ˡ δw x/ℓ·a dx. Upon substitution of approximation: δc∫₀ˡ 4EJ dx c = δc∫₀ˡ x(x-ℓ)x/ℓ dx, leading to solution (4EJℓ)c = -aℓ²/12."
+  },
+  "l_frame_spring_support_horizontal_load.png": {
+    "suggested_name": "l_frame_spring_support_horizontal_load",
+    "description": "L-shaped frame structure with fixed support at top, spring support at bottom, horizontal member with properties EA₁, EJ₁, ℓ₁ and vertical member with properties EA₂, EJ₂, ℓ₂, subjected to horizontal force T at fixed end and force P at free end"
+  },
+  "l_frame_real_system_forces.png": {
+    "suggested_name": "l_frame_real_system_forces",
+    "description": "L-shaped frame showing real system with fixed support at top, vertical member with properties EA₂, EJ₂, ℓ₂, horizontal member with properties EA₁, EJ₁, ℓ₁, subjected to horizontal force W and vertical force V at the corner joint"
+  },
+  "l_frame_dummy_systems_unit_loads.png": {
+    "suggested_name": "l_frame_dummy_systems_unit_loads",
+    "description": "Two dummy system diagrams of L-shaped frame showing unit load applications for virtual work analysis, with fixed support at top and free end at bottom right"
+  },
+  "fixed_fixed_beam_distributed_load.png": {
+    "suggested_name": "fixed_fixed_beam_distributed_load",
+    "description": "Fixed-fixed beam with uniformly distributed upward load q, showing beam properties EA, EJ, ℓ, with reaction force X marked at left support"
+  },
+  "fixed_fixed_beam_load_decomposition.png": {
+    "suggested_name": "fixed_fixed_beam_load_decomposition",
+    "description": "Fixed-fixed beam with uniformly distributed upward load showing decomposition into two simpler loading cases for analysis"
+  },
+  "l_frame_cantilever_distributed_load.png": {
+    "suggested_name": "l_frame_cantilever_distributed_load",
+    "description": "L-shaped cantilever frame with fixed support at base, vertical member with properties EA₁, EJ₁, ℓ, horizontal member with properties EA₂, EJ₂, ℓ, subjected to distributed load q on horizontal member and vertical displacement v at top"
+  },
+  "l_frame_displacement_components.png": {
+    "suggested_name": "l_frame_displacement_components",
+    "description": "L-shaped frame solution diagram showing displacement components u₁, w₁ on vertical member and u₂, w₂ on horizontal member with coordinate system and boundary conditions"
+  },
+  "truss_3d_inclined_members_cross_section.png": {
+    "suggested_name": "truss_3d_inclined_members_cross_section",
+    "description": "Three-dimensional truss structure showing inclined members with length ℓ, cross-sectional details showing dimensions d₁ and d₂ at 45° angle, with point load P at base support"
+  },
+  "truss_cross_section_geometry.png": {
+    "suggested_name": "truss_cross_section_geometry",
+    "description": "Cross-sectional diagram of truss showing quadrilateral section with labeled nodes and dimensions d₁, d₂, d₃, coordinate axes, and applied force P"
+  },
+  "simply_supported_beam_triangular_load.png": {
+    "suggested_name": "simply_supported_beam_triangular_load",
+    "description": "Simply supported beam with triangular distributed load varying linearly from zero to maximum q = z/ℓ·a, showing beam properties ℓ, EJ and coordinate system with pin supports at both ends"
+  },
+  "simply_supported_beam_triangular_distributed_load.png": {
+    "suggested_name": "simply_supported_beam_triangular_distributed_load",
+    "description": "Simply supported beam with triangular distributed load q = z/ℓ·a, showing beam properties ℓ, EJ with pin supports at both ends and coordinate axis"
+  },
+  "3d_frame_fixed_support_point_load.png": {
+    "suggested_name": "3d_frame_fixed_support_point_load",
+    "description": "Three-dimensional frame structure with fixed support at top right, showing three members with lengths ℓ₁, ℓ₂, ℓ₃, numbered nodes 1-4, coordinate system with z-axis, and applied force F at node 4"
+  },
+  "rectangular_cross_section_bending.png": {
+    "suggested_name": "rectangular_cross_section_bending",
+    "description": "Rectangular cross-section diagram showing nodes 1-4 with dimension ℓ₂, coordinate axes y and x for bending moment analysis"
+  }
+}

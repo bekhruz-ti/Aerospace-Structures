@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema_02_09_2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .course-info {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h2 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .data-section strong {
+            font-family: 'Times New Roman', Times, serif;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f0f8ff;
+            border-left: 4px solid #28a745;
+        }
+
+        .question h2 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #28a745;
+        }
+
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+
+        .page-number {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Tema_02_09_2019</h1>
+            <p class="metadata">Extracted from: C:\Users\bekhr\Downloads\Aerospace Structres\Exams-20230208\Written Tests\Tema_02_09_2019.pdf</p>
+        </header>
+
+        <p class="course-info">Course of Aerospace Structures Written test, September 2nd, 2019</p>
+
+        <figure class="diagram">
+            <img src="images/Tema_02_09_2019/page_1_img_1.png" alt="Diagram for Exercise 1">
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            <p>A structure is made of three bars connected each other through hinge constraints. The bars are made of aluminum alloy with Young's modulus \(E\) and have area \(A\). A set of loads is applied at the end of the bars, the concentrated loads being denoted as \(F_1\) and \(F_2\), as shown in the figure. By using a displacement-based approach, determine the internal stresses in the three bars.</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l_1 = 600\, \text{mm}\); \(l_2 = 200\, \text{mm}\); \(A = 400\, \text{mm}^2\); \(E = 70\, \text{GPa}\); \(F_1 = 1.0 \times 10^4\, \text{N}\); \(F_2 = 3.0 \times 10^4\, \text{N}\);
+            </div>
+        </section>
+
+        <figure class="diagram">
+            <img src="images/Tema_02_09_2019/page_1_img_2.png" alt="Diagram for Exercise 2">
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            <p>Consider the elastically restrained column in the figure. Specifically, the column has length \(l\) and a square section of dimension \(a\). The material is an aluminum alloy characterized by Young's moduli \(E\). One end is fixed and the second one is grounded by means of two linear springs of stiffness \(k_1\) and \(k_2\). A compressive load \(P\) is applied at one end. Estimate the buckling load of the structure by resorting to a displacement-based approach along with an appropriate approximate solution strategy.</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 1200\, \text{mm}\); \(a = 20\, \text{mm}\); \(E = 70\, \text{GPa}\); \(k_1 = 1\, \text{N/mm}\); \(k_2 = 10\, \text{kN/mm}\);
+            </div>
+        </section>
+
+        <section class="question">
+            <h2>Question 1</h2>
+            <p>Illustrate how to estimate the torsional and transverse shear stiffnesses for a thin-walled beam in the context of the semi-monocoque approximation.</p>
+        </section>
+
+        <div class="page-number">1</div>
+    </article>
+</body>
+</html>

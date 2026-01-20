@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, February 13th, 2024</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        article {
+            background: white;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .metadata {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .student-info {
+            margin: 30px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 1px solid #333;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: inline-block;
+            color: #28a745;
+            font-weight: bold;
+            margin-left: 10px;
+            padding: 2px 8px;
+            background: #e8f5e9;
+            border-radius: 3px;
+        }
+
+        .solution-box {
+            background: #e8f5e9;
+            border: 1px solid #28a745;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .solution-box strong {
+            color: #28a745;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 12px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+            font-style: italic;
+        }
+
+        .true-false, .multiple-choice {
+            list-style-position: outside;
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        .true-false li, .multiple-choice li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .multiple-choice ul {
+            list-style-type: lower-alpha;
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .multiple-choice ul li {
+            margin: 5px 0;
+        }
+
+        .multiple-choice ul li.correct-answer {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .page-break {
+            page-break-before: always;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #ccc;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+            .page-break {
+                page-break-before: always;
+                border-top: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .exercise {
+                padding: 15px;
+            }
+            
+            .data-section {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures<br>Written test, February 13th, 2024</h1>
+        </header>
+
+        <div class="student-info">
+            <p><strong>Name</strong></p>
+            <p><strong>Surname</strong></p>
+            <p><strong>Person code:</strong></p>
+        </div>
+
+        <figure class="diagram">
+            <img src="images/February_13_2024/page_1_img_1.png" alt="Rectangular plate structure with dimensions a (width), b (length), and h (height/thickness) shown in 3D isometric view">
+            <figcaption>
+                <strong>Rectangular plate structure with dimensions \(a\) (width), \(b\) (length), and \(h\) (height/thickness) shown in 3D isometric view. The top surface is subjected to distributed pressure loading indicated by upward-pointing arrows across the surface. The plate shows diagonal hatching pattern indicating the structural element. A length dimension of \(4\ell\) is marked along one edge. Coordinate system shows vertical \(h\)-axis and horizontal dimensions \(a\) and \(b\).</strong>
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/February_13_2024/page_1_img_2.png" alt="Three-dimensional truss or frame structure with pinned joints at nodes">
+            <figcaption>
+                <strong>Three-dimensional truss or frame structure with pinned joints at nodes. Vertical member of height \(b\) connects to lower node, with diagonal members forming triangulated configuration. Point \(A\) marked at upper left joint, point \(G\) at lower left joint, and point \(A\) at lower right joint. Vertical force \(F\) applied upward at lower left support. Horizontal dimension \(a\) shown at base. Right side shows fixed support indicated by hatching marks. Coordinate system shows \(z\)-axis horizontal and \(a\)-axis vertical. Internal diagonal member labeled \(2\ell\).</strong>
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            <p>The semi-monocoque wing box model represented in the figure has five uniformly spaced ribs (including the rib located at the clamp) and ten stringers (five uniformly spaced on the upper side, five uniformly spaced on the lower side). Each stringer has a concentrated area \(A\). The panels thickness is equal to \(t\). The wing box is loaded by a pressure load that is constant along the wing span and has a triangular distribution along the chord, with the maximum value equal to \(p\). Compute the upper right stringer jump of axial stress \(\Delta\sigma_{zz}\) across the mid-span rib.</p>
+            
+            <p><strong>(Unit for result: MPa)</strong></p>
+            
+            <div class="data-section">
+                <strong>Data</strong>
+                \(4l = 3\, \text{m}\)<br>
+                \(a = 1\, \text{m}\)<br>
+                \(b = 10\, \text{cm}\)<br>
+                \(t = 1\, \text{mm}\)<br>
+                \(A = 10\, \text{cm}^2\)<br>
+                <br>
+                \(p = 1000\, \text{Pa}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    The pressure load has a triangular distribution along the chord and is constant along the span. At each rib location, the resultant force is:
+                    \[F = \frac{1}{2} p \cdot a \cdot a\]
+                    
+                    Since the loading is constant along the span (uniform distribution), the bending moment \(M_x\) does not change across the mid-span rib:
+                    \[\Delta M_x = 0\]
+                    
+                    Therefore, the jump in axial stress in the stringer across the mid-span rib is:
+                    \[\boxed{\Delta\sigma_{zz} = 0\, \text{MPa}}\]
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            <p>The semi-monocoque beam model sketched in the figure has a triangular cross-section with three con- centrated areas \(A\), two panels of thickness \(t\) and one panel of thickness \(2t\). The beam has length \(l\), is clamped at one extremity and loaded by the force \(F\), aligned with the vertical panel, at the free extremity. Compute the overall torsional rotation of the loaded extremity section.</p>
+            
+            <p><strong>(Unit for result: rad)</strong></p>
+            
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 0.5\, \text{m}\)<br>
+                \(A = 4\, \text{cm}^2\)<br>
+                <br>
+                \(t = 1\, \text{mm}\)<br>
+                \(l = 4\, \text{m}\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(F = 10000\, \text{N}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    Convert to consistent units: \(a = 500\, \text{mm}\), \(A = 400\, \text{mm}^2\), \(l = 4000\, \text{mm}\)<br><br>
+                    
+                    Shear modulus: \(G = \frac{E}{2(1+\nu)} = \frac{70000}{2(1.3)} = 26923\, \text{MPa}\)<br><br>
+                    
+                    For the triangular cross-section:
+                    <ul>
+                        <li>\(T_y = \frac{\sqrt{2}}{2}F = -T_x\)</li>
+                        <li>\(b = \frac{\sqrt{2}}{2}a\), \(c = 2b\)</li>
+                        <li>\(J_{xx} = 2Ab^2\), \(J_{yy} = \frac{2}{3}Ab^2\)</li>
+                    </ul>
+                    
+                    Static moments and shear flows calculated:<br>
+                    \(S_{x_1} = -S_{x_3} = -Ab\), \(S_{x_2} = 0\)<br>
+                    \(S_{y_1} = S_{y_3} = -\frac{Ab}{3}\), \(S_{y_2} = \frac{2Ab}{3}\)<br><br>
+                    
+                    Using the compatibility equation: \(0 = 2\Omega_{cell} q^*\) where \(\Omega_{cell} = \frac{1}{2}cb\)<br><br>
+                    
+                    Twist rate:
+                    \[\theta' = \frac{1}{2\Omega_{cell} G}\left(\frac{q^* \cdot c}{2t} + \frac{q_1' \cdot a}{t} + \frac{q_2' \cdot a}{t}\right)\]
+                    
+                    Total rotation:
+                    \[\boxed{\theta = -(\theta' \cdot l) = 0.059\, \text{rad}}\]
+                </div>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/February_13_2024/page_2_img_1.png" alt="Vertical spring-mass system with fixed support at base">
+            <figcaption>
+                <strong>Vertical spring-mass system with fixed support (hatched) at base. Spring with stiffness \(k\) connects to point \(A\) where vertical force \(F\) is applied upward. Mass element shown above point \(A\) with dimension \(a\) marked vertically. Length \(\ell\) indicates the vertical extent of the system. Upper left shows inclined member of length \(L\) at an angle. Right side shows a circular cross-section detail with dimension \(\theta\) and notation \(\nu\), \(\theta\). System appears to represent a vibration or dynamics problem setup.</strong>
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/February_13_2024/page_2_img_2.png" alt="Continuous beam with three equal spans">
+            <figcaption>
+                <strong>Continuous beam with three equal spans, each of length \(\ell/3\), for total length \(\ell\). Left end shows fixed support (hatched). Alternating distributed loads applied: upward load xu on left span, downward load xu on middle span, and upward load xu on right span. Dimension \(a\) marked vertically at both left and right ends. Coordinate system shows \(z\)-axis vertical and horizontal span direction. Problem setup suggests analysis of continuous beam under alternating loading pattern.</strong>
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 3</h3>
+            <p>Consider the thin beam model sketched in the figure, and loaded by the force \(F\) applied at point \(A\). All the beams have the same cross-section. Compute the rotation \(\theta\) of the point where the beam of length \(b\) is joined to the two beams of length \(a\). Neglect shear deformability.</p>
+            
+            <p><strong>(Unit for result: rad)</strong></p>
+            
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 1\, \text{m}\)<br>
+                \(b = 2\, \text{m}\)<br>
+                \(c = 3\, \text{m}\)<br>
+                \(EI_{xx} = EI_{yy} = 12 \times 10^{14}\, \text{N mm}^2\)<br>
+                <br>
+                \(EA = 6 \times 10^{10}\, \text{N}\)<br>
+                \(GJ = 7 \times 10^9\, \text{N mm}^2\)<br>
+                <br>
+                \(K = 1\, \text{N/mm}\)<br>
+                \(F = 10000\, \text{N}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    Convert to consistent units: \(a = 1000\, \text{mm}\), \(b = 2000\, \text{mm}\), \(c = 3000\, \text{mm}\)<br><br>
+                    
+                    Using the Principle of Virtual Work with three beam segments:<br><br>
+                    
+                    <strong>Segment 1 (length a):</strong> Axial member<br>
+                    \(T_{z_1} = -F - H_{Y_A}\), \(T'_{z_1} = -1\)<br><br>
+                    
+                    <strong>Segment 2 (length b):</strong> Bending<br>
+                    \(M_x = (-F - H_{Y_A})z_2\), \(M'_x = (-1) \cdot z_2\)<br><br>
+                    
+                    <strong>Segment 3 (length c):</strong> Combined bending and torsion<br>
+                    \(M_{z_3} = (F + H_{Y_A})b\), \(M'_{z_3} = (1)b\)<br>
+                    \(M_{x_3} = (-F - H_{Y_A}) \cdot z_3\), \(M'_{x_3} = (-1)z_3\)<br><br>
+                    
+                    Virtual work equations:
+                    \[\delta W_e' = \begin{bmatrix} -1 \cdot \frac{H_{Y_A}}{k} \\ 1 \cdot \theta \end{bmatrix}\]
+                    
+                    \[\delta W_i' = \int_0^a T'_{z_1} \frac{T_{z_1}}{EA}dz_1 + \int_0^b M'_{x_2} \frac{M_{x_2}}{EI}dz_2 + \int_0^c M'_{z_3} \frac{M_{z_3}}{GJ}dz_3 + \int_0^c M'_{x_3} \frac{M_{x_3}}{EI}dz_3\]
+                    
+                    Solving \(\delta W_e' = \delta W_i'\):
+                    \[\boxed{\theta = 1.3816 \times 10^{-5}\, \text{rad}}\]
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 4</h3>
+            <p>Consider the simply supported thin beam model sketched in the figure, with overall length \(l\), and loaded by the piece-wise constant force per unit of length \(a\). Compute the rotation \(\theta(l/2)\) in the middle of the beam. Neglect shear deformability.</p>
+            
+            <p><strong>(Unit for result: rad)</strong></p>
+            
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 1000\, \text{N/mm}\)<br>
+                \(l = 2000\, \text{mm}\)<br>
+                \(EI = 12 \times 10^{10}\, \text{N mm}^2\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    The beam has three equal spans of length \(\ell/3\) each with alternating distributed loads.<br><br>
+                    
+                    <strong>Global Equilibrium:</strong><br>
+                    \[H_{Y_A} = -H_{Y_B} \quad \Rightarrow \quad H_{Y_A} = -\frac{3}{4}a\ell\]
+                    
+                    From moment equilibrium:
+                    \[8H_{Y_B} = \frac{2a \cdot (\ell/2) \cdot (\ell/4)}{(\ell/6)} = \frac{3}{4}a\ell\]
+                    
+                    Virtual loads: \(H'_{Y_A} = -\frac{3}{\ell}\), \(H'_{Y_B} = \frac{3}{\ell}\)<br><br>
+                    
+                    <strong>Segments 1 and 3:</strong> Dummy (unloaded in virtual system)<br><br>
+                    
+                    <strong>Segment 2 (and symmetric segment 4):</strong><br>
+                    \[M_{x_2} = -\left[a \cdot \left(\frac{\ell}{3} + z_2\right)\right] \cdot \left(\frac{\ell}{3} + z_2\right) \cdot \frac{1}{2} + \frac{3}{4}a\ell \cdot z_2\]
+                    \[M'_{x_2} = \frac{3}{\ell} \cdot z_2\]
+                    
+                    <strong>Principle of Virtual Work:</strong>
+                    \[\theta = 2\int_0^{\ell/6} M'_{x_2} \cdot \frac{M_{x_2}}{EI}dz_2\]
+                    
+                    \[\boxed{\theta\left(\frac{l}{2}\right) = 0.09\, \text{rad}}\]
+                </div>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">2</p>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/February_13_2024/page_3_img_1.png" alt="Mechanical system showing two springs in parallel configuration between fixed supports">
+            <figcaption>
+                <strong>Mechanical system showing two springs in parallel configuration between fixed supports. Left spring \(k_2\) connects from fixed support (hatched) horizontally. Center vertical member with spring \(k_1\) at top (fixed support) connects to point where downward force \(F\) is applied. Notation \(EA\) and \(E\bar{A}\) shown on vertical member indicating axial stiffness properties. Right side shows vertical dimension \(\ell\) with length \(l_1\) marked at top. Dimension \(i\) marked at lower left. System represents parallel spring stiffness analysis problem.</strong>
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/February_13_2024/page_3_img_2.png" alt="Cantilever beam with fixed support at left end and free right end">
+            <figcaption>
+                <strong>Cantilever beam with fixed support (hatched) at left end and free right end. Uniform distributed load applied upward across entire beam length \(\ell\), indicated by evenly-spaced vertical arrows. Beam shows slight deflection curve. Coordinate system shows \(z\)-axis vertical and horizontal length dimension \(\ell\). Simple cantilever beam problem under uniform loading.</strong>
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h3>Exercise 5</h3>
+            <p>The clamped thin beam sketched in the figure, of length \(l\), is loaded by the compressive force \(F\) at its extremity. Two springs, with stiffness \(K_1\) and \(K_2\) are connected to the beam extremity. Compute the approximated value of critical buckling load by resorting to a suitable polynomial approximation of the transverse displacement truncated to the first non-null term.</p>
+            
+            <p><strong>(Unit for result: N)</strong></p>
+            
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 2000\, \text{mm}\)<br>
+                \(l_1 = 1000\, \text{mm}\)<br>
+                \(EA = 6 \times 10^{10}\, \text{N}\)<br>
+                \(EI = 12 \times 10^{10}\, \text{N mm}^2\)<br>
+                <br>
+                \(K_1 = 1 \times 10^7\, \text{N/mm}\)<br>
+                \(K_2 = 1\, \text{N/mm}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    Following the derivation from similar problems, assume polynomial approximations:<br><br>
+                    
+                    <strong>Linear displacement (axial-related):</strong><br>
+                    \(w_1(z_1) = a_w z_1\), \(w_2(z_2) = a_{w_2} z_2\)<br>
+                    Boundary condition: \(a_{w_1} = -a_{w_2} \frac{\ell}{\ell_1} = a_w\)<br><br>
+                    
+                    <strong>Quadratic displacement (transverse):</strong><br>
+                    \(v_1(z_1) = a_1 z_1^2\), \(v_2(z_2) = a_2 z_2\)<br>
+                    Boundary condition: \(a_1 = -a_2 \frac{\ell_1}{\ell^2} = a\)<br><br>
+                    
+                    <strong>Virtual Work Setup:</strong>
+                    \[\delta W_i = \int_0^\ell \delta w_1' EA\, a_w\, dz_1 + \int_0^{\ell_1} \delta w_2 N_{k_1}\, dz_2 + \int_0^\ell (\delta v_1' v_1' EI v_1)\, dz_1 + \int_0^{\ell_1} \delta v_2 v_2 N_{k_1}\, dz_2\]
+                    
+                    \[\delta W_e = -\delta w_1(\ell) F - \delta v_1(\ell) F_{K_1} \frac{v(\ell)}{\ell_1}\]
+                    
+                    Solving for critical load with spring approximation:<br><br>
+                    
+                    First equation (finding \(a_w\)):
+                    \[\delta a_w \left(\int_0^\ell EA\, a_w\, dz_1 + \int_0^{\ell_1} \left(-\frac{\ell}{\ell_1}\right) \cdot \left(k_1 \cdot \left(-a_w \cdot \frac{\ell}{\ell_1} \cdot \ell_1\right)\right) dz_2\right) = -\delta a_w \cdot F \cdot \ell\]
+                    
+                    Second equation (finding \(a\)):
+                    \[\delta a \left(\int_0^\ell 2z_1 2a_1 EA\, a_w + 2EI 2a\, dz_1 + \int_0^{\ell_1} \left(\frac{\ell^2}{\ell_1}\right) \cdot a \left(-\frac{\ell^2}{\ell_1}\right) \cdot (-k_1 a_w \ell) dz_2\right) = -\delta a \cdot \ell^2 k_2 a \ell^2\]
+                    
+                    Solving: \(a = 0\) (transverse displacement vanishes at critical load)<br><br>
+                    
+                    \[\boxed{F_{cr} = 244000\, \text{N}}\]
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 6</h3>
+            <p>The clamped beam sketched in the figure has a varying bending stiffness \(EI(z) = a + bz\), and is loaded by the constant force per unit of length \(f\). By resorting to a polynomial approximation of the transverse displacement, truncated to the first non-null term, estimate the vertical displacement \(v(l)\) at the free extremity of the beam.</p>
+            
+            <p><strong>(Unit for result: mm)</strong></p>
+            
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 4000\, \text{mm}\)<br>
+                \(f = 10\, \text{N/mm}\)<br>
+                \(a = 6 \times 10^{12}\, \text{N mm}^2\)<br>
+                <br>
+                \(b = 2.5 \times 10^9\, \text{N mm}\)
+            </div>
+            
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    Given: \(EI(z) = a + bz\), with \(\ell = 4000\, \text{mm}\), \(f = 10\, \text{N/mm}\)<br><br>
+                    
+                    <strong>Polynomial approximation (first non-null term satisfying clamped BC):</strong><br>
+                    \[v = A z^2\]
+                    \[v_{,zz} = 2A\]
+                    \[\delta v = \delta A \cdot z^2, \quad \delta v_{,zz} = 2\delta A\]
+                    
+                    <strong>Virtual internal work:</strong>
+                    \[\delta W_i = \int_0^\ell \delta v_{,zz} \cdot EI(z) \cdot v_{,zz}\, dz = \int_0^\ell 2\delta A \cdot (a + bz) \cdot 2A\, dz\]
+                    
+                    <strong>Virtual external work:</strong>
+                    \[\delta W_e = \int_0^\ell \delta v \cdot f(z)\, dz = \int_0^\ell \delta A \cdot z^2 \cdot f\, dz\]
+                    
+                    <strong>Principle of Virtual Work:</strong> \(\delta W_i = \delta W_e\)
+                    \[\delta A \int_0^\ell 4A(a + bz)\, dz = \delta A \int_0^\ell z^2 f\, dz\]
+                    
+                    \[\int_0^\ell 4Aa\, dz + \int_0^\ell 4Ab z\, dz = \int_0^\ell z^2 f\, dz\]
+                    
+                    \[4Aa\ell + \frac{4}{2}Ab\ell^2 = \frac{1}{3}f\ell^3\]
+                    
+                    \[4Aa\ell + 2Ab\ell^2 = \frac{f\ell^3}{3}\]
+                    
+                    Solving for \(A\):
+                    \[A = \frac{\frac{1}{3}f\ell^3}{4a\ell + 2b\ell^2} = \frac{f\ell^3}{3(4a\ell + 2b\ell^2)}\]
+                    
+                    <strong>Displacement at free end:</strong>
+                    \[v(\ell) = A \cdot \ell^2 = \frac{f\ell^5}{3(4a\ell + 2b\ell^2)}\]
+                    
+                    Substituting values:
+                    \[v(4000) = \frac{10 \times (4000)^5}{3(4 \times 6 \times 10^{12} \times 4000 + 2 \times 2.5 \times 10^9 \times (4000)^2)}\]
+                    
+                    \[\boxed{v(\ell) = 19.354\, \text{mm}}\]
+                </div>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">3</p>
+
+        <div class="page-break"></div>
+
+        <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+
+        <ol class="true-false">
+            <li>"Differential bending" is a phenomenon that appears when the compressed panels of a wing are buckled, so that their bending stiffness contribution is different from that of the panels that remain stable <span class="answer-solution">F (False)</span></li>
+            
+            <li>You can neglect shear deformability for beams if the number \(EI/(l^2EA)\) is large, where \(EI\) is the bending stiffness, \(l\) is the beam length, \(A\) is the cross-section area and \(E\) is the material elastic modulus. <span class="answer-solution">F (False)</span></li>
+            
+            <li>You need to use Hermitian shape functions for the displacement field when building a Timoshenko beam finite element <span class="answer-solution">F (False)</span></li>
+        </ol>
+
+        <h2>Multiple Choice questions (Circle the correct answer)</h2>
+
+        <ol class="multiple-choice">
+            <li>\(\sigma_{zz} = E\varepsilon_{zz}\) is:
+                <ul>
+                    <li>wrong</li>
+                    <li>correct for plates</li>
+                    <li class="correct-answer">correct for a state of axial stress ✓</li>
+                    <li>correct for a state of plane stress</li>
+                    <li>correct for a state of plane strain</li>
+                    <li>none of the above</li>
+                </ul>
+            </li>
+            
+            <li>The shear flux in a thin wing panel is equal to:
+                <ul>
+                    <li>the average shear stress divided by the panel thickness</li>
+                    <li class="correct-answer">the average shear stress multiplied by the panel thickness ✓</li>
+                    <li>the average shear stress</li>
+                    <li>the derivative, with respect to the chord direction, of the axial stress in the panel</li>
+                    <li>none of the above</li>
+                </ul>
+            </li>
+            
+            <li>The shear stress transmitted by a glued connection is:
+                <ul>
+                    <li class="correct-answer">higher at the extremities ✓</li>
+                    <li>lower at the extremities</li>
+                    <li>constant</li>
+                    <li>described by a sin function</li>
+                    <li>described by a cos function</li>
+                    <li>described by a cubic polynomial function</li>
+                    <li>none of the above</li>
+                </ul>
+            </li>
+        </ol>
+
+        <p style="text-align: right; margin-top: 40px;">4</p>
+
+    </article>
+</body>
+</html>

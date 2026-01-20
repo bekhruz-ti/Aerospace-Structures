@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Test Solution - February 8, 2021</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            background: #fafafa;
+            color: #333;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a237e;
+            border-bottom: 3px solid #1a237e;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #283593;
+            margin-top: 50px;
+            border-left: 5px solid #3f51b5;
+            padding-left: 15px;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #f8f9fa;
+        }
+        
+        .problem h3 {
+            color: #1565c0;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: #e8f5e9;
+            border-top: 3px solid #4caf50;
+        }
+        
+        .solution h4 {
+            color: #2e7d32;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        
+        .given-data {
+            background: #e3f2fd;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .given-data strong {
+            color: #1565c0;
+        }
+        
+        figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+        
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 6px;
+        }
+        
+        .step-title {
+            color: #388e3c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .final-answer {
+            font-size: 1.15em;
+            color: #1b5e20;
+            font-weight: bold;
+            padding: 15px 20px;
+            background: #c8e6c9;
+            border-left: 5px solid #4caf50;
+            margin-top: 20px;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .beam-analysis {
+            background: rgba(255,255,255,0.5);
+            padding: 12px 18px;
+            margin: 12px 0;
+            border-radius: 5px;
+            border-left: 3px solid #66bb6a;
+        }
+        
+        .beam-analysis strong {
+            color: #2e7d32;
+        }
+        
+        .multiple-choice {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .mc-question {
+            margin: 25px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+        
+        .mc-question p {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .mc-option {
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        
+        .mc-correct {
+            background: #c8e6c9;
+            color: #1b5e20;
+            font-weight: bold;
+        }
+        
+        .mc-incorrect {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .equation-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Test Solution - February 8, 2021</h1>
+    
+    <!-- PROBLEM 1 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Exercise 1: Two-Beam Frame Vertical Displacement</h3>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/two_beam_frame_distributed_loads.png" alt="Two-beam frame structure with distributed loads">
+                <figcaption>Two-beam frame structure with distributed loads \(q_1\) and \(q_2 = 12q_1\)</figcaption>
+            </figure>
+            
+            <p>The beams composing the structure in the figure have stiffnesses \(EJ\) and \(GJ\). Shear deformability is negligible.</p>
+            <p>Determine the vertical displacement \(v\) as shown in the figure.</p>
+            <p>(Unit for result: mm)</p>
+            
+            <div class="given-data">
+                <strong>Data (solution for A = 0):</strong><br>
+                \(l = 1000 \times (1 + A/10)\); Units: mm<br>
+                \(EJ = 1.0 \times 10^{12}\); Units: N·mm²<br>
+                \(GJ = 1.0 \times 10^{12}\); Units: N·mm²<br>
+                \(q_1 = 1.0\); Units: N/mm
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/frame_solution_diagram_coordinates.png" alt="Solution diagram with coordinate system">
+                <figcaption>Frame with coordinate system and reaction force \(X\)</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Real System Analysis</div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 1:</strong>
+                    \[M_y = -Xz_1 - 2q_1 \frac{z_1^3}{\ell}\]
+                </div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 2:</strong>
+                    \[M_y = -2q_1\ell^2 - (X + 8q_1\ell)z_2\]
+                    \[M_t = X\ell\]
+                </div>
+            </div>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/dummy_system_unit_load.png" alt="Dummy system #1">
+                <figcaption>Dummy System #1 with unit load</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Dummy System #1</div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 1:</strong> \({}^1\delta M_y = -x_1\)
+                </div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 2:</strong> \({}^1\delta M_y = -x_2\), \({}^1\delta M_t = \ell\)
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Application of PCVW</div>
+                <p>By application of the Principle of Complementary Virtual Work:</p>
+                \[\int_0^\ell {}^1\delta M_y \frac{M_y}{EJ}\, dx_1 + \int_0^\ell {}^1\delta M_y \frac{M_y}{EJ}\, dx_2 + \int_0^\ell {}^1\delta M_t \frac{M_t}{GJ}\, dx_2 = 0\]
+                
+                <p>From which:</p>
+                \[\frac{\ell^3}{15EJ}(5X + 6\ell q) + \frac{\ell^3}{3EJ}(X + 11\ell q) + \frac{\ell^3}{GJ}X = 0\]
+                
+                <p>And so:</p>
+                \[X = -\frac{61\, GJ\, \ell\, q}{15EJ + 10GJ} = -2440\, \text{N}\]
+            </div>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/dummy_system_displacement_analysis.png" alt="Dummy system #2">
+                <figcaption>Dummy System #2 for displacement evaluation</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Dummy System #2 for Displacement</div>
+                <p>A second dummy system is introduced for evaluating the displacement.</p>
+                
+                <div class="beam-analysis">
+                    <strong>Beam #2:</strong> \({}^2\delta M_y = -x_2\)
+                </div>
+                
+                <p>And by application of the PCVW:</p>
+                \[\int_0^\ell M_y \frac{{}^2\delta M_y}{EJ}\, dx_2 = S\]
+                
+                <p>From which:</p>
+                \[S = \frac{\ell^3}{3EJ}(X + 11\ell q)\]
+            </div>
+            
+            <p class="final-answer">Final Answer: \(S = v = 2.85\, \text{mm}\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 2 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Exercise 2: Three-Beam Frame with Spring - Strain Energy</h3>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/three_beam_frame_spring_support.png" alt="Three-beam frame with spring support">
+                <figcaption>Three-beam rectangular frame with horizontal force \(P\) and spring support \(k\)</figcaption>
+            </figure>
+            
+            <p>The structure in the figure is composed of three beams with same length \(l\) and bending stiffness \(EJ\).</p>
+            <p>Shear deformability is negligible and so is the contribution due to the axial stiffness.</p>
+            <p>Determine the strain energy stored in the spring.</p>
+            <p>(Unit for result: N mm)</p>
+            
+            <div class="given-data">
+                <strong>Data (solution for C = 0):</strong><br>
+                \(l = 1000 \times (1 + C/10)\); Units: mm<br>
+                \(EJ = 1.0 \times 10^{12}\); Units: N·mm²<br>
+                \(k = 1000\); Units: N/mm<br>
+                \(P = 1000\); Units: N
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/real_system_force_distribution.png" alt="Real system force distribution">
+                <figcaption>Real system with force distributions</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Real System Analysis</div>
+                <p>Equilibrium equation:</p>
+                \[-V\ell + X\ell - P\ell = 0\]
+                \[V = X - P\]
+                
+                <div class="beam-analysis">
+                    <strong>Beam 1:</strong> \(N = +V\)
+                </div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 2:</strong> \(N = -X\), \(M = +Vx_2\)
+                </div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 3:</strong> \(N = -V\), \(M = +V\ell + (P - X)x_3\)
+                </div>
+            </div>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/dummy_system_frame_unit_loads.png" alt="Dummy system for frame">
+                <figcaption>Dummy system with unit loads</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Dummy System</div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 1:</strong> \(\delta N = 1\)
+                </div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 2:</strong> \(\delta N = -1\), \(\delta M = x_2\)
+                </div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 3:</strong> \(\delta N = -1\), \(\delta M = \ell - x_3\)
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Application of PCVW</div>
+                <p>The PCVW reads:</p>
+                \[\int_0^\ell \delta N \frac{N}{EA}\, dx_1 + \int_0^\ell \delta N \frac{N}{EA}\, dx_2 + \int_0^\ell \delta N \frac{N}{EA}\, dx_3 + \int_0^\ell \delta M \frac{M}{EJ}\, dx_2 + \int_0^\ell \delta M \frac{M}{EJ}\, dx_3 + \frac{X}{k} = 0\]
+                
+                \[\frac{\ell}{EA}(2V + X) + \frac{\ell^3}{3EJ}V + \frac{\ell^3}{6EJ}(P + 3V - X) + \frac{X}{k} = 0\]
+                
+                <p>And substituting \(V = X - P\):</p>
+                \[\frac{\ell}{EA}(3X - 2P) + \frac{\ell^3}{3EJ} \cdot 2(X - P) + \frac{X}{k} = 0\]
+                
+                <p>From which:</p>
+                \[X = \frac{2EA\,k\,\ell^3 + 6EJ\,k\,\ell}{2EA\,k\,\ell^3 + 9EJ\,k\,\ell + 3EA\,EJ} \cdot P\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Simplified Solution (Neglecting Axial Stiffness)</div>
+                <p>If the energy contribution of the axial stiffness is neglected:</p>
+                \[X = \frac{2k\ell^3}{2k\ell^3 + 3EJ} \cdot P = 400\, \text{N}\]
+                
+                <p>And the strain energy reads:</p>
+                \[U_{spring} = \frac{1}{2}\frac{X^2}{k}\]
+            </div>
+            
+            <p class="final-answer">Final Answer: \(U_{spring} = 80\, \text{N·mm}\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 3 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Exercise 3: Two-Span Continuous Beam - Stiffness Ratio</h3>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/two_span_continuous_beam_distributed_load.png" alt="Two-span continuous beam">
+                <figcaption>Two-span continuous beam with distributed load and stiffnesses \(EJ_1\) and \(EJ_2\)</figcaption>
+            </figure>
+            
+            <p>The structure in the figure is composed of two beams with bending stiffnesses equal to \(EJ_1\) and \(EJ_2\).</p>
+            <p>Determine the bending stiffness \(EJ_2\) such that the vertical displacement at the free end is equal to \(w\) when the structure is loaded with a uniformly distributed force per unit length.</p>
+            <p>Report the result as \(EJ_2 / EJ_1\).</p>
+            <p>(Unit for result: adim)</p>
+            
+            <div class="given-data">
+                <strong>Data:</strong><br>
+                \(l = 1000\); Units: mm<br>
+                \(EJ_1 = 1.0 \times 10^{12}\); Units: N·mm²<br>
+                \(q = 1.0\); Units: N/mm<br>
+                \(w = 0.5 \times (1 + A/10)\); Units: mm
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution</h4>
+            
+            <div class="step">
+                <div class="step-title">Equilibrium Analysis</div>
+                <p>From moment equilibrium:</p>
+                \[q\ell \cdot \frac{3}{2}\ell + V\ell = 0 \quad \Rightarrow \quad V = -\frac{3}{2}q\ell\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Real System - Bending Moments</div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 1 (span with \(EJ_1\)):</strong>
+                    \[M = -\frac{q x_1^2}{2}\]
+                </div>
+                
+                <div class="beam-analysis">
+                    <strong>Beam 2 (span with \(EJ_2\)):</strong>
+                    \[M = -\frac{q\ell^2}{2} - (V + q\ell)x_2\]
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Dummy System</div>
+                \[\delta M = -x_1 \quad (0 \leq x_1 \leq \ell)\]
+                \[\delta M = +x_2 - \ell \quad (0 \leq x_2 \leq \ell)\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Application of PCVW</div>
+                <p>By application of the PCVW:</p>
+                \[\int_0^\ell \delta M \frac{M}{EJ_2}\, dx_1 + \int_0^\ell \delta M \frac{M}{EJ_1}\, dx_2 = w\]
+                
+                <p>From which:</p>
+                \[\frac{\ell^3}{12EJ_1}(2V + 5q\ell) + \frac{q\ell^4}{8EJ_2} = w\]
+                
+                <p>And upon substitution of \(V\):</p>
+                \[\frac{q\ell^4}{8EJ_2} + \frac{q\ell^4}{6EJ_1} = w\]
+                
+                <p>From which:</p>
+                \[EJ_2 = \frac{q\ell^4}{8w - \dfrac{4q\ell^4}{3EJ_1}}\]
+            </div>
+            
+            <p class="final-answer">Final Answer: \(\dfrac{EJ_2}{EJ_1} = 0.375\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 4 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Exercise 4: Thin-Walled Obround Section - Shear Stress</h3>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/thin_walled_obround_cross_section.png" alt="Thin-walled obround cross-section">
+                <figcaption>Thin-walled obround cross-section with shear force \(P\) at shear center</figcaption>
+            </figure>
+            
+            <p>The thin-walled beam in the figure is subjected to an internal shear force equal to \(P\). The force is referred to the shear center of the section.</p>
+            <p>The area of the lumped stringers, including the contribution of the panels, is equal to \(A\); the panels have thickness equal to \(t\).</p>
+            <p>By using a semi-monocoque approximation of the section, determine the shear stress in the panel indicated in the figure.</p>
+            <p>(Unit for result: MPa)</p>
+            
+            <div class="given-data">
+                <strong>Data (solution for A = 0):</strong><br>
+                \(a = 200\); Units: mm<br>
+                \(R = 45\); Units: mm<br>
+                \(t = 1.2 \times (1 + A/10)\); Units: mm<br>
+                \(P = 9000\); Units: N
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/obround_section_shear_flow.png" alt="Shear flow distribution">
+                <figcaption>Shear flow distribution in the obround section</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Shear Flow from Symmetry</div>
+                <p>Due to the symmetry of the structure, the shear flows are readily found as shown in the figure, where:</p>
+                \[q \cdot 2R \cdot 2 = P\]
+                
+                <p>So:</p>
+                \[q = \frac{P}{4R} = \frac{9000}{4 \times 45} = 50\, \text{N/mm}\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Shear Stress Calculation</div>
+                <p>The shear stress in the panel is then:</p>
+                \[\tau = \frac{q}{t_2}\]
+            </div>
+            
+            <p class="final-answer">Final Answer: \(\tau = 41.67\, \text{MPa}\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 5 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Exercise 5: Two-Cell Section - Torsional Stiffness</h3>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/two_cell_rectangular_section.png" alt="Two-cell rectangular section">
+                <figcaption>Two-cell rectangular thin-walled cross-section</figcaption>
+            </figure>
+            
+            <p>Consider the two-cell section in the figure. The area of the lumped stringers, including the contribution of the panels, is equal to \(A\); the panels have thickness equal to \(t\). The shear modulus of the material is \(G\).</p>
+            <p>Determine the torsional stiffness \(GJ\). For this purpose, adopt a semi-monocoque approximation of the section.</p>
+            <p>Report the result as \(GJ / GJ_{ref}\), where \(GJ_{ref}\) is reference value available in the data.</p>
+            <p>(Unit for result: adim)</p>
+            
+            <div class="given-data">
+                <strong>Data (solution of C = 0):</strong><br>
+                \(a = 100 \times (1 + C/10)\); Units: mm<br>
+                \(t = 1.5\); Units: mm<br>
+                \(A = 400\); Units: mm²<br>
+                \(G = 27000\); Units: MPa<br>
+                \(GJ_{ref} = 1.0 \times 10^{10}\); Units: N·mm²
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/two_cell_section_shear_flows.png" alt="Two-cell shear flows">
+                <figcaption>Shear flow distributions \(q_1^*\) and \(q_2^*\) in each cell</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Equivalent Moment Equation</div>
+                \[2\Omega_1 q_1^* + 2\Omega_2 q_2^* = M_t \quad \text{with } \Omega_1 = a^2; \; \Omega_2 = 2\Omega_1\]
+                
+                <p>So:</p>
+                \[q_1^* + 2q_2^* = \frac{M_t}{2\Omega_1}\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Compatibility Equations</div>
+                \[2G\Omega_1 t\, \theta_1' = q_1^* \cdot 4a - q_2^* \cdot a\]
+                \[2G\Omega_2 t\, \theta_2' = q_2^* \cdot 6a - q_1^* \cdot a\]
+                
+                <p>Imposing \(\theta_1' = \theta_2'\):</p>
+                \[8q_1^* - 2q_2^* = 6q_2^* - q_1^*\]
+                
+                <p>From which:</p>
+                \[9q_1^* - 8q_2^* = 0 \quad \Rightarrow \quad q_1^* = \frac{8}{9}q_2^*\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Solving for Shear Flows</div>
+                <p>Substituting into the moment equation:</p>
+                \[\frac{8}{9}q_2^* + 2q_2^* = \frac{M_t}{2\Omega_1}\]
+                
+                \[q_2^* = \frac{9}{26}\frac{M_t}{2\Omega_1} \quad ; \quad q_1^* = \frac{4}{13}\frac{M_t}{2\Omega_1}\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Twist Rate and Torsional Stiffness</div>
+                \[\theta_1' = \frac{1}{2G\Omega_1 t}(4q_1^* - q_2^*)a\]
+                
+                \[= M_t \cdot \frac{23}{104} \cdot \frac{1}{Ga^3 t}\]
+                
+                <p>Therefore:</p>
+                \[GJ = \frac{M_t}{\theta_1'} = G \cdot \frac{104}{23} \cdot a^3 t = 1.83 \times 10^{11}\, \text{N·mm}^2\]
+            </div>
+            
+            <p class="final-answer">Final Answer: \(\dfrac{GJ}{GJ_{ref}} = 18.31\)</p>
+        </div>
+    </section>
+    
+    <!-- PROBLEM 6 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Exercise 6: Thin-Walled Circular Beam - Torsional Rotation</h3>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/circular_beam_concentrated_forces.png" alt="Circular beam with concentrated forces">
+                <figcaption>Thin-walled circular beam with forces \(F_1\) and \(F_2\), and circular cross-section with stringers</figcaption>
+            </figure>
+            
+            <p>The thin-walled beam in the figure is loaded with two concentrated forces \(F_1\) and \(F_2\). The lumped area of the stringers, including the contribution of the panels, is equal to \(A\). The thickness of panels is \(t\).</p>
+            <p>The shear modulus of the material is \(G\).</p>
+            <p>By using a semi-monocoque approximation, determine the rotation of the section at a distance equal to \(1/3\, l\) from the free end.</p>
+            <p>Report the absolute value of the rotation angle expressed in degrees.</p>
+            <p>(Unit for result: deg - absolute value)</p>
+            
+            <div class="given-data">
+                <strong>Data (solution for E = 0):</strong><br>
+                \(l = 2500\); Units: mm<br>
+                \(R = 25\); Units: mm<br>
+                \(t = 0.6\); Units: mm<br>
+                \(A = 500\); Units: mm²<br>
+                \(G = 27000\); Units: MPa<br>
+                \(F_1 = 2000\); Units: N<br>
+                \(F_2 = 5000 \times (1 + E/10)\); Units: N
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution</h4>
+            
+            <figure>
+                <img src="images/OnlineTestSolution_Feb_08_2021/circular_beam_torsion_analysis.png" alt="Torsion analysis diagram">
+                <figcaption>Beam configuration and torsional moment diagram</figcaption>
+            </figure>
+            
+            <div class="step">
+                <div class="step-title">Shear Center and Torsional Moment</div>
+                <p>The position of the shear center is readily available due to the section symmetry. The torsional moment evaluated with respect to the shear center is:</p>
+                <p>The torque diagram shows \(F_1 R\) for the first segment and \((F_1 + F_2)R\) for the remaining portion.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Torsional Constant (Bredt's Formula)</div>
+                <p>The torsional constant of the section is evaluated referring to Bredt's formula:</p>
+                \[J = \frac{4\Omega^2}{\oint_p \frac{1}{t}\, dn} \quad \text{where } \Omega = \pi R^2\]
+                
+                <p>So:</p>
+                \[J = \frac{4\pi^2 R^4 t}{2\pi R} = 2\pi R^3 t\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Twist Rate Calculation</div>
+                <p>Recalling that the torsion is \(\theta' = M_t / GJ\), it follows that:</p>
+                \[\theta' = \frac{(F_1 + F_2)R}{GJ}\]
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Rotation at \(x = 2\ell/3\)</div>
+                <p>And the rotation of the section at \(x = 2/3\) is:</p>
+                \[\theta = \theta' \cdot \frac{2}{3}\ell\]
+            </div>
+            
+            <p class="final-answer">Final Answer: \(\theta = 10.51°\)</p>
+        </div>
+    </section>
+    
+    <!-- MULTIPLE CHOICE SECTION -->
+    <h2>Multiple Choice Questions</h2>
+    
+    <div class="multiple-choice">
+        <div class="mc-question">
+            <p>• A structure is modeled using finite elements. It is unconstrained and subjected to a set of loads in self equilibrium. The solution of the linear static problem:</p>
+            <div class="mc-option mc-correct">– can be obtained after constraining the structure isostatically</div>
+            <div class="mc-option mc-incorrect">– is defined up to a rigid body motion; thus, not being unique, can never be obtained</div>
+            <div class="mc-option mc-incorrect">– is stress-free</div>
+            <div class="mc-option mc-incorrect">– can be obtained only if the loads are concentrated</div>
+        </div>
+        
+        <div class="mc-question">
+            <p>• Consider a truss fixed at one end and free the other, and loaded with a uniformly distributed traction. The finite element solution obtained with quadratic elements:</p>
+            <div class="mc-option mc-incorrect">– is an approximation of the exact solution</div>
+            <div class="mc-option mc-correct">– is exact for both displacement and axial force</div>
+            <div class="mc-option mc-incorrect">– is exact for the displacement, but approximated for the axial force</div>
+            <div class="mc-option mc-incorrect">– is exact for the the axial force, but approximated for the displacement</div>
+            <div class="mc-option mc-incorrect">– is exact for the the displacement and strain, but approximated for the axial force</div>
+        </div>
+        
+        <div class="mc-question">
+            <p>• The torsional stiffness of a single-cell thin-walled beam:</p>
+            <div class="mc-option mc-incorrect">– is zero according to the semi-monocoque approximation</div>
+            <div class="mc-option mc-incorrect">– requires first the shear center position to be evaluated</div>
+            <div class="mc-option mc-correct">– can be evaluated using the Bredt's formula</div>
+            <div class="mc-option mc-incorrect">– can be evaluated using Eulero's formula</div>
+        </div>
+        
+        <div class="mc-question">
+            <p>• The polynomial order of the finite element shape functions does not affect the rate of convergence of the solution</p>
+            <div class="mc-option mc-incorrect">– True</div>
+            <div class="mc-option mc-correct">– False</div>
+        </div>
+        
+        <div class="mc-question">
+            <p>• The torsional stiffness of an open section profile modeled using the semi-monocoque scheme is null</p>
+            <div class="mc-option mc-correct">– True</div>
+            <div class="mc-option mc-incorrect">– False</div>
+        </div>
+        
+        <div class="mc-question">
+            <p>• Consider a Euler-Bernoulli beam, whose static solution is obtained using the FE method. The approximating functions need to be \(C^2\)</p>
+            <div class="mc-option mc-incorrect">– True</div>
+            <div class="mc-option mc-correct">– False</div>
+        </div>
+    </div>
+    
+</body>
+</html>

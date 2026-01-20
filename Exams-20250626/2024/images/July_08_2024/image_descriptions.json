@@ -1,0 +1,34 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "semi_monocoque_circular_beam_vertical_displacement",
+    "description": "Semi-monocoque structure with circular cross-section showing two cross-sectional views (clamped end and loaded end). Structure has four stringers with concentrated area A = 400 mm² and four panels with thickness t = 0.3 mm. Left end is clamped (fixed support), right end has vertical downward force F = 1000 N applied to rightmost stringer. Beam length l = 2000 mm, radius r = 100 mm. Material properties: E = 72000 MPa, ν = 0.3. Problem asks for vertical displacement v of leftmost stringer at loaded extremity."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "semi_monocoque_shear_center_cross_section",
+    "description": "Semi-monocoque cross-section with three panels (thickness t = 1 mm) and three stringers (concentrated area A = 100 mm²) arranged in an L-shaped configuration. Coordinate system shows y-axis vertical and x-axis horizontal. Dimensions: vertical leg height a = 100 mm, horizontal leg width b = 150 mm. Material properties: E = 72000 MPa, ν = 0.3. Problem requires calculation of x-position of shear center."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "slender_beam_spring_support_displacement",
+    "description": "Slender beam structure with fixed support at left end, spring support (stiffness K = 1×10³ N/mm) at distance a = 1000 mm from left, and roller support at distance l from left. Horizontal force F = 1000 N applied at right end. Total beam length l = 1500 mm from spring to roller, with additional segment b = 1500 mm extending right of roller. Material properties: EA = 1×10¹⁰ N, EI_xx = EI_yy = 1×10¹³ N·mm², GJ = 7×10⁹ N·mm². Problem asks for displacement u of spring extremity, neglecting shear deformability."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "exercise_1_solution_calculations",
+    "description": "Handwritten solution showing three circular cross-section diagrams with force calculations and mathematical derivations. Left diagram shows cross-section with four points marked and forces labeled. Middle diagram shows simplified cross-section. Right diagram shows force vector. Calculations include force distribution equations with terms involving F, q₁, q₂, and geometric relationships. Right side contains extensive algebraic manipulations and final numerical results."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "exercise_2_solution_calculations",
+    "description": "Handwritten solution showing L-shaped cross-section diagram on left with force vectors and geometric annotations. Extensive mathematical calculations on right side including force equilibrium equations, shear flow calculations, and expressions involving parameters F₁, F₂, F₃, q₁, q₂, q₃. Calculations include geometric relationships with dimensions a and b, and final numerical results for shear center position."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "exercise_3_solution_beam_diagrams",
+    "description": "Handwritten solution showing two beam diagrams with support conditions and force distributions. Left diagram shows beam with spring support, fixed support, and roller support with force F and reaction forces. Right diagram shows similar configuration with moment and force annotations. Calculations include equilibrium equations, compatibility conditions, and displacement calculations using beam theory. Mathematical expressions involve stiffness K, length parameters a, b, l, and flexural rigidity EI."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "exercise_4_solution_cantilever_calculations",
+    "description": "Handwritten solution for cantilever beam problem showing two simplified beam diagrams at bottom with fixed support and applied force F. Extensive calculations above include rotation and deflection formulas, shear deformation contributions, and numerical evaluations. Expressions involve beam length l, force F, flexural rigidity EI, shear rigidity GA*, and final numerical results for rotation θ."
+  },
+  "page_9_img_1.png": {
+    "suggested_name": "exercise_5_solution_fem_calculations",
+    "description": "Handwritten solution showing finite element method calculations for rectangular element. Left side shows vertical beam diagram with force F and boundary conditions. Right side contains extensive matrix calculations including stiffness relationships, stress-strain equations using plane stress formulation, and numerical evaluations. Calculations involve Young's modulus E, Poisson's ratio ν, element dimensions a and b, and force F = 100 N. Final result shows vertical displacement v calculation."
+  }
+}

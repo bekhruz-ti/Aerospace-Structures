@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures Written test, June 26th, 2018</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .answer-solution {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            display: block;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Spacecraft Structures Written test, June 26th, 2018</h1>
+            <p class="metadata">Extracted from: 201806_Test</p>
+        </header>
+
+        <figure class="diagram">
+            <img src="images/201806_Test/page_1_img_1.png" alt="Completely black image with no visible engineering content, diagrams, or technical information.">
+            <figcaption>
+                <strong>Completely black image with no visible engineering content, diagrams, or technical information.</strong>
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/201806_Test/page_1_img_2.png" alt="Rectangular beam shown in elevation view with six equally-spaced horizontal arrows pointing to the right, representing uniform axial tension or distributed axial loading along the beam length.">
+            <figcaption>
+                <strong>Rectangular beam shown in elevation view with six equally-spaced horizontal arrows pointing to the right, representing uniform axial tension or distributed axial loading along the beam length. The arrows are evenly distributed across the beam's length, indicating a constant axial force distribution.</strong>
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            <p>The thin-walled beam in the gure is characterized by a semi-circular section with ve webs of thickness \(t\) and four stringers of area \(A\) (note: \(A\) is the equivalent stringer area, inclusive of the contribution due to the panels). The length of the beam is denoted with \(l\). The material is homogeneous and isotropic with Young modulus \(E\) and Poisson's ratio 0.3. The beam is grounded with two linear elastic springs of stiness \(k\), as reported in the sketch, and is loaded with a concentrated force \(P\) applied at one of the two ends. Determine the reaction forces in correspondence of the springs by accounting for the beam shear deformability, and plot the internal actions in the beam.</p>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(E = 70\, \text{GPa}\); \(\nu = 0.3\); \(A = 200\, \text{mm}^2\); \(t = 1\, \text{mm}\); \(R = 200\, \text{mm}\); \(l = 2000\, \text{mm}\); \(k = 10^6\, \text{N/mm}\); \(P = 1\, \text{kN}\);
+            </div>
+
+            <span class="answer-solution">
+                <strong>Solution:</strong><br><br>
+                
+                <strong>Step 1: Evaluation of Section Properties \((GA^*)\)</strong><br><br>
+                
+                By imposing:
+                <ul>
+                    <li>Shear flow equations</li>
+                    <li>Equivalence to moment</li>
+                    <li>Compatibility \((\theta'_1 = \theta'_2)\)</li>
+                    <li>Compatibility \((\theta'_1 = 0)\)</li>
+                </ul>
+                
+                The shear center position is obtained:
+                \[x_{sc} = 122.20\, \text{mm}\]
+                
+                The corresponding shear flows are:
+                \[q_1 = q_4 = 1.5275\, \text{N/mm}\]
+                \[q_2 = q_3 = -0.9725\, \text{N/mm}\]
+                
+                From which the effective shear area:
+                \[A^* = \frac{T_y^2}{\sum_i \frac{q_i^2 l_i}{t_i}} = 654.65\, \text{mm}^2\]
+                \[GA^* = 1.76 \cdot 10^7\, \text{N}\]
+                
+                <br><strong>Step 2: Bending Stiffness \(EJ\)</strong><br><br>
+                \[EJ = E(2AR^2) = 1.12 \cdot 10^{12}\, \text{N} \cdot \text{mm}^2\]
+                
+                <br><strong>Step 3: Torsional Stiffness \(GJ\)</strong><br><br>
+                
+                A torsional moment \(M_t = 1 \cdot 10^6\, \text{N} \cdot \text{mm}\) is considered.<br><br>
+                
+                The shear flows for torsion:
+                \[q_1 = q_2 = q_3 = q_4 = 7.96\, \text{N/mm}, \quad q_5 = 0\]
+                
+                The torsional constant:
+                \[J_t = \frac{M_t}{\frac{1}{2\Omega_{cell}} \sum \frac{q_k l_k}{t_k}} = 1.54 \cdot 10^7\, \text{mm}^4\]
+                
+                And so:
+                \[GJ = G \cdot J_t = 4.13 \cdot 10^{11}\, \text{N} \cdot \text{mm}^2\]
+                
+                <br><strong>Step 4: Reaction Forces</strong><br><br>
+                
+                With the beam axis running along the shear center positions, and setting \(d = x_{sc}\):<br><br>
+                
+                <em>Real system internal actions:</em><br>
+                Segment ①:
+                \[T_y^{①} = -(P+X), \quad M_x^{①} = -(P+X)z_1, \quad M_z^{①} = -(P+X)d\]
+                
+                Segment ②:
+                \[T_y^{②} = -(P+X+Y), \quad M_x^{②} = -(P+X)\frac{l}{2} - (P+X+Y)z_2, \quad M_z^{②} = -(P+X+Y)d\]
+                
+                <br><strong>Step 5: Principle of Virtual Work (PEVW)</strong><br><br>
+                
+                The equilibrium equations are:
+                \[\left(\frac{l^3}{3EJ} + \frac{l}{GA^*} + \frac{d^2 l}{GJ} + \frac{1}{k}\right)X + \left(\frac{l}{2GA^*} + \frac{5l^3}{48EJ} + \frac{d^2 l}{2GJ}\right)Y + \left(\frac{l^3}{3EJ} + \frac{l}{GA} + \frac{d^2 l}{GJ}\right)P = 0\]
+                
+                \[\left(\frac{l}{2GA^*} + \frac{5l^3}{48EJ} + \frac{d^2 l}{2GJ}\right)X + \left(\frac{l}{2GA^*} + \frac{l^3}{24EJ} + \frac{d^2 l}{2GJ} + \frac{1}{k}\right)Y + \left(\frac{5l^3}{48EJ} + \frac{d^2 l}{2GJ} + \frac{l}{2GA^*}\right)P = 0\]
+                
+                <br><strong>Final Answer:</strong>
+                \[X = -998.71\, \text{N}\]
+                \[Y = -2.74\, \text{N}\]
+            </span>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            <p>The bar in the gure is made of isotropic material of Young modulus \(E\) and Poisson's ratio \(\nu\). The sec- tion varies from \(A_0\) to \(A_1\) with a linear variation along the bar axis. The bar is loaded with a uniformly distributed load per unit length \(\hat{n}\), and a concentrated force \(P\) is applied at the tip. Determine stress and displacement at the midspan by using a Ritz solution with one degree of freedom. Compare the predicted stress with the exact solution and discuss how the Ritz solution is expected to behave if the number of trial functions is increased.</p>
+
+            <div class="data-section">
+                <strong>Data</strong><br>
+                \(E = 70\, \text{GPa}\); \(\nu = 0.3\); \(A_0 = 5\, \text{mm}^2\); \(A_1 = 15\, \text{mm}^2\); \(l = 400\, \text{mm}\); \(P = 1\, \text{kN}\); \(\hat{n} = 2\, \text{N/mm}\);
+            </div>
+
+            <span class="answer-solution">
+                <strong>Solution:</strong><br><br>
+                
+                <strong>Step 1: Trial Function</strong><br><br>
+                The trial function is taken as:
+                \[u = c\left(\frac{x}{l}\right) = c\phi, \quad \text{with } \phi = \frac{x}{l}\]
+                
+                <br><strong>Step 2: Stiffness Matrix (1×1)</strong><br><br>
+                The internal virtual work:
+                \[\delta W_i = \int_0^l \delta u_{,x}\, EA\, u_{,x}\, dx = \delta c \cdot k \cdot c\]
+                
+                with stiffness:
+                \[k = \int_0^l \phi_{,x}\, EA\, \phi_{,x}\, dx = \int_0^l \frac{1}{l^2}\left(EA_0 + E\frac{A_1 - A_0}{l}x\right) dx\]
+                \[k = \frac{EA_0}{l} + E\frac{A_1 - A_0}{2l}\]
+                
+                <br><strong>Step 3: External Forces</strong><br><br>
+                The external virtual work:
+                \[\delta W_e = \int_0^l \delta u\, \hat{n}\, dx + \delta u(l) \cdot P = \delta c \cdot f\]
+                
+                with force:
+                \[f = \int_0^l \phi\, \hat{n}\, dx + \phi(l) \cdot P = \frac{\hat{n} l}{2} + P\]
+                
+                <br><strong>Step 4: Solution</strong><br><br>
+                Solving \(k \cdot c = f\):
+                \[c = \frac{f}{k} = 0.80\, \text{mm}\]
+                
+                <br><strong>Step 5: Displacement and Stress at \(x = l/2\)</strong><br><br>
+                
+                Displacement:
+                \[u = \phi\left(\frac{l}{2}\right) \cdot c = \frac{1}{2} \cdot c = 0.40\, \text{mm}\]
+                
+                Stress:
+                \[\sigma = E\, u_{,x} = E\, \phi_{,x}\left(\frac{l}{2}\right) \cdot c = E \cdot \frac{1}{l} \cdot c = 140\, \text{MPa}\]
+                
+                <br><strong>Step 6: Comparison with Exact Solution</strong><br><br>
+                
+                Exact stress value:
+                \[\sigma = \frac{P + \hat{n} \cdot l/2}{A(l/2)} = 140\, \text{MPa}\]
+                
+                <br><strong>Final Answer:</strong><br>
+                <ul>
+                    <li>Displacement at midspan: \(u(l/2) = 0.40\, \text{mm}\)</li>
+                    <li>Ritz stress at midspan: \(\sigma = 140\, \text{MPa}\)</li>
+                    <li>Exact stress at midspan: \(\sigma = 140\, \text{MPa}\)</li>
+                </ul>
+                
+                <br><em>Note: The Ritz solution with one DOF gives the exact stress at midspan in this case. Increasing the number of trial functions would improve the displacement approximation while the stress convergence would depend on the derivative of the trial functions.</em>
+            </span>
+        </section>
+
+        <section class="question">
+            <h2>Question 1</h2>
+            <p>Illustrate the procedure for evaluating the shear ows in a panel-to-panel junction with two rows of rivets.  Assume that the two panels have thicknesses \(t_1\) and \(t_2\).</p>
+
+            <span class="answer-solution">
+                <strong>Solution:</strong><br><br>
+                <em>(No solution provided in the available solution pages)</em>
+            </span>
+        </section>
+
+        <p style="text-align: center; margin-top: 40px;">1</p>
+
+    </article>
+</body>
+</html>

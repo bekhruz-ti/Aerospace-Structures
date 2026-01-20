@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, June 18th, 2024</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        article {
+            background: white;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .metadata {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .student-info {
+            margin: 30px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f8f8;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            font-size: 0.95em;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 1px solid #000;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            color: #006400;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            margin-top: 12px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 12px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+            line-height: 1.5;
+        }
+
+        figcaption strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .true-false {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .true-false li {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+
+        .multiple-choice {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .multiple-choice li {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .multiple-choice ol {
+            list-style-type: lower-alpha;
+            margin-top: 10px;
+            padding-left: 25px;
+        }
+
+        .multiple-choice ol li {
+            margin: 8px 0;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        .solution-box {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .solution-box strong {
+            color: #2e7d32;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+            .page-break {
+                page-break-after: always;
+                border: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .exercise {
+                padding: 15px;
+            }
+            
+            .data-section {
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures Written test, June 18th, 2024</h1>
+        </header>
+
+        <div class="student-info">
+            <p>Name</p>
+            <p>Surname</p>
+            <p>Person code:</p>
+        </div>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            
+            <figure class="diagram">
+                <img src="images/June_17_2024/page_1_img_1.png" alt="Inclined structural system showing a beam of length ℓ supported at the base with a fixed support. A spring with stiffness k₀ connects the fixed support to a mass block positioned partway up the incline. A vertical downward force F is applied at the right end, and a normal force N is shown acting perpendicular to the beam surface.">
+                <figcaption>
+                    <strong>Inclined beam spring mass system</strong>
+                    Inclined structural system showing a beam of length \(\ell\) supported at the base with a fixed support (indicated by hatching). A spring with stiffness \(k_0\) connects the fixed support to a mass block (shown as square with hatching) positioned partway up the incline. The beam extends further to length \(\ell\) with two segments marked as \(\ell\). A vertical downward force \(F\) is applied at the right end, and a normal force \(N\) is shown acting perpendicular to the beam surface. The system appears to be oriented at an angle to the horizontal.
+                </figcaption>
+            </figure>
+
+            <p>The slender L-shaped beam structure in the figure is clamped at one extremity and has a torsional spring with torsional stiffness \(K_\theta\) (such that \(M = K_\theta\theta\)) at a distance \(l\) from the clamp. Compute the sketched vertical displacement \(v\) due to the sketched force \(F\). Neglect shear deformability.</p>
+
+            <p>(Unit for result: mm)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 1\, \text{m}\)<br>
+                \(K_\theta = 1 \times 10^{10}\, \text{N mm}\)<br>
+                \(EI = 1 \times 10^{15}\, \text{N mm}^2\)<br>
+                <br>
+                \(GJ = 7 \times 10^9\, \text{N mm}^2\)<br>
+                <br>
+                \(F = 150\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    In the real system, substitute the torsional spring with reactions: \(M_{K_\theta} = -K_\theta \cdot \theta\), from which \(\theta = -\frac{M_{K_\theta}}{K_\theta}\)<br><br>
+                    
+                    <strong>Segment Analysis (3 segments):</strong><br>
+                    ① \(M_{x_1} = F \cdot z_1\), \(M'_{x_1} = -z_1\)<br>
+                    ② \(M_{x_2} = F \cdot z_2\), \(M_{z_2} = -F \cdot \ell\), \(M'_{x_2} = -z_2\), \(M'_{z_2} = 1 \cdot \ell\)<br>
+                    ③ \(M_{x_3} = F(\ell + z_3)\), \(M_{z_3} = -F \cdot \ell - M_{K_\theta}\), \(M'_{x_3} = -(\ell + z_3)\), \(M'_{z_3} = (\ell + z_3)\)<br><br>
+                    
+                    <strong>PVW (independent equations):</strong><br>
+                    \[\delta W_e = -1 \cdot \theta = -1 \cdot \frac{M_{K_\theta}}{K_\theta}\]
+                    \[\delta W_i = \int_0^\ell \frac{M''_{z_3} \cdot M_{z_3}}{GJ}\, dz_3 = \frac{F\ell^2}{GJ} + \frac{M_{K_\theta} \cdot \ell}{GJ}\]
+                    
+                    Solving for \(M_{K_\theta}\):
+                    \[M_{K_\theta} = -\frac{F\ell^2}{GJ} \left(\frac{1}{K_\theta} + \frac{\ell}{GJ}\right)^{-1}\]
+                    
+                    <strong>Virtual work for displacement:</strong><br>
+                    \[\delta W_e = 1 \cdot v\]
+                    
+                    Final displacement formula:
+                    \[v = -F\ell^3 \left(\frac{3}{EI} + \frac{5}{2GJ}\right) - M_{K_\theta} \ell^2 \cdot \frac{3}{2GJ}\]
+                    
+                    <br><strong>Final Answer:</strong> \(v \approx -0.27\, \text{mm}\) (magnitude \(\approx 0.27\, \text{mm}\))
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            
+            <figure class="diagram">
+                <img src="images/June_17_2024/page_1_img_2.png" alt="Three-dimensional rectangular frame structure with dimensions a (width) and ℓ (depth). The frame consists of vertical and horizontal members connected at nodes. The right side of the frame is fixed to a wall. A horizontal force F acts at the left face, with dimension b marked on the left side showing two equal segments.">
+                <figcaption>
+                    <strong>Rectangular frame axial force loading</strong>
+                    Three-dimensional rectangular frame structure with dimensions \(a\) (width) and \(\ell\) (depth). The frame consists of vertical and horizontal members connected at nodes (shown as filled circles). The right side of the frame is fixed to a wall (indicated by hatching). A horizontal force \(F\) acts at the left face, with dimension \(b\) marked on the left side showing two equal segments. A distributed load \(q\) is indicated on one of the internal members. The frame appears to represent a box-like structure subjected to axial loading.
+                </figcaption>
+            </figure>
+
+            <p>Consider the two-cells semi-monocoque beam model sketched in the figure. All the six stringers have area equal to \(A\), and all the seven panes have thickness equal to \(t\). The beam is clamped at one extremity, and loaded by the horizontal force \(F\) at the other. Compute the shear flux \(q\) sketched in the figure.</p>
+
+            <p>(Unit for result: N mm\(^{-1}\))</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(A = 100\, \text{mm}^2\)<br>
+                <br>
+                \(t = 1\, \text{mm}\)<br>
+                \(a = 250\, \text{mm}\)<br>
+                \(b = 100\, \text{mm}\)<br>
+                \(l = 1\, \text{m}\)<br>
+                \(E = 77000\, \text{MPa}\)<br>
+                \(\nu = 0.33\)<br>
+                \(F = 50000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    Note: The beam behavior does not enter the cross-section shear flow calculation.<br><br>
+                    
+                    With reference system: \(T_x = -F\)<br><br>
+                    
+                    <strong>Static moments (DEN 6/7):</strong><br>
+                    \[S_{y_1} = S_{y_3} = S_{y_5} = -S_{y_2} = -S_{y_4} = -S_{y_6} = -\frac{1}{2}Aa\]
+                    
+                    <strong>Second moment of area:</strong><br>
+                    \[J_{yy} = 6 \cdot A \left(\frac{a}{2}\right)^2 = \frac{3}{2}Aa^2\]
+                    
+                    <strong>Open section shear flows:</strong><br>
+                    \[q'_2 = q'_4 = q'_1 = -\frac{T_x \cdot S_{y_1}}{J_{yy}} = +\frac{1}{3} \cdot \frac{T_x}{a} = q'\]
+                    \[q'_3 = q'_5 = 0 \quad \text{(since } S_{y_1} + S_{y_2} = 0\text{)}\]
+                    
+                    <strong>Horizontal equilibrium w.r.t. \(s\):</strong><br>
+                    \[0 = 2ab \cdot q^*_1 + 2ab \cdot q^*_2 \quad \Rightarrow \quad q^*_1 = -q^*_2 = q^*\]
+                    
+                    <strong>Compatibility (twist rate equality):</strong><br>
+                    \[\theta'_1 = \frac{1}{2Gtab}\left(q^*_1 \cdot 2(a+b) + (1-1)q' \cdot a - q^*_2 \cdot a\right)\]
+                    \[\theta'_2 = \frac{1}{2Gtab}\left(q^*_2 \cdot 2(a+b) + (1-1)q' \cdot a - q^*_1 \cdot a\right)\]
+                    
+                    From \(\theta'_1 = \theta'_2\): \(q^*_1(3a + 2b) = q^*_2(3a + 2b)\)<br>
+                    Combined with \(q^*_1 = -q^*_2\): \(q^* = q^*_1 = q^*_2 = 0\)<br><br>
+                    
+                    <strong>Final shear flux:</strong>
+                    \[q_1 = q'_1 = +\frac{1}{3} \cdot \frac{T_x}{a} = -\frac{F}{3a}\]
+                    
+                    <br><strong>Final Answer:</strong> \(q = -\frac{50000}{3 \times 250} = -66.67\, \text{N/mm}\)
+                </div>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">17</p>
+
+        <div class="page-break"></div>
+
+        <section class="exercise">
+            <h3>Exercise 3</h3>
+            
+            <figure class="diagram">
+                <img src="images/June_17_2024/page_2_img_1.png" alt="Horizontal beam of length ℓ with fixed supports at both ends. A pulley system is positioned at the center with a vertical downward force F applied through the pulley. Two springs with stiffnesses k₁ and k₂ are connected in series below the beam.">
+                <figcaption>
+                    <strong>Beam pulley two springs system</strong>
+                    Horizontal beam of length \(\ell\) with fixed supports at both ends (indicated by hatching). A pulley system is positioned at the center with a vertical downward force \(F\) applied through the pulley. Two springs with stiffnesses \(k_1\) and \(k_2\) are connected in series below the beam, with the lower spring \(k_2\) attached to a fixed support at the bottom. The dimension \(\ell_1\) marks the distance from the right support to the right end of the beam. This represents a statically indeterminate system with elastic supports.
+                </figcaption>
+            </figure>
+
+            <p>Consider the vertical slender beam model with length \(l\) sketched in the figure. It is constrained by an hinge at one extremity and a slider at the other. Two horizontal springs, with stiffness \(K_1\) and \(K_2\), are attached at a distance \(l_1\) from the hinge. By approximating the transverse displacement with a polyno- mial function with only one unknown estimate the critical buckling compressive force \(F\) of the structure. Neglect shear deformability.</p>
+
+            <p>(Unit for result: N)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 2000\, \text{mm}\)<br>
+                \(l_1 = 750\, \text{mm}\)<br>
+                \(EA = 6 \times 10^{10}\, \text{N}\)<br>
+                \(EI_{xx} = EI_{yy} = 12 \times 10^{10}\, \text{N mm}^2\)<br>
+                <br>
+                \(GJ = 7 \times 10^9\, \text{N mm}^2\)<br>
+                <br>
+                \(K_1 = 75 \times 10^2\, \text{N/mm}\)<br>
+                \(K_1 = 25 \times 10^2\, \text{N/mm}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    PVW with Euler-Bernoulli beam and nonlinear Green-Lagrange strain tensor for infinitesimal displacements.<br><br>
+                    
+                    Combined spring stiffness: \(k = K_1 + K_2\)<br><br>
+                    
+                    From PVW equilibrium: \(N = -F\) (axial force)<br><br>
+                    
+                    <strong>Displacement assumption:</strong><br>
+                    Take \(v = Az^2 + Bz + C\) with boundary conditions:<br>
+                    - \(v(0) = 0\) (hinge)<br>
+                    - \(v(\ell) = 0\) (slider)<br><br>
+                    
+                    This gives: \(v = A(z^2 - z\ell)\)<br>
+                    \[v'_z = A(2z - \ell), \quad \delta v'_z = \delta A(2z - \ell)\]
+                    \[v''_{zz} = 2A, \quad \delta v''_{zz} = 2\delta A\]
+                    
+                    <strong>PVW equation:</strong><br>
+                    \[\delta A \int_0^\ell 2EI \cdot 2A - (2z-\ell)F \cdot A(2z-\ell)\, dz = -\delta A(\ell_1^2 - \ell_1\ell)k \cdot A(\ell_1^2 - \ell_1\ell)\]
+                    
+                    Taking \(A \neq 0\):<br>
+                    \[4EI\ell - \int_0^\ell (2z-\ell)^2 F\, dz = (\ell_1^2 - \ell_1\ell)^2 k\]
+                    
+                    \[4EI\ell - \frac{4}{3}F\ell^3 - F\ell^3 + \frac{4}{2}F\ell^3 = k(\ell_1^2 - \ell_1\ell)^2\]
+                    
+                    <strong>Critical buckling force:</strong>
+                    \[F = \frac{k(\ell_1^2 - \ell_1\ell)^2 + 4EI\ell}{2\ell^3 - \ell^3 - \frac{4}{3}\ell^3}\]
+                    
+                    With \(k = 7500 + 2500 = 10000\, \text{N/mm}\), \(\ell_1^2 - \ell_1\ell = 750^2 - 750 \times 2000 = -937500\, \text{mm}^2\)<br><br>
+                    
+                    <br><strong>Final Answer:</strong> \(F \approx 1.37 \times 10^7\, \text{N}\)
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 4</h3>
+            
+            <figure class="diagram">
+                <img src="images/June_17_2024/page_2_img_2.png" alt="Cantilever beam of total length ℓ with fixed support at the left end. A spring-damper system is attached at the midpoint of the beam. A vertical downward force F is applied at the free right end of the beam.">
+                <figcaption>
+                    <strong>Cantilever beam spring damper midspan</strong>
+                    Cantilever beam of total length \(\ell\) with fixed support at the left end (indicated by hatching). A spring-damper system (spring with stiffness \(k_0\) and damper with coefficient \(\delta\)) is attached at the midpoint (\(\ell/2\)) of the beam, with the spring-damper connected to a fixed support below. A vertical downward force \(F\) is applied at the free right end of the beam. This configuration represents a vibration or dynamic analysis problem with elastic and damping elements at mid-span.
+                </figcaption>
+            </figure>
+
+            <p>Consider the slender cantilever beam sketched in the figure, with length \(l\). It has a torsional spring, at a distance equal to \(l/2\) from the clamp, that works for the bending rotation \(\theta\) of the beam (i.e. the derivative of the transverse displacement). The beam is loaded by the concentrated vertical force \(F\), as sketched. By assuming a quadratic transverse displacement approximation estimate the bending rotation \(\theta\) at \(l/2\). Neglect shear deformability.</p>
+
+            <p>(Unit for result: rad)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 1000\, \text{mm}\)<br>
+                \(K_\theta = 1 \times 10^{10}\, \text{Nmm}\)<br>
+                \(EI = 12 \times 10^9\, \text{N mm}^2\)<br>
+                <br>
+                \(F = 150\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    <strong>Displacement assumption:</strong><br>
+                    Assume \(v(z) = Az^2\) due to boundary conditions \(v(0) = 0\), \(v'(0) = 0\)<br>
+                    \[v'_z = 2Az, \quad v''_{zz} = 2A\]
+                    
+                    <strong>PVW formulation:</strong><br>
+                    \[\delta W_i = \int_0^\ell \delta v''_{zz} \cdot EI \cdot v''_{zz}\, dz\]
+                    \[\delta W_e = -\delta v(\ell) \cdot F - \delta v'_z\left(\frac{\ell}{2}\right) \cdot K_\theta \cdot v'_z\left(\frac{\ell}{2}\right)\]
+                    
+                    Substituting the displacement assumption:<br>
+                    \[\delta A \cdot 4EI\ell \cdot A = -\delta A\left(F\ell^2 + 4 \cdot \frac{\ell}{2} \cdot K_\theta \cdot \frac{\ell}{2} \cdot A\right)\]
+                    
+                    Solving for \(A\):<br>
+                    \[A = -\frac{F\ell^2}{K_\theta\ell^2 + 4EI\ell} = -\frac{F\ell}{K_\theta\ell + 4EI}\]
+                    
+                    <strong>Bending rotation at \(\ell/2\):</strong><br>
+                    \[\theta = v'_z\left(z = \frac{\ell}{2}\right) = 2A \cdot \frac{\ell}{2} = A\ell = \frac{F\ell^2}{K_\theta\ell + 4EI}\]
+                    
+                    <strong>Numerical calculation:</strong><br>
+                    \[\theta = \frac{150 \times 1000^2}{1 \times 10^{10} \times 1000 + 4 \times 12 \times 10^9}\]
+                    \[\theta = \frac{1.5 \times 10^8}{1 \times 10^{13} + 4.8 \times 10^{10}} = \frac{1.5 \times 10^8}{1.0048 \times 10^{13}}\]
+                    
+                    <br><strong>Final Answer:</strong> \(\theta \approx 1.49 \times 10^{-5}\, \text{rad}\)
+                </div>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">2</p>
+
+        <div class="page-break"></div>
+
+        <section class="exercise">
+            <h3>Exercise 5</h3>
+            
+            <figure class="diagram">
+                <img src="images/June_17_2024/page_3_img_1.png" alt="Three-dimensional rectangular frame structure with dimensions a (width), b (height with two equal segments), and ℓ (depth). Point B is marked at the upper right corner. Two forces are applied: horizontal force F₁ and vertical upward force F₂.">
+                <figcaption>
+                    <strong>Rectangular frame two forces point B</strong>
+                    Three-dimensional rectangular frame structure with dimensions \(a\) (width), \(b\) (height with two equal segments), and \(\ell\) (depth). The frame consists of vertical and horizontal members connected at nodes (shown as filled circles), with the right side fixed to a wall (indicated by hatching). Point B is marked at the upper right corner. Two forces are applied: horizontal force \(F_1\) acting to the left at the mid-height of the left face, and vertical upward force \(F_2\) applied at the bottom center of the structure. The frame represents a statically indeterminate spatial structure under combined loading.
+                </figcaption>
+            </figure>
+
+            <p>The same two-cells semi-monocoque beam model of Exercise 2 is loaded at its free end by the forces \(F_1\) and \(F_2\), as sketched. Compute the axial strain (\(\varepsilon_{zz}\)) of stringer B at the clamp (cfr. the figure).</p>
+
+            <p>(Unit for result: -)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(A = 100\, \text{mm}^2\)<br>
+                <br>
+                \(t = 1\, \text{mm}\)<br>
+                \(a = 250\, \text{mm}\)<br>
+                \(b = 100\, \text{mm}\)<br>
+                \(l = 1\, \text{m}\)<br>
+                \(E = 77000\, \text{MPa}\)<br>
+                \(\nu = 0.33\)<br>
+                \(F_1 = 50000\, \text{N}\)<br>
+                \(F_2 = 2500\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    <strong>Internal moments at the clamp:</strong><br>
+                    \[M_x = -F_2 \cdot \ell = -2500 \times 1000 = -2.5 \times 10^6\, \text{N·mm}\]
+                    \[M_y = +F_1 \cdot \ell = +50000 \times 1000 = 5 \times 10^7\, \text{N·mm}\]
+                    
+                    <strong>Second moments of area:</strong><br>
+                    \[J_{xx} = 4Ab^2 = 4 \times 100 \times 100^2 = 4 \times 10^6\, \text{mm}^4\]
+                    \[J_{yy} = \frac{3}{2}Aa^2 = \frac{3}{2} \times 100 \times 250^2 = 9.375 \times 10^6\, \text{mm}^4\]
+                    
+                    <strong>Axial strain formula:</strong><br>
+                    \[\varepsilon_{zz} = \frac{1}{E}\sigma_{zz} = \frac{1}{E}\left(\frac{M_x}{J_{xx}} \cdot b - \frac{M_y}{J_{yy}} \cdot \frac{a}{2}\right)\]
+                    
+                    <strong>Numerical calculation:</strong><br>
+                    \[\varepsilon_{zz} = \frac{1}{77000}\left(\frac{-2.5 \times 10^6 \times 100}{4 \times 10^6} - \frac{5 \times 10^7 \times 125}{9.375 \times 10^6}\right)\]
+                    \[\varepsilon_{zz} = \frac{1}{77000}\left(-62.5 - 666.67\right)\]
+                    \[\varepsilon_{zz} = \frac{-729.17}{77000}\]
+                    
+                    <br><strong>Final Answer:</strong> \(\varepsilon_{zz} \approx -9.47 \times 10^{-3}\)
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 6</h3>
+            
+            <figure class="diagram">
+                <img src="images/June_17_2024/page_3_img_2.png" alt="Horizontal beam of length ℓ with fixed support at the left end and free right end. A vertical downward force F is applied at approximately mid-span. The right end detail shows a circular cross-section with diameter 2a.">
+                <figcaption>
+                    <strong>Beam circular cross section end forces</strong>
+                    Horizontal beam of length \(\ell\) with fixed support at the left end (indicated by hatching) and free right end. Coordinate system shows x-axis along beam length and y-axis vertical. A vertical downward force \(F\) is applied at approximately mid-span. The right end detail shows a circular cross-section (indicated by hatched circle) with diameter \(2a\), subjected to vertical force \(F\) downward and horizontal force \(F\) to the left, along with dimension \(z\) marked horizontally. This represents a beam bending problem with end loading and circular cross-sectional geometry.
+                </figcaption>
+            </figure>
+
+            <p>The clamped slender beam sketched in the figure has a circular cross-section. It is loaded by the vertical force \(F\) applied at the free end on the lateral side of the cross-section, cfr. the sketch. Compute the torsional rotation at the free end. Neglect shear deformability..</p>
+
+            <p>(Unit for result: rad)</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 200\, \text{mm}\)<br>
+                \(r = 10\, \text{mm}\)<br>
+                \(EA = 2.5 \times 10^7\, \text{N}\)<br>
+                \(EI_{xx} = EI_{yy} = 6 \times 10^8\, \text{N mm}^2\)<br>
+                <br>
+                \(GJ = 4 \times 10^8\, \text{N mm}^2\)<br>
+                <br>
+                \(F = 2000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <div class="solution-box">
+                    <strong>Solution:</strong><br><br>
+                    The force \(F\) applied at the lateral side of the cross-section creates a torsional moment.<br><br>
+                    
+                    <strong>Torsional moment:</strong><br>
+                    \[M = -F \cdot r\]
+                    
+                    <strong>Torsional rotation assumption:</strong><br>
+                    \[\theta(x) = Ax, \quad \theta'(x) = A\]
+                    
+                    <strong>PVW formulation:</strong><br>
+                    \[\delta W_i = \int_0^\ell \delta\theta' \cdot GJ \cdot \theta'\, dx\]
+                    \[\delta W_e = \delta\theta(\ell) \cdot M\]
+                    
+                    Applying PVW:<br>
+                    \[\int_0^\ell GJA\, dx = \ell \cdot (-F \cdot r)\]
+                    \[GJA\ell = -Fr\ell\]
+                    \[A = -\frac{Fr}{GJ}\]
+                    
+                    (This can also be obtained from \(M = GJ\theta'\))<br><br>
+                    
+                    <strong>Torsional rotation at free end:</strong><br>
+                    \[\theta(\ell) = A\ell = -\frac{Fr\ell}{GJ}\]
+                    
+                    <strong>Numerical calculation:</strong><br>
+                    \[\theta(\ell) = -\frac{2000 \times 10 \times 200}{4 \times 10^8} = -\frac{4 \times 10^6}{4 \times 10^8}\]
+                    
+                    <br><strong>Final Answer:</strong> \(\theta = -0.01\, \text{rad}\) (or \(|\theta| = 0.01\, \text{rad}\))
+                </div>
+            </div>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">3</p>
+
+        <div class="page-break"></div>
+
+        <section>
+            <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+
+            <ol class="true-false">
+                <li>A beam model cannot be used for evaluating local effects due to the application of loads. <span class="answer-solution">T</span></li>
+                
+                <li>Essential boundary conditions are more important than natural ones. <span class="answer-solution">F</span></li>
+                
+                <li>Shear deformability effects are generally more relevant for thin-walled cross-section beams than for compact cross-section beams. <span class="answer-solution">T</span></li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Multiple Choice questions (Circle the correct answer)</h2>
+
+            <ol class="multiple-choice">
+                <li>
+                    Consider an Euler-Bernoulli cantilever beam model, loaded with a uniformly distributed load. The exact solution is:
+                    <ol>
+                        <li>trigonometric</li>
+                        <li>polynomial (quadratic)</li>
+                        <li>polynomial (cubic)</li>
+                        <li style="color: green; font-weight: bold;">none of the above ✓</li>
+                    </ol>
+                </li>
+
+                <li>
+                    A plane-strain constitutive law:
+                    <ol>
+                        <li>has null axial stress</li>
+                        <li style="color: green; font-weight: bold;">has null axial strain ✓</li>
+                        <li>has null shear stress</li>
+                        <li>has null shear strain</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+
+                <li>
+                    A two-cell section modeled according to the semi-monocoque scheme can be solved by using:
+                    <ol>
+                        <li>shear flow equations only</li>
+                        <li>shear flow equations together with the equivalence to internal moment</li>
+                        <li style="color: green; font-weight: bold;">shear flow equations, equivalence to internal moment and the compatibility equation ✓</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+
+        <p style="text-align: right; margin-top: 40px;">4</p>
+
+    </article>
+</body>
+</html>

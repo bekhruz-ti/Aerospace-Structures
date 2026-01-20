@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema_23_01_2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .student-info {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info span {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        .underline {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 1px solid #000;
+            margin: 0 5px;
+        }
+
+        .problem {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .problem h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .ascii-diagram {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.4;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            background: white;
+        }
+
+        table th, table td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+
+        .table-caption {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #555;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <div class="student-info">
+                <span><span class="underline">_____________________ Name _____________________</span></span>
+                <span><span class="underline">Surname _____________________</span></span>
+                <span><span class="underline">Id</span></span>
+            </div>
+            <h1>AEROSPACE STRUCTURES</h1>
+            <p><strong>Written test January 18 2019</strong></p>
+        </header>
+
+        <section class="problem">
+            <h3>1.</h3>
+            <p>The semi-momocoque wing of Figure 1 is loaded by triangular pressure distribution. Compute the rotation angle of the section located at distance \(l\) from the encastre (i.e. the location from which the pressure load starts. Refer to Table 1 for the problem data, and assume reasonable values for any missing constant.</p>
+
+            <div class="ascii-diagram">A1
+
+A1
+
+A1
+
+A1
+
+w2
+
+A2
+
+w1
+
+h
+
+l
+
+d w3
+
+l1 t1
+
+t2
+
+t1
+
+t1 t1
+
+t2
+
+p</div>
+
+            <figcaption>Figure 1: Loaded wing</figcaption>
+
+            <div class="table-caption">Table 1: Semi-momocoque wing data</div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>\(A_1\)</td>
+                        <td>\(75\, \text{mm}^2\)</td>
+                        <td>\(w_1\)</td>
+                        <td>\(300\, \text{mm}\)</td>
+                        <td>\(l_1\)</td>
+                        <td>\(1100\, \text{mm}\)</td>
+                        <td>\(E\)</td>
+                        <td>\(72000\, \text{MPa}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(A_2\)</td>
+                        <td>\(100\, \text{mm}^2\)</td>
+                        <td>\(w_2\)</td>
+                        <td>\(40\, \text{mm}\)</td>
+                        <td>\(w_3\)</td>
+                        <td>\(60\, \text{mm}\)</td>
+                        <td>\(\nu\)</td>
+                        <td>\(0.3\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(t_1\)</td>
+                        <td>\(1\, \text{mm}\)</td>
+                        <td>\(l\)</td>
+                        <td>\(3000\, \text{mm}\)</td>
+                        <td>\(d\)</td>
+                        <td>\(20\, \text{mm}\)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>\(t_2\)</td>
+                        <td>\(0.5\, \text{mm}\)</td>
+                        <td>\(h\)</td>
+                        <td>\(60\, \text{mm}\)</td>
+                        <td>\(p\)</td>
+                        <td>\(2\, \text{MPa}\)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="problem">
+            <h3>2.</h3>
+            <p>The \(h \times w \times t\) solid of Figure 2 is joined to a beam with torsional stiﬀness \(GJ\). The beam is loaded by a moment per unit of length \(m\). Compute the vertical displacement and the rotation of the beam free extremity. Refer to Table 2 for the problem data, and assume reasonable values for any missing constant. Choose and justify a suitable structural model for the solid.</p>
+
+            <div class="ascii-diagram">w
+
+t
+
+h
+
+l GJ
+
+m</div>
+
+            <figcaption>Figure 2: Cantilever bending</figcaption>
+
+            <div class="table-caption">Table 2: Semi-momocoque wing data</div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>\(t\)</td>
+                        <td>\(5\, \text{mm}\)</td>
+                        <td>\(GJ\)</td>
+                        <td>\(22\, \text{Nm}^2\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(l\)</td>
+                        <td>\(1000\, \text{mm}\)</td>
+                        <td>\(E\)</td>
+                        <td>\(72000\, \text{MPa}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(h\)</td>
+                        <td>\(700\, \text{mm}\)</td>
+                        <td>\(\nu\)</td>
+                        <td>\(0.3\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(w\)</td>
+                        <td>\(30\, \text{mm}\)</td>
+                        <td>\(m\)</td>
+                        <td>\(4\, \text{N}\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="problem">
+            <h3>3.</h3>
+            <p>Deﬁne and derive the expression of the work-conjugated beam generalized deformation and internal actions starting from a kinematic beam model.</p>
+        </section>
+    </article>
+</body>
+</html>

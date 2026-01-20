@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Test Solutions - September 7, 2020</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.8;
+            background: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a237e;
+            border-bottom: 3px solid #1a237e;
+            padding-bottom: 15px;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #fafafa;
+        }
+        
+        .problem h3 {
+            color: #1a237e;
+            margin-top: 0;
+            font-size: 1.4em;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: #e8f5e9;
+            border-top: 3px solid #4caf50;
+        }
+        
+        .solution h4 {
+            color: #2e7d32;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        
+        .given-data {
+            background: #e3f2fd;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .given-data strong {
+            color: #1565c0;
+        }
+        
+        figure.diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+        }
+        
+        figure.diagram img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .final-answer {
+            font-size: 1.1em;
+            color: #1b5e20;
+            font-weight: bold;
+            padding: 15px;
+            background: #c8e6c9;
+            border-left: 4px solid #4caf50;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 4px;
+        }
+        
+        .note {
+            background: #fff3e0;
+            padding: 12px 15px;
+            border-left: 4px solid #ff9800;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-style: italic;
+        }
+        
+        .true-false-section {
+            padding: 25px;
+            background: white;
+        }
+        
+        .tf-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 6px;
+        }
+        
+        .tf-statement {
+            margin-bottom: 10px;
+        }
+        
+        .tf-answer {
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .tf-answer.true {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .tf-answer.false {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+        
+        .matrix-equation {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Test Solutions - September 7, 2020</h1>
+
+    <!-- Problem 1 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Problem 1: Axial Force in L-Shaped Frame</h3>
+            
+            <figure class="diagram">
+                <img src="images/OnlineTestSolutions_September_7_2020/l_shaped_frame_distributed_point_loads.png" alt="L-shaped frame structure with fixed support, distributed load, and pin support">
+                <figcaption>L-shaped frame structure with fixed support at left, distributed load on horizontal segment, point load \(P\) at right end, and pin support at bottom.</figcaption>
+            </figure>
+            
+            <p><strong>Problem Statement:</strong> Determine the axial force at \(x = L/2\).</p>
+            
+            <div class="given-data">
+                <strong>Given Data:</strong><br>
+                \(L = 1200\left(1 + \frac{D}{10}\right)\, \text{mm}\)<br>
+                \(EA_1 = 2.0 \cdot 10^4\, \text{N}\)<br>
+                \(EA_2 = 1.0 \cdot 10^4\, \text{N}\)<br>
+                \(EA_3 = 2.9 \cdot 10^4\, \text{N}\)<br>
+                \(EJ = 1.5 \cdot 10^{10}\, \text{N}\cdot\text{mm}^2\)<br>
+                \(P = 1200\left(1 + \frac{F}{10}\right)\, \text{N}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution (D = F = 0)</h4>
+            
+            <p>Using the force method with the vertical reaction \(X\) at the pin support as the redundant force.</p>
+            
+            <div class="step">
+                <p><strong>Internal forces and virtual fields:</strong></p>
+                <p>For beam 1 (vertical segment):</p>
+                \[N = -X \qquad \delta N = -1\]
+                
+                <p>For beam 2 (horizontal segment):</p>
+                \[M_x = -(P + X)z_2 \qquad \delta M_x = -z_2\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Compatibility equation:</strong></p>
+                \[\int_0^{L} \frac{N \cdot \delta N}{EA_3}\, dz_1 + \int_0^{L} \frac{M_x \cdot \delta M_x}{EJ}\, dz_2 = 0\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Solving for X:</strong></p>
+                \[X = -\frac{PL^2/3}{\frac{EJ}{EA_3} + \frac{L^2}{3}}\]
+            </div>
+            
+            <p class="final-answer">
+                <strong>Final Answer:</strong> \(X = -577.59\, \text{N}\)
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem 2 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Problem 2: Shear Flow in Arch Panel</h3>
+            
+            <figure class="diagram">
+                <img src="images/OnlineTestSolutions_September_7_2020/arch_panel_three_ribs_cross_section.png" alt="Three-dimensional arch structure with panel and three ribs">
+                <figcaption>Arch panel with thickness \(t_2\), supported by three ribs. Cross-sectional view shows dimensions \(h\), \(b\), and thickness parameters.</figcaption>
+            </figure>
+            
+            <p><strong>Problem Statement:</strong> Evaluate the shear flow in the panel with thickness \(t_2\) at \(x = 0\).</p>
+            
+            <div class="given-data">
+                <strong>Given Data:</strong><br>
+                \(A = 700\, \text{mm}^2\)<br>
+                \(b = 600\, \text{mm}\)<br>
+                \(h = 150\, \text{mm}\)<br>
+                \(t_1 = 1\, \text{mm}\)<br>
+                \(t_2 = 1.5\, \text{mm}\)<br>
+                \(L = 1800\left(1 + \frac{A}{10}\right)\, \text{mm}\)<br>
+                \(p = 2.5 \cdot 10^{-2}\left(1 + \frac{B}{10}\right)\, \text{N/mm}^2\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution (A = B = 0)</h4>
+            
+            <div class="step">
+                <p><strong>Step 1:</strong> Calculate the shear force at \(x = 0\):</p>
+                \[T = p \cdot L \cdot (b - 2h)\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 2:</strong> From the symmetry of the section, the shear flow is:</p>
+                \[q = \frac{T}{2h}\]
+            </div>
+            
+            <p class="final-answer">
+                <strong>Final Answer:</strong> \(q = 45\, \text{N/mm}\)
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem 3 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Problem 3: Strain Energy using Ritz Method</h3>
+            
+            <figure class="diagram">
+                <img src="images/OnlineTestSolutions_September_7_2020/cantilever_beam_rigid_link_point_load.png" alt="Cantilever beam with rigid link at free end">
+                <figcaption>Cantilever beam with rigid link at free end, showing length \(L\), distance \(d\), point load \(P\), and varying \(EJ(x)\) and \(EA(x)\) properties.</figcaption>
+            </figure>
+            
+            <p><strong>Problem Statement:</strong> Using the Ritz method and a 1-dof polynomial approximation for any displacement component, determine the strain energy.</p>
+            
+            <div class="given-data">
+                <strong>Given Data:</strong><br>
+                \(L = 1200\, \text{mm}\)<br>
+                \(d = 45\, \text{mm}\)<br>
+                \(EA_0 = 1.15 \cdot 10^6\, \text{N}\)<br>
+                \(EA_1 = 6.5 \cdot 10^5\left(1 + \frac{B}{10}\right)\, \text{N}\)<br>
+                \(EJ_0 = 1.5 \cdot 10^9\, \text{N}\cdot\text{mm}^2\)<br>
+                \(EJ_1 = 7.5 \cdot 10^9\, \text{N}\cdot\text{mm}^2\)<br>
+                \(P = 800\, \text{N}\)
+            </div>
+            
+            <div class="note">
+                <strong>Note:</strong> \(EA\) and \(EJ\) vary linearly with \(x\) from \(EA_0/EJ_0\) to \(EA_1/EJ_1\).
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution (B = 0)</h4>
+            
+            <div class="step">
+                <p><strong>Step 1:</strong> Assume displacement approximations:</p>
+                \[u = q_1 x \qquad w = q_2 x^2\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 2:</strong> Define stiffness variations:</p>
+                \[EJ(x) = \alpha + \beta x\]
+                \[EA(x) = \delta + \gamma x\]
+                
+                <p>where:</p>
+                \[\alpha = EJ_0 \qquad \beta = \frac{EJ_1 - EJ_0}{L}\]
+                \[\delta = EA_0 \qquad \gamma = \frac{EA_1 - EA_0}{L}\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 3:</strong> Virtual work equation:</p>
+                \[\int_0^{L} \left(\delta u_{,x} \cdot EA(x) \cdot u_{,x} + \delta w_{,xx} \cdot EJ(x) \cdot w_{,xx}\right) dx = -\delta u(L) \cdot P - \delta w_{,x}(L) \cdot P \cdot d\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 4:</strong> After substitution of the approximations, the system becomes:</p>
+                <div class="matrix-equation">
+                \[
+                \begin{bmatrix}
+                \delta L + \gamma L^2/2 & 0 \\
+                0 & 4(\alpha L + \beta L^2/2)
+                \end{bmatrix}
+                \begin{Bmatrix}
+                q_1 \\
+                q_2
+                \end{Bmatrix}
+                =
+                \begin{Bmatrix}
+                -PL \\
+                -2LPd
+                \end{Bmatrix}
+                \]
+                </div>
+                <p>or:</p>
+                \[\underline{\underline{K}} \cdot \underline{q} = \underline{f}\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 5:</strong> Solving for \(\underline{q}\) and evaluating the strain energy:</p>
+                \[U = \frac{1}{2} \underline{q}^T \underline{\underline{K}} \, \underline{q}\]
+            </div>
+            
+            <p class="final-answer">
+                <strong>Final Answer:</strong> \(U = 599.47\, \text{N}\cdot\text{mm}\)
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem 4 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Problem 4: Bending Moment in Rectangular Frame Rib</h3>
+            
+            <figure class="diagram">
+                <img src="images/OnlineTestSolutions_September_7_2020/rectangular_frame_two_ribs_point_loads.png" alt="Rectangular frame structure with two ribs and point loads">
+                <figcaption>Three-dimensional rectangular frame with dimensions \(a\) and \(b\), thickness \(t\), showing two ribs with point loads \(P\) at corners.</figcaption>
+            </figure>
+            
+            <p><strong>Problem Statement:</strong> Model Rib #2 as a beam and evaluate the bending moment at \(x = a/3\).</p>
+            
+            <div class="given-data">
+                <strong>Given Data:</strong><br>
+                \(a = 500\left(1 + \frac{A}{10}\right)\, \text{mm}\)<br>
+                \(b = 250\, \text{mm}\)<br>
+                \(t = 0.6\, \text{mm}\)<br>
+                \(A = 500\, \text{mm}^2\)<br>
+                \(L = 2000\, \text{mm}\)<br>
+                \(P = 1000\, \text{N}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution (A = 0)</h4>
+            
+            <div class="step">
+                <p><strong>Step 1:</strong> Determine the equilibrating shear flows:</p>
+                <p>The shear flows in the panels are found from equilibrium:</p>
+                <ul>
+                    <li>Left vertical panel: \(\frac{3}{4}\frac{P}{b}\)</li>
+                    <li>Top panel: \(\frac{1}{4}\frac{P}{b}\)</li>
+                    <li>Right vertical panel: \(\frac{1}{4}\frac{P}{b}\)</li>
+                    <li>Bottom panel: \(\frac{1}{4}\frac{P}{b}\)</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 2:</strong> Extract Rib #2 as a free body:</p>
+                <p>The rib experiences equal and opposite vertical forces of \(\frac{1}{4}P\) at each end from the shear flows.</p>
+            </div>
+            
+            <p class="final-answer">
+                <strong>Final Answer:</strong> \(M = 0\) at \(x = a/3\)
+                <br><em>(The rib is in pure shear with equal end forces, resulting in zero bending moment along its length)</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem 5 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Problem 5: Torsional Stiffness Ratio</h3>
+            
+            <figure class="diagram">
+                <img src="images/OnlineTestSolutions_September_7_2020/two_segment_beam_inclined_point_loads.png" alt="Two-segment beam with horizontal and inclined segments">
+                <figcaption>Two-segment beam structure with horizontal segment \(L_1\) and inclined segment \(L_2\). Shows point loads \(P\) and different \(EJ\) and \(GJ\) properties for each segment.</figcaption>
+            </figure>
+            
+            <p><strong>Problem Statement:</strong> Find the value of \(\frac{GJ_2}{GJ_1}\) such that \(S = S_{max}\).</p>
+            
+            <div class="given-data">
+                <strong>Given Data:</strong><br>
+                \(L_1 = 300\, \text{mm}\)<br>
+                \(L_2 = 750\, \text{mm}\)<br>
+                \(EJ_1 = 2 \cdot 10^9\, \text{N}\cdot\text{mm}^2\)<br>
+                \(EJ_2 = 3 \cdot 10^9\, \text{N}\cdot\text{mm}^2\)<br>
+                \(GJ_1 = 9 \cdot 10^7\, \text{N}\cdot\text{mm}^2\)<br>
+                \(P = 1200\, \text{N}\)<br>
+                \(S_{max} = 15\left(1 + \frac{F}{10}\right)\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution (F = 0)</h4>
+            
+            <div class="step">
+                <p><strong>Step 1:</strong> Define internal moments and virtual fields:</p>
+                <p>For beam 1 (horizontal segment - bending):</p>
+                \[M = -Pz_1 \qquad \delta M = -z_1\]
+                
+                <p>For beam 2 (inclined segment - torsion):</p>
+                \[M_2 = -2PL_1 \qquad \delta M_2 = -L_1\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 2:</strong> Apply unit load method for displacement \(S\):</p>
+                \[\int_0^{L_1} \frac{\delta M \cdot M}{EJ_1}\, dz_1 + \int_0^{L_2} \frac{\delta M_2 \cdot M_2}{GJ_2}\, dz_2 = S = S_{max}\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 3:</strong> Solve for \(GJ_2\):</p>
+                \[GJ_2 = \frac{2PL_1^2 L_2}{S_{max} - \frac{PL_1^3}{3EJ_1}}\]
+            </div>
+            
+            <p class="final-answer">
+                <strong>Final Answer:</strong> \(\frac{GJ_2}{GJ_1} = 187.5\)
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem 6 -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Problem 6: Shear Deformability in Cylindrical Tube</h3>
+            
+            <figure class="diagram">
+                <img src="images/OnlineTestSolutions_September_7_2020/cylindrical_tube_circular_cross_section.png" alt="Cylindrical tube with circular cross-section">
+                <figcaption>Cylindrical tube of length \(L\) with circular cross-section of radius \(2R\). Shows four points labeled A around circumference with thickness \(t\).</figcaption>
+            </figure>
+            
+            <p><strong>Problem Statement:</strong> Evaluate the contribution of shear deformability to the displacement \(S\).</p>
+            
+            <div class="given-data">
+                <strong>Given Data:</strong><br>
+                \(L = 2300\, \text{mm}\)<br>
+                \(R = 150\, \text{mm}\)<br>
+                \(t = 0.8\left(1 + \frac{A}{10}\right)\, \text{mm}\)<br>
+                \(P = 1700\left(1 + \frac{B}{10}\right)\, \text{N}\)<br>
+                \(G = 27000\, \text{MPa}\)
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h4>Solution (A = B = 0)</h4>
+            
+            <div class="step">
+                <p><strong>Step 1:</strong> Calculate the effective shear area for a thin-walled circular tube:</p>
+                \[A^* = \frac{8tR}{\pi}\]
+            </div>
+            
+            <div class="step">
+                <p><strong>Step 2:</strong> Calculate the shear contribution to displacement:</p>
+                \[S_{shear} = \frac{PL}{GA^*}\]
+            </div>
+            
+            <p class="final-answer">
+                <strong>Final Answer:</strong> \(S_{shear} = 0.4739\, \text{mm}\)
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem 7: True/False -->
+    <section class="problem-solution-pair">
+        <div class="problem">
+            <h3>Problem 7: True/False Questions</h3>
+        </div>
+        
+        <div class="true-false-section">
+            <div class="tf-item">
+                <div class="tf-statement">
+                    <strong>1.</strong> A beam model cannot be used for evaluating local effects due to load introduction.
+                </div>
+                <span class="tf-answer true">True</span>
+            </div>
+            
+            <div class="tf-item">
+                <div class="tf-statement">
+                    <strong>2.</strong> The semi-monocoque approximation provides the exact shear stress distribution along the panels' thickness.
+                </div>
+                <span class="tf-answer false">False</span>
+            </div>
+            
+            <div class="tf-item">
+                <div class="tf-statement">
+                    <strong>3.</strong> Essential boundary conditions are more important than natural ones.
+                </div>
+                <span class="tf-answer false">False</span>
+            </div>
+            
+            <div class="tf-item">
+                <div class="tf-statement">
+                    <strong>4.</strong> The semi-inverse approach for the De Saint Venant solution for isotropic, homogeneous beams leads to the exact solution of the problem.
+                </div>
+                <span class="tf-answer true">True</span>
+            </div>
+            
+            <div class="tf-item">
+                <div class="tf-statement">
+                    <strong>5.</strong> The shear center of beam section with one closed cell requires application of the compatibility equation \(\theta' = 0\).
+                </div>
+                <span class="tf-answer true">True</span>
+            </div>
+            
+            <div class="tf-item">
+                <div class="tf-statement">
+                    <strong>6.</strong> The trial functions in the Ritz method must be part of a complete set.
+                </div>
+                <span class="tf-answer true">True</span>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

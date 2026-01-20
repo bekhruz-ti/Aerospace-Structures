@@ -1,0 +1,30 @@
+{
+  "cantilever_beam_vertical_force.png": {
+    "suggested_name": "cantilever_beam_vertical_force",
+    "description": "Cantilever beam diagram showing vertical beam with fixed support at bottom, coordinate system (x,y), force F applied, and dimensional labels ℓ, 2ℓ, and point B marked"
+  },
+  "simply_supported_beam_point_load_moment.png": {
+    "suggested_name": "simply_supported_beam_point_load_moment",
+    "description": "Simply supported beam with fixed support at left end, roller support at right end, point load F at distance x from left, and moment M applied, with span dimensions ℓ, 2ℓ, ℓ marked"
+  },
+  "semi_monocoque_structure_3d.png": {
+    "suggested_name": "semi_monocoque_structure_3d",
+    "description": "Three-dimensional semi-monocoque structure showing rectangular frame with diagonal bracing, labeled points (1), (2), (3), (4), coordinate system (x,y,z), dimensions ℓ, a, and forces F₃, F₂, F₃ indicated"
+  },
+  "diagonal_member_force_diagram.png": {
+    "suggested_name": "diagonal_member_force_diagram",
+    "description": "Diagonal member force diagram showing square cross-section rotated 45 degrees with forces F_x, F_y, F_z labeled and dimension d marked"
+  },
+  "symmetric_three_cell_truss.png": {
+    "suggested_name": "symmetric_three_cell_truss",
+    "description": "Symmetric three-cell truss structure showing triangular configuration with labeled points A, dimensions ℓ, t, a, vertical force F at bottom center, and coordinate system"
+  },
+  "beam_linearly_varying_distributed_load.png": {
+    "suggested_name": "beam_linearly_varying_distributed_load",
+    "description": "Simply supported beam with linearly varying distributed load increasing from left to right, shown with multiple vertical arrows of increasing height, span length ℓ marked"
+  },
+  "mohrs_circle_stress_state.png": {
+    "suggested_name": "mohrs_circle_stress_state",
+    "description": "Mohr's circle diagram showing stress state with axes y/mm and x/mm, point A marked at (100, 0), dimensions and angles labeled including t parameter"
+  }
+}

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, September 9th, 2024</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .metadata {
+            text-align: center;
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .student-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            line-height: 1.8;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 1px solid #333;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: block;
+            padding: 15px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            margin-top: 10px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .true-false {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .true-false li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .multiple-choice {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .multiple-choice li {
+            margin: 20px 0;
+        }
+
+        .multiple-choice ol {
+            list-style-type: lower-alpha;
+            margin-top: 10px;
+        }
+
+        .multiple-choice ol li {
+            margin: 5px 0;
+        }
+
+        .questions-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .questions-section h2 {
+            margin-top: 0;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        @media print {
+            .page-break {
+                page-break-after: always;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Aerospace Structures<br>Written test, September 9th, 2024</h1>
+        </header>
+
+        <div class="student-info">
+            <p>Name</p>
+            <p>Surname</p>
+            <p>Person code:</p>
+        </div>
+
+        <figure class="diagram">
+            <img src="images/Sept_09_2024/page_1_img_1.png" alt="Truss or frame structure with four pin-jointed nodes forming a quadrilateral configuration">
+            <figcaption>
+                <strong>Truss or frame structure with four pin-jointed nodes forming a quadrilateral configuration. Upper horizontal member shows distributed load (indicated by hatching/arrows). Vertical force F applied at bottom center node, pointing downward. Dimensions labeled as ℓ₁ (vertical height on left), ℓ₁ (horizontal length at bottom), and ℓ (diagonal member length on right). Dashed lines indicate internal members or construction lines connecting nodes.</strong>
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/Sept_09_2024/page_1_img_2.png" alt="Square plate or panel with cross-hatched interior pattern, supported by four spring elements">
+            <figcaption>
+                <strong>Square plate or panel with cross-hatched interior pattern, supported by four spring elements (k) at each corner, with fixed supports (ground symbols) at three corners. Horizontal force F applied at right side with displacement Δx indicated. Additional spring k shown at bottom center. Coordinate system not explicitly shown but implied horizontal-vertical orientation.</strong>
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            <p>The semi-monocoque structure in the figure has a three stringers with concentrated area equal to \(A\) each and three panels with thickness \(t\). The structure is clamped at one extremity and loaded by the vertical force \(F\), applied to the rightmost stringer, at the other end. Compute the value of the concentrated area \(A\) required so that the maximum absolute value of the axial stress is equal to the prescribed value \(\sigma_{zz}\).</p>
+            
+            <p>(Unit for result: \(\text{mm}^2\))</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l_1 = 200\, \text{mm}\)<br>
+                \(l_2 = 150\, \text{mm}\)<br>
+                \(l = 2000\, \text{mm}\)<br>
+                \(t = 0.3\, \text{mm}\)<br>
+                \(E = 72000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(F = 10000\, \text{N}\)<br>
+                \(\sigma_{zz} = 400\, \text{MPa}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    For the semi-monocoque structure, the maximum axial stress in the stringers is related to the bending moment by:<br><br>
+                    \[\frac{F \cdot l}{l_2 \cdot A} = \sigma_{zz}\]<br>
+                    Solving for the required area \(A\):<br>
+                    \[A = \frac{F \cdot l}{l_2 \cdot \sigma_{zz}}\]<br>
+                    Substituting the given values:<br>
+                    \[A = \frac{10000 \times 2000}{150 \times 400} = \frac{20{,}000{,}000}{60{,}000}\]<br>
+                    <strong>Final Answer:</strong> \(A = 333.33\, \text{mm}^2\)
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            <p>The sketched square is infinitely rigid. It is hinged at the bottom-right corner, and is connected to two horizontal and two vertical springs, each with an unknown stiffness \(K\), at the bottom-left and top left corners, as skethced. It is also loaded by the horizontal force \(F\) at the top-right corner. Compute the spring stiffness \(K\) so that the horizontal displacement \(v\) at the the point of application of the force \(F\) is equal to the prescribed value. Assume infinitesimal displacements and rotations.</p>
+            
+            <p>(Unit for result: \(\text{N/mm}\))</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 100\, \text{mm}\)<br>
+                \(F = 1500\, \text{N}\)<br>
+                \(v = 0.1\, \text{mm}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    Since the square is rigid and hinged at the bottom-right corner, it rotates by angle \(\theta\) under the applied force.<br><br>
+                    Kinematic relationships for small rotation \(\theta = v/l\):<br>
+                    \[u_3 = -\theta l, \quad u_1 = -\theta l, \quad v_1 = -\theta l, \quad u_2 = 0, \quad v_2 = -\theta l = -v\]<br>
+                    Applying virtual work principle:<br>
+                    \[\delta v_1 \cdot K \cdot v_1 + \delta u_1 \cdot K \cdot u_1 + \delta u_2 \cdot K \cdot u_2 + \delta v_2 \cdot K \cdot v_2 = -\delta u_3 \cdot F\]<br>
+                    This simplifies to:<br>
+                    \[\delta\theta \cdot l \cdot K(\bar{v} + \bar{v} + \bar{v}) = \delta\theta \cdot l \cdot F\]<br>
+                    \[3\bar{v} \cdot l \cdot K = l \cdot F\]<br>
+                    Solving for \(K\):<br>
+                    \[K = \frac{F}{3v} = \frac{1500}{3 \times 0.1} = \frac{1500}{0.3}\]<br>
+                    <strong>Final Answer:</strong> \(K = 5000\, \text{N/mm}\)
+                </span>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/Sept_09_2024/page_2_img_1.png" alt="Triangular truss structure with three pin-jointed nodes">
+            <figcaption>
+                <strong>Triangular truss structure with three pin-jointed nodes. Top left node has fixed support (ground symbol), bottom left node has pinned support (ground symbol), and right node is free with roller support indicated. Members labeled with length ℓ. Angular displacement θ shown at top joint. Dimensions indicate height ℓ on left side and horizontal length ℓ on bottom. Variables t and u labeled on right side.</strong>
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/Sept_09_2024/page_2_img_2.png" alt="Two-story vertical frame structure with fixed support at base">
+            <figcaption>
+                <strong>Two-story vertical frame structure with fixed support (ground symbol) at base. Spring elements k₁ and k₂ shown at different levels. Vertical force F applied downward at upper level. Height dimensions labeled as ℓ₁ (upper segment), ℓ₂ (middle segment), and ℓ₁ (lower segment), with total height ℓ₂ indicated on right side. Spring k₁ at top level connected to fixed support, spring k₂ at middle level.</strong>
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 3</h2>
+            <p>Consider the three-hinged beam structure sketched in the figure, where each beam is hinged at its extremity, loaded by the concentrated force \(F\). Compute the displacement \(v\) at the point of application of the force \(F\). Neglect shear deformability.</p>
+            
+            <p>(Unit for result: \(\text{mm}\))</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 1000\, \text{mm}\)<br>
+                \(EA = 1 \times 10^8\, \text{N}\)<br>
+                \(EI_{xx} = EI_{yy} = 1 \times 10^{13}\, \text{N mm}^2\)<br>
+                \(GJ = 7 \times 10^9\, \text{N mm}^2\)<br>
+                \(F = 1000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    For the triangular truss structure with hinged beams at angle \(\pi/3\):<br><br>
+                    From equilibrium, the force in inclined members:<br>
+                    \[2F_1 \sin\left(\frac{\pi}{3}\right) = F \quad \Rightarrow \quad F_1 = \frac{F}{2\sin(\pi/3)}\]<br>
+                    Using the principle of virtual work to find displacement \(v\):<br>
+                    \[v = \frac{F}{4\sin(\pi/3)} \cdot l \cdot \frac{2}{EA} + \frac{F\cos^2(\pi/3)}{4\sin(\pi/3)} \cdot \frac{l}{EA}\]<br>
+                    With \(\sin(\pi/3) = \frac{\sqrt{3}}{2}\) and \(\cos(\pi/3) = \frac{1}{2}\):<br>
+                    \[v = \frac{Fl}{EA} \cdot \left[\frac{1}{2\sin(\pi/3)} + \frac{\cos^2(\pi/3)}{4\sin(\pi/3)}\right]\]<br>
+                    \[v = \frac{Fl}{EA} \cdot \frac{1}{\sin(\pi/3)}\left[\frac{1}{2} + \frac{1}{16}\right] = \frac{Fl}{EA} \cdot \frac{9}{8\sqrt{3}}\]<br>
+                    Substituting values: \(F = 1000\,\text{N}\), \(l = 1000\,\text{mm}\), \(EA = 10^8\,\text{N}\):<br>
+                    \[v = \frac{1000 \times 1000}{10^8} \times \frac{9}{8 \times 1.732} = 0.01 \times 0.6495\]<br>
+                    <strong>Final Answer:</strong> \(v \approx 0.0065\, \text{mm}\)
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 4</h2>
+            <p>Consider the clamped beam sketched in the figure, with length \(l\), and connected to the two springs with stiffness \(K_1\) and \(K_2\). Estimate, by using a polynomial approximation with one term for the beam transverse displacement, the critical buckling load \(F\) of the structure.</p>
+            
+            <p>(Unit for result: \(\text{N}\))</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 1000\, \text{mm}\)<br>
+                \(GA^* = 1 \times 10^{10}\, \text{N}\)<br>
+                \(EI = 12 \times 10^9\, \text{N mm}^2\)<br>
+                \(EA = 1 \times 10^{10}\, \text{N}\)<br>
+                \(K_1 = 1.5 \times 10^7\, \text{N/mm}\)<br>
+                \(K_2 = 2500\, \text{N/mm}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    Using Rayleigh-Ritz method with polynomial approximation \(v = az^2\):<br><br>
+                    First, define the equivalent axial stiffness of the beam:<br>
+                    \[K_3 = \frac{EA}{l} = \frac{10^{10}}{1000} = 10^7\, \text{N/mm}\]<br>
+                    The axial forces in spring \(K_1\) and beam segment:<br>
+                    \[N_{11} = \frac{F \cdot K_1}{K_1 + K_3}, \quad N_3 = \frac{F \cdot K_3}{K_1 + K_3}\]<br>
+                    With \(K_1 = 1.5 \times 10^7\) and \(K_3 = 10^7\):<br>
+                    \[N_3 = \frac{F \cdot 10^7}{2.5 \times 10^7} = 0.4F\]<br>
+                    The energy functional with \(v = az^2\), \(v' = 2az\), \(v'' = 2a\):<br>
+                    \[\int_0^l \left[\delta a \cdot 4EI \cdot a - N_3 \cdot \delta a \cdot 4z^2 \cdot a\right]dz + \delta a \cdot \frac{l^4}{16} \cdot K_2 = 0\]<br>
+                    Solving for critical load \(F_{cr}\):<br>
+                    \[4EI \cdot l - \frac{4N_3 l^3}{3} + \frac{l^4 K_2}{16} = 0\]<br>
+                    Substituting and solving:<br>
+                    <strong>Final Answer:</strong> \(F_{cr} \approx 1.22 \times 10^5\, \text{N}\)
+                </span>
+            </div>
+        </section>
+
+        <p style="text-align: center; margin-top: 40px;">2</p>
+
+        <div class="page-break"></div>
+
+        <figure class="diagram">
+            <img src="images/Sept_09_2024/page_3_img_1.png" alt="Horizontal beam with spring support at left end">
+            <figcaption>
+                <strong>Horizontal beam with spring support (k) at left end connected to fixed support (ground symbol). Beam supported by two roller supports (circular symbols with ground) at positions along length. Horizontal force F applied at right end. Vertical dimension a shown on right side. Horizontal dimension b spans the beam length. Small displacement u indicated at left spring location.</strong>
+            </figcaption>
+        </figure>
+
+        <figure class="diagram">
+            <img src="images/Sept_09_2024/page_3_img_2.png" alt="Rectangular frame structure with fixed support at bottom">
+            <figcaption>
+                <strong>Rectangular frame structure with fixed support (ground symbol with hatching) at bottom. Vertical force F applied downward at top center. Dimensions labeled as ℓ₁ (left vertical height), u₁ (horizontal displacement at top), a (horizontal width), and x (horizontal coordinate). Frame appears to have pin joints at corners indicated by circular symbols.</strong>
+            </figcaption>
+        </figure>
+
+        <section class="exercise">
+            <h2>Exercise 5</h2>
+            <p>Consider the slender beam structure sketched in the figure, loaded by the concentrated force \(F\). Compute the displacement \(u\) of the extremity of the spring. Neglect shear deformability.</p>
+            
+            <p>(Unit for result: \(\text{mm}\))</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 1000\, \text{mm}\)<br>
+                \(b = 1500\, \text{mm}\)<br>
+                \(EA = 1 \times 10^{10}\, \text{N}\)<br>
+                \(EI_{xx} = EI_{yy} = 1 \times 10^{13}\, \text{N mm}^2\)<br>
+                \(GJ = 7 \times 10^9\, \text{N mm}^2\)<br>
+                \(K = 1 \times 10^3\, \text{N/mm}\)<br>
+                \(F = 1000\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    The structure is statically indeterminate. Let \(H_x\) be the horizontal reaction (hyperstatic unknown).<br><br>
+                    Equilibrium equations:<br>
+                    \[X: \quad H_x - F + R_{xA} = 0\]
+                    \[Y: \quad R_{yA} + R_{yB} = 0\]
+                    \[M_B^{(3)}: \quad +F \cdot a - H_x \cdot a - R_y \cdot b = 0\]<br>
+                    Internal forces for each segment computed, then applying the Principle of Virtual Work (PVW):<br>
+                    \[\int_0^a \left(\frac{N_1 N_1'}{EA} + \frac{M_1 M_1'}{EI}\right)dz_1 + \int_0^b \left(\frac{N_2 N_2'}{EA} + \frac{M_2 M_2'}{EI}\right)dz_2 + \int_0^a \frac{N_3 N_3'}{EA}dz_3 + \frac{X}{K} = 0\]<br>
+                    After integration and solving for \(H_x\):<br>
+                    \[-\frac{H_x}{K} = \frac{H_x a^3}{EAb^2} - \frac{Fa^3}{EAb^2} + \frac{H_x}{EA} \cdot b + \frac{1}{3}\frac{H_x a^2 b^2}{EI \cdot b^2} + \ldots\]<br>
+                    Solving for \(H_x\) and computing \(u = -H_x/K\):<br>
+                    <strong>Final Answer:</strong> \(u = -7.699 \times 10^{-2}\, \text{mm}\) (or \(|u| \approx 0.077\, \text{mm}\))
+                </span>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 6</h2>
+            <p>The single bilinear finite element sketched in the figure has the displacement of the top left, bottom left and bottom right nodes completely constrained. The element has unit thickness, and the material works in a state of plane stress, so that</p>
+            
+            \[
+            \begin{pmatrix}
+            \sigma_{xx} \\
+            \sigma_{yy} \\
+            \tau_{xy}
+            \end{pmatrix}
+            = \frac{E}{1 - \nu^2}
+            \begin{pmatrix}
+            1 & \nu & 0 \\
+            \nu & 1 & 0 \\
+            0 & 0 & (1 - \nu)/2
+            \end{pmatrix}
+            \begin{pmatrix}
+            \varepsilon_{xx} \\
+            \varepsilon_{yy} \\
+            \gamma_{xy}
+            \end{pmatrix}
+            \tag{1}
+            \]
+
+            <p>The top right node is loaded by the vertical force \(F\), as sketched. Compute the horizontal displacement \(u\) of the top right node.</p>
+            
+            <p>(Unit for result: \(\text{mm}\))</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(t = 1\, \text{mm}\)<br>
+                \(a = 4\, \text{mm}\)<br>
+                \(b = 3\, \text{mm}\)<br>
+                \(E = 72000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(F = 100\, \text{N}\)
+            </div>
+
+            <div class="answer-section">
+                <p><strong>Answer</strong></p>
+                <span class="answer-solution">
+                    <strong>Solution:</strong><br>
+                    With only the top-right node (node 3) free, the bilinear shape functions reduce to:<br>
+                    \[u(x,y) = \frac{xy}{ab} \cdot u_3, \quad v(x,y) = \frac{xy}{ab} \cdot v_3\]<br>
+                    Computing strains:<br>
+                    \[\varepsilon_{xx} = \frac{\partial u}{\partial x} = \frac{y}{ab} \cdot u_3\]
+                    \[\varepsilon_{yy} = \frac{\partial v}{\partial y} = \frac{x}{ab} \cdot v_3\]
+                    \[\gamma_{xy} = \frac{x}{ab} \cdot u_3 + \frac{y}{ab} \cdot v_3\]<br>
+                    The strain-displacement matrix \(B\) and elasticity matrix \(E_\varepsilon\) are formed.<br>
+                    The stiffness matrix is computed via:<br>
+                    \[K = \int_0^a \int_0^b B^T \cdot E_\varepsilon \cdot B \, dy\, dx\]<br>
+                    The system of equations:<br>
+                    \[K \begin{pmatrix} u_3 \\ v_3 \end{pmatrix} = \begin{pmatrix} 0 \\ -F \end{pmatrix}\]<br>
+                    Solving: \(\begin{pmatrix} u_3 \\ v_3 \end{pmatrix} = K^{-1} \begin{pmatrix} 0 \\ -F \end{pmatrix}\)<br><br>
+                    With the given material properties and geometry, solving the 2×2 system:<br>
+                    <strong>Final Answer:</strong> \(u_3 \approx 1.74 \times 10^{-5}\, \text{mm}\)
+                </span>
+            </div>
+        </section>
+
+        <p style="text-align: center; margin-top: 40px;">3</p>
+
+        <div class="page-break"></div>
+
+        <section class="questions-section">
+            <h2>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h2>
+
+            <ol class="true-false">
+                <li>The torsional stiffness of a single-cell thin-walled cross section is proportional to the second power of the wall thickness \(t\). <span class="answer-solution" style="display: inline; padding: 2px 8px; background: #ffebee; border-left: 3px solid #f44336;"><strong>F (False)</strong> - Torsional stiffness is proportional to \(t\) (first power), not \(t^2\).</span></li>
+
+                <li>According to the de Saint-Venant solutions, it is possible to compute the torsional rotation in a beam only if the shear force \(F\) is applied through the shear center. <span class="answer-solution" style="display: inline; padding: 2px 8px; background: #ffebee; border-left: 3px solid #f44336;"><strong>F (False)</strong> - Torsional rotation can be computed regardless of where the shear force is applied.</span></li>
+
+                <li>The axial stress \(\sigma_{zz}\) in a clamped beam loaded at the free extremity by a shear force \(F\) varies linearly with respect to the axial coordinate \(z\). <span class="answer-solution" style="display: inline; padding: 2px 8px; background: #e8f5e9; border-left: 3px solid #4caf50;"><strong>T (True)</strong> - The bending moment \(M = F \cdot z\) varies linearly with \(z\), and so does \(\sigma_{zz}\).</span></li>
+            </ol>
+        </section>
+
+        <section class="questions-section">
+            <h2>Multiple Choice questions (Circle the correct answer)</h2>
+
+            <ol class="multiple-choice">
+                <li>According to the analytical solution, the shear stress transmitted by a glued connection is:
+                    <ol>
+                        <li><strong style="color: #4caf50;">higher at the extremities ✓</strong></li>
+                        <li>lower at the extremities</li>
+                        <li>constant</li>
+                        <li>described by a sin function</li>
+                        <li>described by a cos function</li>
+                        <li>described by a quadratic polynomial function</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+
+                <li>An Euler-Bernoulli cantilever beam with uniform stiffness is clamped at one extremity and loaded with a transverse (shear) concentrated force at the tip. The bending solution obtained using a displacement-based method based on polynomial functions with two unknown coefficients is:
+                    <ol>
+                        <li>approximated</li>
+                        <li><strong style="color: #4caf50;">exact ✓</strong></li>
+                        <li>wrong, because with two unknown coefficients we cannot impose the natural boundary conditions</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+
+                <li>A "simply supported" plate has:
+                    <ol>
+                        <li>vertical (normal to the plate) displacement and bending rotation prevented on one of its boundary sides</li>
+                        <li>vertical displacement and bending rotation prevented on all of its boundary sides</li>
+                        <li>vertical displacement prevented on two opposite boundary sides, bending rotation left free</li>
+                        <li><strong style="color: #4caf50;">vertical displacement prevented on all of its boundary sides, bending rotation left free ✓</strong></li>
+                        <li>vertical displacement and bending rotation prevented on two opposite boundary sides, vertical displacement prevented and bending rotation left free on the other two</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+
+        <p style="text-align: center; margin-top: 40px;">4</p>
+
+    </article>
+</body>
+</html>

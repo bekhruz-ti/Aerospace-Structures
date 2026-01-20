@@ -1,0 +1,30 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "cylindrical_shaft_torsion_moments",
+    "description": "Cylindrical shaft shown in isometric view with applied torsional moments. Two opposing moments labeled M_z are applied at the ends of the shaft, indicated by curved arrows showing rotational direction. The shaft has length ℓ marked along its axis. Red arrows on the circular cross-sections indicate the direction of shear stress distribution due to torsion. Coordinate system shows z-axis along the shaft length. The diagram illustrates a torsion loading scenario on a circular shaft."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "triangular_plate_dimensions_coordinate_system",
+    "description": "Right triangular plate with coordinate system showing x and y axes at the lower left corner. The triangle has base dimension a (horizontal) and height a (vertical). The hypotenuse is labeled with length √2a. Point A marks each vertex of the triangle. Dimension ℓ is marked along the vertical edge, and dimension b is marked along the horizontal base. The diagram shows the geometric configuration and dimensional relationships of the triangular element."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "square_plate_spring_support_forces",
+    "description": "Square plate with side dimension a, supported by a spring (labeled k) at the lower left corner with fixed ground support. Two equal forces F are applied at opposite corners of the plate, shown by arrows pointing outward. The plate has length b marked along one edge. Coordinate system shows z-axis at an angle. A rotation angle θ is indicated at the right side. The spring support symbol shows a zigzag pattern with hatched ground connection."
+  },
+  "page_2_img_2.png": {
+    "suggested_name": "beam_triangular_distributed_load_supports",
+    "description": "Beam with triangular distributed load p(z) varying linearly along its length. The beam is divided into three equal segments of length ℓ/3 each. Two roller supports are shown beneath the beam at the ℓ/3 and 2ℓ/3 positions. A horizontal force i is applied at the left end. The distributed load increases from left to right, shown by vertical arrows of increasing length. Total beam length is ℓ."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "vertical_column_spring_support_force",
+    "description": "Vertical column of total length 2ℓ with multiple support conditions. Fixed support (hatched) at top with angle θ marked. Vertical downward force F applied near the top. The column is divided into two segments of length ℓ each. A pinned/hinged support is shown at the bottom. A horizontal spring with stiffness k connects to a fixed wall (hatched) at the mid-height position. The diagram shows a statically indeterminate column system."
+  },
+  "page_3_img_2.png": {
+    "suggested_name": "beam_fixed_support_distributed_moment",
+    "description": "Horizontal beam of length ℓ with fixed support (hatched) at the left end. A distributed moment loading ℓ is applied along a portion of the beam, shown by curved arrows. Horizontal force i is applied at the left support. The beam has a free end at the right side. Coordinate system shows horizontal and vertical directions. The diagram illustrates a cantilever-type configuration with moment loading."
+  },
+  "page_19_img_1.png": {
+    "suggested_name": "triangular_truss_analysis_equilibrium_calculations",
+    "description": "Detailed structural analysis problem (Ex 4) showing a triangular truss with distributed load. Given parameters: a = 1000 N/mm, ℓ = 2000 mm, EJ = 12×10¹² Nmm². The truss has triangular distributed load p(z) with equation p(z) = (2a/ℓ)·z. Two roller supports positioned at ℓ/3 intervals along the base. Multiple free body diagrams shown in blue and black illustrating equilibrium conditions. Detailed calculations for moments H_x₁ and H_x₂ using symmetry conditions. Final result shows deflection calculation N = -0.04 mm with note \"WE HAVE TO CONSIDER THE WHOLE STRUCTURE\". The analysis includes dummy system (z₁ unloaded) and PVW (Principle of Virtual Work) methodology."
+  }
+}

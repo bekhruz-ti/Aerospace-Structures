@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Written Test - January 25, 2022</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            background: #fafafa;
+            color: #333;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a237e;
+            border-bottom: 3px solid #1a237e;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #283593;
+            margin-top: 50px;
+            padding: 10px 15px;
+            background: #e8eaf6;
+            border-left: 5px solid #3f51b5;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #f9f9f9;
+        }
+        
+        .problem h3 {
+            color: #1565c0;
+            margin-top: 0;
+            font-size: 1.4em;
+            border-bottom: 2px solid #1565c0;
+            padding-bottom: 10px;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: #e8f5e9;
+            border-top: 3px solid #4caf50;
+        }
+        
+        .solution h4 {
+            color: #2e7d32;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        
+        .given-data {
+            background: #fff3e0;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .given-data strong {
+            color: #e65100;
+        }
+        
+        figure {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .final-answer {
+            font-size: 1.1em;
+            color: #1b5e20;
+            font-weight: bold;
+            padding: 15px 20px;
+            background: #c8e6c9;
+            border-left: 5px solid #4caf50;
+            margin-top: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+        
+        .step strong {
+            color: #2e7d32;
+        }
+        
+        .boxed {
+            border: 2px solid #1565c0;
+            padding: 10px 15px;
+            display: inline-block;
+            background: #e3f2fd;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        
+        .note {
+            background: #fce4ec;
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #e91e63;
+            font-style: italic;
+        }
+        
+        .multiple-choice {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .mc-question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .mc-question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .mc-option {
+            padding: 5px 15px;
+            margin: 5px 0;
+        }
+        
+        .mc-correct {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        .subsection {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 5px;
+        }
+        
+        .subsection h5 {
+            color: #388e3c;
+            margin-top: 0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>Written Test - January 25, 2022</h1>
+        
+        <!-- PROBLEM 1: Force-based #3 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Force-based #3</h3>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/two_beams_connected_hinges_force_p.png" alt="Two beams connected at middle with hinges, subjected to force P and reaction R">
+                    <figcaption>3D structural diagram showing two beams connected at middle with four hinges, subjected to force P and reaction force R, with dimensions labeled as ℓ and ℓ/2</figcaption>
+                </figure>
+                
+                <p>Consider the structure in the figure. The two beams are connected at the middle and are constrained with four hinges. (rotation allowed around the dashed line)</p>
+                
+                <p>Solve the problem exactly and determine the reaction force \(R\).</p>
+                
+                <p class="note"><strong>Note:</strong> Shearing deformation is negligible.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 2000\, \text{mm}\)<br>
+                    \(P = 9000\, \text{N}\)<br>
+                    \(EJ = 10^{11}\, \text{N}\cdot\text{mm}^2\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <p>The problem can be easily solved by noting that the two beams can be represented as a system of two linear springs in parallel.</p>
+                
+                <p>The stiffness of a simply-supported beam can be obtained following the steps below:</p>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/simply_supported_beam_center_load.png" alt="Simply supported beam with point load P at center">
+                    <figcaption>Simply supported beam diagram with point load P at center, showing reaction forces P/2 at both supports</figcaption>
+                </figure>
+                
+                <div class="subsection">
+                    <h5>Real System:</h5>
+                    <p>Beam with load \(P\) at center, reactions \(\frac{P}{2}\) at each support.</p>
+                    \[M = -\frac{P}{2}x\]
+                </div>
+                
+                <div class="subsection">
+                    <h5>Dummy System:</h5>
+                    <p>Beam with unit load \(1\) at center, reactions \(\frac{1}{2}\) at each support.</p>
+                    \[\delta M = -\frac{1}{2}x\]
+                </div>
+                
+                <p><strong>By application of the PCVW:</strong></p>
+                \[S = 2\int_0^L \delta M \frac{M}{EJ}\, dx = \frac{L^3}{6EJ} P\]
+                
+                <p>From which:</p>
+                <div class="boxed">
+                    \[k = \frac{6EJ}{L^3}\]
+                </div>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/beam_system_spring_equivalent.png" alt="Beam system represented as equivalent springs">
+                    <figcaption>3D structural system showing two beams represented as equivalent spring system with stiffnesses k₁ and k₂</figcaption>
+                </figure>
+                
+                <p><strong>For the problem at hand, the system is:</strong></p>
+                
+                <p>With:</p>
+                \[k_1 = \frac{6EJ}{L_1^3} \quad \text{with } L_1 = \ell \quad \Rightarrow \quad k_1 = \frac{6EJ}{\ell^3}\]
+                
+                \[k_2 = \frac{6EJ}{L_2^3} \quad \text{with } L_2 = \frac{\ell}{2} \quad \Rightarrow \quad k_2 = \frac{48EJ}{\ell^3}\]
+                
+                <p><strong>The total stiffness of the system is then:</strong></p>
+                \[k = k_1 + k_2 = \frac{54EJ}{\ell^3}\]
+                
+                <p><strong>The displacement \(S\) is:</strong></p>
+                \[S = \frac{P}{k} = \frac{P\ell^3}{54EJ}\]
+                
+                <p><strong>And so the load introduced in beam #2 reads:</strong></p>
+                \[F_2 = k_2 S = \frac{48EJ}{\ell^3} \cdot \frac{\ell^3}{54EJ} \cdot P = \frac{8}{9}P\]
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/beam_load_reaction_forces.png" alt="Beam with load and reaction forces">
+                    <figcaption>Simply supported beam with point load 8/9 P at center, showing reaction forces R at supports</figcaption>
+                </figure>
+                
+                <p>From which the reaction force \(R\) is obtained as:</p>
+                
+                <p class="final-answer">
+                    \[R = \frac{4}{9}P = 4000\, \text{N}\]
+                </p>
+            </div>
+        </section>
+        
+        <!-- PROBLEM 2: Force-based #5 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Force-based #5</h3>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/l_shaped_frame_multiple_loads.png" alt="L-shaped frame with multiple loads">
+                    <figcaption>L-shaped frame structure with fixed support at left, vertical and horizontal segments of length 2ℓ each, subjected to forces 2P at corner and P at bottom, with distributed load q on horizontal segment</figcaption>
+                </figure>
+                
+                <p>Use a force-based approach to determine the displacement \(S\). The contribution of shear deformability is negligible.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1200\, \text{mm}\)<br>
+                    \(q = 2\, \text{N/mm}\)<br>
+                    \(EJ = 10^{12}\, \text{N}\cdot\text{mm}^2\)<br>
+                    \(P = 2000\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="subsection">
+                    <h5>Real System:</h5>
+                    <p>The only beam leading to a not null contribution in the PCVW is the fixed one. Then, the internal actions are reported for this beam only.</p>
+                    <p>Only the shear force and the bending moment lead to a not null energy contribution. Then, the other forces are not reported.</p>
+                </div>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/l_frame_real_simplified_system.png" alt="L-frame real and simplified system">
+                    <figcaption>L-shaped frame showing real system and simplified system with distributed load qℓ and moment qℓ²/2</figcaption>
+                </figure>
+                
+                <p><strong>Bending moment in the real system:</strong></p>
+                \[M = q\ell x - \frac{q\ell^2}{2} = q\ell\left(x - \frac{\ell}{2}\right)\]
+                
+                <div class="subsection">
+                    <h5>Dummy System:</h5>
+                    
+                    <figure>
+                        <img src="images/WrittenTest_Jan_25_2022/l_frame_unit_load.png" alt="L-frame with unit load">
+                        <figcaption>L-shaped frame structure with unit load applied at corner</figcaption>
+                    </figure>
+                    
+                    <p><strong>Bending moment in the dummy system:</strong></p>
+                    \[\delta M = x\]
+                </div>
+                
+                <p><strong>And by application of the PCVW:</strong></p>
+                \[\int_0^{2\ell} M \frac{\delta M}{EJ}\, dx = S\]
+                
+                <p>One obtains:</p>
+                
+                <p class="final-answer">
+                    \[S = \frac{5}{3}\frac{q\ell^4}{EJ} = 6.91\, \text{mm}\]
+                </p>
+            </div>
+        </section>
+        
+        <!-- PROBLEM 3: Ritz #2 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Ritz #2</h3>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/cantilever_beam_force_moment_springs.png" alt="Cantilever beam with force, moment and springs">
+                    <figcaption>Cantilever beam with length ℓ, showing force F, moment mₜ, and spring supports k at free end, with EJ, GJ properties labeled</figcaption>
+                </figure>
+                
+                <p>Use the method of Ritz to determine the displacement \(S\). Use the simplest approximation of the unknown fields, using polynomial trial functions.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1300\, \text{mm}\)<br>
+                    \(d = 60\, \text{mm}\)<br>
+                    \(F = 2000\, \text{N}\)<br>
+                    \(m_t = 20\, \text{N}\)<br>
+                    \(EJ = 10^{11}\, \text{N}\cdot\text{mm}^2\)<br>
+                    \(GJ = 2 \cdot 10^{9}\, \text{N}\cdot\text{mm}^2\)<br>
+                    \(k = 50\, \text{N/mm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/cantilever_beam_coordinate_system.png" alt="Cantilever beam with coordinate system">
+                    <figcaption>Cantilever beam system showing original structure and 3D coordinate system (x,y,z,w) with force F, moment Fd, and spring supports k</figcaption>
+                </figure>
+                
+                <p><strong>The essential conditions are:</strong></p>
+                \[w(0) = 0 \qquad v(0) = 0 \qquad \theta(0) = 0\]
+                \[w_{,x}(0) = 0 \qquad v_{,x}(0) = 0\]
+                
+                <p><strong>So the displacements are expanded as:</strong></p>
+                \[w = a_1 \left(\frac{x}{2\ell}\right)^2\]
+                \[v = a_2 \left(\frac{x}{2\ell}\right)^2\]
+                \[\theta = a_3 \left(\frac{x}{2\ell}\right)\]
+                
+                <p><strong>The PVW reads:</strong></p>
+                \[\int_0^{2\ell} \delta w'' EJ\, w'' dx + \delta w(2\ell)\, k\, w(2\ell) + \int_0^{2\ell} \delta v'' EJ\, v'' dx + \delta v(2\ell)\, k\, v(2\ell) + \int_0^{2\ell} \delta\theta' GJ\, \theta' dx =\]
+                \[= -\delta w(\ell)F + \delta v(2\ell)F + \delta\theta(\ell)Fd - \delta\theta(2\ell)Fd - \int_\ell^{2\ell} \delta\theta\, m_t\, dx\]
+                
+                <p>Note that the displacement \(w\) does not provide any contribution to the displacement \(S\).</p>
+                
+                <p>Furthermore, there is no coupling between \(w\) and \(v, \theta\). So the problem can be solved by considering \(\theta\) and \(v\) only:</p>
+                
+                \[\int_0^{2\ell} \delta v'' EJ\, v'' dx + \int_0^{2\ell} \delta\theta' GJ\, \theta' dx + \delta v(2\ell)\, k\, \delta u(2\ell) =\]
+                \[= \delta v(2\ell)F + \delta\theta(\ell)Fd - \delta\theta(2\ell)Fd - \int_\ell^{2\ell} \delta\theta\, m_t\, dx\]
+                
+                <p><strong>Upon substitution of the approximation into the PVW one obtains:</strong></p>
+                
+                \[\begin{bmatrix} k + \frac{EJ}{2\ell^3} & 0 \\ 0 & \frac{GJ}{2\ell} \end{bmatrix} \begin{Bmatrix} a_2 \\ a_3 \end{Bmatrix} = \begin{Bmatrix} F \\ -\frac{Fd}{2} - \frac{3}{4}m_t\ell \end{Bmatrix}\]
+                
+                <p><strong>From which:</strong></p>
+                \[a_2 = 27.49\, \text{mm}\]
+                \[a_3 = -0.10\, \text{rad}\]
+                
+                <p><strong>The displacement \(S\) is:</strong></p>
+                \[S = v(2\ell) - \theta(2\ell)\cdot d = a_2 - a_3 d\]
+                
+                <p class="final-answer">
+                    \[S = 33.69\, \text{mm}\]
+                </p>
+            </div>
+        </section>
+        
+        <!-- PROBLEM 4: Ritz #3 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Ritz #3</h3>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/beam_varying_axial_stiffness.png" alt="Beam with varying axial stiffness">
+                    <figcaption>Beam element with distributed axial load and spring supports k₁ and k₂ at ends, showing varying axial stiffness EA(x) along length ℓ</figcaption>
+                </figure>
+                
+                <p>The axial stiffness varies linearly between \(EA_0\) at \(x=0\) and \(EA_1\) at \(x=\ell\).</p>
+                
+                <p>Use a two-term polynomial approximation and the Ritz method to determine the axial displacement at \(x = \ell/2\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(\ell = 1500\, \text{mm}\)<br>
+                    \(\hat{h} = 10\, \text{N/mm}\)<br>
+                    \(EA_0 = 7 \cdot 10^{6}\, \text{N}\)<br>
+                    \(EA_1 = 12 \cdot 10^{6}\, \text{N}\)<br>
+                    \(k_1 = 2 \cdot 10^{3}\, \text{N}\)<br>
+                    \(k_2 = 2 \cdot 10^{2}\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <p><strong>The axial stiffness is:</strong></p>
+                \[EA(x) = EA_0 + (EA_1 - EA_0)\left(\frac{x}{\ell}\right)\]
+                
+                <p>The boundary conditions are of natural type, so the displacement is expanded as:</p>
+                \[u = a_0 + a_1 \frac{x}{\ell}\]
+                
+                <p>From which:</p>
+                \[u' = \frac{a_1}{\ell}\]
+                
+                <p><strong>The PVW reads:</strong> \(\delta W_i = \delta W_e\) with:</p>
+                
+                \[\delta W_i = \int_0^{\ell} \delta u'\, EA(x)\, u'\, dx + \delta u(0)\, k_1\, u(0) + \delta u(\ell)\, k_2\, u(\ell)\]
+                
+                \[\delta W_e = \int_0^{\ell} \delta u\, \hat{h}\, dx\]
+                
+                <p><strong>And upon substitution of the polynomial expansion:</strong></p>
+                
+                \[\delta W_i = \delta a_1 \frac{1}{\ell^2} \int_0^{\ell} EA(x)\, dx\, a_1 + \delta a_0\, k_1\, a_0 + (\delta a_0 + \delta a_1)\, k_2\, (a_0 + a_1)\]
+                
+                \[= \delta a_0 \left[(k_1 + k_2)a_0 + k_2 a_1\right] + \delta a_1 \left[k_2 a_0 + \left(k_2 + \frac{EA_0 + EA_1}{2\ell}\right)a_1\right]\]
+                
+                \[\delta W_e = \int_0^{\ell} \delta u\, \hat{h}\, dx = \int_0^{\ell} \left[\delta a_0 + \delta a_1 \left(\frac{x}{\ell}\right)\right] \hat{h}\, dx = \delta a_0\, \hat{h}\ell + \delta a_1\, \frac{\hat{h}\ell}{2}\]
+                
+                <p><strong>The equilibrium equations are then:</strong></p>
+                
+                \[\begin{bmatrix} k_1 + k_2 & k_2 \\ k_2 & \frac{EA_0 + EA_1}{2\ell} + k_2 \end{bmatrix} \begin{Bmatrix} a_0 \\ a_1 \end{Bmatrix} = \hat{h}\ell \begin{Bmatrix} 1 \\ \frac{1}{2} \end{Bmatrix}\]
+                
+                <p><strong>From which:</strong></p>
+                \[a_0 = 6.73\, \text{mm}\]
+                \[a_1 = 0.94\, \text{mm}\]
+                
+                <p><strong>And then:</strong></p>
+                
+                <p class="final-answer">
+                    \[u\left(\frac{\ell}{2}\right) = a_0 + \frac{a_1}{2} = 7.20\, \text{mm}\]
+                </p>
+            </div>
+        </section>
+        
+        <!-- PROBLEM 5: Semi #3 - Exercise 13 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Semi #3 - Exercise 13</h3>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/rectangular_cross_section_area_distribution.png" alt="Rectangular cross-section with area distribution">
+                    <figcaption>Rectangular thin-walled beam cross-section showing dimensions b and a, with area distribution 2A at top corners, A at middle sides, and coordinate axes x-y</figcaption>
+                </figure>
+                
+                <p>Determine the shear stiffness \(GA^*_y\) for the beam section in the figure.</p>
+                <p>All the panels have thickness \(t\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(a = 300\, \text{mm}\)<br>
+                    \(b = 160\, \text{mm}\)<br>
+                    \(t = 1.5\, \text{mm}\)<br>
+                    \(A = 450\, \text{mm}^2\)<br>
+                    \(\ell = 3000\, \text{mm}\)<br>
+                    \(E = 72\, \text{GPa}\)<br>
+                    \(\nu = 0.3\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/cross_section_shear_flow_analysis.png" alt="Cross-section with shear flow analysis">
+                    <figcaption>Rectangular cross-section with area distribution showing centroid location and shear flow analysis</figcaption>
+                </figure>
+                
+                <p><strong>The coordinates of the centroid are:</strong></p>
+                \[x_c = 0\]
+                \[y_c = \frac{4Aa + \frac{4}{3}Aa}{8A} = \frac{2}{3}a\]
+                
+                <p>The horizontal position of the shear center is available from the symmetry of the section.</p>
+                
+                <p>The shear flows can be evaluated by exploiting the symmetry of the section.</p>
+                
+                <p class="note"><strong>Note:</strong> The jump of shear flow is zero in correspondence of the two stringers lying on the section neutral plane.</p>
+                
+                <p><strong>The equivalence between internal action and shear flows requires that:</strong></p>
+                \[q_1 \cdot 2a = T \quad \Rightarrow \quad q_1 = \frac{T}{2a}\]
+                
+                <p><strong>From which:</strong></p>
+                \[A^* = \frac{T^2}{\sum_i \frac{q_i^2 \ell_i}{t_i}}\]
+                
+                <p>where:</p>
+                \[\sum_i \frac{q_i^2 \ell_i}{t_i} = \frac{T^2}{4a^2} \cdot 2a \cdot \frac{1}{t} = T^2 \cdot \frac{1}{2at}\]
+                
+                <p><strong>And so:</strong></p>
+                \[A^* = 2at = 900\, \text{mm}^2\]
+                \[G = \frac{E}{2(1+\nu)} = 27692\, \text{MPa}\]
+                
+                <p class="final-answer">
+                    \[GA^* = 2.49 \cdot 10^{7}\, \text{N}\]
+                </p>
+            </div>
+        </section>
+        
+        <!-- PROBLEM 6: Semi #4 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h3>Semi #4</h3>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/cantilever_beam_rectangular_section.png" alt="Cantilever beam with rectangular section">
+                    <figcaption>Cantilever beam with rectangular cross-section showing force F at tip, displacement S, and cross-sectional dimensions with area distribution</figcaption>
+                </figure>
+                
+                <p>Starting from the previous exercise, determine the displacement \(S\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br>
+                    \(a = 300\, \text{mm}\)<br>
+                    \(b = 160\, \text{mm}\)<br>
+                    \(t = 1.5\, \text{mm}\)<br>
+                    \(A = 450\, \text{mm}^2\)<br>
+                    \(\ell = 3000\, \text{mm}\)<br>
+                    \(E = 72\, \text{GPa}\)<br>
+                    \(\nu = 0.3\)<br>
+                    \(F = 12\, \text{kN}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <p>The solution of the problem requires the evaluation of the section properties \(GA^*\), \(EJ\), \(GJ\).</p>
+                <p>The first one is available from the previous exercise.</p>
+                
+                <div class="subsection">
+                    <h5>1. Bending Stiffness EJ</h5>
+                    \[J_{xx} = 4A\left(\frac{1}{3}a\right)^2 + 2A\left(\frac{2}{3}a\right)^2 = \frac{4}{3}Aa^2 = 5.4 \cdot 10^{7}\, \text{mm}^4\]
+                    \[EJ_{xx} = 3.89 \cdot 10^{12}\, \text{N}\cdot\text{mm}^2\]
+                </div>
+                
+                <div class="subsection">
+                    <h5>2. Torsional Stiffness GJ</h5>
+                    <p>The Bredt formula can be applied to determine the torsional constant.</p>
+                    \[J = \frac{4\Omega^2}{\oint_\Gamma \frac{1}{t}\, d\Gamma}\]
+                    
+                    <p>with: \(\Omega = ab \quad \Rightarrow \quad \Omega^2 = a^2 b^2\)</p>
+                    
+                    \[\oint_\Gamma \frac{1}{t}\, d\Gamma = \frac{2(a+b)}{t}\]
+                    
+                    <p>So:</p>
+                    \[J = \frac{4a^2b^2}{2(a+b)} \cdot t = \frac{2a^2b^2}{a+b} \cdot t = 1.50 \cdot 10^{7}\, \text{mm}^4\]
+                    
+                    \[GJ = 4.16 \cdot 10^{11}\, \text{N}\cdot\text{mm}^2\]
+                </div>
+                
+                <p><strong>The evaluation of the displacement is done by application of the PCVW:</strong></p>
+                
+                <figure>
+                    <img src="images/WrittenTest_Jan_25_2022/inclined_beam_free_body_diagrams.png" alt="Free body diagrams for real and dummy systems">
+                    <figcaption>Free body diagrams showing real system and dummy system for inclined beam with force F, reactions, and internal actions</figcaption>
+                </figure>
+                
+                <div class="subsection">
+                    <h5>Real System:</h5>
+                    \[T = -F\]
+                    \[M = -Fx\]
+                    \[M_t = -\frac{Fb}{2}\]
+                </div>
+                
+                <div class="subsection">
+                    <h5>Dummy System:</h5>
+                    \[\delta T = -1\]
+                    \[\delta M = -x\]
+                    \[\delta M_t = \frac{b}{2}\]
+                </div>
+                
+                <p><strong>The PCVW reads:</strong></p>
+                \[\int_0^{\ell} \left(\delta T \frac{T}{GA^*} + \delta M \frac{M}{EJ} + \delta M_t \frac{M_t}{GJ}\right) dx = S\]
+                
+                <p><strong>And then:</strong></p>
+                
+                <p class="final-answer">
+                    \[S = \frac{F\ell}{GA^*} + \frac{F\ell^3}{3EJ} - \frac{Fb^2\ell}{4GJ} = 28.67\, \text{mm}\]
+                </p>
+            </div>
+        </section>
+        
+        <!-- MULTIPLE CHOICE QUESTIONS -->
+        <h2>Multiple Choice Questions</h2>
+        
+        <div class="multiple-choice">
+            <div class="mc-question">
+                <p>• Any structure with one dimension much larger than the other two can likely be modeled as a beam</p>
+                <div class="mc-option mc-correct">– True ✓</div>
+            </div>
+            
+            <div class="mc-question">
+                <p>• According to the Timoshenko beam model, the transverse shear stresses are linear on the cross section</p>
+                <div class="mc-option mc-correct">– False ✓</div>
+            </div>
+            
+            <div class="mc-question">
+                <p>• The position of the shear center of a closed-cell section can be evaluated using the shear flow equations and the equivalence to internal moment</p>
+                <div class="mc-option mc-correct">– False ✓</div>
+            </div>
+            
+            <div class="mc-question">
+                <p>• A system of slender beams can be modeled by beams finite elements</p>
+                <div class="mc-option">– never</div>
+                <div class="mc-option">– if the structure can sustain the loads through an internal axial load path</div>
+                <div class="mc-option">– whenever the shear deformability is negligible</div>
+                <div class="mc-option mc-correct">– always ✓</div>
+            </div>
+            
+            <div class="mc-question">
+                <p>• An Euler-Bernoulli cantilever beam with uniform stiffness is clamped at one extremity and loaded with a concentrated force at the tip. The solution obtained using a displacement-based method based on polynomial functions with two unknown coefficients is</p>
+                <div class="mc-option mc-correct">– exact ✓</div>
+                <div class="mc-option">– an approximation of the exact solution with errors below 10%</div>
+                <div class="mc-option">– an approximation of the exact solution with errors depending on the problem data</div>
+            </div>
+            
+            <div class="mc-question">
+                <p>• When the shear force is applied at the shear center</p>
+                <div class="mc-option">– the shear flows are null</div>
+                <div class="mc-option">– the torsion is null</div>
+                <div class="mc-option mc-correct">– the torsion can be different from zero only if the torsional moment, computed with respect to the shear center, is not null ✓</div>
+            </div>
+        </div>
+        
+    </article>
+</body>
+</html>

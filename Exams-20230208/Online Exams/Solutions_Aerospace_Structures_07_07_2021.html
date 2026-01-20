@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerospace Structures Exam Solutions - 07/07/2021</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #333;
+            background: #fafafa;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            border-bottom: 3px solid #2c5282;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #2c5282;
+            border-left: 5px solid #4299e1;
+            padding-left: 15px;
+            margin-top: 50px;
+        }
+        
+        h3 {
+            color: #2d3748;
+            margin-top: 25px;
+        }
+        
+        h4 {
+            color: #38a169;
+            margin-top: 20px;
+        }
+        
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 2px solid #cbd5e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem {
+            padding: 25px;
+            background: #fff;
+        }
+        
+        .solution {
+            padding: 25px;
+            background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%);
+            border-top: 3px solid #38a169;
+        }
+        
+        .given-data {
+            background: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        .given-data strong {
+            color: #2b6cb0;
+        }
+        
+        figure {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        figcaption {
+            margin-top: 12px;
+            font-style: italic;
+            color: #718096;
+            font-size: 0.95em;
+        }
+        
+        .final-answer {
+            font-size: 1.1em;
+            color: #22543d;
+            font-weight: bold;
+            padding: 15px 20px;
+            background: linear-gradient(90deg, #c6f6d5 0%, #9ae6b4 100%);
+            border-left: 5px solid #38a169;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding: 10px 0;
+        }
+        
+        .subsection {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+        }
+        
+        .subsection-title {
+            font-weight: bold;
+            color: #2d3748;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+        
+        .matrix-eq {
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .theory-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #805ad5;
+            margin: 40px 0;
+        }
+        
+        .theory-section h2 {
+            border-left-color: #805ad5;
+            color: #553c9a;
+        }
+        
+        .theory-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: #faf5ff;
+            border-radius: 6px;
+        }
+        
+        .theory-answer {
+            color: #38a169;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        
+        .boundary-conditions {
+            background: #fff5f5;
+            border: 1px solid #fc8181;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .boundary-conditions strong {
+            color: #c53030;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>Aerospace Structures Exam Solutions<br><small>07 July 2021</small></h1>
+
+        <!-- EXERCISE 1 (unnamed) -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 1</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/cantilever_beam_two_segments_distributed_load.png" alt="Cantilever beam with two segments, distributed load, and concentrated forces">
+                    <figcaption>Cantilever beam with two segments: left segment with properties \(EA_2, EJ_2, \ell_2\) and right segment with properties \(EA_1, EJ_1, \ell_1\). Distributed load \(q\) on right segment, concentrated force \(X\) at junction, and force \(P\) at free end.</figcaption>
+                </figure>
+                
+                <p>Determine the value of the concentrated force \(X\) such that the vertical displacement at the corresponding point of application is zero.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br><br>
+                    \(\ell_1 = 1000\left(1 + \dfrac{B}{10}\right)\, \text{mm}\) &emsp;&emsp; \(q = 1\, \text{N/mm}\)<br><br>
+                    \(\ell_2 = 1500\, \text{mm}\) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; \(P = 1000\, \text{N}\)<br><br>
+                    \(EA_1 = 1 \cdot 10^{6}\, \text{N}\)<br>
+                    \(EA_2 = 1 \cdot 10^{7}\, \text{N}\)<br>
+                    \(EJ_1 = 1 \cdot 10^{12}\, \text{N·mm}^2\)<br>
+                    \(EJ_2 = 1 \cdot 10^{12}\, \text{N·mm}^2\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Real System</div>
+                    
+                    <figure>
+                        <img src="images/Solutions_Aerospace_Structures_07_07_2021/beam_system_two_segments_fixed_support.png" alt="Real system with coordinate systems">
+                        <figcaption>Real system showing coordinate systems \(x_1\) and \(x_2\) for each beam segment.</figcaption>
+                    </figure>
+                    
+                    <p><strong>Beam 1:</strong></p>
+                    \[N_1 = P\]
+                    \[M_1 = -\frac{q x_1^2}{2}\]
+                    
+                    <p><strong>Beam 2:</strong></p>
+                    \[N_2 = P\]
+                    \[M_2 = -\frac{q \ell_1^2}{2} - (X + q\ell_1) x_2\]
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Dummy System</div>
+                    
+                    <figure>
+                        <img src="images/Solutions_Aerospace_Structures_07_07_2021/dummy_system_cantilever_beam.png" alt="Dummy system with unit force">
+                        <figcaption>Dummy system with unit force applied at the point of application of \(X\).</figcaption>
+                    </figure>
+                    
+                    <p><strong>Beam 2:</strong></p>
+                    \[\delta M = -x_2\]
+                </div>
+                
+                <div class="step">
+                    <p>By application of the PCVW (Principle of Complementary Virtual Work):</p>
+                    \[\int_0^{\ell_2} \frac{M \cdot \delta M}{EJ_2}\, dx_2 = 0\]
+                </div>
+                
+                <p>From which:</p>
+                \[X = -\left(q\ell_1 + \frac{3}{4} q \frac{\ell_1^2}{\ell_2}\right)\]
+                
+                <p class="final-answer">Final Answer: \(X = -1500\, \text{N}\)</p>
+            </div>
+        </section>
+
+        <!-- EXERCISE 4 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 4</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/cantilever_beam_elastic_foundation.png" alt="Cantilever beam with elastic spring support">
+                    <figcaption>Cantilever beam with fixed support, distributed load \(q\), and elastic spring support \(k\) at the junction of two equal segments.</figcaption>
+                </figure>
+                
+                <p>Determine the vertical displacement \(w\) in correspondence of the spring.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br><br>
+                    \(\ell = 1000\, \text{mm}\) &emsp;&emsp;&emsp;&emsp; \(q = 15\, \text{N/mm}\)<br><br>
+                    \(EJ = 10^{12}\, \text{N·mm}^2\)<br><br>
+                    \(k = 1500\left(1 + \dfrac{B}{10}\right)\, \text{N/mm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Real System</div>
+                    
+                    <figure>
+                        <img src="images/Solutions_Aerospace_Structures_07_07_2021/cantilever_beam_coordinate_system.png" alt="Real system with coordinate system">
+                        <figcaption>Real system with spring reaction force \(Y\) and coordinate \(x\).</figcaption>
+                    </figure>
+                    
+                    \[M = -Yx - \frac{qx^2}{2}\]
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Dummy System</div>
+                    <p>Apply unit force at spring location:</p>
+                    \[\delta M = -x\]
+                </div>
+                
+                <div class="step">
+                    <p>By application of the PCVW:</p>
+                    \[\int_0^{\ell} \frac{\delta M \cdot M}{EJ}\, dx + \frac{Y}{k} = 0\]
+                </div>
+                
+                <p>From which:</p>
+                \[\frac{\ell^3}{24EJ}(8Y + 3q\ell) + \frac{Y}{k} = 0\]
+                
+                <p>So:</p>
+                \[Y = -\frac{3kq\ell^4}{8k\ell^3 + 24EJ} = -1875\, \text{N}\]
+                
+                <p>And:</p>
+                \[w = -\frac{Y}{k} = \frac{3q\ell^4}{8k\ell^3 + 24EJ}\]
+                
+                <p class="final-answer">Final Answer: \(w = 1.25\, \text{mm}\)</p>
+            </div>
+        </section>
+
+        <!-- EXERCISE 5 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 5</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/simply_supported_beam_distributed_load.png" alt="Simply supported beam with torsional spring">
+                    <figcaption>Simply supported beam with torsional stiffness \(K_t\) at left support and distributed load \(q\).</figcaption>
+                </figure>
+                
+                <p>Determine the strain energy stored in the spring of torsional stiffness \(K_t\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br><br>
+                    \(\ell = 1000\, \text{mm}\) &emsp;&emsp; \(EJ = 10^{12}\, \text{N·mm}^2\) &emsp;&emsp; \(q = 1\, \text{N/mm}\)<br><br>
+                    \(K_t = 10^{9}\, \text{N·mm}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Real System</div>
+                    
+                    <figure>
+                        <img src="images/Solutions_Aerospace_Structures_07_07_2021/simply_supported_beam_reactions.png" alt="Real system with reactions">
+                        <figcaption>Simply supported beam showing reaction forces \(V\), \(W\) and moment \(X\) at the torsional spring.</figcaption>
+                    </figure>
+                    
+                    <p>Equilibrium equations:</p>
+                    \[\begin{cases} V + W = q\ell & \Rightarrow V = q\ell - W \\ X = \dfrac{q\ell^2}{2} - W\ell & \Rightarrow W = \dfrac{q\ell}{2} - \dfrac{X}{\ell} \end{cases}\]
+                    
+                    <p>So:</p>
+                    \[V = q\ell - \frac{q\ell}{2} + \frac{X}{\ell} = \frac{q\ell}{2} + \frac{X}{\ell}\]
+                    
+                    <p>Bending moment:</p>
+                    \[M = -X + Vx - \frac{qx^2}{2}\]
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Dummy System</div>
+                    <p>Apply unit moment at torsional spring:</p>
+                    \[\delta M = -1 + \frac{1}{\ell}x\]
+                </div>
+                
+                <div class="step">
+                    <p>By application of the PCVW:</p>
+                    \[\int_0^{\ell} \frac{\delta M \cdot M}{EJ}\, dx + \frac{X}{K_t} = 0\]
+                </div>
+                
+                <p>From which:</p>
+                \[X = K_t \cdot \frac{q\ell^3}{24EJ + 8K_t\ell} = 31250\, \text{N·mm}\]
+                
+                <p>And so, the strain energy:</p>
+                \[U = \frac{1}{2} \frac{X^2}{K_t}\]
+                
+                <p class="final-answer">Final Answer: \(U = 0.4883\, \text{N·mm}\)</p>
+            </div>
+        </section>
+
+        <!-- EXERCISE 9 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 9</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/frame_structure_rigid_links_spring_support.png" alt="Frame structure with rigid links and spring support">
+                    <figcaption>Frame structure with inclined member (variable torsional stiffness), rigid links, spring support \(k\), and point load \(P\). The torsional stiffness varies as \(GJ(x) = GJ_0 + GJ_1(x/\ell_1)\).</figcaption>
+                </figure>
+                
+                <p>Determine the vertical displacement at the point A using the simplest polynomial approximation and the Ritz method.</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br><br>
+                    \(\ell_1 = 1300\, \text{mm}\) &emsp;&emsp; \(EJ = 10^{12}\, \text{N·mm}^2\)<br><br>
+                    \(\ell_2 = 500\, \text{mm}\) &emsp;&emsp;&emsp; \(GJ_0 = 2 \cdot 10^{11}\, \text{N·mm}^2\)<br><br>
+                    \(\ell_3 = 700\, \text{mm}\) &emsp;&emsp;&emsp; \(GJ_1 = 5 \cdot 10^{11}\, \text{N·mm}^2\)<br><br>
+                    \(k = 500\left(1 + \dfrac{M}{10}\right)\, \text{N/mm}\)<br><br>
+                    \(P = 7000\, \text{N}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/frame_structure_boundary_conditions.png" alt="Frame structure with boundary conditions">
+                    <figcaption>Frame structure showing coordinate system with angle \(\theta\), displacement \(w\), and essential boundary conditions.</figcaption>
+                </figure>
+                
+                <div class="boundary-conditions">
+                    <strong>Essential Boundary Conditions:</strong><br>
+                    \(\theta(0) = 0\)<br>
+                    \(w(0) = 0\)<br>
+                    \(w'_x(0) = 0\)
+                </div>
+                
+                <p>Variable torsional stiffness:</p>
+                \[GJ(x) = GJ_0 + GJ_1 \frac{x}{\ell_1}\]
+                
+                <div class="subsection">
+                    <div class="subsection-title">Trial Functions</div>
+                    <p>The simplest polynomial trial functions satisfying the essential boundary conditions are found as:</p>
+                    
+                    \[\theta(x) = C_1 \left(\frac{x}{\ell_1}\right) \quad \Rightarrow \quad \theta' = C_1 \frac{1}{\ell_1}\]
+                    
+                    \[w(x) = d_1 \left(\frac{x}{\ell_1}\right)^2 \quad \Rightarrow \quad w'' = d_1 \frac{2}{\ell_1^2}\]
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Principle of Virtual Works</div>
+                    
+                    <p>The Principle of Virtual Works reads:</p>
+                    \[\delta W_i = \int_0^{\ell_1} \left(\delta w'' \cdot EJ \cdot w'' + \delta\theta' \cdot GJ(x) \cdot \theta'\right) dx + \delta\left(w(\ell_1) - \theta(\ell_1)\ell_2\right) k \left(w(\ell_1) - \theta(\ell_1)\ell_2\right)\]
+                    
+                    \[\delta W_e = \delta\left(w(\ell_1) + \theta(\ell_1)\ell_3\right) P\]
+                </div>
+                
+                <p>From which, the stiffness matrix:</p>
+                \[\underline{\underline{K}} = \begin{bmatrix} k\ell_2^2 + \dfrac{2GJ_0 + GJ_1}{2\ell_1} & -k\ell_2 \\[10pt] -k\ell_2 & k + \dfrac{4EJ}{\ell_1^3} \end{bmatrix}\]
+                
+                <p>And the force vector:</p>
+                \[\underline{F} = \begin{Bmatrix} \ell_3 \\ 1 \end{Bmatrix} P\]
+                
+                <p>So:</p>
+                \[\underline{\underline{K}} \begin{Bmatrix} C_1 \\ d_1 \end{Bmatrix} = \underline{F}\]
+                
+                <p>Solving:</p>
+                \[C_1 = 0.0127\, \text{rad}\]
+                \[d_1 = 4.3875\, \text{mm}\]
+                
+                <p>The vertical displacement at \(x = \ell_1\) reads:</p>
+                
+                <p class="final-answer">Final Answer: \(w(\ell_1) = d_1 = 4.3875\, \text{mm}\)</p>
+            </div>
+        </section>
+
+        <!-- EXERCISE 14 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 14</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/simply_supported_beam_rectangular_section.png" alt="Simply supported beam">
+                    <figcaption>Simply supported beam with distributed load \(q\) and properties \(EJ\), \(\ell\).</figcaption>
+                </figure>
+                
+                <p>Determine the vertical displacement at the middle using a Ritz approximation with 1 trigonometric trial function.</p>
+                
+                <p>Recall the integration rule:</p>
+                \[\int_0^{a} \left(\sin\frac{\pi x}{a}\right)^3 dx = \frac{4a}{3\pi}\]
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br><br>
+                    \(\ell = 1700\left(1 + \dfrac{C}{10}\right)\, \text{mm}\) &emsp;&emsp; \(q = 15\, \text{N/mm}\)<br><br>
+                    \(EJ_0 = 10^{12}\, \text{N·mm}^2\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/simply_supported_beam_pin_supports.png" alt="Simply supported beam with coordinate system">
+                    <figcaption>Simply supported beam with coordinate system \(x\).</figcaption>
+                </figure>
+                
+                <div class="boundary-conditions">
+                    <strong>Essential Conditions:</strong><br>
+                    \(w(0) = 0\)<br>
+                    \(w(\ell) = 0\)<br><br>
+                    <strong>Natural Conditions:</strong><br>
+                    \(w''(0) = 0\)<br>
+                    \(w''(\ell) = 0\)
+                </div>
+                
+                <p>A sine-type expansion satisfies both essential and natural conditions. Assuming a single-dof approximation:</p>
+                \[w(x) = a \sin\frac{\pi x}{\ell}\]
+                
+                <div class="step">
+                    <p>And, by application of the PVW:</p>
+                    \[\int_0^{\ell} \delta w'' \cdot EJ(x) \cdot w''\, dx = \int_0^{\ell} \delta w \cdot q\, dx\]
+                </div>
+                
+                <p>From which:</p>
+                \[ka = f\]
+                
+                <p>where:</p>
+                \[k = \frac{4}{3} EJ_0 \left(\frac{\pi}{\ell}\right)^3\]
+                \[f = q \frac{2\ell}{\pi}\]
+                
+                <p>So:</p>
+                \[a = \frac{f}{k} = 1.9292\, \text{mm}\]
+                
+                <p>And so:</p>
+                \[w_{mid} = a \sin\frac{\pi x}{\ell}\Big|_{x=\ell/2}\]
+                
+                <p class="final-answer">Final Answer: \(w_{mid} = 1.9292\, \text{mm}\)</p>
+            </div>
+        </section>
+
+        <!-- EXERCISE 22 -->
+        <section class="problem-solution-pair">
+            <div class="problem">
+                <h2>Exercise 22</h2>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/cantilever_beam_rectangular_cross_section.png" alt="Cantilever beam with rectangular cross-section">
+                    <figcaption>Cantilever beam with distributed load \(p\) and rectangular cross-section with dimensions \(a \times b\) and corner areas \(A\).</figcaption>
+                </figure>
+                
+                <p>Determine \(A\) such that the maximum displacement is \(u = 3\, \text{mm}\).</p>
+                
+                <div class="given-data">
+                    <strong>Data:</strong><br><br>
+                    \(\ell = 3000\left(1 + \dfrac{A}{10}\right)\, \text{mm}\)<br><br>
+                    \(a = 200\, \text{mm}\)<br>
+                    \(b = 150\, \text{mm}\)<br>
+                    \(t = 1.2\, \text{mm}\)<br><br>
+                    \(p = 1.6 \cdot 10^{-3}\, \text{N/mm}^2\)<br><br>
+                    \(E = 72000\, \text{MPa}\)<br>
+                    \(G = 27000\, \text{MPa}\)
+                </div>
+            </div>
+            
+            <div class="solution">
+                <h4>Solution</h4>
+                
+                <figure>
+                    <img src="images/Solutions_Aerospace_Structures_07_07_2021/cantilever_beam_fixed_support_distributed_load.png" alt="Cantilever beam with coordinate system">
+                    <figcaption>Cantilever beam with distributed load \(q = pa\) and coordinate \(x\).</figcaption>
+                </figure>
+                
+                <p>Distributed load per unit length:</p>
+                \[q = pa\]
+                
+                <div class="subsection">
+                    <div class="subsection-title">Real System</div>
+                    \[T = -qx\]
+                    \[M = -\frac{qx^2}{2}\]
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Dummy System</div>
+                    <p>Apply unit force at free end:</p>
+                    \[\delta T = -1\]
+                    \[\delta M = -x\]
+                </div>
+                
+                <div class="step">
+                    <p>By application of the PCVW:</p>
+                    \[\int_0^{\ell} \left(\frac{\delta M \cdot M}{EJ} + \frac{\delta T \cdot T}{GA^*}\right) dx = u\]
+                </div>
+                
+                <p>So:</p>
+                \[u = \frac{q\ell^4}{8} \cdot \frac{1}{EJ} + \frac{q\ell^2}{2} \cdot \frac{1}{GA^*}\]
+                
+                <div class="subsection">
+                    <div class="subsection-title">Section Properties</div>
+                    
+                    <figure>
+                        <img src="images/Solutions_Aerospace_Structures_07_07_2021/rectangular_cross_section_vertical_web.png" alt="Rectangular cross-section">
+                        <figcaption>Rectangular cross-section showing shear flow distribution. Note: \(2bt\) is the total area of the vertical webs.</figcaption>
+                    </figure>
+                    
+                    <p>But:</p>
+                    \[EJ = EA\left(\frac{b}{2}\right)^2 \cdot 4 = EAb^2\]
+                    
+                    \[GA^* = G \frac{T^2}{\sum_i q_i^2 \ell_i t_i} = G \cdot 2bt\]
+                    <p>(Note: \(2bt\) is the total area of the vertical webs)</p>
+                </div>
+                
+                <p>So:</p>
+                \[u = \frac{q\ell^4}{8} \cdot \frac{1}{EJ} + \frac{q\ell^2}{2} \cdot \frac{1}{GA^*}\]
+                
+                \[\frac{q\ell^4}{8 \cdot EAb^2} = S - \frac{q\ell^2}{4Gbt}\]
+                
+                <p>Solving for \(A\):</p>
+                \[A = \frac{q\ell^4}{8Eb^2} \cdot \frac{1}{\left(u - \dfrac{q\ell^2}{4Gbt}\right)}\]
+                
+                <p class="final-answer">Final Answer: \(A = 701.3\, \text{mm}^2\)</p>
+            </div>
+        </section>
+
+        <!-- THEORY QUESTIONS -->
+        <section class="theory-section">
+            <h2>Theory Questions</h2>
+            
+            <div class="theory-item">
+                <p><strong>•</strong> Consider a cantilever beam modeled according to Euler-Bernoulli and loaded with a uniformly distributed load. The exact solution is</p>
+                <p class="theory-answer">– polynomial (quartic)</p>
+            </div>
+            
+            <div class="theory-item">
+                <p><strong>•</strong> A plane-strain constitutive law:</p>
+                <p class="theory-answer">– has null axial strain</p>
+            </div>
+            
+            <div class="theory-item">
+                <p><strong>•</strong> A two-cell section modeled according to the semi-monocoque scheme can be solved by using:</p>
+                <p class="theory-answer">– shear flow equations, equivalence to internal moment and the compatibility equation</p>
+            </div>
+            
+            <div class="theory-item">
+                <p><strong>•</strong> According to the Kirchhoff plate model, deformed sections remain normal to the reference surface</p>
+                <p class="theory-answer">– True</p>
+            </div>
+            
+            <div class="theory-item">
+                <p><strong>•</strong> The exact solution of the elasticity problem satisfies both natural and essential boundary conditions</p>
+                <p class="theory-answer">– True</p>
+            </div>
+            
+            <div class="theory-item">
+                <p><strong>•</strong> According to the semi-monocoque scheme, an open-section profile has no torsional stiffness</p>
+                <p class="theory-answer">– True</p>
+            </div>
+        </section>
+
+    </article>
+</body>
+</html>

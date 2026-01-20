@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures Written test, February 10th, 2017</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h2 {
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .diagram-section {
+            margin: 25px 0;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .diagram-label {
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+            text-align: center;
+        }
+
+        .cross-section {
+            margin: 25px 0;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .data-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f8ff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #007bff;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .data-item {
+            padding: 8px;
+            background: #fff;
+            border-left: 3px solid #007bff;
+        }
+
+        .page-number {
+            text-align: right;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .answer-solution {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .answer-solution h3 {
+            color: #2e7d32;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .answer-solution h4 {
+            color: #388e3c;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #4caf50;
+            padding-bottom: 5px;
+        }
+
+        .solution-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .solution-table td, .solution-table th {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .solution-table th {
+            background: #f5f5f5;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Spacecraft Structures Written test, February 10th, 2017</h1>
+            <p class="metadata">Extracted from: 201702_Test.pdf</p>
+        </header>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            
+            <p>Consider the thin-walled beam reported in the figure. The beam has a total length equal to \(l\), while the ribs are equally spaced with pitch \(d\). The load is a pressure distribution \(p = p_0 \frac{\eta}{b} + c\), uniform along the beam axis and linear along the chord.</p>
+
+            <div class="diagram-section">
+                <div class="diagram-label">side view</div>
+                <p style="text-align: center;">
+                    \(d\) &nbsp;&nbsp;&nbsp;&nbsp; \(l\)
+                </p>
+                <p style="text-align: center;">
+                    \(p\)
+                </p>
+                
+                <div class="diagram-label" style="margin-top: 20px;">front view</div>
+                <p style="text-align: center;">
+                    \(p\)
+                </p>
+            </div>
+
+            <p>The cross section of the beam is sketched here below.</p>
+
+            <div class="cross-section">
+                <p style="text-align: center;">
+                    \(h\) &nbsp; \(t\)
+                </p>
+                <p style="text-align: center;">
+                    \(h\)
+                </p>
+                <p style="text-align: center;">
+                    \(a\)
+                </p>
+                <p style="text-align: center;">
+                    \(b\) &nbsp;&nbsp;&nbsp; \(c\)
+                </p>
+            </div>
+
+            <p>By making use of the semi-monocoque scheme, determine: the shear flows and the shear stresses acting on the panels, and the axial force carried by the stringers for the section at \(\xi=900\, \text{mm}\).</p>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                <div class="data-grid">
+                    <div class="data-item">\(d = 400\, \text{mm}\)</div>
+                    <div class="data-item">\(l = 2000\, \text{mm}\)</div>
+                    <div class="data-item">\(p_0 = 2\text{e-}2\, \text{N/mm}^2\)</div>
+                    <div class="data-item">\(a = 200\, \text{mm}\)</div>
+                    <div class="data-item">\(b = 200\, \text{mm}\)</div>
+                    <div class="data-item">\(c = 300\, \text{mm}\)</div>
+                    <div class="data-item">\(t = 4\, \text{mm}\)</div>
+                    <div class="data-item">\(h = 20\, \text{mm}\)</div>
+                    <div class="data-item" style="grid-column: 1 / -1;">All the panels have thickness \(0.8\, \text{mm}\).</div>
+                </div>
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <h4>1. Stringer Area and Lumped Areas</h4>
+                <p><strong>Stringer area:</strong></p>
+                \[A_{st} = th + t(h-t) = 4 \times 20 + 4 \times (20-4) = 144\, \text{mm}^2\]
+                
+                <p><strong>Lumped areas</strong> (stringers numbered 1-6, with 1,2,3 on top and 6,5,4 on bottom):</p>
+                \[A_1 = A_6 = A_{st} + \frac{1}{2}(b+a)t = 144 + \frac{1}{2}(200+200) \times 0.8 = 304\, \text{mm}^2\]
+                \[A_3 = A_4 = A_{st} + \frac{1}{2}(a+c)t = 144 + \frac{1}{2}(200+300) \times 0.8 = 344\, \text{mm}^2\]
+                \[A_2 = A_5 = 2A_{st} + \frac{1}{2}(a+b+c)t = 2 \times 144 + \frac{1}{2}(200+200+300) \times 0.8 = 568\, \text{mm}^2\]
+                
+                <h4>2. Section Properties</h4>
+                <p>The neutral axis \(x\) passes through the center due to symmetry of the section.</p>
+                
+                <p><strong>First moments of area:</strong></p>
+                \[S_{x_1} = -S_{x_6} = A_1 \cdot \frac{a}{2} = 304 \times 100 = 30400\, \text{mm}^3\]
+                \[S_{x_2} = -S_{x_5} = A_2 \cdot \frac{a}{2} = 568 \times 100 = 56800\, \text{mm}^3\]
+                \[S_{x_3} = -S_{x_4} = A_3 \cdot \frac{a}{2} = 344 \times 100 = 34400\, \text{mm}^3\]
+                
+                <p><strong>Second moment of area:</strong></p>
+                \[J_{xx} = 2(A_1 + A_2 + A_3)\left(\frac{a}{2}\right)^2 = 2(304 + 568 + 344) \times 100^2 = 24320000\, \text{mm}^4\]
+                
+                <h4>3. External Loads and Internal Actions</h4>
+                <p><strong>Equivalent distributed load:</strong></p>
+                \[q = p_0 \cdot \frac{b+c}{2} = 0.02 \times \frac{200+300}{2} = 5\, \text{N/mm}\]
+                
+                <p>Assuming loads are introduced by ribs at spacing \(d\), the internal actions at \(\xi = 900\, \text{mm}\) are:</p>
+                
+                <p><strong>Shear force:</strong></p>
+                \[T = -qd\left(2 + \frac{1}{2}\right) = -\frac{5}{2}qd = -\frac{5}{2} \times 5 \times 400 = -5000\, \text{N}\]
+                
+                <p><strong>Bending moment:</strong></p>
+                \[M = -qd \times 1050 = -5 \times 400 \times 1050 = -2100000\, \text{Nmm}\]
+                
+                <h4>4. Shear Flows</h4>
+                <p>The shear flows \(q_i\) in each panel (all units in N/mm):</p>
+                
+                <table class="solution-table">
+                    <tr>
+                        <th>Panel</th>
+                        <th>Shear Flow \(q\) (N/mm)</th>
+                    </tr>
+                    <tr><td>Top left (1-2)</td><td>\(2.75\)</td></tr>
+                    <tr><td>Top right (2-3)</td><td>\(1.00\)</td></tr>
+                    <tr><td>Left upper (1-6)</td><td>\(9.00\)</td></tr>
+                    <tr><td>Left middle (web)</td><td>\(9.93\)</td></tr>
+                    <tr><td>Left lower</td><td>\(6.07\)</td></tr>
+                    <tr><td>Right upper (3-4)</td><td>\(6.07\)</td></tr>
+                    <tr><td>Right middle (web)</td><td>\(9.93\)</td></tr>
+                    <tr><td>Right lower</td><td>\(9.00\)</td></tr>
+                    <tr><td>Bottom left (6-5)</td><td>\(2.75\)</td></tr>
+                    <tr><td>Bottom right (5-4)</td><td>\(1.00\)</td></tr>
+                </table>
+                
+                <h4>5. Shear Stresses</h4>
+                <p>The shear stresses are obtained as \(\tau_i = q_i / t_i\) where \(t_i = 0.8\, \text{mm}\) (all units in MPa):</p>
+                
+                <table class="solution-table">
+                    <tr>
+                        <th>Panel</th>
+                        <th>Shear Stress \(\tau\) (MPa)</th>
+                    </tr>
+                    <tr><td>Top left</td><td>\(3.44\)</td></tr>
+                    <tr><td>Top right</td><td>\(1.26\)</td></tr>
+                    <tr><td>Left upper</td><td>\(11.26\)</td></tr>
+                    <tr><td>Left middle (web)</td><td>\(12.41\)</td></tr>
+                    <tr><td>Left lower</td><td>\(7.58\)</td></tr>
+                    <tr><td>Right upper</td><td>\(7.58\)</td></tr>
+                    <tr><td>Right middle (web)</td><td>\(12.41\)</td></tr>
+                    <tr><td>Right lower</td><td>\(11.26\)</td></tr>
+                    <tr><td>Bottom left</td><td>\(3.44\)</td></tr>
+                    <tr><td>Bottom right</td><td>\(1.26\)</td></tr>
+                </table>
+                
+                <h4>6. Axial Forces in the Stringers</h4>
+                <p>The axial forces are calculated using:</p>
+                \[F_i = A_i \cdot \frac{M}{J_{xx}} \cdot y_i\]
+                
+                <p><strong>Top stringers</strong> (in compression, \(F_i < 0\)):</p>
+                \[F_1 = A_1 \cdot \frac{M}{J_{xx}} \cdot \frac{a}{2} = 304 \times \frac{-2100000}{24320000} \times 100 = -2625\, \text{N}\]
+                \[F_2 = A_2 \cdot \frac{M}{J_{xx}} \cdot \frac{a}{2} = 568 \times \frac{-2100000}{24320000} \times 100 = -4904\, \text{N}\]
+                \[F_3 = A_3 \cdot \frac{M}{J_{xx}} \cdot \frac{a}{2} = 344 \times \frac{-2100000}{24320000} \times 100 = -2970\, \text{N}\]
+                
+                <p><strong>Bottom stringers</strong> (in tension, by symmetry):</p>
+                \[F_6 = -F_1 = +2625\, \text{N}\]
+                \[F_5 = -F_2 = +4904\, \text{N}\]
+                \[F_4 = -F_3 = +2970\, \text{N}\]
+                
+                <h4>Final Answers Summary</h4>
+                <ul>
+                    <li><strong>Shear flows:</strong> Range from \(1.00\) to \(9.93\, \text{N/mm}\)</li>
+                    <li><strong>Shear stresses:</strong> Range from \(1.26\) to \(12.41\, \text{MPa}\)</li>
+                    <li><strong>Axial forces:</strong> \(F_1 = -2625\, \text{N}\), \(F_2 = -4904\, \text{N}\), \(F_3 = -2970\, \text{N}\), \(F_4 = +2970\, \text{N}\), \(F_5 = +4904\, \text{N}\), \(F_6 = +2625\, \text{N}\)</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="page-number">1</div>
+    </article>
+</body>
+</html>

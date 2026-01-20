@@ -1,0 +1,66 @@
+{
+  "beam_distributed_load_spring_support_square_section.png": {
+    "suggested_name": "beam_distributed_load_spring_support_square_section",
+    "description": "Beam structure with distributed triangular load, spring support, and square cross-section showing dimensions 2ℓ, k, ℓ, and diamond-shaped section with area A"
+  },
+  "diamond_cross_section_shear_forces.png": {
+    "suggested_name": "diamond_cross_section_shear_forces",
+    "description": "Diamond-shaped cross-section diagram showing shear force distribution with dimensions a/√2 and force q at corners"
+  },
+  "beam_segment_free_body_diagram.png": {
+    "suggested_name": "beam_segment_free_body_diagram",
+    "description": "Free body diagram of beam segment showing distributed load q, triangular load, moment W, shear force T, and horizontal force H with coordinate system"
+  },
+  "beam_spring_support_reactions.png": {
+    "suggested_name": "beam_spring_support_reactions",
+    "description": "Beam with spring support showing reaction forces X and S, with distributed triangular load and moment W at right end"
+  },
+  "rectangular_frame_three_beams.png": {
+    "suggested_name": "rectangular_frame_three_beams",
+    "description": "Rectangular frame structure with three beams, horizontal force P at left, pin supports at corners, and unknown reaction force H at right"
+  },
+  "frame_real_system_numbered_joints.png": {
+    "suggested_name": "frame_real_system_numbered_joints",
+    "description": "Real system diagram showing rectangular frame with force P, numbered joints (1,2,3), pin supports, and vertical reaction V=P"
+  },
+  "frame_dummy_system_unit_load.png": {
+    "suggested_name": "frame_dummy_system_unit_load",
+    "description": "Dummy system diagram of rectangular frame with pin supports and unit vertical load V=0 at right support"
+  },
+  "two_beam_hinged_system_springs.png": {
+    "suggested_name": "two_beam_hinged_system_springs",
+    "description": "Two-beam hinged system with vertical forces W and F, spring supports k and kt, showing beam #1 (EJ,ℓ) and beam #2 (2EJ,ℓ) connected by hinges"
+  },
+  "two_beam_displacement_field_coordinates.png": {
+    "suggested_name": "two_beam_displacement_field_coordinates",
+    "description": "Solution diagram for two-beam system showing displacement field coordinates, hinges, spring supports, and force F with coordinate axes x1, x2, z1, z2, w1, w2"
+  },
+  "three_cell_rectangular_section.png": {
+    "suggested_name": "three_cell_rectangular_section",
+    "description": "Three-cell rectangular cross-section showing dimensions a (width of each cell) and a (height), with pin joints at corners"
+  },
+  "three_cell_section_shear_flows.png": {
+    "suggested_name": "three_cell_section_shear_flows",
+    "description": "Three-cell section solution diagram showing applied moment Mt and shear flows q1, q2, q3 with rotation arrows in each cell"
+  },
+  "thin_walled_beam_uniform_pressure_trapezoidal_section.png": {
+    "suggested_name": "thin_walled_beam_uniform_pressure_trapezoidal_section",
+    "description": "Thin-walled beam with uniform pressure p on top, showing side view with section A marked at e/6 from left support, and trapezoidal cross-section with dimensions a, b, c"
+  },
+  "beam_pressure_to_rib_forces.png": {
+    "suggested_name": "beam_pressure_to_rib_forces",
+    "description": "Side view of thin-walled beam showing distributed pressure p converted to concentrated forces F at ribs, with section A marked and trapezoidal cross-section detail"
+  },
+  "cantilever_beam_distributed_load_square_section.png": {
+    "suggested_name": "cantilever_beam_distributed_load_square_section",
+    "description": "Cantilever thin-walled beam with distributed load q along length ℓ, showing 3D isometric view with e/6 dimension and square cross-section with dimensions a and panel thickness t"
+  },
+  "cantilever_load_distribution_rib_forces.png": {
+    "suggested_name": "cantilever_load_distribution_rib_forces",
+    "description": "Solution diagram showing cantilever beam with distributed load q converted to concentrated forces F, F/2 at ribs, with coordinate system and length dimensions ℓ and e/6"
+  },
+  "beam_segment_rib_forces_rotations.png": {
+    "suggested_name": "beam_segment_rib_forces_rotations",
+    "description": "Beam segment showing six concentrated forces F (with F/2 at ends) applied at ribs, with rotation angles θ1 and θ2 marked at supports"
+  }
+}

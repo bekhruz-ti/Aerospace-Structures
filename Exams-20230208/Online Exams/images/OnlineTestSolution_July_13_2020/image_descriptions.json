@@ -1,0 +1,70 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "cantilever_beam_uniform_load_optimization",
+    "description": "Cantilever beam with fixed support at right end (hatched wall) and free left end. Uniform upward distributed load q applied along beam length L. Coordinate system shows x-axis along beam length. Problem statement asks to find minimum value of EJ/EJ₀ such that vertical displacement at x = L/2 is smaller than W_max. Given data includes L = 1200(1 + B/10) mm, EJ₀ = 6·10⁷ N·mm², q = 1.0·(1 + C/10) N/mm, and W_max = 5.0 mm. Solution section shows two diagrams labeled \"Real\" and \"Dummy\" with reaction force X and unit load respectively, both with coordinate systems showing y and z axes."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "beam_displacement_calculation_equations",
+    "description": "Mathematical derivation showing moment equations M_X = -Xz - qz²/2 and δM_X = -z. Integration of virtual work equation ∫₀ᴸ (M_X δM_X)/EJ dz = 0 yields reaction force X = -3/8 qL. Two beam diagrams shown: left diagram with distributed load q and reaction X, right diagram with unit load. Equations show δM_X = -z at location z = L/2. Final calculation shows EJ/EJ₀ = (1/EJ₀)·(L³(112X + 45qL))/(384W_max) = 54."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "rectangular_cross_sections_torsional_stiffness",
+    "description": "Two rectangular cross-section diagrams labeled \"Section #1\" and \"Section #2\". Section #1 shows rectangular outline with dimensions a × b, corner areas labeled A with thickness t, and diagonal areas labeled 2A. Section #2 shows similar rectangular configuration with dimensions a × b, areas labeled A and 2A at corners and edges, all with thickness t. Problem asks to calculate ratio between torsional stiffness GJ₂/GJ₁ of the two sections. Given data: a = 200(1 + F/10) mm, b = 100 mm, A = 500(1 + A/10) mm², t = 1 mm. Solution shows GJ₂/GJ₁ = 1.0."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "truss_structure_spring_support_displacement",
+    "description": "Three-dimensional truss structure with four corner nodes labeled A forming a rectangular base. Diagonal members of length a connect to upper nodes, with overall length L. Vertical downward force P applied at lower left corner, spring support with stiffness k at lower front corner. Coordinate system shows x-axis horizontal. Problem asks to determine vertical displacement in correspondence of the point (refer to x-axis in figure). Given data: A = 250 mm², E = 72000 MPa, a = 150 mm, γ = 0.3, t = 0.6(1 + B/10) mm, L = 1200(1 + F/10) mm, P = 1900 N, k = 100 N/mm."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "section_properties_shear_torsion_bending",
+    "description": "Solution section (B = F = 0) showing section property calculations. Three cross-section diagrams: first shows shear forces T/2a at corners, second shows torsional moment M_T, third shows bending with moment EJ = EAa². Expressions given for shear area A* = 2at, torsional stiffness GA* = 2atG, and torsional rigidity GJ = Ga³t. Two free body diagrams at bottom labeled \"Real\" and \"Dummy\" showing forces: Real has (P-X)a/2 moment and P+X force; Dummy has -a/2 moment and unit force. Problem involves evaluating unknown reaction force X in correspondence of the spring."
+  },
+  "page_6_img_1.png": {
+    "suggested_name": "virtual_work_spring_deflection_calculation",
+    "description": "Mathematical equations for structural analysis using virtual work method. Torque T = P+X, moments M = (P+X)z and M_L = (P-X)a/2. Virtual work derivatives δT = 1, δM = z, δM_L = -a/2. Integration equation ∫₀ᴸ(δTT/GA* + δMM/EJ + δM_LM_L/GJ)dz + X/k = 0. Solution for reaction force X = P·(a²/4GJ - L²/3EJ - 1/6A*)/(1/GA* + L²/3EJ + a²/4GJ + 1/kL) = -222.55 N. Spring deflection S = X/k = -2.23 mm."
+  },
+  "page_7_img_1.png": {
+    "suggested_name": "beam_spring_support_ritz_method",
+    "description": "Cantilever beam with fixed support at right end (hatched wall), spring support k at free left end, and uniform horizontal distributed load h along length. Beam has variable cross-section EA(x) along length L with x-axis shown. Problem statement asks to use Ritz method and 2-DOF polynomial approximation to determine strain energy. Given data: L = 2700 mm, EA₀ = 2.8·10⁵ N, EA₁ = 6.5·10⁵ N, k = 300(1 + B/10) N/mm, h = 2(1 + F/10) N/mm. Solution section (B = F = 0) shows displacement approximation u(x) = q₁x + q₂x² and axial stiffness variation EA(x) = α + βx with α = EA₀ and β = (EA₁ - EA₀)/L."
+  },
+  "page_8_img_1.png": {
+    "suggested_name": "stiffness_matrix_force_vector_assembly",
+    "description": "Mathematical expressions for stiffness matrix assembly and force vector calculation. Stiffness matrix elements: k₁₁ = αL + βL²/2 + kL², k₁₂ = k₂₁ = αL² + 2/3·βL³ + kL³, k₂₂ = 4/3·αL³ + βL⁴ + kL⁴. Force vector components: f₁ = L²/2·h, f₂ = L³/3·h. Problem statement indicates K·q = f, from which generalized coordinates q₁ = 9.23·10⁻³ and q₂ = -2.51·10⁻⁶ are obtained. Strain energy expression: U = 1/2·q^T·K·q = 17151 N·mm."
+  },
+  "page_9_img_1.png": {
+    "suggested_name": "two_member_frame_rigid_link_ritz",
+    "description": "Two-member frame structure with rigid link connecting members. Left vertical member L₁ with bending stiffness GJ(x) varying from GJ₀ at x=0 to GJ₁ at x=L₂. Horizontal member L₂ with constant bending stiffness EJ. Rigid link at top connects to right end. Vertical forces P applied at both ends of horizontal member. Problem asks to use Ritz method and 1-DOF polynomial approximation to determine strain energy (GJ varies linearly from GJ₀ at x=0 to GJ₁ at x=L₂). Given data: L₁ = 180 mm, L₂ = 1800 mm, GJ₀ = 1.1·10⁸ N·mm², GJ₁ = 3.3·10⁸ N·mm², P = 50(1 + D/10) N. Solution section (D=0) shows rotation approximation θ = q₁x."
+  },
+  "page_10_img_1.png": {
+    "suggested_name": "frame_energy_calculation_result",
+    "description": "Continuation of frame analysis showing bending stiffness variation GJ(x) = α + βx with α = GJ₀ and β = (GJ₁ - GJ₀)/L₂. Virtual work equation ∫₀ᴸ δθ'·GJ(x)·θ'dx = δθ(L₂)·PL₁. Stiffness calculation (αL₂ + βL₂²/2)·q₁ = PL₁L₂ yields generalized coordinate q₁ = 4.091·10⁻⁵. Final strain energy result: U = 1/2·(αL₂ + βL₂²/2)·q₁² = 331.36 N·mm."
+  },
+  "page_11_img_1.png": {
+    "suggested_name": "truss_stringer_axial_stress_analysis",
+    "description": "Three-dimensional truss structure with diagonal members forming triangulated configuration. Square base with side dimension a, diagonal members of length a, overall length L. Horizontal force P applied at left corner, pinned supports at corners. Member #1 labeled on diagonal element. Coordinate system shows V_x axis. Problem asks to evaluate axial stress in stringer #1 at x=0. Given data: a = 180 mm, A = 350 mm², L = 1600(1 + A/10) mm, P = 1300(1 + F/10) N. Solution section (A = F = 0) shows second moment of area J_xx = Aa². Bending moment at x=0 is M = PL, yielding stress σ = M/J_xx · a√2/2 = 23.35 MPa."
+  },
+  "cantilever_beam_distributed_load.png": {
+    "suggested_name": "cantilever_beam_distributed_load",
+    "description": "Cantilever beam with distributed upward load q, fixed support at right end, with length L and flexural rigidity EJ labeled, coordinate system showing x-axis"
+  },
+  "rectangular_cross_sections_torsion.png": {
+    "suggested_name": "rectangular_cross_sections_torsion",
+    "description": "Two cross-sectional diagrams showing rectangular sections with dimensions a, b, thickness t, area A, and force 2A labeled at corners, comparing Section #1 and Section #2 for torsional stiffness calculation"
+  },
+  "truss_frame_spring_system.png": {
+    "suggested_name": "truss_frame_spring_system",
+    "description": "3D structural diagram showing truss/frame system with diagonal members, vertical force P, spring with stiffness k, dimensions a and L, and coordinate system with x-axis indicated"
+  },
+  "cantilever_beam_variable_stiffness.png": {
+    "suggested_name": "cantilever_beam_variable_stiffness",
+    "description": "Cantilever beam with distributed horizontal load h, fixed support at left with spring k, length L with variable cross-section EA(x), coordinate system showing x-axis"
+  },
+  "two_segment_beam_rigid_link.png": {
+    "suggested_name": "two_segment_beam_rigid_link",
+    "description": "Two-segment beam system with rigid link connection, showing segments L1 and L2, forces P at ends, variable torsional stiffness GJ(x), and hatched support at left end"
+  },
+  "truss_structure_diagonal_members.png": {
+    "suggested_name": "truss_structure_diagonal_members",
+    "description": "Truss structure showing triangulated configuration with force P, pin joints, diagonal members labeled #1, dimensions a and L, and coordinate system with x-axis"
+  }
+}
