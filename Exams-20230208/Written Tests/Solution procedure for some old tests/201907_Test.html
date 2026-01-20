@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>201907_Test - Spacecraft Structures Written Test</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+
+        figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #007bff;
+            border-radius: 4px;
+        }
+
+        .exercise h2 {
+            margin-top: 0;
+            border-bottom: none;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            line-height: 1.8;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', Times, serif;
+            color: #000;
+        }
+
+        .inline-figure {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        .inline-figure img {
+            max-height: 30px;
+            border: none;
+            padding: 0;
+        }
+
+        .answer-solution {
+            display: block;
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            border-radius: 4px;
+        }
+
+        .answer-solution h3 {
+            color: #2e7d32;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .answer-solution ol {
+            margin-left: 20px;
+        }
+
+        .answer-solution li {
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            background: #c8e6c9;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="metadata">Written test, July 15<sup>th</sup> 2019</p>
+            <p class="metadata">Extracted from: 201907_Test.pdf</p>
+        </header>
+
+        <section class="exercise">
+            <h2>Exercise 1</h2>
+            
+            <p>A thin-walled beam is fixed at one end and loaded at the free end with a distributed force per unit length \(q\). The total length is \(l\), while the geometry of the section is depicted in the figure. The lumped stringers have area \(A\), while the thickness of the panels is denoted with \(t\). By considering a semi-monocoque approximation, determine the shear and the axial stresses acting at the mid-span section.</p>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_1.png" alt="Simple horizontal line element, likely representing a beam axis or reference line in a structural diagram.">
+                <figcaption>
+                    <strong>Simple horizontal line element, likely representing a beam axis or reference line in a structural diagram.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_2.png" alt="Horizontal line segment, possibly representing a structural member centerline or datum reference.">
+                <figcaption>
+                    <strong>Horizontal line segment, possibly representing a structural member centerline or datum reference.</strong>
+                </figcaption>
+            </figure>
+
+            <p>\(q= q(x)\) <figure class="inline-figure"><img src="images/201907_Test/page_1_img_3.png" alt="Curved line element"></figure> \(x\)-</p>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_4.png" alt="Curved line element, possibly representing a deflection curve or geometric profile.">
+                <figcaption>
+                    <strong>Curved line element, possibly representing a deflection curve or geometric profile.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_5.png" alt="Left: Curved beam element of length l shown in isometric view with fixed supports at both ends indicated by hatching. Right: Cross-sectional geometry showing trapezoidal or variable profile with dimensions labeled a (top width), b (intermediate height), c (total height), and d (angle or offset dimension). Dashed lines indicate hidden edges or reference geometry.">
+                <figcaption>
+                    <strong>Left: Curved beam element of length l shown in isometric view with fixed supports at both ends indicated by hatching. Right: Cross-sectional geometry showing trapezoidal or variable profile with dimensions labeled a (top width), b (intermediate height), c (total height), and d (angle or offset dimension). Dashed lines indicate hidden edges or reference geometry.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l = 6000\, \text{mm}\); \(a = 200\, \text{mm}\); \(b = 200\, \text{mm}\); \(e = 400\, \text{mm}\); \(d = 50\, \text{mm}\); \(t = 1.5\, \text{mm}\); \(A= 1000\, \text{mm}^2\);<br><br>
+                \(q = 150\, \left(\frac{x}{400}\right)^2\, \text{N/mm}\), \(x \in (0, 400]\, \text{mm}\);
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p><strong>Step 1: Calculate resultant force and moment</strong></p>
+                \[F_0 = \int_0^{400} 150 \left(\frac{\xi}{400}\right)^2 d\xi = 20\, \text{kN}\]
+                
+                \[M_0 = \int_0^{400} 150 \left(\frac{\xi}{400}\right)^2 \xi\, d\xi = 6 \times 10^6\, \text{N·mm}\]
+                
+                <p><strong>Step 2: Determine shear flows and stresses</strong></p>
+                <p>The shear flows and stresses are obtained as follows:</p>
+                
+                <p><em>Shear Flows (Units: N/mm):</em></p>
+                <ul>
+                    <li>Top left panel: \(21.49\, \text{N/mm}\)</li>
+                    <li>Top right panel: \(4.83\, \text{N/mm}\)</li>
+                    <li>Left vertical panel: \(0\, \text{N/mm}\)</li>
+                    <li>Right vertical panel: \(0\, \text{N/mm}\)</li>
+                    <li>Bottom left panel: \(26.75\, \text{N/mm}\)</li>
+                    <li>Bottom right panel: \(10.09\, \text{N/mm}\)</li>
+                </ul>
+                
+                <p><em>Shear Stresses (Units: MPa):</em></p>
+                <ul>
+                    <li>Top left panel: \(14.33\, \text{MPa}\)</li>
+                    <li>Top right panel: \(3.22\, \text{MPa}\)</li>
+                    <li>Left vertical panel: \(0\, \text{MPa}\)</li>
+                    <li>Right vertical panel: \(0\, \text{MPa}\)</li>
+                    <li>Bottom left panel: \(17.83\, \text{MPa}\)</li>
+                    <li>Bottom right panel: \(6.73\, \text{MPa}\)</li>
+                </ul>
+                
+                <p><strong>Step 3: Axial stresses in the stringers</strong></p>
+                <p>The vertical position of the principal axis origin is at \(350\, \text{mm}\) from the bottom. The horizontal position is available from the symmetry of the section.</p>
+                
+                \[M_x = -F_0 \cdot z\]
+                
+                <p>At the mid-span section \(z = 3000\, \text{mm}\), so:</p>
+                \[M_x = -6.00 \times 10^7\, \text{N·mm}\]
+                
+                <p>The stresses on the stringers are:</p>
+                \[\sigma_{xx_1} = \frac{M_x}{J_{xx}}(600 - 350) = -78.95\, \text{MPa}\]
+                
+                \[\sigma_{xx_2} = \sigma_{xx_3} = \frac{M_x}{J_{xx}}(400 - 350) = -15.79\, \text{MPa}\]
+                
+                \[\sigma_{xx_4} = \frac{M_x}{J_{xx}}(-350) = 110.53\, \text{MPa}\]
+                
+                <div class="final-answer">
+                    <strong>Final Answers:</strong><br>
+                    Shear stresses: \(\tau_{12} = 14.33\, \text{MPa}\), \(\tau_{23} = 3.22\, \text{MPa}\), \(\tau_{34} = 17.83\, \text{MPa}\), \(\tau_{41} = 6.73\, \text{MPa}\)<br>
+                    Axial stresses: \(\sigma_{xx_1} = -78.95\, \text{MPa}\), \(\sigma_{xx_2} = \sigma_{xx_3} = -15.79\, \text{MPa}\), \(\sigma_{xx_4} = 110.53\, \text{MPa}\)
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Exercise 2</h2>
+            
+            <p>A structure is composed of two beams. The geometric and elastic properties, calculated with respect to the principal axes, are denoted as \(EA_i\), \(EJ_i\) and \(GJ_i\), with \(i = 1, 2\), as illustrated in the figure. Note, \(EJ_i = EJ_{xx} = EJ_{yy}\). The structure is fixed at one end, and elastically constrained by means of two linear springs of stiffness \(k_1\) and \(k_2\). Considering a loading condition with an axial force \(P\) applied at the free end and a linearly varying distributed load \(q = q(x)\), determine the horizontal and vertical displacement in correspondence of the two springs.</p>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_6.png" alt="Small curved line element or arc segment.">
+                <figcaption>
+                    <strong>Small curved line element or arc segment.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_7.png" alt="Curved profile or arc segment, possibly representing part of a deflection curve or geometric boundary.">
+                <figcaption>
+                    <strong>Curved profile or arc segment, possibly representing part of a deflection curve or geometric boundary.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_8.png" alt="Short line segment element.">
+                <figcaption>
+                    <strong>Short line segment element.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_9.png" alt="Angled or inclined line segment.">
+                <figcaption>
+                    <strong>Angled or inclined line segment.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_10.png" alt="Short horizontal line element.">
+                <figcaption>
+                    <strong>Short horizontal line element.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_11.png" alt="Curved bracket or parenthesis symbol, possibly indicating a grouping or mathematical expression.">
+                <figcaption>
+                    <strong>Curved bracket or parenthesis symbol, possibly indicating a grouping or mathematical expression.</strong>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/201907_Test/page_1_img_12.png" alt="Small dot or point marker.">
+                <figcaption>
+                    <strong>Small dot or point marker.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(l_1 = 1000\, \text{mm}\); \(l_2 = 800\, \text{mm}\); \(EA_1 = 5.7 \times 10^7\, \text{N}\); \(EJ_1 = 9.0 \times 10^8\, \text{N mm}^2\); \(GJ_1 = 4.0 \times 10^8\, \text{N mm}^2\); \(EA_2 = 2.8 \times 10^7\, \text{N}\); \(EJ_2 = 7.0 \times 10^8\, \text{N mm}^2\); \(GJ_2 = 2.0 \times 10^8\, \text{Nmm}^2\); \(k_1 = 2.8\, \text{N/mm}\); \(k_2 = 3.5 \times 10^4\, \text{N/mm}\);<br><br>
+                \(q = 6 \times 10^{-3}\frac{x}{800}\, \text{N/mm}\); \(P = 40\, \text{kN}\).
+            </div>
+
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                
+                <p><strong>Step 1: Define the distributed load</strong></p>
+                <p>The distributed load can be written as:</p>
+                \[q(z_2) = a \cdot z_2 \quad \text{with} \quad a = 7.5 \times 10^{-6}\, \text{N/mm}^2\]
+                
+                <p><strong>Step 2: Internal forces (Real configuration)</strong></p>
+                <p>For beam (2):</p>
+                \[M_x^{(2)} = -\frac{a \cdot z_2^3}{6}\]
+                
+                <p>For beam (1):</p>
+                \[M_x^{(1)} = -\left(\frac{a \cdot l_2^2}{2} + Y\right) z_1\]
+                \[M_y^{(1)} = -(F + X) z_1\]
+                \[M_z^{(1)} = \frac{a \cdot l_2^3}{6}\]
+                
+                <p><strong>Step 3: Dummy load systems for PVW</strong></p>
+                
+                <p><em>Dummy #1 (for vertical displacement):</em></p>
+                \[^1\delta M_x^{(2)} = 0, \quad ^1\delta M_x^{(1)} = -z_1, \quad ^1\delta M_y^{(1)} = 0, \quad ^1\delta M_z^{(1)} = 0\]
+                
+                <p><em>Dummy #2 (for horizontal displacement):</em></p>
+                \[^2\delta M_x^{(2)} = 0, \quad ^2\delta M_x^{(1)} = 0, \quad ^2\delta M_y^{(1)} = -z, \quad ^2\delta M_z^{(1)} = 0\]
+                
+                <p><strong>Step 4: Apply Principle of Virtual Work (PVW)</strong></p>
+                
+                \[\left(\frac{l_1^3}{3} + \frac{EJ_1}{k_1}\right) Y = -\frac{R \cdot l_1^3}{3} \quad \text{where} \quad R = \frac{a \cdot l_2^2}{2}\]
+                
+                \[\left(\frac{l_1^3}{3} + \frac{EJ_2}{k_2}\right) X = -\frac{F \cdot l_1^3}{3}\]
+                
+                <p><strong>Step 5: Solve for spring forces and displacements</strong></p>
+                
+                <p>From the equations:</p>
+                \[X = -40\, \text{kN}\]
+                \[Y = -1.22\, \text{N}\]
+                
+                <p>The displacements at the springs are:</p>
+                \[S_1 = -\frac{Y}{k_1} = 0.44\, \text{mm}\]
+                \[S_2 = -\frac{X}{k_2} = 1.14\, \text{mm}\]
+                
+                <div class="final-answer">
+                    <strong>Final Answers:</strong><br>
+                    Vertical displacement at spring 1: \(S_1 = 0.44\, \text{mm}\)<br>
+                    Horizontal displacement at spring 2: \(S_2 = 1.14\, \text{mm}\)
+                </div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>Question 1</h2>
+            
+            <p>Discuss and illustrate the equivalence between the indefinite equilibrium equations for a 3D solid along with the relevant boundary conditions and the Principle of Virtual Work.</p>
+            
+            <div class="answer-solution">
+                <h3>Solution</h3>
+                <p><em>This is a theoretical question. No numerical solution was provided in the solution pages.</em></p>
+                
+                <p>The answer should discuss:</p>
+                <ol>
+                    <li>The indefinite equilibrium equations for a 3D solid: \(\nabla \cdot \boldsymbol{\sigma} + \mathbf{b} = \mathbf{0}\)</li>
+                    <li>Boundary conditions: traction BCs \(\boldsymbol{\sigma} \cdot \mathbf{n} = \mathbf{t}\) on \(\Gamma_t\) and displacement BCs \(\mathbf{u} = \bar{\mathbf{u}}\) on \(\Gamma_u\)</li>
+                    <li>The Principle of Virtual Work (PVW): \(\int_V \boldsymbol{\sigma} : \delta\boldsymbol{\varepsilon}\, dV = \int_V \mathbf{b} \cdot \delta\mathbf{u}\, dV + \int_{\Gamma_t} \mathbf{t} \cdot \delta\mathbf{u}\, dS\)</li>
+                    <li>Demonstration of equivalence through integration by parts and application of divergence theorem</li>
+                </ol>
+            </div>
+        </section>
+
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ccc; text-align: center; font-size: 0.9em; color: #666;">
+            <p>1</p>
+        </footer>
+    </article>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "page_1_img_1.png": {
+    "suggested_name": "horizontal_line_element",
+    "description": "Simple horizontal line element, likely representing a beam axis or reference line in a structural diagram."
+  },
+  "page_1_img_2.png": {
+    "suggested_name": "horizontal_line_segment",
+    "description": "Horizontal line segment, possibly representing a structural member centerline or datum reference."
+  },
+  "page_1_img_3.png": {
+    "suggested_name": "two_beam_system_distributed_load_spring_supports",
+    "description": "Two-beam structural system with upper beam subjected to distributed load q = q(x) and fixed support at right end. Upper beam labeled with properties EA₁, EJ₁, GJ₁, l₁. Lower beam has spring support k₂ at left end, spring support k₁ at left boundary (shown with hatching), and axial force P applied at right end. Lower beam labeled with properties EA₂, EJ₂, GJ₂, l₂. Coordinate x shown with leftward direction. Distributed load shown as upward arrows with triangular distribution pattern."
+  },
+  "page_1_img_4.png": {
+    "suggested_name": "curved_line_element",
+    "description": "Curved line element, possibly representing a deflection curve or geometric profile."
+  },
+  "page_1_img_5.png": {
+    "suggested_name": "curved_beam_cross_section_geometry",
+    "description": "Left: Curved beam element of length l shown in isometric view with fixed supports at both ends indicated by hatching. Right: Cross-sectional geometry showing trapezoidal or variable profile with dimensions labeled a (top width), b (intermediate height), c (total height), and d (angle or offset dimension). Dashed lines indicate hidden edges or reference geometry."
+  },
+  "page_1_img_6.png": {
+    "suggested_name": "small_curved_element",
+    "description": "Small curved line element or arc segment."
+  },
+  "page_1_img_7.png": {
+    "suggested_name": "curved_profile_segment",
+    "description": "Curved profile or arc segment, possibly representing part of a deflection curve or geometric boundary."
+  },
+  "page_1_img_8.png": {
+    "suggested_name": "small_line_segment",
+    "description": "Short line segment element."
+  },
+  "page_1_img_9.png": {
+    "suggested_name": "angled_line_element",
+    "description": "Angled or inclined line segment."
+  },
+  "page_1_img_10.png": {
+    "suggested_name": "short_horizontal_line",
+    "description": "Short horizontal line element."
+  },
+  "page_1_img_11.png": {
+    "suggested_name": "curved_bracket_symbol",
+    "description": "Curved bracket or parenthesis symbol, possibly indicating a grouping or mathematical expression."
+  },
+  "page_1_img_12.png": {
+    "suggested_name": "small_dot_point",
+    "description": "Small dot or point marker."
+  },
+  "page_2_img_1.png": {
+    "suggested_name": "truss_analysis_four_configurations",
+    "description": "Four truss configurations shown with handwritten calculations. Top left (Unit 13, N/Mm): Diamond-shaped truss with four pinned joints, members labeled with forces (2475, 2147, 1403, 1163). Top right (Exercise 1): Similar diamond truss with vertical and horizontal dimensions marked, force F₀ applied. Bottom left (Unit 13): Diamond truss with diagonal members labeled \"SPECIAL\" and forces (1483, 3322, 6373). Bottom right: Simple diamond truss with force F₀ and dimension l. Handwritten notes include force calculations and member classifications. All trusses show pin-jointed connections at corners."
+  },
+  "page_3_img_1.png": {
+    "suggested_name": "truss_force_analysis_coordinate_system",
+    "description": "Right side: Three-dimensional truss structure with coordinate system showing x, y, z axes. Truss has rectangular base with diagonal members, dimensions marked as 35° and other measurements. Force vectors and moment M₃ indicated. Left side: Handwritten calculations showing force components and equations including expressions for F₁₊₂, F₁₋₂, F₃₊₄, with various algebraic manipulations. Calculations reference vertical, horizontal, and axial force components with subscripted notation."
+  },
+  "page_4_img_1.png": {
+    "suggested_name": "truss_joint_force_diagrams",
+    "description": "Two free body diagrams of truss joints with coordinate systems. Top diagram shows joint with three members meeting, forces labeled F₁, F₂, F₃, with x-y coordinate axes and external force components. Bottom diagram shows similar joint configuration with forces F₁, F₂, F₃, F₄ and x-y-z coordinate system. Left side contains handwritten force equilibrium equations with subscripted force components. Diagrams include circled node numbers (1), (2), (3) and directional arrows indicating force directions."
+  },
+  "page_5_img_1.png": {
+    "suggested_name": "truss_member_calculations",
+    "description": "Two simple truss diagrams on right side showing diagonal members with nodes labeled (1), (2), (3) and force F₁. Left side contains extensive handwritten calculations with force component equations, including expressions with subscripts and fractions. Calculations show force equilibrium relationships and algebraic manipulations for truss member forces. Equations include terms like F₁₊₂, F₁₋₂, and various force component ratios."
+  }
+}
