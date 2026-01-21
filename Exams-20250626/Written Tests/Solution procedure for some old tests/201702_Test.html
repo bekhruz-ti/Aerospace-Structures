@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures - Written Test, February 10th, 2017</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .calculation {
+            margin: 15px 0;
+            padding: 10px;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .shear-flow-diagram {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .shear-flow-diagram table {
+            margin: 10px auto;
+            border-collapse: collapse;
+        }
+
+        .shear-flow-diagram td {
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .note {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .theoretical-question {
+            background: #fff5f5;
+            border-left-color: #c53030;
+        }
+
+        .theoretical-question h3 {
+            color: #c53030;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .given-data ul {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="subtitle">Written Test, February 10th, 2017</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    
+                    <p class="problem-statement">
+                        Consider the thin-walled beam reported in the figure. The beam has a total length equal to \(l\), while the ribs are equally spaced with pitch \(d\). The load is a pressure distribution \(p = p_0 \frac{\eta}{b+c}\), uniform along the beam axis and linear along the chord.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201702_Test/thin_walled_beam_ribs_pressure_load.png" alt="Side and front views of thin-walled beam with pressure distribution">
+                        <figcaption>Side view showing beam with ribs at pitch d and distributed pressure load p; Front view showing triangular pressure distribution across chord</figcaption>
+                    </figure>
+                    
+                    <p class="problem-statement">
+                        The cross section of the beam is sketched here below.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201702_Test/beam_cross_section_rectangular_stringers.png" alt="Rectangular cross-section with stringer configuration">
+                        <figcaption>Cross-section showing two cells with dimensions a, b, c and stringer detail with dimensions h and t</figcaption>
+                    </figure>
+                    
+                    <p class="problem-statement">
+                        By making use of the semi-monocoque scheme, determine: the shear flows and the shear stresses acting on the panels, and the axial force carried by the stringers for the section at \(\xi = 900\) mm.
+                    </p>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(d = 400\) mm</li>
+                            <li>\(l = 2000\) mm</li>
+                            <li>\(p_0 = 2\text{e-}2\) N/mm²</li>
+                            <li>\(a = 200\) mm</li>
+                            <li>\(b = 200\) mm</li>
+                            <li>\(c = 300\) mm</li>
+                            <li>\(t = 4\) mm</li>
+                            <li>\(h = 20\) mm</li>
+                            <li>All panels have thickness 0.8 mm</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution to Exercise 1</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Stringer Area Calculation</h4>
+                        <p>The stringer area is calculated from the L-shaped profile:</p>
+                        \[A_{st} = th + t(h - t) = 144\, \text{mm}^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Lumped Areas</h4>
+                        <p>The cross-section has 6 stringers numbered 1-6 (top: 1, 2, 3; bottom: 6, 5, 4). The lumped areas include contributions from stringers and adjacent panel sections:</p>
+                        
+                        \[A_1 = A_6 = A_{st} + \frac{1}{2}(b + a)t = 304\, \text{mm}^2\]
+                        
+                        \[A_3 = A_4 = A_{st} + \frac{1}{2}(a + c)t = 344\, \text{mm}^2\]
+                        
+                        \[A_2 = A_5 = 2A_{st} + \frac{1}{2}(a + b + c)t = 568\, \text{mm}^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Section Properties</h4>
+                        <p>The neutral axis \(x\) passes through the center due to symmetry of the section.</p>
+                        
+                        <p>First moments of area for each stringer:</p>
+                        \[S_{x_1} = -S_{x_6} = A_1 \frac{a}{2} = 30400\, \text{mm}^3\]
+                        \[S_{x_2} = -S_{x_5} = A_2 \frac{a}{2} = 56800\, \text{mm}^3\]
+                        \[S_{x_3} = -S_{x_4} = A_3 \frac{a}{2} = 34400\, \text{mm}^3\]
+                        
+                        <p>Second moment of area:</p>
+                        \[J_{xx} = 2(A_1 + A_2 + A_3)\left(\frac{a}{2}\right)^2 = 24{,}320{,}000\, \text{mm}^4\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: External Loads</h4>
+                        <p>The triangular pressure distribution is converted to an equivalent line load:</p>
+                        \[q = p \frac{b + c}{2} = 5\, \text{N/mm}\]
+                        
+                        <p>The resultant load acts at \(\frac{2}{3}(b+c)\) from one edge and \(\frac{1}{3}(b+c)\) from the other edge (centroid of triangular distribution).</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Internal Actions</h4>
+                        <p>Assuming that loads are introduced by ribs, discrete loads of \(qd\) act at each rib location, with \(\frac{qd}{2}\) at the end.</p>
+                        
+                        <p><strong>Internal actions at \(\xi = 900\) mm:</strong></p>
+                        
+                        <p>Shear force:</p>
+                        \[T = -q \cdot d\left(2 + \frac{1}{2}\right) = -\frac{5}{2}\, qd = -5000\, \text{N}\]
+                        
+                        <p>Bending moment:</p>
+                        \[M = -q \cdot d \cdot (1050) = -2{,}100{,}000\, \text{Nmm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Evaluation of Shear Stresses</h4>
+                        <p>A preliminary remark: once the internal actions at \(\xi = 900\) mm are available, one can arbitrarily consider the section at the left or right side of the "cut". We consider here the left side (but considering the right one would be correct as well).</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Shear Flow Results</h4>
+                        <p>The shear flow distribution (all units in N/mm):</p>
+                        
+                        <div class="shear-flow-diagram">
+                            <table>
+                                <tr>
+                                    <td></td>
+                                    <td>2.75 →</td>
+                                    <td></td>
+                                    <td>1.00 →</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>↓ 9.00</td>
+                                    <td></td>
+                                    <td>↓ 9.93</td>
+                                    <td></td>
+                                    <td>↓ 6.07</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>← 2.75</td>
+                                    <td></td>
+                                    <td>← 1.00</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <p>The shear stresses are obtained as \(\tau_i = q_i / t_i\)</p>
+                        
+                        <p>Shear stress distribution (all units in MPa):</p>
+                        <div class="shear-flow-diagram">
+                            <table>
+                                <tr>
+                                    <td></td>
+                                    <td>3.44 →</td>
+                                    <td></td>
+                                    <td>1.26 →</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>↓ 11.26</td>
+                                    <td></td>
+                                    <td>↓ 12.41</td>
+                                    <td></td>
+                                    <td>↓ 7.58</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>← 3.44</td>
+                                    <td></td>
+                                    <td>← 1.26</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 8: Axial Forces in the Stringers</h4>
+                        <p>Using the bending formula:</p>
+                        
+                        \[F_1 = A_1 \frac{M}{J_{xx}} \left(\frac{a}{2}\right) = -2625\, \text{N}\]
+                        
+                        \[F_2 = A_2 \frac{M}{J_{xx}} \left(\frac{a}{2}\right) = -4904\, \text{N}\]
+                        
+                        \[F_3 = A_3 \frac{M}{J_{xx}} \left(\frac{a}{2}\right) = -2970\, \text{N}\]
+                        
+                        <p>\(F_i < 0\) indicates compression.</p>
+                        
+                        <p>By symmetry:</p>
+                        \[F_6 = -F_1 \qquad F_4 = -F_3\]
+                        \[F_5 = -F_2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong><br><br>
+                        <strong>Shear Flows:</strong> 2.75, 9.00, 9.93, 6.07, 1.00 N/mm<br>
+                        <strong>Shear Stresses:</strong> 3.44, 11.26, 12.41, 7.58, 1.26 MPa<br>
+                        <strong>Axial Forces:</strong><br>
+                        \(F_1 = -2625\) N, \(F_2 = -4904\) N, \(F_3 = -2970\) N<br>
+                        \(F_4 = 2970\) N, \(F_5 = 4904\) N, \(F_6 = 2625\) N
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    
+                    <p class="problem-statement">
+                        Consider the beam reported in the figure. It is fixed at one end, and hinged at the other end. The bending stiffness of the beam varies linearly from \(EJ_0\) at \(\xi = 0\) to \(EJ_1\) at \(\xi = 2a + b\). Two linear springs of stiffness \(k\) restrain the transverse displacement at \(\xi = a\) and \(\xi = a + b\). A uniform force per unit length of magnitude \(q\) is applied in the interval \(a + b \leq \xi \leq 2a + b\).
+                    </p>
+                    
+                    <p class="problem-statement">
+                        Assume a Euler-Bernoulli beam model and apply the method of Ritz to obtain an approximation of the displacement field. Consider a single-degree-of-freedom description for the bending displacement.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201702_Test/beam_variable_stiffness_springs_distributed_load.png" alt="Euler-Bernoulli beam with variable stiffness, spring supports, and distributed load">
+                        <figcaption>Beam with fixed-hinged supports, two springs of stiffness k at ξ = a and ξ = a + b, and distributed load q over the right segment</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 300\) mm</li>
+                            <li>\(b = 400\) mm</li>
+                            <li>\(l = 2a + b = 1000\) mm</li>
+                            <li>\(q = 20\) N/mm</li>
+                            <li>\(EJ_0 = 1\text{e}9\) Nmm²</li>
+                            <li>\(EJ_1 = 2\, EJ_0\)</li>
+                            <li>\(k = 100 \frac{EJ_0}{l^3} = 100\) N/mm</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution to Exercise 2</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Trial Function Selection</h4>
+                        <p>A polynomial function is considered. The beam has:</p>
+                        <ul>
+                            <li>2 essential boundary conditions at the fixed end (\(W(0) = 0\), \(W_{,x}(0) = 0\))</li>
+                            <li>1 essential boundary condition at the hinged end (\(W(l) = 0\))</li>
+                        </ul>
+                        
+                        <p>3 essential conditions + 4 DOF approximation = 4 terms in the polynomial expansion:</p>
+                        \[W = a_0 + a_1 x + a_2 x^2 + a_3 x^3\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Imposing Boundary Conditions</h4>
+                        <p>Applying the essential boundary conditions:</p>
+                        \[\begin{cases} W(0) = 0 \\ W_{,x}(0) = 0 \\ W(l) = 0 \end{cases} \Rightarrow W = a_3 \left(x^3 - l x^2\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Non-dimensional Trial Function</h4>
+                        <p>The expression can be re-arranged (this is not strictly necessary!) to have a non-dimensional trial function:</p>
+                        \[W = C \frac{1}{l^3} \left(x^3 - l x^2\right)\]
+                        
+                        <p>where \(C\) has dimensions of length [l] and the remaining term is non-dimensional.</p>
+                        
+                        <p>This gives:</p>
+                        \[W = C \phi \qquad \text{where} \qquad \phi = \left(\frac{x}{l}\right)^3 - \left(\frac{x}{l}\right)^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Stiffness Matrix</h4>
+                        <p>The virtual work of internal forces (with \(l = 2a + b\)):</p>
+                        \[\delta W_i = \int_0^l \delta w_{,xx}\, EJ\, w_{,xx}\, dx + \delta w(a)\, k\, w(a) + \delta w(b)\, k\, w(b)\]
+                        
+                        \[= \delta C\, K\, C\]
+                        
+                        <p>where the generalized stiffness is:</p>
+                        \[K = \int_0^l \phi_{,xx}\, EJ\, \phi_{,xx}\, dx + \phi(a)\, k\, \phi(a) + \phi(b)\, k\, \phi(b)\]
+                        
+                        \[= 9.56\, \text{N/mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: External Load</h4>
+                        <p>The virtual work of external forces:</p>
+                        \[\delta W_e = \int_{a+b}^{2a+b} \delta w\, q\, dx\]
+                        
+                        \[= \delta C\, f\]
+                        
+                        <p>where the generalized force is:</p>
+                        \[f = \int_{a+b}^{2a+b} \phi\, q\, dx = -580.50\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solution</h4>
+                        <p>From the equilibrium equation \(KC = f\):</p>
+                        \[C = \frac{f}{K} = -60.74\, \text{mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong><br><br>
+                        The displacement field is approximated as:
+                        \[\boxed{W = -60.74 \left[\left(\frac{x}{l}\right)^3 - \left(\frac{x}{l}\right)^2\right] \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 1 (Theoretical) -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem theoretical-question">
+                    <h2>Question 1 (Theoretical)</h2>
+                    
+                    <p class="problem-statement">
+                        Derive the pre-buckling and buckling equations for an axially compressed beam. Discuss the differences between the two sets of equations and illustrate how the buckling load can be determined for a generic set of boundary conditions.
+                    </p>
+                    
+                    <p class="note"><em>Note: This is a theoretical question requiring derivation and discussion. No numerical solution was provided in the exam.</em></p>
+                </div>
+            </section>
+            
+        </main>
+    </article>
+</body>
+</html>

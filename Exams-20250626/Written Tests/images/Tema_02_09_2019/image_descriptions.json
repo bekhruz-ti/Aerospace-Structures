@@ -1,0 +1,10 @@
+{
+  "three_bar_hinge_structure_loads.png": {
+    "suggested_name": "three_bar_hinge_structure_loads",
+    "description": "Three-bar truss structure with pinned/hinged connections forming a right-angled configuration. The structure consists of a horizontal bar of length l₁ = 600 mm extending from the upper left joint, a vertical bar of length l₂ = 200 mm extending downward from the upper left joint, and a diagonal bar connecting the lower left joint to the right end of the horizontal bar. All bars have cross-sectional area A = 400 mm² and are made of aluminum alloy with Young's modulus E = 70 GPa. Four concentrated loads are applied: F₁ = 1.0 × 10⁴ N acting vertically upward at the upper left joint, F₂ = 3.0 × 10⁴ N acting horizontally to the left at the upper left joint, F₁ = 1.0 × 10⁴ N acting vertically downward at the right joint, and F₂ = 3.0 × 10⁴ N acting horizontally to the left at the lower left joint. The joints are represented by small circles indicating pin connections. This is a displacement-based structural analysis problem for determining internal stresses in the three bars."
+  },
+  "column_elastic_spring_supports_buckling.png": {
+    "suggested_name": "column_elastic_spring_supports_buckling",
+    "description": "Elastically restrained column with mixed boundary conditions for buckling analysis. The horizontal column has length l = 1200 mm and square cross-section of dimension a = 20 mm, made of aluminum alloy with Young's modulus E = 70 GPa. The left end features a fixed support (indicated by hatching symbol preventing translation and rotation). The right end is supported by two linear springs in series: spring k₁ = 1 N/mm (shown with zigzag symbol closer to the column end) and spring k₂ = 10 kN/mm (shown with zigzag symbol at the far right). A compressive axial load P is applied at the right end, acting horizontally from right to left. The diagram represents a buckling stability problem where the column behavior is influenced by the elastic spring restraints at the grounded end."
+  }
+}

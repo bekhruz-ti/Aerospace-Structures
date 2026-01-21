@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, Jan 22nd, 2020</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+            break-inside: avoid;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .theoretical-question {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theoretical-question .problem {
+            background: #fff5f5;
+            border-left: 4px solid #c53030;
+        }
+
+        .theoretical-question h2 {
+            color: #c53030;
+            border-bottom-color: #c53030;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem {
+                padding: 20px;
+            }
+
+            .given-data ul {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Aerospace Structures</h1>
+            <p class="exam-date">Written test, Jan 22<sup>nd</sup>, 2020</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">
+                        The semi-monocoque wing-like structure in the figure is loaded by a constant pressure distribution. The load is introduced by four ribs, equally spaced along the wing span, as shown in the sketch. Compute the axial stress \(\sigma\) in the concentrated areas and the shear stress \(\tau\) in the panels in the section located at \(l/2\) from the wing tip.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_22_01_2020/semi_monocoque_wing_pressure_distribution.png" alt="Isometric view of a semi-monocoque wing-like structure with constant pressure distribution, showing encastred wing root, four ribs, and cross-section details with panel thicknesses and concentrated areas">
+                        <figcaption>Figure 1: Semi-monocoque wing structure with pressure loading and cross-section detail</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(l = 6 \text{ m}\)</li>
+                            <li>\(c = 1 \text{ m}\)</li>
+                            <li>\(r = 0.1 \text{ m}\)</li>
+                            <li>\(A = 2500 \text{ mm}^2\)</li>
+                            <li>\(t_1 = 1 \text{ mm}\)</li>
+                            <li>\(t_2 = 1.2 \text{ mm}\)</li>
+                            <li>\(t_3 = 1.5 \text{ mm}\)</li>
+                            <li>\(p = 0.002 \text{ MPa}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    <p class="problem-statement">
+                        Consider the structure in the figure. Compute the constraint reaction forces and moments.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_22_01_2020/angled_frame_constraint_reactions.png" alt="Planar frame structure with three members forming an angular configuration, two inclined members with fixed supports at top, horizontal base member with fixed support at left end, and uniformly distributed load on base">
+                        <figcaption>Figure 2: Angled frame structure with distributed loading and fixed supports</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(p = 3 \text{ N/mm}\)</li>
+                            <li>\(l_1 = 2 \text{ m}\)</li>
+                            <li>\(2l_2 = 1 \text{ m}\)</li>
+                            <li>\(E = 70000 \text{ MPa}\)</li>
+                            <li>\(A_1 = 1 \text{ cm}^2\)</li>
+                            <li>\(A_2 = 2 \text{ cm}^2\)</li>
+                            <li>\(J_1 = \dfrac{1}{12} \text{ cm}^4\)</li>
+                            <li>\(J_2 = 1.33 \text{ cm}^4\)</li>
+                            <li>\(GJ_1 = 9 \times 10^7 \text{ Nmm}^2\)</li>
+                            <li>\(GJ_2 = 18 \times 10^7 \text{ Nmm}^2\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Question 1 -->
+            <section class="theoretical-question" id="question-1">
+                <div class="problem">
+                    <h2>Question 1</h2>
+                    <p class="problem-statement">
+                        Illustrate how to compute the torsional stiffness of a multi-cell semi-monocoque beam.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "three_beam_structure_fixed_ends.png": {
+    "suggested_name": "three_beam_structure_fixed_ends",
+    "description": "Three-beam frame structure forming a trapezoidal configuration with fixed supports at both ends (indicated by hatched support symbols). The structure consists of three connected beam members: a left diagonal member of length l, a horizontal middle member of length l, and a right diagonal member of length 2l. Two vertical point loads of magnitude P are applied: one upward at the left joint and one downward at the middle joint. The beams are characterized by axial stiffness EA, bending stiffness EJ, and torsional stiffness GJ. Given data: EA = 1.8e6 N, EJ_xx = EJ_yy = EJ = 3.75e6 N·mm², GJ = 3.00e6 N·mm², l = 1000 mm, P = 1.5 kN. The problem requires determining reaction forces at the fixed ends and plotting internal actions."
+  },
+  "thin_walled_beam_cross_section.png": {
+    "suggested_name": "thin_walled_beam_cross_section",
+    "description": "Thin-walled beam cross-section with pentagonal geometry modeled according to semi-monocoque scheme. The section consists of a rectangular portion with width a and height b, with a triangular extension on the right side having base dimension c. All panels have thickness equal to 1 mm, and the lumped area of stringers (including contribution of panels) equals A = 200 mm². Dimensions are: a = 300 mm (horizontal width), b = 200 mm (vertical height), c = 100 mm (triangular extension width). A vertical downward shear force T = 3000 N is applied at the bottom center of the cross-section. The problem involves determining the internal shear stress state and the position of the shear center of the section."
+  },
+  "frame_structure_shear_center_analysis.png": {
+    "suggested_name": "frame_structure_shear_center_analysis",
+    "description": "Hand-drawn structural analysis diagram showing a rectangular frame with triangular extension for shear center determination. The frame has five nodes labeled 1 through 5, with node 1 at bottom-left, node 2 at bottom-right, node 3 at right extension tip, node 4 at top-right, and node 5 at top-left. Coordinate system shows x-axis horizontal (with x_sc marked at bottom-left) and y-axis vertical. A vertical downward force F is applied at the bottom center. The diagram includes shear flow notations (q_i with superscript α) for each member, with curved arrows indicating flow direction and moment sense. Support conditions shown include fixed support at node 5 (hatched symbol) and pinned connections at corners (circled nodes). Annotations indicate section properties (I_xx = Ab²) and shear flow expressions (S_x1 = -Ab/2, S_x2 = -Ab, S_x3 = -Ab, S_x4 = -Ab/2). Solution procedure notes indicate: \"1. Evaluate X_sc\" and \"2. Determine the shear flows by letting X_sc = 0\". Shear center position expressions show q_i^I = -F/2b for various members."
+  }
+}

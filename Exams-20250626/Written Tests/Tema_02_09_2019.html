@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, September 2nd, 2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .theory-question {
+            background: #fff5f5;
+            border-left: 4px solid #c53030;
+        }
+
+        .theory-question h2 {
+            border-bottom-color: #c53030;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Aerospace Structures</h1>
+            <p class="exam-date">Written test, September 2<sup>nd</sup>, 2019</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">
+                        A structure is made of three bars connected each other through hinge constraints. The bars are made of aluminum alloy with Young's modulus \(E\) and have area \(A\). A set of loads is applied at the end of the bars, the concentrated loads being denoted as \(F_1\) and \(F_2\), as shown in the figure.
+                    </p>
+                    <p class="problem-statement">
+                        By using a displacement-based approach, determine the internal stresses in the three bars.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_02_09_2019/three_bar_hinge_structure_loads.png" alt="Three-bar truss structure with pinned connections. Upper left joint has force F₁ acting vertically upward and F₂ acting horizontally to the left. Horizontal bar of length l₁ extends to right joint where F₁ acts downward. Vertical bar of length l₂ extends downward to lower left joint where F₂ acts horizontally to the left. Diagonal bar connects lower left joint to right joint.">
+                        <figcaption>Figure 1: Three-bar truss structure with applied loads</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Data:</h3>
+                        <ul>
+                            <li>\(l_1 = 600 \text{ mm}\); \(l_2 = 200 \text{ mm}\)</li>
+                            <li>\(A = 400 \text{ mm}^2\)</li>
+                            <li>\(E = 70 \text{ GPa}\)</li>
+                            <li>\(F_1 = 1.0 \times 10^4 \text{ N}\); \(F_2 = 3.0 \times 10^4 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    <p class="problem-statement">
+                        Consider the elastically restrained column in the figure. Specifically, the column has length \(l\) and a square section of dimension \(a\). The material is an aluminum alloy characterized by Young's moduli \(E\). One end is fixed and the second one is grounded by means of two linear springs of stiffness \(k_1\) and \(k_2\). A compressive load \(P\) is applied at one end.
+                    </p>
+                    <p class="problem-statement">
+                        Estimate the buckling load of the structure by resorting to a displacement-based approach along with an appropriate approximate solution strategy.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_02_09_2019/column_elastic_spring_supports_buckling.png" alt="Horizontal column of length l with fixed support at left end (hatched). Right end connected to two springs k₁ and k₂. Compressive load P applied at right end acting horizontally to the left.">
+                        <figcaption>Figure 2: Elastically restrained column with spring supports</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Data:</h3>
+                        <ul>
+                            <li>\(l = 1200 \text{ mm}\)</li>
+                            <li>\(a = 20 \text{ mm}\)</li>
+                            <li>\(E = 70 \text{ GPa}\)</li>
+                            <li>\(k_1 = 1 \text{ N/mm}\); \(k_2 = 10 \text{ kN/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Question 1 -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem theory-question">
+                    <h2>Question 1</h2>
+                    <p class="problem-statement">
+                        Illustrate how to estimate the torsional and transverse shear stiffnesses for a thin-walled beam in the context of the semi-monocoque approximation.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

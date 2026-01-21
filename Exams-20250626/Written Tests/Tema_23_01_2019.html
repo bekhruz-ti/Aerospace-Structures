@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerospace Structures - Written Test January 18, 2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .institution {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .department {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .exam-date {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .student-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .student-info div {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .student-info label {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .data-table td {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table td:nth-child(odd) {
+            background: var(--bg-light);
+            font-weight: bold;
+            width: 15%;
+        }
+
+        .data-table td:nth-child(even) {
+            width: 35%;
+        }
+
+        .table-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .theory-question {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .no-solution-note {
+            padding: 20px;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+            color: #92400e;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .student-info {
+                grid-template-columns: 1fr;
+            }
+
+            .data-table td {
+                padding: 6px 8px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <div class="institution">POLITECNICO DI MILANO 1863</div>
+            <div class="department">Dipartimento di Scienze e Tecnologie Aerospaziali</div>
+            <h1>AEROSPACE STRUCTURES</h1>
+            <div class="exam-date">Written Test — January 18, 2019</div>
+        </header>
+
+        <div class="student-info">
+            <div><label>Name:</label> _______________________</div>
+            <div><label>Surname:</label> _______________________</div>
+            <div><label>Id:</label> _______________________</div>
+        </div>
+
+        <main>
+            <!-- Problem 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: Semi-Monocoque Wing Analysis</h2>
+                    
+                    <p class="problem-statement">
+                        The semi-monocoque wing of Figure 1 is loaded by triangular pressure distribution. Compute the rotation angle of the section located at distance \(l\) from the encastre (i.e. the location from which the pressure load starts). Refer to Table 1 for the problem data, and assume reasonable values for any missing constant.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/Tema_23_01_2019/semi_monocoque_wing_pressure_distribution.png" alt="Semi-monocoque wing structure showing 3D perspective view and plan view with triangular pressure distribution. The wing features a rectangular box-beam configuration with corner stringers A₁ and A₂, web thicknesses t₁ and t₂, and triangular pressure loading p applied over the wing surface.">
+                        <figcaption>Figure 1: Loaded wing</figcaption>
+                    </figure>
+
+                    <div class="given-data">
+                        <h3>Table 1: Semi-monocoque Wing Data</h3>
+                        <table class="data-table">
+                            <tr>
+                                <td>\(A_1\)</td>
+                                <td>\(75 \text{ mm}^2\)</td>
+                                <td>\(w_1\)</td>
+                                <td>\(300 \text{ mm}\)</td>
+                                <td>\(l_1\)</td>
+                                <td>\(1100 \text{ mm}\)</td>
+                                <td>\(E\)</td>
+                                <td>\(72000 \text{ MPa}\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(A_2\)</td>
+                                <td>\(100 \text{ mm}^2\)</td>
+                                <td>\(w_2\)</td>
+                                <td>\(40 \text{ mm}\)</td>
+                                <td>\(w_3\)</td>
+                                <td>\(60 \text{ mm}\)</td>
+                                <td>\(\nu\)</td>
+                                <td>\(0.3\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(t_1\)</td>
+                                <td>\(1 \text{ mm}\)</td>
+                                <td>\(l\)</td>
+                                <td>\(3000 \text{ mm}\)</td>
+                                <td>\(d\)</td>
+                                <td>\(20 \text{ mm}\)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>\(t_2\)</td>
+                                <td>\(0.5 \text{ mm}\)</td>
+                                <td>\(h\)</td>
+                                <td>\(60 \text{ mm}\)</td>
+                                <td>\(p\)</td>
+                                <td>\(2 \text{ MPa}\)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="solution">
+                    <h3>Solution</h3>
+                    <div class="no-solution-note">
+                        This is the exam problem sheet. No student solutions are provided on this page.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Cantilever Beam with Torsional Loading</h2>
+                    
+                    <p class="problem-statement">
+                        The \(h \times w \times t\) solid of Figure 2 is joined to a beam with torsional stiffness \(GJ\). The beam is loaded by a moment per unit of length \(m\). Compute the vertical displacement and the rotation of the beam free extremity. Refer to Table 2 for the problem data, and assume reasonable values for any missing constant. Choose and justify a suitable structural model for the solid.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/Tema_23_01_2019/cantilever_beam_torsional_loading.png" alt="Three-dimensional isometric view of a cantilever beam system consisting of a rectangular solid section (h × w × t) with fixed support, connected to a horizontal beam element with torsional stiffness GJ. The horizontal beam is loaded by distributed moment m along its length l.">
+                        <figcaption>Figure 2: Cantilever bending</figcaption>
+                    </figure>
+
+                    <div class="given-data">
+                        <h3>Table 2: Cantilever Beam Data</h3>
+                        <table class="data-table">
+                            <tr>
+                                <td>\(t\)</td>
+                                <td>\(5 \text{ mm}\)</td>
+                                <td>\(GJ\)</td>
+                                <td>\(22 \text{ Nm}^2\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(l\)</td>
+                                <td>\(1000 \text{ mm}\)</td>
+                                <td>\(E\)</td>
+                                <td>\(72000 \text{ MPa}\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(h\)</td>
+                                <td>\(700 \text{ mm}\)</td>
+                                <td>\(\nu\)</td>
+                                <td>\(0.3\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(w\)</td>
+                                <td>\(30 \text{ mm}\)</td>
+                                <td>\(m\)</td>
+                                <td>\(4 \text{ N}\)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="solution">
+                    <h3>Solution</h3>
+                    <div class="no-solution-note">
+                        This is the exam problem sheet. No student solutions are provided on this page.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3 -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Theory Question — Work-Conjugated Beam Model</h2>
+                    
+                    <p class="problem-statement">
+                        Define and derive the expression of the work-conjugated beam generalized deformation and internal actions starting from a kinematic beam model.
+                    </p>
+
+                    <div class="theory-question">
+                        <p><strong>Required:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Define work-conjugated generalized deformations</li>
+                            <li>Define work-conjugated internal actions</li>
+                            <li>Derive expressions starting from kinematic beam model</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="solution">
+                    <h3>Solution</h3>
+                    <div class="no-solution-note">
+                        This is the exam problem sheet. No student solutions are provided on this page.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

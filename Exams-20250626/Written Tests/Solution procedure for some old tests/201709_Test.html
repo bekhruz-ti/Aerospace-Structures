@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures - Written Test, September 11th, 2017</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .solution-note {
+            background: #fffbeb;
+            border-left: 4px solid #d69e2e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+        }
+
+        .beam-analysis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .beam-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .beam-card h5 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .final-answer-list {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .final-answer-list li {
+            margin: 10px 0;
+            list-style: none;
+        }
+
+        .equation-system {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        mjx-container[display="true"] {
+            margin: 15px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="exam-date">Written Test, September 11<sup>th</sup>, 2017</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">
+                        The structure in the figure is composed of three beams of length \(l\), which are characterized by the same elastic properties. In particular, the bending and torsional stiffnesses are denoted with \(EJ\) and \(GJ\), respectively. The structure is elastically supported by a torsional spring of stiffness \(k_t\) at one end. A linearly varying force per unit length is applied along one of the beams, as illustrated in the sketch. The force per unit length is equal to zero at one end, and is equal to \(\bar{q}\) at the other end. Determine the reaction forces and plot the internal actions.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201709_Test/three_beam_torsional_spring_system.png" alt="Three-beam structural system with torsional spring support and triangular distributed load">
+                        <figcaption>Figure 1: Three-beam structural system with linearly varying distributed load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(EJ = 72 \times 10^6 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(GJ = EJ/2\)</li>
+                            <li>\(k_t = 72 \text{ N} \cdot \text{mm}\)</li>
+                            <li>\(l = 1000 \text{ mm}\)</li>
+                            <li>\(\bar{q} = 100 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define Reference Systems</h4>
+                        <p>Define local coordinate systems for each beam:</p>
+                        <ul>
+                            <li>Beam 1: axes \(x_1\), \(y_1\), \(z_1\)</li>
+                            <li>Beam 2: axes \(x_2\), \(y_2\), \(z_2\)</li>
+                            <li>Beam 3: axes \(x_3\), \(y_3\), \(z_3\)</li>
+                        </ul>
+                        
+                        <figure class="diagram">
+                            <img src="images/201709_Test/three_beam_coordinate_systems_sketch.png" alt="Coordinate system definitions for three-beam system">
+                            <figcaption>Figure 2: Reference coordinate systems for each beam</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Real System Analysis</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201709_Test/three_beam_free_body_diagram_sketch.png" alt="Free body diagram of three-beam system">
+                            <figcaption>Figure 3: Free body diagram with applied loads</figcaption>
+                        </figure>
+                        
+                        <div class="solution-note">
+                            <strong>Note:</strong> \(X\) is a torsional moment. The distributed load varies as:
+                            \[q(z_1) = \frac{\bar{q}}{l} z_1\]
+                        </div>
+                        
+                        <p><strong>Internal Moments:</strong></p>
+                        
+                        <div class="beam-analysis">
+                            <div class="beam-card">
+                                <h5>Beam 1:</h5>
+                                \[M_x^{(1)} = -\frac{\bar{q}}{6l} z_1^3\]
+                                \[M_z^{(1)} = X\]
+                            </div>
+                            
+                            <div class="beam-card">
+                                <h5>Beam 2:</h5>
+                                \[M_x^{(2)} = -Y z_2\]
+                            </div>
+                            
+                            <div class="beam-card">
+                                <h5>Beam 3:</h5>
+                                \[M_x^{(3)} = X - \left(\frac{\bar{q}l}{2} + Y\right) z_3\]
+                                \[M_z^{(3)} = \frac{\bar{q}l^2}{6} - Yl\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Dummy Load Analysis</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201709_Test/beam_segment_moment_detail_sketch.png" alt="Dummy load #1 - moment convention">
+                            <figcaption>Figure 4: Dummy load #1 configuration</figcaption>
+                        </figure>
+                        
+                        <p><strong>Dummy #1 (Unit Torsional Moment):</strong></p>
+                        \[^1\delta M_z^{(1)} = 1\]
+                        \[^1\delta M_x^{(3)} = 1\]
+                        
+                        <figure class="diagram">
+                            <img src="images/201709_Test/beam_segment_force_detail_sketch.png" alt="Dummy load #2 - force convention">
+                            <figcaption>Figure 5: Dummy load #2 configuration</figcaption>
+                        </figure>
+                        
+                        <p><strong>Dummy #2 (Unit Force):</strong></p>
+                        \[^2\delta M_x^{(2)} = -z_2\]
+                        \[^2\delta M_x^{(3)} = -z_3\]
+                        \[^2\delta M_z^{(3)} = -l\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Principle of Complementary Virtual Work (PCVW)</h4>
+                        
+                        <div class="equation-system">
+                            <p><strong>Equation 1:</strong></p>
+                            \[\left(\frac{l}{GJ} + \frac{l}{EJ} + \frac{1}{k_t}\right) X - \frac{l^2}{2EJ} Y = \frac{\bar{q}l^3}{4EJ}\]
+                            
+                            <p><strong>Equation 2:</strong></p>
+                            \[\frac{l^2}{2EJ} X - \left(\frac{2l^3}{3EJ} + \frac{l^3}{GJ}\right) Y = \frac{l^3}{3EJ} \frac{\bar{q}l}{2} - \frac{l^4 \bar{q}}{6GJ}\]
+                        </div>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong>
+                        <ul class="final-answer-list">
+                            <li>\[\boxed{X = 28043.5 \text{ N} \cdot \text{mm}}\]</li>
+                            <li>\[\boxed{Y = 6255.3 \text{ N}}\]</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    <p class="problem-statement">
+                        The beam in the figure is made of an isotropic material with modulus \(E\) and Poisson's coefficient \(\nu\). It is characterized by a square cross section of dimension \(a\), where \(a(x) = \gamma \sqrt[4]{a_0 + (a_1 - a_0)\frac{x}{l}}\), and \(x \in [0, l]\).
+                    </p>
+                    <p class="problem-statement">
+                        The first end of the beam is fixed; the second one is free to translate along the transverse direction, while the rotation is prevented. A concentrated load of magnitude \(P\) is applied at \(x = l\).
+                    </p>
+                    <p class="problem-statement">
+                        Assume a Euler-Bernoulli beam model, and determine: the transverse displacement at \(x = l\); the maximum stress at \(x = l/4\). To this aim, apply the method of Ritz and, using polynomial functions, solve the problem by considering one single shape function.
+                    </p>
+                    <p class="problem-statement">
+                        Discuss how the problem can be formulated if two shape functions are adopted (report the relevant equations; no calculations are required).
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201709_Test/euler_bernoulli_beam_fixed_free_square_section.png" alt="Euler-Bernoulli beam with variable square cross-section">
+                        <figcaption>Figure 6: Euler-Bernoulli beam with fixed-guided supports and variable cross-section</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(E = 72000 \text{ N/mm}^2\)</li>
+                            <li>\(l = 1000 \text{ mm}\)</li>
+                            <li>\(\gamma = 10 \text{ mm}\)</li>
+                            <li>\(a_0 = 1\)</li>
+                            <li>\(a_1 = 16\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Cross-Section Properties</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201709_Test/fixed_free_beam_point_load_sketch.png" alt="Beam sketch with boundary conditions">
+                            <figcaption>Figure 7: Beam configuration and loading</figcaption>
+                        </figure>
+                        
+                        <figure class="diagram">
+                            <img src="images/201709_Test/square_cross_section_detail_sketch.png" alt="Square cross-section detail">
+                            <figcaption>Figure 8: Variable square cross-section</figcaption>
+                        </figure>
+                        
+                        <p>Cross-section dimension function:</p>
+                        \[a(x) = \gamma \sqrt[4]{a_0 + (a_1 - a_0) \frac{x}{l}}\]
+                        
+                        <p>Bending stiffness:</p>
+                        \[EJ = \frac{1}{12} a^4 E = \frac{1}{12} E \left(\gamma^4 a_0 + (a_1 - a_0) \frac{x}{l}\right)\]
+                        
+                        <p>This can be written as:</p>
+                        \[EJ = EJ_0 + EJ_1 \left(\frac{x}{l}\right)\]
+                        
+                        <p>where:</p>
+                        \[EJ_0 = \frac{1}{12} E \gamma^4 a_0\]
+                        \[EJ_1 = \frac{1}{12} E \gamma^4 (a_1 - a_0)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Trial Functions</h4>
+                        
+                        <p>General polynomial form:</p>
+                        \[w = C_0 + C_1 x + C_2 x^2 + C_3 x^3\]
+                        
+                        <p>The essential boundary conditions are:</p>
+                        \[\begin{cases} w(0) = 0 \\ w_{,x}(0) = 0 \\ w_{,x}(l) = 0 \end{cases}\]
+                        
+                        <p>Applying these conditions:</p>
+                        \[w = C_3 \left(x^3 - \frac{3}{2} l x^2\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Non-dimensional Form</h4>
+                        
+                        <div class="solution-note">
+                            The expression is re-organized to obtain a non-dimensional trial function (not strictly necessary!).
+                        </div>
+                        
+                        \[w = C \left(\left(\frac{x}{l}\right)^3 - \frac{3}{2}\left(\frac{x}{l}\right)^2\right)\]
+                        
+                        <p>So \(w = C_* \phi\) with shape function:</p>
+                        \[\phi = \left(\frac{x}{l}\right)^3 - \frac{3}{2}\left(\frac{x}{l}\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Stiffness Matrix</h4>
+                        
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^l \delta w_{,xx} \, EJ \, w_{,xx} \, dx\]
+                        \[= \delta C \, k \, C\]
+                        
+                        <p>where the stiffness coefficient:</p>
+                        \[k = \int_0^l \left[EJ_0 + EJ_1 \left(\frac{x}{l}\right)\right] \phi_{,xx}^2 \, dx\]
+                        
+                        \[= \frac{1}{l^3} \left(3EJ_0 + \frac{3}{2} EJ_1\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: External Loads</h4>
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = \delta w(l) \, P\]
+                        \[= \delta C \, f\]
+                        
+                        <p>where:</p>
+                        \[f = -\frac{1}{2} P\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solution</h4>
+                        
+                        <p>Solving for the coefficient \(C\):</p>
+                        \[C = \frac{f}{k} = -\frac{l^3}{2} \frac{P}{3EJ_0 + \frac{3}{2}EJ_1} = -32.68 \text{ mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Displacement at \(x = l\)</h4>
+                        
+                        <p>Evaluating the shape function at \(x = l\):</p>
+                        \[\phi(l) = 1 - \frac{3}{2} = -\frac{1}{2}\]
+                        
+                        <p>Therefore:</p>
+                        \[w(l) = C \cdot \phi(l) = (-32.68) \times \left(-\frac{1}{2}\right) = 16.34 \text{ mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 8: Stress at \(x = l/4\)</h4>
+                        
+                        <p>The stress is given by:</p>
+                        \[\sigma = E \varepsilon = E(-y \, w_{,xx})\]
+                        \[= E(-y \, \phi_{,xx}) C\]
+                        
+                        <p>At \(x = l/4\):</p>
+                        \[\sigma(l/4) = -E \, y \, \phi_{,xx}\left(\frac{l}{4}\right) C\]
+                        
+                        <p>The maximum stress is obtained at \(y = a/2\), so:</p>
+                        \[\sigma(l/4) = -E \frac{a}{2} \phi_{,xx}\left(\frac{l}{4}\right) C\]
+                        
+                        <p>where \(a = 14.76 \text{ mm}\) at \(x = l/4\).</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong>
+                        <ul class="final-answer-list">
+                            <li>Coefficient: \(\boxed{C = -32.68 \text{ mm}}\)</li>
+                            <li>Displacement at \(x = l\): \(\boxed{w(l) = 16.34 \text{ mm}}\)</li>
+                            <li>Maximum stress at \(x = l/4\): \(\boxed{\sigma = 26.05 \text{ MPa}}\)</li>
+                            <li>Cross-section dimension at \(x = l/4\): \(a = 14.76 \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 1 -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem">
+                    <h2>Question 1</h2>
+                    <p class="problem-statement">
+                        Illustrate the relation between the stress measures according to Cauchy, Piola-Kirchhoff I and Piola-Kirchhoff II.
+                    </p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    <div class="solution-step">
+                        <p><em>No written solution was provided for this theoretical question in the exam document.</em></p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </article>
+</body>
+</html>

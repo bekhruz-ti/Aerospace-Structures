@@ -1,0 +1,38 @@
+{
+  "two_cell_beam_square_section.png": {
+    "suggested_name": "two_cell_beam_square_section",
+    "description": "Three-dimensional view of a two-cell thin-walled beam with square cross-section of dimension h = 100 mm. The beam has length l = 1500 mm and is fixed at the right end (shown with hatching) with the left end free. The cross-section is divided by a diagonal web creating two triangular cells. Four corner stringers are labeled with areas A and 2A (where A = 150 mm²), with the lumped areas noted. Panel thickness t = 1.5 mm. A concentrated downward force P = 15 kN is applied at the bottom left corner of the free end. Material properties: E = 72000 MPa, ν = 0.3. The diagram shows the beam in an isometric view with the cross-section visible at the left (free) end, illustrating the internal diagonal bracing structure."
+  },
+  "slender_beam_elastic_springs.png": {
+    "suggested_name": "slender_beam_elastic_springs",
+    "description": "Three-dimensional diagram of a slender beam with length l = 1000 mm, fixed at the left end (shown with hatching) and elastically supported by two springs at the right end. The springs have stiffnesses kz = 5 N/mm (vertical) and ky = 2 N/mm (lateral). A concentrated force P with three components (Px = 150 N, Py = 100 N, Pz = 10000 N) is applied at the beam midpoint. The beam has axial stiffness EA = 7 × 10⁷ N and bending stiffnesses EJxx = 5 × 10⁹ Nmm² and EJyy = 8 × 10⁹ Nmm². A right-handed coordinate system is shown with x, y, and z axes, where z is along the beam length. The force components are indicated with arrows showing Px (axial), Py (lateral), and Pz (vertical) directions."
+  },
+  "square_section_node_numbering.png": {
+    "suggested_name": "square_section_node_numbering",
+    "description": "Hand-drawn diagram showing a square cross-section with nodes numbered 1, 2, 3, and 4 at the corners (counterclockwise from bottom-left). A diagonal line connects nodes 1 and 3, dividing the square into two triangular regions. Node 1 at the bottom-left has a downward arrow labeled P indicating an applied force. The nodes are marked with circled numbers. This represents the cross-sectional geometry and node numbering scheme for the two-cell beam structure, used for structural analysis and finite element discretization."
+  },
+  "rotated_section_principal_axes.png": {
+    "suggested_name": "rotated_section_principal_axes",
+    "description": "Hand-drawn diagram showing the same square cross-section rotated 45 degrees to align with principal axes. The square is oriented as a diamond with nodes numbered 1, 2, 3, 4 (node 2 at top, node 4 at bottom). A coordinate system shows principal axes Px (horizontal, pointing left) and Py (vertical, pointing down) with origin at node 1 (left corner). Additional axes y (vertical up) and x (horizontal right) are shown. The dimension 'a' is marked as the horizontal distance across the rotated section. Dashed construction lines indicate the geometric relationships. This diagram illustrates the transformation from the original coordinate system to the principal axes of the cross-section for stress analysis."
+  },
+  "shear_flow_distribution.png": {
+    "suggested_name": "shear_flow_distribution",
+    "description": "Hand-drawn diagram showing shear flow distribution in the rotated square cross-section. The diamond-oriented section has nodes 1-4 with shear flow values q labeled on each panel segment. Curved arrows at the center indicate circulation direction in the two cells. Labels show q₁ˡ, q₂ˡ on upper panels, q₃ˡ, q₄ˡ on lower panels, and qₛˡ, q₁ᵍ, q₂ᵍ on the diagonal web. Force components Px (horizontal left) and Py (vertical down) are shown at node 1. The x-axis points right from node 3. Annotations indicate \"mm\" units. This diagram represents the internal shear flow distribution resulting from the applied transverse loads, used to calculate shear stresses in the thin-walled structure."
+  },
+  "principal_axes_transformation.png": {
+    "suggested_name": "principal_axes_transformation",
+    "description": "Hand-drawn sketch showing coordinate system transformation for principal axes. A diamond-shaped cross-section is shown with axes Px (horizontal), Py (vertical), and a rotated z-axis at 45 degrees. The diagram illustrates the relationship between the original coordinate system (x, y) and the principal axes system. Annotations show \"Referring to the principal axis\" with transformation equations: Mx = Py ℓ/2 and My = Px ℓ/2. Below, stress equations are written: σzz = (Mx/Jxx)y - (My/Jyy)x. This diagram explains the coordinate transformation needed to express bending moments and stresses in the principal axis system of the cross-section."
+  },
+  "beam_3d_force_components.png": {
+    "suggested_name": "beam_3d_force_components",
+    "description": "Hand-drawn diagram showing the decomposition of a three-dimensional force system on a beam. Left side shows an oblique view with force components Px (upward), Py (left), and Pz (along beam axis) applied at a point, with spring supports ky and kx at the base (indicated by hatching). An arrow points to the right side showing the same system in a clearer orthogonal view with labeled axes x₁, y₁, z₁, z₂ and force components Px, Py, Pz, ρz. The transformation illustrates how the 3D loading case is decomposed into planar components for analysis. This is part of Exercise 2 dealing with a statically indeterminate beam problem."
+  },
+  "xz_plane_beam_view.png": {
+    "suggested_name": "xz_plane_beam_view",
+    "description": "Hand-drawn diagram showing the beam in the xz-plane for the \"Real\" loading system. The beam extends horizontally from left (free end) to right (fixed support shown with hatching). Two points are marked along the beam at positions z₁ and z₂. Vertical displacements x₁ and x₂ are indicated with upward arrows at these positions. A vertical force Px is applied at position z₂. A large upward arrow labeled X is shown at the left end. The label \"Real\" indicates this is the actual loading condition, as opposed to a dummy or virtual system used in energy methods. This represents the vertical bending behavior in the xz-plane under the applied force Px."
+  },
+  "dummy_system_unit_load.png": {
+    "suggested_name": "dummy_system_unit_load",
+    "description": "Hand-drawn diagram showing the \"Dummy\" system for virtual work analysis in the xz-plane. The beam configuration is identical to the real system, extending from left to right with fixed support (hatching) at the right end. Points z₁ and z₂ are marked along the beam. Vertical displacements x₁ and x₂ are shown with upward arrows. A unit load (labeled \"1\" with upward arrow) is applied at the left end where displacement is being calculated. The label \"Dummy\" indicates this is the virtual or unit load system used in the principle of virtual work or dummy load method to calculate deflections. This system is superimposed with the real system to determine the displacement at the point of interest."
+  }
+}

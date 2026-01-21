@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, Feb 10th, 2020</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+            break-inside: avoid;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .sub-problem {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .sub-problem h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .sub-problem-list {
+            list-style: disc;
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+
+        .sub-problem-list li {
+            margin: 12px 0;
+            text-align: justify;
+        }
+
+        .theory-question {
+            background: #fff5f5;
+            border-left: 4px solid #c53030;
+        }
+
+        .theory-question h2 {
+            border-bottom-color: #c53030;
+        }
+
+        .two-column-figures {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .two-column-figures figure {
+            flex: 1;
+            min-width: 300px;
+            max-width: 48%;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem {
+                padding: 20px;
+            }
+
+            .given-data ul {
+                column-count: 1;
+            }
+
+            .two-column-figures figure {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Aerospace Structures</h1>
+            <p class="exam-date">Written test, Feb 10<sup>th</sup>, 2020</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    
+                    <p class="problem-statement">
+                        The semi-monocoque two-cell structure in the figure has a rotated square cross section, with sides of length \(l\). It is loaded by a force \(F\) whose line of action goes through a point that is at a distance \(d\) with respect to the vertical panel of the structure. Compute the displacement of the point of application of the force.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_10_02_2020/two_cell_structure_rotated_square_cross_section.png" alt="Semi-monocoque two-cell structure with rotated square cross-section oriented 45° (diamond configuration). Shows wall segments t₁, t₂, t₃, t₄, t₅ and stringer areas A₁, A₂, A₃, A₄ with force F applied at distance d from vertical panel.">
+                        <figcaption>Figure 1: Two-cell semi-monocoque structure with rotated square (diamond) cross-section</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 2000 \text{ mm}\)</li>
+                            <li>\(l = 200 \text{ mm}\)</li>
+                            <li>\(E = 70000 \text{ MPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(A_2 = A_4 = 400 \text{ mm}^2\)</li>
+                            <li>\(A_1 = A_3 = 500 \text{ mm}^2\)</li>
+                            <li>\(t_1 = t_2 = 0.8 \text{ mm}\)</li>
+                            <li>\(t_3 = t_4 = 1.0 \text{ mm}\)</li>
+                            <li>\(t_5 = 1.1 \text{ mm}\)</li>
+                            <li>\(d = 500 \text{ mm}\)</li>
+                            <li>\(F = 1 \times 10^3 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    
+                    <div class="sub-problem">
+                        <h3>Part 1: Encastred Beam with Two Segments</h3>
+                        
+                        <p class="problem-statement">
+                            Consider the encastred beam in the figure below on the left. A concentrated force \(F\) is applied at a distance \(l\) from the constraint. The axial, bending and torsional cross-section stiffness properties are equal to \(EA_1\), \(EJ_1\) and \(GJ_1\) in the portion of the beam between the constraint and the point of application of the force, and to \(EA_2\), \(EJ_2\) and \(GJ_2\) from there to the beam tip. Solve the problem using the Ritz method and compute:
+                        </p>
+                        
+                        <ul class="sub-problem-list">
+                            <li>an approximate solution for the whole structure, by assuming a quadratic transverse displacement for the whole beam;</li>
+                            <li>an approximate solution for the whole structure, by assuming a quadratic transverse displacement for the first half of the beam and a different quadratic transverse displacement for the second half.</li>
+                        </ul>
+                        
+                        <figure class="diagram">
+                            <img src="images/Tema_10_02_2020/encastred_beam_two_segments_point_load.png" alt="Horizontal beam with encastred support at left end, divided into two segments of length l each. Left segment has properties EA₁, EJ₁, GJ₁ and right segment has EA₂, EJ₂, GJ₂. Force F applied at junction.">
+                            <figcaption>Figure 2a: Encastred beam with two segments and concentrated force at midpoint</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="sub-problem">
+                        <h3>Part 2: L-Shaped Beam with Hinge</h3>
+                        
+                        <p class="problem-statement">
+                            Consider now the L-shaped beam on the right. The two beams are connected by a hinge. The vertical beam is subject to a distributed axial load per unit of length \(f\). Compute an approximate solution for the whole structure by assuming, for both beams, quadratic transverse displacement and linear axial displacement fields.
+                        </p>
+                        
+                        <figure class="diagram">
+                            <img src="images/Tema_10_02_2020/l_shaped_beam_hinge_distributed_load.png" alt="L-shaped beam with horizontal segment (length l, properties EA₂, EJ₂, GJ₂) encastred at left, connected by hinge to vertical segment (length l, properties EA₁, EJ₁, GJ₁) encastred at top. Distributed load f along vertical member.">
+                            <figcaption>Figure 2b: L-shaped beam structure with hinge connection and distributed axial load</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Question 1 -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem theory-question">
+                    <h2>Question 1</h2>
+                    
+                    <p class="problem-statement">
+                        Illustrate the relation between the Principle of Complementary Virtual Work and the compatibility equations.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

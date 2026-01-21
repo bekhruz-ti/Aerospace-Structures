@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures - Written Test, June 26th, 2018</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .subsection {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .subsection h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-style: italic;
+            color: #666;
+            margin: 10px 0;
+            padding: 10px;
+            background: #fffbeb;
+            border-radius: 4px;
+            border-left: 3px solid #d69e2e;
+        }
+
+        .theory-only {
+            background: #fff5f5;
+            border-left-color: #c53030;
+        }
+
+        .theory-only h4 {
+            color: #c53030;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="exam-date">Written Test, June 26<sup>th</sup>, 2018</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">
+                        The thin-walled beam in the figure is characterized by a semi-circular section with five webs of thickness \(t\) and four stringers of area \(A\) (note: \(A\) is the equivalent stringer area, inclusive of the contribution due to the panels). The length of the beam is denoted with \(l\). The material is homogeneous and isotropic with Young modulus \(E\) and Poisson's ratio 0.3. The beam is grounded with two linear elastic springs of stiffness \(k\), as reported in the sketch, and is loaded with a concentrated force \(P\) applied at one of the two ends. Determine the reaction forces in correspondence of the springs by accounting for the beam shear deformability, and plot the internal actions in the beam.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201806_Test/thin_walled_beam_semicircular_section_spring_supports.png" alt="Thin-walled beam with semi-circular cross-section supported by two linear elastic springs at both ends">
+                        <figcaption>Figure 1: Thin-walled beam with semi-circular cross-section and spring supports</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(E = 70 \text{ GPa}\); \(\nu = 0.3\)</li>
+                            <li>\(A = 200 \text{ mm}^2\); \(t = 1 \text{ mm}\)</li>
+                            <li>\(R = 200 \text{ mm}\); \(l = 2000 \text{ mm}\)</li>
+                            <li>\(k = 10^6 \text{ N/mm}\); \(P = 1 \text{ kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Evaluation of Section Properties — \(GA^*\)</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201806_Test/exercise_1_structural_frame_force_flow.png" alt="Semi-circular cross-section with shear flow distribution">
+                            <figcaption>Figure 2: Semi-circular cross-section showing shear flow distribution for \(GA^*\) calculation</figcaption>
+                        </figure>
+                        
+                        <p>By imposing:</p>
+                        <ul>
+                            <li>Shear flow equations</li>
+                            <li>Equivalence to moment</li>
+                            <li>Compatibility \((\theta'_1 = \theta'_2)\)</li>
+                            <li>Compatibility \((\theta'_1 = 0)\)</li>
+                        </ul>
+                        
+                        <p>It is obtained:</p>
+                        \[x_{sc} = 122.20 \text{ mm}\]
+                        
+                        <p>The corresponding shear flows are:</p>
+                        \[q_1 = q_4 = 1.5275 \text{ N/mm}\]
+                        \[q_2 = q_3 = -0.9725 \text{ N/mm}\]
+                        
+                        <p>From which:</p>
+                        \[A^* = \frac{T_y^2}{\displaystyle\sum_i \frac{q_i^2 \ell_i}{t_i}} = 654.65 \text{ mm}^2\]
+                        \[GA^* = 1.76 \cdot 10^7 \text{ N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Evaluation of Section Properties — \(EJ\)</h4>
+                        \[EJ = E(2AR^2) = 1.12 \cdot 10^{12} \text{ N mm}^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Evaluation of Section Properties — \(GJ\)</h4>
+                        
+                        <p>A torsional moment \(M_t = 1 \cdot 10^6 \text{ N mm}\) is considered:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/201806_Test/exercise_1_frame_torsional_analysis.png" alt="Semi-circular cross-section with torsional moment analysis">
+                            <figcaption>Figure 3: Torsional analysis of the semi-circular cross-section</figcaption>
+                        </figure>
+                        
+                        <p>The resulting shear flows are:</p>
+                        \[q_1 = q_2 = q_3 = q_4 = 7.96 \text{ N/mm}\]
+                        \[q_5 = 0\]
+                        
+                        <p>The torsional constant is:</p>
+                        \[J_t = \frac{M_t}{\dfrac{1}{2\Omega_{cell_k}} \displaystyle\sum \frac{q_k \ell_k}{t_k}} = 1.54 \cdot 10^7 \text{ mm}^4\]
+                        
+                        <p class="note">Note: The summation is over panels belonging to cell #k. Can consider here cell #1 or #2.</p>
+                        
+                        <p>And so:</p>
+                        \[GJ = G \cdot J_t = 4.13 \cdot 10^{11} \text{ N mm}^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Reaction Forces Setup</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201806_Test/reaction_forces_coordinate_systems.png" alt="Beam with reaction forces and coordinate systems">
+                            <figcaption>Figure 4: Real system with reaction forces and local coordinate systems</figcaption>
+                        </figure>
+                        
+                        <p>The beam axis runs along the shear center portions. Define \(d = x_{sc}\).</p>
+                        
+                        <div class="subsection">
+                            <h4>Real System — Region ①</h4>
+                            \[T_y^{①} = -(P + X)\]
+                            \[M_x^{①} = -(P + X)z_1\]
+                            \[M_z^{①} = -(P + X)d\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h4>Real System — Region ②</h4>
+                            \[T_y^{②} = -(P + X + Y)\]
+                            \[M_x^{②} = -(P + X)\ell_2 - (P + X + Y)z_2\]
+                            \[M_z^{②} = -(P + X + Y)d\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Dummy Load Cases</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201806_Test/dummy_load_cases_virtual_work.png" alt="Dummy load cases for virtual work analysis">
+                            <figcaption>Figure 5: Dummy load cases #1 and #2 for virtual work analysis</figcaption>
+                        </figure>
+                        
+                        <div class="subsection">
+                            <h4>Dummy #1 — Region ①</h4>
+                            \[{}^1\delta T_y^{①} = -1\]
+                            \[{}^1\delta M_x^{①} = -z_1\]
+                            \[{}^1\delta M_z^{①} = -d\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h4>Dummy #1 — Region ②</h4>
+                            \[{}^1\delta T_y^{②} = -1\]
+                            \[{}^1\delta M_x^{②} = -\ell_2 - z_2\]
+                            \[{}^1\delta M_z^{②} = -d\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h4>Dummy #2 — Region ①</h4>
+                            \[{}^2\delta T_y^{①} = 0\]
+                            \[{}^2\delta M_x^{①} = 0\]
+                            \[{}^2\delta M_z^{①} = 0\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h4>Dummy #2 — Region ②</h4>
+                            \[{}^2\delta T_y^{②} = -1\]
+                            \[{}^2\delta M_x^{②} = -z\]
+                            \[{}^2\delta M_z^{②} = -d\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Principle of Virtual Work (PEVW) Equations</h4>
+                        
+                        <p>The equations are:</p>
+                        
+                        \[\left(\frac{\ell^3}{3EJ} + \frac{\ell}{GA^*} + \frac{d^2\ell}{GJ} + \frac{1}{k}\right)X + \left(\frac{\ell}{2GA^*} + \frac{5}{48}\frac{\ell^3}{EJ} + \frac{d^2\ell}{2GJ}\right)Y + \left(\frac{\ell^3}{3EJ} + \frac{\ell}{GA} + \frac{d^2\ell}{GJ}\right)P = 0\]
+                        
+                        \[\left(\frac{\ell}{2GA^*} + \frac{5\ell^3}{48EJ} + \frac{d^2\ell}{2GJ}\right)X + \left(\frac{\ell}{2GA^*} + \frac{\ell^3}{24EJ} + \frac{d^2\ell}{2GJ} + \frac{1}{k}\right)Y + \left(\frac{5\ell^3}{48EJ} + \frac{d^2\ell}{2GJ} + \frac{\ell}{2GA^*}\right)P = 0\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer — Reaction Forces:</strong>
+                        \[\boxed{X = -998.71 \text{ N}}\]
+                        \[\boxed{Y = -2.74 \text{ N}}\]
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    <p class="problem-statement">
+                        The bar in the figure is made of isotropic material of Young modulus \(E\) and Poisson's ratio \(\nu\). The section varies from \(A_0\) to \(A_1\) with a linear variation along the bar axis. The bar is loaded with a uniformly distributed load per unit length \(\hat{n}\), and a concentrated force \(P\) is applied at the tip.
+                    </p>
+                    <p class="problem-statement">
+                        Determine stress and displacement at the midspan by using a Ritz solution with one degree of freedom. Compare the predicted stress with the exact solution and discuss how the Ritz solution is expected to behave if the number of trial functions is increased.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201806_Test/bar_varying_cross_section_distributed_load.png" alt="Bar with varying cross-section under distributed and concentrated loads">
+                        <figcaption>Figure 6: Bar with linearly varying cross-section under distributed load and tip force</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(E = 70 \text{ GPa}\); \(\nu = 0.3\)</li>
+                            <li>\(A_0 = 5 \text{ mm}^2\); \(A_1 = 15 \text{ mm}^2\)</li>
+                            <li>\(l = 400 \text{ mm}\)</li>
+                            <li>\(P = 1 \text{ kN}\); \(\hat{n} = 2 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define Trial Function</h4>
+                        <p>The trial function is taken as:</p>
+                        \[u = c\left(\frac{x}{\ell}\right) = c\phi \quad \text{with} \quad \phi = \frac{x}{\ell}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Stiffness Matrix (1×1)</h4>
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell \delta u_{,x} \, EA \, u_{,x} \, dx = \delta c \, k \, c\]
+                        
+                        <p>where:</p>
+                        \[k = \int_0^\ell \phi_{,x} \, EA \, \phi_{,x} \, dx\]
+                        
+                        \[= \int_0^\ell \frac{1}{\ell^2} \left(EA_0 + E\frac{A_1 - A_0}{\ell}x\right) dx\]
+                        
+                        \[= \frac{EA_0}{\ell} + E\frac{A_1 - A_0}{2\ell}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: External Forces</h4>
+                        <p>External virtual work:</p>
+                        \[\delta W_e = \int_0^\ell \delta u \, \hat{n} \, dx + \delta u(\ell) \, P = \delta c \, f\]
+                        
+                        <p>where:</p>
+                        \[f = \int_0^\ell \phi \, \hat{n} \, dx + \phi(\ell) P\]
+                        
+                        \[= \frac{\hat{n}\ell}{2} + P\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Solve for Displacement Coefficient</h4>
+                        \[c = \frac{f}{k} = 0.80 \text{ mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Displacement and Stress at \(x = \ell/2\)</h4>
+                        
+                        <p><strong>Displacement:</strong></p>
+                        \[u = \phi(\ell/2) \cdot c = \frac{1}{2} \, c = 0.40 \text{ mm}\]
+                        
+                        <p><strong>Stress:</strong></p>
+                        \[\sigma = E \, u_{,x} = E \, \phi_{,x}(\ell/2) \, c\]
+                        \[= E \, \frac{1}{\ell} \cdot c = 140 \text{ MPa}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Comparison with Exact Solution</h4>
+                        <p>Exact stress value:</p>
+                        \[\sigma = \frac{P + \hat{n}\ell/2}{A(\ell/2)} = 140 \text{ MPa}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        <p>At midspan (\(x = \ell/2\)):</p>
+                        \[\boxed{u = 0.40 \text{ mm}}\]
+                        \[\boxed{\sigma_{Ritz} = 140 \text{ MPa}}\]
+                        \[\boxed{\sigma_{exact} = 140 \text{ MPa}}\]
+                        <p style="margin-top: 15px;"><em>The Ritz solution with one DOF gives the exact stress at midspan.</em></p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 1 (Theory) -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem">
+                    <h2>Question 1</h2>
+                    <p class="problem-statement">
+                        Illustrate the procedure for evaluating the shear flows in a panel-to-panel junction with two rows of rivets. Assume that the two panels have thicknesses \(t_1\) and \(t_2\).
+                    </p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    <div class="solution-step theory-only">
+                        <h4>Theory Question</h4>
+                        <p><em>This is a theoretical question requiring explanation of the procedure for evaluating shear flows in riveted panel junctions. No numerical solution was provided in the exam.</em></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

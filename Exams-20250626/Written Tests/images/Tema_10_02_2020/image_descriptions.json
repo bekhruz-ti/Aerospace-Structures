@@ -1,0 +1,14 @@
+{
+  "two_cell_structure_rotated_square_cross_section.png": {
+    "suggested_name": "two_cell_structure_rotated_square_cross_section",
+    "description": "Semi-monocoque two-cell structure with rotated square cross-section oriented 45° (diamond configuration). The cross-section shows sides of length l = 200 mm with five labeled wall segments: t₁ and t₂ (0.8 mm thickness) forming the upper diagonal walls, t₃ and t₄ (1.0 mm thickness) forming the lower diagonal walls, and t₅ (1.1 mm thickness) as the central vertical web dividing the two cells. Four corner stringers are labeled: A₁ (500 mm²) at bottom vertex, A₂ (400 mm²) at center of vertical web, A₃ (500 mm²) at left vertex, and A₄ (400 mm²) at right vertex. The structure extends length L = 2000 mm along the longitudinal axis. An \"Encastred wing root\" (fixed support) is indicated at the top vertex. A vertical force F = 1×10³ N is applied at distance d = 500 mm from the vertical panel (left side of structure), with the force vector pointing upward. Material properties listed: E = 70000 MPa, ν = 0.3. The diagram includes a coordinate system with the longitudinal axis extending to the right."
+  },
+  "encastred_beam_two_segments_point_load.png": {
+    "suggested_name": "encastred_beam_two_segments_point_load",
+    "description": "Horizontal beam with encastred (fixed) support at left end, divided into two equal segments each of length l. The left segment has structural properties EA₁, EI₁, GJ₁ (axial, bending, and torsional stiffness), while the right segment has properties EA₂, EI₂, GJ₂. A concentrated vertical upward force F is applied at the midpoint (junction between the two segments). The beam is shown in elevation view with hatching at the fixed support indicating full constraint (prevents translation and rotation). Dimensions show total beam length as 2l with the force located at distance l from the fixed end."
+  },
+  "l_shaped_beam_hinge_distributed_load.png": {
+    "suggested_name": "l_shaped_beam_hinge_distributed_load",
+    "description": "L-shaped beam structure consisting of two perpendicular segments connected by a hinge (pin joint shown as circle). The horizontal segment (length l) is encastred (fixed support with hatching) at its left end and has structural properties EA₂, EI₂, GJ₂. The vertical segment (length l) extends upward from the hinge connection and has properties EA₁, EI₁, GJ₁. The vertical member is encastred at its top end (shown with hatching and double lines indicating fixed constraint). A distributed axial load f (force per unit length) is applied along the entire length of the vertical segment, indicated by downward-pointing arrows. The hinge at the junction allows relative rotation between the two segments while maintaining force transfer."
+  }
+}

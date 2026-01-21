@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, June 26th, 2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .requirements {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .requirements li {
+            margin: 12px 0;
+            font-size: 1.05rem;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+            break-inside: avoid;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .theoretical-question {
+            margin: 40px 0;
+            padding: 30px;
+            background: #fff8e6;
+            border: 1px solid #d69e2e;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theoretical-question h2 {
+            color: #975a16;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d69e2e;
+        }
+
+        .theoretical-question p {
+            font-size: 1.05rem;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem {
+                padding: 20px;
+            }
+
+            .given-data ul {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Aerospace Structures</h1>
+            <p class="exam-date">Written test, June 26<sup>th</sup>, 2019</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    
+                    <p class="problem-statement">
+                        Consider the single-cell, thin-walled beam in the figure. The beam length is equal to \(2l\); the section has dimensions \(a \times b\), and is stiffened by four stringers, each characterized by lumped area equal to \(A_1\) (at the bottom) and \(A_2\) (at the top). The thickness of the panels is denoted with \(t_1\), \(t_2\) and \(t_3\), as illustrated in the figure. Referring to the loading conditions reported in the sketch:
+                    </p>
+                    
+                    <ul class="requirements">
+                        <li>determine the shear stresses in the panels and the axial stresses in the stringers for the section at a distance \(l/2\) from the constraint;</li>
+                        <li>plot the internal actions on the rib at the mid-span, assuming that the rib can be modeled as a beam.</li>
+                    </ul>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_26_06_2019/single_cell_beam_stringers_loads.png" alt="Three-dimensional isometric view of a single-cell, thin-walled rectangular beam with length 2l showing a rectangular cross-section with dimensions a × b. The beam is fixed at the right end and has a concentrated force F applied at the lower left corner. Four corner stringers are labeled A₁ (bottom) and A₂ (top). Panel thicknesses t₁, t₂, and t₃ are shown. Distributed loads q₁ and q₂ are applied along edges.">
+                        <figcaption>Figure 1: Single-cell thin-walled beam with stringers and loading conditions</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Data</h3>
+                        <ul>
+                            <li>\(l = 1500 \text{ mm}\)</li>
+                            <li>\(a = 400 \text{ mm}\)</li>
+                            <li>\(b = 250 \text{ mm}\)</li>
+                            <li>\(t_1 = 1 \text{ mm}\)</li>
+                            <li>\(t_2 = 2 \text{ mm}\)</li>
+                            <li>\(t_3 = 1.5 \text{ mm}\)</li>
+                            <li>\(A_1 = 2000 \text{ mm}^2\)</li>
+                            <li>\(A_2 = 1000 \text{ mm}^2\)</li>
+                            <li>\(q_1 = 90 \text{ N/mm}\)</li>
+                            <li>\(q_2 = 300 \text{ N/mm}\)</li>
+                            <li>\(F = 10 \text{ kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    
+                    <p class="problem-statement">
+                        A structure is composed of three beams of length \(l_1\) and \(l_2\). All the beams are characterized by a square section – see the figure –, with panels of thickness \(t\) and stiffened by four stringers, each of lumped area \(A\). One end is fixed, the other is grounded by means of an elastic constraint of stiffness \(k\), and the third end is loaded with a concentrated load \(P\).
+                    </p>
+                    
+                    <p class="problem-statement"><strong>Determine:</strong></p>
+                    
+                    <ul class="requirements">
+                        <li>the vertical displacement in correspondence of the spring, with and without accounting for the beam shearing stiffness contribution</li>
+                        <li>the strain energy stored in the structure (including the spring)</li>
+                    </ul>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_26_06_2019/three_beam_structure_elastic_spring.png" alt="Structural frame composed of three beams forming an asymmetric configuration. The left beam of length l₂ is horizontal and supported by an elastic spring constraint at its left end. This beam connects to two inclined beams of length l₁ which meet at a fixed support at the upper right. A concentrated vertical downward load P is applied at the junction. A detail view shows the square cross-section with four corner stringers.">
+                        <figcaption>Figure 2: Three-beam structure with elastic spring support and cross-section detail</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Data</h3>
+                        <ul>
+                            <li>\(l_1 = 1000 \text{ mm}\)</li>
+                            <li>\(l_2 = 500 \text{ mm}\)</li>
+                            <li>\(a = 100 \text{ mm}\)</li>
+                            <li>\(t = 1 \text{ mm}\)</li>
+                            <li>\(A = 200 \text{ mm}^2\)</li>
+                            <li>\(E = 70 \text{ GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(P = 2 \text{ kN}\)</li>
+                            <li>\(k = 400 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 1 -->
+            <section class="theoretical-question" id="question-1">
+                <h2>Question 1</h2>
+                <p>Discuss and illustrate the compatibility condition for a semi-monocoque beam with N cells.</p>
+            </section>
+            
+        </main>
+    </article>
+</body>
+</html>

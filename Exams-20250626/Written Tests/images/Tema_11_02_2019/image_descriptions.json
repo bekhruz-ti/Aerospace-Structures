@@ -1,0 +1,10 @@
+{
+  "semi_momocoque_wing_loaded_structure.png": {
+    "suggested_name": "semi_momocoque_wing_loaded_structure",
+    "description": "Description not available"
+  },
+  "cantilever_beam_spring_support.png": {
+    "suggested_name": "cantilever_beam_spring_support",
+    "description": "Slender cantilever beam of length l = 2000 mm with fixed support (clamped) at the upper left end and spring supports at the lower right end. A horizontal force F with components Fₓ = 100N, Fᵧ = 150 N, and Fᵤ = 10000 N is applied at location l/3 from the fixed end. The lower end is supported by two springs: a vertical spring with stiffness kᵧ = 5 N/mm and a horizontal spring with stiffness kₓ = 2 N/mm, both shown with zigzag spring symbols. A right-handed coordinate system is shown with x-axis horizontal (pointing right), y-axis vertical (pointing up), and z-axis out of page. The beam has axial stiffness EA = 7 × 10⁷ N, bending stiffness EJₓₓ = 8 × 10⁶ Nmm², bending stiffness EJᵧᵧ = 5 × 10⁹ Nmm², and torsional stiffness EJₓᵧ = 0 Nmm². The problem involves computing reaction forces and strain energy of the system including spring contributions."
+  }
+}

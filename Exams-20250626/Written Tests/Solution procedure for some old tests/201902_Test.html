@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures - Written Test, February 11th, 2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+
+        .results-table th,
+        .results-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .results-table th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .equation-box {
+            background: #e6fffa;
+            border: 1px solid #38b2ac;
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .system-equations {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="exam-date">Written Test, February 11<sup>th</sup>, 2019</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">
+                        The two-cell beam in the figure is composed of five panels of thickness \(t\), and four stringers of areas \(A\) and \(2A\) (note: the area is the lumped one). The section is square and has dimension \(h\).
+                    </p>
+                    <p class="problem-statement">
+                        The material is a light aluminum alloy, whose elastic properties are provided in terms of Young's modulus and Poisson's coefficient, denoted with \(E\) and \(\nu\), respectively. The beam is fixed at one end and free at the other one, and is loaded with a concentrated force of magnitude \(P\).
+                    </p>
+                    <p class="problem-statement">
+                        <strong>Determine the internal stresses at a distance \(l/2\) from the free end.</strong>
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201902_Test/two_cell_beam_square_section.png" alt="Three-dimensional view of a two-cell thin-walled beam with square cross-section showing the diagonal web creating two triangular cells, with corner stringers and applied force P at the free end">
+                        <figcaption>Figure 1: Two-cell beam with square cross-section and diagonal web</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(h = 100 \text{ mm}\); \(l = 1500 \text{ mm}\)</li>
+                            <li>\(t = 1.5 \text{ mm}\); \(A = 150 \text{ mm}^2\)</li>
+                            <li>\(E = 72000 \text{ MPa}\); \(\nu = 0.3\)</li>
+                            <li>\(P = 15 \text{ kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Section Properties</h4>
+                        <p>The principal axes are available from the symmetry of the section.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/201902_Test/square_section_node_numbering.png" alt="Square cross-section with nodes numbered 1-4 at corners and diagonal connecting nodes 1 and 3">
+                            <figcaption>Figure 2: Node numbering scheme for the cross-section</figcaption>
+                        </figure>
+                        
+                        <figure class="diagram">
+                            <img src="images/201902_Test/rotated_section_principal_axes.png" alt="Cross-section rotated 45 degrees showing principal axes orientation">
+                            <figcaption>Figure 3: Rotated section aligned with principal axes</figcaption>
+                        </figure>
+                        
+                        <p>Calculate the diagonal dimension:</p>
+                        \[a = h\sqrt{2} = 141.42 \text{ mm}\]
+                        
+                        <p>Second moments of area:</p>
+                        \[J_{xx} = 2A \left(\frac{a}{2}\right)^2 = 1.5 \times 10^6 \text{ mm}^4\]
+                        \[J_{yy} = 4A \left(\frac{a}{2}\right)^2 = 3.0 \times 10^6 \text{ mm}^4\]
+                        
+                        <p>Static moments at each node:</p>
+                        <table class="results-table">
+                            <tr>
+                                <th>Node</th>
+                                <th>\(S_x\)</th>
+                                <th>\(S_y\)</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>\(S_{x_1} = 0\)</td>
+                                <td>\(S_{y_1} = -Aa\)</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>\(S_{x_2} = A \cdot a/2\)</td>
+                                <td>\(S_{y_2} = -Aa\)</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>\(S_{x_3} = A \cdot a/2\)</td>
+                                <td>\(S_{y_3} = 0\)</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>\(S_{x_4} = 0\)</td>
+                                <td>\(S_{y_4} = 0\)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Shear Flows</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201902_Test/shear_flow_distribution.png" alt="Shear flow distribution in the rotated square cross-section with labeled flow values on each panel">
+                            <figcaption>Figure 4: Shear flow distribution in the cross-section</figcaption>
+                        </figure>
+                        
+                        <p>Open section shear flows:</p>
+                        \[q_1^I = +\frac{P_x S_{y_1}}{J_{yy}} + \frac{P_y S_{x_1}}{J_{xx}} = -\frac{P_x}{a} = -75 \text{ N/mm}\]
+                        \[q_2^I = 0 \text{ N/mm}\]
+                        \[q_3^I = \frac{P_y}{a} = 75 \text{ N/mm}\]
+                        \[q_4^I = q_5^I = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Equivalence Condition (with respect to point 1)</h4>
+                        \[2\Omega_2 q_2^I + 2\Omega_3 q_3^I + 2\Omega_{C_1} q_1^* + 2\Omega_{C_2} q_2^* = 0\]
+                        
+                        <p>Where the cell areas are:</p>
+                        \[\Omega_2 = \Omega_3 = \Omega_{C_1} = \Omega_{C_2} = \frac{a^2}{2}\]
+                        
+                        <p>Therefore:</p>
+                        \[q_2^I + q_3^I + q_1^* + q_2^* = 0\]
+                        <div class="equation-box">
+                            \[q_1^* + q_2^* = -75\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Compatibility Condition</h4>
+                        \[q_1^* - q_2^* = \frac{(q_3^I - q_1^I) h}{2(h + a)}\]
+                        <div class="equation-box">
+                            \[q_1^* - q_2^* = 31.07\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve for Redundant Shear Flows</h4>
+                        <div class="system-equations">
+                            <p>System of equations:</p>
+                            \[\begin{cases} q_1^* + q_2^* = -75 \\ q_1^* - q_2^* = 31.07 \end{cases}\]
+                        </div>
+                        
+                        <p>Solution:</p>
+                        \[q_1^* = -21.97 \text{ N/mm}\]
+                        \[q_2^* = -53.04 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Total Shear Flows and Shear Stresses</h4>
+                        <table class="results-table">
+                            <tr>
+                                <th>Panel</th>
+                                <th>Shear Flow \(q\) (N/mm)</th>
+                                <th>Shear Stress \(\tau\) (MPa)</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>\(q_1 = q_1^I + q_1^* = -96.97\)</td>
+                                <td>\(\tau_1 = 64.65\)</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>\(q_2 = q_2^* = -53.04\)</td>
+                                <td>\(\tau_2 = 35.36\)</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>\(q_3 = q_3^I + q_2^* = 21.96\)</td>
+                                <td>\(\tau_3 = 14.64\)</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>\(q_4 = q_1^* = -21.97\)</td>
+                                <td>\(\tau_4 = 14.65\)</td>
+                            </tr>
+                            <tr>
+                                <td>5 (diagonal)</td>
+                                <td>\(q_5 = q_2^* - q_1^* = -31.08\)</td>
+                                <td>\(\tau_5 = 20.72\)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Axial Stresses \(\sigma_{zz}\)</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201902_Test/principal_axes_transformation.png" alt="Coordinate system transformation diagram showing principal axes orientation">
+                            <figcaption>Figure 5: Principal axes reference system</figcaption>
+                        </figure>
+                        
+                        <p>Referring to the principal axes:</p>
+                        \[M_x = P_y \cdot \frac{l}{2}\]
+                        \[M_y = P_x \cdot \frac{l}{2}\]
+                        
+                        <p>The stresses are:</p>
+                        \[\sigma_{zz} = \frac{M_x}{J_{xx}} y - \frac{M_y}{J_{yy}} x\]
+                        
+                        <p><strong>Stringers 2, 4:</strong> \(x = 0\), \(y = \pm a/2\)</p>
+                        \[\sigma_{zz} = \frac{M_x}{J_{xx}} \left(\pm \frac{a}{2}\right) = \pm 375 \text{ MPa}\]
+                        
+                        <p><strong>Stringers 1, 3:</strong> \(x = \pm a/2\), \(y = 0\)</p>
+                        \[\sigma_{zz} = -\frac{M_y}{J_{yy}} \left(\pm \frac{a}{2}\right) = \mp 187.5 \text{ MPa}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Results:</strong><br><br>
+                        <strong>Shear Stresses:</strong> \(\tau_1 = 64.65\) MPa, \(\tau_2 = 35.36\) MPa, \(\tau_3 = 14.64\) MPa, \(\tau_4 = 14.65\) MPa, \(\tau_5 = 20.72\) MPa<br><br>
+                        <strong>Axial Stresses:</strong> Stringers 2,4: \(\boxed{\sigma_{zz} = \pm 375 \text{ MPa}}\) &nbsp;|&nbsp; Stringers 1,3: \(\boxed{\sigma_{zz} = \mp 187.5 \text{ MPa}}\)
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    <p class="problem-statement">
+                        The slender beam in the figure is fixed at one end, and is elastically supported by two springs of stiffness \(k_x\) and \(k_y\) at the other end. The beam axial stiffness is \(EA\), while the bending stiffnesses are \(EJ_{xx}\) and \(EJ_{yy}\) (note: \(EJ_{xy} = 0\)). A concentrated force \(P\), whose components are \(P_x\), \(P_y\) and \(P_z\), is applied at the middle.
+                    </p>
+                    <p class="problem-statement">
+                        <strong>Determine the unknown reaction forces and the strain energy stored in the structure (including the springs).</strong>
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201902_Test/slender_beam_elastic_springs.png" alt="Three-dimensional diagram of a slender beam fixed at one end with spring supports at the other end and a concentrated force applied at midpoint">
+                        <figcaption>Figure 6: Slender beam with elastic spring supports</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(l = 1000 \text{ mm}\)</li>
+                            <li>\(EA = 7 \times 10^7 \text{ N}\)</li>
+                            <li>\(EJ_{xx} = 5 \times 10^9 \text{ Nmm}^2\)</li>
+                            <li>\(EJ_{yy} = 8 \times 10^9 \text{ Nmm}^2\)</li>
+                            <li>\(k_x = 5 \text{ N/mm}\); \(k_y = 2 \text{ N/mm}\)</li>
+                            <li>\(P_x = 150 \text{ N}\); \(P_y = 100 \text{ N}\); \(P_z = 10000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Problem Setup</h4>
+                        <p>The structure is 2 times statically indeterminate.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/201902_Test/beam_3d_force_components.png" alt="Decomposition of three-dimensional force system on the beam into planar components">
+                            <figcaption>Figure 7: Decomposition of 3D loading into planar components</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Analysis in xz-Plane</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/201902_Test/xz_plane_beam_view.png" alt="Beam diagram in xz-plane showing real loading system with force Px and reaction X">
+                            <figcaption>Figure 8: Real system in xz-plane</figcaption>
+                        </figure>
+                        
+                        <figure class="diagram">
+                            <img src="images/201902_Test/dummy_system_unit_load.png" alt="Dummy system with unit load for virtual work analysis">
+                            <figcaption>Figure 9: Dummy system for virtual work analysis</figcaption>
+                        </figure>
+                        
+                        <p><strong>Real system bending moments:</strong></p>
+                        \[M_y^1 = X z_1\]
+                        \[M_y^2 = X l + (X + P_x) z_2\]
+                        
+                        <p><strong>Dummy system bending moments:</strong></p>
+                        \[\delta M_y^1 = z_1\]
+                        \[\delta M_y^2 = z_2 + l\]
+                        
+                        <p><strong>Principle of Complementary Virtual Work (PCVW):</strong></p>
+                        \[\int_0^l \frac{M_y^1 \cdot \delta M_y^1}{EJ_{yy}} dz_1 + \int_0^l \frac{M_y^2 \cdot \delta M_y^2}{EJ_{yy}} dz_2 + \frac{X}{k_x} = 0\]
+                        
+                        <p>This yields:</p>
+                        \[X \left(\frac{8}{3} l^3 + \frac{EJ_{yy}}{k_x}\right) + \frac{5}{6} P_x l^3 = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Analysis in yz-Plane</h4>
+                        <p>By analogy with the xz-plane, it is immediate to obtain:</p>
+                        \[Y \left(\frac{8}{3} l^3 + \frac{EJ_{xx}}{k_y}\right) + \frac{5}{6} P_y l^3 = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Reaction Forces</h4>
+                        <p>Solving the compatibility equations:</p>
+                        <div class="equation-box">
+                            \[X = -29.27 \text{ N}\]
+                        </div>
+                        <div class="equation-box">
+                            \[Y = -16.13 \text{ N}\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Internal Strain Energy</h4>
+                        <p>The total strain energy consists of:</p>
+                        \[U = U_{bxz} + U_{byz} + U_{ax} + U_{springs}\]
+                        
+                        <p>Where:</p>
+                        <ul>
+                            <li>\(U_{bxz}\) = bending energy in xz-plane</li>
+                            <li>\(U_{byz}\) = bending energy in yz-plane</li>
+                            <li>\(U_{ax}\) = axial strain energy</li>
+                            <li>\(U_{springs}\) = energy stored in springs</li>
+                        </ul>
+                        
+                        <p><strong>Bending energy in xz-plane:</strong></p>
+                        \[U_{bxz} = \frac{1}{2} \int_0^l \frac{M_y^1 M_y^1}{EJ_{yy}} dz_1\]
+                        \[= \frac{1}{EJ_{yy}} \left(\frac{2}{3} X^2 l^3 + \frac{1}{6} (X + P_x)^2 l^3 + \frac{1}{2} X (X + P_x) l^3\right)\]
+                        \[= 0.154 \text{ J}\]
+                        
+                        <p><strong>Bending energy in yz-plane:</strong></p>
+                        \[U_{byz} = \frac{1}{EJ_{xx}} \left(\frac{2}{3} Y^2 l^3 + \frac{1}{6} (Y + P_y)^2 l^3 + \frac{1}{2} Y (Y + P_y) l^3\right)\]
+                        \[= 0.133 \text{ J}\]
+                        
+                        <p><strong>Axial strain energy:</strong></p>
+                        \[U_{ax} = \frac{1}{2} \int_0^l \frac{P_z P_z}{EA} dz_2 = \frac{1}{2} \frac{P_z^2}{EA} l = 0.714 \text{ J}\]
+                        
+                        <p><strong>Spring energy:</strong></p>
+                        \[U_{springs} = \frac{1}{2} \frac{X^2}{k_x} + \frac{1}{2} \frac{Y^2}{k_y} = 0.150 \text{ J}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Results:</strong><br><br>
+                        <strong>Reaction Forces:</strong> \(\boxed{X = -29.27 \text{ N}}\) &nbsp;|&nbsp; \(\boxed{Y = -16.13 \text{ N}}\)<br><br>
+                        <strong>Strain Energy Components:</strong><br>
+                        \(U_{bxz} = 0.154 \text{ J}\), \(U_{byz} = 0.133 \text{ J}\), \(U_{ax} = 0.714 \text{ J}\), \(U_{springs} = 0.150 \text{ J}\)<br><br>
+                        <strong>Total Strain Energy:</strong> \(\boxed{U_{total} = 1.151 \text{ J}}\)
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 1 -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem">
+                    <h2>Question 1</h2>
+                    <p class="problem-statement">
+                        Illustrate how to determine the torsional and transverse shear stiffnesses for a thin-walled beam in the context of the semi-monocoque approximation.
+                    </p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    <div class="solution-step">
+                        <p><em>No written solution was provided for this theoretical question in the exam document.</em></p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </article>
+</body>
+</html>

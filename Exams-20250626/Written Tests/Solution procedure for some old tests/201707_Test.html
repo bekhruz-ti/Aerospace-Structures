@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Spacecraft Structures - Written Test, July 10th, 2017</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .subsection {
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .subsection h5 {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .equation-system {
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .note {
+            font-style: italic;
+            color: #666;
+            margin: 10px 0;
+            padding: 10px;
+            background: #fffbeb;
+            border-left: 3px solid #d69e2e;
+            border-radius: 4px;
+        }
+
+        table.results {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table.results th, table.results td {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        table.results th {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        table.results tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Spacecraft Structures</h1>
+            <p class="exam-date">Written Test, July 10<sup>th</sup>, 2017</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">
+                        Consider the structure in the figure. The three beams are characterized by axial stiffness \(EA\), bending stiffness \(EJ\) and torsional stiffness \(GJ\). The two ends are fixed, while two forces of intensity \(P\) are applied as illustrated in the sketch. Determine the reaction forces at the two fixed ends and plot the internal actions.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201707_Test/three_beam_structure_fixed_ends.png" alt="Three-beam frame structure forming a trapezoidal configuration with fixed supports at both ends. Left diagonal member of length l, horizontal middle member of length l, and right diagonal member of length 2l. Force P upward at left joint, force P downward at middle joint.">
+                        <figcaption>Figure 1: Three-beam frame structure with fixed ends and applied loads</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(EA = 1.8 \times 10^6 \text{ N}\)</li>
+                            <li>\(EJ_{xx} = EJ_{yy} = EJ = 3.75 \times 10^6 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(GJ = 3.00 \times 10^6 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(l = 1000 \text{ mm}\)</li>
+                            <li>\(P = 1.5 \text{ kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Exploit Anti-Symmetry</h4>
+                        <p>Anti-symmetry conditions can be used for simplifying the solution procedure. The structure can be analyzed using half of the system with appropriate boundary conditions.</p>
+                        <p>The unknowns at the symmetry plane are:</p>
+                        <ul>
+                            <li>\(X\) - horizontal force</li>
+                            <li>\(Y\) - vertical force</li>
+                            <li>\(W\) - moment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Internal Actions for Real System</h4>
+                        
+                        <div class="subsection">
+                            <h5>Beam 1:</h5>
+                            \[M_x^{(1)} = Yz_1\]
+                            \[M_y^{(1)} = -Xz_1\]
+                            \[M_z^{(1)} = W\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Beam 2:</h5>
+                            \[M_x^{(2)} = W + (Y - P)z\]
+                            \[M_y^{(2)} = -X \frac{l}{2}\]
+                            \[M_z^{(2)} = -Y \frac{l}{2}\]
+                            \[T_z^{(2)} = -X\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Virtual Systems (Dummy Loads)</h4>
+                        
+                        <div class="subsection">
+                            <h5>Dummy #1 (Unit force in Y direction):</h5>
+                            \[{}^1\delta M_y^{(1)} = -z_1\]
+                            \[{}^1\delta M_y^{(2)} = -l/2\]
+                            \[{}^1\delta T_z^{(2)} = -1\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Dummy #2 (Unit force in Z direction):</h5>
+                            \[{}^2\delta M_x^{(1)} = z_1\]
+                            \[{}^2\delta M_x^{(2)} = z_2\]
+                            \[{}^2\delta M_z^{(2)} = -l/2\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Dummy #3 (Unit moment):</h5>
+                            \[{}^3\delta M_z^{(1)} = 1\]
+                            \[{}^3\delta M_x^{(2)} = 1\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply PCVW (Principle of Complementary Virtual Work)</h4>
+                        <p>The compatibility equations are:</p>
+                        
+                        <div class="equation-system">
+                            \[X = 0\]
+                            \[\left( \frac{65l^3}{24EJ} + \frac{l^3}{2GJ} \right) Y + \frac{2l^2}{EJ} W = \frac{8}{3} \frac{Pl^3}{EJ}\]
+                            \[\frac{2l^2}{EJ} Y + \left( \frac{l}{2GJ} + \frac{2l}{EJ} \right) W = \frac{2Pl^2}{EJ}\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve the System</h4>
+                        <p>From the equations above:</p>
+                        \[Y = 947.36 \text{ N}\]
+                        \[W = 421052 \text{ N} \cdot \text{mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Calculate Reaction Forces</h4>
+                        <p>The reaction forces are obtained by evaluating the internal actions of beam #2 at \(z_2 = 2l\):</p>
+                        
+                        \[M_x^{(2)}(2l) = W + (Y - P) \cdot 2l = -684948 \text{ N} \cdot \text{mm}\]
+                        \[M_y^{(2)}(2l) = -X \frac{l}{2} = 0 \text{ N} \cdot \text{mm}\]
+                        \[M_z^{(2)}(2l) = -Y \frac{l}{2} = -473500 \text{ N} \cdot \text{mm}\]
+                        \[T_y^{(2)}(2) = Y - P = -553 \text{ N}\]
+                        
+                        <p class="note">Note: Forces are in N, Moments are in N·mm</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Plot of Internal Actions</h4>
+                        
+                        <div class="subsection">
+                            <h5>Shear Force \(T_y\):</h5>
+                            \[T_y^{(1)} = 947 \text{ N}\]
+                            \[T_y^{(2)} = -553 \text{ N}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Bending Moment \(M_x\):</h5>
+                            \[M_x^{(1)} = 947 \, z_1 \text{ N} \cdot \text{mm}\]
+                            \[M_x^{(2)} = 421052 - 553 \, z_2 \text{ N} \cdot \text{mm}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Bending Moment \(M_z\):</h5>
+                            \[M_z^{(1)} = 421052 \text{ N} \cdot \text{mm}\]
+                            \[M_z^{(2)} = -473500 \text{ N} \cdot \text{mm}\]
+                        </div>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong><br>
+                        \[Y = 947.36 \text{ N}, \quad W = 421052 \text{ N} \cdot \text{mm}\]
+                        \[M_x^{(2)}(2l) = -684948 \text{ N} \cdot \text{mm}\]
+                        \[M_z^{(2)}(2l) = -473500 \text{ N} \cdot \text{mm}\]
+                        \[T_y^{(2)} = -553 \text{ N}\]
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    <p class="problem-statement">
+                        A thin-walled beam section is modeled according to the semi-monocoque scheme, as reported in the figure. All the panels have thickness equal to 1 mm, while the lumped area of the stringers, viz. including the contribution of the panels, is equal to \(A\); the dimensions \(a\), \(b\) and \(c\) are reported below. An internal shear force \(T\) is considered as reported in the figure.
+                    </p>
+                    <p class="problem-statement">
+                        Determine: 1. the state of internal shear stress; 2. the position of the shear center of the section.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/201707_Test/thin_walled_beam_cross_section.png" alt="Thin-walled beam cross-section with pentagonal geometry. Rectangular portion with width a and height b, with triangular extension on right side having dimension c. Vertical downward shear force T applied at bottom center.">
+                        <figcaption>Figure 2: Thin-walled beam cross-section with semi-monocoque scheme</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 200 \text{ mm}^2\)</li>
+                            <li>\(a = 300 \text{ mm}\)</li>
+                            <li>\(b = 200 \text{ mm}\)</li>
+                            <li>\(c = 100 \text{ mm}\)</li>
+                            <li>\(T = 3000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Solution Procedure</h4>
+                        <ol>
+                            <li>Evaluate \(x_{sc}\) (shear center x-coordinate)</li>
+                            <li>Determine the shear flows by letting \(x_{sc} = 0\)</li>
+                        </ol>
+                        
+                        <figure class="diagram">
+                            <img src="images/201707_Test/frame_structure_shear_center_analysis.png" alt="Cross-section diagram showing pentagonal shape with 5 nodes. Node numbering and shear flow directions indicated.">
+                            <figcaption>Figure 3: Cross-section with node numbering and shear flow directions</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Section Properties</h4>
+                        \[I_{xx} = Ab^2\]
+                        
+                        <p>First moments of area:</p>
+                        \[S_{x_1} = -\frac{Ab}{2} \qquad S_{x_3} = -Ab\]
+                        \[S_{x_2} = -Ab \qquad S_{x_4} = -\frac{Ab}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Initial Shear Flows (Open Section)</h4>
+                        <p>Shear flows for open section (shear center contribution):</p>
+                        \[q_1^I = -\frac{F}{2b}\]
+                        \[q_2^I = -\frac{F}{b}\]
+                        \[q_3^I = -\frac{F}{b}\]
+                        \[q_4^I = -\frac{F}{2b}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Shear Center Position</h4>
+                        
+                        <div class="subsection">
+                            <h5>Equivalence with respect to x:</h5>
+                            \[2ab \, q_1^* + bc \, q_2^* - Fl = F \frac{a}{2} + Fc\]
+                            <p>where \(\quad l = a - x_{sc}\)</p>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Compatibility (\(\theta_1^I = \theta_2^I\)):</h5>
+                            \[\left[ 2(a+b) + \bar{\Omega}b \right] q_1^* - \left[ b + \bar{\Omega}(2d+b) \right] q_2^* = F \left( \frac{a}{b} - 2\bar{\Omega} \frac{d}{b} \right)\]
+                            <p>where \(\quad \bar{\Omega} = \frac{\Omega_{cell_1}}{\Omega_{cell_2}}\)</p>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Compatibility (\(\theta_1^I = 0\)):</h5>
+                            \[2 q_1^* (a+b) - q_2^* b = F \frac{a}{b}\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Solve System of Equations</h4>
+                        <p>The solving equations are (dividing by \(1 \times 10^5\)):</p>
+                        
+                        <div class="equation-system">
+                            \[\begin{cases} 
+                            1.2 \, q_1^* + 0.2 \, q_2^* - 0.03 \, l = 75 \\ 
+                            0.022 \, q_1^* - 0.031 \, q_2^* = -0.2086 \\ 
+                            0.01 \, q_1^* - 0.002 \, q_2^* = 0.045 
+                            \end{cases}\]
+                        </div>
+                        
+                        <p>From which:</p>
+                        \[l = 100.32 \text{ mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Shear Center Position</h4>
+                        \[\boxed{x_{sc} = 199.68 \text{ mm}}\]
+                        <p>From symmetry: \(\quad y_{sc} = 0\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Calculate Shear Flows</h4>
+                        <p>The solving equations for shear flows are:</p>
+                        
+                        <div class="equation-system">
+                            \[\begin{cases} 
+                            2ab \, q_1^* + bc \, q_2^* = \frac{3}{2} Fa + Fc \\ 
+                            \left[ 2(a+b) + \bar{\Omega}b \right] q_1^* - \left[ b + \bar{\Omega}(2d+b) \right] q_2^* = F \left( \frac{a}{b} - 2\bar{\Omega} \frac{d}{b} \right) 
+                            \end{cases}\]
+                        </div>
+                        
+                        <p>From which:</p>
+                        \[q_1^* = 11.29 \text{ N/mm}\]
+                        \[q_2^* = 14.78 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Total Shear Flows</h4>
+                        <p>Combining the open section flows with the redundant flows:</p>
+                        
+                        \[q_1 = q_1^I + q_1^* = 3.79 \text{ N/mm}\]
+                        \[q_2 = q_2^I + q_2^* = -0.22 \text{ N/mm}\]
+                        \[q_3 = q_3^I + q_2^* = -0.22 \text{ N/mm}\]
+                        \[q_4 = q_4^I + q_1^* = 3.79 \text{ N/mm}\]
+                        \[q_5 = q_1^* = 11.29 \text{ N/mm}\]
+                        \[q_6 = q_1^* - q_2^* = -3.49 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong><br><br>
+                        <strong>Shear Center Position:</strong>
+                        \[\boxed{x_{sc} = 199.68 \text{ mm}, \quad y_{sc} = 0}\]
+                        <br>
+                        <strong>Shear Flows:</strong>
+                        <table class="results" style="margin-top: 15px;">
+                            <tr>
+                                <th>Member</th>
+                                <th>Shear Flow (N/mm)</th>
+                            </tr>
+                            <tr><td>\(q_1\)</td><td>3.79</td></tr>
+                            <tr><td>\(q_2\)</td><td>-0.22</td></tr>
+                            <tr><td>\(q_3\)</td><td>-0.22</td></tr>
+                            <tr><td>\(q_4\)</td><td>3.79</td></tr>
+                            <tr><td>\(q_5\)</td><td>11.29</td></tr>
+                            <tr><td>\(q_6\)</td><td>-3.49</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 1 -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem">
+                    <h2>Question 1</h2>
+                    <p class="problem-statement">
+                        Discuss and illustrate mathematically the relation between the Principle of Complementary Virtual Works (PCVW) and the compatibility conditions.
+                    </p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    <div class="solution-step">
+                        <p class="note">No written solution was provided for this theoretical question in the exam document.</p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </article>
+</body>
+</html>

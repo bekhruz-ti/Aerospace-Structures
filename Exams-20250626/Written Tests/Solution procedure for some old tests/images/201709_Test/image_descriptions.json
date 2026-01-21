@@ -1,0 +1,34 @@
+{
+  "three_beam_torsional_spring_system.png": {
+    "suggested_name": "three_beam_torsional_spring_system",
+    "description": "Three-beam structural system composed of beams of equal length l arranged in a planar configuration. The leftmost beam is supported by a fixed support (indicated by hatching) at its left end. The three beams meet at two pin joints, forming a connected structure. The rightmost beam terminates at a torsional spring support with stiffness k_t (shown as a circular symbol with spring notation). A linearly varying distributed load q̄ is applied to the middle beam, with triangular distribution showing zero load at the left end and maximum intensity q̄ at the right end (indicated by vertical arrows of increasing length). Two diagonal members extend upward from the pin joints (shown with hatching at their upper ends indicating fixed connections). The system lies in a horizontal plane with length dimensions marked as l for each beam segment. Given data: EJ = 72e6 N·mm², GJ = EJ/2, k_t = 72 N·mm, l = 1000 mm, q̄ = 100 N/mm."
+  },
+  "euler_bernoulli_beam_fixed_free_square_section.png": {
+    "suggested_name": "euler_bernoulli_beam_fixed_free_square_section",
+    "description": "Euler-Bernoulli beam with fixed support at left end (shown by hatching with three diagonal lines) and free support at right end (shown by hatching with three diagonal lines). Horizontal x-axis shown with arrow pointing right from the fixed support. Vertical upward force P applied at the right end. Total beam length l marked between supports. Square cross-section detail shown to the right with dimensions a × a (width × height), with cross-hatching indicating the solid section and parameter γ = 10 mm noted. Given data: E = 72000 N·mm², l = 1000 mm, γ = 10 mm, a₀ = 1, a₁ = 16. The cross-section is characterized by dimension function a(x) = γ⁴√(a₀ + (a₁ - a₀)x/l), indicating variable cross-section along beam length."
+  },
+  "three_beam_coordinate_systems_sketch.png": {
+    "suggested_name": "three_beam_coordinate_systems_sketch",
+    "description": "Hand-drawn sketch showing coordinate system definitions for three-beam structural system. Left portion shows overall system with fixed support (triangle with hatching), two pin joints, torsional spring support (circular symbol), and two diagonal members extending upward. Three beams are labeled with circled numbers (1), (2), and (3). Each beam has its own local coordinate system defined: beam 1 has axes x₁, y₁, z₁; beam 2 has axes x₂, y₂, z₂; beam 3 has axes x₃, y₃, z₃. The notation \"Ref. systems\" appears below the coordinate system labels. Right portion shows simplified view with global X-Y coordinate system (Y-axis vertical, X-axis horizontal). The sketch establishes the relationship between local beam coordinates and global structural coordinates for analysis purposes."
+  },
+  "three_beam_free_body_diagram_sketch.png": {
+    "suggested_name": "three_beam_free_body_diagram_sketch",
+    "description": "Hand-drawn free body diagram showing the three-beam system in simplified form with applied loads and coordinate system. Horizontal beam with three segments labeled (2), (1), and (3) from left to right. Distributed load q̄ shown with downward arrows on middle segment, with triangular distribution. Torsional spring support shown at right end (circular symbol). Two diagonal members extend upward from pin joints (labeled with circled 3 at upper right). Global coordinate system shown with Y-axis vertical (upward arrow) and X-axis horizontal (rightward arrow). The diagram represents the loading configuration for structural analysis, with the distributed load q̄ applied to beam segment (1) and support reactions at the fixed left end and torsional spring at right end."
+  },
+  "beam_segment_moment_detail_sketch.png": {
+    "suggested_name": "beam_segment_moment_detail_sketch",
+    "description": "Hand-drawn detail sketch showing moment convention for beam segment analysis. Horizontal beam segment with diagonal member extending upward at left end (shown with hatching). Curved arrow at right end of horizontal segment indicates positive moment direction (counterclockwise), labeled with subscript 1. The sketch illustrates the sign convention used for internal moments in the structural analysis. Note indicates \"X is a torsional moment\" with equation q(z₁) = q̄z₁/l showing the distributed load variation along beam coordinate z₁. This detail clarifies the moment direction convention used in the equilibrium equations for the three-beam system."
+  },
+  "beam_segment_force_detail_sketch.png": {
+    "suggested_name": "beam_segment_force_detail_sketch",
+    "description": "Hand-drawn detail sketch showing force convention for beam segment analysis. Horizontal beam segment with diagonal member extending upward at right end (shown with hatching). Vertical upward arrow labeled \"1\" at left end of horizontal segment indicates positive shear force direction. The sketch illustrates the sign convention used for internal shear forces in the structural analysis. This detail, labeled as \"Moment #2\" in the context, clarifies the force direction convention used in the equilibrium equations for the three-beam system, complementing the moment convention shown in the previous sketch."
+  },
+  "fixed_free_beam_point_load_sketch.png": {
+    "suggested_name": "fixed_free_beam_point_load_sketch",
+    "description": "Hand-drawn sketch for Exercise 2 showing Euler-Bernoulli beam with fixed support at left end (indicated by hatching lines) and free support at right end (indicated by hatching lines). Vertical upward force P applied at right end. Horizontal beam of length l with x-axis shown. Below the beam, a dimension line indicates total length l. The sketch represents the boundary conditions for the Ritz method analysis: fixed end prevents translation and rotation (w(0) = 0, w_x(0) = 0), while free end allows displacement under load P. The beam has variable square cross-section with dimension a(x) = γ⁴√(a₀ + (a₁ - a₀)x/l), where material properties E = 72000 N·mm², l = 1000 mm, γ = 10 mm, a₀ = 1, a₁ = 16."
+  },
+  "square_cross_section_detail_sketch.png": {
+    "suggested_name": "square_cross_section_detail_sketch",
+    "description": "Hand-drawn detail sketch showing square cross-section geometry for Exercise 2 beam. Square cross-section with side dimensions a × a (width × height). Cross-hatching in center indicates solid section. Dimension lines with arrows show width a (horizontal) and height a (vertical). Small dimension ε - a shown at top indicating the variable nature of the cross-section. The cross-section dimension varies along beam length according to a(x) = γ⁴√(a₀ + (a₁ - a₀)x/l), where γ = 10 mm is a scaling parameter, and a₀ = 1, a₁ = 16 define the variation from fixed to free end. This variable cross-section is used in the Ritz method formulation for determining transverse displacement and maximum stress."
+  }
+}

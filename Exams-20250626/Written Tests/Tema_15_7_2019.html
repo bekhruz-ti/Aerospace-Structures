@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course of Aerospace Structures - Written Test, July 15th, 2019</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .exam-date {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .theory-question {
+            background: #fffaf0;
+            border-left: 4px solid #dd6b20;
+        }
+
+        .theory-question h2 {
+            border-bottom-color: #dd6b20;
+        }
+
+        .no-solution-note {
+            padding: 20px;
+            background: #fefcbf;
+            border-top: 3px solid #d69e2e;
+            font-style: italic;
+            color: #744210;
+            text-align: center;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Course of Aerospace Structures</h1>
+            <p class="exam-date">Written test, July 15<sup>th</sup>, 2019</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">
+                        A thin-walled beam is fixed at one end and loaded at the free end with a distributed force per unit length \(q\). The total length is \(l\), while the geometry of the section is depicted in the figure. The lumped stringers have area \(A\), while the thickness of the panels is denoted with \(t\).
+                    </p>
+                    <p class="problem-statement">
+                        By considering a semi-monocoque approximation, determine the shear and the axial stresses acting at the mid-span section.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_15_7_2019/cantilever_beam_distributed_load_cross_section.png" alt="Two-view diagram of thin-walled cantilever beam showing 3D perspective with distributed load and cross-sectional geometry with four lumped stringers">
+                        <figcaption>Figure 1: Cantilever beam with distributed load and thin-walled cross-section geometry</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(l = 6000 \text{ mm}\)</li>
+                            <li>\(a = 200 \text{ mm}\); \(b = 200 \text{ mm}\)</li>
+                            <li>\(c = 400 \text{ mm}\); \(d = 50 \text{ mm}\)</li>
+                            <li>\(t = 1.5 \text{ mm}\)</li>
+                            <li>\(A = 1000 \text{ mm}^2\)</li>
+                            <li>\(q = 150 \left( \dfrac{x}{400} \right)^2 \text{ N/mm}\)</li>
+                            <li>\(x \in [0, 400] \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="no-solution-note">
+                    <p>This is an exam problem statement. Solution work to be completed by student.</p>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2</h2>
+                    <p class="problem-statement">
+                        A structure is composed of two beams. The geometric and elastic properties, calculated with respect to the principal axes, are denoted as \(EA_i\), \(EJ_i\) and \(GJ_i\), with \(i = 1, 2\), as illustrated in the figure. Note, \(EJ_i = EJ_{xx} = EJ_{yy}\). The structure is fixed at one end, and elastically constrained by means of two linear springs of stiffness \(k_1\) and \(k_2\).
+                    </p>
+                    <p class="problem-statement">
+                        Considering a loading condition with an axial force \(P\) applied at the free end and a linearly varying distributed load \(q = q(x)\), determine the horizontal and vertical displacement in correspondence of the two springs.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/Tema_15_7_2019/two_beam_structure_spring_supports.png" alt="Two-beam assembly with inclined upper beam, horizontal lower beam, two spring supports, and applied loads">
+                        <figcaption>Figure 2: Two-beam structure with elastic spring supports and combined loading</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(l_1 = 1000 \text{ mm}\); \(l_2 = 800 \text{ mm}\)</li>
+                            <li>\(EA_1 = 5.7 \times 10^7 \text{ N}\)</li>
+                            <li>\(EJ_1 = 9.0 \times 10^8 \text{ N mm}^2\)</li>
+                            <li>\(GJ_1 = 4.0 \times 10^8 \text{ N mm}^2\)</li>
+                            <li>\(EA_2 = 2.8 \times 10^7 \text{ N}\)</li>
+                            <li>\(EJ_2 = 7.0 \times 10^8 \text{ N mm}^2\)</li>
+                            <li>\(GJ_2 = 2.0 \times 10^8 \text{ N mm}^2\)</li>
+                            <li>\(k_1 = 2.8 \text{ N/mm}\); \(k_2 = 3.5 \times 10^4 \text{ N/mm}\)</li>
+                            <li>\(q = 6 \times 10^{-3} \dfrac{x}{800} \text{ N/mm}\)</li>
+                            <li>\(P = 40 \text{ kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="no-solution-note">
+                    <p>This is an exam problem statement. Solution work to be completed by student.</p>
+                </div>
+            </section>
+
+            <!-- Question 1 -->
+            <section class="problem-solution-pair" id="question-1">
+                <div class="problem theory-question">
+                    <h2>Question 1</h2>
+                    <p class="problem-statement">
+                        Discuss and illustrate the equivalence between the indefinite equilibrium equations for a 3D solid along with the relevant boundary conditions and the Principle of Virtual Work.
+                    </p>
+                </div>
+                
+                <div class="no-solution-note">
+                    <p>This is a theoretical question. Discussion and derivation to be completed by student.</p>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>
