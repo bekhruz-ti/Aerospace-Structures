@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Displacements Approximation and Constitutive Laws</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .section-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section-content {
+            padding: 30px;
+            background: white;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .subsection h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .subsection h4 {
+            color: var(--primary-color);
+            margin: 15px 0 10px 0;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .note-label {
+            font-weight: bold;
+            color: #856404;
+        }
+
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .warning-label {
+            font-weight: bold;
+            color: #721c24;
+        }
+
+        .boxed-equation {
+            background: #e8f4f8;
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .important-result {
+            background: #c6f6d5;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .derivation-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .matrix-display {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-header, .section-content {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Small Displacements Approximation and Constitutive Laws</h1>
+            <p>Lecture Notes on Elasticity Theory</p>
+        </header>
+        
+        <main>
+            <!-- SECTION 1: Small Displacements Approximation -->
+            <section class="section" id="small-displacements">
+                <div class="section-header">
+                    <h2>Small Displacements Approximation</h2>
+                </div>
+                
+                <div class="section-content">
+                    <p>The formulation for the case of large displacements has been developed, with respect to the thermoelastic case, in the context of the Lagrangian approach.</p>
+                    
+                    <p>The solution of the governing PDE (or their variational counterpart) can be performed referring to numerical techniques (Finite elements, in most cases).</p>
+                    
+                    <p>The problem is now simplified, with the aim of facilitating the derivation of exact and approximate solutions without the need for solving the elastic problem numerically.</p>
+                    
+                    <div class="subsection">
+                        <h3>Key Assumptions</h3>
+                        <p>More specifically assume:</p>
+                        <ol>
+                            <li>The displacements are so small that higher order terms can be neglected in the strain tensor expression</li>
+                            <li>Displacements and strains are so small that the equilibrium can now be written referring to the undeformed configuration</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="warning">
+                        <span class="warning-label">⚠ Important:</span> It is important to understand these two assumptions as a special case of the more general nonlinear approach previously discussed. The linear approach should be conceptually understood as a specialization of the nonlinear case to a smaller case, provided the two assumptions reported above are acceptable. Whenever this is not the case, the assumptions of linearity should be rejected, and the problem solved in its intrinsic nonlinearity.
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>From Assumption 1</h4>
+                        <p>It follows that:</p>
+                        \[
+                        \underline{\underline{\epsilon}} = \frac{1}{2} \left( Grad \, \underline{u} + Grad \, \underline{u}^T + Grad \, \underline{u}^T \, Grad \underline{u} \right)
+                        \]
+                        \[
+                        \simeq \frac{1}{2} \left( Grad \, \underline{u} + Grad \underline{u}^T \right) = \frac{1}{2} \left( grad \, \underline{u} + grad \underline{u}^T \right) = \underline{\underline{\varepsilon}}
+                        \]
+                        
+                        <div class="note">
+                            <span class="note-label">Note:</span> No distinction exists between \(grad(\bullet)\) and \(Grad(\bullet)\).
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>From Assumption 2</h4>
+                        <p>It follows that:</p>
+                        \[
+                        \underline{\underline{\sigma}} = \underline{\underline{P}} = \underline{\underline{S}}
+                        \]
+                        <p>All the stress measures "collapse" into a single entity.</p>
+                        <p>Recalling the meaning of \(\underline{\underline{P}}\) and \(\underline{\underline{S}}\), it is clear that no distinctions exist when \(\underline{n} \, d\sigma = \underline{N} \, dA\).</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Infinitesimal Strain Tensor</h3>
+                        <p>It is useful to recall the physical meaning of the components of the infinitesimal strain tensor \(\underline{\underline{\varepsilon}}\).</p>
+                        
+                        <div class="boxed-equation">
+                            \[
+                            \underline{\underline{\varepsilon}} = \frac{1}{2} \left( grad \, \underline{u} + grad \underline{u}^T \right) \quad \text{or} \quad \varepsilon_{ik} = \frac{1}{2} \left( u_{i/k} + u_{k/i} \right)
+                            \]
+                        </div>
+                        
+                        <p>Consider the displacement of a point P of the 3D space into another point P':</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/coordinate_system_point_displacement.png" alt="3D coordinate system showing point P displacement to point P' with coordinate axes x, y, and z">
+                            <figcaption>Figure 1: Displacement of point P to P' in 3D space</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>X-Y Plane View</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/xy_plane_strain_components.png" alt="X-Y plane view diagrams showing displacement components and strain variation along y-axis">
+                            <figcaption>Figure 2: X-Y plane view showing strain components</figcaption>
+                        </figure>
+                        
+                        <p>The final length is:</p>
+                        \[
+                        \ell_F = dy \left( 1 + V_y \right)
+                        \]
+                        
+                        <p>The strain component becomes:</p>
+                        \[
+                        \varepsilon_{yy} = \frac{\ell_F - \ell_i}{\ell_i} = \frac{dy \left( 1 + V_y \right) - dy}{dy} = V_y
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{\varepsilon_{yy} = V_y}
+                            \]
+                            <p>\(\varepsilon_{yy}\) represents the variation of length of a unitary fiber, initially aligned along y</p>
+                        </div>
+                        
+                        <p>Clearly the same considerations hold for the components \(\varepsilon_{xx}\) and \(\varepsilon_{zz}\).</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Shearing Components</h3>
+                        <p>It is useful to consider the case of mixed components \(\varepsilon_{\alpha\beta}\) with \(\alpha \neq \beta\) (Shearing components).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/angular_displacement_geometry.png" alt="Geometric diagrams showing angular relationships with theta angles and displacement components">
+                            <figcaption>Figure 3: Angular displacement geometry for shear strain</figcaption>
+                        </figure>
+                        
+                        <p>For small displacements, \(\ell \simeq dx\), so:</p>
+                        \[
+                        \ell \sin \theta_1 = V_x \, dx
+                        \]
+                        \[
+                        dx \sin \theta_1 = V_x \, dx \quad \Rightarrow \quad V_x = \sin \theta_1 \quad \Rightarrow \quad \boxed{V_x = \theta_1}
+                        \]
+                        
+                        <p>The same considerations hold for \(\theta_2\):</p>
+                        \[
+                        \ell \sin \theta_2 = U_y \, dy
+                        \]
+                        \[
+                        dy \sin \theta_2 = U_y \, dy \quad \Rightarrow \quad U_y = \sin \theta_2 \quad \Rightarrow \quad \boxed{U_y \simeq \theta_2}
+                        \]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/small_angle_approximation.png" alt="Small angular diagram showing angle theta relationship">
+                            <figcaption>Figure 4: Small angle approximation</figcaption>
+                        </figure>
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{V_x + U_y = \theta_1 + \theta_2 = \frac{\pi}{2} - \theta}
+                            \]
+                            <p>or equivalently:</p>
+                            \[
+                            \boxed{\gamma_{xy} = 2\varepsilon_{xy} = \frac{\pi}{2} - \theta}
+                            \]
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 2: Compatibility Equations -->
+            <section class="section" id="compatibility-equations">
+                <div class="section-header">
+                    <h2>Compatibility Equations</h2>
+                </div>
+                
+                <div class="section-content">
+                    <p>Although compatibility equations seem complex and somewhat obscure, they express a very simple idea: the displacement field is required to respect some conditions in order to be "compatible". A randomly defined function representing the displacement field can, in fact, be associated with a non-admissible displacement field.</p>
+                    
+                    <div class="boxed-equation">
+                        <p>The condition to be fulfilled is:</p>
+                        \[
+                        \underline{\underline{\varepsilon}} = \frac{1}{2} \left( grad \underline{u} + grad \underline{u}^T \right)
+                        \]
+                    </div>
+                    
+                    <p>Sometimes, to highlight that the previous rule is an equation and not a definition, it is written as:</p>
+                    \[
+                    \underline{\underline{\varepsilon}} - \frac{1}{2} \left( grad \underline{u} + grad \underline{u}^T \right) = 0
+                    \]
+                    
+                    <p>Often the compatibility condition is implicitly imposed in a strong form manner, and does not need to be imposed. Whenever the problem is formulated by imposing, say, \(\sigma = E u_x\), the condition is already imposed.</p>
+                    
+                    <p>In many other cases - the De Saint Venant (DSV) problem is an example - the strains are part of the problem unknowns. In such cases, the deformation field must satisfy the compatibility conditions in order to make it sure that the solution, both in terms of displacements and strains, is compatible.</p>
+                    
+                    <div class="note">
+                        <span class="note-label">Definition:</span> Compatibility equations = relations between the various components of \(\varepsilon_{ik}\) to guarantee the compatibility of the resulting strain field. The \(\varepsilon_{ik}\) are not independent of each other!
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Derivation of the Compatibility Equations</h3>
+                        
+                        <h4>Step 1: Begin with the deformation components associated with the xy plane</h4>
+                        \[
+                        \varepsilon_{xx} = U_{/x} \qquad \varepsilon_{yy} = V_{/y} \qquad \gamma_{xy} = U_{/y} + V_{/x}
+                        \]
+                        
+                        <p>How can they be related to each other?</p>
+                        
+                        <div class="derivation-step">
+                            \[
+                            \varepsilon_{xx/yy} = U_{/xyy}
+                            \]
+                            \[
+                            \varepsilon_{yy/xx} = V_{/xxy}
+                            \]
+                            \[
+                            \gamma_{xy/xy} = U_{/xyy} + V_{/xxy}
+                            \]
+                        </div>
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{\varepsilon_{xx/yy} + \varepsilon_{yy/xx} = \gamma_{xy/xy}}
+                            \]
+                        </div>
+                        
+                        <h4>Step 2: Consider now the three shearing deformations</h4>
+                        \[
+                        \gamma_{xy} = V_{/x} + U_{/y} \qquad \gamma_{xz} = W_{/x} + U_{/z} \qquad \gamma_{yz} = W_{/y} + V_{/z}
+                        \]
+                        \[
+                        \varepsilon_{xx} = U_{/x}
+                        \]
+                        
+                        <p>Taking appropriate derivatives:</p>
+                        \[
+                        \gamma_{xy/xz} = V_{/xxz} + U_{/xyz}
+                        \]
+                        \[
+                        \gamma_{xz/xy} = W_{/xxy} + U_{/xyz}
+                        \]
+                        \[
+                        \gamma_{yz/xx} = W_{/xxy} + V_{/xxz}
+                        \]
+                        \[
+                        \varepsilon_{xx/yz} = U_{/xyz}
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{2 \varepsilon_{xx/yz} = \gamma_{xy/xz} + \gamma_{xz/xy} - \gamma_{yz/xx}}
+                            \]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Complete Set of Compatibility Equations</h3>
+                        <p>Starting from the two equations derived above, the complete set of compatibility equations is readily available by cycling the indexes:</p>
+                        \[
+                        x \to y \to z \text{ (cyclic)}
+                        \]
+                        
+                        <div class="important-result">
+                            <p><strong>Compatibility Equations:</strong></p>
+                            \[
+                            \begin{aligned}
+                            \varepsilon_{xx/yy} + \varepsilon_{yy/xx} &= \gamma_{xy/xy} \\[8pt]
+                            \varepsilon_{yy/zz} + \varepsilon_{zz/yy} &= \gamma_{yz/yz} \\[8pt]
+                            \varepsilon_{zz/xx} + \varepsilon_{xx/zz} &= \gamma_{zx/zx} \\[8pt]
+                            2 \varepsilon_{xx/yz} &= \gamma_{xy/xz} + \gamma_{xz/xy} - \gamma_{yz/xx} \\[8pt]
+                            2 \varepsilon_{yy/zx} &= \gamma_{yz/yx} + \gamma_{yx/yz} - \gamma_{zx/yy} \\[8pt]
+                            2 \varepsilon_{zz/xy} &= \gamma_{zx/zy} + \gamma_{zy/zx} - \gamma_{xy/zz}
+                            \end{aligned}
+                            \]
+                        </div>
+                        
+                        <p>In elasticity it is sometimes useful to solve the problems by using the compatibility equation (which are a set of relations among \(\varepsilon_{ik}\)) instead of imposing:</p>
+                        \[
+                        \varepsilon_{ik} = \frac{1}{2} \left( u_{i/k} + u_{k/i} \right)
+                        \]
+                        <p>(which involves, contemporarily, the strain components and the displacement field components)</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Remarks on Domain Connectivity</h3>
+                        <ol>
+                            <li>For <strong>simply connected domains</strong>, the compatibility equations are equivalent to \(\varepsilon_{ik}\), and represent a sufficient condition for a compatible solution</li>
+                            <li>For <strong>multiply connected domains</strong>, the compatibility conditions are NOT sufficient</li>
+                        </ol>
+                        
+                        <p>This can be easily understood by considering a domain as reported in the figure:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/domain_with_cut_circular.png" alt="Domain with cut showing circular region with inner hole">
+                            <figcaption>Figure 5: Domain with cut - simply connected</figcaption>
+                        </figure>
+                        
+                        <p>Due to the presence of the cut the domain is simply connected ⇒ compatibility equations are a sufficient condition. Assume they are satisfied.</p>
+                        
+                        <p>In correspondence of the cut the displacements will not, in general, be continuous.</p>
+                        
+                        <p><strong>Remove now the cut:</strong></p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/domain_after_cut_removal.png" alt="Domain after cut removal showing circular region with hole">
+                            <figcaption>Figure 6: Domain after cut removal - multiply connected</figcaption>
+                        </figure>
+                        
+                        <p>The previous displacement field still satisfies the compatibility equations. However, the discontinuities of displacement in correspondence of the previously cut region are now not acceptable if compatibility has to be guaranteed.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 3: Constitutive Laws -->
+            <section class="section" id="constitutive-laws">
+                <div class="section-header">
+                    <h2>Constitutive Laws</h2>
+                </div>
+                
+                <div class="section-content">
+                    <p>We consider now different material models that will be adopted throughout the course.</p>
+                    
+                    <!-- 3.1 Elastic Material -->
+                    <div class="subsection">
+                        <h3>1. Elastic Material</h3>
+                        <p>A first model of interest is given by the class of elastic materials.</p>
+                        
+                        <p>The assumption of elasticity means that the response is <strong>reversible</strong> although not necessarily linear.</p>
+                        
+                        <p>The constitutive law will be generically expressed as:</p>
+                        <div class="boxed-equation">
+                            \[
+                            \underline{\underline{\sigma}} = \underline{\underline{\sigma}}\left(\underline{\underline{\varepsilon}}\right) \quad \text{or} \quad \sigma_{ik} = \sigma_{ik}\left(\varepsilon_{ik}\right)
+                            \]
+                        </div>
+                        
+                        <p>For instance, an elastic response could be the one reported below:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/elastic_stress_strain_curve.png" alt="Stress-strain curve for elastic material showing loading and unloading phases">
+                            <figcaption>Figure 7: Elastic material stress-strain curve - loading and unloading follow the same path</figcaption>
+                        </figure>
+                        
+                        <p>The loading and unloading phases are directed along the same path.</p>
+                        
+                        <p>For a space application, this response could be the one associated with a foam core of a sandwich panel.</p>
+                    </div>
+                    
+                    <!-- 3.2 Linear Elastic Material -->
+                    <div class="subsection">
+                        <h3>2. Linear Elastic Material</h3>
+                        <p>With respect to the previous case it adds the assumption of <strong>linearity</strong>.</p>
+                        
+                        <p>This is the case for the <strong>generalized Hooke's law</strong>:</p>
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{\underline{\underline{\sigma}} = \underline{\underline{\underline{\underline{C}}}} \; \underline{\underline{\varepsilon}} \quad \text{or} \quad \sigma_{ik} = C_{ikrs} \; \varepsilon_{rs}}
+                            \]
+                        </div>
+                        
+                        <p>The material response is thus reversible and linear.</p>
+                        
+                        <div class="note">
+                            <span class="note-label">Note:</span> In this case the only conditions of symmetry are dictated by the symmetry of the tensors \(\underline{\underline{\sigma}}\) and \(\underline{\underline{\varepsilon}}\).
+                            <p>This means that:</p>
+                            \[
+                            \sigma_{ik} = \sigma_{ki} \qquad \varepsilon_{rs} = \varepsilon_{sr}
+                            \]
+                            \[
+                            \Rightarrow C_{ikrs} = C_{kirs} = C_{iksr} = C_{kisr}
+                            \]
+                        </div>
+                    </div>
+                    
+                    <!-- 3.3 Hyperelastic Material -->
+                    <div class="subsection">
+                        <h3>3. Hyperelastic Material</h3>
+                        <p>A hyperelastic material is based on the assumption of existence of a <strong>strain energy function</strong> or, to a more general extent, of a <strong>potential function</strong>.</p>
+                        
+                        <p>It was obtained that:</p>
+                        \[
+                        \underline{\underline{S}} = \frac{1}{\rho_o} \Psi_{/\underline{\underline{\varepsilon}}} \quad \text{with} \quad \Psi = E - TS
+                        \]
+                        <p>where \(\Psi\) is the Helmholtz free energy.</p>
+                        
+                        <p>For an elastic solid the internal energy is elastic energy only, which is generically denoted as \(u\), so:</p>
+                        \[
+                        u = \rho E = \rho e \quad \Rightarrow \quad \Psi = E - TS
+                        \]
+                        \[
+                        \rho \Psi = \rho E - \rho TS
+                        \]
+                        \[
+                        \rho \Psi = u - \rho TS
+                        \]
+                        <p>(Note: the distinction between Lagrangian and Eulerian is now removed)</p>
+                        
+                        <p>Consider the elastic response and neglect the thermal contribution:</p>
+                        \[
+                        \rho \Psi = u \quad \text{or} \quad \Psi = \frac{1}{\rho} u
+                        \]
+                        
+                        <p>Recalling the thermodynamic definition of the stresses:</p>
+                        \[
+                        \underline{\underline{S}} = \rho_o \; \Psi_{/\underline{\underline{\varepsilon}}} \quad \rightsquigarrow \quad \underline{\underline{\sigma}} = \rho \; \Psi_{/\underline{\underline{\varepsilon}}}
+                        \]
+                        
+                        <p>It follows that:</p>
+                        \[
+                        \underline{\underline{\sigma}} = \frac{1}{\rho} \frac{\partial}{\partial \underline{\underline{\varepsilon}}} \left( \rho u \right) = u_{/\underline{\underline{\varepsilon}}}
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{\underline{\underline{\sigma}} = u_{/\underline{\underline{\varepsilon}}}}
+                            \]
+                        </div>
+                        
+                        <h4>Understanding the Physical Meaning</h4>
+                        <p>Compute the elastic work to move from \(\varepsilon_1\) to \(\varepsilon_2\):</p>
+                        \[
+                        W_i = \int_{\varepsilon_1}^{\varepsilon_2} \sigma(\varepsilon) \; d\varepsilon
+                        \]
+                        
+                        <p>If a potential function exists, then:</p>
+                        \[
+                        W_i = \int_{\varepsilon_1}^{\varepsilon_2} \sigma(\varepsilon) \; d\varepsilon = \int_{\varepsilon_1}^{\varepsilon_2} u_{/\varepsilon} \; d\varepsilon = u(\varepsilon_2) - u(\varepsilon_1)
+                        \]
+                        
+                        <div class="note">
+                            <span class="note-label">Key Result:</span> The elastic work, thus the energy of deformation, depends on the initial & final values of the deformation. It is independent on the path from \(\varepsilon_1\) to \(\varepsilon_2\).
+                        </div>
+                        
+                        <p>Clearly the reversibility of the process, i.e., the fact that the material is elastic, is a consequence of this. Indeed:</p>
+                        <ul>
+                            <li>from \(\varepsilon_1\) to \(\varepsilon_2\): \(W_i = u(\varepsilon_2) - u(\varepsilon_1)\)</li>
+                            <li>from \(\varepsilon_2\) to \(\varepsilon_1\): \(u(\varepsilon_1) - u(\varepsilon_2)\)</li>
+                            <li>Total: \(= 0\)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 3.4 Hyperelastic Linear Material -->
+                    <div class="subsection">
+                        <h3>4. Hyperelastic Linear Material</h3>
+                        <p>This is the kind of material that we will generally assume. This is a good approximation for several materials of aerospace interest.</p>
+                        
+                        <p>As implicit in the definition, this material model is:</p>
+                        <ol>
+                            <li>Hyperelastic</li>
+                            <li>Characterized by a linear constitutive law</li>
+                        </ol>
+                        
+                        <p>It follows that:</p>
+                        <div class="important-result">
+                            \[
+                            \boxed{\underline{\underline{\sigma}} = u_{/\underline{\underline{\varepsilon}}} = \underline{\underline{\underline{\underline{C}}}} \; \underline{\underline{\varepsilon}} \quad \text{or} \quad \sigma_{ik} = u_{/\varepsilon_{ik}} = C_{ikrs} \; \varepsilon_{rs}}
+                            \]
+                        </div>
+                        
+                        <div class="note">
+                            <span class="note-label">Note:</span> This is different from the case of linear elastic materials, as the existence of a potential function is now implied.
+                        </div>
+                        
+                        <h4>Symmetries of the Elastic Tensor</h4>
+                        <p>The elastic tensor \(\underline{\underline{\underline{\underline{C}}}}\), which is a 4th order tensor, is characterized by a number of symmetries, i.e., not all the \(3^4\) components are independent of each other.</p>
+                        
+                        <p><strong>a. Total number of components:</strong> 81</p>
+                        <p>\(C_{ikrs}\) with \(i, k, r, s = 1, 2, 3\)</p>
+                        
+                        <p><strong>b. Symmetry of \(\underline{\underline{\sigma}}\):</strong></p>
+                        \[
+                        \sigma_{ik} = C_{ikrs} \; \varepsilon_{rs} \qquad \sigma_{ki} = C_{kirs} \; \varepsilon_{rs}
+                        \]
+                        \[
+                        \Rightarrow \boxed{C_{ikrs} = C_{kirs}}
+                        \]
+                        <p>6 independent couples of \(ik\), giving \(6 \times 3 \times 3 = 54\) independent terms</p>
+                        
+                        <p><strong>c. Symmetry of \(\underline{\underline{\varepsilon}}\):</strong></p>
+                        \[
+                        \sigma_{ik} = C_{ikrs} \; \varepsilon_{rs} = C_{iksr} \; \varepsilon_{sr}
+                        \]
+                        \[
+                        \Rightarrow \boxed{C_{ikrs} = C_{iksr}}
+                        \]
+                        <p>This reduces to \(6 \times 6 = 36\) independent terms</p>
+                        
+                        <p><strong>d. Hyperelasticity assumption:</strong></p>
+                        \[
+                        \sigma_{ik} = u_{/\varepsilon_{ik}} \quad \text{but} \quad \sigma_{ik} = C_{ikrs} \; \varepsilon_{rs}
+                        \]
+                        <p>So:</p>
+                        \[
+                        \frac{\partial \sigma_{ik}}{\partial \varepsilon_{rs}} = C_{ikrs} \quad \Rightarrow \quad \boxed{C_{ikrs} = \frac{\partial^2 u}{\partial \varepsilon_{ik} \partial \varepsilon_{rs}}}
+                        \]
+                        
+                        <p>As the order of derivation does not affect the result:</p>
+                        \[
+                        C_{ikrs} = \frac{\partial^2 u}{\partial \varepsilon_{ik} \partial \varepsilon_{rs}} = \frac{\partial^2 u}{\partial \varepsilon_{rs} \partial \varepsilon_{ik}} = C_{rsik}
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{C_{ikrs} = C_{rsik}}
+                            \]
+                            <p>From the 36 independent components, the number reduces to <strong>21</strong> for a hyperelastic material</p>
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Small_displacements/hyperelastic_component_reduction_matrices.png" alt="Matrices showing component relationships for non-hyperelastic (36 components) and hyperelastic (21 components) materials">
+                            <figcaption>Figure 8: Reduction of independent components from 36 (non-hyperelastic) to 21 (hyperelastic)</figcaption>
+                        </figure>
+                        
+                        <h4>Isotropic Hyperelastic Material</h4>
+                        <p>In the special case of <strong>isotropic hyperelastic material</strong>, the number of independent constants <strong>reduces to 2</strong>.</p>
+                        
+                        <p>These can be taken as:</p>
+                        <ul>
+                            <li>Engineering constants: \(E, \nu\)</li>
+                            <li>Lamé parameters: \(\lambda, \mu\)</li>
+                        </ul>
+                        
+                        <p>The assumption of isotropy implies that the components of the constitutive law are independent on the reference system which is used for expressing the components of \(\underline{\underline{\varepsilon}}\) and \(\underline{\underline{\sigma}}\).</p>
+                        
+                        <p>It follows that the strain energy should be expressed as function of quantities which are independent on the reference system. The 3 invariants of the deformation are thus suitable candidates for modelling an isotropic material.</p>
+                        
+                        <p>The 3 invariants are:</p>
+                        <ul>
+                            <li>Linear in \(\varepsilon_{ik}\)</li>
+                            <li>Quadratic in \(\varepsilon_{ik}\)</li>
+                            <li>Cubic in \(\varepsilon_{ik}\)</li>
+                        </ul>
+                        
+                        <p>For a linear material the strain energy is quadratic, thus the first two invariants are used ⇒ the number of parameters is two.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 4: Kelvin-Voigt Notation -->
+            <section class="section" id="kelvin-voigt">
+                <div class="section-header">
+                    <h2>Kelvin-Voigt Notation</h2>
+                </div>
+                
+                <div class="section-content">
+                    <p>From the previous discussion, it is clear that a matrix representation of the constitutive law can be an effective way for "organizing" the coefficients of the elastic law.</p>
+                    
+                    <div class="boxed-equation">
+                        <p>\(\underline{\underline{\underline{\underline{C}}}}\) — 4th order tensor → \([C]\) — matrix</p>
+                        <p>\(\underline{\underline{\sigma}}\) — 2nd order tensor → \(\{\sigma\}\) — vector</p>
+                        <p>\(\underline{\underline{\varepsilon}}\) — 2nd order tensor → \(\{\varepsilon\}\) — vector</p>
+                    </div>
+                    
+                    <div class="note">
+                        <span class="note-label">Note:</span> This is a way for organizing the components of \(\underline{\underline{\underline{\underline{C}}}}\), \(\underline{\underline{\sigma}}\) and \(\underline{\underline{\varepsilon}}\). It is important to remark that matrix/vectors are not tensors!
+                    </div>
+                    
+                    <p>According to the so-called Kelvin-Voigt notation, the constitutive law is written as:</p>
+                    \[
+                    \{\sigma\} = [C]\{\varepsilon\}
+                    \]
+                    
+                    <p>where, in general, the components are ordered as follows:</p>
+                    
+                    <div class="matrix-display">
+                        \[
+                        \begin{pmatrix} \sigma_{xx} \\ \sigma_{yy} \\ \sigma_{zz} \\ \sigma_{yz} \\ \sigma_{xz} \\ \sigma_{xy} \end{pmatrix} = \begin{bmatrix} C_{11} & C_{12} & C_{13} & C_{14} & C_{15} & C_{16} \\ & C_{22} & C_{23} & C_{24} & C_{25} & C_{26} \\ & & C_{33} & C_{34} & C_{35} & C_{36} \\ & Sym & & C_{44} & C_{45} & C_{46} \\ & & & & C_{55} & C_{56} \\ & & & & & C_{66} \end{bmatrix} \begin{pmatrix} \varepsilon_{xx} \\ \varepsilon_{yy} \\ \varepsilon_{zz} \\ \gamma_{yz} = 2\varepsilon_{yz} \\ \gamma_{xz} = 2\varepsilon_{xz} \\ \gamma_{xy} = 2\varepsilon_{xy} \end{pmatrix}
+                        \]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Remarks on Tensor Transformation</h3>
+                        <p>According to the Kelvin-Voigt notation, \(\{\sigma\}\) and \(\{\varepsilon\}\) are vectors, while \([C]\) is a matrix. However, the tensorial nature of these entities should be taken into account whenever, for instance, they need to be rotated from one reference system to another:</p>
+                        
+                        <ol>
+                            <li>\(\{\sigma\}\) does <strong>not</strong> rotate as a vector — The rotation of \(\underline{\underline{\sigma}}\) implies the rotation of a 2nd order tensor</li>
+                            <li>\([C]\) does <strong>not</strong> rotate as a second order tensor — The rotation of \([C]\) implies the rotation of a 4th order tensor</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Strain Energy in Kelvin-Voigt Notation</h3>
+                        <p>According to the Kelvin-Voigt notation, the strain energy reads:</p>
+                        \[
+                        u = \frac{1}{2} \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} = \frac{1}{2} \{\sigma\}^T \{\varepsilon\} = \frac{1}{2} \{\varepsilon\}^T \{\sigma\}
+                        \]
+                        \[
+                        = \frac{1}{2} \{\varepsilon\}^T [C] \{\varepsilon\}
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{u = \frac{1}{2} \underline{\underline{\varepsilon}} : \underline{\underline{\underline{\underline{C}}}} : \underline{\underline{\varepsilon}} = \frac{1}{2} \{\varepsilon\}^T [C] \{\varepsilon\}}
+                            \]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Extension to Thermoelastic Constitutive Law</h3>
+                        <p>Everything can be extended to the case of a thermoelastic constitutive law.</p>
+                        
+                        <p>In that case:</p>
+                        \[
+                        \Psi = \Psi\left(\underline{\underline{\varepsilon}}, T\right)
+                        \]
+                        
+                        \[
+                        \rho \Psi = \frac{1}{2} \underline{\underline{\varepsilon}} : \underline{\underline{\underline{\underline{C}}}} : \underline{\underline{\varepsilon}} - \underline{\underline{\beta}} : \underline{\underline{\varepsilon}} \; \Delta T - \frac{\rho c_v}{2 T_o} \Delta T^2
+                        \]
+                        
+                        <p>from which:</p>
+                        <div class="important-result">
+                            \[
+                            \boxed{\underline{\underline{\sigma}} = \rho \; \Psi_{/\underline{\underline{\varepsilon}}} = \underline{\underline{\underline{\underline{C}}}} : \underline{\underline{\varepsilon}} - \underline{\underline{\beta}} \; \Delta T}
+                            \]
+                        </div>
+                        
+                        <p>Referring to the Kelvin-Voigt notation:</p>
+                        \[
+                        \rho \Psi = \frac{1}{2} \{\varepsilon\}^T [C] \{\varepsilon\} - \{\varepsilon\}^T \{\beta\} \; \Delta T - \frac{\rho c_v}{2 T_o} \Delta T^2
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{\{\sigma\} = [C] \{\varepsilon\} - \{\beta\} \Delta T}
+                            \]
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 5: Complementary Energy -->
+            <section class="section" id="complementary-energy">
+                <div class="section-header">
+                    <h2>Complementary Energy</h2>
+                </div>
+                
+                <div class="section-content">
+                    <p>The strain energy has been introduced as:</p>
+                    \[
+                    u = \frac{1}{2} \underline{\underline{\varepsilon}} : \underline{\underline{\underline{\underline{C}}}} : \underline{\underline{\varepsilon}}
+                    \]
+                    <p>meaning that \(u = u\left(\underline{\underline{\varepsilon}}\right)\) and \(\underline{\underline{\sigma}} = \underline{\underline{\sigma}}\left(\underline{\underline{\varepsilon}}\right)\)</p>
+                    
+                    <p>Similarly, the <strong>complementary strain energy</strong> can be introduced as:</p>
+                    \[
+                    u^* = u^*\left(\underline{\underline{\sigma}}\right) \quad \text{with} \quad \underline{\underline{\varepsilon}} = \underline{\underline{\varepsilon}}\left(\underline{\underline{\sigma}}\right)
+                    \]
+                    
+                    <p>A simple graphical representation is given for the 1-D case:</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C1_2_Small_displacements/strain_energy_complementary_energy_graphs.png" alt="Two stress-strain graphs showing strain energy and complementary strain energy">
+                        <figcaption>Figure 9: Strain energy (left) with \(du = \sigma \, d\varepsilon\) and Complementary strain energy (right) with \(du^* = \varepsilon \, d\sigma\)</figcaption>
+                    </figure>
+                    
+                    <p>Clearly in the linear case \(u = u^*\). However, they are conceptually different.</p>
+                    
+                    <div class="two-column">
+                        <div class="column">
+                            <h4>Strain Energy</h4>
+                            \[
+                            \underline{\underline{\sigma}} = \underline{\underline{\sigma}}\left(\underline{\underline{\varepsilon}}\right)
+                            \]
+                            \[
+                            u = u\left(\underline{\underline{\varepsilon}}\right)
+                            \]
+                            \[
+                            u = \int_0^{\varepsilon_{ik}} \sigma_{ik} \; d\varepsilon_{ik}
+                            \]
+                            \[
+                            \underline{\underline{\sigma}} = u_{/\underline{\underline{\varepsilon}}}
+                            \]
+                            \[
+                            \underline{\underline{\underline{\underline{C}}}} = u_{/\underline{\underline{\varepsilon}}\underline{\underline{\varepsilon}}}
+                            \]
+                        </div>
+                        <div class="column">
+                            <h4>Complementary Energy</h4>
+                            \[
+                            \underline{\underline{\varepsilon}} = \underline{\underline{\varepsilon}}\left(\underline{\underline{\sigma}}\right)
+                            \]
+                            \[
+                            u^* = u^*\left(\underline{\underline{\sigma}}\right)
+                            \]
+                            \[
+                            u^* = \int_0^{\sigma_{ik}} \varepsilon_{ik} \; d\sigma_{ik}
+                            \]
+                            \[
+                            \underline{\underline{\varepsilon}} = u^*_{/\underline{\underline{\sigma}}}
+                            \]
+                            \[
+                            \underline{\underline{\underline{\underline{S}}}} = \underline{\underline{\underline{\underline{C}}}}^{-1} = u^*_{/\underline{\underline{\sigma}}\underline{\underline{\sigma}}}
+                            \]
+                        </div>
+                    </div>
+                    
+                    <div class="two-column">
+                        <div class="column">
+                            \[
+                            u = \frac{1}{2} \underline{\underline{\varepsilon}} : \underline{\underline{\underline{\underline{C}}}} : \underline{\underline{\varepsilon}}
+                            \]
+                            \[
+                            = \frac{1}{2} \{\varepsilon\}^T [C] \{\varepsilon\}
+                            \]
+                        </div>
+                        <div class="column">
+                            \[
+                            u^* = \frac{1}{2} \underline{\underline{\sigma}} : \underline{\underline{\underline{\underline{S}}}} : \underline{\underline{\sigma}}
+                            \]
+                            \[
+                            = \frac{1}{2} \{\sigma\}^T [S] \{\sigma\}
+                            \]
+                        </div>
+                    </div>
+                    
+                    <p>From a mathematical point of view, \(u^*\) is the <strong>Legendre transform</strong> of \(u\).</p>
+                </div>
+            </section>
+            
+            <!-- SECTION 6: Legendre Transform -->
+            <section class="section" id="legendre-transform">
+                <div class="section-header">
+                    <h2>A Few Words on the Legendre Transform</h2>
+                </div>
+                
+                <div class="section-content">
+                    <p>Consider a function \(f\):</p>
+                    \[
+                    f = f(x, \varepsilon) \quad \text{such that} \quad f_{/\varepsilon} = \sigma
+                    \]
+                    
+                    <p><strong>Goal:</strong> build-up a function \(g = g(x, \sigma)\) such that \(g_{/\sigma} = \varepsilon\)</p>
+                    
+                    <p>The variables \(\varepsilon\) and \(\sigma\) are said to be <strong>conjugate</strong>.</p>
+                    
+                    <div class="subsection">
+                        <h3>Constructing g</h3>
+                        <p>The function \(g\) is the Legendre transform of \(f\).</p>
+                        
+                        \[
+                        f = f(x, \varepsilon) \quad \Rightarrow \quad df = f_{/x} \, dx + f_{/\varepsilon} \, d\varepsilon
+                        \]
+                        \[
+                        = p \, dx + \sigma \, d\varepsilon
+                        \]
+                        
+                        <p>with \(p = f_{/x}\) (this is just a name to identify \(f_{/x}\))</p>
+                        
+                        <p>Assume now that \(g\) can be constructed according to this definition:</p>
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{g = \sigma \varepsilon - f}
+                            \]
+                            <p>↑ Conjugate variables &nbsp;&nbsp;&nbsp;&nbsp; ↑ Function to be transformed</p>
+                        </div>
+                        
+                        <p>It follows that:</p>
+                        \[
+                        dg = d(\sigma \varepsilon - f) = \sigma \, d\varepsilon + \varepsilon \, d\sigma - df
+                        \]
+                        \[
+                        = \sigma \, d\varepsilon + \varepsilon \, d\sigma - p \, dx - \sigma \, d\varepsilon
+                        \]
+                        \[
+                        = \varepsilon \, d\sigma - p \, dx
+                        \]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Properties of g</h3>
+                        <p>Since \(dg = \varepsilon \, d\sigma - p \, dx\):</p>
+                        
+                        <ol>
+                            <li>The function \(g\) is a function of \(\sigma\) and \(x\):
+                            \[
+                            g = g(\sigma, x)
+                            \]
+                            </li>
+                            <li>\(\displaystyle\frac{dg}{d\sigma} = \varepsilon\) or \(g_{/\sigma} = \varepsilon\) — as initially required</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Complementary Energy as the Legendre Transform of the Strain Energy</h3>
+                        
+                        <p>Given:</p>
+                        \[
+                        u = u\left(\underline{\underline{\varepsilon}}\right) \quad \text{and} \quad u_{/\underline{\underline{\varepsilon}}} = \underline{\underline{\sigma}}
+                        \]
+                        
+                        <p>The complementary strain energy is:</p>
+                        \[
+                        u^* = u^*\left(\underline{\underline{\sigma}}\right) \quad \text{and} \quad u^*_{/\underline{\underline{\sigma}}} = \underline{\underline{\varepsilon}}
+                        \]
+                        
+                        <p>Apply the Legendre transform to \(u\):</p>
+                        \[
+                        u^* = \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} - u
+                        \]
+                        
+                        <p>where:</p>
+                        \[
+                        du = u_{/\underline{\underline{\varepsilon}}} : d\underline{\underline{\varepsilon}} = \underline{\underline{\sigma}} : d\underline{\underline{\varepsilon}}
+                        \]
+                        
+                        <p>Computing the differential:</p>
+                        \[
+                        du^* = d\left(\underline{\underline{\sigma}} : \underline{\underline{\varepsilon}}\right) - du
+                        \]
+                        \[
+                        = d\underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} + \underline{\underline{\sigma}} : d\underline{\underline{\varepsilon}} - du
+                        \]
+                        \[
+                        = d\underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} + \underline{\underline{\sigma}} : d\underline{\underline{\varepsilon}} - \underline{\underline{\sigma}} : d\underline{\underline{\varepsilon}}
+                        \]
+                        \[
+                        = \underline{\underline{\varepsilon}} : d\underline{\underline{\sigma}} \quad \Rightarrow \quad u^* = u^*\left(\underline{\underline{\sigma}}\right)
+                        \]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Verification</h3>
+                        <p>Furthermore it can be verified that \(u^*_{/\underline{\underline{\sigma}}} = \underline{\underline{\varepsilon}}\). Indeed:</p>
+                        
+                        \[
+                        u^*_{/\underline{\underline{\sigma}}} = \left(\underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} - u\right)_{/\underline{\underline{\sigma}}}
+                        \]
+                        \[
+                        = \underline{\underline{\mathbb{I}}} : \underline{\underline{\varepsilon}} + \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}}_{/\underline{\underline{\sigma}}} - u_{/\underline{\underline{\sigma}}}
+                        \]
+                        \[
+                        = \underline{\underline{\varepsilon}} + \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}}_{/\underline{\underline{\sigma}}} - u_{/\underline{\underline{\varepsilon}}} : \underline{\underline{\varepsilon}}_{/\underline{\underline{\sigma}}}
+                        \]
+                        \[
+                        = \underline{\underline{\varepsilon}} + \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}}_{/\underline{\underline{\sigma}}} - \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}}_{/\underline{\underline{\sigma}}}
+                        \]
+                        \[
+                        = \underline{\underline{\varepsilon}}
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{u^*_{/\underline{\underline{\sigma}}} = \underline{\underline{\varepsilon}}}
+                            \]
+                        </div>
+                        
+                        <div class="note">
+                            <span class="note-label">Note:</span> \(\underline{\underline{\underline{\underline{\mathbb{I}}}}}\) is the fourth order identity defined as:
+                            \[
+                            \underline{\underline{A}} : \underline{\underline{\underline{\underline{\mathbb{I}}}}} = \underline{\underline{\underline{\underline{\mathbb{I}}}}} : \underline{\underline{A}} = \underline{\underline{A}}
+                            \]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Explicit Expression for u*</h3>
+                        <p>If the expression of \(u^*\) is sought, it is easy to obtain it as:</p>
+                        
+                        \[
+                        u^* = \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} - u
+                        \]
+                        \[
+                        = \underline{\underline{\sigma}} : \underline{\underline{\underline{\underline{S}}}} : \underline{\underline{\sigma}} - \frac{1}{2} \underline{\underline{\varepsilon}} : \underline{\underline{\underline{\underline{C}}}} : \underline{\underline{\varepsilon}}
+                        \]
+                        \[
+                        = \underline{\underline{\sigma}} : \underline{\underline{\underline{\underline{S}}}} : \underline{\underline{\sigma}} - \frac{1}{2} \underline{\underline{\sigma}} : \underline{\underline{\underline{\underline{S}}}} : \underline{\underline{\sigma}}
+                        \]
+                        
+                        <div class="important-result">
+                            \[
+                            \boxed{u^* = \frac{1}{2} \underline{\underline{\sigma}} : \underline{\underline{\underline{\underline{S}}}} : \underline{\underline{\sigma}}}
+                            \]
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+        
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: #666;">
+            <p>Lecture Notes on Elasticity Theory — Small Displacements and Constitutive Laws</p>
+        </footer>
+    </article>
+</body>
+</html>

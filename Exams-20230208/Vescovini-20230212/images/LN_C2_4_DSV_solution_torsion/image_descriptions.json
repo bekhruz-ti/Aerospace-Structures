@@ -1,0 +1,90 @@
+{
+  "torsional_beam_coordinate_system.png": {
+    "suggested_name": "torsional_beam_coordinate_system",
+    "description": "Cylindrical beam showing torsional loading with moment Mz applied at ends and coordinate system with x, y, z axes"
+  },
+  "beam_cross_section_rotation.png": {
+    "suggested_name": "beam_cross_section_rotation",
+    "description": "Beam cross-section showing rotation angle theta and coordinate system for torsional displacement analysis"
+  },
+  "beam_warping_deformation.png": {
+    "suggested_name": "beam_warping_deformation",
+    "description": "Two views of beam showing warping behavior before and after deformation with moment Mz in yz plane"
+  },
+  "circular_section_shear_stress.png": {
+    "suggested_name": "circular_section_shear_stress",
+    "description": "Circular cross-section showing shear stress components at point P with angle theta and coordinate system"
+  },
+  "section_profiles_shear_flow.png": {
+    "suggested_name": "section_profiles_shear_flow",
+    "description": "Three rectangular cross-sections showing internal moment Mz and shear flow patterns for open and closed sections"
+  },
+  "open_closed_section_comparison.png": {
+    "suggested_name": "open_closed_section_comparison",
+    "description": "Three cross-sectional profiles showing shear flow direction with arrows for open and closed sections under torsion"
+  },
+  "rectangular_sections_shear_arms.png": {
+    "suggested_name": "rectangular_sections_shear_arms",
+    "description": "Two rectangular cross-sections showing shear flow patterns and arm dimensions for open and closed profiles"
+  },
+  "generic_section_boundary_integration.png": {
+    "suggested_name": "generic_section_boundary_integration",
+    "description": "Generic cross-section with boundary regions showing integration area and shear flow analysis"
+  },
+  "open_section_flow_direction.png": {
+    "suggested_name": "open_section_flow_direction",
+    "description": "Open rectangular section showing directional arrows for shear stress flow analysis"
+  },
+  "narrow_strip_torsion.png": {
+    "suggested_name": "narrow_strip_torsion",
+    "description": "Narrow strip beam subjected to torsional moment Mz showing qualitative shear flow analysis"
+  },
+  "rectangular_beam_shear_distribution.png": {
+    "suggested_name": "rectangular_beam_shear_distribution",
+    "description": "Rectangular beam cross-section showing shear stress distribution along thickness with vertical flow at ends"
+  },
+  "variable_thickness_beam.png": {
+    "suggested_name": "variable_thickness_beam",
+    "description": "Variable thickness beam cross-section showing thickness function b(x) along length a"
+  },
+  "beam_section_stress_distribution.png": {
+    "suggested_name": "beam_section_stress_distribution",
+    "description": "Rectangular beam section showing shear stress distribution with dimension labels"
+  },
+  "narrow_strips_assembly.png": {
+    "suggested_name": "narrow_strips_assembly",
+    "description": "Assembly of narrow strips showing generic open section shapes analyzed as combination of rectangular elements"
+  },
+  "curved_beam_torsion_problem.png": {
+    "suggested_name": "curved_beam_torsion_problem",
+    "description": "Curved beam structure with torsional moment Mz showing SAE section and length dimensions"
+  },
+  "wing_profile_variable_thickness.png": {
+    "suggested_name": "wing_profile_variable_thickness",
+    "description": "Wing profile cross-section with variable thickness showing parabolic shape function b(x)"
+  },
+  "c_channel_torsion.png": {
+    "suggested_name": "c_channel_torsion",
+    "description": "C-channel cross-section with dimensions showing torsional moment Mz application"
+  },
+  "elliptical_closed_section.png": {
+    "suggested_name": "elliptical_closed_section",
+    "description": "Closed thin-walled elliptical cross-section showing torsional moment Mz and qualitative shear flow behavior"
+  },
+  "elliptical_section_flow_paths.png": {
+    "suggested_name": "elliptical_section_flow_paths",
+    "description": "Closed elliptical section showing boundary regions and shear flow integration paths with moment Mz"
+  },
+  "generic_closed_section_midline.png": {
+    "suggested_name": "generic_closed_section_midline",
+    "description": "Generic closed cross-section showing shear flow q tangent to midline with radius function r(s) from pole O"
+  },
+  "bredt_formula_geometry.png": {
+    "suggested_name": "bredt_formula_geometry",
+    "description": "Closed section showing triangular element with radius r(s) and area calculation for Bredt formula derivation"
+  },
+  "circular_tubes_open_closed.png": {
+    "suggested_name": "circular_tubes_open_closed",
+    "description": "Two circular tubes with thickness t and diameter D showing open and closed configurations for torsional comparison"
+  }
+}

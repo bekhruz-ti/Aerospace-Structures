@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semi-Monocoque Beam Approximation - Shear Flow Analysis</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 20px 30px;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 30px;
+            background: white;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .subsection h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .subsection h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 15px 0 10px 0;
+        }
+
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+
+        .equation-box {
+            background: #edf2f7;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .important-box {
+            background: #fef5e7;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #d69e2e;
+        }
+
+        .definition-box {
+            background: #e6fffa;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #319795;
+        }
+
+        .remark-box {
+            background: #fff5f5;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #c53030;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .procedure-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .procedure-steps li {
+            counter-increment: step-counter;
+            padding: 15px 15px 15px 50px;
+            margin: 10px 0;
+            background: var(--bg-light);
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .procedure-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary-color);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        th {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .example-box {
+            background: var(--bg-solution);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border: 2px solid var(--accent-color);
+        }
+
+        .example-box h4 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .final-result {
+            background: #c6f6d5;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-content {
+                padding: 20px;
+            }
+
+            .subsection {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Semi-Monocoque Beam Approximation</h1>
+            <p class="subtitle">Shear Flow Analysis of Thin-Walled Aerospace Structures</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>1. Introduction to Semi-Monocoque Approximation</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>1.1 Background</h3>
+                        <p>The solution obtained for the direct stress component \(\sigma_{zz}\) is an exact and closed-form result that can be applied independently on the beam section shape.</p>
+                        
+                        <p>Contrarily, the evaluation of the shear stress components \(\sigma_{xz}\) and \(\sigma_{yz}\) (which are not null whenever the shear and/or torsion internal action is different from zero) is generally a more complex task to be accomplished. In this sense, the analogy with fluid motion allowed to gather insight into the qualitative description of the distribution of the shear flows.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/shear_stress_distribution_cross_sections.png" alt="Shear stress distribution in I-beam and closed sections">
+                            <figcaption>Figure 1.1: Shear stress distribution patterns - Left: I-beam with shear flow; Right: Closed elliptical section with torsion \(H_z\)</figcaption>
+                        </figure>
+                        
+                        <p>The qualitative description of the stress distribution was then used as a basis for developing approximate solutions for:</p>
+                        <ol type="a">
+                            <li>Torsion of thin open profiles</li>
+                            <li>Torsion of closed, single cell thin profiles</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>1.2 Extension to Aerospace Applications</h3>
+                        <p>It is now necessary to extend the range of applications, with regard to typical aerospace thin-walled constructions, and derive approximate solutions for:</p>
+                        <ol type="a">
+                            <li>Torsion of thin walled single/multi cell section</li>
+                            <li>Shear of thin walled single/multi cell section</li>
+                        </ol>
+                        
+                        <p>The typical application can be imagined as a multi-cell stringer-stiffened beam section:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/multicell_beam_section_with_stringer.png" alt="Multi-cell stringer-stiffened beam section">
+                            <figcaption>Figure 1.2: Multi-cell beam section showing spar cap, shear web, and stringer elements with internal moment \(M_z\) and torque \(T\)</figcaption>
+                        </figure>
+                        
+                        <p>The stress \(\sigma_{zz}\) is obtained as:</p>
+                        <div class="equation-box">
+                            \[\sigma_{zz} = \frac{T_z}{A} + \frac{M_x}{J_{xx}} y - \frac{M_y}{J_{yy}} x\]
+                        </div>
+                        <p>where \(M_x\) and \(M_y\) depend linearly on the applied shear forces.</p>
+                        
+                        <div class="important-box">
+                            <p><strong>Key Point:</strong> The shear stress components will be evaluated in the context of the <strong>semi-monocoque approximation</strong>. With the term "semi-monocoque" it is here intended the approximating technique for evaluating the shear stresses of thin-walled beams.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: The Shear Flow Equation -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>2. The Shear Flow Equation</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>2.1 Derivation from Equilibrium</h3>
+                        <p>The evaluation of the shear flow was introduced in the context of the torsion of single-cell thin-walled beams. However, the effect of shear forces has not been assessed yet.</p>
+                        
+                        <p>Consider a generic thin-walled beam section, subjected to generic internal forces \(T_x\) and \(T_y\) (shearing) and torsional moment \(M_z\).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/thin_walled_beam_internal_forces.png" alt="Thin-walled beam with internal forces">
+                            <figcaption>Figure 2.1: Thin-walled beam cross-section with internal forces \(T_x\), \(T_y\) and torsional moment \(M_z\)</figcaption>
+                        </figure>
+                        
+                        <p>A strategy for obtaining a solution for the shear stress distribution consists in considering the equilibrium equations:</p>
+                        <div class="equation-box">
+                            \[\text{div } \underline{\underline{\sigma}} = \underline{0}\]
+                            \[\begin{cases} \sigma_{xz,z} = 0 \\ \sigma_{yz,z} = 0 \\ \sigma_{xz,x} + \sigma_{yz,y} + \sigma_{zz,z} = 0 \end{cases}\]
+                        </div>
+                        
+                        <p>together with the boundary conditions \(\underline{t} \cdot \underline{n} = 0\) and the equivalence with internal actions:</p>
+                        <div class="equation-box">
+                            \[T_y = \int_A \sigma_{yz} \, dA \quad ; \quad T_x = \int_A \sigma_{xz} \, dA \quad ; \quad M_z = \int_A \left( \sigma_{yz} x - \sigma_{xz} y \right) dA\]
+                        </div>
+                        
+                        <div class="remark-box">
+                            <p><strong>Note:</strong> Compatibility is not accounted for, this constituting a source of approximation in the solution. The solution will be respectful of the equilibrium requirements, but will not guarantee compatibility in the thickness-wise direction.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.2 Development of the Shear Flow Equation</h3>
+                        <p>The first two equations simply state that:</p>
+                        <div class="equation-box">
+                            \[\sigma_{xz} = \sigma_{xz}(x, y) \quad ; \quad \sigma_{yz} = \sigma_{yz}(x, y)\]
+                        </div>
+                        
+                        <p>The third equation is then the one to be solved:</p>
+                        <div class="equation-box">
+                            \[\sigma_{xz,x} + \sigma_{yz,y} = -\sigma_{zz,z}\]
+                        </div>
+                        
+                        <p>Recall the DSV solution for \(\sigma_{zz}\):</p>
+                        <div class="equation-box">
+                            \[\sigma_{zz} = \frac{T_z}{A} + \frac{M_x}{J_{xx}} y - \frac{M_y}{J_{yy}} x\]
+                        </div>
+                        <p>with \(M_x = \overset{\circ}{M}_x + T_y z\) and \(M_y = \overset{\circ}{M}_y - T_x z\)</p>
+                        
+                        <p>It follows that:</p>
+                        <div class="equation-box">
+                            \[\sigma_{zz,z} = \frac{T_y}{J_{xx}} y + \frac{T_x}{J_{yy}} x\]
+                        </div>
+                        
+                        <p>More conveniently, the expression can be written as:</p>
+                        <div class="equation-box">
+                            \[\text{div } \underline{t} = -T_y \frac{y}{J_{xx}} - T_x \frac{x}{J_{yy}}\]
+                        </div>
+                        <p>where \(\underline{t} = \sigma_{xz} \underline{e}_x + \sigma_{yz} \underline{e}_y\)</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.3 Integration Over Arbitrary Region</h3>
+                        <p>Consider an arbitrary region \(A'\) over the beam section \(A\):</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/beam_section_arbitrary_region.png" alt="Beam section with arbitrary region A'">
+                            <figcaption>Figure 2.2: Beam section with arbitrary region \(A'\) for shear flow integration</figcaption>
+                        </figure>
+                        
+                        <p>The equilibrium equation can be integrated over \(A'\):</p>
+                        <div class="equation-box">
+                            \[\int_{A'} \text{div } \underline{t} \, dA' = -\int_{A'} T_y \frac{y}{J_{xx}} \, dA' - \int_{A'} T_x \frac{x}{J_{yy}} \, dA'\]
+                        </div>
+                        
+                        <p>Noting that \(T_x\), \(T_y\), \(J_{xx}\) and \(J_{yy}\) do not depend on \(A'\), they can be taken out of the integral. Applying the divergence theorem:</p>
+                        <div class="equation-box">
+                            \[\int_{\partial A'} \underline{t} \cdot \underline{n} \, d\Gamma = -\frac{T_y}{J_{xx}} \int_{A'} y \, dA' - \frac{T_x}{J_{yy}} \int_{A'} x \, dA' = -T_y \frac{S_x'}{J_{xx}} - T_x \frac{S_y'}{J_{yy}}\]
+                        </div>
+                        
+                        <p>where \(S_x' = \int_{A'} y \, dA'\) and \(S_y' = \int_{A'} x \, dA'\) are the first order moments of inertia of the area \(A'\).</p>
+                        
+                        <p>Recalling that \(\phi = \int_{\partial A'} \underline{t} \cdot \underline{n} \, d\Gamma\) denotes the net flow of shear stresses outflowing from \(A'\):</p>
+                        
+                        <div class="final-result">
+                            <strong>Shear Flow Equation:</strong>
+                            \[\phi = -T_y \frac{S_x'}{J_{xx}} - T_x \frac{S_y'}{J_{yy}}\]
+                        </div>
+                        
+                        <p>An alternative representation is:</p>
+                        <div class="equation-box">
+                            \[\phi = -T_{z,z}'\]
+                        </div>
+                        <p>where \(T_z' = \int_{A'} \sigma_{zz} \, dA'\) is the axial force associated with the portion of area \(A'\).</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.4 Remarks on the Shear Flow Equation</h3>
+                        
+                        <h4>Analogy with Fluid Motion</h4>
+                        <p>The shear flow equation provides a meaningful analogy with fluid motion. Recalling that:</p>
+                        <div class="equation-box">
+                            \[\phi = \oint_{\partial A'} \underline{t} \cdot \underline{n} \, d\Gamma \quad \begin{cases} > 0 & \text{positive outflow (Source)} \\ < 0 & \text{negative outflow (Sink)} \end{cases}\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/i_beam_shear_flow_source_sink.png" alt="I-beam showing source and sink regions">
+                            <figcaption>Figure 2.3: I-beam showing source and sink behavior - Upper region: \(S_x' > 0 \Rightarrow \phi < 0\) (Sink); Lower region: \(S_x' < 0 \Rightarrow \phi > 0\) (Source)</figcaption>
+                        </figure>
+                        
+                        <h4>Special Case: No Shear Forces</h4>
+                        <p>Whenever no shear forces are present, the shear flow equation reduces to:</p>
+                        <div class="equation-box">
+                            \[\phi = 0\]
+                        </div>
+                        <p>which is the result already available for torsion. Note that \(\phi = 0\) means <strong>constant</strong> shear flow (not null!).</p>
+                        
+                        <h4>Equivalence with Internal Forces</h4>
+                        <p>It can be shown that if the shear flow equation is satisfied, the resultant of the shear stresses over the beam section \(A\) is equal to the internal shear forces:</p>
+                        <div class="equation-box">
+                            \[\int_A \sigma_{xz} \, dA = T_x \quad ; \quad \int_A \sigma_{yz} \, dA = T_y\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/internal_forces_moments_3d_diagram.png" alt="3D diagram of internal forces and moments">
+                            <figcaption>Figure 2.4: 3D representation of internal forces and moments with coordinate system</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Constant Shear Flow Assumption -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>3. The Assumption of Constant Shear Flow for Thin Panels</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>3.1 Analysis of I-Section</h3>
+                        <p>Consider a beam characterized by an I section with internal forces in the form of a shear force \(T_y\). Assume that the web is thin (in relation to the typical dimensions of the section).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/i_beam_thin_web_shear_distribution.png" alt="I-beam with thin web shear distribution">
+                            <figcaption>Figure 3.1: I-beam with thin web showing shear stress distribution carried mainly by the web</figcaption>
+                        </figure>
+                        
+                        <p>The distribution of the internal shear flow can be traced by recalling the analogy with fluid motion. It is then clear that:</p>
+                        <ol>
+                            <li>The shear stresses are mainly carried by the web</li>
+                            <li>The two flanges do not contribute to the shear load carrying capabilities of the section, whilst they do contribute to the bending stiffness of the section</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3.2 Shear Flow Distribution</h3>
+                        <p>From the shear flow equation:</p>
+                        <div class="equation-box">
+                            \[\phi = -T_y \frac{S_x'}{J_{xx}}\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/shear_flow_distribution_patterns.png" alt="Constant and quadratic shear flow patterns">
+                            <figcaption>Figure 3.2: Shear flow distribution showing constant (flange) and quadratic (web) contributions</figcaption>
+                        </figure>
+                        
+                        <p>The static moment is:</p>
+                        <div class="equation-box">
+                            \[S_x' = \int_{A'} y \, dA' = S_{x_{flange}} + \int_{-h/2}^{y} \xi \, t \, d\xi = S_{x_{flange}} + \frac{t}{2} \left( y^2 - \frac{h^2}{4} \right)\]
+                        </div>
+                        <p>This has a <strong>constant</strong> term (from the flange) and a <strong>quadratic</strong> term (from the web).</p>
+                        
+                        <p>Whenever the web is thin, the contribution \(S_x'\) is mainly affected by the flange-related part:</p>
+                        <div class="equation-box">
+                            \[S_x' = S_{x_{flange}} + \frac{t}{2} \left( y^2 - \frac{h^2}{4} \right) \approx S_{x_{flange}}\]
+                        </div>
+                        
+                        <p>This means that the static moment \(S_x'\) does not vary as the position along the web is varied, so \(S_{x_1}' \approx S_{x_2}'\), and the shear stress distribution can be approximated as <strong>constant</strong>: \(\phi_1 = \phi_2\).</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3.3 Lumped Area Model</h3>
+                        <p>According to these observations, a natural way of representing the section is:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/lumped_area_beam_model.png" alt="Lumped area beam model">
+                            <figcaption>Figure 3.3: I-beam modeled with concentrated (lumped) areas and shear web with no associated area</figcaption>
+                        </figure>
+                        
+                        <ul>
+                            <li><strong>Concentrated area</strong> (flange + web contribution)</li>
+                            <li><strong>Shear web</strong> (no area) - capable of transferring shear forces only</li>
+                            <li><strong>Concentrated area</strong></li>
+                        </ul>
+                        
+                        <p>In particular:</p>
+                        <ol>
+                            <li>The web is modelled as a line with no associated area, capable of transferring shear forces only</li>
+                            <li>The flanges are modelled as lumped areas where the contribution of the shear web is introduced</li>
+                        </ol>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/constant_shear_flow_approximation.png" alt="Exact vs approximate shear flow">
+                            <figcaption>Figure 3.4: Comparison of exact (dashed) vs approximate (solid) shear flow distribution with lumped area model</figcaption>
+                        </figure>
+                        
+                        <div class="important-box">
+                            <p><strong>Key Result:</strong> Since \(S_{x_1}' = S_{x_2}'\) (the area is only in the lumped areas), then \(\phi_1 = \phi_2\), which means the shear flow over the web is constant.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Semi-Monocoque Scheme Remarks -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>4. Remarks on the Semi-Monocoque Scheme</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>4.1 Application to Wing-Box Structure</h3>
+                        <p>This type of approximation is one of the key ideas of the semi-monocoque scheme. Using the same approach, the following scheme can be applied to a two-cell wing-box structure:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/wing_box_idealization_transformation.png" alt="Wing-box idealization">
+                            <figcaption>Figure 4.1: Two-cell wing-box structure transformation from actual to idealized model with concentrated nodes</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4.2 Key Assumptions</h3>
+                        
+                        <h4>1. Thin Panels</h4>
+                        <p>The panels are assumed to be thin, such that the shear flow can be assumed to be constant. Whenever the panels get thicker, the assumption of constant shear flow becomes stronger. The model could still be used as a preliminary mean to perform calculations, but the evaluation of the appropriateness is the responsibility of the analyst.</p>
+                        
+                        <h4>2. Small Stringers</h4>
+                        <p>The stringers should be characterized by a section which is small in comparison to the dimensions of the section.</p>
+                        
+                        <h4>3. Ribs/Frames Properties</h4>
+                        <p>Ribs/frames are assumed to be <strong>highly (infinitely) stiff</strong> in the in-plane directions, while they are considered <strong>highly compliant</strong> in the out-of-plane direction.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/wing_structure_ribs_3d_view.png" alt="Wing structure with ribs">
+                            <figcaption>Figure 4.2: 3D view of wing structure showing ribs as stiffening elements</figcaption>
+                        </figure>
+                        
+                        <p>The in-plane rigidity is due to the fact that a rib, when loaded in the in-plane direction, works as a membrane with much higher stiffness values compared to bending.</p>
+                        
+                        <p>The out-of-plane flexibility means that the beam sections are not prevented from warping in correspondence of the ribs. This is consistent with the torsion problem where the beam section was assumed free to warp.</p>
+                        
+                        <div class="remark-box">
+                            <p><strong>Note:</strong> Whenever the beam is prevented from warping, different modelling choices are needed (e.g., Vlasov beam model) to account for the stresses \(\sigma_{zz}\) arising from this kind of constraint.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4.3 Lumping Process</h3>
+                        <p>According to the semi-monocoque model, the areas are lumped, thus any stringer is replaced with a concentrated area inclusive of the panel area:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/stringer_lumping_transformation.png" alt="Stringer lumping transformation">
+                            <figcaption>Figure 4.3: Stringer lumping showing transformation with \(\bar{A} = A + bt\)</figcaption>
+                        </figure>
+                        
+                        <p>The model can be refined using "dummy" lumped areas:</p>
+                        <ul>
+                            <li>○ : dummy area (no actual stringer)</li>
+                            <li>● : lumped stringers</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4.4 Panel Stress Reference</h3>
+                        <p>The panels are assumed to be thin, and the thickness is not sketched as the internal shear stress is referred to the panel midline:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/panel_stress_distribution_diagram.png" alt="Panel stress distribution">
+                            <figcaption>Figure 4.4: Panel showing stress reference to midline with \(q = \sigma_{sz} \cdot t = \tau \cdot t\)</figcaption>
+                        </figure>
+                        
+                        <div class="important-box">
+                            <p><strong>Important:</strong> According to the semi-monocoque approximation, a thin panel cannot react a torsional load. The shear flow referred to the midline will be zero, as the integral of the linear distribution is null: \(q = \int_t \sigma_{sz}(n) \, dn = 0\)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4.5 Bending Stiffness Considerations</h3>
+                        <p>When the stringer area is lumped, attention should be paid not to artificially increase the bending stiffness of the section.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/stringer_lumping_comparison.png" alt="Stringer lumping comparison">
+                            <figcaption>Figure 4.5: Comparison of actual stringer shape (distance \(d_1\)) vs lumped representation (distance \(d_2\))</figcaption>
+                        </figure>
+                        
+                        <p>The contribution of the stringer to the second moment of inertia:</p>
+                        <ul>
+                            <li>Actual shape: \(J_{xx} = J_{xx}^{local} + A d_1^2\)</li>
+                            <li>Lumped scheme: \(J_{xx} = A d_2^2\)</li>
+                        </ul>
+                        
+                        <p>Since \(d_2 > d_1\), the process of lumping tends to raise the value of \(J_{xx}\). For this reason:</p>
+                        <div class="equation-box">
+                            \[A_{lumped} = A \frac{d_1^2}{d_2^2}\]
+                        </div>
+                        
+                        <h4>Load Carrying Roles</h4>
+                        <p>Having lumped the areas in the stringers:</p>
+                        <ol type="a">
+                            <li>The normal stress is carried by the lumped stringers</li>
+                            <li>The shear stress is carried by the panels</li>
+                        </ol>
+                        <p>Variations of shear stresses are possible only when crossing lumped areas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Different Kinds of Sections -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>5. Classification of Sections</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>5.1 Section Types</h3>
+                        <p>The sections can be classified as:</p>
+                        <ol>
+                            <li>Open sections</li>
+                            <li>Closed sections (1 cell)</li>
+                            <li>Closed sections (multicell)</li>
+                        </ol>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/section_types_classification.png" alt="Classification of section types">
+                            <figcaption>Figure 5.1: Three types of beam sections - open, single-cell closed, and multi-cell closed</figcaption>
+                        </figure>
+                        
+                        <h4>Nomenclature</h4>
+                        <ul>
+                            <li>\(n\) = number of stringers</li>
+                            <li>\(m\) = number of panels</li>
+                            <li>\(N = m - n + 1\) = number of cells</li>
+                        </ul>
+                        
+                        <table>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Open</th>
+                                <th>1 Cell</th>
+                                <th>Multicell</th>
+                            </tr>
+                            <tr>
+                                <td>\(n\)</td>
+                                <td>4</td>
+                                <td>6</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>\(m\)</td>
+                                <td>3</td>
+                                <td>6</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>\(N\)</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>5.2 Resultant of Flow in a Panel</h3>
+                        <p>It is important to understand how to evaluate the resultants associated with the shear flow acting in a generic panel.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/panel_resultant_flow_diagram.png" alt="Panel resultant flow">
+                            <figcaption>Figure 5.2: Generic curved panel from A to B with shear flow \(q\)</figcaption>
+                        </figure>
+                        
+                        <h4>Resultant Along Direction \(\underline{r}\)</h4>
+                        <p>The contribution due to the infinitesimal portion \(ds\) is:</p>
+                        <div class="equation-box">
+                            \[dR = q \cos \beta \, ds\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/curved_panel_geometry_diagram.png" alt="Curved panel geometry">
+                            <figcaption>Figure 5.3: Geometric relationships for curved panel with \(dr = ds \cos \beta\)</figcaption>
+                        </figure>
+                        
+                        <p>It follows that \(dR = q \cos \beta \, ds = q \, dr\), and the resultant is:</p>
+                        <div class="final-result">
+                            \[R_{\underline{r}} = \int_A^B dR = \int_A^B q \, dr = q \, h_r\]
+                            <p>where \(h_r\) is the projection of the length \(h\) over the direction \(\underline{r}\)</p>
+                        </div>
+                        
+                        <p>As a consequence: \(R_{\underline{r}} = 0\) whenever \(A \equiv B\) (closed curve).</p>
+                        
+                        <h4>Moment with Respect to Point P</h4>
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/moment_calculation_curved_panel.png" alt="Moment calculation for curved panel">
+                            <figcaption>Figure 5.4: Moment calculation showing infinitesimal area \(d\Omega\) and arm distance \(d\)</figcaption>
+                        </figure>
+                        
+                        <p>The infinitesimal moment contribution is:</p>
+                        <div class="equation-box">
+                            \[dM = q \, ds \cdot d = 2q \, d\Omega\]
+                        </div>
+                        
+                        <p>Integrating:</p>
+                        <div class="final-result">
+                            \[M = \int_A^B dM = 2q \int_A^B d\Omega = 2q \, \Omega_{AB}\]
+                            <p>where \(\Omega_{AB}\) is the area \(PAB\)</p>
+                        </div>
+                        
+                        <p>For a closed section (Bredt's formula): \(M = 2q \, \Omega_{cell}\)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Solution of the Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>6. Solution Strategy and Stress Evaluation</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>6.1 Principal Axes</h3>
+                        <p>The solution strategy relies upon the discretization of the section into lumped areas and the application of the shear flow equation. The solution was derived by considering principal axes, which will always be considered during the analysis.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/section_symmetry_principal_axes.png" alt="Section symmetry and principal axes">
+                            <figcaption>Figure 6.1: Sections with principal axes determined from symmetry considerations</figcaption>
+                        </figure>
+                        
+                        <p>Whenever the section does not display any kind of symmetry, the principal axes can be determined as follows:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/asymmetric_section_principal_axes.png" alt="Asymmetric section principal axes">
+                            <figcaption>Figure 6.2: Determination of principal axes for asymmetric section</figcaption>
+                        </figure>
+                        
+                        <ol class="procedure-steps">
+                            <li>Consider a generic reference system \(\bar{x}\bar{y}\)</li>
+                            <li>Evaluate the position of the centroid:
+                                \[x_{CG} = \frac{\Sigma_i A_i \bar{x}_i}{\Sigma_i A_i} \quad ; \quad y_{CG} = \frac{\Sigma_i A_i \bar{y}_i}{\Sigma_i A_i}\]
+                            </li>
+                            <li>Determine the moments of inertia with respect to axes \(\tilde{x}, \tilde{y}\) with origin at the centroid:
+                                \[J_{\tilde{x}\tilde{x}} = \Sigma_i A_i \tilde{y}_i^2 \quad ; \quad J_{\tilde{y}\tilde{y}} = \Sigma_i A_i \tilde{x}_i^2 \quad ; \quad J_{\tilde{x}\tilde{y}} = \Sigma_i A_i \tilde{x}_i \tilde{y}_i\]
+                                \[\alpha = \frac{1}{2} \arctan \frac{2 J_{\tilde{x}\tilde{y}}}{J_{\tilde{y}\tilde{y}} - J_{\tilde{x}\tilde{x}}}\]
+                            </li>
+                            <li>Rotate \(\tilde{x}\tilde{y}\) by angle \(\alpha\):
+                                \[x = \cos \alpha \, \tilde{x} + \sin \alpha \, \tilde{y} \quad ; \quad y = -\sin \alpha \, \tilde{x} + \cos \alpha \, \tilde{y}\]
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6.2 Evaluation of Stresses</h3>
+                        
+                        <h4>Normal Stress \(\sigma_{zz}\)</h4>
+                        <p>Once the principal axes are available:</p>
+                        <div class="equation-box">
+                            \[\sigma_{zz_i} = \frac{T_z}{A} + \frac{M_x}{J_{xx}} y_i - \frac{M_y}{J_{yy}} x_i \quad (i = i\text{-th stringer})\]
+                        </div>
+                        <p>where \(A = \Sigma_i A_i\) is the total section area.</p>
+                        
+                        <h4>Shear Stresses</h4>
+                        <p>Obtained by making use of the shear flow equation:</p>
+                        <div class="equation-box">
+                            \[\phi = -T_y \frac{S_x'}{J_{xx}} - T_x \frac{S_y'}{J_{yy}} \quad \text{(a)}\]
+                            \[= -T_{z,z}' \quad \text{(b)}\]
+                        </div>
+                        <p>Equation (a) provides the "operative" formula. Equation (b) is a useful alternative providing insight into the actual meaning of the shear flow equation.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6.3 Shear Flow Equation Application</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/generic_section_shear_flow_equilibrium.png" alt="Generic section shear flow equilibrium">
+                            <figcaption>Figure 6.3: Generic section with specific region \(A'\) showing shear flows \(q_1, q_2, q_3\)</figcaption>
+                        </figure>
+                        
+                        <p>Applying the shear flow equation with respect to region \(A'\):</p>
+                        <div class="equation-box">
+                            \[\phi = \int_{\partial A'} \underline{t} \cdot \underline{n} \, d\Gamma = q_2 + q_3 - q_1\]
+                        </div>
+                        
+                        <p>Recalling that \(\phi = -T_{z,z}'\):</p>
+                        <div class="equation-box">
+                            \[q_2 + q_3 - q_1 = -T_{z,z}'\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/infinitesimal_element_equilibrium_3d.png" alt="3D infinitesimal element equilibrium">
+                            <figcaption>Figure 6.4: 3D equilibrium of infinitesimal beam element with shear flows</figcaption>
+                        </figure>
+                        
+                        <p>The equilibrium along \(z\) is:</p>
+                        <div class="equation-box">
+                            \[T_z' + dT_z' - T_z' + q_2 \, dz - q_1 \, dz + q_3 \, dz = 0\]
+                            \[-dT_z' = (q_2 - q_1 + q_3) \, dz\]
+                        </div>
+                        
+                        <div class="important-box">
+                            <p>The shear flow equation, obtained after integrating over \(A'\) the third equilibrium equation, is then an equation expressing the equilibrium condition along the \(z\)-axis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6.4 Number of Equations</h3>
+                        <p>When solving a section, it is possible to write:</p>
+                        <ul>
+                            <li>\(n - 1\) shear flow equations, linearly independent of each other</li>
+                            <li>The number of unknown shear flows to be determined is \(m\)</li>
+                        </ul>
+                        
+                        <p>The number of additional equations needed is:</p>
+                        <div class="equation-box">
+                            \[\underbrace{m}_{\text{unknowns}} - \underbrace{(n-1)}_{\text{shear flow equations}} = m - n + 1 = N \quad \text{(number of cells)}\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Open Sections -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>7. Solution Procedure for Open Sections</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>7.1 Open Section Example</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/open_section_shear_flows.png" alt="Open section shear flows">
+                            <figcaption>Figure 7.1: Open C-section with \(n=4\) stringers showing three independent shear flow equations</figcaption>
+                        </figure>
+                        
+                        <p>For an open section with \(n = 4\):</p>
+                        <ul>
+                            <li>3 linearly independent shear flow equations available</li>
+                            <li>3 unknown shear flows (\(q_1, q_2, q_3\))</li>
+                            <li>\(N = 0\) cells → Problem can be solved!</li>
+                        </ul>
+                        
+                        <div class="equation-box">
+                            \[q_1 = -T_{z_1,z}' \quad ; \quad q_2 = -T_{z_2,z}' \quad ; \quad q_3 = -T_{z_3,z}'\]
+                            <p>where \(T_{z_i}' = \int_{A_i} \sigma_{zz} \, dA_i\)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>7.2 C-Section Example</h3>
+                        <p>Consider a C-section subjected to internal shear forces \(T_x\) and \(T_y\):</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/c_section_principal_axes.png" alt="C-section with principal axes">
+                            <figcaption>Figure 7.2: C-section with principal axes showing dimensions \(a\), \(b\) and internal forces</figcaption>
+                        </figure>
+                        
+                        <p>The number of unknown shear flows is 3, and 3 independent shear flow equations are available. Recalling \(\phi = -T_x \frac{S_y'}{J_{yy}} - T_y \frac{S_x'}{J_{xx}}\):</p>
+                        
+                        <div class="equation-box">
+                            \[q_1 = -T_x \frac{S_{y_1}}{J_{yy}} - T_y \frac{S_{x_1}}{J_{xx}}\]
+                            \[q_2 = -T_x \frac{S_{y_1} + S_{y_2}}{J_{yy}} - T_y \frac{S_{x_1} + S_{x_2}}{J_{xx}}\]
+                            \[q_3 = -T_x \frac{S_{y_1} + S_{y_2} + S_{y_3}}{J_{yy}} - T_y \frac{S_{x_1} + S_{x_2} + S_{x_3}}{J_{xx}}\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/alternative_integration_paths.png" alt="Alternative integration paths">
+                            <figcaption>Figure 7.3: Alternative integration paths for applying shear flow equations (all lead to same results)</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>7.3 Shear Center Position</h3>
+                        <p>An important property of the section is the shear center position.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/shear_center_position_diagram.png" alt="Shear center position">
+                            <figcaption>Figure 7.4: Section showing shear center position with moment equivalence</figcaption>
+                        </figure>
+                        
+                        <p>Write the equivalence with the internal moment:</p>
+                        <div class="equation-box">
+                            \[2q_1 \Omega_1 + 2q_2 \Omega_2 + 2q_3 \Omega_3 = T_x b - T_y a\]
+                        </div>
+                        
+                        <p>Substituting the expressions for \(q_i\) and simplifying:</p>
+                        <div class="equation-box">
+                            \[T_y (a - x_{sc}) = T_x (b - y_{sc})\]
+                        </div>
+                        <p>or:</p>
+                        <div class="equation-box">
+                            \[b - y_{sc} = \frac{T_y}{T_x} (a - x_{sc})\]
+                        </div>
+                        
+                        <p>where the shear center coordinates are:</p>
+                        <div class="final-result">
+                            \[x_{sc} = \frac{2}{J_{xx}} \Sigma_i S_{x_i}' \Omega_i \quad ; \quad y_{sc} = -\frac{2}{J_{yy}} \Sigma_i S_{y_i}' \Omega_i\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/shear_center_graphical_representation.png" alt="Shear center graphical representation">
+                            <figcaption>Figure 7.5: All force application lines pass through the shear center point \((x_{sc}, y_{sc})\)</figcaption>
+                        </figure>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/shear_center_force_ratio_diagrams.png" alt="Shear center force ratio">
+                            <figcaption>Figure 7.6: The one and only point where equivalence is satisfied independently of \(T_y/T_x\) is the shear center</figcaption>
+                        </figure>
+                        
+                        <div class="important-box">
+                            <p><strong>Key Points:</strong></p>
+                            <ul>
+                                <li>An open section, when modelled according to the semi-monocoque scheme, cannot react torsion loads</li>
+                                <li>Shear forces can be applied only at the shear center, so the load is purely of shearing type</li>
+                                <li>The shear center position is fully determined by the geometric properties of the section - it is a section property</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Single-Cell Closed Sections -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>8. Solution Procedure for Single-Cell Closed Sections</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>8.1 Characteristics of Single-Cell Sections</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/closed_section_circulating_flow.png" alt="Closed section with circulating flow">
+                            <figcaption>Figure 8.1: Single-cell closed section with \(n=4\), \(m=4\), \(N=1\) showing the concept of circulating flow \(q^*\)</figcaption>
+                        </figure>
+                        
+                        <p>A closed section with one single cell is characterized by:</p>
+                        <ul>
+                            <li>\(m\) unknown shear flows</li>
+                            <li>\(n-1\) shear flow equations</li>
+                            <li>1 equivalence condition with internal moment</li>
+                        </ul>
+                        
+                        <div class="important-box">
+                            <p>Single-cell sections are a <strong>statically determined scheme</strong>. The solution can be found by considering equilibrium conditions only. Compatibility does not need to be enforced.</p>
+                        </div>
+                        
+                        <h4>The Missing Equation</h4>
+                        <p>The shear flow equation states that \(q_2 - q_1 = \phi = -T_{z_2,z}'\). If an additional circulating flow \(q^*\) is added across all panels:</p>
+                        <div class="equation-box">
+                            \[q_2 - q_1 + \cancel{q^*} - \cancel{q^*} = \phi = -T_{z_2,z}'\]
+                        </div>
+                        <p>The result is unchanged! This means the solution is indeterminate, and one equation is missing.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/closed_section_torsional_moment.png" alt="Closed section torsional moment">
+                            <figcaption>Figure 8.2: The missing equation regards the equivalence with the internal torsional moment</figcaption>
+                        </figure>
+                        
+                        <p>The missing equation is the equivalence condition:</p>
+                        <div class="equation-box">
+                            \[M_z = 2 \Sigma_i \Omega_i q_i\]
+                        </div>
+                        
+                        <div class="remark-box">
+                            <p><strong>Note:</strong> The equation \(M_z = 2 \Sigma_i \Omega_i q_i\) is an <strong>equivalence condition</strong>, not an equilibrium one.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>8.2 Solution Procedure</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/single_cell_closed_section.png" alt="Single cell closed section">
+                            <figcaption>Figure 8.3: Generic single-cell closed section with internal forces \(T_x\), \(T_y\), \(M_z\)</figcaption>
+                        </figure>
+                        
+                        <p>For a section with \(n=6\), \(m=6\), \(N=1\):</p>
+                        
+                        <ol class="procedure-steps">
+                            <li>Apply \(n-1\) shear flow equations after "cutting" one panel (choice is arbitrary). The flow along the cut is zero: \(q_6' = 0\). The other flows are denoted as \(q_i'\):
+                                \[q_i' = -T_x \frac{S_y'}{J_{yy}} - T_y \frac{S_x'}{J_{xx}} \quad (i = 1, \ldots 5)\]
+                            </li>
+                            <li>Introduce a circulating flow \(q^*\) in the closed cell. This flow circulates through all panels belonging to the cell, so the shear flow equations are still satisfied:
+                                \[q_i = q_i' + q^* \quad \text{if panel } i \in \text{cell}\]
+                                \[q_i = q_i' \quad \text{if panel } i \notin \text{cell}\]
+                            </li>
+                            <li>Impose equivalence to internal moment with respect to an arbitrary point \(P\):
+                                \[2 \Sigma_i q_i' \Omega_i + 2 q^* \Omega_{cell} = M_P\]
+                                where \(M_P = M_z - T_x b - T_y a\) is the moment due to internal actions with respect to \(P\).
+                            </li>
+                        </ol>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/cut_panel_flow_distribution.png" alt="Cut panel flow distribution">
+                            <figcaption>Figure 8.4: Flow distribution after cutting one panel with \(q_6'=0\)</figcaption>
+                        </figure>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/circulating_flow_moment_equivalence.png" alt="Circulating flow moment equivalence">
+                            <figcaption>Figure 8.5: Equivalence to internal moment with circulating flow \(q^*\)</figcaption>
+                        </figure>
+                        
+                        <p>The value of \(q^*\) is obtained as:</p>
+                        <div class="final-result">
+                            \[q^* = \frac{M_P - 2 \Sigma_i q_i' \Omega_i}{2 \Omega_{cell}}\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Evaluation of Torsion -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>9. Evaluation of Torsion</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>9.1 Purpose</h3>
+                        <p>The evaluation of the torsion \(\theta'\) is necessary for:</p>
+                        <ol>
+                            <li>Solving sections with more than one cell</li>
+                            <li>Evaluating the torsional stiffness of generic sections</li>
+                        </ol>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/torsion_evaluation_real_dummy_systems.png" alt="Real and dummy systems for torsion">
+                            <figcaption>Figure 9.1: Real and dummy systems for torsion evaluation using PCVW</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>9.2 Application of PCVW</h3>
+                        <p>Consider a section with two cells and extract an infinitesimal portion \(dz\). The evaluation of \(\theta'\) is conducted by applying the PCVW with known shear flows.</p>
+                        
+                        <h4>External Work</h4>
+                        <div class="equation-box">
+                            \[\delta W_e^* = \delta M_z (\theta + d\theta) - \delta M_z \theta = \delta M_z \, d\theta = d\theta\]
+                        </div>
+                        
+                        <h4>Internal Work</h4>
+                        <div class="equation-box">
+                            \[\delta W_i^* = \int_V \delta \sigma_{ik} \varepsilon_{ik} \, dV = \int_V \delta \tau \, \gamma \, dV\]
+                        </div>
+                        <p>where \(\delta \sigma_{ik}\) identifies the variation subjected to equilibrium requirements due to \(\delta M_z\), and \(\varepsilon_{ik}\) are the real deformations.</p>
+                        
+                        <p>For the real system, the only non-null strain components are \(\gamma_{xz}\) and \(\gamma_{yz}\), or in the \(snz\) system, \(\gamma_{sz} \neq 0\).</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>9.3 Derivation of Torsion Formula</h3>
+                        <p>The choice of \(\delta q_m\) is arbitrary as long as equilibrium is satisfied. A useful choice is to have flows only in one cell:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/cell_shear_flow_summation.png" alt="Cell shear flow summation">
+                            <figcaption>Figure 9.2: Shear flow distribution in a single cell for torsion evaluation</figcaption>
+                        </figure>
+                        
+                        <div class="equation-box">
+                            \[\delta q = \frac{\delta M_z}{2\Omega_{cell_1}} = \frac{1}{2\Omega_{cell_1}}\]
+                        </div>
+                        
+                        <p>Introducing the constitutive equation \(\gamma_m = \frac{\tau_m}{G} = \frac{q_m}{G t_m}\):</p>
+                        
+                        <div class="equation-box">
+                            \[\delta W_i^* = \sum_{\textcircled{1}} \frac{1}{2\Omega_{cell_1} t_m^2 G} q_m \, dV_m = \frac{1}{2\Omega_{cell_1} G} \sum_{\textcircled{1}} \frac{q_m \ell_m}{t_m} dz\]
+                        </div>
+                        
+                        <p>where \(\ell_m\) is the length of the \(m\)-th panel.</p>
+                        
+                        <p>Imposing \(\delta W_i^* = \delta W_e^*\):</p>
+                        
+                        <div class="final-result">
+                            <strong>Torsion Rate:</strong>
+                            \[\frac{d\theta}{dz} = \theta' = \frac{1}{2\Omega_{cell_k} G} \sum_{\textcircled{k}} \frac{q_m \ell_m}{t_m}\]
+                        </div>
+                        
+                        <div class="remark-box">
+                            <p><strong>Remark:</strong> The choice of the flows \(\delta q_m\) was arbitrary. All steps could be repeated by considering any cell \(k\), leading to the same \(\theta'\) as it refers to the overall section.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Multi-Cell Closed Sections -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>10. Solution Procedure for Multi-Cell Closed Sections</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>10.1 Statically Indeterminate Problem</h3>
+                        <p>Consider a section with \(N > 1\) cells:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/multicell_section_equation_count.png" alt="Multi-cell section equation count">
+                            <figcaption>Figure 10.1: Three-cell section with \(n=8\), \(m=10\), \(N=3\) - a statically indeterminate problem</figcaption>
+                        </figure>
+                        
+                        <p>This is a <strong>statically indeterminate problem</strong>: the equilibrium conditions do not suffice for satisfying the balance between equations and unknowns.</p>
+                        
+                        <h4>Overview of Equations</h4>
+                        <ul>
+                            <li>\(n-1\) shear flow equations</li>
+                            <li>1 equivalence with internal moment</li>
+                            <li>\(N-1\) compatibility conditions (remaining equations)</li>
+                        </ul>
+                        
+                        <div class="equation-box">
+                            \[\underbrace{m}_{\text{shear flows}} - \underbrace{(n - 1 + 1)}_{\text{equations}} = m - n = N - 1\]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>10.2 Solution Procedure</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/multicell_solution_procedure.png" alt="Multi-cell solution procedure">
+                            <figcaption>Figure 10.2: Solution procedure showing \(N\) panels cut with shear flow equations and equivalence conditions</figcaption>
+                        </figure>
+                        
+                        <ol class="procedure-steps">
+                            <li>Cut a number of panels equal to \(N\)</li>
+                            <li>Evaluate the flows \(q_i'\) as:
+                                \[q_i' = -T_x \frac{S_y'}{J_{yy}} - T_y \frac{S_x'}{J_{xx}} \quad \text{(non-cut panels)}\]
+                                \[q_i' = 0 \quad \text{(cut panels)}\]
+                            </li>
+                            <li>Impose the equivalence with internal moment:
+                                \[\Sigma_i 2\Omega_i q_i' + \sum_{k=1}^{N} 2\Omega_{cell_k} q_k^* = M_z\]
+                            </li>
+                            <li>Impose \(N-1\) compatibility conditions:
+                                \[\theta_1' = \theta_2' = \cdots = \theta_N'\]
+                                or:
+                                \[\frac{1}{2\Omega_{cell_1} G} \sum_{\textcircled{1}} \frac{q_m \ell_m}{t_m} = \frac{1}{2\Omega_{cell_2} G} \sum_{\textcircled{2}} \frac{q_m \ell_m}{t_m} = \cdots\]
+                            </li>
+                            <li>Repeat steps 2-4 considering \(T_x\) to obtain \(y_{sc}\)</li>
+                        </ol>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/multicell_shear_center_position.png" alt="Multi-cell shear center position">
+                            <figcaption>Figure 10.3: Multi-cell section showing shear center position \(y_{sc}\)</figcaption>
+                        </figure>
+                        
+                        <div class="remark-box">
+                            <p><strong>Justification of Compatibility:</strong> The condition \(\theta_1' = \theta_2' = \cdots \theta_N'\) is a requirement of internal compatibility which holds irrespectively on the presence of the ribs. It was obtained by application of the PCVW without any reference to the presence of ribs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>10.3 Shear Center for Closed Sections</h3>
+                        <p>The shear center is defined as the point where the application of the shear forces \(T_x\) and \(T_y\) determines a torsion \(\theta' = 0\).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/single_cell_shear_center.png" alt="Single cell shear center">
+                            <figcaption>Figure 10.4: Single-cell section showing shear center determination</figcaption>
+                        </figure>
+                        
+                        <h4>Single-Cell Section Procedure</h4>
+                        <ol class="procedure-steps">
+                            <li>Determine principal axes</li>
+                            <li>Evaluate shear flows:
+                                \[q_i' = -T_y \frac{S_x'}{J_{xx}} \quad \text{(non-cut panel)}\]
+                                \[q_i' = 0 \quad \text{(cut panel)}\]
+                                \[\Sigma 2\Omega_i q_i' + 2\Omega_{cell} q^* = T_y x_{sc}\]
+                            </li>
+                            <li>Impose \(\theta' = 0\):
+                                \[\theta' = \frac{1}{2\Omega_{cell} G} \sum_{\textcircled{1}} \frac{q_m \ell_m}{t_m} = 0\]
+                            </li>
+                            <li>Solve to obtain \(q_i\) (\(i = 1, \ldots m\)) and \(x_{sc}\)</li>
+                        </ol>
+                        
+                        <h4>Remarks</h4>
+                        <ul>
+                            <li>The shear center is a property of the section (values of \(T_x\) and \(T_y\) can be arbitrarily chosen for calculations)</li>
+                            <li>The shear center position identifies the center of relative rotation between two infinitely close sections when the internal action is purely torsional</li>
+                            <li>Whenever the shear centers are aligned along the same line, this line is referred to as the <strong>elastic axis</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: Section Properties -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>11. Evaluation of Section Properties</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>11.1 Internal Complementary Work</h3>
+                        <p>The internal complementary work for a beam, previously restricted to bending and axial behaviour, is now generalized to account for torsion and shear:</p>
+                        
+                        <div class="equation-box">
+                            \[\delta W_i^* = \int_V \underline{\underline{\delta \sigma}} : \underline{\underline{\varepsilon}} \, dV = \int_V \left( \delta \sigma_{zz} \varepsilon_{zz} + \delta \sigma_{xz} \gamma_{xz} + \delta \sigma_{yz} \gamma_{yz} \right) dV\]
+                        </div>
+                        
+                        <p>After introducing the DSV solution:</p>
+                        <div class="equation-box">
+                            \[\delta W_i^* = \int_\ell \left( \delta T_z \frac{T_z}{EA} + \delta M_x \frac{M_x}{EJ_{xx}} + \delta M_y \frac{M_y}{EJ_{yy}} \right) dz + \int_V \left( \delta \sigma_{xz} \gamma_{xz} + \delta \sigma_{yz} \gamma_{yz} \right) dV\]
+                        </div>
+                        
+                        <p>The volume integral is the internal work due to shear stresses and corresponding deformations.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>11.2 Separation of Shear and Torsion Contributions</h3>
+                        <p>The shear stresses \(\sigma_{xz}\) and \(\sigma_{yz}\) are associated with:</p>
+                        <ul>
+                            <li>Internal shear forces \(T_x\), \(T_y\)</li>
+                            <li>Internal torsional moment \(M_z\)</li>
+                        </ul>
+                        
+                        <p>To separate these contributions, consider a reference system with axis \(z\) passing through the shear center:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/centroid_shear_center_offset.png" alt="Centroid and shear center offset">
+                            <figcaption>Figure 11.1: Asymmetric section showing centroid (CG) and shear center (SC) with separate coordinate systems</figcaption>
+                        </figure>
+                        
+                        <div class="equation-box">
+                            \[\int_V \left( \delta \sigma_{xz} \gamma_{xz} + \delta \sigma_{yz} \gamma_{yz} \right) dV = \int_\ell \delta M_z \frac{M_z}{GJ} dz + \int_V \left( \delta \sigma_{xz}^{shear} \gamma_{xz}^{shear} + \delta \sigma_{yz}^{shear} \gamma_{yz}^{shear} \right) dV\]
+                        </div>
+                        
+                        <p>The shear contribution can be expressed as:</p>
+                        <div class="equation-box">
+                            \[\int_V \delta \sigma_{xz}^{shear} \gamma_{xz}^{shear} \, dV = \int_\ell \delta T_x \frac{T_x}{GA_x^*} dz\]
+                            \[\int_V \delta \sigma_{yz}^{shear} \gamma_{yz}^{shear} \, dV = \int_\ell \delta T_y \frac{T_y}{GA_y^*} dz\]
+                        </div>
+                        
+                        <p>where \(GA_x^*\) and \(GA_y^*\) are the shear stiffnesses.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>11.3 Complete Internal Virtual Work</h3>
+                        
+                        <div class="final-result">
+                            \[\delta W_i^* = \int_0^\ell \left( \delta T_z \frac{T_z}{EA} + \delta M_x \frac{M_x}{EJ_{xx}} + \delta M_y \frac{M_y}{EJ_{yy}} + \delta T_x \frac{T_x}{GA_x^*} + \delta T_y \frac{T_y}{GA_y^*} + \delta M_z \frac{M_z}{GJ} \right) dz\]
+                        </div>
+                        
+                        <p>where:</p>
+                        <ul>
+                            <li>The first three contributions are referred to the <strong>principal axes</strong></li>
+                            <li>The last three contributions are referred to the system passing through the <strong>shear center</strong></li>
+                        </ul>
+                        
+                        <h4>Matrix Notation</h4>
+                        <div class="equation-box">
+                            \[\delta W_i^* = \int_0^\ell \underline{\delta T}^T \underline{\underline{C}} \, \underline{T} \, dz\]
+                        </div>
+                        
+                        <p>with \(\underline{T} = \{ T_x \quad T_y \quad T_z \quad M_x \quad M_y \quad M_z \}^T\) and the <strong>compliance matrix</strong>:</p>
+                        
+                        <div class="equation-box">
+                            \[\underline{\underline{C}} = \begin{bmatrix} \frac{1}{GA_x^*} & & & & & \\ & \frac{1}{GA_y^*} & & & & \\ & & \frac{1}{EA} & & & \\ & & & \frac{1}{EJ_{xx}} & & \\ & & & & \frac{1}{EJ_{yy}} & \\ & & & & & \frac{1}{GJ} \end{bmatrix}\]
+                        </div>
+                        
+                        <div class="remark-box">
+                            <p>The choice of principal axes and axes passing through the shear center gives a <strong>diagonal compliance matrix</strong>. A different set of axes would result in a fully populated matrix.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>11.4 Section Stiffness Formulas</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/bending_stiffness_principal_axes.png" alt="Bending stiffness principal axes">
+                            <figcaption>Figure 11.2: Section with principal axes for bending stiffness calculation</figcaption>
+                        </figure>
+                        
+                        <h4>Axial Stiffness</h4>
+                        <div class="equation-box">
+                            \[EA = E \sum_{i=1}^{n} A_i\]
+                        </div>
+                        
+                        <h4>Bending Stiffnesses</h4>
+                        <div class="equation-box">
+                            \[EJ_{xx} = E \Sigma_i A_i y_i^2 \quad ; \quad EJ_{yy} = E \Sigma_i A_i x_i^2\]
+                        </div>
+                        <p>where \(x_i\), \(y_i\) are distances from the principal axes.</p>
+                        
+                        <h4>Torsional Stiffness</h4>
+                        <p><strong>Open sections:</strong> \(GJ = 0\) (using semi-monocoque scheme)</p>
+                        
+                        <p><strong>Single-cell closed sections:</strong></p>
+                        <div class="equation-box">
+                            \[J = \frac{4\Omega^2}{\sum_{i=1}^{m} \ell_i / t_i}\]
+                        </div>
+                        
+                        <p><strong>Multi-cell sections:</strong></p>
+                        <div class="equation-box">
+                            \[GJ = \frac{M_z}{\theta'}\]
+                        </div>
+                        <p>where \(M_z\) is an arbitrary torsional moment and \(\theta' = \frac{1}{2\Omega_{cell} G} \sum_{\textcircled{k}} \frac{q_i \ell_i}{t_i}\)</p>
+                        
+                        <h4>Shear Stiffnesses</h4>
+                        <p>The evaluation requires solving the section with an internal shear force applied on the shear center. Using energy equivalence:</p>
+                        
+                        <div class="equation-box">
+                            \[\delta W_i^* = \int_\ell \sum_{i=1}^{m} \delta q_m \frac{\ell_m}{G t_m} q_m \, dz\]
+                        </div>
+                        
+                        <p>Equating with the expression in terms of internal actions:</p>
+                        
+                        <div class="final-result">
+                            \[GA_x^* = \frac{\delta T_x T_x}{\sum_{i=1}^{m} \delta q_m \frac{\ell_m}{G t_m} q_m} \quad ; \quad GA_y^* = \frac{\delta T_y T_y}{\sum_{i=1}^{m} \delta q_m \frac{\ell_m}{G t_m} q_m}\]
+                        </div>
+                        
+                        <p>The <strong>shear factor</strong> \(\chi_x\) is defined as:</p>
+                        <div class="equation-box">
+                            \[\chi_x = \frac{A_x^*}{A_{TOT}} \quad \Rightarrow \quad GA_x^* = \chi_x \, G A_{TOT}\]
+                        </div>
+                        <p>which provides a measure of how much area is collaborating to resist the shear force.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: Examples -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>12. Comparison Examples: Compact vs. Thin-Walled Sections</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>12.1 Problem Setup</h3>
+                        <p>For quantifying the effect of shear deformability in thin-walled beams, compare the strain energies in two sections: a compact square section and a thin-walled one.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/cantilever_beam_compact_section.png" alt="Cantilever beam with compact section">
+                            <figcaption>Figure 12.1: Cantilever beam with compact square section, dimension \(a\), length \(\ell\), and applied force \(F\)</figcaption>
+                        </figure>
+                        
+                        <p>Internal forces: \(M_x = -Fz\), \(T_y = -F\)</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>Example 1: Compact Square Section</h4>
+                        <p>Section properties:</p>
+                        <div class="equation-box">
+                            \[J = \frac{1}{12} a^4 \quad ; \quad A_y^* = \frac{5}{6} a^2\]
+                        </div>
+                        
+                        <p>Strain energies:</p>
+                        <div class="equation-box">
+                            \[U_{bending} = \frac{1}{2} \int_0^\ell \frac{M_x^2}{EJ} dz = \frac{1}{2} \frac{F^2 \ell^3}{3EJ}\]
+                            \[U_{shear} = \frac{1}{2} \int_0^\ell \frac{T_y^2}{GA_y^*} dz = \frac{1}{2} \frac{F^2 \ell}{GA_y^*}\]
+                        </div>
+                        
+                        <p>Ratio:</p>
+                        <div class="equation-box">
+                            \[\frac{U_{shear}}{U_{bending}} = \frac{\ell}{GA_y^*} \cdot \frac{3EJ}{\ell^3} \approx \frac{3}{5} \frac{a^2}{\ell^2}\]
+                        </div>
+                        
+                        <p>For \(a = 100\) and \(\ell = 1000\):</p>
+                        <div class="final-result">
+                            \[\frac{U_{shear}}{U_{bending}} \approx \frac{3}{5} \cdot 10^{-2} = \frac{3}{500} < 1\%\]
+                        </div>
+                        <p><strong>Conclusion:</strong> The energy associated with shear deformability is less than 1% of the bending energy.</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>Example 2: Thin-Walled Square Section</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/thin_walled_square_section.png" alt="Thin-walled square section">
+                            <figcaption>Figure 12.2: Thin-walled square section with \(A = \frac{1}{12}a^2\) and \(t = \frac{1}{120}a\)</figcaption>
+                        </figure>
+                        
+                        <p>Section characterized by the same bending stiffness as the compact section:</p>
+                        <div class="equation-box">
+                            \[J = 4A \left( \frac{a}{2} \right)^2 = A a^2 = \frac{1}{12} a^4\]
+                        </div>
+                        
+                        <p>However, the shear area is now: \(A_y^* = 2at\)</p>
+                        
+                        <p>Ratio:</p>
+                        <div class="equation-box">
+                            \[\frac{U_{shear}}{U_{bending}} = \frac{1}{4} \frac{a^3}{\ell^2 t} = \frac{1}{4} \frac{a^3}{\ell^2} \cdot \frac{120}{a} = 30 \frac{a^2}{\ell^2}\]
+                        </div>
+                        
+                        <p>For \(a = 100\) and \(\ell = 1000\):</p>
+                        <div class="final-result">
+                            \[\frac{U_{shear}}{U_{bending}} \approx 30 \cdot 10^{-2} = 30\%\]
+                        </div>
+                        <p><strong>Conclusion:</strong> The energy associated with shear deformability is 30% of the bending energy - <strong>not negligible!</strong></p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>Example 3: Rectangular Closed Section</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/rectangular_section_torsional_stiffness.png" alt="Rectangular section torsional stiffness">
+                            <figcaption>Figure 12.3: Rectangular beam section with dimensions \(a \times b\) and constant thickness \(t\)</figcaption>
+                        </figure>
+                        
+                        <h4>Torsional Stiffness</h4>
+                        <div class="equation-box">
+                            \[J = \frac{4\Omega^2}{\oint \frac{1}{t(s)} ds} = \frac{4a^2 b^2 t}{2(a+b)} = \frac{2a^2 b^2 t}{(a+b)}\]
+                            \[GJ = G \frac{2a^2 b^2 t}{(a+b)}\]
+                        </div>
+                        
+                        <h4>Shear Stiffness</h4>
+                        <p>From symmetry, the shear center coincides with the centroid. The shear flows are:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_2_Semi_monocoque/shear_area_web_contribution.png" alt="Shear area web contribution">
+                            <figcaption>Figure 12.4: Rectangular section showing shear area \(A_y^*\) equal to web area</figcaption>
+                        </figure>
+                        
+                        <div class="equation-box">
+                            \[A_x^* = \frac{\delta T_y T_y}{\sum \delta q_m \frac{\ell_m}{t_m} q_m} = \frac{1}{\frac{1}{2a^2 t} a} = 2at\]
+                        </div>
+                        
+                        <p>Thus: \(GA_x^* = G \cdot 2at\)</p>
+                        
+                        <div class="important-box">
+                            <p><strong>Note:</strong> The area \(A_x^*\) equals the area of the shear webs - the fraction of total area contributing to carry the shear load. This coincidence occurs whenever the shear flow is constant along the webs. If the shear flow is not constant: \(A_y^* < A_{web}\)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Summary of Key Results</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Shear Flow Equation</h3>
+                        <div class="equation-box">
+                            \[\phi = -T_y \frac{S_x'}{J_{xx}} - T_x \frac{S_y'}{J_{yy}} = -T_{z,z}'\]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Section Types and Equations</h3>
+                        <table>
+                            <tr>
+                                <th>Section Type</th>
+                                <th>Available Equations</th>
+                                <th>Additional Conditions</th>
+                            </tr>
+                            <tr>
+                                <td>Open</td>
+                                <td>\(n-1\) shear flow equations</td>
+                                <td>None needed (statically determined)</td>
+                            </tr>
+                            <tr>
+                                <td>Single-Cell Closed</td>
+                                <td>\(n-1\) shear flow + 1 equivalence</td>
+                                <td>None needed (statically determined)</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-Cell Closed</td>
+                                <td>\(n-1\) shear flow + 1 equivalence</td>
+                                <td>\(N-1\) compatibility conditions</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Torsion Rate</h3>
+                        <div class="equation-box">
+                            \[\theta' = \frac{1}{2\Omega_{cell_k} G} \sum_{\textcircled{k}} \frac{q_m \ell_m}{t_m}\]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Shear Center Position</h3>
+                        <div class="equation-box">
+                            \[x_{sc} = \frac{2}{J_{xx}} \Sigma_i S_{x_i}' \Omega_i \quad ; \quad y_{sc} = -\frac{2}{J_{yy}} \Sigma_i S_{y_i}' \Omega_i\]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Section Stiffnesses</h3>
+                        <ul>
+                            <li><strong>Axial:</strong> \(EA = E \Sigma_i A_i\)</li>
+                            <li><strong>Bending:</strong> \(EJ_{xx} = E \Sigma_i A_i y_i^2\), \(EJ_{yy} = E \Sigma_i A_i x_i^2\)</li>
+                            <li><strong>Torsional (closed):</strong> \(GJ = G \frac{4\Omega^2}{\Sigma_i \ell_i/t_i}\)</li>
+                            <li><strong>Shear:</strong> \(GA_x^* = \frac{\delta T_x T_x}{\Sigma_i \delta q_m \frac{\ell_m}{G t_m} q_m}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

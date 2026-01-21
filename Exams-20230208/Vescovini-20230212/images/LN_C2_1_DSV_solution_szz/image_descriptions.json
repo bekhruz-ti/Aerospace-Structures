@@ -1,0 +1,66 @@
+{
+  "beam_coordinate_system_3d.png": {
+    "suggested_name": "beam_coordinate_system_3d",
+    "description": "3D coordinate system showing beam axis (z) and plane of section (xy) with principal centroidal axes labeled"
+  },
+  "applied_loads_resultants_system.png": {
+    "suggested_name": "applied_loads_resultants_system",
+    "description": "Generic system of applied loads showing end section and generic section with internal forces, shear forces, bending moments, and twisting moments labeled with hat symbols"
+  },
+  "stress_components_internal_actions.png": {
+    "suggested_name": "stress_components_internal_actions",
+    "description": "Stress components and internal actions showing coordinate systems, stress tensors, and positive internal action conventions with circular cross-sections"
+  },
+  "stress_distribution_comparison.png": {
+    "suggested_name": "stress_distribution_comparison",
+    "description": "Two cases showing stress distribution comparison - concentrated load versus distributed load on beam cross-sections with stress notation"
+  },
+  "de_saint_venant_principle_illustration.png": {
+    "suggested_name": "de_saint_venant_principle_illustration",
+    "description": "Four beam cross-sections showing different loading conditions and internal stress distributions illustrating De Saint Venant principle"
+  },
+  "beam_3d_surface_face_diagram.png": {
+    "suggested_name": "beam_3d_surface_face_diagram",
+    "description": "3D beam diagram showing external surface of body, beam cross-section face, and coordinate system with internal actions labeled"
+  },
+  "semi_inverse_method_composite_section.png": {
+    "suggested_name": "semi_inverse_method_composite_section",
+    "description": "Semi-inverse method illustration showing coordinate system, stress cube element, and cross-section with material properties for two different materials"
+  },
+  "composite_section_compatibility.png": {
+    "suggested_name": "composite_section_compatibility",
+    "description": "Composite cross-section diagrams showing two materials with different Poisson ratios and stress distributions for compatibility restoration"
+  },
+  "deformation_before_after.png": {
+    "suggested_name": "deformation_before_after",
+    "description": "Two 3D rectangular blocks showing deformation - before and after - illustrating section shape change under axial stress"
+  },
+  "cauchy_condition_stress_vectors.png": {
+    "suggested_name": "cauchy_condition_stress_vectors",
+    "description": "Coordinate system diagrams showing Cauchy condition with stress vectors and unit normal vectors on beam cross-section"
+  },
+  "linearity_load_amplification.png": {
+    "suggested_name": "linearity_load_amplification",
+    "description": "Two simple beam diagrams showing linearity assumption - distributed load amplification by factor lambda"
+  },
+  "internal_actions_equivalence.png": {
+    "suggested_name": "internal_actions_equivalence",
+    "description": "Beam cross-section diagrams showing internal actions equivalence and stress resultants with moment vectors"
+  },
+  "dsv_axial_force_solution.png": {
+    "suggested_name": "dsv_axial_force_solution",
+    "description": "DSV solution for axial force showing rectangular cross-section, coordinate system, strain equations, and displacement field with linear variation along beam axis"
+  },
+  "dsv_pure_bending_solution.png": {
+    "suggested_name": "dsv_pure_bending_solution",
+    "description": "DSV solution for pure bending showing coordinate systems, moment diagram, strain equations, and displacement field formulation"
+  },
+  "centroidal_fiber_curvature.png": {
+    "suggested_name": "centroidal_fiber_curvature",
+    "description": "Centroidal fiber deformation diagram showing curved beam axis with rotation angle and curvature illustration"
+  },
+  "beam_section_deformation.png": {
+    "suggested_name": "beam_section_deformation",
+    "description": "Beam deformation diagrams showing generic section before and after deformation with beam axis remaining orthogonal to section"
+  }
+}

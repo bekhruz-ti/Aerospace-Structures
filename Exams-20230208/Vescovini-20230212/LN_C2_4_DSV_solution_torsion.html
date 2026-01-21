@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation of Shear Stresses - Torsion of Beams</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --bg-box: #ebf8ff;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .equation-box {
+            background: var(--bg-box);
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .equation-box.important {
+            background: #fef5e7;
+            border-color: #d69e2e;
+        }
+
+        .equation-box.result {
+            background: #f0fff4;
+            border-color: var(--accent-color);
+        }
+
+        .equation-box-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .remarks {
+            background: #fff5f5;
+            border-left: 4px solid #c53030;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .remarks h4 {
+            color: #c53030;
+            margin-bottom: 10px;
+        }
+
+        .exercise {
+            background: #fffff0;
+            border: 2px solid #d69e2e;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .exercise h3 {
+            color: #975a16;
+            border-bottom: 1px solid #d69e2e;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .exercise .problem-statement {
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .solution {
+            background: var(--bg-solution);
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution h4 {
+            color: var(--accent-color);
+        }
+
+        .final-answer {
+            background: #c6f6d5;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Evaluation of Shear Stresses</h1>
+            <p class="subtitle">Torsion of Beams - Theory and Applications</p>
+        </header>
+
+        <main>
+            <!-- Introduction Section -->
+            <section class="section" id="introduction">
+                <h2>1. Introduction</h2>
+                
+                <p>The DSV solution for \(\sigma_{zz}\) illustrates that an exact closed-form solution can be found for calculating the direct stress.</p>
+                
+                <p>Often this solution suffices for solving beam problems, as far as the beams are slender (⇒ shear contribution is negligible) and no torsion loads are applied. For instance, the statically undetermined reactions, as well as the displacements in a given point, can be obtained by using the solution for \(\sigma_{zz}\).</p>
+                
+                <p>In many other cases — thin walled beams, typically used in aerospace applications, are an example — the energy contribution due to the shear cannot be neglected. In addition, shear stresses need to be evaluated for verifying whether the structure will yield or buckle locally. This is even more true when torsional loads are accounted for (which is a typical loading condition for aerospace structures).</p>
+                
+                <p>Overall the problem of the evaluation of the shear stresses is a complex one, and closed-form solutions can be hardly found.</p>
+                
+                <p>The problem will be illustrated for the torsional case first and for general loading conditions later. Given the difficulty of this problem, approximate solution strategies will be discussed.</p>
+            </section>
+
+            <!-- Torsion Problem Setup -->
+            <section class="section" id="torsion">
+                <h2>2. Torsion</h2>
+                
+                <p>Aeronautical structures are commonly subjected to torsional loads, which is thus an important design condition. In general, torsional stiffness requirements may arise for aeroelastic considerations.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/torsional_beam_coordinate_system.png" alt="Cylindrical beam showing torsional loading with moment Mz applied at ends and coordinate system">
+                    <figcaption>Figure 2.1: Cylindrical beam subjected to torsional moment \(M_z\) with coordinate system</figcaption>
+                </figure>
+                
+                <h3>2.1 Governing Equations from DSV Solution</h3>
+                
+                <p>The set of solving equations, available from the solution of the DSV problem for \(\sigma_{zz}\) is:</p>
+                
+                <p>From \(\sigma_{xz/z} = 0\) and \(\sigma_{yz/z} = 0\), we state that \(\sigma_{xz} = \sigma_{xz}(x,y)\) and \(\sigma_{yz} = \sigma_{yz}(x,y)\).</p>
+                
+                <p>The equilibrium equation:</p>
+                \[\sigma_{xz/x} + \sigma_{yz/y} + \sigma_{zz/z} = 0\]
+                
+                <p>The compatibility equations are identically satisfied with the DSV solution for \(\sigma_{zz}\):</p>
+                \[\begin{cases}
+                \sigma_{zz/yy} = \sigma_{zz/xx} = \sigma_{zz/xy} = 0 \\
+                -\vartheta \sigma_{zz/yz} = \sigma_{xz/xy} - \sigma_{yz/xx} \\
+                -\vartheta \sigma_{zz/xz} = \sigma_{yz/xy} - \sigma_{xz/yy}
+                \end{cases}\]
+                
+                <p>Boundary condition on body surface:</p>
+                \[\underline{t} \cdot \underline{n} = 0 \quad \text{on } S_{body}\]
+                
+                <p>Resultant forces and moments:</p>
+                \[T_x = \int_A \sigma_{xz} \, dA, \quad T_y = \int_A \sigma_{yz} \, dA, \quad T_z = \int_A \sigma_{zz} \, dA\]
+                \[M_x = \int_A \sigma_{zz} \, y \, dA, \quad M_y = \int_A -\sigma_{zz} \, x \, dA\]
+                \[M_z = \int_A (-\sigma_{xz} y + \sigma_{yz} x) \, dA\]
+
+                <h3>2.2 Semi-Inverse Approach</h3>
+                
+                <p>The semi-inverse approach can be formulated for the torsion problem by assuming that:</p>
+                
+                <div class="equation-box">
+                    \[\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = 0\]
+                    \[\sigma_{zz} = 0\]
+                </div>
+                
+                <p>Among the 6 components of \(\underline{\underline{\sigma}}\), the only unknowns are:</p>
+                \[\sigma_{xz} = \sigma_{xz}(x,y) \quad \text{and} \quad \sigma_{yz} = \sigma_{yz}(x,y)\]
+                <p>where the dependence on \(x, y\) descends from the two equilibrium equations.</p>
+                
+                <p>The updated set of governing equations (assuming that \(\sigma_{zz} = 0\)) is:</p>
+                <ul>
+                    <li>3rd equilibrium equation: \(\sigma_{xz/x} + \sigma_{yz/y} = 0\)</li>
+                    <li>Compatibility: \(\begin{cases} -\vartheta \sigma_{zz/yz} = \sigma_{xz/xy} - \sigma_{yz/xx} \\ -\vartheta \sigma_{zz/xz} = \sigma_{yz/xy} - \sigma_{xz/yy} \end{cases}\)</li>
+                </ul>
+                
+                <p>Rearranging the compatibility for convenience:</p>
+                \[\left(\sigma_{xz/y} - \sigma_{yz/x}\right)_{/x} = 0 \quad \text{and} \quad \left(\sigma_{yz/x} - \sigma_{xz/y}\right)_{/y} = 0\]
+                \[\Rightarrow \sigma_{yz/x} - \sigma_{xz/y} = C \quad (C = \text{Const})\]
+                
+                <div class="equation-box important">
+                    <div class="equation-box-title">Box 1: Final Governing Equations for Torsion</div>
+                    \[\begin{aligned}
+                    \sigma_{xz/x} + \sigma_{yz/y} &= 0 & &\text{(equilibrium)} & &\text{in } V \\
+                    \sigma_{yz/x} - \sigma_{xz/y} &= C & &\text{(compatibility)} & &\text{in } V \\
+                    \underline{t} \cdot \underline{n} &= 0 & & & &\text{in } S_{body} \\
+                    M_+ &= \int_A (-\sigma_{xz} y + \sigma_{yz} x) \, dA & & & &\text{in } S_{face}
+                    \end{aligned}\]
+                </div>
+            </section>
+
+            <!-- Displacement-Based Solution -->
+            <section class="section" id="displacement-solution">
+                <h2>3. Solution Procedure Based on Assumed Displacements</h2>
+                
+                <p>The guess solution is \(\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = \sigma_{zz} = 0\).</p>
+                
+                <p>From the constitutive isotropic 3D law:</p>
+                <div class="two-column">
+                    <div class="column">
+                        <p><strong>Strains (zero):</strong></p>
+                        \[\varepsilon_{xx} = 0, \quad \varepsilon_{yy} = 0, \quad \varepsilon_{zz} = 0\]
+                        \[\gamma_{xy} = 0\]
+                    </div>
+                    <div class="column">
+                        <p><strong>Strains (non-zero):</strong></p>
+                        \[\gamma_{xz} \neq 0, \quad \gamma_{yz} \neq 0\]
+                    </div>
+                </div>
+                
+                <p>Recalling that \(\varepsilon_{xx} = U_{/x}\), \(\varepsilon_{yy} = V_{/y}\), \(\varepsilon_{zz} = W_{/z}\), and \(\gamma_{xy} = U_{/y} + V_{/x}\), it follows that the displacement field is:</p>
+                \[U = U(y,z), \quad V = V(x,z), \quad W = W(x,y)\]
+
+                <h3>3.1 Rotation Angle and Torsion</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/beam_cross_section_rotation.png" alt="Beam cross-section showing rotation angle theta">
+                    <figcaption>Figure 3.1: Beam cross-section showing rotation from point P to P' under torsion</figcaption>
+                </figure>
+                
+                <p>Consider \(\theta\) as:</p>
+                <div class="equation-box">
+                    \[\theta = \theta(z) = \theta_{/z} \cdot z \quad \text{where } \theta_{/z} = \text{Const}\]
+                    <p>\(\theta\): rotation angle &nbsp;&nbsp;&nbsp; \(\theta'\): torsion (rate of twist)</p>
+                </div>
+                
+                <p>Assume that the displacement over the beam section can be represented as:</p>
+                <ul>
+                    <li>P: before deformation</li>
+                    <li>P': after deformation</li>
+                </ul>
+                
+                <p>Note: \(W\) does not depend on \(z\). It is multiplied with \(\theta'\) because a dependency on torsion has to be accounted for.</p>
+                
+                \[U = U(y,z) = -y\theta\]
+                \[V = V(x,z) = +x\theta\]
+                \[W = W(x,y) = \theta_{/z} \Psi(x,y)\]
+                
+                <p>where \(\Psi\) is the <strong>warping function</strong>.</p>
+                
+                <p>Recalling that \(\theta = \theta_{/z} \cdot z = \theta' z\) (prime denotes \((\cdot)_{/z}\)):</p>
+                
+                <div class="equation-box important">
+                    <div class="equation-box-title">Box 2: Displacement Field for Torsion</div>
+                    \[U = -y\theta'z\]
+                    \[V = x\theta'z\]
+                    \[W = \theta'\Psi\]
+                    <p style="text-align: center; margin-top: 10px;"><em>Note: W does not depend on z</em></p>
+                </div>
+
+                <h3>3.2 Warping and Boundary Conditions</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/beam_warping_deformation.png" alt="Beam showing warping behavior before and after deformation">
+                    <figcaption>Figure 3.2: Beam warping deformation - view in yz plane showing warping not prevented</figcaption>
+                </figure>
+                
+                <p>Note that \(W = W(x,y)\) ⇒ no dependence on \(z\). Within the context of the DSV solution, the beam is free to warp, i.e., warping is not prevented by the boundary conditions.</p>
+                
+                <p>The set of equations in Box 1 can be re-written in terms of displacement components using Box 2. In particular, it is sufficient to note that:</p>
+                \[\gamma_{xz} = W_{/x} + U_{/z} = \theta'(\Psi_{/x} - y)\]
+                \[\gamma_{yz} = W_{/y} + V_{/z} = \theta'(\Psi_{/y} + x)\]
+                
+                <p>And from the constitutive law:</p>
+                <div class="equation-box">
+                    \[\sigma_{xz} = G\theta'(\Psi_{/x} - y)\]
+                    \[\sigma_{yz} = G\theta'(\Psi_{/y} + x)\]
+                </div>
+
+                <h3>3.3 Governing Equations in Terms of Warping Function</h3>
+                
+                <p>The governing equations of Box 1 are then:</p>
+                \[\begin{cases}
+                G\theta'(\Psi_{/xx} + \Psi_{/yy}) = 0 \\
+                G\theta' + G\theta' = C \\
+                \underline{t} \cdot \underline{n} = \sigma_{xz} n_x + \sigma_{yz} n_y = G\theta'(\Psi_{/x} - y)n_x + G\theta'(\Psi_{/y} + x)n_y = 0 \\
+                M_+ = G\theta' \int_A \left[(-\Psi_{/x}y + y^2) + (\Psi_{/y}x + x^2)\right] dA
+                \end{cases}\]
+                
+                <p>where \(\underline{t} \cdot \underline{n} = (\sigma_{xz}\underline{e}_x + \sigma_{yz}\underline{e}_y) \cdot (n_x\underline{e}_x + n_y\underline{e}_y) = \sigma_{xz}n_x + \sigma_{yz}n_y\)</p>
+                
+                <p>Simplifying:</p>
+                
+                <div class="equation-box important">
+                    <div class="equation-box-title">Box 3: Simplified Governing Equations</div>
+                    \[\begin{aligned}
+                    \Psi_{/xx} + \Psi_{/yy} &= 0 & &\text{in } V \\
+                    2G\theta' &= C & &\text{in } V \\
+                    \Psi_{/n} &= yn_x - xn_y & &\text{in } S_{body} \\
+                    M_+ &= GJ\theta' & &\text{in } S_{face}
+                    \end{aligned}\]
+                </div>
+                
+                <p>having defined:</p>
+                \[J = \int_A \left[(-\Psi_{/x}y + y^2) + (\Psi_{/y}x + x^2)\right] dA\]
+                
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol>
+                        <li>The problem in Box 3 is a <strong>Neumann problem</strong> (the boundary conditions regard the derivatives of \(\Psi\)). Sometimes the problem is referred to as Neumann-Dirichlet problem. The problem is well-posed and a solution can be found. ⇒ the initial guess was correct</li>
+                        <li>The solution procedure can be outlined as:
+                            <ol type="a">
+                                <li>Solve Box 3 and determine \(\Psi\)</li>
+                                <li>From \(\Psi\) determine \(\sigma_{xz}\), \(\sigma_{yz}\)</li>
+                                <li>Evaluate \(\theta' = \frac{M_+}{GJ} = \frac{1}{GJ} \int_A (-\sigma_{xz}y + \sigma_{yz}x) \, dA\)</li>
+                                <li>If needed the displacement field is available as \(U = -yz\theta'\); \(V = xz\theta'\); \(W = \Psi\theta'\)</li>
+                            </ol>
+                        </li>
+                        <li>The compatibility condition in Box 3 is not that useful. This is clear that, having assumed the displacement field, no compatibility issues can be expected.</li>
+                        <li>It was introduced \(J\) as \(J = \int_A (x^2 + y^2 - \Psi_{/x}y + \Psi_{/y}x) \, dA\). Thus \(J\) is <strong>not</strong> the polar moment of inertia \(J_p\). \(J = J_p\) if \(\Psi = 0\) (no warping). Whenever the section warps ⇒ \(J \neq J_p\). More specifically: \(J \leq J_p\)</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Meaning of Warping -->
+            <section class="section" id="warping">
+                <h2>4. Meaning of Warping</h2>
+                
+                <p>Which is the sense of warping? Consider the expression of the stresses:</p>
+                \[\sigma_{xz} = G\theta'(\Psi_{/x} - y)\]
+                \[\sigma_{yz} = G\theta'(\Psi_{/y} + x)\]
+                
+                <p>Assume that the section does not warp ⇒ \(\Psi = 0\), so:</p>
+                \[\sigma_{xz} = -G\theta'y = -ky \quad (k = \text{Const})\]
+                \[\sigma_{yz} = G\theta'x = kx\]
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/circular_section_shear_stress.png" alt="Circular cross-section showing shear stress components">
+                    <figcaption>Figure 4.1: Shear stress at a generic point P along the boundary of the section</figcaption>
+                </figure>
+                
+                <p>The shear stress at a generic point P of the beam along the boundary of the section is then:</p>
+                \[\bar{x} = d\cos\theta \quad \Leftrightarrow \quad \sigma_{xz} = -ky = -kd\sin\theta\]
+                \[\bar{y} = d\sin\theta \quad \Leftrightarrow \quad \sigma_{yz} = kx = kd\cos\theta\]
+                
+                <p>meaning that the shear vector \(\underline{t} = \sigma_{xz}\underline{e}_x + \sigma_{yz}\underline{e}_y\) is normal to \(\overrightarrow{OP}\):</p>
+                \[\boxed{\underline{t} \cdot \overrightarrow{OP} = 0}\]
+                
+                <p>It is then clear that, unless the section is circular, \(\underline{t} \cdot \underline{n} \neq 0\) (if \(\Psi = 0\)).</p>
+                
+                <p>For a circular section \(\underline{n} = \cos\theta \, \underline{e}_x + \sin\theta \, \underline{e}_y\), so:</p>
+                \[\underline{t} \cdot \underline{n} = (-kd\sin\theta \, \underline{e}_x + kd\cos\theta \, \underline{e}_y) \cdot (\cos\theta \, \underline{e}_x + \sin\theta \, \underline{e}_y)\]
+                \[= -kd\sin\theta\cos\theta + kd\cos\theta\sin\theta = 0\]
+                
+                <div class="equation-box result">
+                    <p><strong>Key Result:</strong> The warping can be seen as a way to restore the Cauchy equilibrium condition \(\underline{t} \cdot \underline{n} = 0\). Circular sections do not warp under torsion.</p>
+                </div>
+            </section>
+
+            <!-- Torsional Stiffness -->
+            <section class="section" id="torsional-stiffness">
+                <h2>5. Evaluation of the Torsional Stiffness</h2>
+                
+                <p>It was found that:</p>
+                \[M_z = GJ\theta'\]
+                \[J = \int_A (x^2 + y^2 + \Psi_{/y}x - \Psi_{/x}y) \, dA\]
+                
+                <p>The evaluation of \(J\) requires the knowledge of the warping function \(\Psi\) (which should be determined by solving the Neumann problem). The solution of the problem in Box 3 is not straightforward. A useful expression for \(J\) can be alternatively obtained as follows.</p>
+                
+                <h3>5.1 Alternative Expression for J</h3>
+                
+                \[\int_A (\Psi_{/y}x - \Psi_{/x}y) \, dA = \int_A \left[(\Psi x)_{/y} - (\Psi y)_{/x}\right] dA\]
+                
+                <p>Recalling the gradient theorem:</p>
+                \[= \int_{\partial A} (\Psi x \, n_y - \Psi y \, n_x) \, d\Gamma = \int_{\partial A} \Psi (xn_y - yn_x) \, d\Gamma\]
+                
+                <p>Recalling from Box 3 that \(\Psi_{/n} = yn_x - xn_y\):</p>
+                \[= -\int_{\partial A} \Psi \Psi_{/n} \, d\Gamma = -\int_{\partial A} \Psi \, \text{grad} \, \Psi \cdot \underline{n} \, d\Gamma\]
+                
+                <p>And from the divergence theorem:</p>
+                \[= -\int_A \text{div}(\Psi \, \text{grad} \, \Psi) \, dA = -\int_A \left[(\Psi\Psi_{/x})_{/x} + (\Psi\Psi_{/y})_{/y}\right] dA\]
+                \[= -\int_A \left(\Psi\Psi_{/xx} + \Psi_{/x}^2 + \Psi\Psi_{/yy} + \Psi_{/y}^2\right) dA\]
+                \[= -\int_A \left(\Psi_{/x}^2 + \Psi_{/y}^2 + \underbrace{\Psi(\Psi_{/xx} + \Psi_{/yy})}_{= 0 \text{ (from Box 3)}}\right) dA\]
+                
+                <p>Thus, it is obtained that:</p>
+                \[\boxed{\int_A (\Psi_{/y}x - \Psi_{/x}y) \, dA = -\int_A (\Psi_{/x}^2 + \Psi_{/y}^2) \, dA}\]
+                
+                <p>Recalling now the expression of \(J\):</p>
+                \[J = \int_A (x^2 + y^2 + \Psi_{/y}x - \Psi_{/x}y) \, dA\]
+                \[= \int_A (x^2 + y^2 + 2\Psi_{/y}x - 2\Psi_{/x}y + \Psi_{/x}^2 + \Psi_{/y}^2) \, dA\]
+                \[= \int_A \left[(\Psi_{/x} - y)^2 + (\Psi_{/y} + x)^2\right] dA\]
+                
+                <p>And recalling that the stresses were obtained as \(\sigma_{xz} = G\theta'(\Psi_{/x} - y)\) and \(\sigma_{yz} = G\theta'(\Psi_{/y} + x)\):</p>
+                
+                \[J = \frac{1}{(G\theta')^2} \int_A (\sigma_{xz}^2 + \sigma_{yz}^2) \, dA\]
+                
+                <p>But \(M_z = GJ\theta'\) ⇒ \((G\theta')^2 = M_z^2/J^2\), and so:</p>
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Torsional Constant in Terms of Shear Stresses</div>
+                    \[J = \frac{M_z^2}{\int_A (\sigma_{xz}^2 + \sigma_{yz}^2) \, dA}\]
+                </div>
+                
+                <div class="remarks">
+                    <h4>Remark</h4>
+                    <p>This expression of \(J\) is a reformulation of the original form. It is useful because it makes possible the evaluation of \(J\) without the need for computing the warping function \(\Psi\). Clearly, the problem has been now shifted to the evaluation of the shear stresses: \(\Psi\) is not needed, but a way for obtaining \(\sigma_{xz}\) & \(\sigma_{yz}\) is necessary.</p>
+                </div>
+
+                <h3>5.2 Strain Energy and Complementary Strain Energy for Torsion</h3>
+                
+                <p>The previous result is useful for obtaining the expression of the strain and complementary strain energy.</p>
+                
+                \[U = \frac{1}{2} \int_V \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} \, dV = \frac{1}{2} \int_V (\sigma_{xz}\gamma_{xz} + \sigma_{yz}\gamma_{yz}) \, dV\]
+                
+                <p>And from the constitutive law:</p>
+                \[= \frac{1}{2G} \int_V (\sigma_{xz}^2 + \sigma_{yz}^2) \, dV\]
+                
+                <p>Recalling that \(J = \frac{M_z^2}{\int_A (\sigma_{xz}^2 + \sigma_{yz}^2) \, dA}\), it is obtained:</p>
+                
+                \[U = \frac{1}{2G} \int_\ell \frac{M_z^2}{J} \, dz\]
+                
+                <p>And observing that \(M_z = GJ\theta'\):</p>
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Strain Energy</div>
+                    \[U = \frac{1}{2} \int_\ell GJ\theta'^2 \, dz\]
+                </div>
+                
+                <p>The complementary energy \(U^* = U\) is expressed as function of the internal action \(M_z\), recalling that \(\theta' = \frac{M_z}{GJ}\):</p>
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Complementary Strain Energy</div>
+                    \[U^* = \frac{1}{2} \int_\ell \frac{M_z^2}{GJ} \, dz\]
+                </div>
+            </section>
+
+            <!-- Hydraulic Analogy -->
+            <section class="section" id="hydraulic-analogy">
+                <h2>6. Qualitative Interpretation: Hydraulic Analogy</h2>
+                
+                <p>Consider the set of governing equations in Box 1, and analyze the equilibrium requirements:</p>
+                
+                \[\begin{cases}
+                \sigma_{xz/x} + \sigma_{yz/y} = 0 & \text{in } V \\
+                \underline{t} \cdot \underline{n} = 0 & \text{in } S_{body}
+                \end{cases}\]
+                
+                <p>Note that \(\sigma_{xz}\) and \(\sigma_{yz}\) are functions of \(x, y\), so the equation holds in \(S\).</p>
+                
+                <p>Or equivalently:</p>
+                \[\begin{cases}
+                \text{div } \underline{t} = 0 \\
+                \underline{t} \cdot \underline{n} = 0
+                \end{cases}\]
+                
+                <p>By replacing \(\underline{t}\) with the velocity vector \(\underline{V}\), the equations of equilibrium become:</p>
+                \[\begin{cases}
+                \text{div } \underline{V} = 0 \\
+                \underline{V} \cdot \underline{n} = 0
+                \end{cases}\]
+                
+                <p>which are the equations describing the <strong>mass balance</strong> and the <strong>tangency condition</strong> for an incompressible inviscid flow.</p>
+                
+                <p>The analogy with the motion of a fluid allows to qualitatively understand how the shear stress will flow in the section.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/section_profiles_shear_flow.png" alt="Three rectangular cross-sections showing shear flow patterns">
+                    <figcaption>Figure 6.1: Three cross-sections showing shear flow patterns for open and closed sections</figcaption>
+                </figure>
+
+                <h3>6.1 Open vs Closed Sections</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/open_closed_section_comparison.png" alt="Comparison of shear flow in open and closed sections">
+                    <figcaption>Figure 6.2: Shear flow direction comparison for open and closed sections under torsion</figcaption>
+                </figure>
+                
+                <p><strong>Section 1 (Open):</strong></p>
+                <ul>
+                    <li>\(M_z\) is the internal section, thus the shear stresses should satisfy the equivalence of the resultant with \(M_z\) (not the equilibrium!)</li>
+                    <li>⇒ the direction of the flow is easily obtained</li>
+                    <li>They should respect the tangency condition at the boundaries</li>
+                </ul>
+                
+                <p><strong>Section 2 (Closed):</strong></p>
+                <ul>
+                    <li>The tangency conditions do not impose the need for a reversal of the flow along the thickness-wise direction</li>
+                    <li>The flow simply circulates inside the "loop"</li>
+                </ul>
+                
+                <p><strong>Section 3 (Open with cut):</strong></p>
+                <ul>
+                    <li>Very similar to Section 2, however, the presence of a "cut" introduces novel tangency condition along the cut itself</li>
+                    <li>The flow is thus forced to reverse its direction along the thickness coordinate</li>
+                </ul>
+
+                <h3>6.2 Important Distinction: Arm of Shear Flow</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/rectangular_sections_shear_arms.png" alt="Shear flow arms in open and closed sections">
+                    <figcaption>Figure 6.3: Comparison of arm dimensions between open and closed section profiles</figcaption>
+                </figure>
+                
+                <p>This comparison reveals an important distinction between open- and closed-section profiles:</p>
+                
+                <ol>
+                    <li><strong>Open-section profiles</strong> can react a twisting moment with an internal shear stress distribution characterized by a <strong>small arm</strong>. It follows that, for a given moment, the shear stresses will be higher than in a similar closed-section profile.</li>
+                    <li><strong>Closed-section profiles</strong> are characterized by <strong>higher arms</strong> between the shear flows. For reacting a given twisting moment, the shear stresses will be then smaller.</li>
+                </ol>
+                
+                <div class="equation-box result">
+                    <p><strong>Summary:</strong></p>
+                    <ul>
+                        <li>Open-section ⇒ higher stresses ⇒ higher deformation ⇒ <strong>smaller rigidity</strong></li>
+                        <li>Closed-section ⇒ smaller stresses ⇒ lower deformation ⇒ <strong>higher rigidity</strong></li>
+                    </ul>
+                </div>
+
+                <h3>6.3 Mathematical Formalization</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/generic_section_boundary_integration.png" alt="Generic section with boundary regions">
+                    <figcaption>Figure 6.4: Generic cross-section showing boundary regions for shear flow analysis</figcaption>
+                </figure>
+                
+                <p>From a mathematical standpoint, the previous considerations can be formalized as follows:</p>
+                
+                \[\begin{cases}
+                \text{div } \underline{t} = 0 & \text{in } A \\
+                \underline{t} \cdot \underline{n} = 0 & \text{in } \Gamma
+                \end{cases}\]
+                
+                <p>Integrate over a generic portion of the section \(A'\):</p>
+                \[\int_{A'} \text{div } \underline{t} \, dA' = 0\]
+                
+                <p>Apply the divergence theorem:</p>
+                \[\oint_\Gamma \underline{t} \cdot \underline{n} \, d\Gamma = 0\]
+                
+                <p>Denoting with \(\phi\) the quantity \(\phi = \oint_\Gamma \underline{t} \cdot \underline{n} \, d\Gamma\), it follows that:</p>
+                \[\boxed{\phi = 0}\]
+                <p>where \(\phi\) denotes the net flow of shear stresses outflowing from \(\Gamma\).</p>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/open_section_flow_direction.png" alt="Open section showing flow directions">
+                    <figcaption>Figure 6.5: Open rectangular section showing shear stress flow direction analysis</figcaption>
+                </figure>
+                
+                <p>For an open section, \(\Gamma = \Gamma_1 \cup \Gamma_2\). It is clear that no flow is crossing the portion of the boundary denoted with \(\Gamma_1\):</p>
+                \[\oint_\Gamma \underline{t} \cdot \underline{n} \, d\Gamma = \int_{\Gamma_1} \underline{t} \cdot \underline{n} \, d\Gamma_1 + \int_{\Gamma_2} \underline{t} \cdot \underline{n} \, d\Gamma_2 = 0\]
+                
+                <p>The net flow across \(\Gamma_2\) is then null:</p>
+                \[\int_{\Gamma_2} \underline{t} \cdot \underline{n} \, d\Gamma_2 = 0\]
+                
+                <p>To satisfy this condition, part of the shear stresses need to be directed along the downward direction, part along the upward direction.</p>
+                
+                <p>For a closed section:</p>
+                \[\oint_\Gamma \underline{t} \cdot \underline{n} = \int_{\Gamma_1} \underline{t} \cdot \underline{n} \, d\Gamma_1 + \int_{\Gamma_2} \underline{t} \cdot \underline{n} \, d\Gamma_2 + \int_{\Gamma_3} \underline{t} \cdot \underline{n} \, d\Gamma_3 = 0\]
+                
+                <p>But \(\int_{\Gamma_1} \underline{t} \cdot \underline{n} \, d\Gamma_1 = 0\), therefore:</p>
+                \[\boxed{\int_{\Gamma_2} \underline{t} \cdot \underline{n} \, d\Gamma_2 = -\int_{\Gamma_3} \underline{t} \cdot \underline{n} \, d\Gamma_3}\]
+                
+                <p>The inflow of shear stresses in \(\Gamma_2\) is equal to the outflow and vice versa.</p>
+            </section>
+
+            <!-- Approximate Solution for Open Profiles -->
+            <section class="section" id="open-profiles">
+                <h2>7. Approximate Solution for Thin-Walled Open Profiles</h2>
+                
+                <p>In most cases, typical aerospace constructions are characterized by thin-walled sections, meaning that thicknesses are small in relation to the typical dimensions of the section.</p>
+                
+                <p>In these cases the solution, i.e., the evaluation of the shear stresses, can be obtained by introducing proper approximation related with the entity of the thicknesses.</p>
+                
+                <p>Recall the set of equations for the torsional case:</p>
+                \[\begin{array}{ll}
+                \sigma_{xz/x} + \sigma_{yz/y} = 0 & \text{(equilibrium)} \\
+                \sigma_{yz/x} - \sigma_{xz/y} = 2G\theta' = 2M_z/J & \text{(compatibility)} \\
+                \underline{t} \cdot \underline{n} = 0 & \text{equilibrium boundary} \\
+                M_+ = GJ\theta' & \text{equiv. internal section}
+                \end{array}\]
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/narrow_strip_torsion.png" alt="Narrow strip subjected to torsion">
+                    <figcaption>Figure 7.1: Narrow strip subjected to torsional moment \(M_z\)</figcaption>
+                </figure>
+                
+                <p>A qualitative analysis reveals that the shear stresses will be directed horizontally through most of the section.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/rectangular_beam_shear_distribution.png" alt="Shear stress distribution in rectangular section">
+                    <figcaption>Figure 7.2: Rectangular beam cross-section showing shear stress distribution</figcaption>
+                </figure>
+                
+                <p>It is then clear that:</p>
+                <div class="equation-box">
+                    \[\sigma_{yz} \simeq 0\]
+                </div>
+                
+                <p>This is a good approximation in most of the section, apart from the external portions where the shear flow is directed along the vertical direction, so \(\sigma_{yz} \neq 0\).</p>
+                
+                <p>Substitute now the approximation \(\sigma_{yz} \simeq 0\) in the set of governing equations to obtain:</p>
+                \[\begin{cases}
+                \sigma_{xz/x} = 0 & \text{equilibrium} \\
+                -\sigma_{xz/y} = 2M_z/J & \text{compatibility}
+                \end{cases}\]
+                
+                <p>From \(\sigma_{xz/x} = 0\) ⇒ \(\sigma_{xz} = Ay\)</p>
+                <p>From \(-\sigma_{xz/y} = 2M_z/J\) ⇒ \(A = -\frac{2M_z}{J}\)</p>
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Shear Stress for Thin Open Profiles</div>
+                    \[\sigma_{xz} = -\frac{2M_z}{J} y\]
+                    <p>The approximate solution for thin open profiles states that \(\sigma_{yz} \simeq 0\) and \(\sigma_{xz}\) is <strong>linear along the thickness</strong>.</p>
+                </div>
+
+                <h3>7.1 Torsional Constant for Open Profiles</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/variable_thickness_beam.png" alt="Variable thickness beam cross-section">
+                    <figcaption>Figure 7.3: Variable thickness beam cross-section showing \(b(x)\)</figcaption>
+                </figure>
+                
+                <p>The value of \(J\) is readily obtained recalling that:</p>
+                \[J = \frac{M_+^2}{\int_A (\sigma_{xz}^2 + \sigma_{yz}^2) \, dA} = \frac{J^2}{\int_A 4y^2 \, dA} \quad \Leftrightarrow \quad J = \int_A 4y^2 \, dA\]
+                
+                <p>Assume, for generality, that the thickness \(b\) is not constant, but depends on \(x\):</p>
+                \[\int_A 4y^2 \, dA = \int_{-a/2}^{a/2} \int_{-b/2}^{b/2} 4y^2 \, dy \, dx = \int_{-a/2}^{a/2} \frac{1}{3} b^3(x) \, dx\]
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Torsional Constant for Open Sections</div>
+                    <p><strong>Variable thickness:</strong></p>
+                    \[J = \frac{1}{3} \int_{-a/2}^{a/2} b^3(x) \, dx\]
+                    <p><strong>Constant thickness:</strong></p>
+                    \[J = \frac{1}{3} a b^3\]
+                </div>
+
+                <h3>7.2 Verification of Moment Equilibrium</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/beam_section_stress_distribution.png" alt="Beam section stress distribution">
+                    <figcaption>Figure 7.4: Rectangular beam section showing shear stress resultant</figcaption>
+                </figure>
+                
+                <p>It is interesting to evaluate the resultant over the section associated with the solution here derived: \(\sigma_{yz} = 0\); \(\sigma_{xz} = -\frac{2M_z}{J} y\)</p>
+                
+                \[-\int_{-a/2}^{a/2} \int_{-b/2}^{b/2} \sigma_{xz} \, y \, dy \, dx\]
+                \[= a \cdot \int_{-b/2}^{b/2} \frac{2M_z}{J} y^2 \, dy = \frac{2aM_z}{J} \left(\frac{1}{3}\frac{b^3}{8} + \frac{1}{3}\frac{b^3}{8}\right)\]
+                \[= \frac{2aM_z}{J} \frac{b^3}{12}\]
+                
+                <p>And recalling that \(J = \frac{1}{3}ab^3\):</p>
+                \[= \frac{M_z}{2}\]
+                
+                <p>The result illustrates that the integral over the section of the approximate solution leads to a moment \(M_z/2\), just <strong>half</strong> of the internal moment \(M_z\).</p>
+                
+                <p>This means that the equivalence condition with the internal action is not respected (indeed it was not applied throughout the solution process). How is it explained? Is something wrong?</p>
+                
+                <p><strong>No</strong>, everything is fine within the context of the approximation here introduced. Recall that \(\sigma_{yz}\) was assumed \(\simeq 0\). Neglecting \(\sigma_{yz}\) means neglecting a large part of the contribution to the internal twisting moment — the arm of the contribution from \(\sigma_{yz}\) is large!</p>
+
+                <h3>7.3 Open Sections with Generic Shape</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/narrow_strips_assembly.png" alt="Assembly of narrow strips">
+                    <figcaption>Figure 7.5: Generic open sections analyzed as assembly of narrow strips</figcaption>
+                </figure>
+                
+                <p>The previous results can be readily extended to the case of open sections with generic shape (T-section, C-channel, etc.). These shapes can be analyzed as an assembly of narrow strips.</p>
+                
+                <p>For each strip: \(n_i\) = axis normal to i-th strip, \(s_i\) = axis tangent to i-th strip</p>
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">General Formula for Open Sections</div>
+                    \[\sigma_{nz} = 0\]
+                    \[\sigma_{sz} = -\frac{2M_+}{J} n\]
+                    \[\text{with} \quad J = \frac{1}{3} \sum_i a_i b_i^3\]
+                </div>
+            </section>
+
+            <!-- Exercises for Open Sections -->
+            <section class="section" id="exercises-open">
+                <h2>8. Exercises: Open Sections</h2>
+                
+                <div class="exercise">
+                    <h3>Exercise 8.1: Curved Beam (S-Section)</h3>
+                    
+                    <figure>
+                        <img src="images/LN_C2_4_DSV_solution_torsion/curved_beam_torsion_problem.png" alt="Curved beam with torsional moment">
+                        <figcaption>Figure 8.1: Curved beam structure with torsional moment \(M_z\)</figcaption>
+                    </figure>
+                    
+                    <p class="problem-statement">Consider the beam in the figure. The section has total arc length \(a = 51t\) and thickness \(b = t\), with length \(\ell\) along the beam axis.</p>
+                    
+                    <p><strong>Evaluate:</strong></p>
+                    <ol>
+                        <li>The maximum stress over the section</li>
+                        <li>The relative rotation between the two outer sections</li>
+                    </ol>
+                    
+                    <div class="solution">
+                        <h4>Solution</h4>
+                        
+                        <p>The internal stress state is:</p>
+                        \[\sigma_{sz} = -\frac{2M_z}{J} n \quad \text{with} \quad J = \frac{1}{3}ab^3 = \frac{1}{3} \cdot 51t \cdot t^3 = 17t^4\]
+                        
+                        \[\Rightarrow \sigma_{sz} = -\frac{2M_z}{17t^4} n\]
+                        
+                        <p>Clearly the maximum stress is at the top and bottom, i.e., \(n = \pm t/2\):</p>
+                        
+                        <div class="final-answer">
+                            \[|\sigma_{sz}| = \frac{M_z}{17t^3}\]
+                        </div>
+                        
+                        <p>The relative rotation is obtained recalling that:</p>
+                        \[M_z = GJ\theta' \quad \Rightarrow \quad \theta' = \frac{M_z}{GJ} \quad \text{but} \quad J = 17t^4\]
+                        
+                        \[\theta' = \frac{M_z}{17Gt^4}\]
+                        
+                        <p>As far as \(\theta\) is linear with the beam axis \(z\):</p>
+                        
+                        <div class="final-answer">
+                            \[\Delta\theta = \theta' \cdot \ell = \frac{M_z \ell}{17Gt^4}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h3>Exercise 8.2: Wing Profile with Variable Thickness</h3>
+                    
+                    <figure>
+                        <img src="images/LN_C2_4_DSV_solution_torsion/wing_profile_variable_thickness.png" alt="Wing profile cross-section">
+                        <figcaption>Figure 8.2: Wing profile cross-section with parabolic thickness distribution</figcaption>
+                    </figure>
+                    
+                    <p class="problem-statement">Evaluate the torsional stiffness of a wing profile which is approximated with a parabolic thickness distribution:</p>
+                    \[b = b(x) = b_0 \left[1 - \left(\frac{2x}{a}\right)^2\right]\]
+                    <p>Determine also the maximum stress assuming that the internal torsional moment is \(M_z\).</p>
+                    
+                    <div class="solution">
+                        <h4>Solution</h4>
+                        
+                        \[J = \frac{1}{3} a \int_{-a/2}^{a/2} b(x)^3 \, dx = \frac{1}{3} a \int_{-a/2}^{a/2} \left\{b_0 \left(1 - \left(\frac{2x}{a}\right)^2\right)\right\}^3 dx\]
+                        
+                        \[= \frac{16}{105} a b_0^3\]
+                        
+                        <div class="final-answer">
+                            <p><strong>Torsional Stiffness:</strong></p>
+                            \[GJ = G\frac{16}{105} ab_0^3\]
+                        </div>
+                        
+                        <p>The maximum stress is obtained by recalling that:</p>
+                        \[\sigma_{xz} = -\frac{2M_+}{J} z = -\frac{2M_+}{16ab_0^3} \cdot 105 \, M_z \cdot z\]
+                        
+                        \[|\sigma_{xz_{max}}| = \sigma_{xz}(0, \pm b_0/2)\]
+                        
+                        <p>The thickness \(b\) at \(x = 0\) is \(b = b_0\), so:</p>
+                        
+                        <div class="final-answer">
+                            \[|\sigma_{xz_{max}}| = \frac{105}{16} \frac{M_z}{ab_0^2}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h3>Exercise 8.3: C-Channel</h3>
+                    
+                    <figure>
+                        <img src="images/LN_C2_4_DSV_solution_torsion/c_channel_torsion.png" alt="C-channel cross-section">
+                        <figcaption>Figure 8.3: C-channel cross-section with dimensions</figcaption>
+                    </figure>
+                    
+                    <p class="problem-statement">Evaluate the torsional stiffness of the C-channel beam in the figure. Evaluate then the maximum stress when a torsion moment \(M_z\) is applied.</p>
+                    
+                    <p>Dimensions: Top and bottom flanges have width \(d\) and thickness \(b\). Web has height \(2d\) and thickness \(b\).</p>
+                    
+                    <div class="solution">
+                        <h4>Solution</h4>
+                        
+                        \[J = \frac{1}{3} \sum_{i=1}^{3} a_i b_i^3 = \frac{1}{3} db^3 + \frac{1}{3} 2db^3 + \frac{1}{3} db^3 = \frac{4}{3} db^3\]
+                        
+                        <p>The internal stresses are:</p>
+                        \[\sigma_{sz} = -\frac{2M_z}{J} n = -\frac{2M_z}{\frac{4}{3}db^3} n = -\frac{3M_z}{2db^3} n\]
+                        
+                        \[|\sigma_{sz_{max}}| = \sigma_{sz}\big|_{n = b/2}\]
+                        
+                        <div class="final-answer">
+                            \[|\sigma_{sz_{max}}| = \frac{3M_z}{4db^2}\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Closed Thin-Walled Profiles -->
+            <section class="section" id="closed-profiles">
+                <h2>9. Closed Thin-Walled Profiles</h2>
+                
+                <p>Whenever the torsional stiffness is relevant for design purposes — as it often happens for aeronautical beams — the adoption of a closed-profile is clearly advantageous.</p>
+                
+                <p>Indeed, it was illustrated, at least from a qualitative point of view, that the arm of the internal shear stresses is much higher in comparison to open-sections.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/elliptical_closed_section.png" alt="Closed thin-walled elliptical section">
+                    <figcaption>Figure 9.1: Closed thin-walled elliptical cross-section showing qualitative shear flow behavior</figcaption>
+                </figure>
+                
+                <p>It was found that the internal shear stresses are directed tangent to the midline, circulating around the closed profile.</p>
+                
+                <p>For thin-walled sections, it can be reasonably assumed that the shear stress component \(\sigma_{sz}\) is <strong>constant along the thickness</strong> and <strong>parallel to the midline</strong>.</p>
+                
+                <h3>9.1 Shear Flow Conservation</h3>
+                
+                <p>This assumption, which is more and more realistic as the thickness gets smaller, simplifies the derivation of a closed-form solution.</p>
+                
+                <p>Recall the equilibrium condition:</p>
+                \[\text{div } \underline{t} = 0 \quad \Rightarrow \quad \int_{A'} \text{div } \underline{t} \, dA' = \oint_\Gamma \underline{t} \cdot \underline{n} \, d\Gamma = 0\]
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/elliptical_section_flow_paths.png" alt="Closed section showing flow paths">
+                    <figcaption>Figure 9.2: Closed elliptical section showing boundary regions and shear flow paths</figcaption>
+                </figure>
+                
+                \[\oint_\Gamma \underline{t} \cdot \underline{n} \, d\Gamma = \oint_{\Gamma_1} \underline{t} \cdot \underline{n} \, d\Gamma_1 + \oint_{\Gamma_2} \underline{t} \cdot \underline{n} \, d\Gamma_2 + \oint_{\Gamma_3} \underline{t} \cdot \underline{n} \, d\Gamma_3\]
+                \[= \int_{t_2} \sigma_{sz}(S_0) \, dt - \int_{t_3} \sigma_{sz}(S_1) \, dt\]
+                \[= \underbrace{\sigma_{sz}(S_0) \, t_2}_{q_{in}} - \underbrace{\sigma_{sz}(S_1) \, t_3}_{q_{out}}\]
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Shear Flow Conservation</div>
+                    \[\boxed{q_{in} = q_{out}}\]
+                    <p>where \(q\) = <strong>shear flow</strong> (integral of the stress component \(\sigma_{sz}\) along the thickness)</p>
+                </div>
+
+                <h3>9.2 Bredt Formula</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/generic_closed_section_midline.png" alt="Generic closed section showing midline">
+                    <figcaption>Figure 9.3: Generic closed cross-section showing shear flow \(q\) tangent to midline</figcaption>
+                </figure>
+                
+                <p>The relation between the internal shear flow and the torsional moment is obtained by imposing the equivalence with \(M_z\).</p>
+                
+                <p>As far as the shear flow is assumed constant along the thickness direction, the section is represented by considering the mid-line only.</p>
+                
+                <p>Take a generic pole O and consider the shear flow in a generic point of the section. \(q\) is tangent to the mid line.</p>
+                
+                <p>The torsional moment due to a portion \(ds\) is then:</p>
+                \[dM = q \, ds \cdot r(s) = q \, r(s) \, ds\]
+                <p>where \(r\) = arm with respect to O (it is a function of \(s\)!)</p>
+                
+                <p>The total moment is then:</p>
+                \[\oint_\Gamma dM = M = \oint_\Gamma q \, r(s) \, ds = q \oint_\Gamma r(s) \, ds \quad \text{(because } \phi = 0\text{)}\]
+                
+                <figure>
+                    <img src="images/LN_C2_4_DSV_solution_torsion/bredt_formula_geometry.png" alt="Geometry for Bredt formula">
+                    <figcaption>Figure 9.4: Geometric construction showing triangular area element for Bredt formula derivation</figcaption>
+                </figure>
+                
+                <p>The integral \(\oint_\Gamma r(s) \, ds\) can be easily evaluated by graphically inspecting it.</p>
+                
+                <p>The area of the triangle \(d\Omega\) is: \(d\Omega = r(s) \, ds / 2\)</p>
+                
+                \[\Rightarrow 2 \, d\Omega = r(s) \, ds\]
+                \[\Rightarrow \oint_\Gamma 2 \, d\Omega = \oint_\Gamma r(s) \, ds\]
+                \[2\Omega = \oint_\Gamma r(s) \, ds\]
+                
+                <p>The previous expression is then:</p>
+                
+                <div class="equation-box important">
+                    <div class="equation-box-title">Bredt Formula</div>
+                    \[\boxed{M_z = 2q\Omega}\]
+                    <p>where \(\Omega\) = area enclosed by the midline</p>
+                </div>
+
+                <h3>9.3 Torsional Stiffness for Closed Sections</h3>
+                
+                <p>The evaluation of the torsional stiffness is straightforward:</p>
+                \[J = \frac{M_z^2}{\int_A (\sigma_{xz}^2 + \sigma_{yz}^2) \, dA} = \frac{M_z^2}{\int_A \sigma_{sz}^2 \, dA}\]
+                
+                <p>But \(\sigma_{sz} = \frac{q}{t} = \frac{M_z}{2\Omega t}\), and so:</p>
+                
+                \[J = \frac{M_z^2}{\int_t \oint_\Gamma \frac{M_z^2}{4\Omega^2 t^2} \, d\Gamma \, dt} = \frac{4\Omega^2}{\oint_\Gamma \frac{1}{t(s)} \, d\Gamma}\]
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Torsional Constant for Closed Thin-Walled Sections</div>
+                    \[\boxed{J = \frac{4\Omega^2}{\oint_\Gamma \frac{1}{t(s)} \, d\Gamma}}\]
+                    <p>where:</p>
+                    <ul>
+                        <li>\(\Omega\) = area enclosed by the midline</li>
+                        <li>\(t(s)\) = thickness as function of position along midline</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Final Comparison Exercise -->
+            <section class="section" id="comparison-exercise">
+                <h2>10. Exercise: Comparison of Open vs Closed Circular Tubes</h2>
+                
+                <div class="exercise">
+                    <h3>Exercise 10.1: Open vs Closed Tube Comparison</h3>
+                    
+                    <figure>
+                        <img src="images/LN_C2_4_DSV_solution_torsion/circular_tubes_open_closed.png" alt="Open and closed circular tubes">
+                        <figcaption>Figure 10.1: Two circular tubes with thickness \(t\) and diameter \(D = 16t\)</figcaption>
+                    </figure>
+                    
+                    <p class="problem-statement">Consider two tubes with thickness \(t\) and diameter \(D\). The first is open, the second is closed. Compare the torsional stiffness and the maximum stress for an internal twisting moment \(M_z\). Given: \(D = 16t\)</p>
+                    
+                    <div class="solution">
+                        <h4>Solution</h4>
+                        
+                        <h4>Open Tube:</h4>
+                        \[J = \frac{1}{3} \pi D t^3\]
+                        
+                        \[\sigma_{sz_{max}} = \frac{2M_+}{J} \cdot \frac{t}{2} = \frac{2M_+ \cdot 3}{\pi D t^3} \cdot \frac{t}{2} = \frac{3}{\pi} \frac{M_+}{Dt^2}\]
+                        
+                        <h4>Closed Tube:</h4>
+                        \[J = \frac{4\Omega^2}{\oint_\Gamma \frac{1}{t(s)} \, d\Gamma} = \frac{4(\pi D^2/4)^2}{\frac{1}{t} \cdot \pi D} = \frac{4\pi^2 D^4}{16 \pi D} \cdot t = \frac{\pi D^3 t}{4}\]
+                        
+                        \[\sigma_{sz_{max}} = \frac{q}{t} \quad \text{where} \quad q = \frac{M_z}{2\Omega}\]
+                        \[= \frac{M_z}{2\Omega t} = \frac{M_z}{2 \cdot \frac{\pi D^2}{4} \cdot t} = \frac{2M_z}{\pi D^2 t}\]
+                        
+                        <h4>Comparison:</h4>
+                        
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Property</th>
+                                <th>Ratio</th>
+                                <th>Value (for D = 16t)</th>
+                            </tr>
+                            <tr>
+                                <td>\(\frac{J_{closed}}{J_{open}}\)</td>
+                                <td>\(\frac{\pi D^3 t}{4} \cdot \frac{3}{\pi D t^3} = \frac{3D^2}{4t^2}\)</td>
+                                <td><strong>192</strong></td>
+                            </tr>
+                            <tr>
+                                <td>\(\frac{\sigma_{open}}{\sigma_{closed}}\)</td>
+                                <td>\(\frac{3}{\pi} \frac{M_z}{Dt^2} \cdot \frac{\pi D^2 t}{2M_z} = \frac{3}{2} \frac{D}{t}\)</td>
+                                <td><strong>24</strong></td>
+                            </tr>
+                        </table>
+                        
+                        <div class="final-answer">
+                            <p><strong>Key Results:</strong></p>
+                            <ul style="text-align: left; display: inline-block;">
+                                <li>The closed section is <strong>192 times stiffer</strong> than the open section</li>
+                                <li>The open section has <strong>24 times higher stress</strong> than the closed section</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>The superiority of the closed section, both in terms of stiffness and strength, is clear.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section class="section" id="summary">
+                <h2>Summary of Key Results</h2>
+                
+                <div class="equation-box">
+                    <div class="equation-box-title">Governing Relation for Torsion</div>
+                    \[M_z = GJ\theta'\]
+                    <p>where \(\theta' = \frac{d\theta}{dz}\) is the rate of twist</p>
+                </div>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Open Thin-Walled Sections</h4>
+                        <p><strong>Torsional Constant:</strong></p>
+                        \[J = \frac{1}{3} \sum_i a_i b_i^3\]
+                        <p><strong>Shear Stress:</strong></p>
+                        \[\sigma_{sz} = -\frac{2M_z}{J} n\]
+                        <p><strong>Maximum Stress:</strong></p>
+                        \[|\sigma_{max}| = \frac{M_z \cdot t_{max}}{J}\]
+                    </div>
+                    <div class="column">
+                        <h4>Closed Thin-Walled Sections</h4>
+                        <p><strong>Bredt Formula:</strong></p>
+                        \[M_z = 2q\Omega\]
+                        <p><strong>Torsional Constant:</strong></p>
+                        \[J = \frac{4\Omega^2}{\oint \frac{ds}{t(s)}}\]
+                        <p><strong>Shear Stress:</strong></p>
+                        \[\sigma_{sz} = \frac{q}{t} = \frac{M_z}{2\Omega t}\]
+                    </div>
+                </div>
+                
+                <div class="equation-box result">
+                    <div class="equation-box-title">Strain Energy for Torsion</div>
+                    \[U = \frac{1}{2} \int_\ell GJ\theta'^2 \, dz = \frac{1}{2} \int_\ell \frac{M_z^2}{GJ} \, dz\]
+                </div>
+                
+                <div class="remarks">
+                    <h4>Design Implications</h4>
+                    <ul>
+                        <li><strong>Closed sections</strong> are significantly more efficient for torsional loading</li>
+                        <li>For the same material and dimensions, closed sections provide much higher stiffness and lower stresses</li>
+                        <li>This is why aeronautical structures predominantly use closed-section designs (wing boxes, fuselage shells)</li>
+                        <li>The "hydraulic analogy" provides useful qualitative insight into shear flow behavior</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

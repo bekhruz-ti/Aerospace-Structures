@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritz Method for the Analysis of Thin Plates</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --bg-code: #2d3748;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --highlight-yellow: #fef3c7;
+            --highlight-red: #fed7d7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .document {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 12px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        header .course-info {
+            font-size: 1.3rem;
+            margin-top: 30px;
+        }
+
+        header .author {
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .section-content {
+            padding: 25px;
+            background: var(--bg-light);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
+        }
+
+        h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 15px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .equation-block {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            overflow-x: auto;
+        }
+
+        .code-block {
+            background: var(--bg-code);
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 20px 0;
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        .code-block .comment {
+            color: #68d391;
+        }
+
+        .code-block .highlight-red {
+            background: rgba(254, 178, 178, 0.3);
+            display: inline;
+        }
+
+        .highlight-yellow {
+            background: var(--highlight-yellow);
+            padding: 2px 5px;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        table {
+            width: auto;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .structure-box {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .structure-fields {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px 20px;
+            align-items: start;
+        }
+
+        .field-name {
+            font-family: 'Consolas', monospace;
+            background: #edf2f7;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .field-desc {
+            background: var(--highlight-yellow);
+            padding: 2px 8px;
+        }
+
+        .boundary-conditions {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .bc-item {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .input-data-box {
+            background: #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .input-data-box h4 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .exercise-list {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .results-section {
+            background: var(--bg-solution);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-content {
+                padding: 15px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="document">
+        <header>
+            <h1>Ritz Method for the Analysis of Thin Plates</h1>
+            <div class="course-info">
+                Course of Spacecraft Structures<br>
+                AY 2017/2018
+            </div>
+            <div class="author">
+                Riccardo Vescovini<br>
+                Politecnico di Milano, Department of Aerospace Science and Technology
+            </div>
+        </header>
+
+        <main>
+            <!-- Trial Functions Overview -->
+            <section class="section" id="trial-functions-overview">
+                <div class="section-header">Trial Functions – Overview</div>
+                <div class="section-content">
+                    <p>The out-of-plane displacement is expanded by separation of variables as:</p>
+                    
+                    <div class="equation-block">
+                        \[w = \sum_{ij}^{RS} c_{ij} \phi_i(x) \psi_j(y)\]
+                    </div>
+
+                    <p>Trial functions (along x direction; y-direction analogous by replacing x with y and a with b)</p>
+
+                    <h3>Clamped-Clamped (CC)</h3>
+                    <div class="equation-block">
+                        \[\phi_i = \left(\frac{x}{a}\right)^{i+3} - 2\left(\frac{x}{a}\right)^{i+2} + \left(\frac{x}{a}\right)^{i+i} \quad \text{or} \quad \phi_i = 1 - \cos\frac{2i\pi x}{a}\]
+                    </div>
+
+                    <h3>Clamped-Free (CF)</h3>
+                    <div class="equation-block">
+                        \[\phi_i = \left(\frac{x}{a}\right)^{i+1}\]
+                    </div>
+
+                    <h3>Clamped-Supported (CS)</h3>
+                    <div class="equation-block">
+                        \[\phi_i = \left(1 - \frac{x}{a}\right)\left(\frac{x}{a}\right)^{i+1}\]
+                    </div>
+
+                    <h3>Supported-Supported (SS)</h3>
+                    <div class="equation-block">
+                        \[\phi_i = \left(1 - \frac{x}{a}\right)\left(\frac{x}{a}\right)^{i} \quad \text{or} \quad \phi_i = \sin\frac{i\pi x}{a}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trial Functions - Clamped-Clamped -->
+            <section class="section" id="trial-functions-cc">
+                <div class="section-header">Trial Functions – Clamped-Clamped (CC)</div>
+                <div class="section-content">
+                    <div class="equation-block">
+                        \[\phi_i = \left(\frac{x}{a}\right)^{i+3} - 2\left(\frac{x}{a}\right)^{i+2} + \left(\frac{x}{a}\right)^{i+i} \quad \text{or} \quad \phi_i = 1 - \cos\frac{2i\pi x}{a}\]
+                    </div>
+
+                    <figure>
+                        <img src="images/Lab_03_Ritz_plates/clamped_clamped_trial_functions.png" alt="Clamped-Clamped trial functions showing polynomial (left) and trigonometric (right) forms">
+                        <figcaption>Clamped-Clamped trial functions: polynomial (left) and trigonometric (right)</figcaption>
+                    </figure>
+
+                    <div class="boundary-conditions">
+                        <div class="bc-item">
+                            <strong>Left end:</strong><br>
+                            \(\phi = 0\)<br>
+                            \(\phi_{,x} = 0\)
+                        </div>
+                        <div class="bc-item">
+                            <strong>Right end:</strong><br>
+                            \(\phi = 0\)<br>
+                            \(\phi_{,x} = 0\)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trial Functions - Clamped-Free -->
+            <section class="section" id="trial-functions-cf">
+                <div class="section-header">Trial Functions – Clamped-Free (CF)</div>
+                <div class="section-content">
+                    <div class="equation-block">
+                        \[\phi_i = \left(\frac{x}{a}\right)^{i+1}\]
+                    </div>
+
+                    <figure>
+                        <img src="images/Lab_03_Ritz_plates/clamped_free_trial_functions.png" alt="Clamped-Free polynomial trial functions">
+                        <figcaption>Clamped-Free polynomial trial functions</figcaption>
+                    </figure>
+
+                    <div class="boundary-conditions">
+                        <div class="bc-item">
+                            <strong>Left end (clamped):</strong><br>
+                            \(\phi = 0\)<br>
+                            \(\phi_{,x} = 0\)
+                        </div>
+                        <div class="bc-item">
+                            <strong>Right end (free):</strong><br>
+                            No displacement constraints
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trial Functions - Clamped-Supported -->
+            <section class="section" id="trial-functions-cs">
+                <div class="section-header">Trial Functions – Clamped-Supported (CS)</div>
+                <div class="section-content">
+                    <div class="equation-block">
+                        \[\phi_i = \left(1 - \frac{x}{a}\right)\left(\frac{x}{a}\right)^{i+1}\]
+                    </div>
+
+                    <figure>
+                        <img src="images/Lab_03_Ritz_plates/clamped_supported_trial_functions.png" alt="Clamped-Supported polynomial trial functions">
+                        <figcaption>Clamped-Supported polynomial trial functions</figcaption>
+                    </figure>
+
+                    <div class="boundary-conditions">
+                        <div class="bc-item">
+                            <strong>Left end (clamped):</strong><br>
+                            \(\phi = 0\)<br>
+                            \(\phi_{,x} = 0\)
+                        </div>
+                        <div class="bc-item">
+                            <strong>Right end (supported):</strong><br>
+                            \(\phi = 0\)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trial Functions - Supported-Supported -->
+            <section class="section" id="trial-functions-ss">
+                <div class="section-header">Trial Functions – Supported-Supported (SS)</div>
+                <div class="section-content">
+                    <div class="equation-block">
+                        \[\phi_i = \left(\frac{x}{a} - 1\right)\left(\frac{x}{a}\right)^{i} \quad \text{or} \quad \phi_i = \sin\frac{i\pi x}{a}\]
+                    </div>
+
+                    <figure>
+                        <img src="images/Lab_03_Ritz_plates/supported_supported_trial_functions.png" alt="Supported-Supported trial functions showing polynomial (left) and trigonometric (right) forms">
+                        <figcaption>Supported-Supported trial functions: polynomial (left) and trigonometric (right)</figcaption>
+                    </figure>
+
+                    <div class="boundary-conditions">
+                        <div class="bc-item">
+                            <strong>Left end:</strong><br>
+                            \(\phi = 0\)
+                        </div>
+                        <div class="bc-item">
+                            <strong>Right end:</strong><br>
+                            \(\phi = 0\)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Equation Reminder: Stiffness Matrix -->
+            <section class="section" id="stiffness-matrix-equation">
+                <div class="section-header">Equation Reminder: Stiffness Matrix</div>
+                <div class="section-content">
+                    <h3>Stiffness Matrix</h3>
+                    
+                    <div class="equation-block">
+                        \[\mathbf{K}_{RS \times RS} = D_{11}\left(\mathbf{I}_{xx}^{22} \otimes \mathbf{I}_{yy}^{00}\right) + D_{12}\left(\mathbf{I}_{xx}^{20} \otimes \mathbf{I}_{yy}^{02} + \mathbf{I}_{xx}^{02} \otimes \mathbf{I}_{yy}^{20}\right) + D_{22}\left(\mathbf{I}_{xx}^{00} \otimes \mathbf{I}_{yy}^{22}\right) + 4D_{66}\left(\mathbf{I}_{xx}^{11} \otimes \mathbf{I}_{yy}^{11}\right)\]
+                    </div>
+
+                    <h3>Where:</h3>
+                    
+                    <div class="equation-block">
+                        \[\left(\mathbf{I}_{xx}^{\alpha\beta}\right)_{ij} = \int_0^a \phi_i^{(\alpha)} \phi_j^{(\beta)} \mathrm{d}x \quad \text{and:} \quad \phi_i^{(\alpha)} = \frac{\mathrm{d}^\alpha \phi_i}{\mathrm{d}x^\alpha} \quad \text{with } i, j = 1 \ldots R\]
+                    </div>
+
+                    <div class="equation-block">
+                        \[\left(\mathbf{I}_{yy}^{\alpha\beta}\right)_{ij} = \int_0^b \psi_i^{(\alpha)} \psi_j^{(\beta)} \mathrm{d}y \quad \text{and:} \quad \psi_i^{(\alpha)} = \frac{\mathrm{d}^\alpha \psi_i}{\mathrm{d}y^\alpha} \quad \text{with } i, j = 1 \ldots S\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Equation Reminder: Load Vector -->
+            <section class="section" id="load-vector-equation">
+                <div class="section-header">Equation Reminder: Load Vector</div>
+                <div class="section-content">
+                    <h3>Load Vector</h3>
+                    
+                    <div class="equation-block">
+                        \[\mathbf{f}_{RS \times 1} = p \, \mathbf{J}_x \otimes \mathbf{J}_y\]
+                        <p style="text-align: center; margin-top: 10px;">(dimensions: \(R \times 1\) and \(S \times 1\))</p>
+                    </div>
+
+                    <h3>For uniform pressure:</h3>
+                    
+                    <div class="equation-block">
+                        \[\left(\mathbf{J}_x\right)_i = \int_0^a \phi_i \mathrm{d}x \quad \text{with} \quad i = 1 \ldots R\]
+                        \[\left(\mathbf{J}_y\right)_i = \int_0^b \psi_i \mathrm{d}y \quad \text{with} \quad i = 1 \ldots S\]
+                    </div>
+
+                    <h3>For concentrated load:</h3>
+                    
+                    <div class="equation-block">
+                        \[\left(\mathbf{J}_x\right)_i = \phi_i(x_0) \quad \text{with} \quad i = 1 \ldots R\]
+                        \[\left(\mathbf{J}_y\right)_i = \psi_i(y_0) \quad \text{with} \quad i = 1 \ldots S\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Overview - Main -->
+            <section class="section" id="program-main">
+                <div class="section-header">Overview of the Program – Main</div>
+                <div class="section-content">
+                    <p>The structure of the program consists of following steps:</p>
+                    
+                    <div class="code-block"><span class="comment">% --- Input data</span>
+INPUT = input_model;
+[ PLATE, RITZ, LOAD ] = set_model( INPUT );
+TRIAL = set_trial_fcs( PLATE.bcs );
+
+<span class="comment">% --- Evaluate integrals</span>
+IRITZ = evaluate_integrals( TRIAL, PLATE, RITZ, LOAD );
+
+<span class="comment">% --- Assembly stiffness matrices</span>
+K = assembly_stiffness( PLATE, IRITZ );
+F = assembly_load_vector( LOAD, IRITZ );
+
+<span class="comment">% --- Solve the linear static problem</span>
+RITZ.C = K \ F;
+
+<span class="comment">% --- Post-process</span>
+... whatever you like</div>
+                </div>
+            </section>
+
+            <!-- Program Overview - PLATE Structure -->
+            <section class="section" id="program-plate">
+                <div class="section-header">Overview of the Program – Structures (PLATE)</div>
+                <div class="section-content">
+                    <p>The functions used in the program are PLATE, RITZ, LOAD, TRIAL, IRITZ whose fields are:</p>
+                    
+                    <div class="structure-box">
+                        <h4>PLATE Structure</h4>
+                        <div class="code-block">PLATE =
+      a: 400                    <span class="highlight-yellow">a: plate dimension along x</span>
+      b: 200                    <span class="highlight-yellow">b: plate dimension along y</span>
+      E: 72000                  <span class="highlight-yellow">E: Young's modulus</span>
+     nu: 0.3000                 <span class="highlight-yellow">nu: Poisson's ratio</span>
+      t: 1                      <span class="highlight-yellow">t: thickness</span>
+     I0: 2.7000e-09             <span class="highlight-yellow">I0: plate inertia</span>
+    bcs: 'CCCC'                 <span class="highlight-yellow">bcs: boundary conditions</span>
+      D: [3×3 double]           <span class="highlight-yellow">D: bending stiffness</span></div>
+                    </div>
+
+                    <h4>Bending Stiffness Matrix:</h4>
+                    <div class="equation-block">
+                        \[\mathbf{D} = \frac{Et^3}{12(1-\nu^2)} \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & \frac{1-\nu}{2} \end{bmatrix}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Overview - RITZ and LOAD Structures -->
+            <section class="section" id="program-ritz-load">
+                <div class="section-header">Overview of the Program – Structures (RITZ, LOAD)</div>
+                <div class="section-content">
+                    <div class="structure-box">
+                        <h4>RITZ Structure</h4>
+                        <div class="code-block">RITZ =
+ struct with fields:
+    R: 3                        <span class="highlight-yellow">R: number of trial functions along x</span>
+    S: 3                        <span class="highlight-yellow">S: number of trial functions along y</span>
+    C: [9×1 double]             <span class="highlight-yellow">C: Ritz amplitudes</span></div>
+                    </div>
+
+                    <div class="structure-box">
+                        <h4>LOAD Structure</h4>
+                        <div class="code-block">LOAD =
+  struct with fields:
+            p0: 1               <span class="highlight-yellow">p0: pressure load intensity</span>
+     load_type: 'uniform'       <span class="highlight-yellow">load_type: 'uniform' or 'concentrated'</span>
+    load_pos_x0: []             <span class="highlight-yellow">load_pos_x0: x-position of concentrated load (if any)</span>
+    load_pos_y0: []             <span class="highlight-yellow">load_pos_y0: y-position of concentrated load (if any)</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Overview - TRIAL Structure -->
+            <section class="section" id="program-trial">
+                <div class="section-header">Overview of the Program – Structures (TRIAL)</div>
+                <div class="section-content">
+                    <p>The trial functions can be defined as function handles. For instance, in the case of a simply-supported plate, using trigonometric functions, they are defined as:</p>
+                    
+                    <div class="structure-box">
+                        <h4>TRIAL Structure</h4>
+                        <div class="code-block">TRIAL =
+
+  struct with fields:
+
+      phi: @(x,a,i)sin(i*pi*x/a)              <span class="highlight-yellow">phi: Ritz functions along x</span>
+     dphi: @(x,a,i)(i*pi/a)*cos(i*pi*x/a)     <span class="highlight-yellow">dphi: x-derivative of phi</span>
+    ddphi: @(x,a,i)-(i*pi/a)^2*sin(i*pi*x/a)  <span class="highlight-yellow">ddphi: x-derivative of dphi</span>
+      psi: @(x,a,i)sin(i*pi*x/a)              <span class="highlight-yellow">psi: Ritz functions along y</span>
+     dpsi: @(x,a,i)(i*pi/a)*cos(i*pi*x/a)     <span class="highlight-yellow">dpsi: x-derivative of psi</span>
+    ddpsi: @(x,a,i)-(i*pi/a)^2*sin(i*pi*x/a)  <span class="highlight-yellow">ddpsi: x-derivative of dpsi</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Overview - IRITZ Structure -->
+            <section class="section" id="program-iritz">
+                <div class="section-header">Overview of the Program – Structures (IRITZ)</div>
+                <div class="section-content">
+                    <p>The Ritz integrals are collected into the structure IRITZ whose fields are:</p>
+                    
+                    <div class="structure-box">
+                        <h4>IRITZ Structure</h4>
+                        <div class="code-block">IRITZ =
+
+  struct with fields:
+
+    Ixx_00: [3×3 double]        <span class="highlight-yellow">Ixx_00: int_0^a phi*phi;</span>
+    Ixx_02: [3×3 double]        <span class="highlight-yellow">Ixx_02: int_0^a phi*ddphi;</span>
+    Ixx_11: [3×3 double]        <span class="highlight-yellow">... and so on</span>
+    Ixx_20: [3×3 double]
+    Ixx_22: [3×3 double]
+    Iyy_00: [3×3 double]
+    Iyy_02: [3×3 double]
+    Iyy_11: [3×3 double]
+    Iyy_20: [3×3 double]
+    Iyy_22: [3×3 double]
+        Jx: [3×1 double]        <span class="highlight-yellow">Jx: Ritz integral along x of load vector</span>
+        Jy: [3×1 double]        <span class="highlight-yellow">Jy: Ritz integral along y of load vector</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Definition of Trial Functions -->
+            <section class="section" id="definition-trial-functions">
+                <div class="section-header">Definition of the Trial Functions</div>
+                <div class="section-content">
+                    <p>In this function, the trial functions are defined as function handles. The choice of the functions along x and y depends on the boundary conditions to be accounted for:</p>
+                    
+                    <div class="code-block">function TRIAL = set_trial_fcs( bcs )
+
+<span class="comment">% ... select the trial functions depending on the boundary conditions</span>
+TRIAL.phi   = @(x,a,i)                   sin(i*pi*x/a);
+TRIAL.dphi  = @(x,a,i)   (i*pi/a)   * cos(i*pi*x/a);
+TRIAL.ddphi = @(x,a,i) -(i*pi/a)^2* sin(i*pi*x/a);
+
+TRIAL.psi   = @(x,a,i)                   sin(i*pi*x/a);
+TRIAL.dpsi  = @(x,a,i)   (i*pi/a)   * cos(i*pi*x/a);
+TRIAL.ddpsi = @(x,a,i) -(i*pi/a)^2* sin(i*pi*x/a);</div>
+
+                    <p><em>Example relative to trigonometric functions and SSSS boundary conditions</em></p>
+                </div>
+            </section>
+
+            <!-- Evaluation of Ritz Integrals -->
+            <section class="section" id="evaluation-ritz-integrals">
+                <div class="section-header">Evaluation of the Ritz Integrals</div>
+                <div class="section-content">
+                    <p>The Ritz integrals can be performed numerically using the integral.m function:</p>
+                    
+                    <div class="code-block">function IRITZ = evaluate_integrals( TRIAL, PLATE, RITZ, LOAD )
+
+a = PLATE.a;
+b = PLATE.b;
+
+R = RITZ.R;
+S = RITZ.S;
+
+phi   = TRIAL.phi;
+dphi  = TRIAL.dphi;
+ddphi = TRIAL.ddphi;
+
+for i = 1 : R
+    for j = 1 : S
+        IRITZ.Ixx_00(i,j) = integral( @(x) phi(x,a,i) .* phi(x,a,j), 0, a );
+        <span class="comment">% ... and so on</span>
+    end
+end</div>
+                </div>
+            </section>
+
+            <!-- Assembly of Stiffness Matrix -->
+            <section class="section" id="assembly-stiffness">
+                <div class="section-header">Assembly of the Stiffness Matrix</div>
+                <div class="section-content">
+                    <p>The assembly of the stiffness matrix is straightforward thanks to the use of the Kronecker product:</p>
+                    
+                    <div class="code-block">function K = assembly_stiffness( PLATE, IRITZ )
+
+D11 = PLATE.D(1,1);
+D12 = PLATE.D(1,2);
+D22 = PLATE.D(2,2);
+D66 = PLATE.D(3,3);
+
+Ixx_22 = IRITZ.Ixx_22;
+Ixx_20 = IRITZ.Ixx_20;
+Ixx_02 = IRITZ.Ixx_02;
+Ixx_00 = IRITZ.Ixx_00;
+Ixx_11 = IRITZ.Ixx_11;
+
+Iyy_22 = IRITZ.Iyy_22;
+Iyy_20 = IRITZ.Iyy_20;
+Iyy_02 = IRITZ.Iyy_02;
+Iyy_00 = IRITZ.Iyy_00;
+Iyy_11 = IRITZ.Iyy_11;
+
+<span class="comment">% --- Build stiffness matrix</span>
+K = D11 * kron( Ixx_22, Iyy_00 ) + ...
+    D12 * ( kron( Ixx_20, Iyy_02 ) + kron( Ixx_02, Iyy_20 ) ) + ...
+    D22 * kron( Ixx_00, Iyy_22 ) + ...
+    4 * D66 * kron( Ixx_11, Iyy_11 );</div>
+                </div>
+            </section>
+
+            <!-- Example - Problem Setup -->
+            <section class="section" id="example-setup">
+                <div class="section-header">Example</div>
+                <div class="section-content">
+                    <h3>Rectangular Plate of Aluminum</h3>
+                    
+                    <div class="two-column">
+                        <figure>
+                            <img src="images/Lab_03_Ritz_plates/rectangular_plate_coordinate_system.png" alt="Rectangular plate coordinate system with dimensions a and b">
+                            <figcaption>Rectangular plate geometry and coordinate system</figcaption>
+                        </figure>
+
+                        <div class="input-data-box">
+                            <h4>Input Data</h4>
+                            <p>\(a = \{100, 200, 400\}\) mm</p>
+                            <p>\(b = 200\) mm</p>
+                            <p>\(t = 1\) mm</p>
+                            <p>\(E = 72\) GPa</p>
+                            <p>\(\nu = 0.3\)</p>
+                            <p>\(I_0 = 2.7\text{e-9 N/mm}^2\)</p>
+                            <p>\(p = 1\text{e-3 N/mm}^2\) (distributed load)</p>
+                            <p>\(P = 10\) N (concentrated load applied in the middle)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise -->
+            <section class="section" id="exercise">
+                <div class="section-header">Exercise</div>
+                <div class="section-content">
+                    <div class="exercise-list">
+                        <ul>
+                            <li>Complete the program to allow the static analysis of plates with SSSS and CCCC conditions</li>
+                            <li>Extend the program to the free-vibration analysis (exemplary results are reported next for comparison purposes)</li>
+                            <li>Once the program is validated:
+                                <ul>
+                                    <li>study the convergence of the mid-displacement in the case of uniform and concentrated loads</li>
+                                    <li>study the convergence of the first natural frequency for different values of R and S</li>
+                                    <li>analyse the effect of the boundary conditions over the first natural frequency</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Example: Bending Response - Table -->
+            <section class="section" id="bending-response-table">
+                <div class="section-header">Example: Bending Response</div>
+                <div class="section-content">
+                    <p>Displacement in the middle of the plate using:</p>
+                    <ul>
+                        <li>5×5 functions</li>
+                        <li>trigonometric functions for SSSS boundary conditions</li>
+                        <li>polynomial functions for CCCC boundary conditions</li>
+                    </ul>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>\(w_{mid}\)</th>
+                                <th></th>
+                                <th colspan="3">a/b</th>
+                            </tr>
+                            <tr>
+                                <th>Bcs</th>
+                                <th>Load</th>
+                                <th>0.5</th>
+                                <th>1.0</th>
+                                <th>2.0</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CCCC</td>
+                                <td>uniform</td>
+                                <td>0.0384</td>
+                                <td>0.3070</td>
+                                <td>0.6148</td>
+                            </tr>
+                            <tr>
+                                <td>CCCC</td>
+                                <td>concent</td>
+                                <td>0.0989</td>
+                                <td>0.3237</td>
+                                <td>0.3954</td>
+                            </tr>
+                            <tr>
+                                <td>SSSS</td>
+                                <td>uniform</td>
+                                <td>0.1538</td>
+                                <td>0.9861</td>
+                                <td>2.4603</td>
+                            </tr>
+                            <tr>
+                                <td>SSSS</td>
+                                <td>concent</td>
+                                <td>0.2434</td>
+                                <td>0.6930</td>
+                                <td>0.9735</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Example: Bending Response - Contours -->
+            <section class="section" id="bending-response-contours">
+                <div class="section-header">Example: Bending Response – Contour Plots</div>
+                <div class="section-content">
+                    <p>CCCC plate, 5×5 functions, a = 400 mm</p>
+                    
+                    <h4>Uniformly Distributed Load and Concentrated Load Results:</h4>
+                    <p>Showing displacement \(w\) and moments \(M_{xx}\), \(M_{yy}\), \(M_{xy}\)</p>
+
+                    <figure>
+                        <img src="images/Lab_03_Ritz_plates/cccc_plate_bending_response_contours.png" alt="Contour plots showing displacement and moment distributions for CCCC plate">
+                        <figcaption>CCCC plate bending response: Top row - uniformly distributed load; Bottom row - concentrated load. 
+                        Columns from left to right: \(w\), \(M_{xx}\), \(M_{yy}\), \(M_{xy}\)</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Example: Free Vibrations -->
+            <section class="section" id="free-vibrations">
+                <div class="section-header">Example: Free Vibrations</div>
+                <div class="section-content">
+                    <p>Free vibrations of CCCC plate (using 5×5 functions)</p>
+
+                    <div class="two-column">
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>a/b</th>
+                                        <th>0.5</th>
+                                        <th>1.0</th>
+                                        <th>2.0</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Mode</th>
+                                        <th colspan="3">\(\bar{\omega}_i\)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>24.5782</td>
+                                        <td>35.9855</td>
+                                        <td>98.3127</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>31.8329</td>
+                                        <td>73.4121</td>
+                                        <td>127.3315</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>44.8082</td>
+                                        <td>73.4121</td>
+                                        <td>179.2330</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>64.0039</td>
+                                        <td>108.2574</td>
+                                        <td>256.0154</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="equation-block">
+                            <p><strong>Non-dimensional frequency parameter:</strong></p>
+                            \[\bar{\omega}_i = \omega_i a^2 \sqrt{\frac{I_0}{D}}\]
+                        </div>
+                    </div>
+
+                    <figure>
+                        <img src="images/Lab_03_Ritz_plates/cccc_plate_vibration_mode_shapes.png" alt="First four mode shapes of CCCC plate">
+                        <figcaption>First four vibration mode shapes of CCCC plate: Mode 1, Mode 2, Mode 3, Mode 4 (left to right)</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+        </main>
+
+        <footer style="text-align: center; margin-top: 50px; padding: 20px; border-top: 2px solid var(--primary-color); color: #666;">
+            <p>Course of Spacecraft Structures, AY 2017/2018</p>
+            <p>Politecnico di Milano, Department of Aerospace Science and Technology</p>
+        </footer>
+    </article>
+</body>
+</html>

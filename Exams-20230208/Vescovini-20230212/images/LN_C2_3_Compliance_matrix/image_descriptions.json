@@ -1,0 +1,62 @@
+{
+  "cantilever_beam_coordinate_system.png": {
+    "suggested_name": "cantilever_beam_coordinate_system",
+    "description": "Cantilever beam diagram with fixed support at left end, coordinate system showing y-axis vertical and z-axis horizontal, and force F applied at free end"
+  },
+  "dummy_system_unit_moment.png": {
+    "suggested_name": "dummy_system_unit_moment",
+    "description": "Simple cantilever beam with fixed support at left and unit moment applied at free end, labeled as \"dummy\" system"
+  },
+  "cantilever_generalized_forces_displacements.png": {
+    "suggested_name": "cantilever_generalized_forces_displacements",
+    "description": "Cantilever beam showing generalized forces and displacements with coordinate system, including force vectors Fz, F1, F3 and displacement vectors U1, U2, U3"
+  },
+  "unit_force_virtual_displacement.png": {
+    "suggested_name": "unit_force_virtual_displacement",
+    "description": "Two cantilever beam diagrams showing application of unit force F1 and unit virtual displacement, used for compliance coefficient evaluation"
+  },
+  "compliance_coefficient_loading_cases.png": {
+    "suggested_name": "compliance_coefficient_loading_cases",
+    "description": "Multiple cantilever beam diagrams showing different loading conditions for compliance matrix coefficients C12, C13, C22, and C23 with force and moment applications"
+  },
+  "compliance_coefficient_c33.png": {
+    "suggested_name": "compliance_coefficient_c33",
+    "description": "Cantilever beam with moment F3 and unit displacement showing compliance coefficient C33 evaluation"
+  },
+  "generic_beam_system_extension.png": {
+    "suggested_name": "generic_beam_system_extension",
+    "description": "Generic beam system diagram showing multiple connected beams with nodes and force points for extension to complex systems"
+  },
+  "free_free_beam_forces.png": {
+    "suggested_name": "free_free_beam_forces",
+    "description": "Free-free beam diagram showing two ends (A and B) with force vectors F1, F2, F3 at end A and F4, F5, F6 at end B"
+  },
+  "beam_displacement_rotation_directions.png": {
+    "suggested_name": "beam_displacement_rotation_directions",
+    "description": "Multiple beam diagrams showing force F3 and F6 at ends A and B, illustrating displacement and rotation directions for mixed contributions"
+  },
+  "free_free_beam_equilibrium.png": {
+    "suggested_name": "free_free_beam_equilibrium",
+    "description": "Free-free beam diagram with forces F1, F2, F3 at end A and F4, F5, F6 at end B, showing equilibrium relationships for stiffness matrix evaluation"
+  },
+  "cantilever_axial_bending_stiffness.png": {
+    "suggested_name": "cantilever_axial_bending_stiffness",
+    "description": "Cantilever beam with forces F5, F4, and F6 at free end showing axial and bending stiffness configuration"
+  },
+  "frame_structure_load_path.png": {
+    "suggested_name": "frame_structure_load_path",
+    "description": "Structural frame diagram showing vertical and horizontal members with numbered nodes (1, 2, 3) and load path illustration for statically indeterminate structure"
+  },
+  "frame_bending_axial_behavior.png": {
+    "suggested_name": "frame_bending_axial_behavior",
+    "description": "Frame structure with three numbered members showing bending response for beams 1 and 3, and axial behavior for diagonal member 2"
+  },
+  "frame_ideal_versus_real_behavior.png": {
+    "suggested_name": "frame_ideal_versus_real_behavior",
+    "description": "Multiple frame configurations showing ideal versus real structural behavior with hinges and supports, illustrating axial load path possibilities"
+  },
+  "bending_shear_contribution_comparison.png": {
+    "suggested_name": "bending_shear_contribution_comparison",
+    "description": "Two cantilever beam diagrams comparing bending and shear contributions, one with downward force F and one with unit virtual force showing internal work comparison"
+  }
+}

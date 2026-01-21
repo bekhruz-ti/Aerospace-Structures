@@ -1,0 +1,42 @@
+{
+  "equilibrium_stability_sketches.png": {
+    "suggested_name": "equilibrium_stability_sketches",
+    "description": "Three small sketches showing equilibrium stability conditions: stable equilibrium (ball in valley), unstable equilibrium (ball on hill), and neutral equilibrium (ball on flat surface)"
+  },
+  "axially_loaded_beam_diagram.png": {
+    "suggested_name": "axially_loaded_beam_diagram",
+    "description": "Axially loaded beam diagram showing a rectangular beam with length l, coordinate system with x and z axes, and axial force P applied at the right end, with EA and EJ properties labeled"
+  },
+  "infinitesimal_beam_element.png": {
+    "suggested_name": "infinitesimal_beam_element",
+    "description": "Infinitesimal beam element showing deformation with coordinates x and x+dx, displacements u and u+du, transverse displacement w, and deformed length dl"
+  },
+  "equilibrium_vs_buckling_bc_comparison.png": {
+    "suggested_name": "equilibrium_vs_buckling_bc_comparison",
+    "description": "Comparison table showing equilibrium equations (BC) on left with boundary condition at x=l, and buckling equations (BC) on right with boundary condition at x=l"
+  },
+  "hinged_hinged_beam.png": {
+    "suggested_name": "hinged_hinged_beam",
+    "description": "Hinged-hinged beam configuration showing a horizontal beam with pin supports at both ends (x=0 and x=l) and axial load P applied from the right"
+  },
+  "hinged_hinged_buckled_shape.png": {
+    "suggested_name": "hinged_hinged_buckled_shape",
+    "description": "Buckled shape of hinged-hinged beam showing sinusoidal deflection curve with pin supports at both ends and axial load P"
+  },
+  "clamped_clamped_beam.png": {
+    "suggested_name": "clamped_clamped_beam",
+    "description": "Clamped-clamped beam showing horizontal beam with fixed supports at both ends (x=0 and x=l) and axial load P applied from the right"
+  },
+  "clamped_clamped_buckled_shape.png": {
+    "suggested_name": "clamped_clamped_buckled_shape",
+    "description": "Buckled shape of clamped-clamped beam showing curved deflection with fixed supports at both ends and axial load P"
+  },
+  "fixed_free_cantilever_beam.png": {
+    "suggested_name": "fixed_free_cantilever_beam",
+    "description": "Fixed-free cantilever beam showing horizontal beam with fixed support at left end (x=0) and free end at right with axial load P"
+  },
+  "fixed_free_buckled_shape.png": {
+    "suggested_name": "fixed_free_buckled_shape",
+    "description": "Buckled shape of fixed-free cantilever beam showing curved deflection with fixed support at left and free end at right with axial load P"
+  }
+}

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ribs and Frames in Thin-Walled Structures</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --highlight-color: #ebf8ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 25px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .subsection {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .definition-box {
+            background: var(--highlight-color);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .definition-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .numbered-list {
+            margin: 15px 0 15px 25px;
+        }
+
+        .numbered-list li {
+            margin: 10px 0;
+        }
+
+        .bullet-list {
+            list-style: disc;
+            margin: 15px 0 15px 30px;
+        }
+
+        .bullet-list li {
+            margin: 8px 0;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .key-point {
+            background: #fffaf0;
+            padding: 20px;
+            border-radius: 6px;
+            border: 2px solid #ed8936;
+            margin: 20px 0;
+        }
+
+        .key-point strong {
+            color: #c05621;
+        }
+
+        .boxed-content {
+            border: 2px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            background: white;
+        }
+
+        .equation-block {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .column h5 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .example-box {
+            background: #faf5ff;
+            border: 1px solid #9f7aea;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .example-box h4 {
+            color: #6b46c1;
+            margin-bottom: 15px;
+        }
+
+        .solution-steps {
+            background: var(--bg-solution);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .note-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note-box strong {
+            color: #b45309;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        td {
+            background: white;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Ribs and Frames in Thin-Walled Structures</h1>
+            <p class="subtitle">Structural Analysis of Aircraft Components: Load Transfer, Symmetry, and Design Considerations</p>
+        </header>
+
+        <main>
+            <!-- Section 1: Introduction to Ribs and Frames -->
+            <section class="section" id="introduction">
+                <h2>1. Ribs and Frames</h2>
+                
+                <p>Ribs and frames are an essential component in a thin-walled structure for the reasons discussed next. They are structural elements stiffening the thin-walled beam along its transverse direction. The nomenclature here adopted refers to:</p>
+
+                <div class="definition-box">
+                    <h4>Definitions</h4>
+                    <ol class="numbered-list">
+                        <li><strong>Ribs:</strong> Transverse elements in wings/aerodynamic surfaces</li>
+                        <li><strong>Frames:</strong> Transverse elements in fuselages or cylindrical shells of space launcher structures (sometimes denoted also as rings)</li>
+                    </ol>
+                </div>
+
+                <p>The roles played by ribs and frames in thin-walled aerostructures can be summarized as:</p>
+                <ol class="numbered-list">
+                    <li>They preserve the shape of the section</li>
+                    <li>They allow the introduction of loads</li>
+                    <li>They stabilize panels and stringers with respect to their buckling response</li>
+                </ol>
+            </section>
+
+            <!-- Section 2: Role 1 - Shape Preservation -->
+            <section class="section" id="shape-preservation">
+                <h2>2. Role 1: Preserving the Shape of the Section</h2>
+
+                <p>The presence of transverse stiffening elements — infinitely stiff along the in-plane directions — ensures that the section shape is not altered due to the applied loads, thus preserving the aerodynamic performance.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/aerodynamic_shape_comparison_ribs.png" alt="Comparison of aerodynamic cross-sections showing preserved shape with ribs versus deformed shape">
+                    <figcaption>Figure 2.1: Left: Aerodynamic shape preserved by ribs. Right: Exaggerated deformed shape with altered aerodynamic properties.</figcaption>
+                </figure>
+
+                <p>The situation depicted in the figure on the right is prevented thanks to the presence of ribs.</p>
+
+                <div class="key-point">
+                    <strong>Key Observation:</strong> This kind of behaviour is consistent with the results derived in the context of DSV (De Saint Venant) theory for torsion, where the section was found to be subjected to a rigid rotation preserving the shape of the section.
+                </div>
+
+                <p>The presence of ribs guarantees that the section shape is preserved even when the DSV hypotheses are not fully respected, such as in the case of distributed loads.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h5>End-Loaded Case (DSV Respected)</h5>
+                        <p>The load is applied at the ends.</p>
+                        <p>⟹ DSV hypothesis respected</p>
+                        <p>⟹ The section does not change shape</p>
+                        <p>This means there is no need to consider the presence of ribs to guarantee that the section shape is not altered.</p>
+                    </div>
+                    <div class="column">
+                        <h5>Distributed Load Case (DSV Not Respected)</h5>
+                        <p>The load is distributed (consider the typical case of distributed pressure).</p>
+                        <p>⟹ DSV hypothesis not respected</p>
+                        <p>There is no guarantee that the shape will be preserved; indeed the distributed loads will alter the section as the cover panels are subjected to bending loads.</p>
+                    </div>
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/fuselage_cross_section_bent_panels.png" alt="Cross-sectional views of aircraft fuselage showing bent cover panels">
+                    <figcaption>Figure 2.2: Cross-section showing bent cover panels and the need for rib support.</figcaption>
+                </figure>
+
+                <p>Ribs are then necessary to overcome the in-plane weakness of the section, providing support to the panels.</p>
+            </section>
+
+            <!-- Section 3: Role 2 - Load Introduction -->
+            <section class="section" id="load-introduction">
+                <h2>3. Role 2: Allowing the Introduction of Loads</h2>
+
+                <p>As a consequence of the previous considerations, it is clear that ribs/frames are of paramount importance for allowing the introduction of loads into the structure. The loads will be, in general, in the form of:</p>
+                <ol class="numbered-list" type="a">
+                    <li>Distributed loads</li>
+                    <li>Concentrated loads</li>
+                </ol>
+
+                <p>For thin-walled sections, the load introduction has to be associated with a locally in-plane stiffer region.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/wing_panel_load_introduction_ribs.png" alt="Wing panel showing load introduction at engine location">
+                    <figcaption>Figure 3.1: Wing panel diagrams showing load introduction at engine location and resulting rib placement.</figcaption>
+                </figure>
+
+                <h3>3.1 Rib Placement Considerations</h3>
+
+                <p>During the design phase, a number of ribs will be placed in correspondence of those portions where concentrated loads need to be introduced. In general, the choice for the location of ribs is dictated by the design itself. In particular, ribs will be introduced, at least, in correspondence of:</p>
+                <ol class="numbered-list" type="a">
+                    <li>Engines</li>
+                    <li>Junction between wing and fuselage</li>
+                    <li>Openings</li>
+                    <li>Actuators</li>
+                </ol>
+
+                <h3>3.2 Distributed Load Introduction</h3>
+
+                <p>In order to guarantee proper load introduction of the distributed loads, a number of ribs will be introduced to achieve a distribution which is approximately homogeneous.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/tapered_wing_rib_distribution.png" alt="Tapered wing section showing progressive rib distribution">
+                    <figcaption>Figure 3.2: Tapered wing section showing progression from sparse to dense rib spacing for homogeneous load distribution.</figcaption>
+                </figure>
+
+                <p>The regularity of the distribution guarantees that the loads are progressively introduced, in a smooth way, avoiding sudden changes of loads. Furthermore, the ribs provide support for the cover panels, which has a beneficial effect on the bending-induced displacement.</p>
+
+                <h3>3.3 Aspect Ratio and Panel Behavior</h3>
+
+                <p>In this sense it is worth highlighting the relatively high ratio between the chord dimension and the pitch of the ribs:</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/wing_rib_spacing_parameters.png" alt="Wing section with rib spacing parameters">
+                    <figcaption>Figure 3.3: Wing section showing chord length c, pitch p, and rib spacing ratio definition.</figcaption>
+                </figure>
+
+                <div class="definition-box">
+                    <h4>Aspect Ratio Definition</h4>
+                    <p>Define \(r = c/p\) (aspect ratio)</p>
+                    <p>where \(c\) = chord length and \(p\) = pitch (rib spacing)</p>
+                </div>
+
+                <p>As a simplified model, it can be assumed that the portion of the panel from rib to rib is a plate supported along the four edges. The effect of the distributed load can be analyzed as an idealization of the cover panel as a simply supported plate.</p>
+
+                <p>An exact solution for this problem can be easily found (the procedure is not illustrated here), and it can be shown that the maximum bending displacement due to the pressure load depends on the aspect ratio. The increase of \(r\) has a drastic effect on the reduction of the bending displacements.</p>
+
+                <h3>3.4 Load Transfer Mechanism</h3>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/rib_spar_web_load_transfer.png" alt="Ribs and spar webs with distributed loads">
+                    <figcaption>Figure 3.4: Three-dimensional structural diagrams showing load transfer from panels to ribs and spar webs.</figcaption>
+                </figure>
+
+                <p>The distributed loads are then transferred from the panels to the ribs and the spar webs, which furnish support to the panels.</p>
+
+                <p>In general, most of the introduction of load happens in correspondence of the ribs, although even the spars do provide a contribution to react the external loads transferred by the panels.</p>
+
+                <div class="key-point">
+                    <strong>Design Assumption:</strong> For this reason it can be assumed, at least as an initial scheme for analyzing the structure, that all of the distributed loads are introduced by the ribs. This assumption turns out to be especially true for typical configurations with high values of \(r = c/p\). For \(r = 1\), the load introduced by the rib would be equal to the load introduced by the spars.
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/panel_to_rib_load_transfer_shear.png" alt="Load transfer from panels to ribs">
+                    <figcaption>Figure 3.5: Structural frame diagrams showing load transfer from panels to ribs with corresponding shear flow distributions.</figcaption>
+                </figure>
+
+                <p>This assumption leads to the following scheme where the load is entirely transferred from the panels to the ribs (thus ignoring the amount of load introduced in the spars).</p>
+
+                <p>It is also noted that the bending of the panels can be seen as a local effect, which is not captured in the context of a DSV beam model.</p>
+
+                <div class="boxed-content">
+                    <p>The evolution of the state of stress in a generic section will then be obtained by evaluating \(\sigma_{zz}\) according to the DSV solution and the shear stresses according to the semi-monocoque scheme.</p>
+                    <p>These results do not include the local correction which is associated with the local bending of panels (whose evaluation can be performed with a detailed FEM model).</p>
+                </div>
+
+                <h3>3.5 Load Modeling in Semi-Monocoque Analysis</h3>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/wing_planform_rib_locations.png" alt="Tapered wing planform with rib locations">
+                    <figcaption>Figure 3.6: Tapered wing planform showing rib locations R1 through R7 with loads reported to specific ribs.</figcaption>
+                </figure>
+
+                <p>In the context of the semi-monocoque beam model, it is then assumed that all the loads are introduced in correspondence of the ribs. Some of them (the concentrated ones) are effectively applied to ribs. The distributed ones will be condensed to a set of statically equivalent loads which are applied to ribs.</p>
+
+                <p>As discussed, this operation has the effect of filtering out local effects (mainly due to the bending of panels), while preserving the overall behaviour of the structure.</p>
+
+                <h3>3.6 Internal Force Characteristics</h3>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/thin_walled_beam_internal_forces.png" alt="Internal shear force and moment distributions">
+                    <figcaption>Figure 3.7: Thin-walled beam showing distributed loads and corresponding piecewise internal force distributions.</figcaption>
+                </figure>
+
+                <p>Accordingly, the internal forces will be characterized by the following behaviour:</p>
+                <ul class="bullet-list">
+                    <li>Shear \(T_x\), \(T_y\): piecewise constant</li>
+                    <li>Moments \(M_x\), \(M_y\): piecewise linear</li>
+                    <li>Torsion \(M_z\): piecewise constant</li>
+                </ul>
+
+                <p>It is worth highlighting that the assumption of loads introduced by the ribs is consistent with the beam model and the semi-monocoque scheme adopted.</p>
+            </section>
+
+            <!-- Section 4: Role 3 - Buckling Stabilization -->
+            <section class="section" id="buckling-stabilization">
+                <h2>4. Role 3: Stabilizing Panels and Stringers</h2>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_section_distributed_loads_shear.png" alt="Beam section with distributed loads and shear flows">
+                    <figcaption>Figure 4.1: Three-dimensional beam section showing distributed loads and constant shear flows along the beam axis.</figcaption>
+                </figure>
+
+                <p>The generic panel is subjected to a constant shear flow \(q\), which is constant even along the beam axis. (Recall that the shear stresses \(\sigma_{xz}\) and \(\sigma_{yz}\) are functions of \(x\) and \(y\), but not \(z\)). Clearly, this is possible if and only if the loads are introduced at rib level.</p>
+
+                <h3>4.1 Euler's Buckling Load</h3>
+
+                <p>As a first approximation, it can be assumed that the stringer would buckle according to Euler's buckling load:</p>
+
+                <div class="equation-block">
+                    \[P_{buck}^{stringer} = \frac{\pi^2 EI}{\lambda^2}\]
+                </div>
+
+                <p>where \(\lambda\) is the halfwave length of the buckled configuration (depends on the constraints).</p>
+
+                <p>Assuming the stringer as pinned to the ribs: \(\lambda^2 = d^2\) (in any case \(\lambda\) is linear with \(d\)).</p>
+
+                <div class="key-point">
+                    <strong>Important Result:</strong> It follows that the reduction of the rib pitch has the effect of raising the buckling load:
+                    \[\frac{\pi^2 EI}{d_1^2} < \frac{\pi^2 EI}{d_2^2} \quad \text{if} \quad d_2 < d_1\]
+                </div>
+            </section>
+
+            <!-- Section 5: Remarks on DSV Assumptions -->
+            <section class="section" id="dsv-remarks">
+                <h2>5. Remarks on the Assumptions Introduced</h2>
+
+                <p>The beam model introduced so far is based on DSV results and has been specialized to the case of thin-walled beams for making possible the evaluation of the shear stresses.</p>
+
+                <p>Within the context of DSV solution, it was found that \(\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = 0\) is part of the exact solution.</p>
+
+                <p>Ribs have now been introduced as in-plane infinitely stiff elements, which means that the section cannot change shape in correspondence of the ribs.</p>
+
+                <div class="boxed-content">
+                    <p>The impossibility of changing shape determines then the onset of not null \(\sigma_{xx}\), \(\sigma_{yy}\), and \(\sigma_{xy}\), which is an <strong>inconsistency of the model</strong>.</p>
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_deformation_with_without_ribs.png" alt="Beam deformation with and without ribs">
+                    <figcaption>Figure 5.1: Three-dimensional beam section showing deformation with and without ribs, illustrating shape preservation and stress distribution.</figcaption>
+                </figure>
+
+                <p>If no ribs were present, the section highlighted would deform. However, if the presence of the rib is accounted for, the shape is preserved, meaning that an in-plane state of stress is induced for restoring the original shape.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h5>No Rib</h5>
+                        <p>\(\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = 0\)</p>
+                    </div>
+                    <div class="column">
+                        <h5>With Rib</h5>
+                        <p>\(\sigma_{xy} \neq 0\), \(\sigma_{yy} \neq 0\), \(\sigma_{xx} \neq 0\)</p>
+                    </div>
+                </div>
+
+                <p>These effects fall outside the DSV beam model. They can be seen as local effects, which damp out moving away from the rib. DSV hypotheses are restored at sufficient distance from the rib.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_closely_spaced_ribs_stress.png" alt="Beam with closely spaced ribs">
+                    <figcaption>Figure 5.2: Beam with closely spaced ribs showing local stress effects.</figcaption>
+                </figure>
+
+                <p>Clearly, if the rib density is relatively high (as it often is the case), the DSV assumptions may become questionable: the local effects do not have distance enough to damp out as those of the successive rib are immediately present.</p>
+
+                <p>The high density of ribs does not allow \(\sigma_{xx}\), \(\sigma_{yy}\), and \(\sigma_{xy}\) to reach zero value.</p>
+
+                <div class="key-point">
+                    <strong>Structural Implication:</strong> From a structural behaviour standpoint, this means that the "real" structure, in comparison to the "ideal" DSV one, will be much stiffer; this is due to the local stiffening of ribs which is not accounted for in the DSV model.
+                </div>
+            </section>
+
+            <!-- Section 6: Loads on a Rib -->
+            <section class="section" id="rib-loads">
+                <h2>6. Loads on a Rib</h2>
+
+                <p>Consider a generic thin-walled beam, which is loaded as illustrated in the figure. Both the torsional moments \(M\) are introduced in correspondence of the ribs.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/thin_walled_beam_two_ribs_torsion.png" alt="Thin-walled beam with two ribs under torsion">
+                    <figcaption>Figure 6.1: Three-dimensional thin-walled beam with two ribs showing torsional moments \(M_1\) and \(M_2\), with corresponding torque diagram.</figcaption>
+                </figure>
+
+                <p>The plot of the internal torsional moment shows a jump: \(\Delta M_z = M_2\)</p>
+
+                <p>Extract now the middle rib from the structure, in order to clarify which are the loads acting on it. The shear flows on side A and side B will be directed as reported in the figure.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/rib_shear_flow_equilibrium.png" alt="Rib shear flow equilibrium">
+                    <figcaption>Figure 6.2: Rib section diagrams showing shear flow equilibrium with loads from adjacent sides.</figcaption>
+                </figure>
+
+                <p>As observed, the shear flows acting on the rib are characterized by the increments \(\Delta q_1\), \(\Delta q_2\), \(\Delta q_3\), \(\Delta q_4\) on each side, which are equivalent to the applied torsional moment \(\Delta M_z\).</p>
+
+                <div class="boxed-content">
+                    <h4>Key Properties of Rib Shear Flows</h4>
+                    <ol class="numbered-list">
+                        <li>They are in equilibrium with the load introduced</li>
+                        <li>They are equivalent to the jump of internal action in correspondence of the rib</li>
+                    </ol>
+                </div>
+
+                <p>When a plot of the internal actions is available, it is then possible to consider the jumps of internal actions to determine the loads introduced in the rib.</p>
+
+                <h3>6.1 Procedure for Rib Analysis</h3>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/wing_rib_attachment_loads.png" alt="Wing rib attachment and loads">
+                    <figcaption>Figure 6.3: Wing section showing rib attachment location with corresponding cross-sectional view and applied loads.</figcaption>
+                </figure>
+
+                <p>The procedure is then the following:</p>
+
+                <div class="subsection">
+                    <h4>Step 1: Consider the beam section where the rib is attached</h4>
+                    <p>Identify the section where the rib is connected to the main structure.</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>Step 2: Apply loads and determine equivalent shear flows</h4>
+                    <p>Apply the loads acting on the rib (e.g., concentrated loads, distributed forces...) and determine the equivalent shear flows \(q_1, q_2, q_3, q_4, q_5, q_6\).</p>
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_model_shear_flow_analysis.png" alt="Beam model with shear flow analysis">
+                    <figcaption>Figure 6.4: Beam model analysis showing external loads, equilibrating shear flows, and force resultants along webs.</figcaption>
+                </figure>
+
+                <div class="subsection">
+                    <h4>Step 3: Reverse the shear flows</h4>
+                    <p>As seen, the shear flows on the rib side are in equilibrium with the external loads (and equivalent). It is then necessary to reverse the shear flows obtained at step 2 to obtain \(\hat{q}_1, \hat{q}_2, \hat{q}_3, \hat{q}_4, \hat{q}_5, \hat{q}_6\).</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>Step 4: Adopt beam model for preliminary analysis</h4>
+                    <p>A beam model can be adopted as a preliminary way for analyzing the rib. To this aim, consider:</p>
+                    <ol class="numbered-list">
+                        <li>The external loads applied to the rib</li>
+                        <li>The equilibrating shear flows obtained at step 3</li>
+                    </ol>
+                    <p>where \(\hat{m}\), \(\hat{n}\) are the distributed loads obtained from the shear flows, and \(F_A\), \(F_B\) are the force resultants along the webs.</p>
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_axis_rib_web_coordinate_system.png" alt="Beam axis with rib and web coordinate system">
+                    <figcaption>Figure 6.5: Three-dimensional beam axis diagram showing lips, web, and rib locations with coordinate system for stress evaluation.</figcaption>
+                </figure>
+
+                <div class="subsection">
+                    <h4>Step 5: Evaluate stresses</h4>
+                    <p>Once the internal actions on the beam model of the rib are available, it is possible to evaluate the stresses.</p>
+                    <p>To this aim, dependently on the kind of rib under investigation, it is possible to adopt an approximate scheme for evaluating the shear stresses based on the semi-monocoque scheme.</p>
+                </div>
+
+                <h3>6.2 Remarks</h3>
+
+                <p>It is worth highlighting that the analysis of the rib is conducted by evaluating the section where the rib is attached. This is because the two parts are connected with junctions and so there is an exchange of shear flows along the junction lines.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/cross_section_openings_shear_flow.png" alt="Cross-section with openings and shear flow">
+                    <figcaption>Figure 6.6: Rectangular cross-section with openings showing shear flow distribution and simplified representation.</figcaption>
+                </figure>
+            </section>
+
+            <!-- Section 7: Analysis of Frames -->
+            <section class="section" id="frame-analysis">
+                <h2>7. Analysis of Frames</h2>
+
+                <p>The structural role of frames corresponds to the role played by ribs in the context of wing-like structures. Frames are commonly referred to cylindrical structures such as fuselages or cylindrical parts of space launchers.</p>
+
+                <p>The analysis procedure is then analogous to the procedure outlined for ribs, as the load introduction and load transfer mechanisms happen in a similar manner.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/cylindrical_structure_frames_stringers.png" alt="Cylindrical structure with frames and stringers">
+                    <figcaption>Figure 7.1: Cylindrical structure with longitudinal stringers and transverse frames showing load P and moment diagram with frame locations.</figcaption>
+                </figure>
+
+                <p>Consider, as an example, a portion of a cylindrical structure longitudinally stiffened by the stringers and transversely by the frames. The bending moment diagram shows: \(\Delta M_z = 2PR\)</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/circular_frames_shear_flow_equilibrium.png" alt="Circular frames with shear flow equilibrium">
+                    <figcaption>Figure 7.2: Circular frame cross-sections showing shear flow distribution and load equilibrium.</figcaption>
+                </figure>
+
+                <p>By "extracting" the second frame from the structure, it is highlighted how the internal shearing stresses are exchanged.</p>
+
+                <p>As in the case of ribs, the frame is subjected to the applied loads which are in equilibrium with the circulating shear flows. The shear flows in the frame can thus be seen as equivalent to the jump of internal action.</p>
+
+                <h3>7.1 Frame Analysis Procedure</h3>
+
+                <div class="subsection">
+                    <h4>Step 1: Determine the equivalent shear flows</h4>
+                    <p>Identify the shear flow \(\Delta q\) that equilibrates the applied loads \(P\).</p>
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/circular_frame_internal_actions.png" alt="Circular frame internal actions">
+                    <figcaption>Figure 7.3: Circular frame showing equilibrium shear flows and internal actions determination.</figcaption>
+                </figure>
+
+                <div class="subsection">
+                    <h4>Step 2: Obtain equilibrium shear flows by reversing</h4>
+                    <p>Reverse the equivalent shear flows to obtain \(-\Delta q\).</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>Step 3: Determine internal actions</h4>
+                    <p>Determine the frame internal actions by considering the frame subject to the self-equilibrated load system obtained at step 2.</p>
+                </div>
+
+                <div class="key-point">
+                    <strong>Static Indeterminacy:</strong> It is worth noting that a frame is a closed structure which is, in the context of plane analysis, a <strong>3 times statically indeterminate structure</strong>.
+                </div>
+
+                <p>The evaluation of the internal action requires then the initial evaluation of the three unknown internal actions \(H\), \(V\), \(M\) associated with a cut in a generic point of the frame.</p>
+            </section>
+
+            <!-- Section 8: Symmetries and Anti-symmetries -->
+            <section class="section" id="symmetry">
+                <h2>8. Symmetries and Anti-symmetries</h2>
+
+                <p>A simple strategy for simplifying the calculations consists in exploiting the symmetry of the structure and separating the load set into the sum of a symmetric contribution and an anti-symmetric one.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/circular_frame_symmetric_antisymmetric_loading.png" alt="Symmetric and anti-symmetric loading decomposition">
+                    <figcaption>Figure 8.1: Circular frame showing symmetric and anti-symmetric loading decomposition.</figcaption>
+                </figure>
+
+                <p>Consider the generic case with forces \(P_A\) and \(P_B\) where \(P_A \neq P_B\). The system of load can be seen as:</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h5>Symmetric Loading</h5>
+                        \[\hat{P} = \frac{P_A + P_B}{2}\]
+                        <p>Applied equally on both sides (same direction)</p>
+                    </div>
+                    <div class="column">
+                        <h5>Anti-symmetric Loading</h5>
+                        \[\tilde{P} = \frac{P_A - P_B}{2}\]
+                        <p>Applied equally on both sides (opposite directions)</p>
+                    </div>
+                </div>
+
+                <p>(Clearly, this separation can be done for any load set)</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/frame_loading_symmetry_conditions.png" alt="Frame loading symmetry conditions">
+                    <figcaption>Figure 8.2: Circular frame diagrams showing symmetric and anti-symmetric loading conditions with corresponding boundary constraints.</figcaption>
+                </figure>
+
+                <h3>8.1 Advantage of Load Decomposition</h3>
+
+                <p>The advantage of this separation consists in the possibility of solving two problems which are simpler in comparison to the original one:</p>
+
+                <div class="boxed-content">
+                    <p><strong>Initial problem:</strong> 3 times statically indeterminate</p>
+                    <p>Decomposes into:</p>
+                    <ul class="bullet-list">
+                        <li><strong>Symmetric load:</strong> 2 times statically indeterminate</li>
+                        <li><strong>Anti-symmetric load:</strong> 1 time statically indeterminate</li>
+                    </ul>
+                </div>
+
+                <p>Indeed, frames are generally symmetric structures that:</p>
+                <ol class="numbered-list" type="a">
+                    <li>Loaded symmetrically respond symmetrically</li>
+                    <li>Loaded anti-symmetrically respond anti-symmetrically</li>
+                </ol>
+
+                <h3>8.2 Plane Symmetries</h3>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/plane_symmetry_rotation_axis.png" alt="Plane symmetry with rotation axis">
+                    <figcaption>Figure 8.3: Beam and circular frame illustrating plane symmetry with rotation axis.</figcaption>
+                </figure>
+
+                <p>As in the case of frames, the possibility of exploiting symmetries in structures is generally a good means for simplifying calculations.</p>
+
+                <p>A common case is given by <strong>plane symmetries</strong>, which are characterized by one (or more) axis which can be considered for rotating the structure of \(\pi\) rad without modifying the structure itself.</p>
+
+                <p>After the rotation takes place, the structure is still equal to its original configuration.</p>
+
+                <div class="key-point">
+                    <strong>Symmetry Considerations Involve:</strong>
+                    <ol class="numbered-list">
+                        <li>The geometry</li>
+                        <li>The material and, to a more general extent, the stiffnesses</li>
+                        <li>The boundary conditions</li>
+                    </ol>
+                </div>
+
+                <h3>8.3 When Symmetry Cannot Be Exploited</h3>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_symmetric_antisymmetric_examples.png" alt="Examples where symmetry cannot be exploited">
+                    <figcaption>Figure 8.4: Examples showing when symmetry simplification cannot be applied.</figcaption>
+                </figure>
+
+                <p>Whenever one or more of these conditions does not respect symmetry requirements, the analysis cannot be simplified by exploiting any kind of symmetry consideration.</p>
+
+                <div class="example-box">
+                    <h4>Example 1: Non-symmetric Boundary Conditions</h4>
+                    <p>The structure is geometrically and materially symmetric, but boundary conditions are not.</p>
+                    <p><strong>Result:</strong> The problem cannot be simplified.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: Non-symmetric Stiffnesses</h4>
+                    <p>The structure is symmetric with respect to geometry and boundary conditions, but not in terms of stiffnesses (different \(EI_1\) and \(EI_2\)).</p>
+                    <p><strong>Result:</strong> The problem cannot be simplified.</p>
+                </div>
+
+                <h3>8.4 Symmetric and Anti-symmetric Response</h3>
+
+                <p>On the contrary, the satisfaction of the three previous requirements allows to simplify the problem:</p>
+
+                <div class="boxed-content">
+                    <ol class="numbered-list">
+                        <li><strong>Symmetric structure loaded symmetrically:</strong> → symmetric response</li>
+                        <li><strong>Symmetric structure loaded anti-symmetrically:</strong> → anti-symmetric response</li>
+                    </ol>
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/symmetric_beam_deflection_examples.png" alt="Symmetric beam deflection examples">
+                    <figcaption>Figure 8.5: Symmetric beam examples showing symmetric and anti-symmetric response with constraint conditions.</figcaption>
+                </figure>
+
+                <div class="example-box">
+                    <h4>Example: Symmetric Structure with Symmetric Load</h4>
+                    <p>It is intuitive to understand that the symmetry of the response implies that \(\theta_x = W = 0\) at the centerline.</p>
+                    <p>The problem can be simplified by introducing a constraint imposing the symmetry considerations.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Symmetric Structure with Anti-symmetric Load</h4>
+                    <p>In this case, the anti-symmetry of the response determines a null bending deflection in the middle portion.</p>
+                    <p>The problem can then be simplified with a simply-support condition in the middle.</p>
+                </div>
+
+                <h3>8.5 Formalization for 2D Planar Case</h3>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/symmetric_structure_load_conditions.png" alt="Symmetric structure load conditions">
+                    <figcaption>Figure 8.6: Two symmetric structure examples with displacement and rotation conditions.</figcaption>
+                </figure>
+
+                <p>The 2D planar case can then be formalized as:</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h5>1. Symmetric Structure with Symmetric Load</h5>
+                        <p>\(V(z) = V(-z)\) ⟹ \(V(z) \neq 0\)</p>
+                        <p>\(W(z) = -W(-z)\) ⟹ \(W(0) = 0\)</p>
+                        <p>\(\theta_x(z) = -\theta_x(-z)\) ⟹ \(\theta_x(0) = 0\)</p>
+                    </div>
+                    <div class="column">
+                        <h5>2. Symmetric Structure with Anti-symmetric Load</h5>
+                        <p>\(V(z) = -V(-z)\) ⟹ \(V(0) = 0\)</p>
+                        <p>\(W(z) = W(-z)\) ⟹ \(W(0) \neq 0\)</p>
+                        <p>\(\theta_x(z) = \theta_x(-z)\) ⟹ \(\theta_x(0) \neq 0\)</p>
+                    </div>
+                </div>
+
+                <h3>8.6 Important Remark: Buckling Analysis</h3>
+
+                <div class="note-box">
+                    <strong>Note:</strong> The application of symmetry/anti-symmetry conditions should be carefully conducted out of linearity assumptions. A typical example is given by the buckling analysis where it is intuitive to notice that a symmetric structure loaded symmetrically may respond anti-symmetrically.
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_buckling_mode_shapes.png" alt="Beam buckling mode shapes">
+                    <figcaption>Figure 8.7: Simply-supported beam buckling mode shapes showing symmetric and anti-symmetric modes.</figcaption>
+                </figure>
+
+                <p>Consider a simply-supported beam loaded in compression (symmetric structure, symmetric load). The buckling modes are:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Shape</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1st mode</td>
+                            <td>Single half-wave</td>
+                            <td>Symmetric</td>
+                        </tr>
+                        <tr>
+                            <td>2nd mode</td>
+                            <td>Full sine wave (S-shape)</td>
+                            <td>Anti-symmetric</td>
+                        </tr>
+                        <tr>
+                            <td>3rd mode</td>
+                            <td>1.5 waves</td>
+                            <td>Symmetric</td>
+                        </tr>
+                        <tr>
+                            <td>4th mode</td>
+                            <td>2 full waves</td>
+                            <td>Anti-symmetric</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-point">
+                    <strong>Critical Warning:</strong> It is then clear that the application of symmetry conditions would determine the loss of all the even buckling modes.
+                </div>
+            </section>
+
+            <!-- Section 9: 3D Beam Symmetries -->
+            <section class="section" id="3d-symmetry">
+                <h2>9. Symmetries and Anti-symmetries in 3D Beams</h2>
+
+                <p>The discussion has been restricted to the 2D case so far. It is now possible to extend the same ideas to the case of beams in a three-dimensional space.</p>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/three_dimensional_beam_forces_moments.png" alt="3D beam forces and moments">
+                    <figcaption>Figure 9.1: Three-dimensional beam showing forces, moments, displacements and rotations.</figcaption>
+                </figure>
+
+                <p>In this case, the displacement of a generic point is fully characterized by three displacement components and three rotations. Similarly, the exchange of internal forces is described in terms of three forces and three moments:</p>
+
+                <ul class="bullet-list">
+                    <li>Forces: \(T_x\), \(T_y\), \(T_z\)</li>
+                    <li>Moments: \(M_x\), \(M_y\), \(M_z\)</li>
+                    <li>Displacements: \(u\), \(v\), \(W\)</li>
+                    <li>Rotations: \(\theta_x\), \(\theta_y\), \(\theta_z\)</li>
+                </ul>
+
+                <p>Understanding symmetry and anti-symmetry conditions can be simpler if the analysis is referred to the displacements and rotations:</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h5>Symmetric Response</h5>
+                        <p>\(u \neq 0\)</p>
+                        <p>\(v \neq 0\)</p>
+                        <p>\(W = 0\)</p>
+                        <p>\(\theta_x = 0\)</p>
+                        <p>\(\theta_y = 0\)</p>
+                        <p>\(\theta_z \neq 0\)</p>
+                    </div>
+                    <div class="column">
+                        <h5>Anti-symmetric Response</h5>
+                        <p>\(u = 0\)</p>
+                        <p>\(v = 0\)</p>
+                        <p>\(W \neq 0\)</p>
+                        <p>\(\theta_x \neq 0\)</p>
+                        <p>\(\theta_y \neq 0\)</p>
+                        <p>\(\theta_z = 0\)</p>
+                    </div>
+                </div>
+
+                <figure>
+                    <img src="images/LN_C3_3_Ribs_and_frames/beam_symmetric_antisymmetric_boundary_conditions.png" alt="3D beam boundary conditions">
+                    <figcaption>Figure 9.2: Beam cross-section diagrams showing symmetric and anti-symmetric boundary conditions.</figcaption>
+                </figure>
+
+                <h3>9.1 Boundary Conditions and Reactions</h3>
+
+                <p>The null displacement/rotation components characterizing the symmetric/anti-symmetric behaviour can be imposed with proper boundary conditions. It follows that a reaction force/moment exists for any component set to zero:</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h5>Symmetric Conditions</h5>
+                        <p>\(W = 0\) ⟹ \(R_z \neq 0\)</p>
+                        <p>\(\theta_x = 0\) ⟹ \(M_x \neq 0\)</p>
+                        <p>\(\theta_y = 0\) ⟹ \(M_y \neq 0\)</p>
+                    </div>
+                    <div class="column">
+                        <h5>Anti-symmetric Conditions</h5>
+                        <p>\(u = 0\) ⟹ \(R_x \neq 0\)</p>
+                        <p>\(v = 0\) ⟹ \(R_y \neq 0\)</p>
+                        <p>\(\theta_z = 0\) ⟹ \(M_z \neq 0\)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Examples -->
+            <section class="section" id="examples">
+                <h2>10. Worked Examples</h2>
+
+                <div class="example-box">
+                    <h4>Example 1: Simply Supported Beam with Distributed Load</h4>
+                    
+                    <figure>
+                        <img src="images/LN_C3_3_Ribs_and_frames/cantilever_beam_distributed_load_diagrams.png" alt="Simply supported beam with distributed load">
+                        <figcaption>Figure 10.1: Simply supported beam with distributed load and internal action diagrams.</figcaption>
+                    </figure>
+
+                    <p><strong>Problem:</strong> Evaluate the internal actions for a simply supported beam with uniformly distributed load \(q\).</p>
+
+                    <div class="solution-steps">
+                        <p><strong>Solution:</strong> The problem can be analyzed considering half of the structure subjected to symmetry constraints.</p>
+
+                        <p>For the half-beam of length \(\ell/2\):</p>
+
+                        <div class="equation-block">
+                            \[T_y(z) = -qz + \frac{q\ell}{2}\]
+                            \[M_x(z) = -\frac{qz^2}{2} + \frac{q\ell}{2}z\]
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Note:</strong> \(V\) is symmetric ⟹ \(T_y\) is anti-symmetric<br>
+                        \(\theta_x\) is anti-symmetric ⟹ \(M_x\) is symmetric
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: Beam with Varying Distributed Load</h4>
+                    
+                    <figure>
+                        <img src="images/LN_C3_3_Ribs_and_frames/cantilever_beam_varying_load_analysis.png" alt="Beam with varying distributed load">
+                        <figcaption>Figure 10.2: Beam with triangular distributed load showing internal force analysis.</figcaption>
+                    </figure>
+
+                    <p><strong>Problem:</strong> Evaluate the internal actions by exploiting symmetries/anti-symmetries for a beam with triangular load distribution.</p>
+
+                    <p><strong>Given:</strong> \(q(z) = -\frac{\bar{q}}{\ell}z\)</p>
+
+                    <div class="solution-steps">
+                        <h5>Real System:</h5>
+                        <div class="equation-block">
+                            \[T_y(z) = \frac{\bar{q}z^2}{2\ell} - Y\]
+                            \[M_x(z) = \frac{\bar{q}z^3}{6\ell} - Yz\]
+                        </div>
+
+                        <h5>Dummy System:</h5>
+                        <div class="equation-block">
+                            \[\delta T_y(z) = -1\]
+                            \[\delta M_x(z) = -z\]
+                        </div>
+
+                        <h5>PCVW (Principle of Complementary Virtual Work):</h5>
+                        <div class="equation-block">
+                            \[\int_0^\ell \frac{\delta M_x \cdot M_x}{EI} dz = 0 \quad \Rightarrow \quad Y = \frac{\bar{q}\ell}{10}\]
+                        </div>
+
+                        <h5>Final Internal Actions:</h5>
+                        <div class="equation-block">
+                            \[T_y = \frac{\bar{q}z^2}{2\ell} - \frac{\bar{q}\ell}{10}\]
+                            \[M_x = \frac{\bar{q}z^3}{6\ell} - \frac{\bar{q}\ell}{10}z\]
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Note:</strong> \(V\) is anti-symmetric ⟹ \(T_y\) is symmetric<br>
+                        \(\theta_x\) is symmetric ⟹ \(M_x\) is anti-symmetric
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 3: Symmetric Frame with Symmetric Load</h4>
+                    
+                    <figure>
+                        <img src="images/LN_C3_3_Ribs_and_frames/symmetric_frame_inclined_members.png" alt="Symmetric frame with inclined members">
+                        <figcaption>Figure 10.3: Symmetric frame structure with inclined members and symmetric load.</figcaption>
+                    </figure>
+
+                    <p><strong>Problem:</strong> Analyze the symmetric frame structure with symmetric load set (forces \(P\) applied upward at both base supports).</p>
+
+                    <div class="solution-steps">
+                        <p>The structure is symmetric with a symmetric load set.</p>
+                        <p>The problem can be simplified by analyzing half the structure with symmetry constraints.</p>
+                        <p>Reaction forces due to symmetry constraints: \(W_y\), \(W_x\), \(R_x\)</p>
+                        <p>It is straightforward to notice that \(W_y = W_x = R_x = 0\) for this specific problem.</p>
+                        <p>(Apply the PCVW as an exercise for verifying this result)</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 4: Symmetric Frame with Anti-symmetric Load</h4>
+                    
+                    <figure>
+                        <img src="images/LN_C3_3_Ribs_and_frames/inclined_frame_reaction_forces.png" alt="Frame with anti-symmetric load">
+                        <figcaption>Figure 10.4: Inclined frame member showing reaction forces under anti-symmetry condition.</figcaption>
+                    </figure>
+
+                    <p><strong>Problem:</strong> The same structure but with anti-symmetric load set (force \(P\) upward on one side, downward on the other).</p>
+
+                    <div class="solution-steps">
+                        <p>The anti-symmetry condition can be imposed with appropriate constraints.</p>
+                        <p>The three unknown reactions \(R_x\), \(R_y\), and \(W_y\) can be obtained by applying the PCVW three times.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section class="section" id="summary">
+                <h2>Summary</h2>
+
+                <div class="boxed-content">
+                    <h3>Key Roles of Ribs and Frames</h3>
+                    <ol class="numbered-list">
+                        <li><strong>Shape Preservation:</strong> Maintain aerodynamic section shape under distributed loads</li>
+                        <li><strong>Load Introduction:</strong> Provide stiff regions for transferring external loads into the structure</li>
+                        <li><strong>Buckling Stabilization:</strong> Reduce effective buckling length of stringers and panels</li>
+                    </ol>
+                </div>
+
+                <div class="boxed-content">
+                    <h3>Analysis Approach</h3>
+                    <ul class="bullet-list">
+                        <li>Distributed loads are condensed to equivalent loads at rib locations</li>
+                        <li>Shear flows on ribs are in equilibrium with introduced loads</li>
+                        <li>Shear flows are equivalent to jumps in internal actions</li>
+                        <li>Frames follow similar analysis procedures as ribs</li>
+                    </ul>
+                </div>
+
+                <div class="boxed-content">
+                    <h3>Symmetry Exploitation</h3>
+                    <ul class="bullet-list">
+                        <li>Symmetric structures can be analyzed using half-models</li>
+                        <li>Load decomposition into symmetric and anti-symmetric components simplifies analysis</li>
+                        <li>Reduces degree of static indeterminacy</li>
+                        <li><strong>Caution:</strong> Do not apply symmetry conditions in buckling analysis without careful consideration</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

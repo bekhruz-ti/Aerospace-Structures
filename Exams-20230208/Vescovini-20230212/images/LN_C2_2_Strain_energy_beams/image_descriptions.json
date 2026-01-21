@@ -1,0 +1,54 @@
+{
+  "composite_beam_cross_section_two_materials.png": {
+    "suggested_name": "composite_beam_cross_section_two_materials",
+    "description": "Cross-sectional diagram showing composite beam made of two materials (Mat A and Mat B) with hatching patterns indicating different material properties"
+  },
+  "coordinate_system_cross_section.png": {
+    "suggested_name": "coordinate_system_cross_section",
+    "description": "Coordinate system diagram showing y-axis vertical and x-axis horizontal with cross-sectional area representation"
+  },
+  "beam_transformation_pcvw_method.png": {
+    "suggested_name": "beam_transformation_pcvw_method",
+    "description": "Beam transformation diagram showing system A with fixed support and point load P converting to system B with reaction force X, illustrating PCVW method application"
+  },
+  "cantilever_beam_displacement.png": {
+    "suggested_name": "cantilever_beam_displacement",
+    "description": "Simple cantilever beam diagram with fixed support on left and vertical displacement indicator on right"
+  },
+  "simply_supported_beam_point_load_analysis.png": {
+    "suggested_name": "simply_supported_beam_point_load_analysis",
+    "description": "Simply supported beam with point load P at distance 'a' from left support, showing coordinate system, moment diagrams, and internal force representations at different sections"
+  },
+  "beam_variable_stiffness_two_sections.png": {
+    "suggested_name": "beam_variable_stiffness_two_sections",
+    "description": "Beam with two different stiffnesses (EJ₁ and EJ₂) with point load P, showing transformation to equivalent system with reaction X"
+  },
+  "distributed_load_pattern.png": {
+    "suggested_name": "distributed_load_pattern",
+    "description": "Distributed load diagram showing linearly varying load with arrows pointing downward and annotation indicating stress distribution"
+  },
+  "cantilever_beam_local_effects.png": {
+    "suggested_name": "cantilever_beam_local_effects",
+    "description": "Cantilever beam with point load P showing local effects annotation"
+  },
+  "beam_element_internal_forces_3d.png": {
+    "suggested_name": "beam_element_internal_forces_3d",
+    "description": "3D beam element diagram showing internal forces and moments (Tx, Ty, Tz, Mx, My, Mz) with coordinate system and sign conventions for zy-plane and zx-plane"
+  },
+  "beam_element_distributed_loads.png": {
+    "suggested_name": "beam_element_distributed_loads",
+    "description": "Beam element diagrams showing distributed loads and internal force increments in zy-plane and zx-plane, plus distributed twisting moment representation"
+  },
+  "cantilever_beam_linear_distributed_load_cases.png": {
+    "suggested_name": "cantilever_beam_linear_distributed_load_cases",
+    "description": "Cantilever beam with linearly distributed load showing two cases (A and B) with coordinate systems and load distribution patterns"
+  },
+  "beam_case_b_internal_actions.png": {
+    "suggested_name": "beam_case_b_internal_actions",
+    "description": "Case B analysis showing reaction forces, internal actions diagram with shear force Ty and moment Mx at beam cross-section"
+  },
+  "beam_internal_force_distribution_results.png": {
+    "suggested_name": "beam_internal_force_distribution_results",
+    "description": "Beam diagrams showing internal force distributions and moment patterns with numerical values involving q₀, ℓ parameters"
+  }
+}

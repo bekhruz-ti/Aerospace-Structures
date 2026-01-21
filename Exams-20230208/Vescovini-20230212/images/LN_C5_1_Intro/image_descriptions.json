@@ -1,0 +1,78 @@
+{
+  "equilibrium_path_bifurcation_diagram.png": {
+    "suggested_name": "equilibrium_path_bifurcation_diagram",
+    "description": "Load-displacement equilibrium path diagram showing P versus theta with linear and nonlinear curves, illustrating bifurcation behavior"
+  },
+  "limit_point_equilibrium_curve.png": {
+    "suggested_name": "limit_point_equilibrium_curve",
+    "description": "Load-displacement curve showing limit point (relative maximum) with P versus theta axes"
+  },
+  "cantilever_beam_pin_support.png": {
+    "suggested_name": "cantilever_beam_pin_support",
+    "description": "Cantilever beam with pin support at left end, angle theta, length l, and horizontal force P at free end"
+  },
+  "symmetric_stable_bifurcation_diagram.png": {
+    "suggested_name": "symmetric_stable_bifurcation_diagram",
+    "description": "Bifurcation diagram showing P versus theta with stable and unstable equilibrium paths marked"
+  },
+  "inclined_beam_imperfection.png": {
+    "suggested_name": "inclined_beam_imperfection",
+    "description": "Inclined beam with pin support, initial angle theta_0, deflection angle theta, length l, and horizontal force P"
+  },
+  "stability_second_derivative_diagram.png": {
+    "suggested_name": "stability_second_derivative_diagram",
+    "description": "Stability diagram showing second derivative of potential energy versus theta with critical angle theta_cr marked"
+  },
+  "secondary_path_bifurcation.png": {
+    "suggested_name": "secondary_path_bifurcation",
+    "description": "Bifurcation diagram showing transition to secondary path with energy introduction in system"
+  },
+  "linearized_cantilever_beam.png": {
+    "suggested_name": "linearized_cantilever_beam",
+    "description": "Simple cantilever beam with pin support at left, angle theta, length l, and horizontal force P for linearized analysis"
+  },
+  "two_path_bifurcation_stable.png": {
+    "suggested_name": "two_path_bifurcation_stable",
+    "description": "Bifurcation diagram showing two equilibrium paths labeled 1 and 2 intersecting at origin with P and theta axes"
+  },
+  "post_buckling_bifurcation_diagram.png": {
+    "suggested_name": "post_buckling_bifurcation_diagram",
+    "description": "Bifurcation diagram showing stable equilibrium path near theta equals zero with P versus theta axes"
+  },
+  "beam_with_spring_support.png": {
+    "suggested_name": "beam_with_spring_support",
+    "description": "Beam structure with spring support at left end, angle theta, length l, and horizontal force P at right end"
+  },
+  "asymmetric_unstable_bifurcation.png": {
+    "suggested_name": "asymmetric_unstable_bifurcation",
+    "description": "Asymmetric unstable bifurcation diagram showing P versus theta with dashed unstable path and solid stable path"
+  },
+  "beam_imperfection_spring_support.png": {
+    "suggested_name": "beam_imperfection_spring_support",
+    "description": "Inclined beam with pin support at left, initial angle theta_0, deflection angle theta, spring at right end, length l, and horizontal force P"
+  },
+  "complex_bifurcation_limit_load.png": {
+    "suggested_name": "complex_bifurcation_limit_load",
+    "description": "Complex bifurcation diagram showing P versus theta with multiple paths including limit load snap behavior and unstable post-buckling response"
+  },
+  "two_member_truss_structure.png": {
+    "suggested_name": "two_member_truss_structure",
+    "description": "Two-member truss structure with pin supports at base, angle theta, length l, and vertical force P at apex"
+  },
+  "two_dof_truss_system.png": {
+    "suggested_name": "two_dof_truss_system",
+    "description": "Two-degree-of-freedom system with two pin-supported members, springs k at supports, angles theta_1 and theta_2, lengths l, and horizontal force P"
+  },
+  "three_dimensional_bifurcation_diagram.png": {
+    "suggested_name": "three_dimensional_bifurcation_diagram",
+    "description": "Three-dimensional bifurcation diagram showing P versus theta_1 and theta_2 axes with critical load values marked"
+  },
+  "post_bifurcation_paths_diagram.png": {
+    "suggested_name": "post_bifurcation_paths_diagram",
+    "description": "Post-bifurcation equilibrium paths diagram showing P versus theta_1 and theta_2 with multiple solution branches and eigenvalue paths"
+  },
+  "critical_load_bifurcation_points.png": {
+    "suggested_name": "critical_load_bifurcation_points",
+    "description": "Load diagram showing vertical force P with two critical load values marked along vertical axis representing bifurcation points"
+  }
+}

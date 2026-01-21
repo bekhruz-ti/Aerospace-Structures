@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strain Energy and Complementary Strain Energy in Beams</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 15px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .note-box {
+            background: #fffbeb;
+            border: 1px solid #f6ad55;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .note-box strong {
+            color: #c05621;
+        }
+
+        .boxed-equation {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .content-section {
+            margin: 30px 0;
+        }
+
+        .content-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .bullet-list {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .bullet-list li {
+            margin: 10px 0;
+        }
+
+        .numbered-list {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .numbered-list li {
+            margin: 10px 0;
+        }
+
+        .procedure-box {
+            background: #ebf8ff;
+            border: 1px solid #4299e1;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .procedure-box h4 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+
+        .procedure-box ol {
+            padding-left: 25px;
+        }
+
+        .procedure-box li {
+            margin: 8px 0;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Strain Energy and Complementary Strain Energy in Beams</h1>
+            <p class="subtitle">PCVW/Menabrea's Theorem for Evaluating Displacements and Solving Statically Undetermined Beam Systems</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Strain Energy and Complementary Strain Energy -->
+            <section class="problem-solution-pair" id="section-1">
+                <div class="problem">
+                    <h2>1. Strain Energy and Complementary Strain Energy in Beams</h2>
+                    
+                    <p class="problem-statement">The DSV solution allows to express the strain energy and the complementary one as function of the internal actions.</p>
+                    
+                    <div class="content-section">
+                        <h3>Fundamental Definitions</h3>
+                        
+                        <p>Recall that:</p>
+                        
+                        <p>\(\underline{\underline{\sigma}} = U_{/\underline{\underline{\varepsilon}}}\) and</p>
+                        
+                        <div class="boxed-equation">
+                            \[U = \frac{1}{2} \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} = \frac{1}{2} \underline{\underline{\sigma}}(\underline{\underline{\varepsilon}}) : \underline{\underline{\varepsilon}}\]
+                            <p><em>Strain energy density</em></p>
+                        </div>
+                        
+                        <p>\(\underline{\underline{\varepsilon}} = U^*_{/\underline{\underline{\sigma}}}\) and</p>
+                        
+                        <div class="boxed-equation">
+                            \[U^* = \frac{1}{2} \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}}(\underline{\underline{\sigma}})\]
+                            <p><em>Complementary strain energy density</em></p>
+                        </div>
+                        
+                        <p>where \(U^* = \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} - U\)</p>
+                    </div>
+                    
+                    <div class="note-box">
+                        <strong>Important Notes:</strong>
+                        <ul class="bullet-list">
+                            <li>Note that \(U\) has to be intended as function of \(\underline{\underline{\varepsilon}}\) while \(U^*\) as function of \(\underline{\underline{\sigma}}\).</li>
+                            <li>In the <strong>linear case</strong> \(U = U^*\)</li>
+                            <li>Recall that \(U\) is used in the context of displacement based approaches (to impose equilibrium via Minimum potential energy principle); \(U^*\) is used in force-based approaches to impose compatibility (via Menabrea's theorem)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Strain Energy for Axial Force and Bending -->
+            <section class="problem-solution-pair" id="section-2">
+                <div class="problem">
+                    <h2>2. Strain Energy (Axial Force and Bending)</h2>
+                    
+                    <p class="problem-statement">The strain energy is now specialized to case of axial force and bending, so:</p>
+                    
+                    \[U = \frac{1}{2} \left( \sigma_{zz} \varepsilon_{zz} + \sigma_{xz} \gamma_{xz} + \sigma_{yz} \gamma_{yz} \right)\]
+                    
+                    <p><em>Note: neglect for now the contributions \(\sigma_{xz} \gamma_{xz}\) and \(\sigma_{yz} \gamma_{yz}\)</em></p>
+                    
+                    <p>The two contributions \(\sigma_{xz} \gamma_{xz}\) and \(\sigma_{yz} \gamma_{yz}\) are now neglected by assuming that the beam is <strong>slender</strong> (axial force and/or bending moment, constant or linear, are the only internal actions; no twisting moment.)</p>
+                    
+                    <div class="content-section">
+                        <h3>DSV Solution</h3>
+                        
+                        <p>The DSV solution was found to be:</p>
+                        
+                        \[\sigma_{zz} = \frac{T_z}{A} + \frac{M_x}{J_{xx}} y - \frac{M_y}{J_{yy}} x\]
+                        
+                        <p>and</p>
+                        
+                        \[\varepsilon_{zz} = \frac{\sigma_{zz}}{E} = \frac{T_z}{EA} + \frac{M_x}{EJ_{xx}} y - \frac{M_y}{EJ_{yy}} x\]
+                    </div>
+                    
+                    <div class="note-box">
+                        <strong>Note:</strong> For the case of homogeneous and isotropic beam the contributions \(EA\) and \(EJ_{\alpha\alpha}\) are the product between the elastic modulus and the area or the second moment of inertia, respectively. However, it is more appropriate to intend \(EA\) as a single contribution expressing the <strong>axial stiffness</strong> of the beam. Similarly \(EJ_{\alpha\alpha}\) should be intended as the <strong>bending stiffness</strong>, not necessarily the product between \(E\) and \(J_{\alpha\alpha}\).
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Generalization for Non-Homogeneous Beams -->
+            <section class="problem-solution-pair" id="section-3">
+                <div class="problem">
+                    <h2>3. Generalization for Non-Homogeneous Beams</h2>
+                    
+                    <p class="problem-statement">This generalization of the idea of axial and bending stiffness is useful when dealing with non-homogeneous beams. Consider, for instance, a beam made of two materials.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/composite_beam_cross_section_two_materials.png" alt="Cross-sectional diagram showing composite beam made of two materials (Mat A and Mat B)">
+                        <figcaption>Figure 3.1: Composite beam cross-section with two materials</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Upper region: Material A with elastic modulus \(E_A\)</li>
+                            <li>Lower region: Material B with elastic modulus \(E_B\)</li>
+                            <li>\(A_A\) and \(A_B\): corresponding areas</li>
+                            <li>Clearly \(A_A + A_B = A\), where \(A\) is the section area</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Derivation of Axial Stiffness</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Question: Which is the axial stiffness of the area?</h4>
+                        
+                        \[EA = \int_A E \, dA \quad \text{where } E = E(x, y)\]
+                        
+                        <p>In this example:</p>
+                        <ul>
+                            <li>\(E = E_A\) if \(y > 0\)</li>
+                            <li>\(E = E_B\) if \(y < 0\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[EA = E_A A_A + E_B A_B\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Physical Interpretation</h4>
+                        <p>It is clear that the axial stiffness cannot be felt as the product between an elastic modulus (which one? \(E_A\) or \(E_B\)?) and an area (\(A_A\) or \(A_B\)?)</p>
+                        
+                        <p>The symbol \(EA\) stands for the axial stiffness and highlights the dependence on the elastic properties and the area of the section.</p>
+                        
+                        <p>In this example it could be possible to write:</p>
+                        
+                        \[EA = E_A \left( A_A + \frac{E_B}{E_A} A_B \right) = E_A \cdot \tilde{A}\]
+                        
+                        <p>with</p>
+                        
+                        \[\tilde{A} = A_A + \frac{E_B}{E_A} A_B\]
+                    </div>
+                    
+                    <div class="note-box">
+                        <strong>Note:</strong> In any case, \(\tilde{A}\) depends on the elastic properties thus a description as the product between \(E\) and \(A\) is no more possible. The same considerations hold for the bending stiffness (and, even more, for the torsional one).
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Strain Energy Derivation -->
+            <section class="problem-solution-pair" id="section-4">
+                <div class="problem">
+                    <h2>4. Strain Energy Expression from DSV Solution</h2>
+                    
+                    <p class="problem-statement">From the DSV solution the strain energy reads:</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Derivation</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Volume integral formulation</h4>
+                        
+                        \[U = \int_V U \, dV = \frac{1}{2} \int_V \sigma_{zz} \varepsilon_{zz} \, dV\]
+                        
+                        \[= \frac{1}{2} \int_V \left( \frac{T_z}{A} + \frac{M_x}{J_{xx}} y - \frac{M_y}{J_{yy}} x \right) \left( \frac{T_z}{EA} + \frac{M_x}{EJ_{xx}} y - \frac{M_y}{EJ_{yy}} x \right) dV\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Expansion</h4>
+                        
+                        \[= \frac{1}{2} \int_0^\ell \int_A \left( \frac{T_z}{A} \frac{T_z}{EA} + \frac{M_x}{J_{xx}} \frac{M_x}{EJ_{xx}} y^2 + \frac{M_y}{J_{yy}} \frac{M_y}{EJ_{yy}} x^2 + \right.\]
+                        
+                        \[\left. + \frac{T_z}{A} \frac{M_x}{EJ_{xx}} y - \frac{T_z}{A} \frac{M_y}{EJ_{yy}} x + \frac{M_x}{J_{xx}} \frac{T_z}{EA} y - \frac{M_x}{J_{xx}} \frac{M_y}{EJ_{yy}} x + \right.\]
+                        
+                        \[\left. - \frac{M_y}{J_{yy}} \frac{T_z}{EA} x - \frac{M_y}{J_{yy}} \frac{M_x}{EJ_{xx}} xy \right) dA \, dz\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply centroidal axis properties</h4>
+                        
+                        <p>Recalling that for principal centroidal axes:</p>
+                        
+                        \[\int_A x \, dA = \int_A y \, dA = \int_A xy \, dA = 0\]
+                        
+                        <p>it follows that:</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[U = \frac{1}{2} \int_0^\ell \left( \frac{T_z \, T_z}{EA} + M_x \frac{M_x}{EJ_{xx}} + M_y \frac{M_y}{EJ_{yy}} \right) dz\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Constitutive Relations</h4>
+                        
+                        <p>From the DSV solution for axial and bending moments it is known that:</p>
+                        
+                        \[\varepsilon_{zz} = \frac{T_z}{EA} \quad \text{and} \quad \kappa_x = \frac{M_x}{EJ_{xx}} \quad ; \quad \kappa_y = \frac{M_y}{EJ_{yy}}\]
+                        
+                        <p>where \(\kappa_x, \kappa_y\) are <strong>curvatures</strong>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Alternative Forms of Strain Energy -->
+            <section class="problem-solution-pair" id="section-5">
+                <div class="problem">
+                    <h2>5. Alternative Forms of Strain Energy</h2>
+                    
+                    <p class="problem-statement">The strain energy \(U\) is then written as:</p>
+                    
+                    <div class="boxed-equation">
+                        \[U = \frac{1}{2} \int_0^\ell \left( EA \, \varepsilon_{zz}^2 + EJ_{xx} \, \kappa_x^2 + EJ_{yy} \, \kappa_y^2 \right) dz\]
+                    </div>
+                    
+                    <p>having highlighted the displacement-related components \(\varepsilon_{zz}\) and \(\kappa_{\alpha\alpha}\) as far as the strain energy is intended as \(U = U(\underline{\underline{\varepsilon}})\)</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Remarks</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Alternative Expression</h4>
+                        <p>Alternatively \(U\) can be written as:</p>
+                        
+                        \[U = \frac{1}{2} \int_0^\ell \left( T_z \, \varepsilon_{zz} + M_x \, \kappa_x + M_y \, \kappa_y \right) dz\]
+                        
+                        <p>The quantities multiplied in the expression are <strong>energetically-conjugated</strong>. The axial force is energy conjugated with the deformation \(\varepsilon_{zz}\), while the bending moments \(M_\alpha\) are energy conjugated with the curvature \(\kappa_\alpha\).</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Generalized Displacements</h4>
+                        <p>For this reason the quantities \(\varepsilon_{zz}\) and \(\kappa_\alpha\) can be referred to as <strong>generalized displacements</strong>.</p>
+                    </div>
+                    
+                    <div class="note-box">
+                        <strong>Note:</strong> The expression in the box does not account for the shear contribution. For slender beams this contribution is, in fact, negligible. Whenever a torsional rigidity is accounted for, the torsion must be included.
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Alternative Form with Derivatives</h4>
+                        
+                        <div class="boxed-equation">
+                            \[U = \frac{1}{2} \int_0^\ell \left( EA \, W_{/z}^2 + EJ_{xx} \, V_{/zz}^2 + EJ_{yy} \, U_{/zz}^2 \right) dz\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Complementary Strain Energy -->
+            <section class="problem-solution-pair" id="section-6">
+                <div class="problem">
+                    <h2>6. Complementary Strain Energy (Axial Force and Bending)</h2>
+                    
+                    <p class="problem-statement">The expression of the complementary strain energy is already available from the strain energy \(U\).</p>
+                    
+                    <p>Indeed, for a <strong>linear hyperelastic material</strong>, \(U = U^*\)</p>
+                    
+                    <p>(however, it is important to remark, one more time, that \(U\) and \(U^*\) are associated with different physical meanings. \(U^*\) is the Legendre transform of \(U\) and has to be intended as a scalar function which depends on the stresses).</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Result</h3>
+                    
+                    <div class="solution-step">
+                        <p>It was found that:</p>
+                        
+                        \[U = \frac{1}{2} \int_0^\ell \left( T_z \frac{T_z}{EA} + M_x \frac{M_x}{EJ_{xx}} + M_y \frac{M_y}{EJ_{yy}} \right) dz\]
+                        
+                        <p>This expression is already written as function of the stress-related quantities \(T_z\), \(M_x\) and \(M_y\). Thus:</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[U^* = \frac{1}{2} \int_0^\ell \left( T_z \frac{T_z}{EA} + M_x \frac{M_x}{EJ_{xx}} + M_y \frac{M_y}{EJ_{yy}} \right) dz\]
+                    </div>
+                    
+                    <p>where the internal actions \(T_z\), \(M_x\) and \(M_y\) are denoted as <strong>generalized forces</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Section 7: PCVW / Menabrea's Theorem -->
+            <section class="problem-solution-pair" id="section-7">
+                <div class="problem">
+                    <h2>7. PCVW / Menabrea's Theorem for Evaluating Displacements and Solving Statically Undetermined Beam Systems</h2>
+                    
+                    <p class="problem-statement">The variational tools previously developed are now applied to analyze beams and systems of beams. With regard to:</p>
+                    
+                    <ol class="numbered-list">
+                        <li>Evaluation of displacements/rotations in parts of the structure</li>
+                        <li>Solution of statically undetermined problems</li>
+                    </ol>
+                    
+                    <p>These two set of problems are solved in the context of <strong>force-based approaches</strong> (⇒ PCVW and Menabrea's th are used).</p>
+                    
+                    <div class="note-box">
+                        <strong>Remark:</strong> Force-based approaches are particularly useful for solving relatively simple problems, where hand-like calculations can be performed. While it is possible to extend the use of force-based approaches even for problems with several dofs, in these cases it is generally simpler to deal with displacement-based approaches; their implementation in computer problems is, in fact, substantially easier.
+                    </div>
+                    
+                    <p>Within the context of linear hyperelastic materials the use of PCVW and Menabrea's th. is interchangeable.</p>
+                    
+                    <div class="boxed-equation">
+                        \[\delta \Pi^* = \delta (U^* + V^*) = 0\]
+                        
+                        \[= \delta \left( \frac{1}{2} \int_0^\ell \left( T_z \frac{T_z}{EA} + M_x \frac{M_x}{EJ_{xx}} + M_y \frac{M_y}{EJ_{yy}} \right) dz + F_i \hat{U}_i + M_j \hat{\theta}_j + \hat{F}_r U_r + \hat{M}_s \theta_s \right) = 0\]
+                    </div>
+                    
+                    <p>or, similarly:</p>
+                    
+                    <div class="boxed-equation">
+                        \[\delta W_i^* = \delta W_e^*\]
+                        
+                        \[\int_0^\ell \left( \delta T_z \frac{T_z}{EA} + \delta M_x \frac{M_x}{EJ_{xx}} + \delta M_y \frac{M_y}{EJ_{yy}} \right) dz = \delta F_i \hat{U}_i + \delta M_j \hat{\theta}_j + \delta \hat{F}_r U_r + \delta M_s \hat{\theta}_s\]
+                    </div>
+                    
+                    <p>where the left side represents <em>imposed displ./rotations</em> and the right side represents <em>variation of forces/moments</em>.</p>
+                </div>
+            </section>
+
+            <!-- Section 8: Solution of Statically Undetermined Structures -->
+            <section class="problem-solution-pair" id="section-8">
+                <div class="problem">
+                    <h2>8. Solution of Statically Undetermined Structures</h2>
+                    
+                    <div class="procedure-box">
+                        <h4>Procedure Summary:</h4>
+                        <ol>
+                            <li>Remove the overconstraints and replace them with the reacting force</li>
+                            <li>Impose equilibrium conditions</li>
+                            <li>Apply PCVW/Menabrea's th. to obtain, among the class of equilibrium solutions, the one which is also compatible.</li>
+                        </ol>
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/beam_transformation_pcvw_method.png" alt="Beam transformation diagram showing system A with fixed support and point load P converting to system B with reaction force X">
+                        <figcaption>Figure 8.1: Transformation from statically indeterminate system (A) to equivalent system (B) with unknown reaction X</figcaption>
+                    </figure>
+                    
+                    <p>Equilibrium conditions are imposed in system (B) where everything is expressed as function of the unknown reaction \(X\).</p>
+                    
+                    <p>The generalized deformations can be obtained as \(\frac{T_z}{EA}\), \(\frac{M_x}{EJ_{xx}}\) and \(\frac{M_y}{EJ_{yy}}\)</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Application of Variational Principle</h3>
+                    
+                    <div class="solution-step">
+                        <p>The variational principle is then imposed after evaluating the variations \(\delta T_z\), \(\delta M_x\) and \(\delta M_y\) in a properly chosen "dummy system".</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C2_2_Strain_energy_beams/cantilever_beam_displacement.png" alt="Simple cantilever beam diagram with fixed support on left and unit force on right">
+                            <figcaption>Figure 8.2: Dummy system for evaluation</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="note-box">
+                        <strong>Important Notes:</strong>
+                        <ol class="numbered-list">
+                            <li>The dummy system should be taken such that the external virtual work can be easily expressed.</li>
+                            <li>The variations \(\delta T_z\), \(\delta M_x\) and \(\delta M_y\) are required to be in equilibrium; compatibility is not a constraint! Any choice of the variations is fine, provided they are in equilibrium.</li>
+                            <li>For a statically determined problem (say a cantilever beam) the internal actions are readily available from equilibrium considerations. Compatibility is intrinsically satisfied.</li>
+                            <li>The evaluation of the unknown reactions (in this example \(X\)) requires the application of a variational principle, whose expression is function of the stiffnesses of the beam. In turn, the stiffnesses reaction forces are function of the internal load paths, or, in other words, they depend upon the <strong>internal load paths</strong>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Example - Simply Supported Beam -->
+            <section class="problem-solution-pair" id="section-9">
+                <div class="problem">
+                    <h2>9. Example: Simply Supported Beam with Point Load</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/simply_supported_beam_point_load_analysis.png" alt="Simply supported beam with point load P at distance a from left support">
+                        <figcaption>Figure 9.1: Simply supported beam with point load and internal force diagrams</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Beam length: \(2a\)</li>
+                            <li>Point load \(P\) at distance \(a\) from left support</li>
+                            <li>Bending stiffness: \(EJ\)</li>
+                            <li>Unknown reaction at right support: \(X\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Internal Moment Expressions</h4>
+                        
+                        <p>For \(0 \leq z \leq a\):</p>
+                        \[M_x = -Xz\]
+                        
+                        <p>For \(a \leq z \leq 2a\):</p>
+                        \[M_x = -Xz + P(z-a)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Real Deformations (Curvatures)</h4>
+                        
+                        <p>For \(0 \leq z \leq a\):</p>
+                        \[\frac{M_x}{EJ} = -\frac{Xz}{EJ}\]
+                        
+                        <p>For \(a \leq z \leq 2a\):</p>
+                        \[\frac{M_x}{EJ} = \frac{P(z-a) - Xz}{EJ}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply PCVW</h4>
+                        
+                        \[\int_0^{2a} \delta M_x \frac{M_x}{EJ} dz = \delta X \hat{V}\]
+                        
+                        <p>where \(\hat{V} = 0\) (imposed displacement at \(z=0\))</p>
+                        
+                        <p>The dummy system gives: \(\delta M_x = -z\) (equilibrated variation)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Evaluate the Integral</h4>
+                        
+                        \[\int_0^{2a} \delta M_x \frac{M_x}{EJ} dz = \int_0^a \frac{Xz^2}{EJ} dz + \int_a^{2a} \frac{-(P-X)z^2 + Paz}{EJ} dz\]
+                        
+                        \[= \frac{1}{EJ} \left( \frac{1}{3} X a^3 - \frac{1}{3} (P-X) 7a^3 + P \frac{3}{2} a^3 \right) = 0\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[X = \frac{5}{16} P\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Example - Beam with Variable Stiffness -->
+            <section class="problem-solution-pair" id="section-10">
+                <div class="problem">
+                    <h2>10. Example: Beam with Variable Stiffness</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/beam_variable_stiffness_two_sections.png" alt="Beam with two different stiffnesses EJ₁ and EJ₂">
+                        <figcaption>Figure 10.1: Beam with two different stiffness sections</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Left portion: stiffness \(EJ_2\), length \(a\)</li>
+                            <li>Right portion: stiffness \(EJ_1\), length \(a\)</li>
+                            <li>Point load \(P\) at junction</li>
+                            <li>Unknown reaction: \(X\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p>The internal actions, as long as the dummy system, are readily available from the previous example.</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Apply PCVW with Variable Stiffness</h4>
+                        
+                        \[\int_0^a \frac{Xz^2}{EJ_1} dz + \int_a^{2a} \frac{(P-X)z^2 - Paz}{EJ_2} dz = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Evaluate the Integrals</h4>
+                        
+                        \[\frac{1}{EJ_1} \frac{a^3}{3} X + \frac{1}{EJ_2} \frac{7a^3}{3} X - \frac{1}{EJ_2} \frac{5}{6} Pa^3 = 0\]
+                        
+                        \[\left( \frac{\alpha}{3} + \frac{7}{3} \right) X = \frac{5}{6} P \quad \text{with } \alpha = \frac{EJ_2}{EJ_1}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[X = \frac{5}{2} \frac{P}{\alpha + 7}\]
+                    </div>
+                    
+                    <div class="note-box">
+                        <strong>Physical Interpretation:</strong>
+                        <p>Note that \(X\) depends on the stiffnesses \(EJ_1\) and \(EJ_2\).</p>
+                        <p>For increasing values of \(\alpha\), the value of \(X\) is progressively reduced. The internal load path is in fact modified and higher values of \(EJ_2\) tend to unload the beam of stiffness \(EJ_1\).</p>
+                        <p><strong>The load flows where the structure is stiffer.</strong></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: Extensions of Beam Model -->
+            <section class="problem-solution-pair" id="section-11">
+                <div class="problem">
+                    <h2>11. Extensions of Beam Model</h2>
+                    
+                    <p class="problem-statement">For several cases of practical interest, it is necessary to relax the hypotheses involved in the derivation of the DSV solution. In particular the DSV solutions will be assumed to be a good approximation when:</p>
+                    
+                    <div class="boxed-equation">
+                        <ol class="numbered-list">
+                            <li>The beam is slightly curved</li>
+                            <li>The beam is slightly twisted</li>
+                            <li>The beam is slightly tapered</li>
+                            <li>The load are applied not only at the ends of the beam, but they are introduced also at the outer surface \(\delta F_{body}\) (concentrated forces can be seen as Dirac's functions)</li>
+                        </ol>
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/distributed_load_pattern.png" alt="Distributed load diagram showing linearly varying load">
+                        <figcaption>Figure 11.1: Distributed load on beam and local 3D stress state</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="solution">
+                    <h3>Observations</h3>
+                    
+                    <div class="solution-step">
+                        <ol class="numbered-list">
+                            <li>For those cases the DSV solution is an <strong>approximation</strong></li>
+                            <li>The higher the violation of the hypothesis, the higher the level of approximation.</li>
+                            <li>The application of the DSV results is reasonable provided the region of interest is not drastically affected by local effects.</li>
+                        </ol>
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/cantilever_beam_local_effects.png" alt="Cantilever beam with point load P showing local effects">
+                        <figcaption>Figure 11.2: Local effects near concentrated load application</figcaption>
+                    </figure>
+                    
+                    <div class="note-box">
+                        <strong>Note on Local Effects:</strong> Local effects could be relevant at load application points. If an accurate description of the internal stress is sought, a 3D analysis is needed (accordingly the idealization of the load as a concentrated force could be questionable).
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: Sign Conventions -->
+            <section class="problem-solution-pair" id="section-12">
+                <div class="problem">
+                    <h2>12. Sign Conventions</h2>
+                    
+                    <p class="problem-statement">Having extended the analysis range to the case of distributed loads, it is useful to define sign conventions and corresponding differential relations.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/beam_element_internal_forces_3d.png" alt="3D beam element diagram showing internal forces and moments">
+                        <figcaption>Figure 12.1: 3D beam element with internal forces and moments</figcaption>
+                    </figure>
+                    
+                    <div class="boxed-equation">
+                        <ul class="bullet-list">
+                            <li><strong>Forces > 0</strong> if directed along coordinate axis</li>
+                            <li><strong>Moments > 0</strong> according to right hand rule</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Differential Relations</h3>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/beam_element_distributed_loads.png" alt="Beam element diagrams showing distributed loads and internal force increments">
+                        <figcaption>Figure 12.2: Beam elements with distributed loads in zy-plane and zx-plane</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>zy Plane</h4>
+                        
+                        <p>Differential equations:</p>
+                        \[dT_y = -q \, dz\]
+                        \[dM_x = T_y \, dz\]
+                        
+                        <p>Integrated forms:</p>
+                        <div class="boxed-equation">
+                            \[T_y(z) = -\int_0^z q(\xi) \, d\xi + T_y(0)\]
+                            \[M_x(z) = \int_0^z T_y(\xi) \, d\xi + M_x(0)\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>zx Plane</h4>
+                        
+                        <p>Differential equations:</p>
+                        \[dT_x = -q \, dz\]
+                        \[dM_y = -T_x \, dz\]
+                        
+                        <p>Integrated forms:</p>
+                        <div class="boxed-equation">
+                            \[T_x(z) = -\int_0^z q(\xi) \, d\xi + T_x(0)\]
+                            \[M_y(z) = -\int_0^z T_x(\xi) \, d\xi + M_y(0)\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Distributed Twisting Moment</h4>
+                        
+                        <p>Whenever a distributed twisting moment is considered:</p>
+                        
+                        \[dM_z = -m_z \, dz\]
+                        
+                        <div class="boxed-equation">
+                            \[M_z(z) = -\int_0^z m_z(\xi) \, d\xi + M_z(0)\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 13: Example - Cantilever with Linear Distributed Load -->
+            <section class="problem-solution-pair" id="section-13">
+                <div class="problem">
+                    <h2>13. Example: Cantilever Beam with Linearly Distributed Load</h2>
+                    
+                    <p class="problem-statement">Consider a cantilever beam with a linearly distributed load. Evaluate the internal actions at \(z = \ell/2\). To verify the independence on the choice of the reference system.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/cantilever_beam_linear_distributed_load_cases.png" alt="Cantilever beam with linearly distributed load showing two cases A and B">
+                        <figcaption>Figure 13.1: Cantilever beam with linearly distributed load - Cases A and B</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Cantilever beam of length \(\ell\)</li>
+                            <li>Fixed support at left end</li>
+                            <li>Case A: \(q(z) = q_0 \frac{z}{\ell}\) (load increases from fixed end)</li>
+                            <li>Case B: \(q(z) = q_0 (1 - z/\ell)\) (load decreases from fixed end)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Case A: \(q(z) = q_0 \frac{z}{\ell}\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Shear Force</h4>
+                        
+                        \[T_y(z) = -\int_0^z q(\xi) \, d\xi\]
+                        
+                        \[= -\int_0^z q_0 \frac{\xi}{\ell} \, d\xi = -\frac{q_0 z^2}{2\ell}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Bending Moment</h4>
+                        
+                        \[M_x(z) = \int_0^z T_y(\xi) \, d\xi + M_x(0)\]
+                        
+                        \[= -\int_0^z \frac{q_0 \xi^2}{2\ell} \, d\xi = -\frac{q_0 z^3}{6\ell}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Results at \(z = \ell/2\):</strong>
+                        \[T_y(\ell/2) = -\frac{q_0 \ell}{8}\]
+                        \[M_x(\ell/2) = -\frac{q_0 \ell^2}{48}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 14: Case B -->
+            <section class="problem-solution-pair" id="section-14">
+                <div class="problem">
+                    <h2>14. Case B: \(q(z) = q_0 (1 - z/\ell)\)</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/beam_case_b_internal_actions.png" alt="Case B analysis showing reaction forces and internal actions">
+                        <figcaption>Figure 14.1: Case B - Reaction forces and internal actions diagram</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Reaction Forces:</h3>
+                        <ul>
+                            <li>\(V = -q_0 \ell/2\)</li>
+                            <li>\(M = q_0 \ell^2/6\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="given-data">
+                        <h3>Boundary Conditions:</h3>
+                        <ul>
+                            <li>\(T_y(0) = q_0 \ell/2\)</li>
+                            <li>\(M_x(0) = -q_0 \ell^2/6\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Shear Force</h4>
+                        
+                        \[T_y(z) = -\int_0^z q_0 (1 - \xi/\ell) \, d\xi + T_y(0)\]
+                        
+                        \[= -q_0 z + q_0 \frac{z^2}{2\ell} + q_0 \ell/2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Bending Moment</h4>
+                        
+                        \[M_x(z) = \int_0^z T_y(\xi) \, d\xi + M_x(0)\]
+                        
+                        \[= -q_0 \frac{z^2}{2} + q_0 \frac{z^3}{6\ell} + q_0 \frac{\ell}{2} z - q_0 \frac{\ell^2}{6}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Results at \(z = \ell/2\):</strong>
+                        \[T_y(\ell/2) = \frac{q_0 \ell}{8}\]
+                        \[M_x(\ell/2) = -\frac{q_0 \ell^2}{48}\]
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C2_2_Strain_energy_beams/beam_internal_force_distribution_results.png" alt="Beam diagrams showing internal force distributions and moment patterns">
+                        <figcaption>Figure 14.2: Internal force distribution results</figcaption>
+                    </figure>
+                    
+                    <div class="note-box">
+                        <strong>Key Observations:</strong>
+                        <ul class="bullet-list">
+                            <li>If the differential relations between the internal forces are applied, the evaluation of the internal forces is <strong>straightforward</strong>.</li>
+                            <li>It is not a surprise to verify that the internal actions <strong>do not depend on the reference system</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

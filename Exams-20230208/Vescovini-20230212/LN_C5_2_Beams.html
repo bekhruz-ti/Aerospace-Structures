@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instability Criteria and Buckling of Axially Loaded Beams</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --remark-bg: #fffbeb;
+            --remark-border: #d69e2e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 20px 30px;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .subsection h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .subsection h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+
+        .boxed-equation {
+            background: #e6fffa;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .boxed-equation.important {
+            background: #fef3c7;
+            border-color: var(--remark-border);
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            padding: 10px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .remarks {
+            background: var(--remark-bg);
+            border: 1px solid var(--remark-border);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .remarks h4 {
+            color: #b7791f;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .remarks ol, .remarks ul {
+            margin-left: 20px;
+        }
+
+        .remarks li {
+            margin: 12px 0;
+        }
+
+        .case-study {
+            margin: 30px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .case-study h4 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .result-box {
+            background: var(--bg-solution);
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .result-box.critical {
+            background: #c6f6d5;
+            font-size: 1.1rem;
+        }
+
+        .equation-system {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .note {
+            background: #e2e8f0;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .note strong {
+            color: var(--primary-color);
+        }
+
+        table.bc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table.bc-table th, table.bc-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        table.bc-table th {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        table.bc-table td {
+            background: white;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-content, .subsection, .case-study {
+                padding: 15px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        mjx-container {
+            margin: 8px 0 !important;
+            overflow-x: auto;
+        }
+
+        .derivation-step {
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-left: 3px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Instability Criteria and Buckling of Axially Loaded Beams</h1>
+            <p class="subtitle">Energy Methods in Structural Stability Analysis</p>
+        </header>
+        
+        <main>
+            <!-- SECTION 1: INSTABILITY CRITERIA -->
+            <section class="section" id="instability-criteria">
+                <div class="section-header">
+                    <h2>Part I: Instability Criteria</h2>
+                </div>
+                <div class="section-content">
+                    <p>In the context of an energy-based approach, the stability of the elastic equilibrium can be studied referring to two different criteria:</p>
+                    <ol>
+                        <li>Neutral equilibrium method</li>
+                        <li>Adjacent equilibrium method (Trefftz criterion)</li>
+                    </ol>
+                    <p>In many practical cases the two methods lead to identical equations (this is why they are sometimes confused); however, they are different criteria associated with different ideas.</p>
+
+                    <!-- Neutral Equilibrium Method -->
+                    <div class="subsection">
+                        <h3>Neutral Equilibrium Method</h3>
+                        
+                        <p>The total potential energy is</p>
+                        \[\Pi = U + V\]
+                        
+                        <p>Consider the case of a N-dof problem, whose coordinates are given by \(\underline{q}\).</p>
+                        
+                        <p>The variation from \(\underline{q}\) to \(\underline{q} + \delta\underline{q}\) determines a variation of the total potential energy in the form:</p>
+                        \[\Delta\Pi = \Pi(\underline{q} + \delta\underline{q}) - \Pi(\underline{q})\]
+                        
+                        <p>Expand now the variation in Taylor series:</p>
+                        \[\Delta\Pi = \delta\Pi + \frac{1}{2!}\delta^2\Pi + \frac{1}{3!}\delta^3\Pi + \cdots\]
+                        
+                        <p>Observing that, due to the equilibrium, \(\delta\Pi = 0\), the variation \(\Delta\Pi\) reads:</p>
+                        \[\Delta\Pi = \frac{1}{2!}\delta^2\Pi + \frac{1}{3!}\delta^3\Pi + \cdots\]
+                        
+                        <p>The sign of \(\Delta\Pi\) is thus governed by \(\delta^2\Pi\). As far as the system is in a stable equilibrium position \(\delta^2\Pi > 0\).</p>
+                        
+                        <p>The transition from stability to instability happens when \(\delta^2\Pi = 0\).</p>
+                        
+                        <p>More specifically the stability condition can be formulated as follows:</p>
+                        
+                        <div class="boxed-equation important">
+                            \[\left.\delta^2\Pi\right|_{@equil.} = 0\]
+                        </div>
+                        
+                        <p>Recall the well-known sketches:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/equilibrium_stability_sketches.png" alt="Three sketches showing equilibrium stability conditions: stable equilibrium (ball in valley), unstable equilibrium (ball on hill), and neutral equilibrium (ball on flat surface)">
+                            <figcaption>Figure 1: Equilibrium stability conditions</figcaption>
+                        </figure>
+                        
+                        <table class="bc-table">
+                            <tr>
+                                <th>Configuration</th>
+                                <th>Condition</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>Stable equilibrium</td>
+                                <td>\(\delta^2\Pi > 0\)</td>
+                                <td>\(\forall\) virtual variation</td>
+                            </tr>
+                            <tr>
+                                <td>Unstable equilibrium</td>
+                                <td>\(\delta^2\Pi < 0\)</td>
+                                <td>for at least one virtual variation</td>
+                            </tr>
+                            <tr>
+                                <td>Neutral equilibrium</td>
+                                <td>\(\delta^2\Pi = 0\)</td>
+                                <td>\(\forall\) virtual variation</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Adjacent Equilibrium Method -->
+                    <div class="subsection">
+                        <h3>Adjacent Equilibrium Method</h3>
+                        
+                        <p>Consider a reference condition (denoted by R = reference). In this configuration the structure is characterized by a total potential energy \(\Pi_R\).</p>
+                        
+                        <p>After perturbing this configuration, the total potential energy will be:</p>
+                        \[\Pi_R + \Delta\Pi_R = \Pi_R + \delta\Pi_R + \frac{1}{2!}\delta^2\Pi_R + \cdots\]
+                        \[= \Pi_R + \frac{1}{2!}\delta^2\Pi_R + \cdots \quad (\delta\Pi_R = 0 \text{ for the equilibrium})\]
+                        
+                        <p>Consider now another equilibrium condition, i.e. another configuration satisfying the equilibrium requirements, close to the reference condition R. Note: close but distinct.</p>
+                        
+                        <p>Denote this configuration with A = adjacent (= close to the reference configuration).</p>
+                        
+                        <p>The total potential energy of the adjacent configuration is then:</p>
+                        
+                        <div class="boxed-equation">
+                            \[\Pi_A = \Pi_R + \Delta\Pi_R\]
+                        </div>
+                        
+                        <p>(If you prefer, this equation defines what the adjacent equilibrium configuration is: a configuration of equilibrium whose total potential energy is equal to \(\Pi_R\) plus a small variation)</p>
+                        
+                        <p>The adjacent configuration is an equilibrium configuration, so:</p>
+                        
+                        <div class="derivation-step">
+                            <p>\(\delta\Pi_A = 0 \Rightarrow \delta\Pi_R + \delta\Delta\Pi_R = 0\)</p>
+                            <p>but \(\delta\Pi_R = 0\) (the reference configuration is in equilibrium)</p>
+                            <p>and \(\Delta\Pi_R = \cancel{\delta\Pi_R} + \frac{1}{2!}\delta^2\Pi_R + \cdots\)</p>
+                            <p>\(\Rightarrow \delta\Delta\Pi_R = \frac{1}{2!}\delta(\delta^2\Pi_R)\)</p>
+                        </div>
+                        
+                        <p>And so:</p>
+                        \[\delta\Pi_A = \frac{1}{2!}\delta(\delta^2\Pi_R) = 0\]
+                        
+                        <div class="boxed-equation important">
+                            \[\delta(\delta^2\Pi_R) = 0 \quad \text{(Trefftz criterion)}\]
+                        </div>
+                    </div>
+
+                    <!-- Remarks on Criteria -->
+                    <div class="remarks">
+                        <h4>Remarks</h4>
+                        <ol>
+                            <li>
+                                <p>In many cases, the two criteria lead to the same equations. However the criteria are well different from each other from a conceptual point of view:</p>
+                                <ul>
+                                    <li><strong>Neutral equilibrium method:</strong> check the stability of the equilibrium</li>
+                                    <li><strong>Adjacent equilibrium method:</strong> for a given equilibrium configuration check if another, distinct configuration exists in the neighborhood of the reference one.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>Often the expression of \(\Pi_R\) is quadratic, thus</p>
+                                \[\Delta\Pi_R = \frac{1}{2}\delta^2\Pi_R\]
+                                <p>Assuming an initial condition with \(\Pi_R = 0\), it follows that</p>
+                                \[\Delta\Pi_R = \Pi_R \quad \text{and so} \quad \Pi_R = \frac{1}{2}\delta^2\Pi_R\]
+                                <p>The Trefftz criterion, in these circumstances, becomes:</p>
+                                \[\delta(\delta^2\Pi_R) = 0 \Rightarrow \delta\Pi_R = 0\]
+                                <p>It follows that the instability condition is sometimes denoted by \(\delta\Pi_R = 0\). However, it is of paramount importance to understand that this is an "undercover" application of the Trefftz criterion.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: BUCKLING OF AN AXIALLY LOADED BEAM -->
+            <section class="section" id="buckling-beam">
+                <div class="section-header">
+                    <h2>Part II: Buckling of an Axially Loaded Beam</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C5_2_Beams/axially_loaded_beam_diagram.png" alt="Axially loaded beam diagram showing a rectangular beam with length l, coordinate system with x and z axes, and axial force P applied at the right end">
+                        <figcaption>Figure 2: Axially loaded beam with properties EA and EJ</figcaption>
+                    </figure>
+
+                    <!-- Strain-Displacement Relations -->
+                    <div class="subsection">
+                        <h3>Strain-Displacement Relations</h3>
+                        
+                        <p>Recall the nonlinear expression of the Green-Lagrange strain tensor:</p>
+                        \[\mathcal{E}_{ik} = \frac{1}{2}\left(u_{i/k} + u_{k/i} + u_{l/i} \cdot u_{l/k}\right)\]
+                        
+                        <p>The displacement components associated with the beam reported in the sketch are \(u\) and \(w\) (\(u_x\) and \(u_z\)). The strain component \(\mathcal{E}_{xx}\) is then:</p>
+                        \[\mathcal{E}_{xx} = \frac{1}{2}\left(u_{/x} + u_{/x} + u_{/x}^2 + w_{/x}^2\right) = u_{/x} + \frac{1}{2}u_{/x}^2 + \frac{1}{2}w_{/x}^2\]
+                        
+                        <p>Assume now:</p>
+                        <ol>
+                            <li>Infinitesimal in-plane displacements</li>
+                            <li>Small but not infinitesimal out-of-plane displacements</li>
+                        </ol>
+                        
+                        <p>It follows that:</p>
+                        <div class="boxed-equation">
+                            \[\mathcal{E}_{xx} = u_{/x} + \frac{1}{2}w_{/x}^2\]
+                        </div>
+                        
+                        <p>Recall now the Euler-Bernoulli kinematic assumptions:</p>
+                        \[u = u_o - z \, w_{o/x}\]
+                        \[w = w_o\]
+                        
+                        <p>The strain component \(\mathcal{E}_{xx}\), expressed as function of the generalized displacement components of the Euler-Bernoulli beam model, is:</p>
+                        \[\mathcal{E}_{xx} = u_{o/x} - z \, w_{o/xx} + \frac{1}{2}w_{o/x}^2\]
+                        \[= \underbrace{u_{o/x} + \frac{1}{2}w_{o/x}^2}_{\text{membrane part}} - \underbrace{z \, w_{o/xx}}_{\text{bending part}}\]
+                        
+                        <p>So we can write:</p>
+                        \[\mathcal{E}_{xx} = \mathcal{E}_o + z \, k\]
+                        
+                        <div class="boxed-equation">
+                            \[\mathcal{E}_o = u_{/x} + \frac{1}{2}w_{/x}^2 \qquad k = -w_{/xx}\]
+                        </div>
+                        
+                        <div class="note">
+                            <strong>Note:</strong> Hereinafter the subscript "o" will be omitted. It will be implicit in the notation that \(u\) and \(w\) are displacements referred to the reference line.
+                        </div>
+                    </div>
+
+                    <!-- Geometrical Interpretation -->
+                    <div class="subsection">
+                        <h3>Geometrical Interpretation</h3>
+                        
+                        <p>It can be useful to adopt a geometrical interpretation for the results obtained for \(\mathcal{E}_{xx}\).</p>
+                        
+                        <p>Consider an infinitesimal beam element:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/infinitesimal_beam_element.png" alt="Infinitesimal beam element showing deformation with coordinates x and x+dx, displacements u and u+du, transverse displacement w, and deformed length dl">
+                            <figcaption>Figure 3: Infinitesimal beam element before and after deformation</figcaption>
+                        </figure>
+                        
+                        <p>After the deformation process, the length of the infinitesimal beam element is:</p>
+                        \[dl^2 = (dx + du)^2 + dw^2 = dx^2 + du^2 + 2\,dx\,du + dw^2\]
+                        \[= dx^2\left(1 + u_{/x}^2 + 2u_{/x} + w_{/x}^2\right)\]
+                        
+                        \[dl = dx\sqrt{1 + u_{/x}^2 + 2u_{/x} + w_{/x}^2}\]
+                        
+                        <p>Expand \(dl\) in Taylor series:</p>
+                        \[dl = dx + dx \cdot \frac{1}{2}\left(u_{/x}^2 + 2u_{/x} + w_{/x}^2\right)\]
+                        \[= dx\left(1 + \frac{1}{2}\left(u_{/x}^2 + 2u_{/x} + w_{/x}^2\right)\right)\]
+                        
+                        <p>The deformation is then:</p>
+                        \[\mathcal{E}_{xx} = \frac{dl - dx}{dx} = \frac{1}{2}u_{/x}^2 + u_{/x} + \frac{1}{2}w_{/x}^2 = u_{/x} + \frac{1}{2}w_{/x}^2 + \frac{1}{2}u_{/x}^2\]
+                        
+                        <div class="note">
+                            <strong>Note:</strong> The final expression includes the term \(\frac{1}{2}u_{/x}^2\) which was neglected earlier due to the assumption of infinitesimal in-plane displacements.
+                        </div>
+                    </div>
+
+                    <!-- Energy Approach -->
+                    <div class="subsection">
+                        <h3>Energy Approach</h3>
+                        
+                        <p>In contrast to what seen for the case of 1-dof and 2-dof problems, we consider now a beam, which is a continuum. It follows that we now deal with functionals instead of Hessian matrices (at least until the problem is not discretized).</p>
+                        
+                        <p><strong>Goal:</strong> identify the ODE and the relevant BCs describing the buckling behaviour of the beam.</p>
+                        
+                        \[\Pi = U + V\]
+                        
+                        \[U = \frac{1}{2}\int_0^l (N\mathcal{E}_o + Mk) \, dx\]
+                        
+                        <p>with</p>
+                        \[N = \int_A \sigma \, dA \qquad M = \int_A \sigma z \, dA\]
+                        
+                        \[V = -W_{ext} = P \, u(l)\]
+                        
+                        <p>So:</p>
+                        <div class="boxed-equation">
+                            \[\Pi = \frac{1}{2}\int_0^l (N\mathcal{E}_o + Mk) \, dx + Pu(l)\]
+                        </div>
+                        
+                        <p>Introduce now a perturbation to the reference configuration:</p>
+                        \[u \longrightarrow u + \delta u\]
+                        \[w \longrightarrow w + \delta w\]
+                        
+                        <div class="note">
+                            <strong>Note:</strong> We are dealing with a displacement-based approach, so the perturbations are introduced at the displacement components. Despite \(\Pi\) is written (for brevity) in terms of \(N\), \(M\), \(\mathcal{E}_o\) and \(k\), recall that the unknowns are \(u\) and \(w\).
+                        </div>
+                        
+                        <h4>Perturbation of Strain and Stress Quantities</h4>
+                        
+                        <p>A perturbation of \(u\) and \(w\) determines a perturbation of \(N\), \(M\), \(\mathcal{E}_o\) and \(k\). More specifically:</p>
+                        
+                        <p><strong>For \(\mathcal{E}_o\):</strong></p>
+                        \[\mathcal{E}_o = u_{/x} + \frac{1}{2}w_{/x}^2\]
+                        \[\mathcal{E}_o + \delta\mathcal{E}_o = u_{/x} + \delta u_{/x} + \frac{1}{2}w_{/x}^2 + \frac{1}{2}\delta w_{/x}^2 + w_{/x}\delta w_{/x}\]
+                        \[\delta\mathcal{E}_o = \delta u_{/x} + w_{/x}\delta w_{/x} + \frac{1}{2}\delta w_{/x}^2\]
+                        
+                        <div class="boxed-equation">
+                            \[\delta\mathcal{E}_o = \delta\mathcal{E}_o^L + \delta\mathcal{E}_o^{NL}\]
+                            <p>with \(\delta\mathcal{E}_o^L = \delta u_{/x} + w_{/x}\delta w_{/x}\) and \(\delta\mathcal{E}_o^{NL} = \frac{1}{2}\delta w_{/x}^2\)</p>
+                        </div>
+                        
+                        <p><strong>For \(k\):</strong></p>
+                        \[k = -w_{/xx}\]
+                        \[k + \delta k = -w_{/xx} - \delta w_{/xx}\]
+                        <div class="boxed-equation">
+                            \[\delta k = -\delta w_{/xx}\]
+                        </div>
+                        
+                        <p><strong>For \(N\):</strong></p>
+                        \[N = EA\mathcal{E}_o\]
+                        \[N + \delta N = EA(\mathcal{E}_o + \delta\mathcal{E}_o) = EA(\mathcal{E}_o + \delta\mathcal{E}_o^L + \delta\mathcal{E}_o^{NL})\]
+                        <div class="boxed-equation">
+                            \[\delta N = \delta N^L + \delta N^{NL}\]
+                            <p>with \(\delta N^L = EA\,\delta\mathcal{E}_o^L\) and \(\delta N^{NL} = EA\,\delta\mathcal{E}_o^{NL}\)</p>
+                        </div>
+                        
+                        <p><strong>For \(M\):</strong></p>
+                        \[M = EJ\,k\]
+                        \[M + \delta M = EJ(k + \delta k)\]
+                        <div class="boxed-equation">
+                            \[\delta M = EJ\,\delta k\]
+                        </div>
+                    </div>
+
+                    <!-- Taylor Expansion of Total Potential Energy -->
+                    <div class="subsection">
+                        <h3>Taylor Expansion of Total Potential Energy</h3>
+                        
+                        <p>After perturbing the system:</p>
+                        \[\Pi + \Delta\Pi = \frac{1}{2}\int_0^l \left[(N + \delta N^L + \delta N^{NL})(\mathcal{E}_o + \delta\mathcal{E}_o^L + \delta\mathcal{E}_o^{NL}) + (M + \delta M)(k + \delta k)\right] dx + Pu(l) + P\,\delta u(l)\]
+                        
+                        <p>Expanding and rearranging the terms:</p>
+                        \[\Delta\Pi = \frac{1}{2}\int_0^l \left(N\,\delta\mathcal{E}_o^L + \delta N^L\mathcal{E}_o + M\,\delta k + \delta Mk\right) dx + P\,\delta u(l)\]
+                        \[+ \frac{1}{2}\int_0^l \left(N\,\delta\mathcal{E}_o^{NL} + \delta N^L\delta\mathcal{E}_o^L + \delta N^{NL}\mathcal{E}_o + \delta M\,\delta k\right) dx\]
+                        <p>(plus cubic/quartic contributions)</p>
+                        
+                        <p>Consider now the Taylor expansion of \(\Delta\Pi\):</p>
+                        \[\Delta\Pi = \delta\Pi + \frac{1}{2!}\delta^2\Pi + \frac{1}{3!}\delta^3\Pi + \frac{1}{4!}\delta^4\Pi \simeq \delta\Pi + \frac{1}{2!}\delta^2\Pi\]
+                        
+                        <p>We identify:</p>
+                        \[\delta\Pi = \frac{1}{2}\int_0^l \left(N\,\delta\mathcal{E}_o^L + \delta N^L\mathcal{E}_o + M\,\delta k + \delta Mk\right) dx + P\,\delta u(l)\]
+                        \[\frac{1}{2!}\delta^2\Pi = \frac{1}{2}\int_0^l \left(N\,\delta\mathcal{E}_o^{NL} + \delta N^L\delta\mathcal{E}_o^L + \delta N^{NL}\mathcal{E}_o + \delta M\,\delta k\right) dx\]
+                        
+                        <div class="note">
+                            <strong>Key insight:</strong> From \(\delta\Pi\) we obtain the equilibrium equations. From \(\delta^2\Pi\) we can assess the stability by means of the Trefftz criterion (we obtain the buckling equations).
+                        </div>
+                    </div>
+
+                    <!-- Equilibrium Equations -->
+                    <div class="subsection">
+                        <h3>Equilibrium Equations</h3>
+                        
+                        \[\delta\Pi = \frac{1}{2}\int_0^l \left(N\,\delta\mathcal{E}_o^L + \delta N^L\mathcal{E}_o + M\,\delta k + \delta Mk\right) dx + P\,\delta u(l)\]
+                        \[= \frac{1}{2}\int_0^l \left(EA\mathcal{E}_o\,\delta\mathcal{E}_o^L + EA\,\delta\mathcal{E}_o^L\mathcal{E}_o + EJk\,\delta k + EJ\,\delta k\,k\right) dx + P\,\delta u(l)\]
+                        \[= \frac{1}{2}\int_0^l \left(2N\,\delta\mathcal{E}_o^L + 2M\,\delta k\right) dx + P\,\delta u(l)\]
+                        \[= \int_0^l \left(N\,\delta\mathcal{E}_o^L + M\,\delta k\right) dx + P\,\delta u(l)\]
+                        
+                        <p>Recall that: \(\delta\mathcal{E}_o^L = \delta u_{/x} + w_{/x}\delta w_{/x}\) and \(\delta k = -\delta w_{/xx}\)</p>
+                        
+                        \[\delta\Pi = \int_0^l \left[\left(\delta u_{/x} + w_{/x}\delta w_{/x}\right)N - \delta w_{/xx}M\right] dx + P\,\delta u(l)\]
+                        
+                        <p>Integrating by parts:</p>
+                        \[= \int_0^l \left[-\delta u\,N_{/x} - \delta w\,(Nw_{/x})_{/x} - \delta w\,M_{/xx}\right] dx + P\,\delta u(l)\]
+                        \[+ \left.\delta u\,N + \delta w\,w_{/x}N - \delta w_{/x}M + \delta w\,M_{/x}\right|_0^l\]
+                        
+                        <p>The equilibrium conditions are obtained by letting \(\delta\Pi = 0\):</p>
+                        
+                        <div class="boxed-equation important">
+                            <p><strong>Equilibrium Equations:</strong></p>
+                            \[N_{/x} = 0\]
+                            \[M_{/xx} + Nw_{/xx} = 0\]
+                        </div>
+                        
+                        <p><strong>Boundary Conditions:</strong></p>
+                        <table class="bc-table">
+                            <tr>
+                                <th>Natural BC</th>
+                                <th>or</th>
+                                <th>Essential BC</th>
+                            </tr>
+                            <tr>
+                                <td>\(N + P = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta u(l) = 0\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(N = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta u(0) = 0\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(M_{/x} + Nw_{/x} = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta w = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(M = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta w_{/x} = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="remarks">
+                            <h4>Remarks on Equilibrium Equations</h4>
+                            <ol>
+                                <li>
+                                    <p>The equilibrium equations here obtained are <strong>NONLINEAR</strong> (where nonlinearity is referred to the displacement unknowns!)</p>
+                                    \[N = EA\mathcal{E}_o = EA\left(u_{/x} + \frac{1}{2}w_{/x}^2\right)\]
+                                    <p>So, the first equation is: \(N_{/x} = \left[EA\left(u_{/x} + \frac{1}{2}w_{/x}^2\right)\right]_{/x} = 0\) (nonlinear term)</p>
+                                    <p>Similarly the second equation contains nonlinear terms due to the term \(Nw_{/xx}\).</p>
+                                </li>
+                                <li>
+                                    <p>To identify the equilibrium condition (pre-buckling configuration) the solution of the two equilibrium equations is needed. Again, notice that the two equations are nonlinear and coupled (\(u\) and \(w\) appear in both equations).</p>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <p>However, for the case of axially loaded beam, the solution of the equilibrium conditions can be found as follows:</p>
+                        \[N_{/x} = 0 \quad \text{so} \quad N = \text{const} \quad \text{but} \quad N + P = 0 \text{ in } x = l\]
+                        
+                        <div class="boxed-equation important">
+                            \[N = -P\]
+                        </div>
+                        
+                        <p>This means that the axial force is equal to applied load \(P\) (the minus sign is due to the fact that the load is compressive).</p>
+                        
+                        <p>For solving the buckling equations (see later) the knowledge of \(N\) is enough. Once we are in the position of obtaining the value of \(N\), we can try to solve the buckling equations.</p>
+                        
+                        <p>For the simple case here considered \(N = -P\), thus \(N\) is constant. To a more general extent, it should be clear that \(N\) is the axial force associated with the solution of the pre-buckling equilibrium equations.</p>
+                    </div>
+
+                    <!-- Stability - Buckling Equations -->
+                    <div class="subsection">
+                        <h3>Stability - Buckling Equations</h3>
+                        
+                        <p>The buckling equations are now derived using the Trefftz criterion:</p>
+                        \[\delta\left(\left.\delta^2\Pi\right|_{@equil.}\right) = 0\]
+                        
+                        <p>Recall:</p>
+                        \[\frac{1}{2}\delta^2\Pi = \frac{1}{2}\int_0^l \left(N\,\delta\mathcal{E}_o^{NL} + \delta N^L\delta\mathcal{E}_o^L + \delta N^{NL}\mathcal{E}_o + \delta M\,\delta k\right) dx\]
+                        
+                        <p>Since \(\delta N^{NL}\mathcal{E}_o = EA\,\delta\mathcal{E}_o^{NL}\mathcal{E}_o = N\,\delta\mathcal{E}_o^{NL}\):</p>
+                        \[\frac{1}{2}\delta^2\Pi = \frac{1}{2}\int_0^l \left(2N\,\delta\mathcal{E}_o^{NL} + \delta N^L\delta\mathcal{E}_o^L + \delta M\,\delta k\right) dx\]
+                        
+                        <p>With \(\delta\mathcal{E}_o^{NL} = \frac{1}{2}\delta w_{/x}^2\), \(\delta\mathcal{E}_o^L = \delta u_{/x} + w_{/x}\delta w_{/x}\), and \(\delta k = -\delta w_{/xx}\):</p>
+                        \[\frac{1}{2}\delta^2\Pi = \frac{1}{2}\int_0^l \left[N\,\delta w_{/x}^2 + \delta N^L\left(\delta u_{/x} + w_{/x}\delta w_{/x}\right) - \delta w_{/xx}\delta M\right] dx\]
+                        
+                        <p>At equilibrium:</p>
+                        \[\left.\delta^2\Pi\right|_{@equil.} = \int_0^l \left[\bar{N}\,\delta w_{/x}^2 + \delta N^L\left(\delta u_{/x} + \bar{w}_{/x}\delta w_{/x}\right) - \delta w_{/xx}\delta M\right] dx\]
+                        
+                        <p>where \(\bar{N}\), \(\bar{w}\) are the axial force and out-of-plane displacement as obtained from the solution of the equilibrium (pre-buckling equations).</p>
+                        
+                        <h4>Derivation of Buckling Equations</h4>
+                        
+                        <p>We must now impose the variation of \(\left.\delta^2\Pi\right|_{@equil.}\):</p>
+                        \[\delta\left(\left.\delta^2\Pi\right|_{@equil.}\right) = 0\]
+                        
+                        <p>To avoid confusion with the \(\delta\) symbol, let's operate the following change of nomenclature:</p>
+                        <ul>
+                            <li>\(\delta w \rightarrow w\)</li>
+                            <li>\(\delta u \rightarrow u\)</li>
+                            <li>\(\delta N^L \rightarrow N^L\)</li>
+                            <li>\(\delta M \rightarrow M\)</li>
+                        </ul>
+                        <p>(We should not forget, however, that \(w\), \(u\), \(N^L\), \(M\) should be intended as variations with respect to the equilibrium configuration)</p>
+                        
+                        \[\left.\delta^2\Pi\right|_{@equil.} = \int_0^l \left[\bar{N}w_{/x}^2 + N^L\left(u_{/x} + \bar{w}_{/x}w_{/x}\right) - w_{/xx}M\right] dx\]
+                        
+                        \[\delta\left(\left.\delta^2\Pi\right|_{@equil.}\right) = \int_0^l \left(2\bar{N}w_{/x}\delta w_{/x} + N^L\delta u_{/x} + N^L\bar{w}_{/x}\delta w_{/x} - M\,\delta w_{/xx}\right) dx\]
+                        \[= 2\int_0^l \left[\delta w_{/x}\left(\bar{N}w_{/x} + N^L\bar{w}_{/x}\right) + \delta u_{/x}N^L - \delta w_{/xx}M\right] dx\]
+                        
+                        <p>Integrating by parts:</p>
+                        \[= -2\int_0^l \left[\delta w\left(\bar{N}w_{/x} + N^L\bar{w}_{/x}\right)_{/x} + \delta u\,N^L_{/x} + \delta w\,M_{/xx}\right] dx\]
+                        \[+ 2\left.\left[\delta w\left(\bar{N}w_{/x} + N^L\bar{w}_{/x}\right) + \delta u\,N^L - \delta w_{/x}M + \delta w\,M_{/x}\right]\right|_0^l\]
+                        
+                        <p>So:</p>
+                        \[\begin{cases} N^L_{/x} = 0 \\ M_{/xx} + \left(\bar{N}w_{/x} + N^L\bar{w}_{/x}\right)_{/x} = 0 \end{cases}\]
+                        
+                        <p>Expanding the second equation:</p>
+                        \[M_{/xx} + \underbrace{\bar{N}_{/x}}_{=0}w_{/x} + \bar{N}w_{/xx} + \underbrace{N^L_{/x}}_{=0}\bar{w}_{/x} + N^L\bar{w}_{/xx} = 0\]
+                        
+                        <div class="boxed-equation important">
+                            <p><strong>Buckling Equations:</strong></p>
+                            \[N^L_{/x} = 0\]
+                            \[M_{/xx} + \bar{N}w_{/xx} + N^L\bar{w}_{/xx} = 0\]
+                        </div>
+                        
+                        <p><strong>Boundary Conditions:</strong></p>
+                        <table class="bc-table">
+                            <tr>
+                                <th>Natural BC</th>
+                                <th>or</th>
+                                <th>Essential BC</th>
+                            </tr>
+                            <tr>
+                                <td>\(N^L = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta u = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(M_{/x} + \bar{N}w_{/x} + N^L\bar{w}_{/x} = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta w = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(M = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta w_{/x} = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                        </table>
+                        
+                        <h4>Simplified Buckling Equations (when \(\bar{w} = 0\))</h4>
+                        
+                        <p>In the context of a displacement-based approach, the equations should be intended as function of the displacement component unknowns.</p>
+                        
+                        <p>Recall that \(N^L = EA\,\mathcal{E}_o^L = EA\left(u_{/x} + \bar{w}_{/x}w_{/x}\right)\).</p>
+                        
+                        <p>If the pre-buckling condition is characterized by \(\bar{w} = 0\), the equations simplify to:</p>
+                        
+                        <div class="boxed-equation">
+                            \[EA\,u_{/xx} = 0\]
+                            \[-EJ\,w_{/xxxx} + \bar{N}w_{/xx} = 0 \quad \Rightarrow \quad EJ\,w_{/xxxx} + P\,w_{/xx} = 0\]
+                        </div>
+                        
+                        <p><strong>Simplified Boundary Conditions:</strong></p>
+                        <table class="bc-table">
+                            <tr>
+                                <th>Natural BC</th>
+                                <th>or</th>
+                                <th>Essential BC</th>
+                            </tr>
+                            <tr>
+                                <td>\(EA\,u_{/x} = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta u = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(-EJ\,w_{/xxx} + \bar{N}w_{/x} = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta w = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(EJ\,w_{/xx} = 0\)</td>
+                                <td>or</td>
+                                <td>\(\delta w_{/x} = 0\) in \(x = 0, l\)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Remarks on Buckling Equations -->
+                    <div class="remarks">
+                        <h4>Remarks on Buckling Equations</h4>
+                        <ol>
+                            <li>
+                                <p>The buckling equations depend on the solution of the pre-buckling equilibrium equations (they depend on \(\bar{w}\) and \(\bar{N}\)).</p>
+                                <p><strong>To solve the buckling problem it is necessary to solve the equilibrium problem first!</strong></p>
+                            </li>
+                            <li>
+                                <p>For an axially loaded beam, the pre-buckling equations can be solved easily in terms of axial force: \(\bar{N} = -P\)</p>
+                                <p>However the evolution of \(\bar{w}\) requires the solution of the pre-buckling equations in terms of displacements.</p>
+                            </li>
+                            <li>
+                                <p>If \(\bar{w} = 0\) the only result from the pre-buckling analysis is \(\bar{N} = -P\). Nothing else is needed to solve the buckling problem.</p>
+                            </li>
+                            <li>
+                                <p>It is fundamental to recall that \(u\) and \(w\) are <strong>variations with respect to the equilibrium condition</strong>.</p>
+                                <p>The buckled configuration is then the superposition of the equilibrium configuration and its variation as determined from the buckling equations.</p>
+                            </li>
+                            <li>
+                                <p>As a follow up to the previous remark, it is worth noting that the boundary conditions are always <strong>homogeneous</strong>.</p>
+                            </li>
+                            <li>
+                                <p>Consider the BC associated with the axial force:</p>
+                                <figure class="diagram">
+                                    <img src="images/LN_C5_2_Beams/equilibrium_vs_buckling_bc_comparison.png" alt="Comparison table showing equilibrium equations (BC) and buckling equations (BC)">
+                                    <figcaption>Figure 4: Comparison of equilibrium and buckling boundary conditions</figcaption>
+                                </figure>
+                                <p>The buckling equations refer to a variation with respect to a configuration that already satisfies the equilibrium requirements (both in terms of equations and BCs). It is then clear that the non-homogeneous conditions are already satisfied by the pre-buckling configuration.</p>
+                            </li>
+                            <li>
+                                <p>There is a substantial difference between the equilibrium and the buckling equations:</p>
+                                <ul>
+                                    <li><strong>Equilibrium equations:</strong> they are a classical boundary value problem. For a given load it is possible to find the deformed shape.</li>
+                                    <li><strong>Buckling equations:</strong> they are an <strong>eigenvalue problem</strong>. The solution \(u = w = 0\) is a solution of the equations (trivial). The idea is to identify the value of \(P\) such that a solution, different from the trivial one, exists.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>The bending part of the buckling equations is uncoupled from the axial one. It is then possible to solve the buckling problem by considering the bending buckling equation only.</p>
+                            </li>
+                            <li>
+                                <p><strong>The buckling equations are not equilibrium equations!</strong> They provide information regarding the stability of the equilibrium, not regarding the equilibrium itself.</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Solution of Buckling Equations -->
+                    <div class="subsection">
+                        <h3>Solution of the Buckling Equations</h3>
+                        
+                        <p>Due to the uncoupling between in-plane and out-of-plane behaviour, the second equation can be solved independently from the first one:</p>
+                        \[EJ\,w_{/xxxx} + P\,w_{/xx} = 0\]
+                        
+                        <p>The characteristic polynomial is:</p>
+                        \[\lambda^2\left(EJ\,\lambda^2 + P\right) = 0\]
+                        
+                        <p>So:</p>
+                        \[\lambda_{1,2} = 0 \qquad \text{and} \qquad \lambda_{3,4} = \pm i\sqrt{\frac{P}{EJ}}\]
+                        
+                        <p>The solution is in the form:</p>
+                        \[w = Ax + B + C\sin\left(x\sqrt{\frac{P}{EJ}}\right) + D\cos\left(x\sqrt{\frac{P}{EJ}}\right)\]
+                        
+                        <p>where \(A\), \(B\), \(C\) and \(D\) have to be determined by imposing the boundary conditions.</p>
+                        
+                        <p>It can be useful to represent the solution as:</p>
+                        \[w = Ax + B + C\sin\left(x\sqrt{\frac{P}{EJ}} + \phi\right)\]
+                        
+                        <p>where the constants are now \(A\), \(B\), \(C\) and \(\phi\).</p>
+                        
+                        <p>This latest expression highlights the relation between the load \(P\) and the buckled configuration. In particular:</p>
+                        \[\sin\frac{\pi x}{\lambda} \qquad \lambda: \text{ half wave length}\]
+                        
+                        \[\left(\frac{\pi}{\lambda}\right)^2 = \frac{P}{EJ}\]
+                        
+                        <div class="boxed-equation important">
+                            \[P = \frac{EJ\pi^2}{\lambda^2}\]
+                            <p>\(\lambda\) depends upon the boundary conditions</p>
+                        </div>
+                    </div>
+
+                    <!-- Case Study: Hinged-Hinged -->
+                    <div class="case-study">
+                        <h4>Case 1: Hinged-Hinged Beam</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/hinged_hinged_beam.png" alt="Hinged-hinged beam configuration showing a horizontal beam with pin supports at both ends and axial load P">
+                            <figcaption>Figure 5: Hinged-hinged beam configuration</figcaption>
+                        </figure>
+                        
+                        <p>General solution: \(w = Ax + B + C\sin\beta x + D\cos\beta x\) with \(\beta = \sqrt{\frac{P}{EJ}}\)</p>
+                        
+                        <p><strong>Boundary conditions:</strong></p>
+                        \[\begin{cases} w(0) = 0 \\ w_{/xx}(0) = 0 \\ w(l) = 0 \\ w_{/xx}(l) = 0 \end{cases} \Rightarrow \begin{cases} B + D = 0 \\ D = 0 \\ Al + B + C\sin\beta l + D\cos\beta l = 0 \\ -\beta^2 C\sin\beta l - \beta^2 D\cos\beta l = 0 \end{cases}\]
+                        
+                        <p>From the first two equations: \(B = 0\), \(D = 0\)</p>
+                        
+                        <p>The system reduces to:</p>
+                        \[\begin{cases} Al + C\sin\beta l = 0 \\ -\beta^2 C\sin\beta l = 0 \end{cases}\]
+                        
+                        <p>If \(C = 0 \Rightarrow A = 0 \Rightarrow\) Trivial solution</p>
+                        
+                        <p>For non-trivial solution: \(\sin\beta l = 0\) if \(\beta l = n\pi\)</p>
+                        
+                        <p>So:</p>
+                        \[\sqrt{\frac{P}{EJ}}\,l = n\pi \Rightarrow P = \frac{\pi^2 n^2}{l^2}EJ\]
+                        
+                        <div class="result-box critical">
+                            \[P_{cr} = \frac{\pi^2 EJ}{l^2} \quad (n = 1)\]
+                        </div>
+                        
+                        <p>By comparison with \(P = \frac{\pi^2 EJ}{\lambda^2}\):</p>
+                        <div class="boxed-equation">
+                            \[l = \lambda\]
+                        </div>
+                        
+                        <h4>Buckling Mode</h4>
+                        <p>With \(B = 0\), \(D = 0\), \(A = 0\), and \(\sin\beta l = 0\):</p>
+                        \[w = C\sin\beta x\]
+                        
+                        <p>But \(\beta l = n\pi\) (for \(n = 1\), \(\beta l = \pi\))</p>
+                        
+                        <div class="boxed-equation">
+                            \[w = C\sin\frac{\pi}{l}x\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/hinged_hinged_buckled_shape.png" alt="Buckled shape of hinged-hinged beam showing sinusoidal deflection curve">
+                            <figcaption>Figure 6: Buckling mode for hinged-hinged beam</figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Case Study: Clamped-Clamped -->
+                    <div class="case-study">
+                        <h4>Case 2: Clamped-Clamped Beam</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/clamped_clamped_beam.png" alt="Clamped-clamped beam showing horizontal beam with fixed supports at both ends and axial load P">
+                            <figcaption>Figure 7: Clamped-clamped beam configuration</figcaption>
+                        </figure>
+                        
+                        <p><strong>Boundary conditions:</strong></p>
+                        \[\begin{cases} w(0) = 0 \\ w_{/x}(0) = 0 \\ w(l) = 0 \\ w_{/x}(l) = 0 \end{cases} \Rightarrow \begin{cases} B + D = 0 & (1) \\ A + \beta C = 0 & (2) \\ Al + B + C\sin\beta l + D\cos\beta l = 0 & (3) \\ A + \beta C\cos\beta l - \beta D\sin\beta l = 0 & (4) \end{cases}\]
+                        
+                        <p>From (1) and (2): \(B = -D\), \(A = -\beta C\)</p>
+                        
+                        <p>Substituting into (3) and (4):</p>
+                        \[\begin{cases} C\left(\sin\beta l - \beta l\right) + D\left(\cos\beta l - 1\right) = 0 \\ C\left(\cos\beta l - 1\right) - D\sin\beta l = 0 \end{cases}\]
+                        
+                        <p>As usual \(C = D = 0\) satisfies the equations, implying \(A = B = 0 \Rightarrow\) Trivial solution</p>
+                        
+                        <p>The non-trivial solution is found by setting to zero the determinant of the matrix of coefficients (note: this is a nonlinear eigenvalue problem):</p>
+                        \[-\left(\sin\beta l - \beta l\right) \cdot \sin\beta l - \left(\cos\beta l - 1\right)^2 = 0\]
+                        \[-\sin^2\beta l + \beta l\sin\beta l - \cos^2\beta l - 1 + 2\cos\beta l = 0\]
+                        \[-2 + \beta l\sin\beta l + 2\cos\beta l = 0\]
+                        
+                        <div class="boxed-equation">
+                            \[\frac{\beta l}{2}\sin\beta l + \cos\beta l = 1\]
+                        </div>
+                        
+                        <p>The equation is satisfied if \(\beta l = 2n\pi\) (since \(\sin 2n\pi = 0\) and \(\cos 2n\pi = 1\))</p>
+                        
+                        <p>So:</p>
+                        \[\sqrt{\frac{P}{EJ}}\,l = 2n\pi \Rightarrow P = \frac{n^2 4\pi^2 EJ}{l^2}\]
+                        
+                        <div class="result-box critical">
+                            \[P_{cr} = \frac{4\pi^2 EJ}{l^2} \quad (n = 1)\]
+                        </div>
+                        
+                        <p>Since \(P_{cr} = \frac{\pi^2 EJ}{\lambda^2}\):</p>
+                        \[\lambda^2 = \frac{l^2}{4} \Rightarrow \boxed{\lambda = \frac{l}{2}}\]
+                        
+                        <h4>Buckling Mode</h4>
+                        <p>If \(\beta l = 2n\pi \Rightarrow \sin\beta l = 0\), \(\cos\beta l = 1\)</p>
+                        
+                        <p>The boundary conditions give: \(-C\beta l = 0 \Rightarrow C = 0 \Rightarrow A = 0\); \(B = -D\)</p>
+                        
+                        <p>The buckling mode is then:</p>
+                        \[w = B + D\cos\beta x = B\left(1 - \cos\beta x\right)\]
+                        
+                        <p>with \(\beta = \frac{2\pi}{l}\)</p>
+                        
+                        <div class="boxed-equation">
+                            \[w = B\left(1 - \cos\frac{2\pi}{l}x\right)\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/clamped_clamped_buckled_shape.png" alt="Buckled shape of clamped-clamped beam showing curved deflection">
+                            <figcaption>Figure 8: Buckling mode for clamped-clamped beam</figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Case Study: Fixed-Free -->
+                    <div class="case-study">
+                        <h4>Case 3: Fixed-Free (Cantilever) Beam</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/fixed_free_cantilever_beam.png" alt="Fixed-free cantilever beam showing horizontal beam with fixed support at left end and free end at right with axial load P">
+                            <figcaption>Figure 9: Fixed-free cantilever beam configuration</figcaption>
+                        </figure>
+                        
+                        <p><strong>Boundary conditions:</strong></p>
+                        \[\begin{cases} w(0) = 0 \\ w_{/x}(0) = 0 \\ w_{/xx}(l) = 0 \\ EJ\,w_{/xxx}(l) + P\,w_{/x}(l) = 0 \end{cases}\]
+                        
+                        <p>These lead to:</p>
+                        \[\begin{cases} B + D = 0 & (1) \\ A + \beta C = 0 & (2) \\ -\beta^2 C\sin\beta l - \beta^2 D\cos\beta l = 0 & (3) \\ \left(-\beta^3 C\cos\beta l + \beta^3 D\sin\beta l\right)EJ + \left(A + \beta C\cos\beta l - \beta D\sin\beta l\right)P = 0 & (4) \end{cases}\]
+                        
+                        <p>Express the constants as functions of \(C\). From (1)-(3):</p>
+                        \[B = C\tan\beta l, \quad A = -\beta C, \quad D = -C\tan\beta l\]
+                        
+                        <p>Substituting into (4) and simplifying:</p>
+                        \[\left[\tan\beta l\sin\beta l\left(P\beta - \beta^3 EJ\right) + \cos\beta l\left(P\beta - \beta^3 EJ\right) - P\beta\right]C = 0\]
+                        
+                        <p>Multiplying both sides by \(\cos\beta l\) and dividing by \(\beta\):</p>
+                        \[\left[\sin^2\beta l\left(P - \beta^2 EJ\right) + \cos^2\beta l\left(P - \beta^2 EJ\right) - P\cos\beta l\right]C = 0\]
+                        
+                        <p>But \(\beta = \sqrt{\frac{P}{EJ}}\), so \(P - \beta^2 EJ = 0\), and we get:</p>
+                        
+                        <div class="boxed-equation">
+                            \[P\cos\beta l \cdot C = 0\]
+                        </div>
+                        
+                        <p>\(C = 0 \Rightarrow\) trivial solution</p>
+                        
+                        <p>For non-trivial solution: \(\cos\beta l = 0\) if \(\beta l = \frac{\pi}{2} + n\pi\) for \(n = 0, 1, 2, \ldots\)</p>
+                        
+                        \[\frac{P}{EJ}l^2 = \left(\frac{\pi}{2} + n\pi\right)^2\]
+                        
+                        <div class="result-box critical">
+                            \[P_{cr} = \frac{EJ\pi^2}{4l^2} \quad (n = 0)\]
+                        </div>
+                        
+                        <div class="boxed-equation">
+                            \[\lambda = 2l\]
+                        </div>
+                        
+                        <h4>Buckling Mode</h4>
+                        <p>\(\beta l = \frac{\pi}{2} \Rightarrow \cos\beta l = 0\), \(\sin\beta l = 1\)</p>
+                        
+                        <p>The boundary conditions become:</p>
+                        \[\begin{cases} B + D = 0 \\ A + \beta C = 0 \\ -\beta^2 C = 0 \\ \beta^3 D\,EJ + \left(A - \beta D\right)P = 0 \end{cases} \Rightarrow \begin{cases} B = -D \\ A = 0 \\ C = 0 \\ \beta^3 D\,EJ - \beta D P = 0 \end{cases}\]
+                        
+                        <p>\(D = 0 \rightarrow\) trivial solution</p>
+                        <p>\(D \neq 0\) and \(B = -D \Rightarrow\) buckling mode</p>
+                        
+                        \[w = B + D\cos\beta x = -D + D\cos\beta x\]
+                        
+                        <p>with \(\beta = \frac{\pi}{2l}\)</p>
+                        
+                        <div class="boxed-equation">
+                            \[w = D\left(-1 + \cos\frac{\pi}{2l}x\right)\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_2_Beams/fixed_free_buckled_shape.png" alt="Buckled shape of fixed-free cantilever beam showing curved deflection">
+                            <figcaption>Figure 10: Buckling mode for fixed-free cantilever beam</figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Summary Table -->
+                    <div class="subsection">
+                        <h3>Summary of Critical Buckling Loads</h3>
+                        
+                        <table class="bc-table">
+                            <tr>
+                                <th>Boundary Conditions</th>
+                                <th>Critical Load \(P_{cr}\)</th>
+                                <th>Effective Length \(\lambda\)</th>
+                            </tr>
+                            <tr>
+                                <td>Hinged-Hinged</td>
+                                <td>\(\displaystyle\frac{\pi^2 EJ}{l^2}\)</td>
+                                <td>\(l\)</td>
+                            </tr>
+                            <tr>
+                                <td>Clamped-Clamped</td>
+                                <td>\(\displaystyle\frac{4\pi^2 EJ}{l^2}\)</td>
+                                <td>\(\displaystyle\frac{l}{2}\)</td>
+                            </tr>
+                            <tr>
+                                <td>Fixed-Free (Cantilever)</td>
+                                <td>\(\displaystyle\frac{\pi^2 EJ}{4l^2}\)</td>
+                                <td>\(2l\)</td>
+                            </tr>
+                        </table>
+                        
+                        <p>All cases can be expressed in the unified form:</p>
+                        <div class="result-box critical">
+                            \[P_{cr} = \frac{\pi^2 EJ}{\lambda^2}\]
+                            <p>where \(\lambda\) is the effective (half-wave) length determined by the boundary conditions.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

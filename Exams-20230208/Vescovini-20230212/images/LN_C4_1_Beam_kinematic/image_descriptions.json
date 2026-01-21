@@ -1,0 +1,74 @@
+{
+  "beam_coordinate_system_3d.png": {
+    "suggested_name": "beam_coordinate_system_3d",
+    "description": "3D coordinate system diagram showing beam cross-section with x, y, z axes and circular cross-section element"
+  },
+  "timoshenko_beam_planar_geometry.png": {
+    "suggested_name": "timoshenko_beam_planar_geometry",
+    "description": "Planar beam diagram showing beam axis along x-direction with z-axis perpendicular, illustrating Timoshenko beam model geometry"
+  },
+  "beam_deformation_displacement_field.png": {
+    "suggested_name": "beam_deformation_displacement_field",
+    "description": "Beam deformation diagrams showing axial and bending displacement components before and after deformation with displacement vectors and rotation angles"
+  },
+  "beam_generalized_displacements.png": {
+    "suggested_name": "beam_generalized_displacements",
+    "description": "Simple beam diagram showing generalized displacement parameters along beam axis"
+  },
+  "beam_section_shearing_deformation.png": {
+    "suggested_name": "beam_section_shearing_deformation",
+    "description": "Beam section rotation diagram showing shearing deformation with rotation angle and displacement components"
+  },
+  "beam_element_distributed_concentrated_loads.png": {
+    "suggested_name": "beam_element_distributed_concentrated_loads",
+    "description": "Beam element with distributed loads and concentrated forces showing internal forces, moments, and shear forces along beam length"
+  },
+  "infinitesimal_beam_element_equilibrium.png": {
+    "suggested_name": "infinitesimal_beam_element_equilibrium",
+    "description": "Infinitesimal beam element showing internal forces and moments with equilibrium conditions"
+  },
+  "volume_force_distribution_comparison.png": {
+    "suggested_name": "volume_force_distribution_comparison",
+    "description": "Comparison diagrams showing volume force distribution on beam cross-sections for different loading cases"
+  },
+  "axial_stress_distribution_decomposition.png": {
+    "suggested_name": "axial_stress_distribution_decomposition",
+    "description": "Beam cross-section diagrams showing axial stress distribution decomposed into constant and linear components"
+  },
+  "beam_boundary_conditions_examples.png": {
+    "suggested_name": "beam_boundary_conditions_examples",
+    "description": "Multiple beam boundary condition diagrams showing free-free, fixed-free, fixed-fixed, and simply-supported configurations with forces and moments"
+  },
+  "clamped_simply_supported_beam.png": {
+    "suggested_name": "clamped_simply_supported_beam",
+    "description": "Clamped-simply-supported beam diagram with end moment"
+  },
+  "beam_3d_stress_state_coordinates.png": {
+    "suggested_name": "beam_3d_stress_state_coordinates",
+    "description": "3D beam coordinate system showing stress state with coordinate axes"
+  },
+  "euler_bernoulli_beam_section_rotation.png": {
+    "suggested_name": "euler_bernoulli_beam_section_rotation",
+    "description": "Euler-Bernoulli beam model diagram showing section rotation and bending displacement with geometric relationships"
+  },
+  "infinitesimal_beam_bending_displacement.png": {
+    "suggested_name": "infinitesimal_beam_bending_displacement",
+    "description": "Infinitesimal beam element showing bending displacement and rotation of generic point with geometric details"
+  },
+  "timoshenko_euler_bernoulli_comparison.png": {
+    "suggested_name": "timoshenko_euler_bernoulli_comparison",
+    "description": "Comparison of Timoshenko and Euler-Bernoulli beam models showing shearing deformation angles"
+  },
+  "beam_distributed_shearing_load.png": {
+    "suggested_name": "beam_distributed_shearing_load",
+    "description": "Beam subjected to distributed shearing load and end concentrated forces with moment diagram"
+  },
+  "beam_element_shear_moment_equilibrium.png": {
+    "suggested_name": "beam_element_shear_moment_equilibrium",
+    "description": "Infinitesimal beam element showing internal shear force and moment equilibrium"
+  },
+  "euler_bernoulli_boundary_conditions.png": {
+    "suggested_name": "euler_bernoulli_boundary_conditions",
+    "description": "Boundary condition examples for Euler-Bernoulli beam showing clamped-free and clamped-simply-supported configurations"
+  }
+}

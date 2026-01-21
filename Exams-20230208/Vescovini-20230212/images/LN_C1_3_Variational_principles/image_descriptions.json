@@ -1,0 +1,6 @@
+{
+  "cantilever_beam_distributed_load.png": {
+    "suggested_name": "cantilever_beam_distributed_load",
+    "description": "Simple beam diagram showing a horizontal beam with length l, fixed support at left end, and distributed load EA indicated with arrows along the beam axis"
+  }
+}

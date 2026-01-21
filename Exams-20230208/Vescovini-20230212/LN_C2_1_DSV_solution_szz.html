@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Beams and De Saint Venant Solution</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --bg-result: #ebf8ff;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .numbered-list {
+            margin: 15px 0 15px 25px;
+        }
+
+        .numbered-list li {
+            margin: 10px 0;
+        }
+
+        .equation-box {
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .result-box {
+            background: var(--bg-result);
+            border: 2px solid #3182ce;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .result-box h4 {
+            color: #2b6cb0;
+            margin-top: 0;
+        }
+
+        .important-note {
+            background: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .definition {
+            background: #f0f5ff;
+            border-left: 4px solid #5a67d8;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .remarks-section {
+            background: #f7fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .remarks-section h4 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .remark-item {
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: white;
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .final-result {
+            background: #c6f6d5;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .final-result h4 {
+            color: #276749;
+            margin-bottom: 15px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .summary-box {
+            background: #edf2f7;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .summary-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Introduction to Beams and De Saint Venant Solution</h1>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction -->
+            <section class="section" id="introduction">
+                <h2>1. Introduction</h2>
+                
+                <p>Consider a 3D body, characterized by the following features:</p>
+                
+                <ol class="numbered-list">
+                    <li>The body is <strong>slender</strong>, with one dimension which is much greater in comparison to the two other directions.</li>
+                    <li>The body is obtained by the <strong>rigid translation</strong> of the section, which is equal to itself along the beam axis.</li>
+                    <li>The material is <strong>isotropic, elastic and homogeneous</strong> (beams with sections made of two different materials, i.e. non-homogeneous sections, are not considered).</li>
+                    <li><strong>Loads and constraints</strong> are applied at the <strong>extremal sections</strong>.</li>
+                </ol>
+                
+                <div class="definition">
+                    <strong>Goal of the investigation:</strong> To determine the state of stress for a generic section, provided it is far enough from where the loads are applied (and the constraints as well, as they are responsible for the introduction of the reaction forces).
+                </div>
+            </section>
+
+            <!-- Section 2: Beam Representation -->
+            <section class="section" id="beam-representation">
+                <h2>2. Beam Representation and Coordinate System</h2>
+                
+                <p>The 3D body, hereinafter denoted as beam, is represented with the following coordinate system:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/beam_coordinate_system_3d.png" alt="3D coordinate system showing beam axis (z) and plane of section (xy) with principal centroidal axes labeled">
+                    <figcaption>Figure 2.1: 3D coordinate system for beam representation</figcaption>
+                </figure>
+                
+                <p>where:</p>
+                <ul class="numbered-list">
+                    <li>\(z\): beam axis</li>
+                    <li>\(xy\): plane of the section</li>
+                </ul>
+                
+                <p>In addition, \(xyz\) is taken such that:</p>
+                
+                <div class="equation-box">
+                    \[\int_A x \, dA = \int_A y \, dA = 0\]
+                    \[\int_A xy \, dA = 0\]
+                    <p><em>Principal centroidal axes</em></p>
+                </div>
+                
+                <div class="important-note">
+                    <strong>Important:</strong> The loads, as reported at point 4, are applied at the ends. Notice that the distribution of the loads over the surface is not relevant for the present investigation. The only information that is relevant is the resultant of the surface forces.
+                </div>
+                
+                <p>The stress distribution over a section can be represented by its resultant:</p>
+                \[\sigma(x,y) \quad \rightarrow \quad \int_A \sigma(x,y) \, dA\]
+            </section>
+
+            <!-- Section 3: Applied Loads and Internal Actions -->
+            <section class="section" id="applied-loads">
+                <h2>3. Applied Loads and Internal Actions</h2>
+                
+                <p>Consider a generic system of applied loads, which are now considered in terms of resultants (forces and moments).</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/applied_loads_resultants_system.png" alt="Generic system of applied loads showing end section and generic section with internal forces, shear forces, bending moments, and twisting moments">
+                    <figcaption>Figure 3.1: Applied loads at end section and internal actions at generic section</figcaption>
+                </figure>
+                
+                <p>The applied loads are denoted with the \(\hat{}\) symbol. They are taken such that:</p>
+                <ol class="numbered-list">
+                    <li>The internal shear and axial forces are positive</li>
+                    <li>The internal bending and twisting moments are positive according to the right-hand rule convention</li>
+                </ol>
+                
+                <h3>3.1 Equilibrium Relations</h3>
+                
+                <p>From equilibrium considerations, it is obtained that:</p>
+                
+                <div class="equation-box">
+                    <p><strong>Forces (constant):</strong></p>
+                    \[T_x = \hat{T}_x, \quad T_y = \hat{T}_y, \quad T_z = \hat{T}_z\]
+                    <p>⟹ The shear is constant, the axial force is constant</p>
+                </div>
+                
+                <div class="equation-box">
+                    <p><strong>Moments (can be constant or linear):</strong></p>
+                    \[M_x = \hat{M}_x + z T_y\]
+                    \[M_y = \hat{M}_y - z T_x\]
+                    \[M_z = \hat{M}_z\]
+                </div>
+                
+                <h3>3.2 Stress Components and Internal Actions</h3>
+                
+                <p>It is also remarked that the resultants are the integrals over the beam section of the stress components \(\sigma_{zz}\), \(\sigma_{xz}\) and \(\sigma_{yz}\).</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/stress_components_internal_actions.png" alt="Stress components and internal actions showing coordinate systems and positive conventions">
+                    <figcaption>Figure 3.2: Stress components and positive internal action conventions</figcaption>
+                </figure>
+                
+                <p>Recalling the convention for the positive internal actions, it follows that:</p>
+                
+                <div class="two-column">
+                    <div class="equation-box">
+                        <p><strong>Forces:</strong></p>
+                        \[T_x = \int_A \sigma_{xz} \, dA\]
+                        \[T_y = \int_A \sigma_{yz} \, dA\]
+                        \[T_z = \int_A \sigma_{zz} \, dA\]
+                    </div>
+                    <div class="equation-box">
+                        <p><strong>Moments:</strong></p>
+                        \[M_x = \int_A \sigma_{zz} \, y \, dA\]
+                        \[M_y = \int_A -\sigma_{zz} \, x \, dA\]
+                        \[M_z = \int_A \left( \sigma_{yz} \, x - \sigma_{xz} \, y \right) dA\]
+                    </div>
+                </div>
+                
+                <div class="important-note">
+                    <strong>Note:</strong> The internal actions are statically equivalent to the stress resultants, and do not express the equilibrium with respect to the internal state of stress.
+                </div>
+            </section>
+
+            <!-- Section 4: Problem Formulation -->
+            <section class="section" id="problem-formulation">
+                <h2>4. Formulation of the Problem</h2>
+                
+                <p>The starting point are the set of equations:</p>
+                
+                <div class="equation-box">
+                    \[\begin{cases} 
+                    div \, \underline{\underline{\sigma}} + \underline{F} = \underline{0} & \text{in } \Omega \\
+                    \underline{\underline{\varepsilon}} = \frac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) = \underline{\underline{O}} & \text{in } \Omega \\
+                    \underline{\underline{\sigma}} \cdot \underline{n} = \underline{t} & \text{in } S_F \\
+                    \underline{u} = \hat{\underline{u}} & \text{in } S_u
+                    \end{cases}\]
+                </div>
+                
+                <h3>4.1 Solution Approach</h3>
+                
+                <p>How can this problem be solved for the structure under investigation (3D slender body)?</p>
+                
+                <ol class="numbered-list">
+                    <li>Instead of dealing with the compatibility requirement \(\underline{\underline{\varepsilon}} = \frac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) = \underline{\underline{O}}\), the <strong>compatibility equations</strong> are introduced.</li>
+                    
+                    <li>Instead of obtaining a solution from the equations, an initial <strong>guess solution</strong> is proposed. It is checked ex-post if the solution satisfies the relevant equations. If this is the case, it means that the guess solution is the exact one. This approach is called the <strong>semi-inverse approach</strong>.</li>
+                    
+                    <li>Goal of the investigation is obtaining a solution far from the end sections where loads (also in the form of reaction forces) are applied.</li>
+                </ol>
+                
+                <h3>4.2 Implications for Boundary Conditions</h3>
+                
+                <p>This means that the solution will be required to provide equilibrium at any section to the external loads. No Cauchy equilibrium is involved (with regard to the sections) in the derivation of the solution. This is, in fact, consistent with the idea of neglecting the actual shape of the applied loads and considering their resultants.</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/stress_distribution_comparison.png" alt="Two cases showing stress distribution comparison - concentrated vs distributed load">
+                    <figcaption>Figure 4.1: Comparison of different load distributions with same resultant</figcaption>
+                </figure>
+                
+                <p>The two sets of loads are statically equivalent, i.e., \(\tilde{\sigma} A = \sigma A\), however their distribution is different.</p>
+            </section>
+
+            <!-- Section 5: De Saint Venant Principle -->
+            <section class="section" id="dsv-principle">
+                <h2>5. De Saint Venant Principle</h2>
+                
+                <p>Consider the exact 3D solution in a section close to the loaded area. It is clear that both solutions satisfy the equilibrium and the compatibility equations. However, they are different because the boundary conditions over the load section are different:</p>
+                
+                <div class="two-column">
+                    <div class="equation-box">
+                        \[\underline{\underline{\sigma}} \cdot \underline{n} = \tilde{\sigma} \underline{e}_3\]
+                    </div>
+                    <div class="equation-box">
+                        \[\underline{\underline{\sigma}} \cdot \underline{n} = \hat{\sigma} \underline{e}_3\]
+                    </div>
+                </div>
+                
+                <p>At the same time, the resultant of the stresses in the two sections is the same (however the equilibrium would not be fulfilled).</p>
+                
+                <div class="definition">
+                    <strong>De Saint Venant Principle:</strong> The two solutions, when calculated at a distance of the order of the maximum size of the section, are equal. This means that local effects have disappeared (they have been spatially damped out).
+                </div>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/de_saint_venant_principle_illustration.png" alt="Four beam cross-sections illustrating De Saint Venant principle">
+                    <figcaption>Figure 5.1: Illustration of De Saint Venant principle - same internal stresses at sufficient distance</figcaption>
+                </figure>
+                
+                <h3>5.1 Implications of DSV Principle</h3>
+                
+                <p>The DSV principle is exactly the reason for having assumed at the beginning that:</p>
+                <ol class="numbered-list">
+                    <li>The load shape is not relevant</li>
+                    <li>The solution is sought far away from the extremal sections</li>
+                </ol>
+                
+                <p>It follows that the boundary conditions relative to the section area, which could be imagined as \(\underline{\underline{\sigma}} \cdot \underline{n} = \hat{\underline{t}}\), are replaced by a sort of "integral condition" in the form:</p>
+                
+                <div class="equation-box">
+                    \[T_z = \int_A \sigma_{zz} \, dA \qquad M_x = \int_A \sigma_{zz} \, y \, dA\]
+                    \[T_y = \int_A \sigma_{zy} \, dA \qquad M_y = \int_A -\sigma_{zz} \, x \, dA\]
+                    \[T_x = \int_A \sigma_{zx} \, dA \qquad M_z = \int_A \left( \sigma_{zy} \, x - \sigma_{zx} \, y \right) dA\]
+                </div>
+                
+                <p>These conditions are intrinsically independent of how the stresses are distributed, but depend only on their integrals over \(A\).</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/beam_3d_surface_face_diagram.png" alt="3D beam diagram showing external surface and cross-section face">
+                    <figcaption>Figure 5.2: Problem domain showing \(S_{F_{body}}\) and \(S_{F_{face}}\)</figcaption>
+                </figure>
+                
+                <h3>5.2 Boundary Surfaces</h3>
+                
+                <ul class="numbered-list">
+                    <li>\(S_{F_{body}}\) is the external surface of the body. No loads are applied here (thus the prescribed force is zero, while the displacements are part of the solution).</li>
+                    <li>\(S_{F_{face}}\) is the beam cross-section. Here the DSV hypothesis takes place, and the equivalence with the internal actions is imposed. These latter can be seen as "integral" conditions, as they regard the integrals of the stresses over the section.</li>
+                </ul>
+            </section>
+
+            <!-- Section 6: Problem Statement -->
+            <section class="section" id="problem-statement">
+                <h2>6. Complete Problem Statement</h2>
+                
+                <div class="summary-box">
+                    <h3>The problem is formulated as:</h3>
+                    
+                    <div class="equation-box">
+                        \[div \, \underline{\underline{\sigma}} = 0 \quad (\underline{F} = 0) \qquad \text{in } \Omega\]
+                        <p>Compatibility equations in \(\Omega\)</p>
+                        \[\underline{\underline{\sigma}} \cdot \underline{n} = \underline{0} \qquad \text{in } S_{F_{body}}\]
+                        <p>Equivalence with internal actions in \(S_{F_{face}}\)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Semi-Inverse Method -->
+            <section class="section" id="semi-inverse">
+                <h2>7. Solution via Semi-Inverse Method</h2>
+                
+                <h3>7.1 The Guess Solution</h3>
+                
+                <p>The guess solution is taken as:</p>
+                
+                <div class="final-result">
+                    \[\boxed{\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = 0}\]
+                </div>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/semi_inverse_method_composite_section.png" alt="Semi-inverse method illustration with stress cube element">
+                    <figcaption>Figure 7.1: Stress components in the semi-inverse method</figcaption>
+                </figure>
+                
+                <p>Clearly it is not hard to understand that this is a reasonable guess!</p>
+                
+                <p>The procedure will be the following: if the guess solution satisfies the differential problem in the box, then it is the exact solution (unicity of the solution is guaranteed in linear elasticity).</p>
+                
+                <div class="important-note">
+                    <strong>Important Remark:</strong> The approach here outlined relies upon the assumptions of <strong>isotropic material</strong> and <strong>homogeneous section</strong>. If this is not the case, as it happens in the case of composite materials, the stress state will be in general 3D (\(\Rightarrow \sigma_{xx} \neq 0\); \(\sigma_{yy} \neq 0\); \(\sigma_{xy} \neq 0\)). In this case the classical DSV solution cannot be achieved in the analytical form here presented.
+                </div>
+                
+                <h3>7.2 Composite Sections</h3>
+                
+                <p>Imagine a cross section composed of two different materials:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/composite_section_compatibility.png" alt="Composite cross-section with different materials and compatibility restoration">
+                    <figcaption>Figure 7.2: Composite section showing incompatible deformation and compatibility restoration</figcaption>
+                </figure>
+                
+                <p>Different Poisson's ratios would, in fact, determine a deformed cross-section. Proper internal stress must then arise to restore the compatibility.</p>
+                
+                <p>This simple example illustrates the concept by highlighting the contribution \(\sigma_{xx}\). However, it should be clear that in general the state of stress will be 3D for a non-homogeneous and/or non-isotropic section.</p>
+                
+                <p>Just to avoid misunderstandings: for a composite beam the DSV solution can still be obtained, but the approach to be used is different from the semi-inverse strategy here illustrated.</p>
+            </section>
+
+            <!-- Section 8: Equilibrium Equations -->
+            <section class="section" id="equilibrium-equations">
+                <h2>8. Equilibrium Equations</h2>
+                
+                <p>Begin with the equilibrium equations:</p>
+                
+                <div class="equation-box">
+                    \[\begin{cases}
+                    \sigma_{xx/x} + \sigma_{xy/y} + \sigma_{xz/z} = 0 \\
+                    \sigma_{xy/x} + \sigma_{yy/y} + \sigma_{yz/z} = 0 \\
+                    \sigma_{xz/x} + \sigma_{yz/y} + \sigma_{zz/z} = 0
+                    \end{cases}\]
+                </div>
+                
+                <p>As the guess solution is \(\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = 0\), we obtain:</p>
+                
+                <div class="result-box">
+                    <h4>Result R1</h4>
+                    \[\begin{cases}
+                    \sigma_{xz/z} = 0 \\
+                    \sigma_{yz/z} = 0 \\
+                    \sigma_{xz/x} + \sigma_{yz/y} + \sigma_{zz/z} = 0
+                    \end{cases}\]
+                </div>
+                
+                <h3>8.1 Implications</h3>
+                
+                <p><strong>The first two equations reveal that:</strong></p>
+                \[\sigma_{xz} = \sigma_{xz}(x,y) \quad \text{(they do not depend on } z \text{)}\]
+                \[\sigma_{yz} = \sigma_{yz}(x,y)\]
+                
+                <p><strong>The last equation reveals that:</strong></p>
+                <p>\(\sigma_{zz}\) can be up to a linear function of \(z\):</p>
+                \[\underbrace{\sigma_{xz/x} + \sigma_{yz/y}}_{\text{depend on } x,y} + \sigma_{zz/z} = 0\]
+                <p>\(\sigma_{zz/z}\) depends on \(x,y\) ⟹ \(\sigma_{zz}\) can be linear in \(z\)</p>
+            </section>
+
+            <!-- Section 9: Constitutive Law -->
+            <section class="section" id="constitutive-law">
+                <h2>9. Constitutive Law</h2>
+                
+                <p>Recall that the solid under investigation is a 3D solid. As such, consider the 3D elastic law:</p>
+                
+                \[\underline{\underline{\sigma}} = \underline{\underline{\underline{\underline{C}}}} : \underline{\underline{\varepsilon}} \quad \leadsto \quad \{\sigma\} = [C]\{\varepsilon\} \quad \Rightarrow \quad \{\varepsilon\} = [S]\{\sigma\}\]
+                
+                <p>For a 3D isotropic hyperelastic material, the strain-stress relation reads:</p>
+                
+                <div class="equation-box">
+                    \[\varepsilon_{xx} = \frac{1}{E}\left(\sigma_{xx} - \nu \sigma_{yy} - \nu \sigma_{zz}\right)\]
+                    \[\varepsilon_{yy} = \frac{1}{E}\left(-\nu \sigma_{xx} + \sigma_{yy} - \nu \sigma_{zz}\right)\]
+                    \[\varepsilon_{zz} = \frac{1}{E}\left(-\nu \sigma_{xx} - \nu \sigma_{yy} + \sigma_{zz}\right)\]
+                    \[\gamma_{xy} = \frac{1}{G}\sigma_{xy}, \quad \gamma_{yz} = \frac{1}{G}\sigma_{yz}, \quad \gamma_{xz} = \frac{1}{G}\sigma_{xz}\]
+                </div>
+                
+                <p>Since \(\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = 0\), it follows that:</p>
+                
+                <div class="result-box">
+                    <h4>Result R2</h4>
+                    \[\begin{array}{ll}
+                    \varepsilon_{xx} = -\frac{\nu}{E}\sigma_{zz} & \gamma_{xy} = 0 \\
+                    \varepsilon_{yy} = -\frac{\nu}{E}\sigma_{zz} & \gamma_{yz} = \frac{1}{G}\sigma_{yz} \\
+                    \varepsilon_{zz} = \frac{\sigma_{zz}}{E} & \gamma_{xz} = \frac{1}{G}\sigma_{xz}
+                    \end{array}\]
+                </div>
+                
+                <h3>9.1 Section Shape Change</h3>
+                
+                <p>Note that, according to the guess solution (which will be demonstrated to be the exact one), the not null components of \(\underline{\underline{\varepsilon}}\) are 5.</p>
+                
+                <p>More specifically, the presence of an axial stress \(\sigma_{zz}\) implies that \(\varepsilon_{xx} \neq 0\) and \(\varepsilon_{yy} \neq 0\).</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/deformation_before_after.png" alt="3D blocks showing deformation before and after">
+                    <figcaption>Figure 9.1: Section shape change under axial stress due to Poisson effect</figcaption>
+                </figure>
+                
+                <div class="important-note">
+                    Thus the section changes its original shape (in contrast to the common wrong assumption that the section remains equal to itself after the deformation process).
+                </div>
+            </section>
+
+            <!-- Section 10: Compatibility Equations -->
+            <section class="section" id="compatibility-equations">
+                <h2>10. Compatibility Equations</h2>
+                
+                <p>The compatibility equations are:</p>
+                
+                <div class="equation-box">
+                    \[\begin{cases}
+                    \varepsilon_{xx/yy} + \varepsilon_{yy/xx} = \gamma_{xy/xy} \\
+                    \varepsilon_{yy/zz} + \varepsilon_{zz/yy} = \gamma_{yz/yz} \\
+                    \varepsilon_{zz/xx} + \varepsilon_{xx/zz} = \gamma_{zx/zx}
+                    \end{cases}\]
+                    
+                    \[\begin{cases}
+                    2\varepsilon_{xx/yz} = \gamma_{xy/xz} + \gamma_{xz/xy} - \gamma_{yz/xx} \\
+                    2\varepsilon_{yy/zx} = \gamma_{yz/yx} + \gamma_{yx/yz} - \gamma_{zx/yy} \\
+                    2\varepsilon_{zz/xy} = \gamma_{zx/zy} + \gamma_{zy/zx} - \gamma_{xy/zz}
+                    \end{cases}\]
+                </div>
+                
+                <h3>10.1 Simplifications</h3>
+                
+                <p>Using the results from R1 and R2:</p>
+                <ul class="numbered-list">
+                    <li>\(\gamma_{xy} = 0\) (from R2)</li>
+                    <li>\(\sigma_{xz} = \sigma_{xz}(x,y)\) and \(\sigma_{yz} = \sigma_{yz}(x,y)\) ⟹ \(\gamma_{xz/z} = 0\), \(\gamma_{yz/z} = 0\) (from R1, R2)</li>
+                    <li>\(\sigma_{zz/zz} = 0\) (from R1) ⟹ \(\varepsilon_{xx/zz} = 0\), \(\varepsilon_{yy/zz} = 0\), \(\varepsilon_{zz/zz} = 0\) (from R2)</li>
+                </ul>
+                
+                <p>And so:</p>
+                
+                <div class="equation-box">
+                    \[\begin{cases}
+                    \varepsilon_{xx/yy} + \varepsilon_{yy/xx} = 0 \\
+                    \varepsilon_{zz/yy} = 0 \\
+                    \varepsilon_{zz/xx} = 0 \\
+                    2\varepsilon_{xx/yz} = \gamma_{xz/xy} - \gamma_{yz/xx} \\
+                    2\varepsilon_{yy/zx} = \gamma_{yz/yx} - \gamma_{zx/yy} \\
+                    2\varepsilon_{zz/xy} = 0
+                    \end{cases}\]
+                </div>
+                
+                <p>Expressing the compatibility condition in terms of stresses using the constitutive law (Result R2):</p>
+                
+                <div class="result-box">
+                    <h4>Result R3</h4>
+                    \[\begin{cases}
+                    \sigma_{zz/yy} = 0 \\
+                    \sigma_{zz/xx} = 0 \\
+                    -\nu \, \sigma_{zz/yz} = \sigma_{xz/xy} - \sigma_{yz/xx} \\
+                    -\nu \, \sigma_{yy/zx} = \sigma_{yz/xy} - \sigma_{zx/yy} \\
+                    \sigma_{zz/xy} = 0
+                    \end{cases}\]
+                </div>
+            </section>
+
+            <!-- Section 11: Summary of Governing Equations -->
+            <section class="section" id="governing-equations-summary">
+                <h2>11. Summary of the Governing Equations</h2>
+                
+                <div class="summary-box">
+                    <h3>Complete Set of Equations</h3>
+                    
+                    <div class="subsection">
+                        <h4>Equilibrium:</h4>
+                        \[\begin{cases}
+                        \sigma_{xz/z} = 0 \\
+                        \sigma_{yz/z} = 0 \\
+                        \sigma_{xz/x} + \sigma_{yz/y} + \sigma_{zz/z} = 0
+                        \end{cases}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Compatibility:</h4>
+                        \[\begin{cases}
+                        \sigma_{zz/yy} = 0 \\
+                        \sigma_{zz/xx} = 0 \\
+                        \sigma_{zz/xy} = 0 \\
+                        -\nu \, \sigma_{zz/yz} = \sigma_{xz/xy} - \sigma_{yz/xx} \\
+                        -\nu \, \sigma_{yy/zx} = \sigma_{yz/xy} - \sigma_{zx/yy}
+                        \end{cases}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Boundary Conditions:</h4>
+                        <p>Equivalence with internal actions in \(S_{F_{face}}\)</p>
+                        <p>\(\underline{\underline{\sigma}} \cdot \underline{n} = \underline{0}\) in \(S_{F_{body}}\)</p>
+                    </div>
+                </div>
+                
+                <div class="important-note">
+                    <strong>Note:</strong> The constitutive relation has been used for obtaining the current expression of the compatibility equation.
+                </div>
+            </section>
+
+            <!-- Section 12: Solution -->
+            <section class="section" id="solution">
+                <h2>12. Solution for \(\sigma_{zz}\)</h2>
+                
+                <p>The solution is sought starting from the equilibrium:</p>
+                
+                <div class="equation-box">
+                    \[\begin{cases}
+                    \sigma_{xz/x} + \sigma_{yz/y} + \sigma_{zz/z} = 0 & \text{in } \Omega \\
+                    \underline{\underline{\sigma}} \cdot \underline{n} = \underline{0} & \text{in } S_{F_{face}}
+                    \end{cases}\]
+                </div>
+                
+                <p>(For now only the equilibrium along the beam axis is considered.)</p>
+                
+                <h3>12.1 Cauchy Condition</h3>
+                
+                <p>It is worth observing that the Cauchy condition \(\underline{\underline{\sigma}} \cdot \underline{n} = \underline{0}\), expressing the equilibrium at the boundaries between the internal stresses and the applied ones (none), is here written as:</p>
+                
+                \[\underline{\underline{\sigma}} \cdot \underline{n} = \underline{0} \quad \Rightarrow \quad \underline{t} \cdot \underline{n} = 0 \quad \text{with} \quad \underline{t} = \sigma_{xz} \, \underline{e}_1 + \sigma_{yz} \, \underline{e}_2\]
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/cauchy_condition_stress_vectors.png" alt="Cauchy condition with stress and normal vectors">
+                    <figcaption>Figure 12.1: Cauchy condition showing stress vector perpendicular to boundary normal</figcaption>
+                </figure>
+                
+                <p>The condition requires that \(\underline{t} \perp \underline{n}\).</p>
+                
+                <h3>12.2 Integration over Cross Section</h3>
+                
+                <p>Integrate the equilibrium equation over the cross section:</p>
+                
+                \[\int_A \left( \sigma_{xz/x} + \sigma_{yz/y} + \sigma_{zz/z} \right) dA =\]
+                \[= \int_A \left( \text{div} \, \underline{t} + \sigma_{zz/z} \right) dA =\]
+                \[= \oint_{\partial A} \underline{t} \cdot \underline{n} \, ds + \int_A \sigma_{zz/z} \, dA = 0\]
+                
+                <div class="result-box">
+                    \[\Rightarrow \quad \boxed{\int_A \sigma_{zz/z} \, dA = 0}\]
+                </div>
+                
+                <h3>12.3 Form of \(\sigma_{zz}\)</h3>
+                
+                <p>Considering the following results:</p>
+                <ul class="numbered-list">
+                    <li>\(\int_A \sigma_{zz/z} \, dA = 0\) (equilibrium along beam axis)</li>
+                    <li>\(\sigma_{zz/yy} = \sigma_{zz/xx} = \sigma_{zz/xy} = 0\) (Compatibility)</li>
+                </ul>
+                
+                <p>It is clear that \(\sigma_{zz}\) is expressed as:</p>
+                
+                <div class="final-result">
+                    \[\boxed{\sigma_{zz} = A_0 + A_1 x + A_2 y + \left( A_3 x + A_4 y \right) z}\]
+                </div>
+                
+                <p>Note that \(\sigma_{zz/z} = A_3 x + A_4 y\) and</p>
+                
+                \[\int_A \sigma_{zz/z} \, dA = \int_A \left( A_3 x + A_4 y \right) dA = A_3 \int_A x \, dA + A_4 \int_A y \, dA = 0\]
+                
+                <p>as the axes are principal centroidal.</p>
+            </section>
+
+            <!-- Section 13: Internal Actions -->
+            <section class="section" id="internal-actions">
+                <h2>13. Internal Actions and Final Solution</h2>
+                
+                <h3>13.1 Calculation of Internal Actions</h3>
+                
+                <p>According to the definition of the internal actions:</p>
+                
+                <div class="subsection">
+                    <h4>Axial Force:</h4>
+                    \[T_z = \int_A \sigma_{zz} \, dA = A_0 \, A \quad \text{(as the axes are principal centroidal)}\]
+                </div>
+                
+                <div class="subsection">
+                    <h4>Bending Moment \(M_x\):</h4>
+                    \[M_x = \int_A \sigma_{zz} \, y \, dA = \int_A \left( A_0 y + A_1 xy + A_2 y^2 + A_3 xy z + A_4 y^2 z \right) dA\]
+                    \[= J_{xx} \left( A_2 + z \, A_4 \right)\]
+                </div>
+                
+                <div class="subsection">
+                    <h4>Bending Moment \(M_y\):</h4>
+                    \[M_y = -\int_A \sigma_{zz} \, x \, dA = -\int_A \left( A_0 x + A_1 x^2 + A_2 xy + A_3 x^2 z + A_4 xy z \right) dA\]
+                    \[= -J_{yy} \left( A_1 + A_3 z \right)\]
+                </div>
+                
+                <h3>13.2 Determining the Constants</h3>
+                
+                <p>Recalling that:</p>
+                
+                \[\begin{cases}
+                T_z = \text{const} = A_0 \, A \\
+                M_x = \hat{M}_x + z \, T_y = J_{xx} \left( A_2 + z \, A_4 \right) \\
+                M_y = \hat{M}_y - z \, T_x = -J_{yy} \left( A_1 + A_3 z \right)
+                \end{cases}\]
+                
+                <p>And equating the constant and the linear parts:</p>
+                
+                <div class="equation-box">
+                    \[\begin{array}{lcl}
+                    A_0 = T_z / A & \Rightarrow & A_0 = T_z / A \\
+                    T_y = J_{xx} \, A_4 & \Rightarrow & A_4 = T_y / J_{xx} \\
+                    \hat{M}_x = J_{xx} \, A_2 & \Rightarrow & A_2 = \hat{M}_x / J_{xx} \\
+                    T_x = J_{yy} \, A_3 & \Rightarrow & A_3 = T_x / J_{yy} \\
+                    \hat{M}_y = -J_{yy} \, A_1 & \Rightarrow & A_1 = -\hat{M}_y / J_{yy}
+                    \end{array}\]
+                </div>
+                
+                <h3>13.3 Final Expression for \(\sigma_{zz}\)</h3>
+                
+                <p>It follows that:</p>
+                
+                \[\sigma_{zz} = A_0 + A_1 x + A_2 y + \left( A_3 x + A_4 y \right) z\]
+                
+                \[= \frac{T_z}{A} - \frac{\hat{M}_y}{J_{yy}} x + \frac{\hat{M}_x}{J_{xx}} y + \left( \frac{T_x}{J_{yy}} x + \frac{T_y}{J_{xx}} y \right) z\]
+                
+                \[= \frac{T_z}{A} - \frac{\hat{M}_y - T_x z}{J_{yy}} x + \frac{\hat{M}_x + T_y z}{J_{xx}} y\]
+                
+                <div class="final-result">
+                    <h4>De Saint Venant Solution for Normal Stress</h4>
+                    \[\boxed{\sigma_{zz} = \frac{T_z}{A} - \frac{M_y}{J_{yy}} x + \frac{M_x}{J_{xx}} y}\]
+                    <p>where \(M_y = M_y(z)\) and \(M_x = M_x(z)\)</p>
+                </div>
+            </section>
+
+            <!-- Section 14: Remarks -->
+            <section class="section" id="remarks">
+                <h2>14. Remarks on the Solution</h2>
+                
+                <div class="remarks-section">
+                    <h4>Remark 1: Exact Solution</h4>
+                    <div class="remark-item">
+                        <p>The problem has been solved for \(\sigma_{zz}\). Starting from the guess solution, it was verified that equilibrium and compatibility conditions can be identically fulfilled if \(\sigma_{zz}\) has the expression here obtained.</p>
+                        <p><strong>The solution derived is the exact one. No approximations are involved in this procedure.</strong></p>
+                        <p>A stress field characterized by:</p>
+                        \[\sigma_{xx} = \sigma_{yy} = \sigma_{xy} = 0\]
+                        \[\sigma_{zz} = \frac{T_z}{A} - \frac{M_y}{J_{yy}} x + \frac{M_x}{J_{xx}} y\]
+                        <p>identically satisfies all the governing equations.</p>
+                    </div>
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remark 2: Shear Stress Problem</h4>
+                    <div class="remark-item">
+                        <p>If the shear stresses are to be evaluated, the problem to be solved is more complex, and some approximations are generally needed to achieve a solution.</p>
+                    </div>
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remark 3: Solution Properties</h4>
+                    <div class="remark-item">
+                        <p>The solution \(\sigma_{zz} = \frac{T_z}{A} - \frac{M_y}{J_y} x + \frac{M_x}{J_x} y\):</p>
+                        <ol class="numbered-list">
+                            <li>is obtained assuming principal centroidal axes</li>
+                            <li>is an exact solution under the DSV hypothesis (constant section, material..., loads at the extreme sections)</li>
+                            <li>what is useful is the possibility of obtaining the stress state once the internal actions are available</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remark 4: Stress Components by Load Type</h4>
+                    <div class="remark-item">
+                        <ul class="numbered-list">
+                            <li>In the presence of \(M_x\) and/or \(M_y\) and/or \(T_z\) → \(\underline{\underline{\sigma}} \sim \sigma_{zz}\)</li>
+                            <li>In the presence of \(T_x\) and/or \(T_y\) → \(\underline{\underline{\sigma}} \sim \sigma_{zz}\) and \(\sigma_{zx}\) / \(\sigma_{zy}\)</li>
+                            <li>In the presence of \(M_z\) → \(\underline{\underline{\sigma}} \sim \sigma_{zx}\) / \(\sigma_{zy}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remark 5: Linearity</h4>
+                    <div class="remark-item">
+                        <p>This result is obtained in the context of linearity assumption. This means that by amplifying the loading conditions by a factor \(\lambda\), the stresses will be amplified by the same factor \(\lambda\).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C2_1_DSV_solution_szz/linearity_load_amplification.png" alt="Linearity assumption showing load amplification">
+                            <figcaption>Figure 14.1: Linearity - load amplification by factor λ</figcaption>
+                        </figure>
+                        
+                        \[\sigma_{zz} = \hat{\sigma}_{zz} \quad \rightarrow \quad \sigma_{zz} = \lambda \hat{\sigma}_{zz}\]
+                    </div>
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remark 6: Equilibrium vs. Equivalence</h4>
+                    <div class="remark-item">
+                        <ol class="numbered-list">
+                            <li>The internal actions <strong>equilibrate</strong> the external loads</li>
+                            <li>The internal actions are <strong>statically equivalent</strong> to the cross section state of stress</li>
+                        </ol>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C2_1_DSV_solution_szz/internal_actions_equivalence.png" alt="Internal actions equivalence and stress resultants">
+                            <figcaption>Figure 14.2: Static equivalence between internal actions and stress distribution</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remark 7: Load Distribution Independence</h4>
+                    <div class="remark-item">
+                        <p>The beam model, consistently with the DSV assumptions, cannot account for the differences between applied loads characterized by the same resultants.</p>
+                    </div>
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remark 8: Material Independence</h4>
+                    <div class="remark-item">
+                        <p>Note that \(\sigma_{zz} = \frac{T_z}{A} - \frac{M_y}{J_y} x + \frac{M_x}{J_x} y\) does not depend on the section elastic properties. \(\sigma_{zz}\) is just a function of the internal actions.</p>
+                        <p>This means that for a given set of internal actions \(T_z\), \(M_y\) and \(M_x\), the state of stress \(\sigma_{zz}\) will be identical for two beams made of different materials, say a beam of steel and another of rubber.</p>
+                        <p><strong>The internal stress arises to equilibrate the external loads. The difference between the steel and the rubber beam will regard the deformation!</strong></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 15: DSV Solution for Axial Force -->
+            <section class="section" id="dsv-axial">
+                <h2>15. DSV Solution for Axial Force</h2>
+                
+                <p>Consider the case where the only internal action is given by \(T_z\). The DSV solution is then:</p>
+                
+                \[\sigma_{zz} = \frac{T_z}{A} + \frac{M_{xx}}{J_{xx}} y - \frac{M_{yy}}{J_{yy}} z \quad \Rightarrow \quad \boxed{\sigma_{zz} = \frac{T_z}{A}}\]
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/dsv_axial_force_solution.png" alt="DSV solution for axial force with coordinate system and strain equations">
+                    <figcaption>Figure 15.1: DSV solution for axial force</figcaption>
+                </figure>
+                
+                <h3>15.1 Displacement Field</h3>
+                
+                <p>The displacement field can be obtained after:</p>
+                <ol class="numbered-list">
+                    <li>Introducing the constitutive law</li>
+                    <li>Integrating the strain components</li>
+                </ol>
+                
+                <div class="equation-box">
+                    <p><strong>Strains:</strong></p>
+                    \[\varepsilon_{xx} = -\frac{\nu}{E} \sigma_{zz} = -\nu \frac{T_z}{EA}\]
+                    \[\varepsilon_{yy} = -\frac{\nu}{E} \sigma_{zz} = -\nu \frac{T_z}{EA}\]
+                    \[\varepsilon_{zz} = \frac{\sigma_{zz}}{E} = \frac{T_z}{EA}\]
+                </div>
+                
+                <div class="final-result">
+                    <h4>Displacement Field for Axial Force</h4>
+                    \[u = -\nu \frac{T_z}{EA} x \quad \text{(change of shape due to Poisson's effect)}\]
+                    \[v = -\nu \frac{T_z}{EA} y \quad \text{(change of shape due to Poisson's effect)}\]
+                    \[w = \frac{T_z}{EA} z \quad \text{(linear displacement along beam axis)}\]
+                </div>
+            </section>
+
+            <!-- Section 16: DSV Solution for Bending -->
+            <section class="section" id="dsv-bending">
+                <h2>16. DSV Solution for Bending</h2>
+                
+                <p>Consider the case of pure bending (constant along the beam axis). No shear-induced bending contribution.</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/dsv_pure_bending_solution.png" alt="DSV solution for pure bending with moment diagram">
+                    <figcaption>Figure 16.1: DSV solution for pure bending</figcaption>
+                </figure>
+                
+                <p>The DSV simplifies to:</p>
+                
+                \[\sigma_{zz} = \frac{M_x}{J_{xx}} y \quad \text{where } M_x = \text{Const} = \hat{M}_x\]
+                
+                <h3>16.1 Strains</h3>
+                
+                <div class="equation-box">
+                    \[\varepsilon_{xx} = -\frac{\nu}{E} \sigma_{zz} = -\nu \frac{M_x}{E J_{xx}} y\]
+                    \[\varepsilon_{yy} = -\nu \frac{M_x}{E J_{xx}} y\]
+                    \[\varepsilon_{zz} = \frac{M_x}{E J_{xx}} y\]
+                    \[\gamma_{xy} = 0, \quad \gamma_{xz} = 0, \quad \gamma_{yz} = 0\]
+                </div>
+                
+                <h3>16.2 Displacement Field</h3>
+                
+                <p>The displacement field is obtained by integration:</p>
+                
+                \[\varepsilon_{xx} = u_{/x} \quad \Rightarrow \quad u = -\nu \frac{M_x}{E J_{xx}} xy + f_u(y,z)\]
+                \[\varepsilon_{yy} = v_{/y} \quad \Rightarrow \quad v = -\nu \frac{M_x}{E J_{xx}} \frac{1}{2} y^2 + f_v(x,z)\]
+                \[\varepsilon_{zz} = w_{/z} \quad \Rightarrow \quad w = \frac{M_x}{E J_{xx}} zy + f_w(x,y)\]
+                
+                <p>It can be shown that a solution is found by taking \(f_w = f_u = 0\).</p>
+                
+                <p>To determine \(f_v\):</p>
+                
+                \[\gamma_{xy} = u_{/y} + v_{/x} = -\nu \frac{M_x}{E J_{xx}} x + f_{v/x} = 0\]
+                \[\gamma_{yz} = v_{/z} + w_{/y} = f_{v/z} + \frac{M_x}{E J_{xx}} z = 0\]
+                
+                \[\Rightarrow \quad f_v = \frac{1}{2} \frac{M_x}{E J_{xx}} \left( \nu x^2 - z^2 \right)\]
+                
+                <div class="final-result">
+                    <h4>Complete Displacement Field for Pure Bending</h4>
+                    \[u = -\nu \frac{M_x}{E J_{xx}} xy\]
+                    \[v = -\frac{M_x}{2 E J_{xx}} \left( z^2 + \nu \left( y^2 - x^2 \right) \right)\]
+                    \[w = \frac{M_x}{E J_{xx}} zy\]
+                </div>
+                
+                <h3>16.3 Centroidal Fiber Displacement</h3>
+                
+                <p>The displacement field of the centroidal fiber (\(x = y = 0\)) is thus:</p>
+                
+                <div class="equation-box">
+                    \[u = 0\]
+                    \[v = -\frac{M_x}{2 E J_{xx}} z^2\]
+                    \[w = 0\]
+                </div>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/centroidal_fiber_curvature.png" alt="Centroidal fiber deformation with curvature">
+                    <figcaption>Figure 16.2: Centroidal fiber deformation showing rotation angle</figcaption>
+                </figure>
+                
+                <p>The rotation \(\theta_x\), at the generic point \(z\) is:</p>
+                
+                \[\boxed{\theta_x \simeq -v_{/z} = \frac{M_x}{E J_{xx}} z}\]
+            </section>
+
+            <!-- Section 17: Curvature and Bernoulli-Navier Law -->
+            <section class="section" id="curvature">
+                <h2>17. Curvature and Bernoulli-Navier Law</h2>
+                
+                <p>It follows that:</p>
+                
+                \[\theta_{x/z} \simeq -v_{/zz} = \frac{M_x}{E J_{xx}} \quad \text{(constant second derivative)}\]
+                
+                <p>Denote the second derivative \(v_{/zz}\) with \(-k_x\) (curvature):</p>
+                
+                \[-k_x = v_{/zz}\]
+                
+                <div class="final-result">
+                    <h4>Bernoulli-Navier Law</h4>
+                    \[\boxed{k_x = \frac{M_x}{E J_{xx}}} \quad \text{or} \quad \boxed{M_x = EJ \, k_{xx}}\]
+                </div>
+                
+                <div class="remarks-section">
+                    <h4>Remarks</h4>
+                    
+                    <div class="remark-item">
+                        <p><strong>1. Constant Curvature:</strong> For constant bending moment, the curvature is constant along the beam axis.</p>
+                    </div>
+                    
+                    <div class="remark-item">
+                        <p><strong>2. Section Remains Normal:</strong> For constant bending moment, \(\sigma_{zz} \neq 0\) while \(\sigma_{xz} = \sigma_{yz} = 0\), thus:</p>
+                        \[\boxed{\gamma_{xz} = \gamma_{yz} = 0}\]
+                        <p>No shearing deformation implies that the section remains orthogonal to the beam axis after deformation happens.</p>
+                    </div>
+                </div>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C2_1_DSV_solution_szz/beam_section_deformation.png" alt="Beam section before and after deformation showing orthogonality">
+                    <figcaption>Figure 17.1: Section remains orthogonal to beam axis after deformation</figcaption>
+                </figure>
+            </section>
+
+            <!-- Section 18: Conclusion -->
+            <section class="section" id="conclusion">
+                <h2>18. Conclusion: Euler-Bernoulli Model</h2>
+                
+                <p>These observations (the fact that sections remain normal to the beam axis, i.e., \(\gamma_{xz} = \gamma_{yz} = 0\)) will be the ingredients for formulating the beam problem from a <strong>kinematic point of view</strong>, within the context of the so-called <strong>Euler-Bernoulli model</strong> (see displacement-based approaches later).</p>
+                
+                <div class="summary-box">
+                    <h3>Key Results Summary</h3>
+                    
+                    <div class="final-result">
+                        <h4>De Saint Venant Solution</h4>
+                        \[\sigma_{zz} = \frac{T_z}{A} - \frac{M_y}{J_{yy}} x + \frac{M_x}{J_{xx}} y\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Valid under assumptions:</h4>
+                        <ul class="numbered-list">
+                            <li>Slender beam with constant cross-section</li>
+                            <li>Isotropic, elastic, homogeneous material</li>
+                            <li>Loads applied at extremal sections</li>
+                            <li>Solution evaluated far from end sections (DSV principle)</li>
+                            <li>Principal centroidal axes used</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="final-result">
+                        <h4>Bernoulli-Navier Law</h4>
+                        \[M_x = E J_{xx} \, k_x\]
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

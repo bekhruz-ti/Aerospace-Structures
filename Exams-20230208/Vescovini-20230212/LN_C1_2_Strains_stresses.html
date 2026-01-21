@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Introduction to the Geometrically Nonlinear Formulation of Continua</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-style: italic;
+            color: #666;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 20px 30px;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .subsection h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .subsection h4 {
+            color: var(--primary-color);
+            margin: 20px 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .definition-box {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .definition-box h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .equation-box {
+            background: #faf5ff;
+            border: 2px solid #d6bcfa;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .key-result {
+            background: #c6f6d5;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .note-box {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .quote-box {
+            background: #f7fafc;
+            border-left: 4px solid #718096;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .column h5 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        table.definitions {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table.definitions td {
+            padding: 8px 15px;
+            vertical-align: top;
+        }
+
+        table.definitions td:first-child {
+            width: 100px;
+            font-weight: bold;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-content, .subsection {
+                padding: 15px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>An Introduction to the Geometrically Nonlinear Formulation of Continua</h1>
+            <p class="subtitle">Lecture Notes on Continuum Mechanics</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction -->
+            <section class="section" id="introduction">
+                <div class="section-header">
+                    <h2>1. Introduction</h2>
+                </div>
+                <div class="section-content">
+                    <p>Within the framework of infinitesimal strain/displacement approximation (i.e. linear analysis) it is assumed that:</p>
+                    
+                    <ol>
+                        <li>displacements are infinitesimal</li>
+                        <li>strains are infinitesimal</li>
+                        <li>material behaviour is linear</li>
+                    </ol>
+                    
+                    <p>The equilibrium is imposed on the undeformed configuration (which is undistinguishable from the deformed one due to the assumption of infinitesimal displacements).</p>
+                    
+                    <p>The effect of geometric nonlinearities is now accounted for by removing the assumption 2. and, to a more general extent, by considering:</p>
+                    
+                    <ol>
+                        <li>non infinitesimal displacements</li>
+                        <li>infinitesimal strains</li>
+                    </ol>
+                    
+                    <div class="note-box">
+                        <strong>Note:</strong> Strains are still assumed small such that material nonlinearities do not need to be accounted for.
+                    </div>
+                    
+                    <p>The equilibrium conditions are now expressed by considering the deformed configuration and, to this aim, proper stress and strain measures need to be introduced.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Kinematics -->
+            <section class="section" id="kinematics">
+                <div class="section-header">
+                    <h2>2. Kinematics</h2>
+                </div>
+                <div class="section-content">
+                    <p>Consider a 3D body and define with:</p>
+                    <ul>
+                        <li>\(\mathcal{C}^0\) — the initial configuration</li>
+                        <li>\(\mathcal{C}^1\) — the deformed configuration</li>
+                    </ul>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C1_2_Strains_stresses/kinematics_initial_deformed_configuration.png" alt="Kinematics diagram showing initial and deformed configurations">
+                        <figcaption>Figure 2.1: Initial configuration \(\mathcal{C}^0\) and deformed configuration \(\mathcal{C}^1\) with point P, displacement vector \(\underline{u}\), and position vectors \(\underline{X}\) and \(\underline{x}\)</figcaption>
+                    </figure>
+                    
+                    <p>The generic point P is characterized by an initial position \(\underline{X}\) and a final position \(\underline{x}\).</p>
+                    
+                    <p>At the beginning of the deformation process \((t = t_0)\):</p>
+                    \[\underline{x} = \underline{X}\]
+                    
+                    <p>After the application of the external loads \((t > t_0)\):</p>
+                    \[\underline{x} \neq \underline{X}\]
+                    
+                    <p>There are two possibilities for describing the motion of the body: the <strong>Lagrangian</strong> or the <strong>Eulerian</strong> approach.</p>
+
+                    <!-- Lagrangian Approach -->
+                    <div class="subsection">
+                        <h3>2.1 Lagrangian Approach (Material)</h3>
+                        
+                        <p>The kinematics of the body is described by referring to the initial configuration \(\mathcal{C}^0\). In this sense, the position of the generic point P is described as:</p>
+                        
+                        <div class="equation-box">
+                            \[\underline{x} = \underline{x}(\underline{X}, t)\]
+                        </div>
+                        
+                        <p>and, similarly, any other quantity (the density, for instance) is expressed as:</p>
+                        
+                        <div class="equation-box">
+                            \[\phi = \phi(\underline{X}, t)\]
+                            <p>where \(\phi\) is a generic quantity</p>
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/lagrangian_body_deformation_two_configurations.png" alt="Lagrangian approach diagram">
+                            <figcaption>Figure 2.2: Lagrangian approach showing two body configurations connected by displacement vector \(\underline{u}\)</figcaption>
+                        </figure>
+                        
+                        <p>In other words, the relations above require the initial position \(\underline{X}\) to obtain, as output, the final position \(\underline{x}\) or the value of \(\phi\).</p>
+                        
+                        <p>The initial coordinates \(\underline{X}\), the Lagrangian ones, are thus adapted for describing the overall deformation process.</p>
+                        
+                        <p>In the Lagrangian case, the same material particle, i.e. the one associated with the coordinate \(\underline{X}\), is monitored at different steps of the deformation process.</p>
+                    </div>
+
+                    <!-- Eulerian Approach -->
+                    <div class="subsection">
+                        <h3>2.2 Eulerian Approach (Spatial)</h3>
+                        
+                        <p>The Eulerian approach refers to the current configuration as:</p>
+                        
+                        <div class="equation-box">
+                            \[\underline{X} = \underline{X}(\underline{x}, t)\]
+                            \[\phi = \phi(\underline{x}, t)\]
+                        </div>
+                        
+                        <p>So the input of the functions describing the position and any other quantity \(\phi\) are those of the current configuration, \(\underline{x}\).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/eulerian_approach_time_instants.png" alt="Eulerian approach diagram">
+                            <figcaption>Figure 2.3: Eulerian approach showing body configurations at different time instants</figcaption>
+                        </figure>
+                        
+                        <p>The difference between the two approaches can be clarified by referring to the description of the generic quantity \(\phi\) in two different instants of time \(t_1\) and \(t_2\):</p>
+                        
+                        <div class="two-column">
+                            <div class="column">
+                                <h5>Lagrangian</h5>
+                                \[\phi = \phi(\underline{X}, t) \begin{cases} t = t_1: & \phi(\underline{X}, t_1) \\ t = t_2: & \phi(\underline{X}, t_2) \end{cases}\]
+                                <p>The same material particle associated with coordinate \(\underline{X}\) is monitored at different steps.</p>
+                            </div>
+                            <div class="column">
+                                <h5>Eulerian</h5>
+                                \[\phi = \phi(\underline{x}, t) \begin{cases} t = t_1: & \phi(\underline{x}, t_1) \\ t = t_2: & \phi(\underline{x}, t_2) \end{cases}\]
+                                <p>The function describes how \(\phi\) varies for a fixed position in space.</p>
+                            </div>
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/eulerian_deformed_body_configuration.png" alt="Eulerian case diagram">
+                            <figcaption>Figure 2.4: Eulerian case showing deformed body configuration with spatial coordinate</figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Time Derivatives -->
+                    <div class="subsection">
+                        <h3>2.3 Time Derivatives</h3>
+                        
+                        <p>It is necessary to clarify what is intended with time-derivative. Indeed it must be distinguished the case where \(\underline{x}\) is kept fixed with the case where \(\underline{X}\) is fixed.</p>
+                        
+                        <div class="definition-box">
+                            <h4>Material Derivative</h4>
+                            \[\left. \frac{d}{dt} \phi \right|_{\underline{X} = \text{fixed}} = \frac{D\phi}{Dt}\]
+                        </div>
+                        
+                        <h4>Lagrangian Description</h4>
+                        <p>In the context of a Lagrangian description, \(\phi = \phi(\underline{X}, t)\), so:</p>
+                        
+                        <div class="equation-box">
+                            \[\frac{D\phi}{Dt} = \frac{\partial \phi}{\partial t}\]
+                        </div>
+                        
+                        <h4>Eulerian Description</h4>
+                        <p>In the Eulerian case \(\phi = \phi(\underline{x}, t)\), so:</p>
+                        
+                        \[\frac{d\phi(\underline{x}, t)}{dt} = \frac{\partial \phi}{\partial t} + \frac{\partial \phi}{\partial \underline{x}} \frac{\partial \underline{x}}{\partial t}\]
+                        
+                        \[= \frac{\partial \phi}{\partial t} + \underline{V} \cdot \text{grad } \phi\]
+                        
+                        <p>where:</p>
+                        \[\underline{V} = \frac{\partial \underline{x}}{\partial t} = \left. \frac{\partial \underline{x}(\underline{X}, t)}{\partial t} \right|_{\underline{X} = \text{fixed}}\]
+                        
+                        <p>and so:</p>
+                        
+                        <div class="key-result">
+                            \[\frac{D\phi}{Dt} = \frac{\partial \phi}{\partial t} + \underline{V} \cdot \text{grad } \phi\]
+                            <p>where \(\underline{V} \cdot \text{grad } \phi\) is the <strong>convective part</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Example -->
+                    <div class="subsection">
+                        <h3>2.4 Example: Coordinate Transformation</h3>
+                        
+                        <p>Assume that the relation \(\underline{x} = \underline{x}(\underline{X})\) is available in closed-form as:</p>
+                        
+                        \[\begin{cases} x_1 = X_1 + a X_2 \\ x_2 = X_2 + a X_1 \end{cases} \quad \leftarrow \underline{x} = \underline{x}(\underline{X})\]
+                        
+                        <p>So the inverse is:</p>
+                        
+                        \[\begin{cases} X_1 = \frac{1}{1-a^2} x_1 - \frac{a}{1-a^2} x_2 \\ X_2 = -\frac{a}{1-a^2} x_1 + \frac{1}{1-a^2} x_2 \end{cases} \quad \leftarrow \underline{X} = \underline{X}(\underline{x})\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/square_deformation_before_after.png" alt="Square deformation example">
+                            <figcaption>Figure 2.5: Square element before and after deformation, with point A at (1,1) transforming to (1+a, 1+a)</figcaption>
+                        </figure>
+                        
+                        <h4>Lagrangian Point of View</h4>
+                        <p>The point A is initially in the position \(X_1 = 1\), \(X_2 = 1\).</p>
+                        <p>After the deformation, the point A goes to (using the relation \(\underline{x} = \underline{x}(\underline{X}, t)\)):</p>
+                        \[x_1 = 1 + a\]
+                        \[x_2 = 1 + a\]
+                        
+                        <h4>Eulerian Point of View</h4>
+                        <p>The point in the space identified by \(x_1 = 1 + a\), \(x_2 = 1 + a\) is the one initially occupying the position:</p>
+                        
+                        \[X_1 = \frac{1}{1-a^2}(1+a) - \frac{a}{1-a^2}(1+a) = 1\]
+                        \[X_2 = -\frac{a}{1-a^2}(1+a) + \frac{1}{1-a^2}(1+a) = 1\]
+                        
+                        <p>This demonstrates the equivalence of both approaches — they identify the same physical point A.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Measure of Deformation -->
+            <section class="section" id="deformation">
+                <div class="section-header">
+                    <h2>3. Measure of Deformation</h2>
+                </div>
+                <div class="section-content">
+                    <p>Consider now a body in two successive instants (time dependency is here considered in the sense of pseudo-time instants describing the various steps of the deformation process), and define with P and Q two generic points infinitesimally close to each other.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C1_2_Strains_stresses/deformation_measure_two_points.png" alt="Measure of deformation diagram">
+                        <figcaption>Figure 3.1: Two body configurations with points P and Q, displacement vectors, and position vectors from origin O</figcaption>
+                    </figure>
+                    
+                    <div class="definition-box">
+                        <h4>Definitions</h4>
+                        <table class="definitions">
+                            <tr><td>\(\underline{u}_P\)</td><td>displacement of P \(= \underline{x}_P - \underline{X}_P\)</td></tr>
+                            <tr><td>\(\underline{u}_Q\)</td><td>displacement of Q \(= \underline{x}_Q - \underline{X}_Q\)</td></tr>
+                            <tr><td>\(\underline{X}_P\)</td><td>initial position of P</td></tr>
+                            <tr><td>\(\underline{X}_Q\)</td><td>initial position of Q</td></tr>
+                            <tr><td>\(\underline{x}_P\)</td><td>final position of P</td></tr>
+                            <tr><td>\(\underline{x}_Q\)</td><td>final position of Q</td></tr>
+                        </table>
+                    </div>
+                    
+                    <p>By adopting a Lagrangian point of view:</p>
+                    \[\underline{u} = \underline{u}(\underline{X}, t) = \underline{x}(\underline{X}, t) - \underline{X}\]
+                    
+                    <p>It is clear that there is no deformation whenever there is no relative motion between P and Q. On the contrary, a relative motion between P and Q (and, to a more general extent, of the points composing the continuum) determines the onset of a deformation state.</p>
+
+                    <!-- Deformation Gradient -->
+                    <div class="subsection">
+                        <h3>3.1 The Deformation Gradient Tensor</h3>
+                        
+                        <p>A key element for defining the deformation is the <strong>deformation gradient tensor</strong> \(\underline{\underline{F}}\). It is defined as:</p>
+                        
+                        <div class="key-result">
+                            \[d\underline{x} = \underline{\underline{F}} \cdot d\underline{X}\]
+                            <p>or in index notation: \(dx_i = F_{ik} dX_k\)</p>
+                        </div>
+                        
+                        <p>where:</p>
+                        
+                        <div class="equation-box">
+                            \[\underline{\underline{F}} = \frac{\partial \underline{x}}{\partial \underline{X}} = \text{Grad } \underline{x}\]
+                        </div>
+                        
+                        <p>where the gradient is expressed with respect to the Lagrangian coordinates \(\underline{X}\).</p>
+                        
+                        <p>Recalling that \(\underline{x} = \underline{X} + \underline{u}\), it follows that:</p>
+                        
+                        \[\underline{\underline{F}} = \frac{\partial}{\partial \underline{X}}(\underline{X} + \underline{u}) = \underline{\underline{I}} + \text{Grad } \underline{u}\]
+                        
+                        <div class="equation-box">
+                            \[\underline{\underline{F}} = \underline{\underline{I}} + \text{Grad } \underline{u}\]
+                        </div>
+                        
+                        <div class="note-box">
+                            <strong>Important:</strong> From the definition of \(\underline{\underline{F}}\), one can note that the deformation gradient cannot be used as a measure of the strain. If a rigid rotation \(\underline{\underline{R}}\) is considered, then:
+                            \[d\underline{x} = \underline{\underline{R}} d\underline{X} \Rightarrow \underline{\underline{F}} = \underline{\underline{R}} \Rightarrow \underline{\underline{F}} \text{ is not null}\]
+                            even if the solid undergoes only a rigid rotation.
+                        </div>
+                    </div>
+
+                    <!-- Green-Lagrange Strain -->
+                    <div class="subsection">
+                        <h3>3.2 Green-Lagrange Strain Tensor</h3>
+                        
+                        <p>The deformation can be characterized by looking at the quadratic distance between P and Q:</p>
+                        
+                        \[dS^2 = d\underline{X} \cdot d\underline{X} \quad \text{(initial)}\]
+                        \[ds^2 = d\underline{x} \cdot d\underline{x} \quad \text{(final)}\]
+                        
+                        <p>The difference between the quadratic distance before and after the deformation is then:</p>
+                        
+                        \[ds^2 - dS^2 = d\underline{x} \cdot d\underline{x} - d\underline{X} \cdot d\underline{X}\]
+                        
+                        <p>And recalling that \(d\underline{x} = \underline{\underline{F}} d\underline{X}\):</p>
+                        
+                        \[= (\underline{\underline{F}} d\underline{X}) \cdot (\underline{\underline{F}} d\underline{X}) - d\underline{X} \cdot d\underline{X}\]
+                        
+                        \[= d\underline{X} \cdot (\underline{\underline{F}}^T \underline{\underline{F}} - \underline{\underline{I}}) \cdot d\underline{X}\]
+                        
+                        \[\stackrel{\text{def}}{=} d\underline{X} \cdot 2\underline{\underline{\epsilon}} \cdot d\underline{X}\]
+                        
+                        <div class="key-result">
+                            <h4>Green-Lagrange Strain Tensor</h4>
+                            \[\underline{\underline{\epsilon}} = \frac{1}{2}\left(\underline{\underline{F}}^T \underline{\underline{F}} - \underline{\underline{I}}\right)\]
+                        </div>
+                        
+                        <p>The tensor \(\underline{\underline{\epsilon}}\) can be expressed in terms of displacements by recalling that \(\underline{\underline{F}} = \underline{\underline{I}} + \text{Grad } \underline{u}\):</p>
+                        
+                        \[\underline{\underline{\epsilon}} = \frac{1}{2}\left[(\underline{\underline{I}} + \text{Grad } \underline{u})^T (\underline{\underline{I}} + \text{Grad } \underline{u}) - \underline{\underline{I}}\right]\]
+                        
+                        <div class="equation-box">
+                            \[\underline{\underline{\epsilon}} = \frac{1}{2}\left(\text{Grad } \underline{u} + \text{Grad } \underline{u}^T + \text{Grad } \underline{u}^T \cdot \text{Grad } \underline{u}\right)\]
+                        </div>
+                    </div>
+
+                    <!-- Rigid Rotation Analysis -->
+                    <div class="subsection">
+                        <h3>3.3 Behavior Under Rigid Rotation</h3>
+                        
+                        <p>Consider again the case of a rigid rotation:</p>
+                        
+                        \[d\underline{x} = \underline{\underline{R}} d\underline{X}\]
+                        
+                        <p>with \(\underline{\underline{R}} = \underline{\underline{F}}\)</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/rigid_rotation_differential_element.png" alt="Rigid rotation diagram">
+                            <figcaption>Figure 3.2: Rigid rotation with rotation tensor \(\underline{\underline{R}}\) acting on differential element</figcaption>
+                        </figure>
+                        
+                        <p>The deformation, according to the Green-Lagrange strain tensor, reads:</p>
+                        
+                        \[\underline{\underline{\epsilon}} = \frac{1}{2}(\underline{\underline{F}}^T \underline{\underline{F}} - \underline{\underline{I}}) = \frac{1}{2}(\underline{\underline{R}}^T \underline{\underline{R}} - \underline{\underline{I}})\]
+                        
+                        <p>And recalling that, for a rigid rotation, \(\underline{\underline{R}}^T \underline{\underline{R}} = \underline{\underline{I}}\), it follows that:</p>
+                        
+                        \[\underline{\underline{\epsilon}} = \frac{1}{2}(\underline{\underline{I}} - \underline{\underline{I}}) = \underline{\underline{0}}\]
+                        
+                        <div class="key-result">
+                            <p>\(\underline{\underline{\epsilon}}\) is an adequate choice for measuring the strain.</p>
+                            <p><strong>Any rigid body translation or rotation leads to zero deformation.</strong></p>
+                        </div>
+                        
+                        <h4>Alternative Verification</h4>
+                        <p>Alternatively, using the expression of \(\underline{\underline{\epsilon}}\) in terms of displacements:</p>
+                        
+                        \[\underline{\underline{\epsilon}} = \frac{1}{2}\left(\text{Grad } \underline{u} + \text{Grad } \underline{u}^T + \text{Grad } \underline{u}^T \text{Grad } \underline{u}\right)\]
+                        
+                        <p>with \(\underline{\underline{F}} = \underline{\underline{I}} + \text{Grad } \underline{u}\) and \(\underline{\underline{R}} = \underline{\underline{I}} + \text{Grad } \underline{u}\), so \(\text{Grad } \underline{u} = \underline{\underline{R}} - \underline{\underline{I}}\):</p>
+                        
+                        \[\underline{\underline{\epsilon}} = \frac{1}{2}\left(\underline{\underline{R}} - \underline{\underline{I}} + \underline{\underline{R}}^T - \underline{\underline{I}} + \underbrace{\underline{\underline{R}}^T \underline{\underline{R}}}_{\underline{\underline{I}}} - \underline{\underline{R}}^T - \underline{\underline{R}} + \underline{\underline{I}}\right)\]
+                        
+                        \[\Rightarrow \underline{\underline{\epsilon}} = \underline{\underline{0}}\]
+                    </div>
+
+                    <!-- Small Displacement Strain -->
+                    <div class="subsection">
+                        <h3>3.4 Small Displacement Strain Tensor</h3>
+                        
+                        <p>If the nonlinear contribution \(\text{Grad } \underline{u}^T \text{Grad } \underline{u}\) is neglected:</p>
+                        
+                        \[\underline{\underline{\varepsilon}} = \frac{1}{2}\left(\text{Grad } \underline{u} + \text{Grad } \underline{u}^T\right)\]
+                        
+                        <p>Then for a rigid rotation:</p>
+                        
+                        \[\underline{\underline{\varepsilon}} = \frac{1}{2}\left(\underline{\underline{R}} - \underline{\underline{I}} + \underline{\underline{R}}^T - \underline{\underline{I}}\right)\]
+                        
+                        \[= \frac{1}{2}\left(\underline{\underline{R}} + \underline{\underline{R}}^T - 2\underline{\underline{I}}\right) \neq 0\]
+                        
+                        <div class="note-box">
+                            <strong>Conclusion:</strong> The small displacement strain tensor \(\underline{\underline{\varepsilon}}\), which is linear in \(\underline{u}\), is not a suitable choice for analyzing non infinitesimal displacements. Indeed a rigid rotation leads to a non null measure of the strain.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Measures of Stress -->
+            <section class="section" id="stress">
+                <div class="section-header">
+                    <h2>4. Measures of Stress</h2>
+                </div>
+                <div class="section-content">
+                    <p>It is firstly important to clarify what is the meaning of what we define stress. An insightful description is reported here below and taken from the <em>Feynman Lectures on Physics</em>:</p>
+                    
+                    <div class="quote-box">
+                        "Consider a body of some elastic material — say a block of jello. If we make a cut through the block, the material on each side of the cut will, in general, get displaced by the internal forces. Before the cut was made, there must have been forces between the two parts of the block that kept the material in place. We can define the stresses in terms of these forces."
+                    </div>
+                    
+                    <p>The above discussion clarifies that the stresses are not to be intended just as "forces per unit surface". Of course they are, dimensionally, forces per unit surface. The meaning of stresses is, however, deeper than their dimensional analysis and is inherently associated with the idea of exchange of internal forces.</p>
+
+                    <!-- Cauchy Continuum -->
+                    <div class="subsection">
+                        <h3>4.1 Cauchy Continuum</h3>
+                        
+                        <p>We define <strong>Cauchy continuum</strong> a continuum whose infinitesimal elements are capable of exchanging forces per unit volume and surface, but not moments per unit volume and surface. This is clearly a modelling assumption, which is a good one for a wide class of continua.</p>
+                        
+                        <div class="note-box">
+                            Other models are obviously possible, and the continuum problem can be formulated by assuming that also moments per unit volume and surface can be exchanged. This approach leads to the <strong>Cosserat continuum model</strong> which is not covered in this course.
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/cauchy_continuum_volume_surface.png" alt="Cauchy continuum diagram">
+                            <figcaption>Figure 4.1: Cauchy continuum showing body with volume V and surface S, with extracted volume element ΔV and surface element ΔS</figcaption>
+                        </figure>
+                        
+                        <p>To formalize the assumptions associated with the Cauchy continuum, it is possible to consider a generic body with volume \(V\) and surface \(S\) and extract a small volume \(\Delta V\) and a small area \(\Delta S\) from it.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/force_moment_resultants_volume_surface.png" alt="Force and moment resultants">
+                            <figcaption>Figure 4.2: Force and moment resultants acting over volume element ΔV and surface element ΔS</figcaption>
+                        </figure>
+                        
+                        <p>In general, the force and moment resultants will be acting over the volume \(\Delta V\) and the surface \(\Delta S\).</p>
+                        
+                        <div class="definition-box">
+                            <h4>Cauchy Continuum Assumptions</h4>
+                            <p><strong>Moments vanish:</strong></p>
+                            \[\lim_{\Delta V \to 0} \frac{\Delta \underline{M}}{\Delta V} = \underline{0} \quad \text{(volume moments)}\]
+                            \[\lim_{\Delta S \to 0} \frac{\Delta \underline{M}}{\Delta S} = \underline{0} \quad \text{(surface moments)}\]
+                            
+                            <p><strong>Forces are finite:</strong></p>
+                            \[\lim_{\Delta V \to 0} \frac{\Delta \underline{F}}{\Delta V} = \underline{f} \quad \text{(volume forces)}\]
+                            \[\lim_{\Delta S \to 0} \frac{\Delta \underline{F}}{\Delta S} = \underline{t} \quad \text{(surface forces)}\]
+                        </div>
+                    </div>
+
+                    <!-- Stress Vector -->
+                    <div class="subsection">
+                        <h3>4.2 The Stress Vector</h3>
+                        
+                        <p>Consider now a body, which is divided (virtually) into two parts.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/body_divided_internal_forces.png" alt="Body divided showing internal forces">
+                            <figcaption>Figure 4.3: Body divided into two parts showing virtual surfaces with stress vector \(\underline{t}\) and normal vector \(\underline{n}\)</figcaption>
+                        </figure>
+                        
+                        <p>In order to guarantee the equilibrium, it is necessary that an exchange of internal forces exists between the two "virtual" surfaces (recall the block of jello!).</p>
+                        
+                        <p>It is worth noting that:</p>
+                        
+                        <ol>
+                            <li>In general \(\underline{t}\) is <strong>not directed as</strong> \(\underline{n}\) — they are vectors with different direction!</li>
+                            <li>The component of \(\underline{t}\) along \(\underline{n}\) defines the <strong>normal stress</strong>; the component of \(\underline{t}\) along the normal to \(\underline{n}\) defines the <strong>shearing stresses</strong>.</li>
+                            <li><strong>Principal stresses</strong> are those associated with the planes of cut such that \(\underline{t} \parallel \underline{n}\).</li>
+                            <li>From the third Newton's law:
+                            \[\underline{t}(\underline{n}) = -\underline{t}(-\underline{n})\]
+                            i.e., the stress acting on the other plane of cut is equal and opposite.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Cauchy Stress Tensor -->
+                    <div class="subsection">
+                        <h3>4.3 The Cauchy Stress Tensor</h3>
+                        
+                        <p>The last remarks highlight also the dependency of \(\underline{t}\) on \(\underline{n}\). In general, different planes of cut are associated with different vectors \(\underline{t}\).</p>
+                        
+                        <p>The link between \(\underline{t}\) and \(\underline{n}\) is furnished by the <strong>stress tensor</strong> and can be illustrated by considering the <strong>Cauchy tetrahedron</strong>.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/cauchy_tetrahedron_stress_vectors.png" alt="Cauchy tetrahedron">
+                            <figcaption>Figure 4.4: Cauchy tetrahedron showing surface elements ΔS₁, ΔS₂, ΔS₃ with stress vectors \(\underline{t}_1\), \(\underline{t}_2\), \(\underline{t}_3\), and normal vector \(\underline{n}\)</figcaption>
+                        </figure>
+                        
+                        <div class="definition-box">
+                            <h4>Definitions</h4>
+                            <table class="definitions">
+                                <tr><td>\(\underline{n}\)</td><td>normal to the oblique surface</td></tr>
+                                <tr><td>\(\underline{t}_n\)</td><td>stress vector acting over the surface with normal \(\underline{n}\)</td></tr>
+                                <tr><td>\(\underline{t}_1, \underline{t}_2, \underline{t}_3\)</td><td>stress vectors acting on the surfaces of area \(\Delta S_1\), \(\Delta S_2\), \(\Delta S_3\)</td></tr>
+                            </table>
+                            <p><strong>Note:</strong> \(\underline{t}_i\) are not normal to the corresponding oriented surfaces.</p>
+                        </div>
+                        
+                        <h4>Force Equilibrium</h4>
+                        <p>The force equilibrium is then:</p>
+                        \[\underline{t} \Delta S - \underline{t}_1 \Delta S_1 - \underline{t}_2 \Delta S_2 - \underline{t}_3 \Delta S_3 + \Delta V \underline{f} = 0\]
+                        
+                        <p>which corresponds to one vector equation or three scalar equations (expressing the equilibrium along \(x\), \(y\) and \(z\)).</p>
+                        
+                        <h4>Application of Gradient Theorem</h4>
+                        <p>From the gradient theorem:</p>
+                        \[\int_V \nabla \phi \, dV = \oint_S \phi \underline{n} \, dS\]
+                        
+                        <p>and so, taking \(\phi = 1\), one obtains:</p>
+                        \[\underline{0} = \oint_S \underline{n} \, dS\]
+                        
+                        <p>which expresses the fact that the vector area of a closed surface is zero.</p>
+                        
+                        <p>For the case at hand:</p>
+                        \[\oint_S \underline{n} \, dS = \Delta S \underline{n} + \Delta S_1 \underline{n}_1 + \Delta S_2 \underline{n}_2 + \Delta S_3 \underline{n}_3\]
+                        \[= \Delta S \underline{n} - \Delta S_1 \underline{e}_1 - \Delta S_2 \underline{e}_2 - \Delta S_3 \underline{e}_3 = \underline{0}\]
+                        
+                        <p>From which, by multiplying with \(\underline{e}_1\), \(\underline{e}_2\) and \(\underline{e}_3\):</p>
+                        \[\Delta S_1 = (\underline{n} \cdot \underline{e}_1) \Delta S\]
+                        \[\Delta S_2 = (\underline{n} \cdot \underline{e}_2) \Delta S\]
+                        \[\Delta S_3 = (\underline{n} \cdot \underline{e}_3) \Delta S\]
+                        
+                        <h4>Derivation of Cauchy Stress Tensor</h4>
+                        <p>Furthermore:</p>
+                        \[\Delta V = \Delta S \frac{\Delta h}{3}\]
+                        <p>where \(\Delta h\) is the height from base to apex.</p>
+                        
+                        <p>The equilibrium equation becomes:</p>
+                        \[\underline{t} \cancel{\Delta S} - \underline{t}_1 (\underline{n} \cdot \underline{e}_1) \cancel{\Delta S} - \underline{t}_2 (\underline{n} \cdot \underline{e}_2) \cancel{\Delta S} - \underline{t}_3 (\underline{n} \cdot \underline{e}_3) \cancel{\Delta S} + \cancel{\Delta S} \frac{\Delta h}{3} \underline{f} = 0\]
+                        
+                        <p>The last contribution goes to zero as \(\Delta h \to 0\), so:</p>
+                        \[\underline{t} = \underline{t}_1 (\underline{n} \cdot \underline{e}_1) + \underline{t}_2 (\underline{n} \cdot \underline{e}_2) + \underline{t}_3 (\underline{n} \cdot \underline{e}_3)\]
+                        \[= \underline{t}_1 (\underline{e}_1 \cdot \underline{n}) + \underline{t}_2 (\underline{e}_2 \cdot \underline{n}) + \underline{t}_3 (\underline{e}_3 \cdot \underline{n})\]
+                        \[= \underline{t}_1 \otimes \underline{e}_1 \cdot \underline{n} + \underline{t}_2 \otimes \underline{e}_2 \cdot \underline{n} + \underline{t}_3 \otimes \underline{e}_3 \cdot \underline{n}\]
+                        \[= \left(\underline{t}_1 \otimes \underline{e}_1 + \underline{t}_2 \otimes \underline{e}_2 + \underline{t}_3 \otimes \underline{e}_3\right) \cdot \underline{n}\]
+                        \[= \underline{\underline{\sigma}} \cdot \underline{n}\]
+                        
+                        <div class="key-result">
+                            <h4>Cauchy Stress Tensor</h4>
+                            \[\underline{\underline{\sigma}} = \underline{t}_i \otimes \underline{e}_i\]
+                            <p>and the link between \(\underline{t}\) and \(\underline{n}\) is:</p>
+                            \[\underline{t} = \underline{\underline{\sigma}} \cdot \underline{n}\]
+                        </div>
+                    </div>
+
+                    <!-- Components of Stress Tensor -->
+                    <div class="subsection">
+                        <h3>4.4 Meaning of the Components of \(\underline{\underline{\sigma}}\)</h3>
+                        
+                        <p>The meaning of the components of \(\underline{\underline{\sigma}}\) can now be illustrated by observing that:</p>
+                        
+                        \[\underline{t} = \underline{\underline{\sigma}} \cdot \underline{n} \Rightarrow \begin{cases} \underline{t}_1 = \underline{\underline{\sigma}} \cdot \underline{e}_1 \\ \underline{t}_2 = \underline{\underline{\sigma}} \cdot \underline{e}_2 \\ \underline{t}_3 = \underline{\underline{\sigma}} \cdot \underline{e}_3 \end{cases} \rightsquigarrow \underline{t}_k = \underline{\underline{\sigma}} \cdot \underline{e}_k\]
+                        
+                        <p>Observe now that:</p>
+                        \[\underline{\underline{\sigma}} = \sigma_{ij} \underline{e}_i \otimes \underline{e}_j\]
+                        
+                        <p>and so:</p>
+                        \[\underline{t}_k = \underline{\underline{\sigma}} \cdot \underline{e}_k = \sigma_{ij} \underline{e}_i \otimes \underline{e}_j \cdot \underline{e}_k\]
+                        
+                        <div class="equation-box">
+                            \[\underline{t}_k = \sigma_{ik} \underline{e}_i\]
+                        </div>
+                        
+                        <div class="definition-box">
+                            <h4>Interpretation of \(\sigma_{ik}\)</h4>
+                            <p>\(\sigma_{ik}\) identifies:</p>
+                            <ol>
+                                <li>the stress along direction \(i\)</li>
+                                <li>over a face with normal parallel to the direction \(k\)</li>
+                            </ol>
+                            <p><strong>Example:</strong> \(\sigma_{12}\) is the stress component directed along 1 acting over the face with normal parallel to 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Piola-Kirchhoff Stress Tensors -->
+            <section class="section" id="piola-kirchhoff">
+                <div class="section-header">
+                    <h2>5. First and Second Piola-Kirchhoff Stress Tensors</h2>
+                </div>
+                <div class="section-content">
+                    <p>The Cauchy stress tensor is a natural choice for representing the state of internal tension in a body; it refers to the current, deformed configuration both in terms of area and normal.</p>
+                    
+                    <p>In the context of a Lagrangian formulation it is natural to refer the description of the continuum to the reference configuration. For this reason, other descriptions of the state of stress are then possible.</p>
+
+                    <!-- First P-K -->
+                    <div class="subsection">
+                        <h3>5.1 First Piola-Kirchhoff Stress Tensor</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_2_Strains_stresses/first_piola_kirchhoff_reference_current.png" alt="First Piola-Kirchhoff stress tensor diagram">
+                            <figcaption>Figure 5.1: Reference and current configurations with normal vectors \(\underline{N}\) and \(\underline{n}\), infinitesimal areas \(dA\) and \(da\), and force element \(d\underline{F}\)</figcaption>
+                        </figure>
+                        
+                        <div class="definition-box">
+                            <h4>Definitions</h4>
+                            <table class="definitions">
+                                <tr><td>\(\underline{N}, dA\)</td><td>normal and infinitesimal area in the reference configuration</td></tr>
+                                <tr><td>\(\underline{n}, da\)</td><td>normal and infinitesimal area in the current configuration</td></tr>
+                                <tr><td>\(d\underline{f}\)</td><td>local elementary force, i.e. \(d\underline{f} = \underline{t} \, da\) where \(\underline{t}\) is the stress vector</td></tr>
+                            </table>
+                        </div>
+                        
+                        <p>In the current configuration:</p>
+                        \[d\underline{f} = \underline{t} \, da = \underline{\underline{\sigma}} \cdot \underline{n} \, da\]
+                        
+                        <p>In the reference configuration:</p>
+                        \[d\underline{F} = \underline{\underline{P}} \cdot \underline{N} \, dA\]
+                        
+                        <p>The still unknown tensor \(\underline{\underline{P}}\) establishes a link between \(d\underline{f}\) and \(\underline{N} \, dA\) (the oriented area in the reference configuration) and is called <strong>First Piola-Kirchhoff stress tensor</strong>.</p>
+                        
+                        <h4>Derivation</h4>
+                        <p>The expression of the first P-K stress tensor can be found as follows:</p>
+                        \[d\underline{f} = \underline{\underline{\sigma}} \cdot \underline{n} \, da = \underline{\underline{P}} \cdot \underline{N} \, dA\]
+                        
+                        <p>Recalling Nanson's formula, \(\underline{n} \, da = J \underline{\underline{F}}^{-T} \underline{N} \, dA\):</p>
+                        \[= \underline{\underline{\sigma}} \cdot J \underline{\underline{F}}^{-T} \underline{N} \, dA = \underline{\underline{P}} \cdot \underline{N} \, dA\]
+                        
+                        <div class="key-result">
+                            <h4>First Piola-Kirchhoff Stress Tensor</h4>
+                            \[\underline{\underline{P}} = J \underline{\underline{\sigma}} \underline{\underline{F}}^{-T}\]
+                        </div>
+                        
+                        <h4>Remarks</h4>
+                        <ol>
+                            <li>\(d\underline{f} = \underline{\underline{\sigma}} \cdot \underline{n} \, da\) and \(d\underline{F} = \underline{\underline{P}} \cdot \underline{N} \, dA\) — \(d\underline{f}\) is the same force vector in both expressions.</li>
+                            <li>\(\underline{\underline{P}}\) is used for expressing \(d\underline{f}\) in terms of reference surface \(dA\) and normal \(\underline{N}\) of the reference configuration. \(\underline{\underline{\sigma}}\), on the contrary, refers to the current deformed surface \(da\) and the normal \(\underline{n}\) of the current configuration.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Second P-K -->
+                    <div class="subsection">
+                        <h3>5.2 Second Piola-Kirchhoff Stress Tensor</h3>
+                        
+                        <p>The Cauchy stress tensor \(\underline{\underline{\sigma}}\) is a symmetric tensor, whilst the first P-K stress tensor \(\underline{\underline{P}}\) is <strong>not</strong>.</p>
+                        
+                        <p>Indeed, the relation \(\underline{\underline{P}} = J \underline{\underline{\sigma}} \underline{\underline{F}}^{-T}\) cannot be seen as a transformation of \(\underline{\underline{\sigma}}\) which preserves the symmetry of the tensor.</p>
+                        
+                        <p>To recover the symmetry of the stress measure, it is then introduced the <strong>second P-K stress tensor</strong> \(\underline{\underline{S}}\).</p>
+                        
+                        <p>In this case it is hard to clearly establish a physical interpretation of the tensor, which is nothing but the transformation of \(\underline{\underline{\sigma}}\) by means of the deformation gradient \(\underline{\underline{F}}\).</p>
+                        
+                        <h4>Derivation</h4>
+                        <p>It can be seen starting from the elementary force \(d\underline{f}\), and considering that:</p>
+                        \[d\underline{f} = \underline{\underline{F}} \, d\hat{\underline{F}} \quad \text{or} \quad d\hat{\underline{F}} = \underline{\underline{F}}^{-1} d\underline{f}\]
+                        
+                        <p>where \(d\hat{\underline{F}}\) is the transformation of \(d\underline{f}\) by means of the deformation gradient tensor.</p>
+                        
+                        <p>The second P-K stress tensor is the link between \(d\hat{\underline{F}}\) and \(\underline{N} \, dA\):</p>
+                        \[d\hat{\underline{F}} = \underline{\underline{S}} \underline{N} \, dA\]
+                        
+                        <p>The relation between the first and second P-K stress tensor is then obtained as:</p>
+                        \[d\hat{\underline{F}} = \underline{\underline{F}}^{-1} d\underline{f} = \underline{\underline{S}} \underline{N} \, dA\]
+                        \[= \underline{\underline{F}}^{-1} \underline{\underline{P}} \underline{N} \, dA = \underline{\underline{S}} \underline{N} \, dA\]
+                        
+                        <div class="equation-box">
+                            \[\underline{\underline{P}} = \underline{\underline{F}} \underline{\underline{S}} \quad \text{or} \quad \underline{\underline{S}} = \underline{\underline{F}}^{-1} \underline{\underline{P}}\]
+                        </div>
+                        
+                        <h4>Relation with Cauchy Stress Tensor</h4>
+                        <p>The relation with the Cauchy stress tensor \(\underline{\underline{\sigma}}\) clarifies why \(\underline{\underline{S}}\) is a symmetric tensor too:</p>
+                        
+                        \[\underline{\underline{S}} = \underline{\underline{F}}^{-1} \underline{\underline{P}} = \underline{\underline{F}}^{-1} J \underline{\underline{\sigma}} \underline{\underline{F}}^{-T}\]
+                        
+                        <div class="key-result">
+                            <h4>Second Piola-Kirchhoff Stress Tensor</h4>
+                            \[\underline{\underline{S}} = J \underline{\underline{F}}^{-1} \underline{\underline{\sigma}} \underline{\underline{F}}^{-T}\]
+                            <p>\(\underline{\underline{S}}\) is symmetric because \(\underline{\underline{\sigma}}\) is symmetric.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Change of Volume -->
+            <section class="section" id="volume-change">
+                <div class="section-header">
+                    <h2>6. Change of Volume</h2>
+                </div>
+                <div class="section-content">
+                    <p>Consider the infinitesimal volume obtained by the mixed product of three infinitesimal vectors \(d\underline{X}_i\); and the transformation \(\underline{x} = \underline{x}(\underline{X})\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C1_2_Strains_stresses/volume_change_transformation.png" alt="Change of volume diagram">
+                        <figcaption>Figure 6.1: Transformation from reference configuration with infinitesimal vectors \(d\underline{X}_1\), \(d\underline{X}_2\), \(d\underline{X}_3\) to current configuration with \(d\underline{x}_1\), \(d\underline{x}_2\), \(d\underline{x}_3\)</figcaption>
+                    </figure>
+                    
+                    <div class="subsection">
+                        <h3>6.1 Volume in Reference Configuration</h3>
+                        
+                        <p>In the reference configuration, the infinitesimal volume reads:</p>
+                        \[dV = d\underline{X}_1 \cdot d\underline{X}_2 \times d\underline{X}_3\]
+                        
+                        <p>The generic vector \(d\underline{X}_i\) can be written in terms of unitary vectors \(\underline{E}_i\), so:</p>
+                        \[d\underline{X}_1 = dX_1 \underline{E}_1 \;;\quad d\underline{X}_2 = dX_2 \underline{E}_2 \;;\quad d\underline{X}_3 = dX_3 \underline{E}_3\]
+                        
+                        <p>such that:</p>
+                        \[dV = (\underline{E}_1 \cdot \underline{E}_2 \times \underline{E}_3) dX_1 dX_2 dX_3 = 1 \cdot dX_1 dX_2 dX_3 = dX_1 dX_2 dX_3\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6.2 Volume in Current Configuration</h3>
+                        
+                        <p>According to the transformation \(\underline{x} = \underline{x}(\underline{X})\) from the reference to the current configuration:</p>
+                        \[d\underline{x}_i = \underline{\underline{F}} \, d\underline{X}_i \quad (i \text{ not repeated})\]
+                        
+                        <p>The volume in the current configuration is:</p>
+                        \[dv = d\underline{x}_1 \cdot d\underline{x}_2 \times d\underline{x}_3\]
+                        
+                        \[= (\underline{\underline{F}} \, d\underline{X}_1) \cdot (\underline{\underline{F}} \, d\underline{X}_2) \times (\underline{\underline{F}} \, d\underline{X}_3)\]
+                        
+                        \[= (\underline{\underline{F}} \underline{E}_1) \cdot (\underline{\underline{F}} \underline{E}_2) \times (\underline{\underline{F}} \underline{E}_3) \, dX_1 dX_2 dX_3\]
+                        
+                        <p>or:</p>
+                        \[dv = \underbrace{(\underline{\underline{F}} \underline{E}_1) \cdot (\underline{\underline{F}} \underline{E}_2) \times (\underline{\underline{F}} \underline{E}_3)}_{\text{this is exactly the definition of determinant of } \underline{\underline{F}}} \, dV\]
+                        
+                        <div class="key-result">
+                            <h4>Volume Change Relation</h4>
+                            \[dv = \det \underline{\underline{F}} \, dV = J \, dV\]
+                            <p>where \(J = \det \underline{\underline{F}}\) is the Jacobian</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Nanson's Formula -->
+            <section class="section" id="nanson">
+                <div class="section-header">
+                    <h2>7. Nanson's Formula</h2>
+                </div>
+                <div class="section-content">
+                    <p>The Nanson's formula allows to establish a link between the oriented area in the reference and current configuration.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C1_2_Strains_stresses/nansons_formula_oriented_area.png" alt="Nanson's formula diagram">
+                        <figcaption>Figure 7.1: Reference and current configurations with oriented area elements and normal vectors \(\underline{N}\) in reference and \(\underline{n}\) in current configuration</figcaption>
+                    </figure>
+                    
+                    <div class="subsection">
+                        <h3>7.1 Derivation</h3>
+                        
+                        <p>The oriented area and the volumes in the two configurations are:</p>
+                        
+                        <div class="two-column">
+                            <div class="column">
+                                <h5>Reference Configuration</h5>
+                                \[d\underline{A} = \underline{N} \, dA\]
+                                \[dV = d\underline{X} \cdot d\underline{A} = d\underline{X} \cdot \underline{N} \, dA\]
+                            </div>
+                            <div class="column">
+                                <h5>Current Configuration</h5>
+                                \[d\underline{a} = \underline{n} \, da\]
+                                \[dv = d\underline{x} \cdot d\underline{a} = d\underline{x} \cdot \underline{n} \, da\]
+                            </div>
+                        </div>
+                        
+                        <p>Recall now that \(dv = J \, dV\) and \(d\underline{x} = \underline{\underline{F}} \, d\underline{X}\), so:</p>
+                        
+                        \[dv = d\underline{x} \cdot \underline{n} \, da = J \, dV\]
+                        \[= J \, d\underline{X} \cdot \underline{N} \, dA\]
+                        \[= J \underline{\underline{F}}^{-1} d\underline{x} \cdot \underline{N} \, dA\]
+                        \[= J \, d\underline{x} \cdot \underline{\underline{F}}^{-T} \underline{N} \, dA\]
+                        \[= d\underline{x} \cdot J \underline{\underline{F}}^{-T} \underline{N} \, dA\]
+                        
+                        <p>So:</p>
+                        \[d\underline{x} \cdot \underline{n} \, da = d\underline{x} \cdot J \underline{\underline{F}}^{-T} \underline{N} \, dA\]
+                        
+                        <p>from which:</p>
+                        
+                        <div class="key-result">
+                            <h4>Nanson's Formula</h4>
+                            \[\underline{n} \, da = J \underline{\underline{F}}^{-T} \underline{N} \, dA\]
+                            <p>This relates oriented area elements between reference and current configurations.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

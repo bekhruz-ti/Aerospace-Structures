@@ -1,0 +1,58 @@
+{
+  "thin_plate_axial_compression_3d.png": {
+    "suggested_name": "thin_plate_axial_compression_3d",
+    "description": "3D diagram of thin plate subjected to axial compression showing coordinate system (x,y,z), distributed axial force Nxx on top and bottom edges, dimension labels (a, b), and force vectors"
+  },
+  "simply_supported_plate_axial_load.png": {
+    "suggested_name": "simply_supported_plate_axial_load",
+    "description": "3D diagram of simply-supported plate panel subjected to axial compression showing distributed load Nxx on edges, coordinate system (x,y,z), and dimension labels (a, b)"
+  },
+  "buckling_load_vs_aspect_ratio_graph.png": {
+    "suggested_name": "buckling_load_vs_aspect_ratio_graph",
+    "description": "Graph showing buckling load parameter (Nxx b²/D π²) versus aspect ratio (r = a/b) with multiple curves for different mode numbers (m=1,2,3,4) showing minima at integer values"
+  },
+  "square_buckling_patterns_plates.png": {
+    "suggested_name": "square_buckling_patterns_plates",
+    "description": "Two rectangular plate diagrams showing buckling mode patterns with square buckles for r=2 and r=3, illustrating different buckling configurations with dimension labels (a, b)"
+  },
+  "coincident_buckling_modes_graph.png": {
+    "suggested_name": "coincident_buckling_modes_graph",
+    "description": "Graph showing buckling load parameter (Nxx b²/D π²) versus aspect ratio r with curves for m=1,2,3 showing two coincident buckling modes at points A and B"
+  },
+  "boundary_condition_comparison_graph.png": {
+    "suggested_name": "boundary_condition_comparison_graph",
+    "description": "Graph showing normalized buckling load versus aspect ratio r with two curves labeled CCCC and SSSS representing different boundary conditions, asymptotically approaching value of 4"
+  },
+  "plate_biaxial_compression.png": {
+    "suggested_name": "plate_biaxial_compression",
+    "description": "3D diagram of plate panel under biaxial compression showing applied forces Nxx, Nyy on all edges with arrows indicating compression in both directions"
+  },
+  "biaxial_buckling_interaction_curve.png": {
+    "suggested_name": "biaxial_buckling_interaction_curve",
+    "description": "Interaction curve showing relationship between Nxx and Nyy buckling loads with curved line in first quadrant"
+  },
+  "loading_condition_interaction_diagram.png": {
+    "suggested_name": "loading_condition_interaction_diagram",
+    "description": "Interaction diagram showing points A, B, C, D with vectors representing different loading conditions and aspect ratios (r=1, r=2) for buckling analysis"
+  },
+  "buckling_patterns_four_quadrants.png": {
+    "suggested_name": "buckling_patterns_four_quadrants",
+    "description": "Four small diagrams showing plate buckling patterns under different loading conditions with hatched edges indicating support/load directions arranged in quadrants around Nxx-Nyy axes"
+  },
+  "combined_loading_interaction_curve.png": {
+    "suggested_name": "combined_loading_interaction_curve",
+    "description": "Interaction curve for combined loading showing pure shear, pure compression, and intermediate states with Nxx and Nyy axes"
+  },
+  "compression_shear_buckling_patterns.png": {
+    "suggested_name": "compression_shear_buckling_patterns",
+    "description": "Multiple rectangular plate diagrams showing buckling patterns for pure compression (square buckles) and pure shear (skewed buckles at ~35° angle) with contour lines, plus combined loading patterns labeled A and B"
+  },
+  "symmetric_buckling_comparison.png": {
+    "suggested_name": "symmetric_buckling_comparison",
+    "description": "Two small rectangular diagrams showing symmetric buckling patterns with arrows indicating loading directions and buckle orientations"
+  },
+  "tensile_load_buckling_interaction.png": {
+    "suggested_name": "tensile_load_buckling_interaction",
+    "description": "Interaction curve showing points A and B with axes Nxx and Nyy, illustrating effect of tensile loads on buckling behavior with curved line in first quadrant"
+  }
+}

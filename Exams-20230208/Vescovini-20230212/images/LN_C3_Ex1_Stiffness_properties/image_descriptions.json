@@ -1,0 +1,306 @@
+{
+  "rectangular_cross_section_dimensions.png": {
+    "suggested_name": "rectangular_cross_section_dimensions",
+    "description": "Rectangular cross-section with dimensions labeled a (height) and b (width), showing four corner nodes"
+  },
+  "rectangular_section_coordinate_system.png": {
+    "suggested_name": "rectangular_section_coordinate_system",
+    "description": "Rectangular cross-section with coordinate system showing principal axes and dimension labels a/2 and b/2"
+  },
+  "shear_flow_rectangular_section.png": {
+    "suggested_name": "shear_flow_rectangular_section",
+    "description": "Rectangular cross-section with shear center and coordinate axes showing shear flow analysis with numbered nodes 1-4"
+  },
+  "shear_force_application_section.png": {
+    "suggested_name": "shear_force_application_section",
+    "description": "Rectangular cross-section with shear force Tx applied and numbered nodes showing shear flow distribution"
+  },
+  "torsional_moment_section.png": {
+    "suggested_name": "torsional_moment_section",
+    "description": "Simple rectangular section showing torsional moment T/2b applied at corners"
+  },
+  "rectangular_section_exercise_2.png": {
+    "suggested_name": "rectangular_section_exercise_2",
+    "description": "Rectangular cross-section with dimensions 2A at top, showing thickness t and dimensions a and b with labeled nodes"
+  },
+  "principal_axes_rectangular_section.png": {
+    "suggested_name": "principal_axes_rectangular_section",
+    "description": "Rectangular cross-section with coordinate system showing centroid and principal axes with dimension labels"
+  },
+  "moment_inertia_calculation_section.png": {
+    "suggested_name": "moment_inertia_calculation_section",
+    "description": "Rectangular cross-section with coordinate system and dimension labels showing moment of inertia calculation"
+  },
+  "shear_flow_symmetry_section.png": {
+    "suggested_name": "shear_flow_symmetry_section",
+    "description": "Rectangular cross-section showing shear flow distribution with force Ty applied and symmetry considerations"
+  },
+  "shear_center_position_section.png": {
+    "suggested_name": "shear_center_position_section",
+    "description": "Rectangular cross-section showing shear center position with force Tx and dimension labels"
+  },
+  "shear_flow_numbered_nodes.png": {
+    "suggested_name": "shear_flow_numbered_nodes",
+    "description": "Rectangular cross-section with numbered nodes 1-4 showing shear flow analysis with coordinate system"
+  },
+  "shear_flow_values_diagram.png": {
+    "suggested_name": "shear_flow_values_diagram",
+    "description": "Rectangular cross-section showing shear flow values at corners with numerical values labeled"
+  },
+  "circular_cross_section_exercise.png": {
+    "suggested_name": "circular_cross_section_exercise",
+    "description": "Circular cross-section with radius R showing four nodes at cardinal points"
+  },
+  "circular_section_coordinate_system.png": {
+    "suggested_name": "circular_section_coordinate_system",
+    "description": "Circular cross-section with coordinate system showing centroid and principal axes"
+  },
+  "circular_section_shear_flow.png": {
+    "suggested_name": "circular_section_shear_flow",
+    "description": "Circular cross-section showing shear flow distribution with force Ty applied and symmetry about vertical axis"
+  },
+  "rectangular_frame_three_bays.png": {
+    "suggested_name": "rectangular_frame_three_bays",
+    "description": "Rectangular frame structure with three bays showing dimensions a, b, and c with height dimension"
+  },
+  "frame_section_centroid.png": {
+    "suggested_name": "frame_section_centroid",
+    "description": "Rectangular frame cross-section with coordinate system showing centroid position and dimensions"
+  },
+  "frame_section_dimensions.png": {
+    "suggested_name": "frame_section_dimensions",
+    "description": "Rectangular frame section showing dimensions d, e, f and coordinate system with centroid marked"
+  },
+  "frame_shear_flow_six_nodes.png": {
+    "suggested_name": "frame_shear_flow_six_nodes",
+    "description": "Rectangular frame with six numbered nodes showing shear flow analysis with force Ty applied"
+  },
+  "frame_shear_flow_values.png": {
+    "suggested_name": "frame_shear_flow_values",
+    "description": "Rectangular frame showing shear flow distribution with numerical values at nodes"
+  },
+  "frame_horizontal_shear_force.png": {
+    "suggested_name": "frame_horizontal_shear_force",
+    "description": "Rectangular frame with six numbered nodes showing shear force Tx applied horizontally"
+  },
+  "frame_final_shear_flow.png": {
+    "suggested_name": "frame_final_shear_flow",
+    "description": "Rectangular frame showing final shear flow distribution with numerical values at all nodes"
+  },
+  "frame_applied_moment.png": {
+    "suggested_name": "frame_applied_moment",
+    "description": "Rectangular frame structure showing applied moment Mz with numbered nodes 1-4"
+  },
+  "frame_moment_shear_flow.png": {
+    "suggested_name": "frame_moment_shear_flow",
+    "description": "Rectangular frame showing shear flow distribution due to moment with numerical values"
+  },
+  "semicircular_cross_section.png": {
+    "suggested_name": "semicircular_cross_section",
+    "description": "Semicircular cross-section with radius R showing three nodes"
+  },
+  "semicircular_section_dimensions.png": {
+    "suggested_name": "semicircular_section_dimensions",
+    "description": "Semicircular cross-section with coordinate system showing dimensions d, e, f and centroid position"
+  },
+  "semicircular_shear_flow.png": {
+    "suggested_name": "semicircular_shear_flow",
+    "description": "Semicircular section showing shear flow analysis with force Tx applied and numbered nodes"
+  },
+  "semicircular_final_shear_flow.png": {
+    "suggested_name": "semicircular_final_shear_flow",
+    "description": "Semicircular section showing final shear flow distribution with numerical values at nodes"
+  },
+  "semicircular_shear_center.png": {
+    "suggested_name": "semicircular_shear_center",
+    "description": "Semicircular section with shear center analysis showing force Tx and numbered nodes with dimensions"
+  },
+  "semicircular_shear_values.png": {
+    "suggested_name": "semicircular_shear_values",
+    "description": "Semicircular section showing shear flow values with numerical annotations at all nodes"
+  },
+  "semicircular_torsional_moment.png": {
+    "suggested_name": "semicircular_torsional_moment",
+    "description": "Semicircular section showing torsional moment analysis with moment Mz applied"
+  },
+  "six_panel_frame_structure.png": {
+    "suggested_name": "six_panel_frame_structure",
+    "description": "Rectangular frame structure with six panels showing dimensions a and b with thickness t labeled"
+  },
+  "six_panel_frame_section.png": {
+    "suggested_name": "six_panel_frame_section",
+    "description": "Rectangular frame cross-section with coordinate system showing principal axes"
+  },
+  "frame_five_nodes_shear.png": {
+    "suggested_name": "frame_five_nodes_shear",
+    "description": "Rectangular frame with numbered nodes 1-5 showing shear force Tx applied horizontally"
+  },
+  "frame_vertical_force.png": {
+    "suggested_name": "frame_vertical_force",
+    "description": "Rectangular frame showing force Ty applied vertically with dimension d labeled"
+  },
+  "frame_shear_center_values.png": {
+    "suggested_name": "frame_shear_center_values",
+    "description": "Rectangular frame showing shear flow distribution with numerical values and shear center marked"
+  },
+  "frame_moment_distribution.png": {
+    "suggested_name": "frame_moment_distribution",
+    "description": "Rectangular frame showing applied moment Mz with shear flow distribution"
+  },
+  "parallelogram_beam_structure.png": {
+    "suggested_name": "parallelogram_beam_structure",
+    "description": "Three-dimensional parallelogram beam structure showing dimensions and applied load P with diagonal members"
+  },
+  "beam_internal_forces.png": {
+    "suggested_name": "beam_internal_forces",
+    "description": "Three-dimensional beam element showing internal forces and moments with coordinate system"
+  },
+  "dummy_system_unit_load.png": {
+    "suggested_name": "dummy_system_unit_load",
+    "description": "Dummy system showing unit load applied to beam element with coordinate axes"
+  },
+  "frame_shear_flow_force_p.png": {
+    "suggested_name": "frame_shear_flow_force_p",
+    "description": "Rectangular frame showing shear flow analysis with force P applied and numbered nodes"
+  },
+  "frame_force_p_distribution.png": {
+    "suggested_name": "frame_force_p_distribution",
+    "description": "Rectangular frame showing shear flow distribution with force P and dimension labels"
+  },
+  "frame_dummy_system.png": {
+    "suggested_name": "frame_dummy_system",
+    "description": "Dummy system for frame showing unit load and coordinate system"
+  },
+  "frame_dummy_shear_flow.png": {
+    "suggested_name": "frame_dummy_shear_flow",
+    "description": "Rectangular frame showing dummy system shear flow distribution with unit loads"
+  },
+  "parallelogram_beam_exercise.png": {
+    "suggested_name": "parallelogram_beam_exercise",
+    "description": "Three-dimensional parallelogram beam structure showing dimensions a, b, c and applied loads with diagonal members"
+  },
+  "frame_shear_center_position.png": {
+    "suggested_name": "frame_shear_center_position",
+    "description": "Rectangular frame cross-section showing shear center position and dimension f with force P applied"
+  },
+  "frame_applied_moment_pf.png": {
+    "suggested_name": "frame_applied_moment_pf",
+    "description": "Rectangular frame showing moment Pf applied at section"
+  },
+  "beam_system_forces.png": {
+    "suggested_name": "beam_system_forces",
+    "description": "Three-dimensional beam system showing forces Pf and P applied at different locations"
+  },
+  "beam_1_internal_forces.png": {
+    "suggested_name": "beam_1_internal_forces",
+    "description": "Beam element showing internal forces and moments with coordinate system for beam 1"
+  },
+  "diagonal_beam_element.png": {
+    "suggested_name": "diagonal_beam_element",
+    "description": "Diagonal beam element showing forces and coordinate system"
+  },
+  "beam_1_force_diagram.png": {
+    "suggested_name": "beam_1_force_diagram",
+    "description": "Beam element 1 showing internal forces Ty, Mx, Mz with coordinate axes"
+  },
+  "beam_2_force_diagram.png": {
+    "suggested_name": "beam_2_force_diagram",
+    "description": "Beam element 2 showing internal forces and moments with coordinate system"
+  },
+  "beam_spring_supports.png": {
+    "suggested_name": "beam_spring_supports",
+    "description": "Three-dimensional parallelogram beam structure with spring supports showing dimensions and applied loads"
+  },
+  "frame_section_shear_center.png": {
+    "suggested_name": "frame_section_shear_center",
+    "description": "Rectangular frame cross-section showing shear center and coordinate system with dimension labels"
+  },
+  "beam_end_section.png": {
+    "suggested_name": "beam_end_section",
+    "description": "End section of beam showing coordinate system and applied forces X and Y with dimensions d and f"
+  },
+  "frame_corner_forces.png": {
+    "suggested_name": "frame_corner_forces",
+    "description": "Rectangular frame showing forces P applied at corners with moment P(d-f)"
+  },
+  "beam_system_reactions.png": {
+    "suggested_name": "beam_system_reactions",
+    "description": "Three-dimensional beam system showing applied forces and reactions with coordinate axes"
+  },
+  "beam_1_internal_actions.png": {
+    "suggested_name": "beam_1_internal_actions",
+    "description": "Beam element 1 showing internal forces and coordinate system with force labels"
+  },
+  "beam_2_internal_actions.png": {
+    "suggested_name": "beam_2_internal_actions",
+    "description": "Beam element 2 showing internal forces and moments with coordinate axes"
+  },
+  "dummy_system_1_springs.png": {
+    "suggested_name": "dummy_system_1_springs",
+    "description": "Rectangular frame showing spring forces and coordinate system for dummy system 1"
+  },
+  "dummy_diagonal_element.png": {
+    "suggested_name": "dummy_diagonal_element",
+    "description": "Diagonal beam element showing dimension d and unit force for dummy system"
+  },
+  "dummy_beam_1_forces.png": {
+    "suggested_name": "dummy_beam_1_forces",
+    "description": "Beam element 1 showing internal forces for dummy system with coordinate axes"
+  },
+  "dummy_beam_2_forces.png": {
+    "suggested_name": "dummy_beam_2_forces",
+    "description": "Beam element 2 showing internal forces for dummy system with coordinate system"
+  },
+  "dummy_system_2_springs.png": {
+    "suggested_name": "dummy_system_2_springs",
+    "description": "Rectangular frame showing spring forces for dummy system 2 with dimension f"
+  },
+  "dummy_2_diagonal_element.png": {
+    "suggested_name": "dummy_2_diagonal_element",
+    "description": "Diagonal beam element showing dimension f and unit force for dummy system 2"
+  },
+  "dummy_2_beam_1_forces.png": {
+    "suggested_name": "dummy_2_beam_1_forces",
+    "description": "Beam element 1 showing internal forces for dummy system 2 with coordinate axes"
+  },
+  "dummy_2_beam_2_forces.png": {
+    "suggested_name": "dummy_2_beam_2_forces",
+    "description": "Beam element 2 showing internal forces for dummy system 2 with coordinate system"
+  },
+  "truss_pressure_load_structure.png": {
+    "suggested_name": "truss_pressure_load_structure",
+    "description": "Three-dimensional truss structure showing pressure load P distributed along chordwise direction with diagonal ribs and dimensions labeled"
+  },
+  "section_centroid_shear_center.png": {
+    "suggested_name": "section_centroid_shear_center",
+    "description": "Rectangular cross-section showing centroid and shear center with coordinate system"
+  },
+  "beam_distributed_loads_ribs.png": {
+    "suggested_name": "beam_distributed_loads_ribs",
+    "description": "Side view and top view of beam structure showing distributed loads on four ribs R1-R4 with dimensions"
+  },
+  "rib_load_distribution_3d.png": {
+    "suggested_name": "rib_load_distribution_3d",
+    "description": "Three-dimensional view showing load distribution on ribs with increasing triangular pattern"
+  },
+  "beam_shear_forces_locations.png": {
+    "suggested_name": "beam_shear_forces_locations",
+    "description": "Three-dimensional beam structure showing shear forces F1, F2, F3 applied at different locations with coordinate system"
+  },
+  "local_coordinate_systems.png": {
+    "suggested_name": "local_coordinate_systems",
+    "description": "Coordinate system diagrams showing local axes x, y, z for different beam elements"
+  },
+  "beam_2_internal_forces_moments.png": {
+    "suggested_name": "beam_2_internal_forces_moments",
+    "description": "Beam element 2 showing internal forces and moments with coordinate system and force labels"
+  },
+  "dummy_system_unit_load_3d.png": {
+    "suggested_name": "dummy_system_unit_load_3d",
+    "description": "Three-dimensional beam structure showing unit load applied for dummy system with coordinate axes"
+  },
+  "dummy_diagonal_unit_force.png": {
+    "suggested_name": "dummy_diagonal_unit_force",
+    "description": "Diagonal beam element showing dimension b/2 and unit force for dummy system"
+  }
+}

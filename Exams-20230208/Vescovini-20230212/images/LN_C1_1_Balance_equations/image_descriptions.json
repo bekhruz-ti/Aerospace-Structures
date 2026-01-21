@@ -1,0 +1,14 @@
+{
+  "configuration_states_circles.png": {
+    "suggested_name": "configuration_states_circles",
+    "description": "Three circular configuration diagrams showing initial and deformed states labeled with B⁰, B¹, and B^T with position vectors"
+  },
+  "heat_flux_direction_convention.png": {
+    "suggested_name": "heat_flux_direction_convention",
+    "description": "Small sketch showing heat flux vector q with normal vector h and angle notation illustrating inward/outward direction convention"
+  },
+  "boundary_conditions_schematic.png": {
+    "suggested_name": "boundary_conditions_schematic",
+    "description": "Schematic diagram showing boundary surfaces with labels S_U (imposed displacements), S_F (imposed forces), S_Q (heat flux boundary), and S_T (temperature boundary) with union and intersection notation"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "coordinate_system_point_displacement.png": {
+    "suggested_name": "coordinate_system_point_displacement",
+    "description": "3D coordinate system showing point P displacement to point P' with coordinate axes x, y, and z"
+  },
+  "xy_plane_strain_components.png": {
+    "suggested_name": "xy_plane_strain_components",
+    "description": "X-Y plane view diagrams showing displacement components and strain variation along y-axis with labeled points P, P', and incremental elements"
+  },
+  "angular_displacement_geometry.png": {
+    "suggested_name": "angular_displacement_geometry",
+    "description": "Geometric diagrams showing angular relationships with theta angles and displacement components Vx dx and Vy dx in different orientations"
+  },
+  "small_angle_approximation.png": {
+    "suggested_name": "small_angle_approximation",
+    "description": "Small angular diagram showing angle theta relationship with vertical and horizontal components"
+  },
+  "domain_with_cut_circular.png": {
+    "suggested_name": "domain_with_cut_circular",
+    "description": "Domain with cut showing circular region with inner hole and radial dimension labeled, illustrating simply connected domain concept"
+  },
+  "domain_after_cut_removal.png": {
+    "suggested_name": "domain_after_cut_removal",
+    "description": "Domain after cut removal showing circular region with hole, demonstrating displacement field continuity"
+  },
+  "elastic_stress_strain_curve.png": {
+    "suggested_name": "elastic_stress_strain_curve",
+    "description": "Stress-strain curve for elastic material showing loading and unloading phases with curved response"
+  },
+  "hyperelastic_component_reduction_matrices.png": {
+    "suggested_name": "hyperelastic_component_reduction_matrices",
+    "description": "Two matrices showing component relationships - left matrix labeled \"non hyperelastic (36 components)\" and right matrix labeled \"hyperelastic (21 components)\" with X marks indicating independent terms"
+  },
+  "strain_energy_complementary_energy_graphs.png": {
+    "suggested_name": "strain_energy_complementary_energy_graphs",
+    "description": "Two stress-strain graphs side by side - left showing strain energy (du = σ dε) with hatched area, right showing complementary strain energy (du* = ε dσ) with hatched area under curve"
+  },
+  "legendre_transform_schematic.png": {
+    "suggested_name": "legendre_transform_schematic",
+    "description": "Schematic diagram showing Legendre transform concept with function g = σε - f, conjugate variables, and transformation notation"
+  }
+}

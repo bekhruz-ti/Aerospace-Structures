@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stiffness and Compliance Matrices - Structural Mechanics</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .numbered-list {
+            margin: 15px 0 15px 30px;
+        }
+
+        .numbered-list li {
+            margin: 10px 0;
+        }
+
+        .bullet-list {
+            list-style: disc;
+            margin: 15px 0 15px 30px;
+        }
+
+        .bullet-list li {
+            margin: 10px 0;
+        }
+
+        .boxed-equation {
+            background: #edf2f7;
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .boxed-content {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .remark-box {
+            background: #fffaf0;
+            border: 1px solid #ed8936;
+            border-left: 4px solid #ed8936;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .remark-box h4 {
+            color: #c05621;
+            margin-top: 0;
+        }
+
+        .coefficient-calc {
+            background: var(--bg-light);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .coefficient-calc h5 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .matrix-equation {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .derivation-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .final-result {
+            background: #c6f6d5;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .subsection {
+            margin: 30px 0;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .subsection:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .annotation {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Stiffness and Compliance Matrices</h1>
+            <p class="subtitle">Structural Mechanics - Force-Based Approaches and Virtual Work Methods</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction -->
+            <section class="section" id="introduction">
+                <h2>1. Introduction to Stiffness and Compliance Matrices</h2>
+                
+                <p>Within the context of force-based approaches, the PCVW (Principle of Complementary Virtual Work) and Menabrea's theorem can be used for evaluating:</p>
+                
+                <ol class="numbered-list">
+                    <li>Unknown reaction forces (statically indeterminate systems)</li>
+                    <li>Displacements in given points for given set of loads</li>
+                </ol>
+                
+                <p>Consider now this second case. The PCVW for the DSV beam was found to be:</p>
+                
+                <div class="boxed-equation">
+                    \[\int_{\ell} \left( \delta T_z \frac{T_z}{EA} + \delta M_x \frac{M_x}{EJ_{xx}} + \delta M_y \frac{M_y}{EJ_{yy}} + \delta T_x \frac{T_x}{GA_x^*} + \delta T_y \frac{T_y}{GA_y^*} + \delta M_z \frac{M_z}{GJ} \right) dz = \delta F_i \hat{u}_i + \delta M_j \hat{\theta}_j + \delta \bar{F}_r u_r + \delta \bar{M}_s \theta_s\]
+                </div>
+                
+                <p><em>Note: The components due to \(T_x\), \(T_y\), \(M_z\) have not been discussed yet, and are reported here for generality purposes.</em></p>
+                
+                <h3>Simple Example: Evaluating Rotation</h3>
+                
+                <p>To understand how to evaluate displacement/rotations, consider this simple example:</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/cantilever_beam_coordinate_system.png" alt="Cantilever beam with fixed support at left end, coordinate system showing y-axis vertical and z-axis horizontal, and force F applied at free end">
+                    <figcaption>Figure 1.1: Cantilever beam with applied force F and unknown rotation θ at free end</figcaption>
+                </figure>
+                
+                <p>Which is the rotation \(\theta\)?</p>
+                
+                <p>The internal bending moment is:</p>
+                \[M_x = -Fz\]
+                
+                <p>The real generalized deformation is then:</p>
+                \[\frac{M_x}{EJ_{xx}} = -\frac{Fz}{EJ_{xx}}\]
+            </section>
+
+            <!-- Section 2: Dummy System and PCVW Application -->
+            <section class="section" id="dummy-system">
+                <h2>2. The Dummy System Approach</h2>
+                
+                <p>Consider now a properly selected "dummy" system for evaluating a suitable set of equilibrated variation of forces.</p>
+                
+                <p>The dummy system is chosen with regard to the displacement component to be evaluated, in such a manner that the unknown, in this case \(\theta\), appears in the external work.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/dummy_system_unit_moment.png" alt="Simple cantilever beam with fixed support at left and unit moment applied at free end, labeled as dummy system">
+                    <figcaption>Figure 2.1: Dummy system with unit moment applied at free end</figcaption>
+                </figure>
+                
+                <p>For the dummy system: \(\delta M_x = -1\)</p>
+                
+                <h3>Application of PCVW</h3>
+                
+                <p>The application of the PCVW is:</p>
+                
+                \[\int_0^{\ell} \frac{Fz}{EJ_{xx}} dz = \theta\]
+                
+                <div class="final-result">
+                    <strong>Result:</strong>
+                    \[\boxed{\theta = \frac{F\ell^2}{2EJ_{xx}}}\]
+                </div>
+                
+                <h3>External Virtual Work</h3>
+                
+                <p>In this example no displacements were imposed, so:</p>
+                
+                \[\delta W_e^* = \left| \delta F_i \hat{u}_i + \delta M_j \hat{\theta}_j \right| + \delta \bar{F}_r u_r + \delta \bar{M}_s \theta_s\]
+                
+                <p>The dummy system was taken by considering a variation of the applied moment \(\delta \hat{M} = 1\), while \(\delta \hat{F} = 0\).</p>
+                
+                <p>So:</p>
+                \[\delta W_e^* = \delta \hat{M} \theta = \theta\]
+                
+                <p>The quantity \(\delta M_x\) in the expression of \(\delta W_i^*\) is the equilibrated variation of bending moment due to the application of \(\delta \hat{M}\).</p>
+            </section>
+
+            <!-- Section 3: Stiffness Matrix for Cantilever Beam -->
+            <section class="section" id="cantilever-stiffness">
+                <h2>3. Stiffness Matrix for a Cantilever Beam</h2>
+                
+                <p>Consider a cantilever beam and denote with \(F_i\) and \(U_i\) the generalized forces and displacements, respectively.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/cantilever_generalized_forces_displacements.png" alt="Cantilever beam showing generalized forces and displacements with coordinate system">
+                    <figcaption>Figure 3.1: Generalized forces (F₁, F₂, F₃) and displacements (U₁, U₂, U₃) for a cantilever beam</figcaption>
+                </figure>
+                
+                <p>The convention for \(F_i\) and \(U_i\) is completely arbitrary.</p>
+                
+                <h3>Compliance and Stiffness Relations</h3>
+                
+                <p>Obtaining the compliance and the stiffness matrices means obtaining a relation in the form:</p>
+                
+                <div class="boxed-equation">
+                    \[\underline{U} = \underline{C} \, \underline{F} \quad \text{(Compliance)}\]
+                    \[\underline{F} = \underline{K} \, \underline{U} \quad \text{(Stiffness)} \quad \text{with} \quad \underline{K} = \underline{C}^{-1}\]
+                </div>
+                
+                <div class="remark-box">
+                    <h4>Remarks</h4>
+                    <ol class="numbered-list">
+                        <li><strong>Linearity and Superposition:</strong> The procedure relies upon the linearity assumption of the problem. It follows that the principle of superposition holds. (The displacement \(U_i\) due to the application of \(F_A\) and \(F_B\) is \(U_i = U_A + U_B\) where \(U_A\) is the displacement due to \(F_A\) and \(U_B\) is the displacement due to \(F_B\))</li>
+                        <li><strong>Approach Types:</strong> The compliance/stiffness matrix will be derived in the context of a force-based approach. The result will be the compliance matrix while the stiffness matrix will be derived indirectly, after inverting \(\underline{C}\).
+                            <ul class="bullet-list">
+                                <li>Force-based approaches → \(\underline{C}\) (\(\underline{K} = \underline{C}^{-1}\))</li>
+                                <li>Displacement-based approaches → \(\underline{K}\) (\(\underline{C} = \underline{K}^{-1}\))</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 4: Evaluation of Compliance Coefficients -->
+            <section class="section" id="compliance-coefficients">
+                <h2>4. Evaluation of Compliance Coefficients</h2>
+                
+                <p>The compliance matrix relates displacements to forces:</p>
+                
+                <div class="matrix-equation">
+                    \[\begin{Bmatrix} U_1 \\ U_2 \\ U_3 \end{Bmatrix} = \begin{bmatrix} C_{11} & C_{12} & C_{13} \\ & C_{22} & C_{23} \\ & & C_{33} \end{bmatrix} \begin{Bmatrix} F_1 \\ F_2 \\ F_3 \end{Bmatrix}\]
+                </div>
+                
+                <p>The generic term \(C_{ij}\) denotes the <strong>i-th displacement due to the j-th unitary force</strong>.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/unit_force_virtual_displacement.png" alt="Two cantilever beam diagrams showing application of unit force F1 and unit virtual displacement">
+                    <figcaption>Figure 4.1: Real system with force F₁ and dummy system with unit force for C₁₁ evaluation</figcaption>
+                </figure>
+                
+                <div class="subsection">
+                    <div class="coefficient-calc">
+                        <h5>① Coefficient \(C_{11}\) (Axial)</h5>
+                        <p>Real system: \(T_z = F_1\)</p>
+                        <p>Dummy system: \(\delta T_z = 1\)</p>
+                        \[\int_0^{\ell} \frac{\delta T_z \cdot T_z}{EA} = 1 \cdot U_1\]
+                        \[F_1 \frac{\ell}{EA} = U_1\]
+                        <div class="final-result">
+                            \[\boxed{C_{11} = \frac{\ell}{EA}}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/compliance_coefficient_loading_cases.png" alt="Multiple cantilever beam diagrams showing different loading conditions for compliance matrix coefficients">
+                    <figcaption>Figure 4.2: Loading configurations for compliance coefficients C₁₂, C₁₃, C₂₂, and C₂₃</figcaption>
+                </figure>
+                
+                <div class="subsection">
+                    <div class="coefficient-calc">
+                        <h5>② Coefficient \(C_{12}\)</h5>
+                        <p>Real system: \(M_x = 0\), \(T_z = 0\)</p>
+                        <p>Dummy system: \(\delta M_x = 0\), \(\delta T_z = 1\)</p>
+                        <div class="final-result">
+                            \[\boxed{C_{12} = 0}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="coefficient-calc">
+                        <h5>③ Coefficient \(C_{13}\)</h5>
+                        <p>Real system: \(M_x = -F_3\), \(T_z = 0\)</p>
+                        <p>Dummy system: \(\delta M_x = 0\), \(\delta T_z = -1\)</p>
+                        <div class="final-result">
+                            \[\boxed{C_{13} = 0}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="coefficient-calc">
+                        <h5>④ Coefficient \(C_{22}\) (Bending - Transverse Displacement)</h5>
+                        <p>Real system: \(M_x = -F_2 z\)</p>
+                        <p>Dummy system: \(\delta M_x = -z\)</p>
+                        \[U_2 = \int_0^{\ell} \frac{F_2 z^2}{EJ} dz = \frac{F_2 \ell^3}{3EJ}\]
+                        <div class="final-result">
+                            \[\boxed{C_{22} = \frac{\ell^3}{3EJ}}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="coefficient-calc">
+                        <h5>⑤ Coefficient \(C_{23}\) (Coupled Bending)</h5>
+                        <p>Real system: \(M_x = -F_3\)</p>
+                        <p>Dummy system: \(\delta M_x = -z\)</p>
+                        \[U_2 = \int_0^{\ell} \frac{F_3 z}{EJ} dz = \frac{F_3 \ell^2}{2EJ}\]
+                        <div class="final-result">
+                            \[\boxed{C_{23} = \frac{\ell^2}{2EJ}}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/compliance_coefficient_c33.png" alt="Cantilever beam with moment F3 and unit displacement showing compliance coefficient C33 evaluation">
+                    <figcaption>Figure 4.3: Loading configuration for compliance coefficient C₃₃</figcaption>
+                </figure>
+                
+                <div class="subsection">
+                    <div class="coefficient-calc">
+                        <h5>⑥ Coefficient \(C_{33}\) (Rotational)</h5>
+                        <p>Real system: \(M_x = -F_3\)</p>
+                        <p>Dummy system: \(\delta M_x = -1\)</p>
+                        \[U_3 = \int_0^{\ell} \frac{F_3}{EJ} dz = \frac{F_3 \ell}{EJ}\]
+                        <div class="final-result">
+                            \[\boxed{C_{33} = \frac{\ell}{EJ}}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Complete Compliance Matrix</h3>
+                
+                <p>The compliance matrix is then obtained as:</p>
+                
+                <div class="final-result">
+                    \[\begin{Bmatrix} U_1 \\ U_2 \\ U_3 \end{Bmatrix} = \begin{bmatrix} \frac{\ell}{EA} & 0 & 0 \\ 0 & \frac{\ell^3}{3EJ} & \frac{\ell^2}{2EJ} \\ 0 & \frac{\ell^2}{2EJ} & \frac{\ell}{EJ} \end{bmatrix} \begin{Bmatrix} F_1 \\ F_2 \\ F_3 \end{Bmatrix} \quad \text{(Compliance)}\]
+                </div>
+                
+                <h3>Stiffness Matrix</h3>
+                
+                <p>The stiffness matrix is available after inverting \(\underline{C}\):</p>
+                
+                <div class="final-result">
+                    \[\begin{Bmatrix} F_1 \\ F_2 \\ F_3 \end{Bmatrix} = \begin{bmatrix} \frac{EA}{\ell} & & \\ & \frac{12EJ}{\ell^3} & -\frac{6EJ}{\ell^2} \\ & -\frac{6EJ}{\ell^2} & \frac{4EJ}{\ell} \end{bmatrix} \begin{Bmatrix} U_1 \\ U_2 \\ U_3 \end{Bmatrix} \quad \text{(Stiffness)}\]
+                </div>
+            </section>
+
+            <!-- Section 5: Extension to Generic Beam Systems -->
+            <section class="section" id="generic-systems">
+                <h2>5. Extension to a Generic Beam System</h2>
+                
+                <p>The same approach can be adopted when dealing with a more complex system of beams.</p>
+                
+                <p>The derivation of the compliance matrix represents a sort of <strong>condensation</strong> of the structure's response to a few points of interest.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/generic_beam_system_extension.png" alt="Generic beam system diagram showing multiple connected beams with nodes and force points">
+                    <figcaption>Figure 5.1: Generic beam system with multiple connected members and applied forces</figcaption>
+                </figure>
+                
+                <p>After defining the forces and displacement of interest, a relation can be found in the form \(\underline{U} = \underline{C} \, \underline{F}\)</p>
+                
+                <p>where the generic contribution \(C_{ij}\) represents the i-th displacement due to a unitary force j.</p>
+                
+                <div class="boxed-content">
+                    <p>\(C_{ij}\) is obtained by considering a real system where the force \(F_j\) is applied, and a dummy system with unitary force \(F_i\)</p>
+                    <p style="margin-top: 15px;"><strong>Summary:</strong></p>
+                    <ul class="bullet-list">
+                        <li>\(C_{ij}\) is obtained with the <strong>i-th dummy system</strong></li>
+                        <li>and the <strong>j-th real system</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 6: Free-Free Beam -->
+            <section class="section" id="free-free-beam">
+                <h2>6. Free-Free Beam</h2>
+                
+                <p>The most general case is given by a beam which is free at the two ends.</p>
+                
+                <ul class="bullet-list">
+                    <li>From this case any set of boundary conditions can be derived as a special case.</li>
+                    <li>The resulting stiffness matrix will be useful for the computer implementation of a simple code for analyzing relatively complex systems of beams.</li>
+                </ul>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/free_free_beam_forces.png" alt="Free-free beam diagram showing two ends (A and B) with force vectors">
+                    <figcaption>Figure 6.1: Free-free beam with generalized forces at both ends A and B</figcaption>
+                </figure>
+                
+                <p>The goal is to derive a relation in the form:</p>
+                
+                <div class="matrix-equation">
+                    \[\begin{Bmatrix} \underline{F}_A \\ \underline{F}_B \end{Bmatrix} = \begin{bmatrix} \underline{K}_{AA} & \underline{K}_{AB} \\ \underline{K}_{BA} & \underline{K}_{BB} \end{bmatrix} \begin{Bmatrix} \underline{U}_A \\ \underline{U}_B \end{Bmatrix}\]
+                </div>
+                
+                <p>where:</p>
+                <ul class="bullet-list">
+                    <li>\(\underline{F}_A = \{F_1 \quad F_2 \quad F_3\}^T\) and \(\underline{U}_A = \{U_1 \quad U_2 \quad U_3\}^T\)</li>
+                    <li>\(\underline{F}_B = \{F_4 \quad F_5 \quad F_6\}^T\) and \(\underline{U}_B = \{U_4 \quad U_5 \quad U_6\}^T\)</li>
+                </ul>
+                
+                <h3>Submatrix Evaluation Strategy</h3>
+                
+                <p><strong>①</strong> \(\underline{K}_{BB}\) is available from the previous results of the cantilever beam.</p>
+                
+                <p><strong>②</strong> \(\underline{K}_{AA}\) can be obtained with a similar procedure (by repeating all the steps)</p>
+                
+                <h4>Smarter Approach for \(\underline{K}_{AA}\)</h4>
+                
+                <p>A smarter approach is to consider that:</p>
+                
+                <ol class="numbered-list">
+                    <li>The direct terms \(C_{\alpha\alpha}\) do not change (the displacement \(U_1\) due to \(F_1\) is equal to the displacement \(U_4\) due to \(F_4\), and similarly for the other terms)</li>
+                    <li>The mixed contributions \(C_{\alpha\beta}\) may change sign. (\(C_{23}\) and \(C_{32}\), as \(C_{13} = C_{23} = 0\))</li>
+                </ol>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/beam_displacement_rotation_directions.png" alt="Multiple beam diagrams showing force F3 and F6 at ends A and B, illustrating displacement and rotation directions">
+                    <figcaption>Figure 6.2: Sign changes in mixed compliance coefficients due to force direction</figcaption>
+                </figure>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <p><strong>At End A:</strong></p>
+                        <p>\(F_3\) determines a displacement \(U_2\) in the <u>downward</u> direction</p>
+                        <p>\(F_2\) determines a rotation in the <u>clockwise direction</u> (negative)</p>
+                    </div>
+                    <div class="column">
+                        <p><strong>At End B:</strong></p>
+                        <p>\(F_6\) determines a displacement \(U_5\) in the <u>upward</u> direction</p>
+                        <p>\(F_5\) determines a rotation in the <u>counterclockwise</u> direction (positive)</p>
+                    </div>
+                </div>
+                
+                <p><strong>Result:</strong> \(C_{23}\) and \(C_{32}\) change sign!</p>
+                
+                <p>Thus:</p>
+                
+                <div class="matrix-equation">
+                    \[\underline{C}_{AA} = \begin{bmatrix} C_{11} & 0 & 0 \\ 0 & C_{22} & -C_{23} \\ 0 & -C_{23} & C_{33} \end{bmatrix}\]
+                </div>
+                
+                <p>and so:</p>
+                
+                <div class="final-result">
+                    \[\underline{K}_{AA} = \begin{bmatrix} \frac{EA}{\ell} & & \\ & \frac{12EJ}{\ell^3} & \frac{6EJ}{\ell^2} \\ & \frac{6EJ}{\ell^2} & \frac{4EJ}{\ell} \end{bmatrix}\]
+                </div>
+                
+                <h3>③ Evaluation of \(\underline{K}_{AB}\)</h3>
+                
+                <p>Even in this case, it is possible to obtain \(\underline{K}_{AB}\) term by term. A smarter strategy is to proceed as follows.</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/free_free_beam_equilibrium.png" alt="Free-free beam diagram with forces at both ends showing equilibrium relationships">
+                    <figcaption>Figure 6.3: Equilibrium relationships for the free-free beam</figcaption>
+                </figure>
+                
+                <p>From equilibrium:</p>
+                
+                <div class="derivation-step">
+                    \[F_1 = -F_4\]
+                    \[F_2 = -F_5\]
+                    \[F_3 = -F_6 - F_5 \ell\]
+                </div>
+                
+                <p>or \(\underline{F}_A = \underline{T} \, \underline{F}_B\) with:</p>
+                
+                <div class="matrix-equation">
+                    \[\underline{T} = \begin{bmatrix} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & -\ell & -1 \end{bmatrix}\]
+                </div>
+                
+                <p>Recall now that:</p>
+                
+                \[\begin{Bmatrix} \underline{F}_A \\ \underline{F}_B \end{Bmatrix} = \begin{bmatrix} \underline{K}_{AA} & \underline{K}_{AB} \\ \underline{K}_{AB}^T & \underline{K}_{BB} \end{bmatrix} \begin{Bmatrix} \underline{U}_A \\ \underline{U}_B \end{Bmatrix}\]
+                
+                <p>Assume the set \(\underline{U}_A = \underline{0}\), then:</p>
+                
+                <div class="derivation-step">
+                    \[\underline{F}_A = \underline{K}_{AB} \, \underline{U}_B\]
+                    \[\underline{F}_B = \underline{K}_{BB} \, \underline{U}_B\]
+                </div>
+                
+                <p>but \(\underline{F}_A = \underline{T} \, \underline{F}_B\), so:</p>
+                
+                <div class="boxed-equation">
+                    \[\boxed{\underline{K}_{AB} = \underline{T} \, \underline{K}_{BB}}\]
+                </div>
+                
+                <p>It is then obtained that:</p>
+                
+                <div class="final-result">
+                    \[\underline{K}_{AB} = \begin{bmatrix} -\frac{EA}{\ell} & & \\ & -\frac{12EJ}{\ell^3} & \frac{6EJ}{\ell^2} \\ & -\frac{6EJ}{\ell^2} & \frac{2EJ}{\ell} \end{bmatrix}\]
+                </div>
+                
+                <p>With a similar approach it is found \(\underline{K}_{BA} = \underline{K}_{AB}^T\)</p>
+                
+                <h3>Complete Stiffness Matrix</h3>
+                
+                <p><strong>Summarizing</strong>, the stiffness matrix reads:</p>
+                
+                <div class="final-result">
+                    \[\underline{K} = \begin{bmatrix} \frac{EA}{\ell} & & & -\frac{EA}{\ell} & & \\ & \frac{12EJ}{\ell^3} & \frac{6EJ}{\ell^2} & & -\frac{12EJ}{\ell^3} & \frac{6EJ}{\ell^2} \\ & \frac{6EJ}{\ell^2} & \frac{4EJ}{\ell} & & -\frac{6EJ}{\ell^2} & \frac{2EJ}{\ell} \\ -\frac{EA}{\ell} & & & \frac{EA}{\ell} & & \\ & -\frac{12EJ}{\ell^3} & -\frac{6EJ}{\ell^2} & & \frac{12EJ}{\ell} & -\frac{6EJ}{\ell^2} \\ & \frac{6EJ}{\ell^2} & \frac{2EJ}{\ell} & & -\frac{6EJ}{\ell^2} & \frac{4EJ}{\ell} \end{bmatrix}\]
+                </div>
+            </section>
+
+            <!-- Section 7: Axial and Bending Stiffness -->
+            <section class="section" id="axial-bending-stiffness">
+                <h2>7. Axial and Bending Stiffness</h2>
+                
+                <p>Evaluate now the role played by the axial and the bending stiffness and the corresponding load paths.</p>
+                
+                <p>Consider the cantilever beam here below:</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/cantilever_axial_bending_stiffness.png" alt="Cantilever beam with forces F5, F4, and F6 at free end">
+                    <figcaption>Figure 7.1: Cantilever beam with axial force F₄, transverse force F₅, and moment F₆</figcaption>
+                </figure>
+                
+                <p>The stiffness matrix was found to be:</p>
+                
+                <div class="matrix-equation">
+                    \[\underline{K}_{BB} = \begin{bmatrix} \frac{EA}{\ell} & & \\ & \frac{12EJ}{\ell^3} & -\frac{6EJ}{\ell^2} \\ & -\frac{6EJ}{\ell^2} & \frac{4EJ}{\ell} \end{bmatrix}\]
+                </div>
+                
+                <h3>Nondimensional Analysis</h3>
+                
+                <p>For comparing the role played by the various contributions it is useful to highlight some <strong>nondimensional</strong> parameters:</p>
+                
+                <div class="boxed-content">
+                    <ol class="numbered-list">
+                        <li>\(EA\) is, dimensionally, a force. So:
+                            <ul class="bullet-list">
+                                <li>Forces can be normalized with respect to \(EA\)</li>
+                                <li>Moments can be normalized with respect to \(EA \cdot \ell\)</li>
+                            </ul>
+                        </li>
+                        <li>The displacements can be normalized with respect to \(\ell\)</li>
+                    </ol>
+                    <p style="margin-top: 15px;"><strong>Normalized quantities:</strong></p>
+                    \[\bar{F} = \frac{F}{EA} \qquad \bar{M} = \frac{M}{EA\ell} \qquad \bar{u} = \frac{u}{\ell}\]
+                </div>
+                
+                <h3>Derivation of Nondimensional Relations</h3>
+                
+                <p>Starting from the dimensional relations:</p>
+                
+                <div class="derivation-step">
+                    \[F_4 = \frac{EA}{\ell} U_4 \quad \rightarrow \quad \text{Multiply by } \frac{1}{EA}\]
+                    \[F_5 = \frac{12EJ}{\ell^3} U_5 - \frac{6EJ}{\ell^2} U_6 \quad \rightarrow \quad \text{Multiply by } \frac{1}{EA}\]
+                    \[F_6 = -\frac{6EJ}{\ell^2} U_5 + \frac{4EJ}{\ell} U_6 \quad \rightarrow \quad \text{Multiply by } \frac{1}{EA\ell}\]
+                </div>
+                
+                <p>After normalization:</p>
+                
+                <div class="derivation-step">
+                    \[\frac{F_4}{EA} = \frac{U_4}{\ell}\]
+                    \[\frac{F_5}{EA} = \frac{12EJ}{EA\ell^2} \frac{U_5}{\ell} - \frac{6EJ}{EA\ell^2} U_6\]
+                    \[\frac{F_6}{EA\ell} = -\frac{6EJ}{EA\ell^2} \frac{U_5}{\ell} + \frac{4EJ}{EA\ell^2}\]
+                </div>
+                
+                <p>Defining now the <strong>slenderness ratio</strong>:</p>
+                
+                <div class="boxed-equation">
+                    \[\boxed{\lambda^2 = \frac{EA\ell^2}{EJ}}\]
+                </div>
+                
+                <p>it is possible to write the relation between nondimensional forces and nondimensional displacements:</p>
+                
+                <div class="final-result">
+                    \[\begin{Bmatrix} \bar{F}_4 \\ \bar{F}_5 \\ \bar{F}_6 \end{Bmatrix} = \begin{bmatrix} 1 & & \\ & \frac{12}{\lambda^2} & -\frac{6}{\lambda^2} \\ & -\frac{6}{\lambda^2} & \frac{4}{\lambda^2} \end{bmatrix} \begin{Bmatrix} \bar{U}_4 \\ \bar{U}_5 \\ \bar{U}_6 \end{Bmatrix}\]
+                </div>
+                
+                <div class="remark-box">
+                    <h4>Remarks on Slenderness</h4>
+                    <ul class="bullet-list">
+                        <li>When \(\lambda^2\) is high, the bending-related contributions tend to zero</li>
+                        <li>\(\lambda^2\) is high when \(EA\ell^2 >> EJ\). This condition is verified whenever:
+                            <ol class="numbered-list">
+                                <li>\(EA\) is high</li>
+                                <li>\(\ell\) is high (for fixed sectional properties \(EA\) and \(EJ\), the value of \(\lambda\) increases as \(\ell\) is increased)</li>
+                            </ol>
+                        </li>
+                    </ul>
+                    <p><strong>Conclusion:</strong> The major contributions to the load carrying capability are due to the axial behavior whenever \(\lambda^2\) is high.</p>
+                    <p>This is true for beams characterized by high values of axial stiffness \(EA\) (high has to be intended with respect to \(EJ\)) and/or slender beams with high \(\ell\).</p>
+                </div>
+            </section>
+
+            <!-- Section 8: Structural Efficiency and Load Paths -->
+            <section class="section" id="structural-efficiency">
+                <h2>8. Structural Efficiency and Load Paths</h2>
+                
+                <h3>Axial vs. Bending Efficiency</h3>
+                
+                <ul class="bullet-list">
+                    <li>A structure which is designed for sustaining the loads via <strong>axial behaviour</strong> is an <u>extremely efficient</u> structure.</li>
+                    <li>On the contrary, the efficiency reduces when the loads are carried via <strong>bending response</strong>.</li>
+                    <li>Systems of trusses are <u>highly efficient</u> structures and for this reason they are widely employed in the space field.</li>
+                    <li>Even the early aeronautical structures were based on the axial load carrying capabilities of the wings.</li>
+                </ul>
+                
+                <p>This kind of configuration (truss) was changed for aerodynamic reasons. The structure is efficient!</p>
+                
+                <h3>Example: Statically Indeterminate Frame</h3>
+                
+                <p>According to what has been discussed, a statically indeterminate structure as below:</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/frame_structure_load_path.png" alt="Structural frame diagram showing vertical and horizontal members with numbered nodes and load path">
+                    <figcaption>Figure 8.1: Statically indeterminate frame with load path via axial response in member 1</figcaption>
+                </figure>
+                
+                <p>will be characterized by a load path such that most of the load is carried via <strong>axial response by beam 1</strong>.</p>
+                
+                <p>In fact this structure can be seen as two parallel springs:</p>
+                
+                <div class="derivation-step">
+                    <p>where \(K_1 = \frac{EA}{\ell}\) (axial stiffness)</p>
+                    <p>and \(K_2 = \frac{3EJ}{\ell^3}\) (bending stiffness)</p>
+                </div>
+                
+                <p>Thus:</p>
+                <div class="derivation-step">
+                    \[F_1 = K_1 U\]
+                    \[F_2 = K_2 U\]
+                    \[\Rightarrow \frac{F_1}{F_2} = \frac{EA}{\ell} \cdot \frac{\ell^3}{3EJ} = \frac{EA\ell^2}{3EJ} = \frac{\lambda^2}{3}\]
+                </div>
+                
+                <p>Clearly the reaction forces behave accordingly: \(V_1 >> V_2\)</p>
+                
+                <h3>Frame with Bending Response</h3>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/frame_bending_axial_behavior.png" alt="Frame structure with three numbered members showing bending response for beams 1 and 3, and axial behavior for diagonal member 2">
+                    <figcaption>Figure 8.2: Frame characterized by bending response for beams ① and ③, while beam ② carries load via axial behaviour</figcaption>
+                </figure>
+                
+                <p>For the same reasons, a beam system as in the figure is characterized by a <strong>bending response</strong> for beams ① and ③, while beam ② carries the load via <strong>axial behaviour</strong>.</p>
+                
+                <p>A much more <u>efficient</u> design would be the following:</p>
+                
+                <div class="boxed-content">
+                    <p>A triangular frame where all of the beams are working in <strong>axial mode</strong> (no bending energy is involved)</p>
+                </div>
+                
+                <ul class="bullet-list">
+                    <li>Note that the diagonal element is loaded in <strong>traction</strong>. If the diagonal were placed in the other direction, a <strong>buckling requirement</strong> would enter the design.</li>
+                    <li>In the previous sketch the elements were connected with <strong>hinges</strong>, thus no bending moments could be introduced. This is clearly an idealization as, in a real structure, the constraint will not be a perfect hinge and the introduction of some sort of bending moments would be permitted.</li>
+                </ul>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/frame_ideal_versus_real_behavior.png" alt="Multiple frame configurations showing ideal versus real structural behavior with hinges and supports">
+                    <figcaption>Figure 8.3: Comparison of ideal (hinged) versus real (moment-carrying) joint behavior</figcaption>
+                </figure>
+                
+                <h3>Ideal vs. Real Structural Behavior</h3>
+                
+                <p>If the real structure, after idealizing all the junctions as hinges, is statically determined (thus no kinematisms are possible) then the behaviour will resemble the ideal one, and the loads will be carried via <strong>axial behaviour</strong>.</p>
+                
+                <p>In other words, if a <u>purely axial load path is possible</u>, then the structure will use it for sustaining loads. (It is stiffer with respect to bending).</p>
+                
+                <p>Clearly, if the axial path is not possible due to onset of a mechanism, the response requires the contribution of bending.</p>
+                
+                <div class="boxed-content">
+                    <p><strong>Key Insight:</strong> If a purely axial load path is NOT possible due to the formation of a mechanism, the structure must rely on bending to carry the loads.</p>
+                </div>
+            </section>
+
+            <!-- Section 9: Contribution of Shear -->
+            <section class="section" id="shear-contribution">
+                <h2>9. Contribution of Shear to the Internal Complementary Virtual Work</h2>
+                
+                <p>It was mentioned that in many cases (more specifically, for slender beams) the energy contribution associated with the shear can be neglected.</p>
+                
+                <p>To justify this assumption consider the example here below:</p>
+                
+                <figure>
+                    <img src="images/LN_C2_3_Compliance_matrix/bending_shear_contribution_comparison.png" alt="Two cantilever beam diagrams comparing bending and shear contributions">
+                    <figcaption>Figure 9.1: Cantilever beam for comparing bending and shear contributions to virtual work</figcaption>
+                </figure>
+                
+                <h3>Bending Contribution</h3>
+                
+                <div class="derivation-step">
+                    \[\delta W^*_{i, bending} = \int_0^{\ell} \frac{Fz^2}{EJ} dz = \frac{F\ell^3}{3EJ}\]
+                </div>
+                
+                <h3>Shear Contribution</h3>
+                
+                <div class="derivation-step">
+                    \[\delta W^*_{i, shear} = \int_0^{\ell} \frac{\delta T \cdot T}{GA^*} dz = \frac{F\ell}{GA^*}\]
+                </div>
+                
+                <h3>Ratio Analysis</h3>
+                
+                <p>The ratio between the two contributions is then:</p>
+                
+                <div class="derivation-step">
+                    \[\frac{\delta W^*_{i, bend}}{\delta W^*_{i, shear}} = \frac{F\ell^3}{3EJ} \cdot \frac{GA^*}{F\ell} = \frac{GA^* \ell^2}{3EJ} \propto \frac{A\ell^2}{J}\]
+                </div>
+                
+                <p>(\(A^*\) is of the order of \(A\); \(G\) is of the order of \(E\))</p>
+                
+                <div class="final-result">
+                    <strong>Result:</strong>
+                    \[\boxed{\frac{\delta W^*_{i, bend}}{\delta W^*_{i, shear}} \propto \lambda^2}\]
+                    <p>with \(\lambda\) = slenderness ratio</p>
+                </div>
+                
+                <p><strong>For slender beams</strong> the strain energy due to bending is much higher in comparison to the shear contribution.</p>
+                
+                <h3>Thin-Walled Beams</h3>
+                
+                <p><u>For thin-walled beams</u> this will NOT be, in general, true.</p>
+                
+                <p>As a matter of fact:</p>
+                
+                <div class="derivation-step">
+                    \[\frac{GA^*\ell^2}{3EJ} \propto \frac{A\ell^2}{J} \quad \text{iff} \quad A^* \sim A\]
+                </div>
+                
+                <p>This is the case of a <strong>rectangular beam</strong>, where:</p>
+                
+                <div class="boxed-equation">
+                    \[A^*/A = 5/6 = \chi \quad \text{(shear factor)}\]
+                </div>
+                
+                <p>For <strong>thin walled beams</strong> \(\chi << 1\), then, in many cases, the shear deformability will <strong>NOT</strong> be negligible.</p>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

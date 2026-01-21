@@ -1,0 +1,138 @@
+{
+  "aerodynamic_shape_comparison_ribs.png": {
+    "suggested_name": "aerodynamic_shape_comparison_ribs",
+    "description": "Comparison of aerodynamic cross-sections showing preserved shape with ribs versus deformed shape with altered aerodynamic properties"
+  },
+  "fuselage_cross_section_bent_panels.png": {
+    "suggested_name": "fuselage_cross_section_bent_panels",
+    "description": "Cross-sectional views of aircraft fuselage showing bent cover panels supported by ribs with distributed loads indicated by arrows"
+  },
+  "wing_panel_load_introduction_ribs.png": {
+    "suggested_name": "wing_panel_load_introduction_ribs",
+    "description": "Wing panel diagrams showing load introduction at engine location and resulting rib placement for distributed loads"
+  },
+  "tapered_wing_rib_distribution.png": {
+    "suggested_name": "tapered_wing_rib_distribution",
+    "description": "Tapered wing section diagrams showing progressive rib distribution from sparse to dense spacing for homogeneous load distribution"
+  },
+  "wing_rib_spacing_parameters.png": {
+    "suggested_name": "wing_rib_spacing_parameters",
+    "description": "Wing section with rib spacing diagram showing chord length c, pitch p, and rib spacing ratio definition"
+  },
+  "rib_spar_web_load_transfer.png": {
+    "suggested_name": "rib_spar_web_load_transfer",
+    "description": "Three-dimensional structural diagrams showing ribs and spar webs with distributed loads transferred between panels"
+  },
+  "panel_to_rib_load_transfer_shear.png": {
+    "suggested_name": "panel_to_rib_load_transfer_shear",
+    "description": "Structural frame diagrams showing load transfer from panels to ribs with corresponding shear flow distributions"
+  },
+  "wing_planform_rib_locations.png": {
+    "suggested_name": "wing_planform_rib_locations",
+    "description": "Tapered wing planform showing rib locations R1 through R6 with loads reported to specific ribs"
+  },
+  "thin_walled_beam_internal_forces.png": {
+    "suggested_name": "thin_walled_beam_internal_forces",
+    "description": "Thin-walled beam diagrams showing distributed loads and corresponding internal shear force and moment distributions"
+  },
+  "beam_section_distributed_loads_shear.png": {
+    "suggested_name": "beam_section_distributed_loads_shear",
+    "description": "Three-dimensional beam section diagrams showing distributed loads and constant shear flows along beam axis"
+  },
+  "beam_deformation_with_without_ribs.png": {
+    "suggested_name": "beam_deformation_with_without_ribs",
+    "description": "Three-dimensional beam section showing deformation with and without ribs, illustrating shape preservation and stress distribution"
+  },
+  "beam_closely_spaced_ribs_stress.png": {
+    "suggested_name": "beam_closely_spaced_ribs_stress",
+    "description": "Beam with closely spaced ribs showing local stress effects and zero stress condition"
+  },
+  "thin_walled_beam_two_ribs_torsion.png": {
+    "suggested_name": "thin_walled_beam_two_ribs_torsion",
+    "description": "Three-dimensional thin-walled beam with two ribs showing torsional moments M1 and M2, with corresponding torque diagram and extracted middle rib section"
+  },
+  "rib_shear_flow_equilibrium.png": {
+    "suggested_name": "rib_shear_flow_equilibrium",
+    "description": "Rib section diagrams showing shear flow equilibrium with loads from adjacent sides and resulting internal shear flows"
+  },
+  "wing_rib_attachment_loads.png": {
+    "suggested_name": "wing_rib_attachment_loads",
+    "description": "Wing section showing rib attachment location with corresponding cross-sectional view and applied loads including distributed forces"
+  },
+  "beam_model_shear_flow_analysis.png": {
+    "suggested_name": "beam_model_shear_flow_analysis",
+    "description": "Beam model analysis showing external loads, equilibrating shear flows, and force resultants along webs with distributed load diagrams"
+  },
+  "beam_axis_rib_web_coordinate_system.png": {
+    "suggested_name": "beam_axis_rib_web_coordinate_system",
+    "description": "Three-dimensional beam axis diagram showing lips, web, and rib locations with coordinate system for stress evaluation"
+  },
+  "cross_section_openings_shear_flow.png": {
+    "suggested_name": "cross_section_openings_shear_flow",
+    "description": "Rectangular cross-section with openings showing shear flow distribution and simplified representation"
+  },
+  "cylindrical_structure_frames_stringers.png": {
+    "suggested_name": "cylindrical_structure_frames_stringers",
+    "description": "Cylindrical structure with longitudinal stringers and transverse frames showing load P and moment diagram with frame locations"
+  },
+  "circular_frames_shear_flow_equilibrium.png": {
+    "suggested_name": "circular_frames_shear_flow_equilibrium",
+    "description": "Three circular frame cross-sections showing shear flow distribution and load equilibrium with applied loads P and incremental loads"
+  },
+  "circular_frame_internal_actions.png": {
+    "suggested_name": "circular_frame_internal_actions",
+    "description": "Circular frame cross-sections showing equilibrium shear flows and internal actions determination with H, V, M coordinate system"
+  },
+  "circular_frame_symmetric_antisymmetric_loading.png": {
+    "suggested_name": "circular_frame_symmetric_antisymmetric_loading",
+    "description": "Circular frame diagrams showing symmetric and anti-symmetric loading decomposition with forces PA and PB"
+  },
+  "frame_loading_symmetry_conditions.png": {
+    "suggested_name": "frame_loading_symmetry_conditions",
+    "description": "Four circular frame diagrams showing symmetric and anti-symmetric loading conditions with horizontal and vertical forces"
+  },
+  "plane_symmetry_rotation_axis.png": {
+    "suggested_name": "plane_symmetry_rotation_axis",
+    "description": "Beam and circular frame diagrams illustrating plane symmetry with rotation axis and original configuration preservation"
+  },
+  "beam_symmetric_antisymmetric_examples.png": {
+    "suggested_name": "beam_symmetric_antisymmetric_examples",
+    "description": "Two beam examples showing symmetric structure with symmetric and anti-symmetric loads and boundary conditions"
+  },
+  "symmetric_beam_deflection_examples.png": {
+    "suggested_name": "symmetric_beam_deflection_examples",
+    "description": "Two symmetric beam examples with deflection diagrams showing symmetric and anti-symmetric response with constraint conditions"
+  },
+  "symmetric_structure_load_conditions.png": {
+    "suggested_name": "symmetric_structure_load_conditions",
+    "description": "Two symmetric structure examples with symmetric and anti-symmetric loads showing displacement and rotation conditions"
+  },
+  "beam_buckling_mode_shapes.png": {
+    "suggested_name": "beam_buckling_mode_shapes",
+    "description": "Simply-supported beam buckling mode shapes showing symmetric and anti-symmetric modes (1st through 4th mode)"
+  },
+  "three_dimensional_beam_forces_moments.png": {
+    "suggested_name": "three_dimensional_beam_forces_moments",
+    "description": "Three-dimensional beam diagrams showing forces, moments, displacements and rotations in coordinate system for 3D beam analysis"
+  },
+  "beam_symmetric_antisymmetric_boundary_conditions.png": {
+    "suggested_name": "beam_symmetric_antisymmetric_boundary_conditions",
+    "description": "Beam cross-section diagrams showing symmetric and anti-symmetric boundary conditions with null displacement and rotation constraints"
+  },
+  "cantilever_beam_distributed_load_diagrams.png": {
+    "suggested_name": "cantilever_beam_distributed_load_diagrams",
+    "description": "Cantilever beam with distributed load showing internal shear force Ty and moment Mx diagrams"
+  },
+  "cantilever_beam_varying_load_analysis.png": {
+    "suggested_name": "cantilever_beam_varying_load_analysis",
+    "description": "Cantilever beam with varying distributed load showing internal force diagrams for real, dummy, and PCVW analysis"
+  },
+  "symmetric_frame_inclined_members.png": {
+    "suggested_name": "symmetric_frame_inclined_members",
+    "description": "Two symmetric frame structures with inclined members and loads P showing symmetric load configuration and reaction forces"
+  },
+  "inclined_frame_reaction_forces.png": {
+    "suggested_name": "inclined_frame_reaction_forces",
+    "description": "Inclined frame member with load P showing reaction forces Rx, Ry, and Wz at support with anti-symmetry condition"
+  }
+}

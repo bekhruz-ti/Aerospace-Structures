@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ritz Method - Structural Mechanics</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .subsection {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .example {
+            margin: 25px 0;
+            padding: 25px;
+            background: #fffaf0;
+            border-radius: 8px;
+            border: 1px solid #ed8936;
+        }
+
+        .example h3 {
+            color: #c05621;
+            border-bottom: 1px solid #ed8936;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .remark {
+            margin: 20px 0;
+            padding: 20px;
+            background: #ebf8ff;
+            border-radius: 6px;
+            border-left: 3px solid #3182ce;
+        }
+
+        .remark h4 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+
+        .boxed {
+            border: 2px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .important {
+            background: #fef3c7;
+            border: 1px solid #d69e2e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-number {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+            overflow-x: auto;
+        }
+
+        .toc {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 5px 0;
+        }
+
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section, .example, .subsection {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>The Ritz Method</h1>
+            <p>Approximation Techniques in Structural Mechanics</p>
+        </header>
+
+        <nav class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">1. Introduction to the Ritz Method</a></li>
+                <li><a href="#overview">2. Overview of the Method</a></li>
+                <li><a href="#trial-functions">3. Choice of Trial Functions</a></li>
+                <li><a href="#convergence">4. Convergence of the Method</a></li>
+                <li><a href="#features">5. Features of the Ritz Method</a></li>
+                <li><a href="#galerkin">6. The Galerkin Method</a></li>
+                <li><a href="#modified-galerkin">7. Modified Galerkin Method</a></li>
+                <li><a href="#other-methods">8. Other Weighted Residual Methods</a></li>
+                <li><a href="#examples">9. Examples</a></li>
+                <li><a href="#admissible-functions">10. Admissible Functions</a></li>
+                <li><a href="#thin-plates">11. Analysis of Thin Plates</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Section 1: Introduction -->
+            <section class="section" id="introduction">
+                <h2>1. Introduction to the Ritz Method</h2>
+                
+                <p>The Ritz method belongs to the class of the "direct methods" approximating techniques which are based on the variational formulation of the problem. The differential equations governing the problem at hand are not considered. This means that the functional expressing the total potential energy is considered within the context of a displacement-based formulation. On the contrary, the indefinite equilibrium equations do not need to be accounted for.</p>
+
+                <p>It is noted that the Ritz method is here presented within the framework of displacement-based formulations. However the method, which is an approximating strategy for imposing the stationarity of a functional, can be applied even in the context of force-based formulations (for imposing the compatibility setting to zero the first variation of the total complementary energy).</p>
+
+                <p>At this stage it should be recalled that a variational principle embeds in a single scalar equation both the governing equations and the natural boundary conditions (but not the essential ones). For a displacement-based formulation, the variational principle is \(\delta \Pi = 0\) (or \(\delta W_i = \delta W_e\)); the governing equations are the equilibrium equations and the natural conditions express the equilibrium between internal and external forces at the boundaries.</p>
+            </section>
+
+            <!-- Section 2: Overview -->
+            <section class="section" id="overview">
+                <h2>2. Overview of the Method</h2>
+
+                <p>The underlying idea of the method is to <strong>transform the problem from a differential one</strong> (imposing the stationarity of a functional, \(\delta \Pi = 0\), requires the solution of the Euler-Lagrange equations, which are a set of PDE whose solution can be hard to find) <strong>into an algebraic one</strong>, with clear advantages on the simplicity in obtaining a solution.</p>
+
+                <p>The transformation (from differential to algebraic problem) is carried out by approximating the unknown functions as a linear combination of functions, called <em>trial functions</em>, each multiplied with an unknown scalar amplitudes. The scalar amplitudes then become the unknowns of the problem to be evaluated by means of the variational principle.</p>
+
+                <p>Consider a differential problem which is governed by the equation:</p>
+                \[Au = f\]
+                <p>where \(A\) is a differential operator, \(u\) is the unknown function and \(f\) is the forcing term.</p>
+
+                <p>Assume now that the weak-form of the differential problem can be written as:</p>
+                \[\mathcal{I}(u) = \frac{1}{2} \mathcal{B}(u, u) - \ell(u)\]
+                <p>where \(\mathcal{I}(u)\) is the functional, \(\mathcal{B}(\cdot, \cdot)\) is a bilinear operator (quadratic in the unknown \(u\)) and \(\ell(u)\) is a linear operator.</p>
+
+                <p>The functional \(\mathcal{I}(u)\) can be seen as the total potential energy \(\Pi\), while the differential problem \(Au = f\) the corresponding equilibrium equation. In other words \(Au = f\) is the Euler-Lagrange equation associated with the functional \(\mathcal{I}(u)\), viz. the condition that guarantees \(\delta \mathcal{I}(u) = 0\).</p>
+
+                <div class="boxed">
+                    <p>Setting: \(\delta \mathcal{I}(u) = 0\) implies that: \(Au = f\)</p>
+                </div>
+
+                <p>The Ritz method relies upon the idea of approximating the function \(u\) as:</p>
+                <div class="boxed">
+                    \[\tilde{u}(x) = \sum_{i=1}^{N} C_i \phi_i(x) + \phi_o(x)\]
+                </div>
+
+                <p>where:</p>
+                <ul>
+                    <li>\(\phi_i(x)\), \(\phi_o(x)\) are predetermined functions (thus known quantities)</li>
+                    <li>\(C_i\) are the unknown amplitudes associated with the functions \(\phi_i\)</li>
+                    <li>The functions \(\phi_i(x)\) are identically zero over those portions of the boundary where the displacements are prescribed \((\Gamma_u)\), while \(\phi_o(x)\) is introduced in order to satisfy any non-homogeneous boundary condition.</li>
+                    <li>The unknown parameters \(C_i\) are the Lagrangian coordinates of the problem, or the generalized displacements.</li>
+                </ul>
+
+                <h3>Steps of the Ritz Method</h3>
+
+                <div class="step">
+                    <p><span class="step-number">Step 1:</span> Substitute the assumed description of the unknown into the functional:</p>
+                    \[\mathcal{I}(u) \simeq \mathcal{I}(\tilde{u}) = \frac{1}{2} \mathcal{B}(\tilde{u}, \tilde{u}) - \ell(\tilde{u})\]
+                </div>
+
+                <div class="step">
+                    <p><span class="step-number">Step 2:</span> Impose the stationarity condition for the approximated functional:</p>
+                    \[\delta \mathcal{I}(\tilde{u}) = 0\]
+                    \[= \frac{\partial \mathcal{I}}{\partial C_1} \delta C_1 + \frac{\partial \mathcal{I}}{\partial C_2} \delta C_2 + \cdots \frac{\partial \mathcal{I}}{\partial C_N} \delta C_N\]
+                    \[= \frac{\partial \mathcal{I}}{\partial C_i} \delta C_i \qquad (i = 1, \ldots, N)\]
+                </div>
+
+                <p>The stationarity condition is then reduced to:</p>
+                <div class="boxed">
+                    \[\frac{\partial \mathcal{I}}{\partial C_i} = 0 \qquad (i = 1, \ldots N)\]
+                    <p style="text-align: center;">↳ N algebraic equations</p>
+                </div>
+
+                <h3>Example: Truss with Distributed Load</h3>
+
+                <p>Consider a truss of stiffness \(EA\), which is loaded with a distributed load \(\hat{n}\).</p>
+
+                <figure class="diagram">
+                    <img src="images/LN_C4_3_Ritz/cantilever_beam_distributed_load.png" alt="Cantilever beam with distributed load">
+                    <figcaption>Figure: Cantilever beam with distributed load and fixed support at left end</figcaption>
+                </figure>
+
+                <p>The differential problem reads:</p>
+                \[\begin{cases} EA u_{,xx} + \hat{n} = 0 \\ u(0) = 0 \\ EA u_{,x}(\ell) = 0 \end{cases}\]
+
+                <p>According to the notation previously introduced:</p>
+                \[\mathcal{A}(\cdot) = EA(\cdot)_{,xx}\]
+                \[f = -\hat{n}\]
+
+                <p>Looking at the variational principle:</p>
+                \[\Pi = \frac{1}{2} \int_\ell EA u_{,x}^2 \, dx - \int_\ell u \hat{n} \, dx\]
+                <p>or</p>
+                \[\mathcal{I} = \frac{1}{2} \mathcal{B}(u, u) - \ell(u)\]
+                <p>with:</p>
+                \[\mathcal{B}(\cdot, \bullet) = \int_\ell EA (\cdot)_{,x} (\bullet)_{,x} \, dx \qquad \ell(\cdot) = \int_\ell \cdot \hat{n} \, dx\]
+            </section>
+
+            <!-- Section 3: Trial Functions -->
+            <section class="section" id="trial-functions">
+                <h2>3. Choice of Trial Functions</h2>
+
+                <p>The functions \(\phi_i\) and \(\phi_o\) must be selected so that the system of solving algebraic equations is composed of \(N\) linearly independent equations (otherwise the solution cannot be obtained). In addition the functions must be chosen in order to guarantee the convergence to the exact solution, while fulfilling the compatibility conditions.</p>
+
+                <p>To summarize, the following requirements should be respected when choosing the trial functions:</p>
+
+                <div class="subsection">
+                    <h4>1. Essential Boundary Conditions</h4>
+                    <p>The functions must satisfy the <strong>essential boundary conditions</strong>, but not necessarily the natural ones. Indeed, it is recalled that the variational principle automatically embeds the natural conditions, but not the essential ones.</p>
+                    
+                    <p>Trial functions satisfying both the essential and the natural conditions are called <em>comparison functions</em>, which are particularly effective in terms of convergence properties.</p>
+
+                    <p>The displacement field is expressed as:</p>
+                    \[\tilde{u}(x) = \Sigma_i c_i \phi_i(x) + \phi_o(x)\]
+
+                    <p>The essential conditions, whenever they are specified, will be in the general form:</p>
+                    \[u = \hat{u} \qquad \text{in} \quad \Gamma_u\]
+
+                    <p>The satisfaction of this condition is guaranteed by choosing \(\phi_i\) and \(\phi_o\) such that:</p>
+                    \[\phi_i = 0 \qquad \text{in} \quad \Gamma_u\]
+                    \[\phi_o = \hat{u} \qquad \text{in} \quad \Gamma_u\]
+
+                    <p>It follows that, whenever the essential conditions are of homogeneous type (no imposed displacements) then \(\phi_o = 0\) and the Ritz approximation is in the form:</p>
+                    \[\tilde{u} = \Sigma_i C_i \phi_i(x)\]
+                </div>
+
+                <div class="subsection">
+                    <h4>2. Continuity and Differentiability</h4>
+                    <p>The functions should be <strong>continuous and differentiable</strong> up to the order required by the functional. Denoting with \(n\) the maximum order of the derivative appearing in the functional, the trial functions should be, at least, \(\mathcal{C}^{n-1}\).</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>3. Completeness and Linear Independence</h4>
+                    <p>The set of functions should be <strong>complete</strong> and the functions be <strong>linearly independent</strong>.</p>
+
+                    <p>The idea of completeness can be understood by assuming a polynomial expansion:</p>
+                    \[\tilde{u} = C_1 x + C_2 x^2 + \cdots C_N x^N + C_o \qquad \text{(complete)}\]
+
+                    <p>Assuming that, for instance, the quadratic term is removed from the expansion, it would be:</p>
+                    \[\tilde{u} = C_1 x + C_3 x^3 + \cdots C_N x^N + C_o \qquad \text{(not complete)}\]
+
+                    <p>This expansion would be incomplete; indeed the assumed expression of \(\tilde{u}\) would be never able to come arbitrarily close to a quadratic solution.</p>
+
+                    <p><strong>The completeness of the set of functions guarantees the convergence of the method</strong>, meaning that the approximate solution will become closer and closer to the exact solution as the number of terms of the expansion is increased.</p>
+                </div>
+
+                <div class="remark">
+                    <h4>Remark: Popular Choices for Shape Functions</h4>
+                    
+                    <p>The most popular choices for the shape functions are <strong>polynomials</strong> and <strong>trigonometric functions</strong>.</p>
+
+                    <h4>Polynomials:</h4>
+                    <ul>
+                        <li>Offer the advantage of allowing the fulfillment of the essential boundary conditions in an easy way</li>
+                        <li>Suffer from a major disadvantage: the number of trial functions that can be used is limited for numerical reasons</li>
+                        <li>The ill-conditioning of the stiffness matrix becomes more severe as the number of functions \(N\) is increased</li>
+                        <li>Numerical issues typically arise for \(N > 10\)</li>
+                    </ul>
+
+                    <p>A much better choice consists in using <strong>orthogonal polynomials</strong> (Legendre, Chebyshev, Jacobi, ...). This kind of polynomials do not suffer from numerical issues due to the ill-conditioning of the problem and can be used up to high number of terms.</p>
+
+                    <h4>Trigonometric Functions:</h4>
+                    <ul>
+                        <li>Are \(\mathcal{C}^\infty\), so they can be differentiated according to any need of the problem</li>
+                        <li>In some cases, the exact solution is of trigonometric type (e.g. Navier solution for plates)</li>
+                        <li>For some sets of boundary conditions (typically simply-supported edges or hinges) the sine-type trial function identically satisfies the essential and the natural conditions</li>
+                        <li>The resulting matrices are characterized by a high-degree of sparsity (often they are diagonal)</li>
+                        <li>No ill conditioning problems exist, and the expansion can be increased up to the desired order</li>
+                    </ul>
+                </div>
+
+                <div class="subsection">
+                    <h4>4. Complementary Conditions (Extra)</h4>
+                    <p>While the 3 previous conditions are those reported in the vast majority of the textbooks, it is worth emphasizing that a fourth condition would, in principle, need to be added.</p>
+
+                    <p>The trial function should satisfy, in addition to the essential boundary conditions, also the <strong>complementary conditions</strong>.</p>
+
+                    <p>The complementary conditions specify that:</p>
+                    <ul>
+                        <li>The generalized displacement energetically conjugated with a prescribed generalized force on \(\Gamma_F\) is different from zero.</li>
+                        <li>The generalized force energetically conjugated with a prescribed generalized displacement on \(\Gamma_u\) is different from zero.</li>
+                    </ul>
+
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/cantilever_beam_ea_stiffness.png" alt="Cantilever beam with EA stiffness">
+                        <figcaption>Figure: Cantilever beam for complementary conditions example</figcaption>
+                    </figure>
+
+                    <p>For the cantilever problem:</p>
+                    \[\delta \Pi = \int_0^\ell \left( \delta u_{,x} \, EA \, u_{,x} - \delta u \, \hat{n} \right) dx = 0\]
+
+                    <p>Which leads to:</p>
+                    \[EA u_{,xx} + \hat{n} = 0\]
+                    \[EA u_{,x}(\ell) = 0 \qquad \text{or} \qquad \delta u(\ell) = 0\]
+                    \[EA u_{,x}(0) = 0 \qquad \text{or} \qquad \delta u(0) = 0\]
+
+                    <p>For the problem at hand:</p>
+                    <ul>
+                        <li>\(EA u_{,x}(\ell) = 0\) ← natural</li>
+                        <li>\(u(0) = 0\) ← essential</li>
+                    </ul>
+
+                    <p>The complementary boundary conditions are:</p>
+                    <div class="boxed">
+                        \[u(\ell) \neq 0\]
+                        \[EA u_{,x}(0) \neq 0\]
+                        <p style="text-align: center;">← complementary</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Convergence -->
+            <section class="section" id="convergence">
+                <h2>4. Convergence of the Method</h2>
+
+                <p>The method of Ritz guarantees the <strong>monotonic convergence of the total potential energy</strong> \(\Pi\). As for as the set of trial functions is enriched with more and more functions, the value of \(\Pi\) approaches the exact one.</p>
+
+                <p>In this sense:</p>
+                <div class="boxed">
+                    \[\Pi^1 \geq \Pi^2 \geq \Pi^3 \cdots \geq \Pi^N \geq \Pi\]
+                </div>
+
+                <p>where \(\Pi^i\): total potential energy using \(i\) trial functions, and \(\Pi\): total potential energy associated with the exact solution.</p>
+
+                <p>This property is easily understood by recalling that the equilibrium is associated with \(\delta \Pi = 0\), corresponding to the minimum value of \(\Pi\). It is then clear that the minimization of \(\Pi\) using 1 single dof (\(\Pi^1\)) will lead to a higher value of the minimization of the problem using 2 dof (\(\Pi^2\)) and so forth.</p>
+
+                <div class="important">
+                    <p><strong>Key insight:</strong> The stiffness of the model is progressively reduced as the number of dofs is increased. The total potential energy provides a global measure of the stiffness; the idea that a model with few dofs is stiffer than a model with more dofs should then be intended in a global sense.</p>
+                </div>
+
+                <p>It is necessary to distinguish between two different measures of the convergence:</p>
+
+                <div class="boxed">
+                    <p><strong>Local (Uniform) Convergence:</strong></p>
+                    \[\lim_{N \to +\infty} \|e_N^u\|_\infty = 0 \quad \text{with} \quad e_N^u = \max_{x \in \Omega} \left| u - \tilde{u}_N \right|^2\]
+
+                    <p><strong>Global Convergence:</strong></p>
+                    \[\lim_{N \to +\infty} \|e_N^u\|_2 = 0 \quad \text{with} \quad e_N^u = \sqrt{\int_\Omega \left( u - \tilde{u}_N \right)^2 d\Omega}\]
+                </div>
+
+                <p>The local convergence guarantees that the maximum difference between the approximate solution and the exact one gets smaller as \(N\) is increased. This convergence is guaranteed if and only if the solution is continuous up to the order \(n-1\), where \(n\) is the highest derivative in \(\Pi\).</p>
+
+                <p>In structural mechanics this is typically verified for the displacement function, which is always a continuous function. Thus <strong>displacements converge uniformly</strong>.</p>
+
+                <p>On the contrary, the generalized stress may be discontinuous functions; thus convergence of the generalized stresses is, in general, of global type but not local.</p>
+
+                <p>It is also noted that the rate of convergence is lower when derivatives are of concern. This means that strains and stresses, which are associated with the derivatives of the displacement functions, are characterized by a slower convergence with respect to the displacement function.</p>
+
+                <h3>Normalized Errors</h3>
+
+                <p>Often it is useful to normalize the errors in order to facilitate the comparison between different solutions:</p>
+
+                \[\|\bar{e}_N^u\|_\infty = \frac{\displaystyle\max_{x \in \Omega} \left| u - \tilde{u}_N \right|}{\left| u(x_{max}) \right|}\]
+
+                \[\|\bar{e}_N^u\|_2 = \frac{\sqrt{\displaystyle\int_\Omega \left( u - \tilde{u}_N \right)^2 d\Omega}}{\sqrt{\displaystyle\int_\Omega u^2 \, d\Omega}}\]
+
+                <p>The values of \(\|\bar{e}_N\|_\infty\) and \(\|\bar{e}_N\|_2\), multiplied by 100, provide the percent difference of the approximate solution of the maximum and the average error, respectively.</p>
+            </section>
+
+            <!-- Section 5: Features -->
+            <section class="section" id="features">
+                <h2>5. Features of the Ritz Method</h2>
+
+                <div class="subsection">
+                    <h4>1. Stiffness Matrix Inheritance</h4>
+                    <p>Consider the stiffness matrix obtained using 2 trial functions. The problem is in the form \(\underline{K}\underline{c} = \underline{f}\), where \(\underline{c}\) are the Ritz coefficients:</p>
+
+                    \[\underline{K}_{2 \times 2} = \begin{bmatrix} \bullet & \bullet \\ \bullet & \bullet \end{bmatrix}\]
+
+                    <p>Increasing the number of trial functions from 2 to 4 leads to a stiffness matrix of dimension \(4 \times 4\), whose coefficients are partially known:</p>
+
+                    \[\underline{K}_{4 \times 4} = \begin{bmatrix} \bullet & \bullet & \times & \times \\ \bullet & \bullet & \times & \times \\ \times & \times & \times & \times \\ \times & \times & \times & \times \end{bmatrix}\]
+
+                    <p>When the number of functions is increased, it is then not necessary to re-compute all the terms of \(\underline{K}\). A sub-portion of them can be inherited from the previous discretization obtained with less dofs.</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>2. Orthogonal Trial Functions</h4>
+                    <p>Whenever it is possible, the adoption of orthogonal trial functions is a very good choice. In this case \(\mathcal{B}(\phi_i, \phi_j) = \delta_{ij}\) and the stiffness matrix is a <strong>diagonal matrix</strong>.</p>
+
+                    <p>The efficiency of the solution is, in this case, drastically improved. The system of equations \(\underline{K}\underline{c} = \underline{f}\) can be solved quickly thanks to the diagonal pattern of \(\underline{K}\); furthermore \(\underline{K}\) can be stored as a sparse matrix with consequent benefits on the amount of memory needed.</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>3. Properties of the Stiffness Matrix</h4>
+                    <p>The stiffness matrix \(\underline{K}\) is:</p>
+                    <ul>
+                        <li>In general, fully populated (unless the trial functions are orthogonal)</li>
+                        <li>Symmetric and semi-positive definite</li>
+                    </ul>
+
+                    <p>The symmetry can be exploited to quickly construct \(\underline{K}\) by computing just \(N\frac{(N+1)}{2}\) terms instead of \(N \times N\).</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>4. Weak Satisfaction of Natural Conditions</h4>
+                    <p>The natural conditions are satisfied in a weak form sense. As the number of trial functions is increased, the solution converges to the exact one, which implies better and better satisfaction of the equilibrium equations and natural boundary conditions.</p>
+                </div>
+
+                <div class="remark">
+                    <h4>Additional Remarks</h4>
+                    <ol>
+                        <li>The method is highly efficient as accurate results can be obtained with few dofs. The ratio accuracy to problem size is much particularly advantageous.</li>
+                        <li>However the method suffers from two main drawbacks:
+                            <ul>
+                                <li>The handling of domains with complex shapes is not always easy. The method works very fine for simple shapes (e.g. circular, rectangular plates).</li>
+                                <li>When boundary conditions are modified, the entire matrices (\(\underline{K}\), \(\underline{M}\), ...) have to be recalculated. This is a major drawback when comparing Ritz to the FEM where a change of the boundary conditions does not imply the re-evaluation of the matrices.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 6: Galerkin -->
+            <section class="section" id="galerkin">
+                <h2>6. The Galerkin Method</h2>
+
+                <p>The method commonly referred to as Galerkin method is sometimes denoted as Bubnov-Galerkin method.</p>
+
+                <p>The method is applied to the <strong>governing differential equations</strong> of the problem, and not to the variational principle as the method of Ritz.</p>
+
+                <p>The starting point is then given by the equilibrium equations.</p>
+
+                <p>The method is based on the approximation of the unknown functions using global functions (as the Ritz method). The approximation is then substituted into the governing equations; as for as the approximation is not the exact solution, a residual is obtained. The method of Galerkin is based on the idea of setting to zero the weighted residual over the domain, by considering weight functions equal to the functions used for the approximation of the unknown field.</p>
+
+                <h3>Steps of the Galerkin Method</h3>
+
+                <p>Consider the differential problem expressed as:</p>
+                \[Au = f \quad \Rightarrow \quad Au - f = 0\]
+
+                <div class="step">
+                    <p><span class="step-number">Step 1:</span> Approximate the unknown function as:</p>
+                    \[\tilde{u} = \sum_{i=1}^{N} C_i \phi_i(x) + \phi_o(x)\]
+                </div>
+
+                <div class="step">
+                    <p><span class="step-number">Step 2:</span> Substitute the approximation into the governing equation:</p>
+                    \[A\tilde{u} - f \neq 0\]
+                    <p>The quantity on the left-hand side is the <strong>residual</strong>, which is a function of the problem coordinates expressing the error due to the approximation \(\tilde{u}\):</p>
+                    \[R = A\tilde{u} - f \neq 0 \qquad \text{(residual)}\]
+                </div>
+
+                <div class="step">
+                    <p><span class="step-number">Step 3:</span> Set to zero the weighted residual over the domain, using the same functions adopted for the expansion of \(u\):</p>
+                    <div class="boxed">
+                        \[\int_\Omega \phi_i \, R = 0 \qquad i = 1, \ldots, N\]
+                    </div>
+                </div>
+
+                <p>The residual can be expanded as:</p>
+                \[R = A\tilde{u} - f = A\left( \Sigma \, c_i \, \phi_i + \phi_o \right) - f\]
+
+                \[\int_\Omega \phi_i \, R \, d\Omega = \int_\Omega \phi_i \, A \left( \sum_{j=1}^{N} \phi_j \, C_j \right) d\Omega + \int_\Omega \phi_i \left( A \, \phi_o - f \right) d\Omega\]
+
+                <p>which leads to a discrete set of equations in the form:</p>
+                \[\underline{K} \, \underline{c} = \underline{f}\]
+
+                <p>with:</p>
+                <div class="boxed">
+                    \[k_{ij} = \int_\Omega \phi_i \, A \, \phi_j \, d\Omega\]
+                    \[f_i = -\int_\Omega \phi_i \left( A \, \phi_o - f \right) d\Omega\]
+                </div>
+
+                <div class="important">
+                    <h4>Key Differences from Ritz Method:</h4>
+                    <ol>
+                        <li>The global functions \(\phi_i\) should now satisfy <strong>both the essential and the natural boundary conditions</strong>. This is a distinction of fundamental importance with respect to Ritz.</li>
+                        <li>The requirements on the regularity of the functions \(\phi_i\) is stronger than in Ritz. In particular the functions should now be \(\mathcal{C}^{n-1}\) where \(n\) is the maximum order of the derivative in the strong form (which is different from the maximum order of the weak form).</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 7: Modified Galerkin -->
+            <section class="section" id="modified-galerkin">
+                <h2>7. The Modified Galerkin Method</h2>
+
+                <p>Another approximating technique based on the strong form formulation of the problem is the so-called "modified Galerkin method". The main motivation of this method is to relax the requirements on the functions \(\phi_i\). In particular, the method is useful whenever it is hard to find a set of functions \(\phi_i\) satisfying both the essential and the natural conditions (as required by Galerkin).</p>
+
+                <p>Consider the problem in the form:</p>
+                \[\begin{cases} Au = f & \text{in} \quad \Omega \\ u = \hat{u} & \text{in} \quad S_u \\ Bu = \hat{f} & \text{in} \quad S_F \end{cases} \quad \left. \begin{array}{l} \text{(essential)} \\ \text{boundary conditions} \\ \text{(natural)} \end{array} \right.\]
+
+                <p>The residual is constructed by accounting for a domain and a boundary-related contribution:</p>
+                \[R_\Omega = A\tilde{u} - f\]
+                \[R_F = B\tilde{u} - \hat{f}\]
+
+                <p>The weighted-residual formulation is then:</p>
+                \[\int_\Omega \phi_i (A\tilde{u} - f) \, d\Omega + \int_{S_F} \phi_i \left( B\tilde{u} - \hat{f} \right) dS_F = 0\]
+
+                <p>This leads to:</p>
+                <div class="boxed">
+                    \[K_{ij} = \int_\Omega \phi_i \, A \, \phi_j \, d\Omega + \int_{S_F} \phi_i \, B \, \phi_j\]
+                    \[f_i = -\int_\Omega \phi_i \left( A \, \phi_o - f \right) d\Omega - \int_{S_F} \phi_i \left( B \, \phi_o - \hat{f} \right) dS_F\]
+                </div>
+
+                <p>The two contributions obtained by integrating over \(S_F\) are those associated with the natural boundary conditions.</p>
+            </section>
+
+            <!-- Section 8: Other Methods -->
+            <section class="section" id="other-methods">
+                <h2>8. Other Weighted Residual Methods</h2>
+
+                <p>The (Bubnov)-Galerkin method can be interpreted as a special case of the more general class of weighted residual methods.</p>
+
+                <h3>Petrov-Galerkin Method</h3>
+                <p>The Petrov-Galerkin method is obtained by weighting the residual \(R\) with a set of functions different from those used for approximating the solution:</p>
+                \[\tilde{u} = \sum_i C_i \phi_i + \phi_o\]
+                \[R = A\tilde{u} - f\]
+                <div class="boxed">
+                    \[\int_\Omega \Psi_i \, R \, d\Omega = 0 \qquad \text{with} \quad \Psi_i \neq \phi_i\]
+                </div>
+
+                <h3>Collocation Method</h3>
+                <p>The collocation method consists in setting to zero the residual in a discrete number of points in the domain \(\Omega\):</p>
+                <div class="boxed">
+                    \[R_i = Au(x_i) - f = 0 \qquad i = 1, \ldots N\]
+                </div>
+
+                <p>This corresponds to the weighted-residual formulation where the weighting function is taken as a Dirac's delta:</p>
+                \[\int_\Omega \delta(x - x_i) \, R \, d\Omega = 0\]
+
+                <h3>Least-Square Method</h3>
+                <p>The least-square method can be interpreted in the framework of weighted residual methods:</p>
+                \[\min \quad \mathcal{I} = \int_\Omega R^2 \, d\Omega\]
+
+                <p>This formulation corresponds to imposing:</p>
+                \[\delta \mathcal{I} = 0 \quad \Rightarrow \quad \delta \mathcal{I} = \int_\Omega \delta R \, R \, d\Omega\]
+
+                <p>where \(\delta R = \frac{\partial R}{\partial C_i} \delta C_i\) and recalling that \(R = A\tilde{u} - f = A(\phi_i C_i + \phi_o) - f\), it is:</p>
+                \[\frac{\partial R}{\partial C_i} = A \phi_i\]
+                <p>and so:</p>
+                <div class="boxed">
+                    \[\delta \mathcal{I} = \int_\Omega A \phi_i \, R \, d\Omega\]
+                </div>
+            </section>
+
+            <!-- Section 9: Examples -->
+            <section class="section" id="examples">
+                <h2>9. Examples</h2>
+
+                <!-- Example 1: Bar with variable stiffness -->
+                <div class="example">
+                    <h3>Example 1: Bar with Variable Axial Stiffness</h3>
+
+                    <p>Consider a bar characterized by axial stiffness \(EA = EA(x)\) and subjected to a distributed axial load, and a concentrated force at the end.</p>
+
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/beam_variable_stiffness_distributed_point_load.png" alt="Beam with variable stiffness">
+                        <figcaption>Figure: Cantilever beam with variable stiffness EA(x), distributed load n̂, and concentrated force P</figcaption>
+                    </figure>
+
+                    <h4>1. Ritz Formulation</h4>
+                    \[\Pi = \frac{1}{2} \int_0^\ell u_{,x} \, EA \, u_{,x} \, dx - \int_0^\ell u \, \hat{n} \, dx - u(\ell) \, P\]
+
+                    <p>The Ritz functions \(\phi_i\) are taken such that \(u(0) = 0\) (essential condition) is identically satisfied.</p>
+
+                    <p>The axial displacement is then:</p>
+                    \[u = \sum_{i=1}^{N} C_i \phi_i(x)\]
+
+                    <p>Setting \(\delta \Pi = 0\) leads to \(K_{ij} C_j = f_i\) where:</p>
+                    <div class="boxed">
+                        \[K_{ij} = \int_0^\ell \phi_{i,x} \, EA \, \phi_{j,x} \, dx\]
+                        \[f_i = \int_0^\ell \phi_i \, \hat{n} \, dx + \phi_i(\ell) \, P\]
+                    </div>
+
+                    <h4>2. Galerkin Formulation</h4>
+                    <p>The differential problem reads:</p>
+                    \[\begin{cases} (EA u_{,x})_{,x} + \hat{n} = EA_{,x} \, u_{,x} + EA u_{,xx} + \hat{n} = 0 \\ EA u_{,x} = P & \text{in} \quad x = \ell \\ u = 0 & \text{in} \quad x = 0 \end{cases}\]
+
+                    <p>The functions \(\phi_i\) must now be taken such that both \(u_{,x}(\ell) = P/_{EA}\) and \(u(0) = 0\) are identically satisfied.</p>
+
+                    <p>The residual is:</p>
+                    \[R = EA_{,x} \sum_{i=1}^{N} C_i \phi_{i,x} + EA \sum_{i=1}^{N} C_i \phi_{i,xx} + \hat{n}\]
+
+                    <p>Setting the weighted residual to zero:</p>
+                    <div class="boxed">
+                        \[k_{ij} = \int_0^\ell \left( \phi_i \, EA_{,x} \, \phi_{j,x} + \phi_i \, EA \, \phi_{j,xx} \right) dx\]
+                        \[f_i = -\int_0^\ell \phi_i \, \hat{n} \, dx\]
+                    </div>
+
+                    <p>Note that the expression of \(K_{ij}\) contains the <strong>second derivative</strong> of \(\phi_j\), while in the case of Ritz only the first derivative is present.</p>
+                </div>
+
+                <!-- Example 2: Simply supported beam with uniform load -->
+                <div class="example">
+                    <h3>Example 2: Simply Supported Beam with Uniform Load</h3>
+
+                    <p>Determine the deflected pattern using a Ritz approximation with 1, 2 and 3 polynomial terms.</p>
+
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/simply_supported_beam_uniform_load.png" alt="Simply supported beam with uniform load">
+                        <figcaption>Figure: Simply supported beam with uniform distributed load q</figcaption>
+                    </figure>
+
+                    <h4>Solution</h4>
+                    \[\Pi = \frac{1}{2} \int_0^\ell EJ \, w_{,xx}^2 \, dx - \int_0^\ell w \, q \, dx\]
+
+                    <p>Boundary conditions:</p>
+                    <ul>
+                        <li>\(w(0) = 0\), \(w(\ell) = 0\) — essential</li>
+                        <li>\(w_{,xx}(0) = 0\), \(w_{,xx}(\ell) = 0\) — natural</li>
+                    </ul>
+
+                    <p>The Ritz approximation is taken as:</p>
+                    \[w = \sum_{i=1}^{N} C_i \phi_i(x)\]
+
+                    <p>chosen to satisfy the essential conditions (but not necessarily the natural ones).</p>
+
+                    <p>Setting \(\delta \Pi = 0\) leads to:</p>
+                    <div class="boxed">
+                        \[K_{ij} = \int_0^\ell \phi_{i,xx} \, EJ \, \phi_{j,xx} \, dx = EJ \int_0^\ell \phi_{i,xx} \, \phi_{j,xx} \, dx\]
+                        \[f_i = \int_0^\ell \phi_i \, q \, dx = q \int_0^\ell \phi_i \, dx\]
+                    </div>
+
+                    <h4>Selection of Trial Functions</h4>
+                    <p>A polynomial expansion is adopted up to the fourth order:</p>
+                    \[w = \tilde{C}_0 + \tilde{C}_1 x + \tilde{C}_2 x^2 + \tilde{C}_3 x^3 + \tilde{C}_4 x^4\]
+
+                    <p>Imposing essential conditions \(w(0) = 0\) and \(w(\ell) = 0\):</p>
+                    \[w = C_1 (x^2 - \ell x) + C_2 (x^3 - \ell^2 x) + C_3 (x^4 - \ell^3 x)\]
+
+                    <h4>1. Solution Using One Single Term</h4>
+                    \[w = C_1 (x^2 - \ell x) \qquad \text{so} \quad \phi_1 = x^2 - \ell x\]
+                    \[K = 4 \, EJ \, \ell \qquad f = -\frac{1}{6} q \ell^3\]
+                    \[C_1 = -\frac{q \ell^2}{24 \, EJ}\]
+
+                    <h4>2. Solution Using Two Terms</h4>
+                    \[\begin{bmatrix} 4 \, EJ \, \ell & 6 \, EJ \, \ell^2 \\ 6 \, EJ \, \ell^2 & 12 \, EJ \, \ell^3 \end{bmatrix} \begin{Bmatrix} C_1 \\ C_2 \end{Bmatrix} = \begin{Bmatrix} -q \ell^3 /_{6} \\ -q \ell^4 /_{4} \end{Bmatrix}\]
+
+                    <p>Result: \(C_1 = -\frac{q \ell^2}{24 \, EJ}\), \(C_2 = 0\)</p>
+                    <p>This is quite intuitive as the deflected pattern is expected to be symmetric with respect to the midspan. The function \(\phi_2\) is not symmetric so the contribution is null.</p>
+
+                    <h4>3. Solution Using Three Terms</h4>
+                    <p>The solution is:</p>
+                    \[C_1 = 0, \quad C_2 = -\frac{q \ell}{12 \, EJ}, \quad C_3 = \frac{q}{24 \, EJ}\]
+
+                    <p>And so:</p>
+                    <div class="boxed">
+                        \[w = \frac{q \ell^4}{24 \, EJ} \left( \frac{x}{\ell} - 2 \frac{x^3}{\ell^3} + \frac{x^4}{\ell^4} \right)\]
+                    </div>
+
+                    <p><strong>This solution is, in fact, the exact solution of the problem.</strong> It can be easily verified by integrating the governing differential equation.</p>
+
+                    <h4>Numerical Results</h4>
+                    <p>Considering: \(\ell = 100\), \(EJ = \frac{1}{24} 10^8\), \(q = 1\)</p>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>\(w_{mid}\)</th>
+                            <th>\(M_{x,mid} \cdot 10^3\)</th>
+                            <th>\(\Pi\)</th>
+                        </tr>
+                        <tr>
+                            <td>\(N = 1, 2\)</td>
+                            <td>0.2500</td>
+                            <td>0.8333</td>
+                            <td>−8.3333</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 3\)</td>
+                            <td>0.3125</td>
+                            <td>1.2500</td>
+                            <td>−10.000</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>\(\% w_{mid}\)</th>
+                            <th>\(\|e^w\|_{L^2} \cdot 10^2\)</th>
+                            <th>\(\% M_{x,mid}\)</th>
+                            <th>\(\|e^{M_x}\|_{L^2} \cdot 10^2\)</th>
+                        </tr>
+                        <tr>
+                            <td>\(N = 1, 2\)</td>
+                            <td>−20.00</td>
+                            <td>17.96</td>
+                            <td>−33.33</td>
+                            <td>40.8250</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 3\)</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Example 3: Simply supported beam with trigonometric functions -->
+                <div class="example">
+                    <h3>Example 3: Simply Supported Beam with Trigonometric Functions</h3>
+
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/simply_supported_beam_basic.png" alt="Simply supported beam">
+                        <figcaption>Figure: Simply supported beam</figcaption>
+                    </figure>
+
+                    <p>The trigonometric description of the out-of-plane displacement is taken as:</p>
+                    \[w = \sum_{\substack{m = 1, 3, 5}}^{N} C_m \sin \frac{m \pi x}{\ell}\]
+
+                    <p>Note that the assumed displacement field satisfies both the essential and the natural conditions. Thus they are <strong>comparison functions</strong>.</p>
+
+                    <p>The stiffness matrix becomes:</p>
+                    \[K_{ij} = \delta_{ij} \, EJ \left( \frac{i\pi}{\ell} \right)^4 \frac{\ell}{2}\]
+                    \[f_i = \frac{2\ell}{i\pi} \qquad \text{with } i \text{ odd}\]
+
+                    <h4>Results</h4>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>\(w_{mid}\)</th>
+                            <th>\(M_{x,mid} \cdot 10^3\)</th>
+                            <th>\(\Pi\)</th>
+                        </tr>
+                        <tr>
+                            <td>\(N = 1\)</td>
+                            <td>0.3137</td>
+                            <td>1.2901</td>
+                            <td>−9.9856</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 3\)</td>
+                            <td>0.3124</td>
+                            <td>1.2423</td>
+                            <td>−9.9992</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 5\)</td>
+                            <td>0.3125</td>
+                            <td>1.2526</td>
+                            <td>−9.9999</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 23\)</td>
+                            <td>0.3125</td>
+                            <td>1.2500</td>
+                            <td>−10.0000</td>
+                        </tr>
+                    </table>
+
+                    <p><strong>Key observations:</strong></p>
+                    <ul>
+                        <li>Note the better accuracy of the 1-term solution with respect to the polynomial one with \(N = 1\).</li>
+                        <li>The sine-type deflection is a good representation of the exact pattern.</li>
+                        <li>The convergence of the bending moment \(M_x\) is slower in comparison to the displacements.</li>
+                    </ul>
+                </div>
+
+                <!-- Example 4: Simply supported beam with point load -->
+                <div class="example">
+                    <h3>Example 4: Simply Supported Beam with Point Load at Midspan</h3>
+
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/beam_midpoint_load_mixed_supports.png" alt="Beam with point load at midpoint">
+                        <figcaption>Figure: Simply supported beam with point load P at midspan</figcaption>
+                    </figure>
+
+                    <p>Given: \(\ell = 100\), \(P = 1\), \(EJ = \frac{1}{48} P\ell^3\)</p>
+
+                    <p>The stiffness matrix is unchanged from the previous example. The only difference relies on the applied load:</p>
+                    \[\delta W_e = -\delta u \left( \ell/_2 \right) P\]
+                    <div class="boxed">
+                        \[f_i = -\phi_i \left( \ell/_2 \right) P\]
+                    </div>
+
+                    <h4>Exact Solution</h4>
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/beam_two_segments_point_load.png" alt="Beam with two segments">
+                        <figcaption>Figure: Beam showing two coordinate systems for exact solution</figcaption>
+                    </figure>
+
+                    \[w_1 = \frac{P\ell^3}{48 \, EJ} \left( 4 \frac{x_1^3}{\ell^3} - 3 \frac{x_1}{\ell} \right) \qquad 0 \leq x_1 \leq \ell/2\]
+                    \[w_2 = \frac{P\ell^3}{48 \, EJ} \left( -4 \frac{x_2^3}{\ell^3} + 6 \frac{x_2^2}{\ell^2} - 1 \right) \qquad 0 \leq x_2 \leq \ell/2\]
+
+                    <h4>Results with Polynomial Functions</h4>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>\(w_{mid}\)</th>
+                            <th>\(M_{x,mid}\)</th>
+                            <th>\(\Pi\)</th>
+                        </tr>
+                        <tr>
+                            <td>\(N = 1\)</td>
+                            <td>−0.7500</td>
+                            <td>−12.5000</td>
+                            <td>−0.3750</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 3\)</td>
+                            <td>−0.9844</td>
+                            <td>−20.3125</td>
+                            <td>−0.4922</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 5\)</td>
+                            <td>−0.9961</td>
+                            <td>−22.0703</td>
+                            <td>−0.4980</td>
+                        </tr>
+                    </table>
+
+                    <p><strong>Important observation:</strong> With respect to the case of uniform load, the polynomial solution does not lead to the exact solution. Indeed the exact solution is piecewise cubic, and is characterized by a discontinuity of the third derivative (the shear) at the mid-span. Clearly this discontinuity cannot be captured by the Ritz functions, which are defined at global level.</p>
+
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/moment_shear_convergence_plots.png" alt="Moment and shear convergence">
+                        <figcaption>Figure: Bending moment and shear force convergence for polynomial approximation</figcaption>
+                    </figure>
+
+                    <h4>Results with Trigonometric Functions</h4>
+                    <p>The exact solution is characterized by: \(w_{mid} = -1.0000\), \(M_{x,mid} = -25.0000\), and \(\Pi = -0.5000\)</p>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>\(w_{mid}\)</th>
+                            <th>\(M_{x,mid}\)</th>
+                            <th>\(\Pi\)</th>
+                        </tr>
+                        <tr>
+                            <td>\(N = 1\)</td>
+                            <td>−0.9855</td>
+                            <td>−20.2642</td>
+                            <td>−0.4928</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 3\)</td>
+                            <td>−0.9977</td>
+                            <td>−22.5158</td>
+                            <td>−0.4989</td>
+                        </tr>
+                        <tr>
+                            <td>\(N = 23\)</td>
+                            <td>−1.0000</td>
+                            <td>−24.5781</td>
+                            <td>−0.5000</td>
+                        </tr>
+                    </table>
+
+                    <p>Note that \(\Pi\) converges at the exact value quickly, whilst \(M_{x,mid}\) is still different from the exact value. The trigonometric functions cannot represent the discontinuity of the third derivative and the convergence of the internal actions will be characterized by oscillating behaviour.</p>
+
+                    <figure class="diagram">
+                        <img src="images/LN_C4_3_Ritz/moment_shear_convergence_n1_n3.png" alt="Moment and shear convergence trigonometric">
+                        <figcaption>Figure: Bending moment and shear force convergence for trigonometric approximation</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Section 10: Admissible Functions -->
+            <section class="section" id="admissible-functions">
+                <h2>10. Admissible Functions for Beams</h2>
+
+                <h3>1. Cantilever Beam</h3>
+                <figure class="diagram">
+                    <img src="images/LN_C4_3_Ritz/cantilever_beam_sketch.png" alt="Cantilever beam">
+                    <figcaption>Figure: Cantilever beam with fixed support at left end</figcaption>
+                </figure>
+
+                <p>Essential conditions: \(w(0) = 0\), \(w_{,x}(0) = 0\)</p>
+
+                <p>Consider a polynomial expansion and impose boundary conditions:</p>
+                <div class="boxed">
+                    \[\phi_i = \left( \frac{x}{\ell} \right)^i \qquad i = 2, \ldots N\]
+                </div>
+
+                <h3>2. Fixed-Simply Supported Beam</h3>
+                <figure class="diagram">
+                    <img src="images/LN_C4_3_Ritz/fixed_simply_supported_beam.png" alt="Fixed-simply supported beam">
+                    <figcaption>Figure: Fixed-simply supported beam</figcaption>
+                </figure>
+
+                <p>Essential conditions: \(w(0) = 0\), \(w_{,x}(0) = 0\), \(w(\ell) = 0\)</p>
+
+                <div class="boxed">
+                    \[\phi_i(x) = \left( \frac{x}{\ell} \right)^2 \left( \left( \frac{x}{\ell} \right)^i - 1 \right) \qquad i = 1, \ldots N\]
+                </div>
+
+                <h3>3. Simply-Supported Beam</h3>
+                <figure class="diagram">
+                    <img src="images/LN_C4_3_Ritz/simply_supported_beam_diagram.png" alt="Simply supported beam">
+                    <figcaption>Figure: Simply supported beam</figcaption>
+                </figure>
+
+                <p>Essential conditions: \(w(0) = 0\), \(w(\ell) = 0\)</p>
+
+                <p><strong>a. Polynomial expansion:</strong></p>
+                <div class="boxed">
+                    \[\phi_i(x) = \left( \frac{x}{\ell} \right)^i - \frac{x}{\ell} \qquad i = 2, \ldots N\]
+                </div>
+
+                <p><strong>b. Trigonometric functions:</strong></p>
+                <div class="boxed">
+                    \[\phi_i(x) = \sin \frac{i\pi x}{\ell} \qquad i = 1, \ldots N\]
+                </div>
+
+                <h3>4. Clamped-Clamped Beam</h3>
+                <p>Essential conditions: \(w(0) = 0\), \(w_{,x}(0) = 0\), \(w(\ell) = 0\), \(w_{,x}(\ell) = 0\)</p>
+
+                <p><strong>a. Polynomial functions:</strong></p>
+                <div class="boxed">
+                    \[\phi_i(x) = \left( \frac{x}{\ell} \right)^i - (i-2) \left( \frac{x}{\ell} \right)^3 + (i-3) \left( \frac{x}{\ell} \right)^2 \qquad i = 4, \ldots N\]
+                </div>
+
+                <p><strong>b. Trigonometric functions:</strong></p>
+                <div class="boxed">
+                    \[\phi_i(x) = 1 - \cos \frac{2i\pi x}{\ell} \qquad i = 1, \ldots N\]
+                </div>
+
+                <h3>Boundary Function Approach (Alternative)</h3>
+                <p>Another possibility for constructing admissible functions consists in writing the generic Ritz function as:</p>
+                <div class="boxed">
+                    \[\phi_i(x) = b(x) \, \chi_i(x)\]
+                </div>
+
+                <p>where \(b(x)\) is the boundary function and \(\chi_i(x)\) is the generic function of the expansion.</p>
+
+                <p>The boundary functions are obtained such that their value is zero in correspondence of the boundary where an essential condition is specified.</p>
+
+                <h4>Examples using boundary functions:</h4>
+
+                <p><strong>Cantilever:</strong> \(b(x) = \left( \frac{x}{\ell} \right)^2\), so:</p>
+                <div class="boxed">
+                    \[\phi_i(x) = \left( \frac{x}{\ell} \right)^{i+1} \qquad i = 1, \ldots N\]
+                </div>
+
+                <p><strong>Fixed-simply supported:</strong> \(b(x) = \left( \frac{x}{\ell} \right)^2 \left( \frac{x}{\ell} - 1 \right)\), so:</p>
+                <div class="boxed">
+                    \[\phi_i = \left( \frac{x}{\ell} - 1 \right) \left( \frac{x}{\ell} \right)^{i+1} \qquad i = 1, \ldots N\]
+                </div>
+
+                <p><strong>Simply-supported:</strong> \(b(x) = \frac{x}{\ell} \left( \frac{x}{\ell} - 1 \right)\), so:</p>
+                <div class="boxed">
+                    \[\phi_i = \left( \frac{x}{\ell} \right)^i \left( \frac{x}{\ell} - 1 \right) \qquad i = 1, \ldots N\]
+                </div>
+
+                <p><strong>Clamped-clamped:</strong> \(b(x) = \left( \frac{x}{\ell} \right)^4 - 2 \left( \frac{x}{\ell} \right)^3 + \left( \frac{x}{\ell} \right)^2\), so:</p>
+                <div class="boxed">
+                    \[\phi_i(x) = \left( \frac{x}{\ell} \right)^{i+3} - 2 \left( \frac{x}{\ell} \right)^{i+2} + \left( \frac{x}{\ell} \right)^{i+1} \qquad i = 1, \ldots N\]
+                </div>
+            </section>
+
+            <!-- Section 11: Thin Plates -->
+            <section class="section" id="thin-plates">
+                <h2>11. The Ritz Method for the Analysis of Thin Plates</h2>
+
+                <p>The method of Ritz is particularly useful in the context of plate analysis. Indeed exact solutions are available only for a few set of boundary conditions and elastic properties. The need for obtaining approximate solutions is thus clear, especially when dealing with composite materials whose elastic couplings may make unavailable the exact solutions even for the cases commonly faced with the Navier-type approach.</p>
+
+                <figure class="diagram">
+                    <img src="images/LN_C4_3_Ritz/rectangular_plate_coordinate_system.png" alt="Rectangular plate">
+                    <figcaption>Figure: Rectangular plate with coordinate system and dimensions a × b</figcaption>
+                </figure>
+
+                <p>The thickness is denoted with \(t\). A Kirchhoff plate model is considered.</p>
+
+                <h3>Constitutive Law</h3>
+                <p>The constitutive law of the plate, by restricting the analysis to the bending behaviour, reads:</p>
+                \[\begin{Bmatrix} M_{xx} \\ M_{yy} \\ M_{xy} \end{Bmatrix} = \begin{bmatrix} D_{11} & D_{12} \\ D_{12} & D_{22} \\ & & D_{66} \end{bmatrix} \begin{Bmatrix} -w_{o,xx} \\ -w_{o,yy} \\ -2w_{o,xy} \end{Bmatrix}\]
+
+                <p>For isotropic materials:</p>
+                \[D_{11} = D_{22} = D = \frac{Et^3}{12(1-\nu^2)}\]
+                \[D_{12} = \nu D\]
+                \[D_{66} = \frac{1-\nu}{2} D\]
+
+                <h3>Bending Analysis</h3>
+                <p>Consider the plate subjected to a transverse force per unit surface \(p\) (pressure). The problem is formulated by writing the total potential energy:</p>
+                \[\Pi = \frac{1}{2} \int_A \kappa_{\alpha\beta} \, M_{\alpha\beta} \, dA - \int_A w_o \, p \, dA \qquad \alpha, \beta = x, y\]
+
+                <p>where \(\kappa_{\alpha\beta} = -w_{o,\alpha\beta}\)</p>
+
+                <p>Introducing the constitutive law:</p>
+                <div class="boxed">
+                    \[\Pi = \frac{1}{2} \int_A \left( D_{11} \, w_{o,xx}^2 + 2 D_{12} \, w_{o,xx} \, w_{o,yy} + D_{22} \, w_{o,yy}^2 + 4 D_{66} \, w_{o,xy}^2 \right) dA - \int_A w_o \, p \, dA\]
+                </div>
+
+                <h3>Ritz Approximation for Plates</h3>
+                <p>The out-of-plane displacement is expanded by means of Ritz trial functions:</p>
+                <div class="boxed">
+                    \[w_o = \sum_{i,j}^{MN} C_{ij} \, \phi_i(x) \, \Psi_j(y)\]
+                </div>
+
+                <p>where \(M\) and \(N\) are the number of functions along the directions \(x\) and \(y\), respectively.</p>
+
+                <p>Note that <strong>separation of variables</strong> is assumed in the expansion. This is generally a good choice, offering the advantage of leading to relatively simple expressions.</p>
+
+                <p>The functions \(\phi_i\) and \(\Psi_j\) have to be chosen according to the boundary conditions, i.e. they must satisfy the essential conditions.</p>
+
+                <p>The derivatives are:</p>
+                \[w_{o,xx} = \sum_{ij} C_{ij} \, \phi_i'' \, \Psi_j\]
+                \[w_{o,yy} = \sum_{ij} C_{ij} \, \phi_i \, \Psi_j''\]
+                \[w_{o,xy} = \sum_{ij} C_{ij} \, \phi_i' \, \Psi_j'\]
+
+                <h3>Stiffness Matrix Formulation</h3>
+                <p>Using Kronecker product notation \(\otimes\) and defining:</p>
+                \[\underline{\underline{I}}_{\alpha}^{(nm)} = \text{integral matrix with } n, m \text{ order derivatives}\]
+
+                <p>The total potential energy is written as:</p>
+                \[\Pi = \frac{1}{2} \underline{c}^T \underline{\underline{K}} \, \underline{c} - \underline{c}^T \underline{f}\]
+
+                <p>where:</p>
+                <div class="boxed">
+                    \[\underline{\underline{K}} = D_{11} \left( \underline{\underline{I}}_x^{22} \otimes \underline{\underline{I}}_y^{00} \right) + D_{12} \left( \underline{\underline{I}}_x^{20} \otimes \underline{\underline{I}}_y^{02} + \underline{\underline{I}}_x^{02} \otimes \underline{\underline{I}}_y^{20} \right) + D_{22} \left( \underline{\underline{I}}_x^{00} \otimes \underline{\underline{I}}_y^{22} \right) + 4 D_{66} \left( \underline{\underline{I}}_x^{11} \otimes \underline{\underline{I}}_y^{11} \right)\]
+                </div>
+
+                <p>and the set of solving equations reads:</p>
+                \[\delta \Pi = \delta \underline{c}^T \underline{\underline{K}} \, \underline{c} - \delta \underline{c}^T \underline{f} = 0 \qquad \forall \, \delta \underline{c}\]
+                <div class="boxed">
+                    \[\underline{\underline{K}} \, \underline{c} = \underline{f}\]
+                </div>
+
+                <h3>Selection of Trial Functions for Plates</h3>
+                <p>Having assumed the separation of variables, the trial functions can be taken from the expansions used in 1D.</p>
+
+                <figure class="diagram">
+                    <img src="images/LN_C4_3_Ritz/plate_boundary_conditions_comparison.png" alt="Plate boundary conditions">
+                    <figcaption>Figure: Different boundary conditions for rectangular plates</figcaption>
+                </figure>
+
+                <h4>Example: Free-Clamped Plate</h4>
+                <p>(Free along x-direction edges, simply-supported along y-direction edges)</p>
+                \[\phi_i = \left( \frac{x}{a} \right)^{i+1} \qquad i = 1, \ldots N \quad \text{(as for cantilever beam)}\]
+                \[\Psi_j = \left( \frac{y}{b} \right)^j \left( \frac{y}{b} - 1 \right) \qquad j = 1, \ldots N \quad \text{(as for simply-supported beam)}\]
+
+                <h4>Example: Clamped Plate</h4>
+                \[\phi_i = \left( \frac{x}{a} \right)^{i+3} - 2 \left( \frac{x}{a} \right)^{i+2} + \left( \frac{x}{a} \right)^{i+1} \qquad i = 1, \ldots N\]
+                \[\Psi_j = \left( \frac{y}{b} \right)^{j+1} \left( \frac{y}{b} - 1 \right) \qquad j = 1, \ldots N\]
+
+                <h4>Example: Simply-Supported Plate (Navier-type)</h4>
+                \[\phi_i = \sin \frac{i\pi x}{a} \qquad i = 1, \ldots N\]
+                \[\Psi_j = \sin \frac{j\pi y}{b} \qquad j = 1, \ldots N\]
+
+                <h3>Free Vibrations of Plates</h3>
+                <p>The extension to the free vibration problem is straightforward.</p>
+
+                <p>If the inertial contributions \(I_1\) and \(I_2\) are negligible (thin plate with symmetric distribution of the density) then:</p>
+                \[\delta W_e = -\int_A \delta w_o \, I_o \, \ddot{w}_o \, dA\]
+
+                <p>Substituting the Ritz approximation:</p>
+                \[\delta W_e = -I_o \sum_{ijrs} \delta C_{ij} \int_0^a \phi_i \, \phi_r \, dx \int_0^b \Psi_j \, \Psi_s \, dy \, \ddot{C}_{rs}\]
+                \[= -\delta \underline{c}^T \underline{\underline{M}} \, \underline{\ddot{c}}\]
+
+                <p>with:</p>
+                <div class="boxed">
+                    \[\underline{\underline{M}} = I_o \, \underline{\underline{I}}_x^{00} \otimes \underline{\underline{I}}_y^{00}\]
+                </div>
+
+                <p>The variational principle is then:</p>
+                \[\delta W_i - \delta W_e = \delta \Pi = 0\]
+                \[\delta \underline{c}^T \left( \underline{\underline{M}} \, \underline{\ddot{c}} + \underline{\underline{K}} \, \underline{c} \right) = 0 \qquad \forall \, \delta \underline{c}\]
+
+                <p>and so:</p>
+                \[\underline{\underline{M}} \, \underline{\ddot{c}} + \underline{\underline{K}} \, \underline{c} = 0\]
+
+                <p>Assuming harmonic motion in the form \(\underline{c} = \underline{C} \, e^{i\omega t}\), it is obtained the <strong>eigenvalue problem</strong>:</p>
+                <div class="boxed">
+                    \[\left( -\omega^2 \underline{\underline{M}} + \underline{\underline{K}} \right) \underline{C} = \underline{0}\]
+                </div>
+            </section>
+        </main>
+
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 2px solid var(--primary-color); text-align: center; color: #666;">
+            <p>The Ritz Method - Structural Mechanics Lecture Notes</p>
+        </footer>
+    </article>
+</body>
+</html>

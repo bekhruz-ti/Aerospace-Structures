@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junctions in Aerospace Structures</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .section-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section-content {
+            padding: 30px;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .subsection h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .subsection h4 {
+            color: var(--primary-color);
+            margin: 15px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .derivation {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .derivation h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            margin: 15px 0;
+            padding: 15px;
+            background: #fefcbf;
+            border-left: 4px solid #d69e2e;
+            border-radius: 4px;
+        }
+
+        .note strong {
+            color: #744210;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .equation-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-header, .section-content, .derivation {
+                padding: 20px;
+            }
+
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Junctions in Aerospace Structures</h1>
+            <p>Analysis of Discontinuous and Continuous Junction Techniques</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction to Junctions -->
+            <section class="section" id="introduction">
+                <div class="section-header">
+                    <h2>1. Introduction to Junctions</h2>
+                </div>
+                <div class="section-content">
+                    <p>The various components of a typical light-weight structure – panels, stringers, longerons, ribs and frames – are connected each other by means of junctions.</p>
+                    
+                    <p>A common classification divides the junctions into:</p>
+                    <ol>
+                        <li><strong>Continuous junctions</strong> (welding, bonding)</li>
+                        <li><strong>Discontinuous junctions</strong> (bolts, rivets)</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 2: Discontinuous Junctions -->
+            <section class="section" id="discontinuous-junctions">
+                <div class="section-header">
+                    <h2>2. Discontinuous Junctions</h2>
+                </div>
+                <div class="section-content">
+                    <p>Discontinuous junctions are widely used both in metal and composite structures (although their uses are particularly affected by the interruption of the fibers).</p>
+                    
+                    <p>In the aerospace field, the <strong>rivet</strong> is a widely used kind of discontinuous connection.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/rivet_compression_comparison.png" alt="Rivet compression comparison showing before and after states">
+                        <figcaption>Figure 2.1: Rivet installation process - before and after compression showing head formation</figcaption>
+                    </figure>
+                    
+                    <p>The rivet is inserted and then, by compression, it is created the second "head" of the rivet.</p>
+                    
+                    <div class="subsection">
+                        <h3>Fatigue Considerations</h3>
+                        <p>Fatigue problems (potential issues associated with repeated cycles of loads) may affect the region close to the hole, where the concentration of stresses can determine the onset and propagation of cracks.</p>
+                        
+                        <p>With this regard, a useful strategy consists in adopting a rivet with a diameter slightly larger in comparison to the hole's diameter. The result is a state of internal compression which mitigates the stress concentration around the hole and improve the fatigue life of the part.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Bolted Connections</h3>
+                        <p>Another common solution is constituted by <strong>bolts</strong>.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_4_Junctions/bolted_connection_schematic.png" alt="Bolted connection schematic">
+                            <figcaption>Figure 2.2: Schematic of bolted connection showing two structural members joined by bolts</figcaption>
+                        </figure>
+                        
+                        <p>Bolts are generally used:</p>
+                        <ol>
+                            <li>When it is necessary to guarantee the possibility of <strong>disassembling</strong> the part</li>
+                            <li>In those areas characterized by high traction loads, where fatigue is a crucial issue (e.g. the bottom of a wing structure)</li>
+                        </ol>
+                        
+                        <p>At the same time, it should be highlighted that they are a relatively heavy junction and, in general, do not offer good performance when loaded in shear.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Comparison of Rivets and Bolts -->
+            <section class="section" id="rivet-bolt-comparison">
+                <div class="section-header">
+                    <h2>3. Comparison of Rivets and Bolts</h2>
+                </div>
+                <div class="section-content">
+                    <p>Overall, the underlying load transfer mechanisms in rivets and bolts is inherently different.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/rivet_bolt_load_transfer_comparison.png" alt="Comparison of rivet and bolt load transfer mechanisms">
+                        <figcaption>Figure 3.1: Load transfer mechanisms - rivet (shear) vs bolt (friction)</figcaption>
+                    </figure>
+                    
+                    <p>Indeed rivets work mainly in shear, whereas bolts are associated with an axial load transfer mechanism.</p>
+                    
+                    <p>The two solutions can be compared by illustrating, in a simplified manner, the loads transmitted by the junction itself:</p>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-item">
+                            <h4>Rivet</h4>
+                            \[\tau_y = \frac{\sigma_y}{\sqrt{3}} = \frac{T_{max}^{rivet}}{A}\]
+                            \[\Rightarrow T_{max}^{rivet} = \frac{\sigma_y A}{\sqrt{3}} \approx 0.58 \sigma_y A\]
+                            <p>The rivet transfers the shear load working in shear. The maximum stress \(\tau\) can be taken as the yielding stress \(\tau_y\) which, according to von Mises is \(\sigma_y/\sqrt{3}\).</p>
+                        </div>
+                        <div class="comparison-item">
+                            <h4>Bolt</h4>
+                            \[T_{max}^{bolt} = \mu F_{max} \text{ with } F_{max} = \sigma_y A\]
+                            \[T_{max}^{bolt} = \mu \sigma_y A \quad \mu \approx 0.1\]
+                            <p>The bolt transfers load via friction, leading to a shear force obtained by application of Coulomb's law for friction, where \(\mu\) is the coefficient for friction.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Conclusion</h3>
+                    <p>It is then clear that, for a given amount of area:</p>
+                    <div class="result-box">
+                        \[T_{max}^{rivet} = 0.58 \sigma_y A > T_{max}^{bolt} = 0.10 \sigma_y A\]
+                    </div>
+                    <p>Thus the rivets can transfer a higher shear force per unit of area (and of weight).</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Types of Junctions and Their Modeling -->
+            <section class="section" id="junction-types">
+                <div class="section-header">
+                    <h2>4. Types of Junctions and Their Modeling</h2>
+                </div>
+                <div class="section-content">
+                    <p>The junctions may regard the connection of:</p>
+                    
+                    <div class="subsection">
+                        <h3>Longitudinal Junctions</h3>
+                        <ul>
+                            <li>Panel – panel</li>
+                            <li>Panel – stringer</li>
+                        </ul>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_4_Junctions/panel_stringer_junction_configurations.png" alt="Panel-stringer junction configurations">
+                            <figcaption>Figure 4.1: Longitudinal junction configurations showing panel-stringer connections</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Transversal Junctions</h3>
+                        <ul>
+                            <li>Panel – rib</li>
+                            <li>Panel – frame</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Junction Idealization</h3>
+                        <p>Within the modeling assumptions here introduced, the junctions are represented as <strong>continuous lines</strong> responsible for the load transfer between the two connected parts.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_4_Junctions/discrete_to_continuous_junction_idealization.png" alt="Idealization from discrete to continuous junction">
+                            <figcaption>Figure 4.2: Idealization of discrete junction to continuous junction line</figcaption>
+                        </figure>
+                        
+                        <p>The conceptual representation of the junction can refer to the semi-monocoque description based on lumped areas, thus facilitating the understanding of how the shear flows run inside the structure and the junction.</p>
+                        
+                        <h4>Example: Single Junction</h4>
+                        <p>For a T-junction with shear flows \(q_1\), \(q_2\), and junction flow \(q_G\):</p>
+                        \[q_2 = q_1 + q_G\]
+                        
+                        <h4>Example: Multiple Junctions</h4>
+                        <p>For a cruciform junction:</p>
+                        <ul class="equation-list">
+                            <li>\(q_{G1} = q_1\)</li>
+                            <li>\(q_{G2} = q_2\)</li>
+                            <li>\(q_{G3} = q_3\)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Force Evaluation Over Junction Elements -->
+            <section class="section" id="force-evaluation">
+                <div class="section-header">
+                    <h2>5. Evaluation of Forces Over Junction Elements</h2>
+                </div>
+                <div class="section-content">
+                    <p>Consider the case of a stringer connected to a panel by means of one single row of rivets.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/stringer_panel_junction_force_analysis.png" alt="Stringer-panel junction force analysis">
+                        <figcaption>Figure 5.1: Stringer-panel junction analysis with force flow distribution</figcaption>
+                    </figure>
+                    
+                    <p>By separating the two portions of panel and isolating the junction line, it is obtained:</p>
+                    
+                    <p>The flow along the junction \(q_G\) can then be seen as:</p>
+                    <div class="result-box">
+                        \[q_G = q_1 - q_2\]
+                    </div>
+                    <p>(Note: this is an equilibrium condition)</p>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Force Transmitted by Each Rivet</h3>
+                    <p>To evaluate the amount of shear force transmitted by each single rivet, define:</p>
+                    <ul class="equation-list">
+                        <li>\(N =\) number of rivets</li>
+                        <li>\(p =\) pitch of rivets</li>
+                        <li>\(F =\) force transmitted by single rivet</li>
+                    </ul>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/rivet_pitch_force_distribution.png" alt="Rivet pitch and force distribution">
+                        <figcaption>Figure 5.2: Rivet pitch and force distribution along junction element</figcaption>
+                    </figure>
+                    
+                    <div class="step">
+                        <h4>Derivation</h4>
+                        \[q_G \ell = NF\]
+                        <p>but \(N = \ell/p\)</p>
+                        <p>So:</p>
+                        \[q_G \ell = \frac{\ell}{p} F\]
+                    </div>
+                    
+                    <div class="result-box">
+                        \[F = p \cdot q_G\]
+                    </div>
+                    
+                    <p>This result illustrates that each rivet is responsible for the transfer of the shear flow associated with the region of width \(p\) (half-pitch on each side):</p>
+                    \[F = (p/2 + p/2) q_G\]
+                </div>
+            </section>
+
+            <!-- Section 6: Panel-Panel Connection with 1 Row of Rivets -->
+            <section class="section" id="one-row-rivets">
+                <div class="section-header">
+                    <h2>6. Analysis of Panel-Panel Connection with 1 Row of Rivets</h2>
+                </div>
+                <div class="section-content">
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/panel_connection_rivet_rows_analysis.png" alt="Panel connection with rivet rows">
+                        <figcaption>Figure 6.1: Panel-panel connection analysis with one row of rivets</figcaption>
+                    </figure>
+                    
+                    <p>In this simple case:</p>
+                    \[q_1 = q_2 = q_G = q\]
+                    
+                    <p>Known the shear flow \(q\) (which is equal to \(q_1\) and \(q_2\)), the value of \(q_G\) is readily available as \(q_G = q\).</p>
+                    
+                    <p>The force transmitted by the rivet will be determined as:</p>
+                    <div class="result-box">
+                        \[F = qp\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Panel-Panel Connection with 2 Rows of Rivets -->
+            <section class="section" id="two-row-rivets">
+                <div class="section-header">
+                    <h2>7. Analysis of Panel-Panel Connection with 2 Rows of Rivets</h2>
+                </div>
+                <div class="section-content">
+                    <p>Consider two panels with thicknesses \(t_1\) and \(t_2\) connected by two rows of rivets with spacing \(b\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/force_based_junction_compatibility.png" alt="Force-based junction compatibility">
+                        <figcaption>Figure 7.1: Panel junction with two rows of rivets showing force distribution</figcaption>
+                    </figure>
+                    
+                    <div class="subsection">
+                        <h3>Trivial Solution (Equal Thickness)</h3>
+                        <p>The solution of the problem is trivial if the two panels have equal thickness \(t_1 = t_2\). Indeed by symmetry: \(q_1 = q_2\) and, as for \(q_1 + q_2 = q\)</p>
+                        <p>it follows that:</p>
+                        <div class="result-box">
+                            \[q_1 = q_2 = \frac{q}{2}\]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Non-Trivial Solution (Unequal Thickness)</h3>
+                        <p>The solution is not trivial if \(t_1 \neq t_2\) and has to be calculated.</p>
+                        
+                        <p>The problem is formulated within the framework of the force-based approach.</p>
+                        
+                        <h4>Equilibrium Condition</h4>
+                        <div class="result-box">
+                            \[q_1 + q_2 = q\]
+                        </div>
+                        
+                        <p>It follows that the problem is <strong>statically indeterminate</strong> as the evaluation of the two unknowns \(q_1\) and \(q_2\) requires an additional equation, which cannot be obtained from the equilibrium requirements.</p>
+                        
+                        <p>As usual, the additional condition should represent the <strong>compatibility</strong> and, as such, can be obtained using the PCVW or Menabrea's theorem.</p>
+                    </div>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Solution Using Menabrea's Theorem</h3>
+                    
+                    <div class="step">
+                        <h4>Step 1: Total Complementary Energy</h4>
+                        \[U^* = \sum_{i=1}^{2} \left( U^*_{panel_i} + U^*_{rivet_i} \right)\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 2: Strain Energy Density</h4>
+                        <p>The density of strain energy reads:</p>
+                        \[u^*_{panel} = \frac{1}{2} \tau_i \gamma_i = \frac{1}{2} \frac{q_i}{t} \frac{q_i}{Gt} = \frac{1}{2} \frac{q_i^2}{Gt^2}\]
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/structure_repeating_unit_strain_energy.png" alt="Structure repeating unit for strain energy">
+                        <figcaption>Figure 7.2: Full structure with rivets and repeating unit element</figcaption>
+                    </figure>
+                    
+                    <div class="step">
+                        <h4>Step 3: Panel Contribution (Repeating Unit)</h4>
+                        <p>The strain energy of the generic panel of the repeating unit is:</p>
+                        \[U^*_{panel, unit} = \int_V u^* \, dV = \int_V \frac{1}{2} \frac{q^2}{Gt^2} \, dV = \frac{1}{2} \frac{q^2}{Gt^2} \cdot b \cdot t \cdot p\]
+                        <div class="result-box">
+                            \[U^*_{panel, unit} = \frac{1}{2} \frac{q^2 bp}{Gt}\]
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 4: Rivet Contribution</h4>
+                        <figure class="diagram">
+                            <img src="images/LN_C3_4_Junctions/rivet_deformation_comparison.png" alt="Rivet deformation comparison">
+                            <figcaption>Figure 7.3: Undeformed and deformed rivet states</figcaption>
+                        </figure>
+                        
+                        <p>The contribution associated with the rivets deformability can be determined as:</p>
+                        \[U^*_{rivet} = \frac{1}{2} k u^2 \quad \text{but} \quad u = \frac{F}{k}\]
+                        \[= \frac{1}{2} \frac{F^2}{k}\]
+                        <p>where \(F =\) shear force transmitted by the rivet, \(k =\) rivet stiffness</p>
+                        
+                        <p>Recalling that the force transmitted by a rivet is \(F = q_G \cdot p\), it follows that:</p>
+                        <div class="result-box">
+                            \[U^*_{rivet} = \frac{1}{2} \frac{q_G^2 p^2}{k}\]
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 5: Total Energy Expression</h4>
+                        <figure class="diagram">
+                            <img src="images/LN_C3_4_Junctions/panel_rivet_strain_energy_system.png" alt="Panel-rivet strain energy system">
+                            <figcaption>Figure 7.4: Panel-rivet system showing strain energy contributions</figcaption>
+                        </figure>
+                        
+                        \[U^* = \underbrace{\frac{1}{2} \frac{q_1^2 bp}{Gt} + \frac{1}{2} \frac{q_2^2 bp}{Gt}}_{\text{panels' contrib.}} + \underbrace{\frac{1}{2} \frac{q_1^2 p^2}{k} + \frac{1}{2} \frac{q_2^2 p^2}{k}}_{\text{rivets' contrib.}} + U^*(q)\]
+                        
+                        <div class="note">
+                            <strong>Note:</strong> The contribution \(U^*(q)\) is due to the outer portions of the structure. This contribution does not depend on \(q_1\) and \(q_2\). Thus it is not contributing to the compatibility conditions.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 6: Express Energy as Function of \(q_1\) Only</h4>
+                        <p>Recalling the equilibrium condition \(q = q_2 + q_1\), or \(q_2 = q - q_1\):</p>
+                        \[U^* = \frac{1}{2} \frac{q_1^2 bp}{Gt_1} + \frac{1}{2} \frac{(q_1^2 - 2qq_1 + q^2)}{Gt_2} bp + \frac{1}{2} \frac{q_1^2 p^2}{k} + \frac{1}{2} \frac{(q_1^2 - 2qq_1 + q^2)p^2}{k} + U^*(q)\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 7: Define Nondimensional Parameters</h4>
+                        <div class="result-box">
+                            \[\alpha = \frac{Gt_1 p}{kb} \qquad \beta = \frac{t_1}{t_2}\]
+                        </div>
+                        <p>\(\alpha\) is a ratio between the stiffness of the panel and the stiffness of the rivet</p>
+                        
+                        <p>The energy becomes:</p>
+                        \[U^* = \frac{1}{2} \frac{bp}{Gt_1} \left( q_1^2 + \beta(q_1^2 - 2qq_1) \right) + \frac{1}{2} \frac{bp}{Gt_1} \left( \alpha(2q_1^2 - 2qq_1) \right) + U^*(q)\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 8: Apply Stationarity Condition</h4>
+                        \[\frac{\partial U^*}{\partial q_1} = 0\]
+                        \[\frac{\partial U^*}{\partial q_1}: \quad q_1 + \beta(q_1 - q) + 2q_1\alpha - q\alpha = 0\]
+                        \[q_1(1 + \beta + 2\alpha) = q(\alpha + \beta)\]
+                    </div>
+                    
+                    <div class="result-box">
+                        <strong>Solution:</strong>
+                        \[q_1 = \frac{\alpha + \beta}{1 + \beta + 2\alpha} q\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Verification: Equal Thickness Case</h4>
+                        <p>Clearly if \(t_1 = t_2\), i.e. \(\beta = 1\), the shear flow is evenly distributed between the two rivets:</p>
+                        \[q_1 = \frac{\alpha + 1}{2\alpha + 2} q = \frac{1}{2} q\]
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/uneven_shear_flow_distribution.png" alt="Uneven shear flow distribution">
+                        <figcaption>Figure 7.5: Uneven shear flow distribution when panel thicknesses differ</figcaption>
+                    </figure>
+                    
+                    <p>Whenever \(t_1 \neq t_2\) the shear flow is unevenly distributed between the two rivets. In particular, higher values of \(\beta\) \((t_2 > t_1)\) will lead to \(q_2 > q_1\).</p>
+                </div>
+            </section>
+
+            <!-- Section 8: Panel-Panel Connection with 3 Rows of Rivets -->
+            <section class="section" id="three-row-rivets">
+                <div class="section-header">
+                    <h2>8. Analysis of Panel-Panel Connection with 3 Rows of Rivets</h2>
+                </div>
+                <div class="section-content">
+                    <p>The analysis can be easily extended to consider the case of a junction with 3 lines of rivets. For simplicity the analysis is here restricted to the case of panels of equal thickness.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/three_row_rivet_connection_symmetry.png" alt="Three row rivet connection with symmetry">
+                        <figcaption>Figure 8.1: Panel-panel connection with three rows of rivets</figcaption>
+                    </figure>
+                    
+                    <p>From symmetry and recalling that \(q_3 = q - q_1\), the schematic can be simplified.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/three_row_equilibrium_conditions.png" alt="Three row equilibrium conditions">
+                        <figcaption>Figure 8.2: Equilibrium conditions for three-row rivet junction</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Solution</h3>
+                    
+                    <div class="step">
+                        <h4>Equilibrium Conditions</h4>
+                        \[\begin{cases} q_1 + q_3 = q \\ q_2 + q_1 = q_3 \end{cases}\]
+                        <p>3 unknowns \((q_i: i = 1, 2, 3)\), 2 equations</p>
+                        <p>The third equation is available by invoking the compatibility of the solution.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Complementary Energy Expression</h4>
+                        \[U^* = \frac{1}{2} \underbrace{\frac{(2q_1^2 + 2q_3^2)bp}{Gt}}_{\text{Contribution of four panels}} + \frac{1}{2} \underbrace{\frac{2q_1^2 p^2}{k}}_{\text{Contrib. of two outer rivets}} + \frac{1}{2} \underbrace{\frac{q_2^2 p^2}{k}}_{\text{Contrib. of middle rivet}} + U^*(q)\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Express as Function of \(q_1\)</h4>
+                        <p>Using the equilibrium conditions:</p>
+                        \[q_3 = q - q_1\]
+                        \[q_2 = q_3 - q_1 = q - 2q_1\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Apply Stationarity</h4>
+                        <p>The expression of \(U^*\), after a few algebraic manipulations, is:</p>
+                        \[U^* = \frac{bp}{Gt} \left[ (2 + 3\alpha) q_1^2 - (2q + 2\alpha q) q_1 \right] + U^*(q)\]
+                        
+                        <p>And imposing \(\frac{\partial U^*}{\partial q_1} = 0\):</p>
+                        \[\frac{\partial U^*}{\partial q_1} = 2(2 + 3\alpha)q_1 - 2q(1 + \alpha) = 0\]
+                    </div>
+                    
+                    <div class="result-box">
+                        <strong>Solution:</strong>
+                        \[q_1 = \frac{1 + \alpha}{2 + 3\alpha} q\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Comments on the Result</h4>
+                        <p>\(\alpha\) is defined as \(\alpha = \frac{Gt_1 p}{kb}\)</p>
+                        <ul>
+                            <li>\(\alpha \rightarrow +\infty\) means that the panel is much stiffer than the rivet</li>
+                            <li>\(\alpha \rightarrow 0\) means that the rivet is much stiffer than the panel (situation closer to typical values)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Case: \(\alpha \rightarrow 0\)</h4>
+                        \[q_1 = \frac{1}{2} q, \quad q_2 = 0, \quad q_3 = \frac{1}{2} q\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_4_Junctions/shear_flow_alpha_zero_case.png" alt="Shear flow for alpha approaching zero">
+                            <figcaption>Figure 8.3: Shear flow distribution for \(\alpha \rightarrow 0\)</figcaption>
+                        </figure>
+                        
+                        <p>Whenever the rivet is much stiffer than the panel, the <strong>central row of rivets is unloaded</strong> and so unuseful.</p>
+                        
+                        <div class="note">
+                            <strong>Important:</strong> This situation is typically close to common aerospace values and explains why using a triple row of rivets is not a good practice.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Case: \(\alpha \rightarrow +\infty\)</h4>
+                        \[q_1 = \frac{1}{3} q, \quad q_2 = \frac{1}{3} q, \quad q_3 = \frac{1}{3} q\]
+                        <p>All rivets are equally loaded.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Intermediate Cases</h4>
+                        <div class="result-box">
+                            \[\frac{1}{3}q \leq q_1 \leq \frac{1}{2}q\]
+                            \[0 \leq q_2 \leq \frac{1}{3}q\]
+                            \[\frac{1}{3}q \leq q_3 \leq \frac{1}{2}q\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Bonding (Continuous Junctions) -->
+            <section class="section" id="bonding">
+                <div class="section-header">
+                    <h2>9. Bonding (Continuous Junctions)</h2>
+                </div>
+                <div class="section-content">
+                    <p>A continuous junction technique, which is commonly used in the aerospace field, is the <strong>bonding</strong>.</p>
+                    
+                    <p>Often bonding makes use of thin films of pre-polymerized material, reinforced with glass fiber.</p>
+                    
+                    <p>It is a cheap technology, offering the additional advantage of guaranteeing isolation with outside.</p>
+                    
+                    <p>For metallic materials, the typical thickness of the bonding layers is of the order of \(1/10\) mm.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/bonding_vs_riveting_load_transfer.png" alt="Bonding vs riveting load transfer">
+                        <figcaption>Figure 9.1: Continuous load transfer in bonded junction versus discrete load transfer in riveted junction</figcaption>
+                    </figure>
+                    
+                    <p>In the presence of a bonding line the load transfer is <strong>continuous</strong>, as opposed to the case of discrete junctions, where the load transfer happens in discrete locations.</p>
+                </div>
+            </section>
+
+            <!-- Section 10: Differential Problem for Bonded Junctions -->
+            <section class="section" id="bonded-differential">
+                <div class="section-header">
+                    <h2>10. Differential Problem for Bonded Junctions</h2>
+                </div>
+                <div class="section-content">
+                    <p>It follows that the problem of evaluating the shear flow transfer is a <strong>differential problem</strong> and not an algebraic one as in the case of discrete junctions.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/differential_bonded_junction_analysis.png" alt="Differential bonded junction analysis">
+                        <figcaption>Figure 10.1: Bonded junction showing shear flows as functions of position</figcaption>
+                    </figure>
+                    
+                    <p>The shear flows \(q_1\) and \(q_2\) are now <strong>functions of the position</strong> \(x\), meaning that the unknowns are no more scalars but functions.</p>
+                    
+                    <p>At any section of the structure the equilibrium is satisfied, meaning that:</p>
+                    <div class="result-box">
+                        \[q_1(x) + q_2(x) = q \quad \text{(equilibrium)}\]
+                    </div>
+                    
+                    <p>This can be easily seen by considering an arbitrary path \(\Pi\). The shear flow equation states that: \(q_2 + q_1 = q\)</p>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Differential Element Analysis</h3>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/panel_glue_differential_element_analysis.png" alt="Panel-glue differential element analysis">
+                        <figcaption>Figure 10.2: Free body diagrams of upper panel, glue layer, and lower panel</figcaption>
+                    </figure>
+                    
+                    <div class="step">
+                        <h4>Equilibrium of the Upper Panel</h4>
+                        \[(q_2 + dq_2) dz - q_2 dz - \tau_g dx \, dz = 0\]
+                        \[dq_2 = \tau_g dx\]
+                        <div class="result-box">
+                            \[q_{2,x} = \tau_g\]
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Equilibrium of the Lower Panel</h4>
+                        \[(q_1 + dq_1) dz - q_1 dz + \tau_g dx \, dz = 0\]
+                        <div class="result-box">
+                            \[q_{1,x} = -\tau_g\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: Energy Formulation for Bonded Junctions -->
+            <section class="section" id="bonded-energy">
+                <div class="section-header">
+                    <h2>11. Energy Formulation for Bonded Junctions</h2>
+                </div>
+                <div class="section-content">
+                    <p>The problem is formulated, as done for the rivets, by referring to Menabrea's theorem for imposing the compatibility.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/bonded_junction_menabrea_theorem.png" alt="Bonded junction for Menabrea theorem">
+                        <figcaption>Figure 11.1: Bonded junction cross-section with coordinate system</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Derivation of Governing Equation</h3>
+                    
+                    <div class="step">
+                        <h4>Step 1: Total Complementary Energy</h4>
+                        \[U^* = U^*_{panels} + U^*_{glue}\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 2: Panel Contribution</h4>
+                        \[U^*_{panels} = \frac{1}{2} \int_V \frac{q^2}{Gt^2} dV = \frac{1}{2} \int_\ell \int_{-b}^{b} \frac{q^2}{Gt} dx \, dz\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 3: Glue Contribution</h4>
+                        \[U^*_{glue} = \frac{1}{2} \int_V \tau_g \gamma_g dV = \frac{1}{2} \int_V \frac{\tau_g^2}{G_g} dV = \frac{1}{2} \int_\ell \int_{-b}^{b} \frac{\tau_g^2}{G_g} t_g \, dx \, dz\]
+                        <p>where \(G_g\) is the glue's shear modulus</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 4: Combined Expression</h4>
+                        \[U^* = \frac{1}{2} \int_\ell \int_{-b}^{b} \left( \frac{q_1^2 + q_2^2}{Gt} + \frac{\tau_g^2 \cdot t_g}{G_g} \right) dx \, dz + U^*(q)\]
+                        
+                        <p>The problem does not depend on \(z\), so it can be taken \(dz = 1\):</p>
+                        <div class="result-box">
+                            \[U^* = \frac{1}{2} \int_{-b}^{b} \left( \frac{q_1^2 + q_2^2}{Gt} + \frac{\tau_g^2 t_g}{G_g} \right) dx + U^*(q)\]
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 5: Introduce Equilibrium Conditions</h4>
+                        <p>Express \(U^*\) as function of \(q_2\) only:</p>
+                        \[q_1 + q_2 = q \Rightarrow q_1 = q - q_2\]
+                        \[q_{2,x} = \tau_g\]
+                        
+                        <p>The strain energy is then:</p>
+                        \[U^* = \frac{1}{2} \int_{-b}^{b} \left( \frac{q^2 + q_2^2 - 2qq_2 + q_2^2}{Gt} + \frac{q_{2,x}^2 \cdot t_g}{G_g} \right) dx + U^*(q)\]
+                        
+                        <div class="result-box">
+                            \[U^* = \frac{1}{Gt} \int_{-b}^{b} (q_2^2 - qq_2) dx + \frac{1}{2} \int_{-b}^{b} \frac{q_{2,x}^2 \cdot t_g}{G_g} dx + U^*(q)\]
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 6: Apply Euler-Lagrange Equations</h4>
+                        <p>The functional \(U^*\) depends on \(q_2\) and \(q_{2,x}\), or \(U^* = U^*(q_2, q_{2,x})\)</p>
+                        
+                        <p>The stationarity condition \(\delta U^* = 0\) can be imposed by applying the Euler-Lagrange equations:</p>
+                        \[\frac{\partial u^*}{\partial q_2} - \frac{d}{dx} \frac{\partial u^*}{\partial q_{2,x}} = 0\]
+                        <p>where \(U^* = \int_{-b}^{b} u^* dx\)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 7: Compute Derivatives</h4>
+                        \[\frac{\partial u^*}{\partial q_2} = \frac{1}{Gt} (2q_2 - q)\]
+                        \[\frac{d}{dx} \frac{\partial u^*}{\partial q_{2,x}} = \frac{t_g}{G_g} q_{2,xx}\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 8: Euler-Lagrange Equation</h4>
+                        \[\frac{1}{Gt} (2q_2 - q) - \frac{t_g}{G_g} q_{2,xx} = 0\]
+                        <p>or:</p>
+                        \[-\frac{G t \cdot t_g}{G_g} q_{2,xx} + 2q_2 = q\]
+                        \[-\frac{G t_g}{2G_g} q_{2,xx} + q_2 = q/2\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Step 9: Define Parameter</h4>
+                        <p>Define the parameter (dimensional):</p>
+                        <div class="result-box">
+                            \[d^2 = \frac{2G_g}{G t_g}\]
+                        </div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <strong>Governing Differential Equation:</strong>
+                        \[-\frac{1}{d^2} q_{2,xx} + q_2 = \frac{q}{2}\]
+                    </div>
+                    
+                    <p>This is a non-homogeneous equation describing the compatibility requirements.</p>
+                </div>
+            </section>
+
+            <!-- Section 12: Solution of the Bonded Junction Problem -->
+            <section class="section" id="bonded-solution">
+                <div class="section-header">
+                    <h2>12. Solution of the Bonded Junction Problem</h2>
+                </div>
+                <div class="section-content">
+                    <p>The solution of the problem involves:</p>
+                    <ol>
+                        <li>The definition of the boundary conditions</li>
+                        <li>The solution of the homogeneous part and the particular one</li>
+                    </ol>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/boundary_conditions_differential_problem.png" alt="Boundary conditions for differential problem">
+                        <figcaption>Figure 12.1: Boundary conditions for the differential problem</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Complete Solution</h3>
+                    
+                    <div class="step">
+                        <h4>Differential Problem Statement</h4>
+                        \[\begin{cases} -\frac{1}{\alpha^2} q_{2,xx} + q_2 = q/2 \\ q_2(b) = q \\ q_2(-b) = 0 \end{cases}\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Homogeneous Solution</h4>
+                        \[-\frac{1}{\alpha^2} q_{2,xx} + q_2 = 0\]
+                        \[-\frac{\lambda^2}{\alpha^2} + 1 = 0 \Rightarrow \lambda^2 = \alpha^2 \Rightarrow \lambda = \pm \alpha\]
+                        <div class="result-box">
+                            \[q_2^H = Ae^{\alpha x} + Be^{-\alpha x}\]
+                        </div>
+                        <p>\(A, B\) are integration constants to evaluate by imposing BCs</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Particular Solution</h4>
+                        <div class="result-box">
+                            \[q_2^P = q/2\]
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>General Solution</h4>
+                        \[q_2 = Ae^{\alpha x} + Be^{-\alpha x} + q/2\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Apply Boundary Conditions</h4>
+                        \[\begin{cases} q_2(b) = Ae^{\alpha b} + Be^{-\alpha b} + q/2 = q & (1) \\ q_2(-b) = Ae^{-\alpha b} + Be^{\alpha b} + q/2 = 0 & (2) \end{cases}\]
+                        
+                        <p>From \((1) - (2)\):</p>
+                        \[A(e^{\alpha b} + e^{-\alpha b}) + B(e^{\alpha b} + e^{-\alpha b}) = 0\]
+                        \[\Rightarrow B = -A\]
+                        
+                        <p>From (1): \(A(e^{\alpha b} - e^{-\alpha b}) = q/2\)</p>
+                        
+                        <p>Recalling that:</p>
+                        \[\sinh \alpha = \frac{e^{\alpha} - e^{-\alpha}}{2}, \quad \cosh \alpha = \frac{e^{\alpha} + e^{-\alpha}}{2}\]
+                        
+                        \[A = \frac{q}{2(e^{\alpha b} - e^{-\alpha b})} = \frac{q}{4 \sinh(\alpha b)}\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Final Solutions</h4>
+                        <p>Summarizing, the solution is obtained as:</p>
+                        
+                        <p>\(q_2 = A(e^{-\alpha x} - e^{\alpha x}) + q/2 = 2A \sinh(\alpha x) + q/2\)</p>
+                        
+                        <div class="result-box">
+                            \[q_2 = \frac{q}{2} \frac{\sinh(\alpha x)}{\sinh(\alpha b)} + \frac{q}{2}\]
+                        </div>
+                        
+                        <p>From \(q_1 = q - q_2\):</p>
+                        <div class="result-box">
+                            \[q_1 = -\frac{q}{2} \frac{\sinh(\alpha x)}{\sinh(\alpha b)} + \frac{q}{2}\]
+                        </div>
+                        
+                        <p>From \(\tau_g = q_{2,x}\):</p>
+                        <div class="result-box">
+                            \[\tau_g = \frac{q}{2} \alpha \frac{\cosh(\alpha x)}{\sinh(\alpha b)}\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 13: Graphical Results and Remarks -->
+            <section class="section" id="bonded-remarks">
+                <div class="section-header">
+                    <h2>13. Graphical Results and Remarks</h2>
+                </div>
+                <div class="section-content">
+                    <p>The solutions can be reported graphically:</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_4_Junctions/solution_shear_distribution_graph.png" alt="Solution shear distribution graph">
+                        <figcaption>Figure 13.1: Shear flow and shear stress distributions across bonded junction</figcaption>
+                    </figure>
+                    
+                    <div class="subsection">
+                        <h3>Remarks</h3>
+                        
+                        <h4>1. Dependence on Parameter \(\alpha\)</h4>
+                        <p>The behaviour of \(\tau_g\) depends on the parameter \(\alpha\)</p>
+                        <p>(Recall \(\alpha^2 = \frac{2G_g}{Gt \cdot t_g}\))</p>
+                        <ul>
+                            <li><strong>High \(\alpha\):</strong> high \(G_c\), low \(t_g\)</li>
+                            <li><strong>Low \(\alpha\):</strong> low \(G_c\), high \(t_g\)</li>
+                        </ul>
+                        
+                        <h4>2. Optimal Operation</h4>
+                        <p>The bonding works fine for <strong>high values of \(\alpha\)</strong>. In these cases (\(\alpha\) high) the central region is substantially unloaded, which is beneficial from a viscoelastic phenomena (creep) point of view.</p>
+                        
+                        <h4>3. Stress Peaks</h4>
+                        <p>The peaks of stresses on the outer regions will be, in any case, reduced by yielding phenomena.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 14: Euler-Lagrange Equations -->
+            <section class="section" id="euler-lagrange">
+                <div class="section-header">
+                    <h2>14. Remark on Euler-Lagrange Equations</h2>
+                </div>
+                <div class="section-content">
+                    <p>Euler-Lagrange equations are used in variational calculus to determine the stationarity conditions for a functional.</p>
+                    
+                    <p>Given a functional:</p>
+                    <div class="result-box">
+                        \[I = \int_a^b F(x, u, u_x, u_{xx}) dx\]
+                    </div>
+                    <p>where \(I: U \rightarrow \mathbb{R}\) maps from a generic function space to real numbers.</p>
+                    
+                    <p>The stationarity condition (the maximum or the minimum) is obtained by applying the so-called Euler-Lagrange equations:</p>
+                    <div class="result-box">
+                        \[\frac{\partial F}{\partial u} - \left(\frac{\partial F}{\partial u_x}\right)_x + \left(\frac{\partial F}{\partial u_{xx}}\right)_{xx} = 0\]
+                    </div>
+                    
+                    <p>meaning that the function \(u\) which satisfies the Euler-Lagrange equations will determine an extremal value (maximum or minimum) for \(I\).</p>
+                    
+                    <p>Instead of applying the Euler-Lagrange equations, the same result can be obtained by setting:</p>
+                    \[\delta I = 0\]
+                    <p>and integrating by parts.</p>
+                </div>
+                
+                <div class="derivation">
+                    <h3>Verification for Bonded Junction Problem</h3>
+                    
+                    <div class="step">
+                        <h4>Starting Expression</h4>
+                        <p>Consider this approach with reference to the problem of minimizing \(U^*\) for continuous junctions; it was found that:</p>
+                        \[U^* = \frac{1}{Gt} \int_{-b}^{b} (q_2^2 - qq_2) dx + \frac{1}{2} \int_{-b}^{b} \frac{q_{2,x}^2 \cdot t_g}{G_g} dx\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Impose \(\delta U^* = 0\)</h4>
+                        \[\delta U^* = \frac{1}{Gt} \int_{-b}^{b} (2q_2 \delta q_2 - q \delta q_2) dx + \int_{-b}^{b} q_{2,x} \delta q_{2,x} \frac{t_g}{G_g} dx\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Integrate by Parts</h4>
+                        <p>Integrate the second contribution by parts:</p>
+                        \[= \frac{1}{Gt} \int_{-b}^{b} \delta q_2 (2q_2 - q) dx - \int_{-b}^{b} \delta q_2 \cdot q_{2,xx} \frac{t_g}{G_g} dx + \delta q_2 \cdot q_{2,x} \frac{t_g}{G_g} \Big|_{-b}^{b} = 0\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Apply Boundary Conditions</h4>
+                        <p>Observe now that:</p>
+                        \[q_2(b) = q \Rightarrow \delta q_2(b) = 0\]
+                        \[q_2(-b) = 0 \Rightarrow \delta q_2(-b) = 0\]
+                        
+                        <p>So:</p>
+                        \[= \int_{-b}^{b} \delta q_2 \left[ \frac{1}{Gt}(2q_2 - q) - \frac{t_g}{G_g} q_{2,xx} \right] dx = 0 \quad \forall \delta q_2\]
+                    </div>
+                    
+                    <div class="step">
+                        <h4>Final Result</h4>
+                        <p>As the previous equation should be verified for \(\forall \delta q_2\), it follows that:</p>
+                        <div class="result-box">
+                            \[\frac{1}{Gt}(2q_2 - q) - \frac{t_g}{G_g} q_{2,xx} = 0\]
+                        </div>
+                        <p>which is the same stationarity condition obtained using the Euler-Lagrange equations.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

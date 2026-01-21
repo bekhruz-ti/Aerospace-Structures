@@ -1,0 +1,10 @@
+{
+  "tensor_contraction_diagram.png": {
+    "suggested_name": "tensor_contraction_diagram",
+    "description": "Small schematic diagram showing tensor contraction notation with connecting lines between tensor indices, illustrating the graphical representation of scalar product operations"
+  },
+  "gradient_divergence_definitions.png": {
+    "suggested_name": "gradient_divergence_definitions",
+    "description": "Boxed mathematical definitions showing gradient and divergence operators with partial derivative notation and unit vector components"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "lagrangian_body_deformation_two_configurations.png": {
+    "suggested_name": "lagrangian_body_deformation_two_configurations",
+    "description": "Lagrangian approach diagram showing two deformed body configurations (ℰ⁰ and ℰ¹) connected by displacement vector u, with point P and position vectors illustrated"
+  },
+  "kinematics_initial_deformed_configuration.png": {
+    "suggested_name": "kinematics_initial_deformed_configuration",
+    "description": "Kinematics diagram showing initial configuration ℰ⁰ and deformed configuration ℰ¹ with point P, displacement vector u, and position vectors X̄ and x illustrated"
+  },
+  "eulerian_approach_time_instants.png": {
+    "suggested_name": "eulerian_approach_time_instants",
+    "description": "Eulerian approach diagram showing three body configurations at different time instants (t=t₁, t, t=t₂) with position vector X̄ and deformation stages"
+  },
+  "eulerian_deformed_body_configuration.png": {
+    "suggested_name": "eulerian_deformed_body_configuration",
+    "description": "Eulerian case diagram showing deformed body configuration with position vector x and spatial coordinate illustration"
+  },
+  "square_deformation_before_after.png": {
+    "suggested_name": "square_deformation_before_after",
+    "description": "Deformation example showing square element before and after deformation with coordinate system and point A at position (1,1) transforming to (1+a, 1+a)"
+  },
+  "deformation_measure_two_points.png": {
+    "suggested_name": "deformation_measure_two_points",
+    "description": "Measure of deformation diagram showing two body configurations (ℰ⁰ and ℰ¹) with points P and Q, displacement vectors uₚ and uᵩ, and position vectors from origin O"
+  },
+  "rigid_rotation_differential_element.png": {
+    "suggested_name": "rigid_rotation_differential_element",
+    "description": "Small diagram showing rigid rotation with rotation tensor R and differential element dx along curved path"
+  },
+  "cauchy_continuum_volume_surface.png": {
+    "suggested_name": "cauchy_continuum_volume_surface",
+    "description": "Cauchy continuum diagram showing body with volume V and surface S, with small volume element ΔV and surface element ΔS extracted"
+  },
+  "force_moment_resultants_volume_surface.png": {
+    "suggested_name": "force_moment_resultants_volume_surface",
+    "description": "Force and moment resultants diagram showing volume element ΔV and surface element ΔS with force vectors ΔF and moment vectors ΔM"
+  },
+  "body_divided_internal_forces.png": {
+    "suggested_name": "body_divided_internal_forces",
+    "description": "Body divided into two parts showing virtual surfaces with stress vector t and normal vector n, illustrating internal force exchange between surfaces"
+  },
+  "cauchy_tetrahedron_stress_vectors.png": {
+    "suggested_name": "cauchy_tetrahedron_stress_vectors",
+    "description": "Cauchy tetrahedron diagrams showing triangular surface elements ΔS₁, ΔS₂, ΔS₃ with coordinate axes and stress vectors t₁, t₂, t₃, and normal vector n"
+  },
+  "first_piola_kirchhoff_reference_current.png": {
+    "suggested_name": "first_piola_kirchhoff_reference_current",
+    "description": "First Piola-Kirchhoff stress tensor diagram showing reference and current configurations with normal vectors N and n, infinitesimal areas dA and da, and force element dF"
+  },
+  "volume_change_transformation.png": {
+    "suggested_name": "volume_change_transformation",
+    "description": "Change of volume diagram showing transformation from reference configuration with infinitesimal vectors dX̄₁, dX̄₂, dX̄₃ to current configuration with dx₁, dx₂, dx₃ via transformation x = x(X̄)"
+  },
+  "nansons_formula_oriented_area.png": {
+    "suggested_name": "nansons_formula_oriented_area",
+    "description": "Nanson's formula diagram showing reference and current configurations with oriented area elements, normal vectors N in reference and n in current configuration"
+  }
+}

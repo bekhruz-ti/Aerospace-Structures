@@ -1,0 +1,186 @@
+{
+  "shear_stress_distribution_cross_sections.png": {
+    "suggested_name": "shear_stress_distribution_cross_sections",
+    "description": "Two cross-sectional diagrams showing shear stress distribution: left shows I-beam cross-section with arrows indicating shear flow, right shows elliptical/oval cross-section with Hz label and directional arrow"
+  },
+  "multicell_beam_section_with_stringer.png": {
+    "suggested_name": "multicell_beam_section_with_stringer",
+    "description": "Multi-cell stringer-stiffened beam section showing spar cap, shear web, and stringer with internal moment Mz and torque T labels"
+  },
+  "thin_walled_beam_internal_forces.png": {
+    "suggested_name": "thin_walled_beam_internal_forces",
+    "description": "Thin-walled beam cross-section showing internal forces Tx, Ty and torsional moment Mz with coordinate system"
+  },
+  "beam_section_arbitrary_region.png": {
+    "suggested_name": "beam_section_arbitrary_region",
+    "description": "Rectangular beam cross-section with arbitrary region A' marked showing coordinate system for shear flow analysis"
+  },
+  "i_beam_shear_flow_source_sink.png": {
+    "suggested_name": "i_beam_shear_flow_source_sink",
+    "description": "I-beam cross-section showing shear flow patterns with arrows indicating source and sink regions, demonstrating positive and negative flow directions"
+  },
+  "internal_forces_moments_3d_diagram.png": {
+    "suggested_name": "internal_forces_moments_3d_diagram",
+    "description": "3D coordinate system diagram showing internal forces Tx, Ty and moments Mx, My, Mz with directional arrows and relationships between components"
+  },
+  "i_beam_thin_web_shear_distribution.png": {
+    "suggested_name": "i_beam_thin_web_shear_distribution",
+    "description": "I-beam cross-section showing thin web assumption with shear web and internal shear force Ty, illustrating stress distribution along web"
+  },
+  "shear_flow_distribution_patterns.png": {
+    "suggested_name": "shear_flow_distribution_patterns",
+    "description": "I-beam section showing constant and quadratic shear flow distribution patterns along web height with coordinate system and thickness parameter"
+  },
+  "lumped_area_beam_model.png": {
+    "suggested_name": "lumped_area_beam_model",
+    "description": "I-beam cross-section with lumped areas A1 and A2 showing concentrated area representation and shear web with no area designation"
+  },
+  "constant_shear_flow_approximation.png": {
+    "suggested_name": "constant_shear_flow_approximation",
+    "description": "I-beam section showing shear flow distribution with lumped areas A1 and A2, illustrating constant shear flow approximation and exact versus approximate flow diagrams"
+  },
+  "wing_box_idealization_transformation.png": {
+    "suggested_name": "wing_box_idealization_transformation",
+    "description": "Two-cell wing-box structure transformation showing actual structure with ribs converting to idealized model with concentrated nodes"
+  },
+  "wing_structure_ribs_3d_view.png": {
+    "suggested_name": "wing_structure_ribs_3d_view",
+    "description": "3D perspective view of wing structure showing ribs as stiffening elements with arrows indicating in-plane and out-of-plane directions"
+  },
+  "stringer_lumping_transformation.png": {
+    "suggested_name": "stringer_lumping_transformation",
+    "description": "Stringer lumping diagram showing transformation from distributed stringers with spacing L to lumped concentrated areas with equivalent area calculation"
+  },
+  "panel_stress_distribution_diagram.png": {
+    "suggested_name": "panel_stress_distribution_diagram",
+    "description": "Panel stress diagram showing thickness t, coordinate s, and stress distribution with assumption of constant stress in thickness-wise direction"
+  },
+  "stringer_lumping_comparison.png": {
+    "suggested_name": "stringer_lumping_comparison",
+    "description": "Comparison diagrams showing actual stringer shape with distances d1 and neutral axis versus lumped representation with distance d2"
+  },
+  "section_types_classification.png": {
+    "suggested_name": "section_types_classification",
+    "description": "Classification of beam sections showing three types: open section, single-cell closed section, and multi-cell closed section with example cross-sections"
+  },
+  "panel_resultant_flow_diagram.png": {
+    "suggested_name": "panel_resultant_flow_diagram",
+    "description": "Panel resultant flow diagram showing curved panel from point A to B with resultant force R_r, projection h_r, and geometric relationships"
+  },
+  "curved_panel_geometry_diagram.png": {
+    "suggested_name": "curved_panel_geometry_diagram",
+    "description": "Geometric diagram showing curved panel segment with angle beta, incremental length ds, projection relationships and resultant force calculation"
+  },
+  "moment_calculation_curved_panel.png": {
+    "suggested_name": "moment_calculation_curved_panel",
+    "description": "Moment calculation diagram showing curved panel from A to B with point P, arm distance d, infinitesimal area elements and moment contribution geometry"
+  },
+  "section_symmetry_principal_axes.png": {
+    "suggested_name": "section_symmetry_principal_axes",
+    "description": "Symmetry diagrams showing rectangular and triangular sections with principal axes, demonstrating transformation to principal coordinate system with single angle of symmetry"
+  },
+  "asymmetric_section_principal_axes.png": {
+    "suggested_name": "asymmetric_section_principal_axes",
+    "description": "Asymmetric quadrilateral section showing centroid location, principal axes determination with moments of inertia and rotation angle alpha calculation"
+  },
+  "generic_section_shear_flow_equilibrium.png": {
+    "suggested_name": "generic_section_shear_flow_equilibrium",
+    "description": "Generic section and specific region A' showing shear flow application with flow values q1, q2, q3 and equilibrium equation demonstration"
+  },
+  "infinitesimal_element_equilibrium_3d.png": {
+    "suggested_name": "infinitesimal_element_equilibrium_3d",
+    "description": "3D equilibrium diagram showing infinitesimal beam element with shear flows q1, q2, q3, forces and incremental changes along z-axis"
+  },
+  "open_section_shear_flows.png": {
+    "suggested_name": "open_section_shear_flows",
+    "description": "Open C-section diagram showing three unknown shear flows q1, q2, q3 with linearly independent shear flow equations for n=4 stringers"
+  },
+  "closed_section_circulating_flow.png": {
+    "suggested_name": "closed_section_circulating_flow",
+    "description": "Single-cell closed rectangular section showing shear flows q1, q2, q3, q4 with circulating flow q* and missing equation discussion"
+  },
+  "closed_section_torsional_moment.png": {
+    "suggested_name": "closed_section_torsional_moment",
+    "description": "Rectangular closed section showing internal torsional moment Hz with shear flows and equivalence condition equation"
+  },
+  "c_section_principal_axes.png": {
+    "suggested_name": "c_section_principal_axes",
+    "description": "C-section with principal axes showing dimensions a and b, internal forces Tx and Ty, and coordinate system for open section analysis"
+  },
+  "alternative_integration_paths.png": {
+    "suggested_name": "alternative_integration_paths",
+    "description": "Alternative path diagrams showing four different integration paths A1, A2, A3, A4 for applying shear flow equations with equivalent results"
+  },
+  "shear_center_position_diagram.png": {
+    "suggested_name": "shear_center_position_diagram",
+    "description": "Rectangular section showing shear center position with internal forces Tx, Ty, moment Hz, and geometric dimensions a and b for equilibrium"
+  },
+  "shear_center_graphical_representation.png": {
+    "suggested_name": "shear_center_graphical_representation",
+    "description": "Graphical representation showing all curves passing through shear center point (x_sc, y_sc) with slope dependent on Ty/Tx ratio"
+  },
+  "shear_center_force_ratio_diagrams.png": {
+    "suggested_name": "shear_center_force_ratio_diagrams",
+    "description": "Two diagrams showing rectangular sections with different Ty/Tx ratios: one with Ty shifted along r-axis, another with both Tx and Ty showing elastic axis"
+  },
+  "single_cell_closed_section.png": {
+    "suggested_name": "single_cell_closed_section",
+    "description": "Generic rectangular closed section with one cell showing internal forces Tx, Ty, torsional moment Hz and coordinate system for single-cell analysis"
+  },
+  "cut_panel_flow_distribution.png": {
+    "suggested_name": "cut_panel_flow_distribution",
+    "description": "Rectangular section showing cut panel with flows q'1 through q'6, illustrating flow distribution after cutting one panel with q'6=0"
+  },
+  "circulating_flow_moment_equivalence.png": {
+    "suggested_name": "circulating_flow_moment_equivalence",
+    "description": "Closed section with circulating flow q* showing areas Ω1, Ω2, Ω3 and equivalence to internal moment with respect to arbitrary point P"
+  },
+  "torsion_evaluation_real_dummy_systems.png": {
+    "suggested_name": "torsion_evaluation_real_dummy_systems",
+    "description": "3D diagram showing two-cell section with infinitesimal portion dz, illustrating real and dummy systems for torsion evaluation with rotation angles"
+  },
+  "cell_shear_flow_summation.png": {
+    "suggested_name": "cell_shear_flow_summation",
+    "description": "Rectangular section diagram showing shear flow Sq with cell area notation and summation over panels for single cell k"
+  },
+  "multicell_section_equation_count.png": {
+    "suggested_name": "multicell_section_equation_count",
+    "description": "Multi-cell section example showing n=8 stringers, m=10 panels, N=3 cells with equation count: n-1 shear flow equations and 1 equivalence condition"
+  },
+  "multicell_solution_procedure.png": {
+    "suggested_name": "multicell_solution_procedure",
+    "description": "Solution procedure diagram showing N panels cut with shear flow equations and equivalence conditions for multi-cell closed sections"
+  },
+  "multicell_shear_center_position.png": {
+    "suggested_name": "multicell_shear_center_position",
+    "description": "Rectangular section showing shear center position y_sc with internal force Tx and coordinate system for multi-cell section analysis"
+  },
+  "single_cell_shear_center.png": {
+    "suggested_name": "single_cell_shear_center",
+    "description": "Single-cell rectangular section showing shear center x_sc position with internal force Ty and principal axes for closed section"
+  },
+  "centroid_shear_center_offset.png": {
+    "suggested_name": "centroid_shear_center_offset",
+    "description": "Asymmetric section showing centroid CG and shear center SC with coordinate systems, illustrating non-coincident centers and reference system through shear center"
+  },
+  "bending_stiffness_principal_axes.png": {
+    "suggested_name": "bending_stiffness_principal_axes",
+    "description": "Rectangular section with coordinate systems showing principal axes and bending stiffness relationships EJ_xx and EJ_yy with distances from principal axes"
+  },
+  "cantilever_beam_compact_section.png": {
+    "suggested_name": "cantilever_beam_compact_section",
+    "description": "Cantilever beam diagram showing compact square section with dimension a, length l, applied force F at free end, and internal forces Mx, Ty with coordinate system"
+  },
+  "thin_walled_square_section.png": {
+    "suggested_name": "thin_walled_square_section",
+    "description": "Thin-walled square section with dimension a and thickness t showing area and thickness properties for shear deformability comparison"
+  },
+  "rectangular_section_torsional_stiffness.png": {
+    "suggested_name": "rectangular_section_torsional_stiffness",
+    "description": "Rectangular beam section with dimensions a and b showing constant thickness t and coordinate system for torsional stiffness calculation"
+  },
+  "shear_area_web_contribution.png": {
+    "suggested_name": "shear_area_web_contribution",
+    "description": "Rectangular section showing shear area A_y with web area designation and symmetry-based shear flow distribution with forces STy/2a at corners"
+  }
+}

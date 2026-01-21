@@ -1,0 +1,90 @@
+{
+  "rivet_compression_comparison.png": {
+    "suggested_name": "rivet_compression_comparison",
+    "description": "Comparison diagram showing rivet cross-sections before and after compression, illustrating rivet head formation in structural connections"
+  },
+  "bolted_connection_schematic.png": {
+    "suggested_name": "bolted_connection_schematic",
+    "description": "Simple schematic of bolted connection showing two structural members joined by bolts in cross-section view"
+  },
+  "rivet_bolt_load_transfer_comparison.png": {
+    "suggested_name": "rivet_bolt_load_transfer_comparison",
+    "description": "Comparison of rivet and bolt load transfer mechanisms showing cross-sectional views with force arrows indicating shear transfer"
+  },
+  "panel_stringer_junction_configurations.png": {
+    "suggested_name": "panel_stringer_junction_configurations",
+    "description": "Longitudinal junction diagrams showing panel-stringer connections with rivets in different configurations"
+  },
+  "discrete_to_continuous_junction_idealization.png": {
+    "suggested_name": "discrete_to_continuous_junction_idealization",
+    "description": "Idealization of discrete junction showing transformation from inherently discrete connection to continuous junction line representation"
+  },
+  "stringer_panel_junction_force_analysis.png": {
+    "suggested_name": "stringer_panel_junction_force_analysis",
+    "description": "Stringer-panel junction analysis showing force flow distribution and idealized junction representation with force vectors"
+  },
+  "rivet_pitch_force_distribution.png": {
+    "suggested_name": "rivet_pitch_force_distribution",
+    "description": "Detailed diagram of riveted connection showing pitch, length, and force distribution along junction element"
+  },
+  "panel_connection_rivet_rows_analysis.png": {
+    "suggested_name": "panel_connection_rivet_rows_analysis",
+    "description": "Panel-panel connection analysis with one and two rows of rivets showing shear flow distribution and equilibrium conditions"
+  },
+  "force_based_junction_compatibility.png": {
+    "suggested_name": "force_based_junction_compatibility",
+    "description": "Force-based approach diagram showing panel junction with distributed forces and compatibility conditions using PCVW theorem"
+  },
+  "structure_repeating_unit_strain_energy.png": {
+    "suggested_name": "structure_repeating_unit_strain_energy",
+    "description": "Structural diagram showing full structure with rivets and repeating unit element for strain energy analysis"
+  },
+  "rivet_deformation_comparison.png": {
+    "suggested_name": "rivet_deformation_comparison",
+    "description": "Rivet deformability comparison showing undeformed and deformed rivet states under shear force"
+  },
+  "panel_rivet_strain_energy_system.png": {
+    "suggested_name": "panel_rivet_strain_energy_system",
+    "description": "Panel-rivet system showing strain energy contributions from panels and rivets with force distributions"
+  },
+  "uneven_shear_flow_distribution.png": {
+    "suggested_name": "uneven_shear_flow_distribution",
+    "description": "Simple beam diagram showing uneven shear flow distribution between two rivers when panel thicknesses differ"
+  },
+  "three_row_rivet_connection_symmetry.png": {
+    "suggested_name": "three_row_rivet_connection_symmetry",
+    "description": "Panel-panel connection with three rows of rivets showing schematic representation and force distribution from symmetry analysis"
+  },
+  "three_row_equilibrium_conditions.png": {
+    "suggested_name": "three_row_equilibrium_conditions",
+    "description": "Equilibrium conditions diagram for three-row rivet junction showing force balance and compatibility equations"
+  },
+  "shear_flow_alpha_zero_case.png": {
+    "suggested_name": "shear_flow_alpha_zero_case",
+    "description": "Results diagram showing shear flow distribution for extreme case where alpha approaches zero with force values at three locations"
+  },
+  "bonding_vs_riveting_load_transfer.png": {
+    "suggested_name": "bonding_vs_riveting_load_transfer",
+    "description": "Bonding technique diagrams showing continuous load transfer in bonded junction versus discrete load transfer in riveted junction"
+  },
+  "differential_bonded_junction_analysis.png": {
+    "suggested_name": "differential_bonded_junction_analysis",
+    "description": "Differential bonded junction problem showing shear flow functions as continuous functions of position with equilibrium equation"
+  },
+  "panel_glue_differential_element_analysis.png": {
+    "suggested_name": "panel_glue_differential_element_analysis",
+    "description": "Detailed free body diagrams of upper panel, glue layer, and lower panel showing differential element analysis with shear flows"
+  },
+  "bonded_junction_menabrea_theorem.png": {
+    "suggested_name": "bonded_junction_menabrea_theorem",
+    "description": "Bonded junction cross-section showing panels and glue layer with coordinate system for applying Menabrea's theorem"
+  },
+  "boundary_conditions_differential_problem.png": {
+    "suggested_name": "boundary_conditions_differential_problem",
+    "description": "Boundary condition diagram showing beam with applied load and coordinate system for differential problem solution"
+  },
+  "solution_shear_distribution_graph.png": {
+    "suggested_name": "solution_shear_distribution_graph",
+    "description": "Graphical representation of solution showing shear flow and shear stress distributions across bonded junction with parameter alpha effects"
+  }
+}

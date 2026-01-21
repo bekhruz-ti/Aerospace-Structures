@@ -1,0 +1,70 @@
+{
+  "cantilever_beam_distributed_load.png": {
+    "suggested_name": "cantilever_beam_distributed_load",
+    "description": "Cantilever beam with distributed load, showing fixed support at left end and distributed load arrows along the top surface"
+  },
+  "cantilever_beam_ea_stiffness.png": {
+    "suggested_name": "cantilever_beam_ea_stiffness",
+    "description": "Simple cantilever beam diagram with distributed load arrows and fixed support, labeled with EA and length l"
+  },
+  "beam_variable_stiffness_distributed_point_load.png": {
+    "suggested_name": "beam_variable_stiffness_distributed_point_load",
+    "description": "Beam with variable stiffness EA(x) subjected to distributed load and concentrated force P at the end, showing coordinate system"
+  },
+  "simply_supported_beam_uniform_load.png": {
+    "suggested_name": "simply_supported_beam_uniform_load",
+    "description": "Simply supported beam with uniform distributed load q shown by arrows along the top, with supports at both ends and length l"
+  },
+  "simply_supported_beam_basic.png": {
+    "suggested_name": "simply_supported_beam_basic",
+    "description": "Simply supported beam diagram showing supports at both ends with length l marked"
+  },
+  "beam_midpoint_load_mixed_supports.png": {
+    "suggested_name": "beam_midpoint_load_mixed_supports",
+    "description": "Beam with point load P at midpoint, showing fixed support at left and simple support at right, with length dimensions l/2 marked"
+  },
+  "beam_two_segments_point_load.png": {
+    "suggested_name": "beam_two_segments_point_load",
+    "description": "Beam diagram showing two segments with point load P, fixed support at left, simple support at right, with coordinate system and segment lengths marked"
+  },
+  "moment_shear_convergence_plots.png": {
+    "suggested_name": "moment_shear_convergence_plots",
+    "description": "Two graphs showing bending moment Mx and shear force Q distributions along beam length, with curves for different N values (N=1,2,3,5) compared to exact solution"
+  },
+  "moment_shear_convergence_n1_n3.png": {
+    "suggested_name": "moment_shear_convergence_n1_n3",
+    "description": "Two graphs showing bending moment Mx and shear force Q distributions with convergence curves for N=1 and N=3 compared to exact solution"
+  },
+  "cantilever_beam_sketch.png": {
+    "suggested_name": "cantilever_beam_sketch",
+    "description": "Simple cantilever beam sketch showing horizontal beam with fixed support at left end"
+  },
+  "fixed_simply_supported_beam.png": {
+    "suggested_name": "fixed_simply_supported_beam",
+    "description": "Fixed-simply supported beam showing fixed support at left and simple support at right"
+  },
+  "simply_supported_beam_diagram.png": {
+    "suggested_name": "simply_supported_beam_diagram",
+    "description": "Simply supported beam with supports at both ends"
+  },
+  "cantilever_beam_fixed_support.png": {
+    "suggested_name": "cantilever_beam_fixed_support",
+    "description": "Cantilever beam showing fixed support at left end with horizontal orientation"
+  },
+  "fixed_simply_supported_configuration.png": {
+    "suggested_name": "fixed_simply_supported_configuration",
+    "description": "Fixed-simply supported beam configuration"
+  },
+  "simply_supported_pin_supports.png": {
+    "suggested_name": "simply_supported_pin_supports",
+    "description": "Simply supported beam with pin supports at both ends"
+  },
+  "rectangular_plate_coordinate_system.png": {
+    "suggested_name": "rectangular_plate_coordinate_system",
+    "description": "Rectangular plate diagram showing coordinate system with x and y axes, dimensions a and b marked, representing a thin plate element"
+  },
+  "plate_boundary_conditions_comparison.png": {
+    "suggested_name": "plate_boundary_conditions_comparison",
+    "description": "Three rectangular plate diagrams showing different boundary conditions: free edges, clamped edges, and simply supported edges, with coordinate systems and dimensions marked"
+  }
+}

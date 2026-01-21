@@ -1,0 +1,74 @@
+{
+  "plate_geometry_midsurface.png": {
+    "suggested_name": "plate_geometry_midsurface",
+    "description": "3D isometric view of a plate geometry showing midsurface, thickness t, and planar dimensions a and b with coordinate axes"
+  },
+  "plate_coordinate_system.png": {
+    "suggested_name": "plate_coordinate_system",
+    "description": "3D coordinate system showing plate with x, y, z axes and curved midsurface representation"
+  },
+  "membrane_bending_displacement_diagrams.png": {
+    "suggested_name": "membrane_bending_displacement_diagrams",
+    "description": "Multiple diagrams showing membrane displacement and bending displacement in zx plane with coordinate systems and displacement vectors"
+  },
+  "plate_displacement_zy_plane.png": {
+    "suggested_name": "plate_displacement_zy_plane",
+    "description": "Plate displacement diagrams showing coordinate system and displacement components in zy plane with rotation angles"
+  },
+  "displacement_behavior_comparison.png": {
+    "suggested_name": "displacement_behavior_comparison",
+    "description": "Three small diagrams showing displacement behavior u(x,y,z) for thin plate, sandwich, and thick composite plate"
+  },
+  "stress_distribution_cross_section.png": {
+    "suggested_name": "stress_distribution_cross_section",
+    "description": "Cross-sectional stress diagram showing internal stress distribution along plate thickness with coordinate system and stress components"
+  },
+  "internal_forces_moments_plate_element.png": {
+    "suggested_name": "internal_forces_moments_plate_element",
+    "description": "3D diagrams showing internal forces and moments per unit length on plate element including Mxx, Myy, Mxy, Nxx, Nyy, Nxy, Qx, Qy components"
+  },
+  "plate_boundary_conditions.png": {
+    "suggested_name": "plate_boundary_conditions",
+    "description": "Plate diagram showing boundary regions with applied forces TF and fixed boundary T0, illustrating boundary conditions"
+  },
+  "differential_element_membrane_forces.png": {
+    "suggested_name": "differential_element_membrane_forces",
+    "description": "Differential plate element showing membrane forces Nxx, Nyy, Nxy and their increments with coordinate system and dimensions dx, dy"
+  },
+  "boundary_condition_examples.png": {
+    "suggested_name": "boundary_condition_examples",
+    "description": "Two small diagrams showing boundary condition examples with displacement components U0x and U0y specified on different edges"
+  },
+  "rectangular_plate_geometry.png": {
+    "suggested_name": "rectangular_plate_geometry",
+    "description": "Rectangular plate diagram showing coordinate system with dimensions a and b, and normal vectors to edges"
+  },
+  "applied_loads_rectangular_plate.png": {
+    "suggested_name": "applied_loads_rectangular_plate",
+    "description": "Multiple diagrams showing applied membrane loads and bending/shear loads on rectangular plate with force and moment vectors"
+  },
+  "boundary_condition_examples_detailed.png": {
+    "suggested_name": "boundary_condition_examples_detailed",
+    "description": "Multiple boundary condition examples showing mixed, fully simply-supported, and clamped edge conditions for rectangular plates"
+  },
+  "kirchhoff_plate_reference_system.png": {
+    "suggested_name": "kirchhoff_plate_reference_system",
+    "description": "3D plate diagram showing reference surface, coordinate system x1-x2-x3, dimensions a and b, with bending displacement illustration"
+  },
+  "plate_generic_shape_reference_system.png": {
+    "suggested_name": "plate_generic_shape_reference_system",
+    "description": "Plate with generic shape showing reference system Sn with tangent and normal vectors at point P on boundary"
+  },
+  "rectangular_plate_loads_boundary.png": {
+    "suggested_name": "rectangular_plate_loads_boundary",
+    "description": "Rectangular plate diagrams showing applied loads (moments Mx, My) and natural boundary conditions (moments and forces on edges)"
+  },
+  "plate_sinusoidal_pressure_load.png": {
+    "suggested_name": "plate_sinusoidal_pressure_load",
+    "description": "Rectangular plate with simply-supported boundary and sinusoidal pressure load distribution"
+  },
+  "plate_exact_solution_setup.png": {
+    "suggested_name": "plate_exact_solution_setup",
+    "description": "3D rectangular plate with dimensions a and b showing sinusoidal pressure distribution and coordinate system"
+  }
+}

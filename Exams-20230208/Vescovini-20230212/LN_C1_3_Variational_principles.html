@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variational Principles in Structural Mechanics</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --note-bg: #fffaf0;
+            --note-border: #ed8936;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 25px;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .subsection h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .subsection h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .boxed-equation {
+            background: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .boxed-equation.important {
+            background: #e6fffa;
+            border-color: #319795;
+        }
+
+        .definition {
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .definition strong {
+            color: #2b6cb0;
+        }
+
+        .note {
+            background: var(--note-bg);
+            border-left: 4px solid var(--note-border);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note strong {
+            color: #c05621;
+        }
+
+        .derivation {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .derivation-step {
+            margin: 15px 0;
+            padding-left: 15px;
+            border-left: 2px solid #cbd5e0;
+        }
+
+        .example {
+            background: #faf5ff;
+            border: 1px solid #9f7aea;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .example h4 {
+            color: #6b46c1;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-item h5 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        figure.diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure.diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            background: white;
+        }
+
+        figure.diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .key-result {
+            background: #c6f6d5;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .key-result h4 {
+            color: #276749;
+            margin-bottom: 10px;
+        }
+
+        .equation-system {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px dashed var(--border-color);
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-content, .subsection {
+                padding: 15px;
+            }
+
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Variational Principles in Structural Mechanics</h1>
+            <p class="subtitle">Lecture Notes on Energy Methods and Virtual Work Principles</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction to Variational Principles -->
+            <section class="section" id="introduction">
+                <div class="section-header">
+                    <h2>1. Introduction to Variational Principles</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>1.1 Overview</h3>
+                        
+                        <p>The solution of the elastic problem requires that both <strong>equilibrium</strong> and <strong>compatibility</strong> are fulfilled.</p>
+                        
+                        <p>It was shown that the set of governing equations is given by the PDE representing the equilibrium and the compatibility in the domain as well as at the boundaries (via boundary conditions).</p>
+                        
+                        <div class="definition">
+                            <strong>Strong Form:</strong> When the solution is obtained by solving exactly or approximately the governing equations, it is said that the problem is formulated in a <span class="underline">strong form</span> manner.
+                        </div>
+                        
+                        <div class="definition">
+                            <strong>Weak Form:</strong> Another approach consists in solving the problem in <span class="underline">weak form</span>. The equations are multiplied with test functions and integrated over the domain. Generally this is the approach which is used in structural mechanics. The implementation into numerical technique is straightforward and the requirements on the regularity of the solution are relaxed.
+                        </div>
+                        
+                        <p>Among the class of weak form formulations, a special set is given by the <span class="underline">variational principles</span>, such as the Principle of Virtual Displacements (PVD), the minimum potential energy principle and their dual counterparts (the Complementary-energy related ones).</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>1.2 Classification of Approaches</h3>
+                        
+                        <div class="comparison-table">
+                            <div class="comparison-item">
+                                <h5>Impose Equilibrium (Compatibility a priori)</h5>
+                                <ul>
+                                    <li>Principle of Virtual Works</li>
+                                    <li>Minimum Potential Energy Principles</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-item">
+                                <h5>Impose Compatibility (Equilibrium a priori)</h5>
+                                <ul>
+                                    <li>Principle of Complementary Virtual Works</li>
+                                    <li>Menabrea's Theorem</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p>This means that either the equilibrium or the compatibility needs to be satisfied a priori.</p>
+                        
+                        <div class="note">
+                            <strong>Note:</strong> More advanced variational principles exist where neither compatibility nor equilibrium need to be satisfied a priori → mixed approaches.
+                        </div>
+                        
+                        <h4>Force-Based Approaches</h4>
+                        <p><span class="underline">Force-based approaches</span> rely upon the use of forces as problem unknowns. The equilibrium can be easily established a priori and, whenever it is necessary, the compatibility can be imposed using the PCVW or Menabrea.</p>
+                        
+                        <h4>Displacement-Based Approaches</h4>
+                        <p><span class="underline">Displacement-based approaches</span> are formulated by assuming a displacement field which is intrinsically compatible. The solution, in this case, is obtained by enforcing the equilibrium condition using the PVW or the Minimum Potential Energy principle.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Principle of Virtual Works -->
+            <section class="section" id="pvw">
+                <div class="section-header">
+                    <h2>2. Principle of Virtual Works (PVW)</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>2.1 Governing Equations</h3>
+                        
+                        <p>The set of governing equations for a 3D Continuum, under the assumptions of infinitesimal strain/displacements is given by:</p>
+                        
+                        <div class="equation-system">
+                            \[
+                            \begin{cases}
+                            \text{div} \, \underline{\underline{\sigma}} + \underline{f} = \underline{0} & \text{in } \Omega \\[8pt]
+                            \underline{\underline{\varepsilon}} = \dfrac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) = \underline{\underline{0}} & \text{in } \Omega \\[8pt]
+                            \underline{t} = \hat{\underline{t}} & \text{in } S_F \\[8pt]
+                            \underline{u} = \hat{\underline{u}} & \text{in } S_u
+                            \end{cases}
+                            \]
+                        </div>
+                        
+                        <p>Assume that compatibility conditions in \(\Omega\) and \(S_u\) are satisfied.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.2 Weak Form Derivation</h3>
+                        
+                        <p>Consider now a set of arbitrary infinitesimal displacements \(\delta \underline{u}\). It follows that the problem can be formulated as:</p>
+                        
+                        <div class="boxed-equation">
+                            \[
+                            \int_V \delta \underline{u} \cdot (\text{div} \, \underline{\underline{\sigma}} + \underline{f}) \, dV - \int_{S_F} \delta \underline{u} \cdot (\underline{t} - \hat{\underline{t}}) \, dS_F = 0 \quad \forall \delta \underline{u}
+                            \]
+                        </div>
+                        
+                        <p>Whenever this condition is satisfied for any \(\delta \underline{u}\), it means that the equilibrium conditions are identically satisfied, viz:</p>
+                        
+                        <div class="equation-system">
+                            \[
+                            \begin{cases}
+                            \text{div} \, \underline{\underline{\sigma}} + \underline{f} = 0 & \text{in } \Omega \\[8pt]
+                            \underline{t} - \hat{\underline{t}} = 0 & \text{in } S_F
+                            \end{cases}
+                            \]
+                        </div>
+                        
+                        <div class="note">
+                            <strong>Note:</strong> The "weak form" reported in the box is the same mathematical approach adopted in the courses of Mathematics where \(\delta \underline{u}\) are denoted as test functions (or weight functions).
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.3 Integration by Parts and Divergence Theorem</h3>
+                        
+                        <p>Recall that the virtual displacements are compatible, meaning that \(\delta \underline{u} = 0\) on \(S_u\).</p>
+                        
+                        <p>The equation in the box is not yet the expression of the PVW. To achieve the final form of the PVW it is necessary to perform integration by parts and apply the divergence theorem.</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">
+                                \[
+                                \int_V \delta \underline{u} \cdot \text{div} \, \underline{\underline{\sigma}} \, dV = \int_V \delta u_i \, \sigma_{ik,k} \, dV
+                                \]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[
+                                = \int_V (\delta u_i \sigma_{ik})_{,k} \, dV - \int_V \delta u_{i,k} \, \sigma_{ik} \, dV
+                                \]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[
+                                = \int_V \text{div}(\delta \underline{u} \cdot \underline{\underline{\sigma}}) \, dV - \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV
+                                \]
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <strong>Note on strain:</strong> Having noted that:
+                            \[\varepsilon_{ik} = \frac{1}{2}(u_{i,k} + u_{k,i})\]
+                            \[\delta \varepsilon_{ik} = \frac{1}{2}(\delta u_{i,k} + \delta u_{k,i})\]
+                            
+                            In addition \(\sigma_{ik} = \sigma_{ki}\), so:
+                            \[\delta \varepsilon_{ik} \, \sigma_{ik} = \frac{1}{2}(\delta u_{i,k} + \delta u_{k,i}) \sigma_{ik} = \delta u_{i,k} \, \sigma_{ik}\]
+                        </div>
+                        
+                        <p>Applying divergence theorem:</p>
+                        \[
+                        = \int_S \delta \underline{u} \cdot \underline{\underline{\sigma}} \cdot \underline{n} \, dS - \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV
+                        \]
+                        
+                        <p>Observe now that \(\delta \underline{u} = 0\) in \(S_u\) and \(\delta \underline{u} \neq 0\) in \(S_F\):</p>
+                        
+                        \[
+                        = \int_{S_F} \delta \underline{u} \cdot \underline{\underline{\sigma}} \cdot \underline{n} \, dS_F - \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV = \int_{S_F} \delta \underline{u} \cdot \underline{t} \, dS_F - \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV
+                        \]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.4 Final Form of PVW</h3>
+                        
+                        <p>The expression in the box can then be re-organized as:</p>
+                        
+                        \[
+                        \int_{S_F} \delta \underline{u} \cdot \underline{t} \, dS_F - \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV + \int_V \delta \underline{u} \cdot \underline{f} \, dV - \int_{S_F} \delta \underline{u} \cdot (\underline{t} - \hat{\underline{t}}) \, dS_F = 0
+                        \]
+                        
+                        <p>and simplifying:</p>
+                        
+                        <div class="boxed-equation important">
+                            \[
+                            \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV = \int_V \delta \underline{u} \cdot \underline{f} \, dV + \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F
+                            \]
+                        </div>
+                        
+                        <p>or equivalently:</p>
+                        
+                        <div class="key-result">
+                            <h4>Principle of Virtual Works</h4>
+                            \[\boxed{\delta W_i = \delta W_e}\]
+                        </div>
+                        
+                        <p>where:</p>
+                        
+                        <div class="definition">
+                            <strong>Internal Virtual Work:</strong>
+                            \[\delta W_i = \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV\]
+                        </div>
+                        
+                        <div class="definition">
+                            <strong>External Virtual Work:</strong>
+                            \[\delta W_e = \int_V \delta \underline{u} \cdot \underline{f} \, dV + \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F\]
+                        </div>
+                        
+                        <p><strong>A body is in equilibrium if and only if the virtual internal work equals the external virtual work.</strong></p>
+                        
+                        <p>Note that the equilibrium equation + BCs are identically satisfied whenever the PVW is verified for any set of infinitesimal virtual displacements.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.5 Properties of PVW</h3>
+                        
+                        <ul>
+                            <li>The PVW is a <span class="underline">variational principle</span>: Both the equilibrium equation and the equilibrium condition at the boundaries \(S_F\) are accounted for.</li>
+                            <li>The PVW is a scalar (one single!) equation.</li>
+                            <li>No reference is made to the material model (the constitutive law did not enter the previous steps). It follows that the PVW holds irrespective of the material behaviour.</li>
+                            <li>It is useful to remark, once more, that compatibility requirements need to be verified a priori.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.6 Equilibrium Equations from PVW</h3>
+                        
+                        <p>Clearly the reverse process can be performed, and the equilibrium conditions obtained from the PVW. It is a useful exercise:</p>
+                        
+                        <p>Starting from \(\delta W_i = \delta W_e\):</p>
+                        
+                        \[
+                        \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV = \int_V \delta \underline{u} \cdot \underline{f} \, dV + \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F
+                        \]
+                        
+                        <p>Consider the internal virtual work:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">
+                                \[\delta W_i = \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV = \int_V \delta \varepsilon_{ik} \, \sigma_{ik} \, dV\]
+                            </div>
+                            
+                            <p>Recalling that \(\delta \varepsilon_{ik} = \frac{1}{2}(\delta u_{i,k} + \delta u_{k,i})\) and that the virtual variations should be compatible:</p>
+                            
+                            <div class="derivation-step">
+                                \[\Rightarrow \quad \delta W_i = \int_V \delta u_{i,k} \, \sigma_{ik} \, dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_V (\delta u_i \, \sigma_{ik})_{,k} \, dV - \int_V \delta u_i \, \sigma_{ik,k} \, dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_V \text{div}(\delta \underline{u} \cdot \underline{\underline{\sigma}}) \, dV - \int_V \delta \underline{u} \cdot \text{div} \, \underline{\underline{\sigma}} \, dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_S \delta \underline{u} \cdot \underline{\underline{\sigma}} \cdot \underline{n} \, dS - \int_V \delta \underline{u} \cdot \text{div} \, \underline{\underline{\sigma}} \, dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_{S_F} \delta \underline{u} \cdot \underline{t} \, dS_F - \int_V \delta \underline{u} \cdot \text{div} \, \underline{\underline{\sigma}} \, dV\]
+                            </div>
+                        </div>
+                        
+                        <p>So, the variational statement reads:</p>
+                        
+                        \[
+                        \int_{S_F} \delta \underline{u} \cdot \underline{t} \, dS_F - \int_V \delta \underline{u} \cdot \text{div} \, \underline{\underline{\sigma}} \, dV = \int_V \delta \underline{u} \cdot \underline{f} \, dV + \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F
+                        \]
+                        
+                        <p>or:</p>
+                        
+                        \[
+                        \int_V \delta \underline{u} \cdot (\text{div} \, \underline{\underline{\sigma}} + \underline{f}) \, dV + \int_{S_F} \delta \underline{u} \cdot (\hat{\underline{t}} - \underline{t}) \, dS_F = 0
+                        \]
+                        
+                        <p>If this equation is verified for \(\forall \delta \underline{u}\), then:</p>
+                        
+                        <div class="equation-system">
+                            \[
+                            \begin{aligned}
+                            \text{div} \, \underline{\underline{\sigma}} + \underline{f} &= \underline{0} & \text{in } \Omega \\
+                            \underline{t} &= \hat{\underline{t}} & \text{in } S_F
+                            \end{aligned}
+                            \]
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2.7 Virtual Variations and Boundary Conditions</h3>
+                        
+                        <p>Note that, in spite of the fact that compatibility conditions are satisfied a priori, the virtual variations satisfy homogeneous boundary conditions.</p>
+                        
+                        <p>\(\underline{u}\) satisfies:</p>
+                        \[\underline{\underline{\varepsilon}} = \frac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) \quad \text{in } \Omega\]
+                        \[\underline{u} = \hat{\underline{u}} \quad \text{in } S_u\]
+                        
+                        <p>The perturbed configuration \(\underline{u} + \delta \underline{u}\) will lead to:</p>
+                        
+                        \[\underline{\underline{\varepsilon}} + \delta \underline{\underline{\varepsilon}} = \frac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T + \text{grad} \, \delta \underline{u} + \text{grad} \, \delta \underline{u}^T \right)\]
+                        \[\underline{u} + \delta \underline{u} = \hat{\underline{u}}\]
+                        
+                        <p>and so:</p>
+                        
+                        <div class="boxed-equation">
+                            \[\delta \underline{\underline{\varepsilon}} = \frac{1}{2} \left( \text{grad} \, \delta \underline{u} + \text{grad} \, \delta \underline{u}^T \right) \quad \text{in } \Omega\]
+                            \[\delta \underline{u} = \underline{0} \quad \text{in } S_u\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Principle of Complementary Virtual Works -->
+            <section class="section" id="pcvw">
+                <div class="section-header">
+                    <h2>3. Principle of Complementary Virtual Works (PCVW)</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>3.1 Starting Point</h3>
+                        
+                        <p>Consider again the set of governing equations in terms of equilibrium and compatibility:</p>
+                        
+                        <div class="equation-system">
+                            \[
+                            \begin{cases}
+                            \text{div} \, \underline{\underline{\sigma}} + \underline{f} = \underline{0} & \text{in } \Omega \\[8pt]
+                            \underline{\underline{\varepsilon}} = \dfrac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) = \underline{\underline{0}} & \text{in } \Omega \\[8pt]
+                            \underline{t} = \hat{\underline{t}} & \text{in } S_F \\[8pt]
+                            \underline{u} = \hat{\underline{u}} & \text{in } S_u
+                            \end{cases}
+                            \]
+                        </div>
+                        
+                        <p>Assume now that the <strong>equilibrium conditions are identically satisfied</strong> in \(\Omega\) and \(S_F\).</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3.2 Weak Form of Compatibility</h3>
+                        
+                        <p>The weak form of the compatibility conditions is then obtained as:</p>
+                        
+                        <div class="boxed-equation">
+                            \[
+                            \int_V \delta \underline{\underline{\sigma}} : \left( \underline{\underline{\varepsilon}} - \frac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) \right) dV + \int_{S_u} \delta \underline{t} \cdot \left( \underline{u} - \hat{\underline{u}} \right) dS_u = 0
+                            \]
+                        </div>
+                        
+                        <p>The variations \(\delta \underline{\underline{\sigma}}\) and \(\delta \underline{t}\) are infinitesimal and in equilibrium.</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">
+                                \[\int_V \left[ \delta \underline{\underline{\sigma}} : \frac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) \right] dV =\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_V \delta \sigma_{ik} \frac{1}{2} (u_{i,k} + u_{k,i}) \, dV = \int_V \delta \sigma_{ik} \, u_{i,k} \, dV\]
+                                <p style="margin-left: 20px;">(due to the symmetry of \(\underline{\underline{\sigma}}\))</p>
+                            </div>
+                        </div>
+                        
+                        <p>So:</p>
+                        \[\int_V \left( \delta \sigma_{ik} \, \varepsilon_{ik} - \delta \sigma_{ik} \, u_{i,k} \right) dV + \int_{S_u} \delta t_i \left( u_i - \hat{u}_i \right) dS_u = 0\]
+                        
+                        \[\int_V \left[ \delta \sigma_{ik} \, \varepsilon_{ik} - (\delta \sigma_{ik} \, u_i)_{,k} + \delta \sigma_{ik,k} \, u_i \right] dV + \int_{S_u} \delta t_i (u_i - \hat{u}_i) \, dS_u = 0\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3.3 Applying Divergence Theorem</h3>
+                        
+                        \[\int_V \left[ \delta \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} - \text{div}(\underline{u} \cdot \delta \underline{\underline{\sigma}}) + \underline{u} \cdot \text{div} \, \delta \underline{\underline{\sigma}} \right] dV + \int_{S_u} \delta \underline{t} \cdot (\underline{u} - \hat{\underline{u}}) \, dS_u = 0\]
+                        
+                        <p>Applying the divergence theorem:</p>
+                        
+                        \[\int_V \left( \delta \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} + \underline{u} \cdot \text{div} \, \delta \underline{\underline{\sigma}} \right) dV - \int_S \underline{u} \cdot \delta \underline{\underline{\sigma}} \cdot \underline{n} \, dS + \int_{S_u} \delta \underline{t} \cdot (\underline{u} - \hat{\underline{u}}) \, dS_u = 0\]
+                        
+                        <p>Recall now that the variations \(\delta \underline{\underline{\sigma}}\) and \(\delta \underline{t}\) should respect the equilibrium conditions:</p>
+                        
+                        <div class="equation-system">
+                            \[
+                            \begin{cases}
+                            \text{div} \, \delta \underline{\underline{\sigma}} + \delta \underline{f} = \underline{0} & \text{in } \Omega \\
+                            \delta \underline{t} = \delta \underline{\underline{\sigma}} \cdot \underline{n} = \delta \hat{\underline{t}} & \text{in } S_F
+                            \end{cases}
+                            \]
+                        </div>
+                        
+                        <p>So:</p>
+                        \[\int_V \underline{u} \cdot \text{div} \, \delta \underline{\underline{\sigma}} \, dV = \int_V -\delta \underline{f} \cdot \underline{u} \, dV\]
+                        
+                        \[\int_S (\delta \underline{\underline{\sigma}} \cdot \underline{n}) \cdot \underline{u} \, dS = \int_S \delta \underline{t} \cdot \underline{u} \, dS = \int_{S_F} \delta \underline{t} \cdot \underline{u} \, dS_F + \int_{S_u} \delta \underline{t} \cdot \underline{u} \, dS_u\]
+                        
+                        <p>where \(S_F \cup S_u = S\), so:</p>
+                        \[= \int_{S_F} \delta \hat{\underline{t}} \cdot \underline{u} \, dS_F + \int_{S_u} \delta \underline{t} \cdot \underline{u} \, dS_u\]
+                        
+                        <p>The variational statement is then written as:</p>
+                        
+                        \[\int_V \left( \delta \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} - \delta \underline{f} \cdot \underline{u} \right) dV - \int_{S_F} \delta \hat{\underline{t}} \cdot \underline{u} \, dS_F - \int_{S_u} \delta \underline{t} \cdot \underline{u} \, dS_u + \int_{S_u} \delta \underline{t} \cdot (\underline{u} - \hat{\underline{u}}) \, dS_u = 0\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3.4 Final Form of PCVW</h3>
+                        
+                        <p>and so:</p>
+                        
+                        <div class="boxed-equation important">
+                            \[
+                            \int_V \delta \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} \, dV = \int_V \delta \underline{f} \cdot \underline{u} \, dV + \int_{S_F} \delta \hat{\underline{t}} \cdot \underline{u} \, dS_F + \int_{S_u} \delta \underline{t} \cdot \hat{\underline{u}} \, dS_u
+                            \]
+                        </div>
+                        
+                        <p>or:</p>
+                        
+                        <div class="key-result">
+                            <h4>Principle of Complementary Virtual Works</h4>
+                            \[\boxed{\delta W_i^* = \delta W_{ext}^*}\]
+                        </div>
+                        
+                        <ul>
+                            <li>The internal virtual work obtained from an infinitesimal and equilibrated variation of the stress components is equal to the external complementary virtual work.</li>
+                            <li>The PCVW, if verified for \(\forall \, \delta \underline{\underline{\sigma}}\), is identical to the Compatibility conditions on \(\Omega\) and \(S_u\). This means that if \(\delta W_i^* = \delta W_{ext}^*\) then the compatibility conditions are fulfilled.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3.5 Compatibility from PCVW using Lagrange Multipliers</h3>
+                        
+                        <p>As done for the PVW, it is instructive to illustrate that the compatibility conditions can be derived from the PCVW.</p>
+                        
+                        <p>In other words, what happens if the PCVW is required to hold for any arbitrary set of admissible virtual variations?</p>
+                        
+                        \[\int_V \delta \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} \, dV = \int_V \delta \underline{f} \cdot \underline{u} \, dV + \int_{S_F} \delta \hat{\underline{t}} \cdot \underline{u} \, dS_F + \int_{S_u} \delta \underline{t} \cdot \hat{\underline{u}} \, dS_u\]
+                        
+                        <p>To account for the fact that the variations are in equilibrium, the variational statement can be modified by introducing those conditions via <span class="underline">Lagrange multipliers</span>:</p>
+                        
+                        \[\delta W_i^* = \delta W_{ext}^* - \int_V \underline{\lambda} \cdot (\text{div} \, \delta \underline{\underline{\sigma}} + \delta \underline{f}) \, dV + \int_{S_F} \underline{\mu} \cdot (\delta \underline{t} - \delta \hat{\underline{t}}) \, dS_F\]
+                        
+                        <p>where \(\underline{\lambda}\), \(\underline{\mu}\) are vectors of Lagrange multipliers.</p>
+                        
+                        <div class="note">
+                            <strong>Note:</strong> It is clear that the expression of the PCVW is unchanged whenever \(\text{div} \, \delta \underline{\underline{\sigma}} + \delta \underline{f} = 0\) and \(\delta \underline{t} = \delta \hat{\underline{t}}\).
+                        </div>
+                        
+                        <h4>Rearranging the First Contribution</h4>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">
+                                \[\int_V \underline{\lambda} \cdot (\text{div} \, \delta \underline{\underline{\sigma}} + \delta \underline{f}) \, dV = \int_V \left( \lambda_i \, \delta \sigma_{ik,k} + \lambda_i \, \delta f_i \right) dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_V \left[ (\lambda_i \delta \sigma_{ik})_{,k} - \lambda_{i,k} \, \delta \sigma_{ik} + \lambda_i \, \delta f_i \right] dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_V \left[ (\lambda_i \delta \sigma_{ik})_{,k} - \delta \sigma_{ik} \frac{1}{2} (\lambda_{i,k} + \lambda_{k,i}) + \lambda_i \, \delta f_i \right] dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_V \left[ \text{div}(\underline{\lambda} \cdot \delta \underline{\underline{\sigma}}) - \delta \underline{\underline{\sigma}} : \frac{1}{2} \left( \text{grad} \, \underline{\lambda} + \text{grad} \, \underline{\lambda}^T \right) + \delta \underline{f} \cdot \underline{\lambda} \right] dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_S \underline{\lambda} \cdot \delta \underline{\underline{\sigma}} \cdot \underline{n} \, dS - \int_V \left[ \delta \underline{\underline{\sigma}} : \frac{1}{2} \left( \text{grad} \, \underline{\lambda} + \text{grad} \, \underline{\lambda}^T \right) - \delta \underline{f} \cdot \underline{\lambda} \right] dV\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= \int_{S_F} \delta \underline{t} \cdot \underline{\lambda} \, dS_F + \int_{S_u} \delta \underline{t} \cdot \underline{\lambda} \, dS_u - \int_V \left[ \delta \underline{\underline{\sigma}} : \frac{1}{2} \left( \text{grad} \, \underline{\lambda} + \text{grad} \, \underline{\lambda}^T \right) - \delta \underline{f} \cdot \underline{\lambda} \right] dV\]
+                            </div>
+                        </div>
+                        
+                        <p>The expression of the PCVW (augmented using the Lagrange multipliers) reads:</p>
+                        
+                        \[\int_V \delta \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} \, dV = \int_V \delta \underline{f} \cdot \underline{u} \, dV + \int_{S_F} \delta \hat{\underline{t}} \cdot \underline{u} \, dS_F + \int_{S_u} \delta \underline{t} \cdot \hat{\underline{u}} \, dS_u\]
+                        \[- \int_{S_F} \delta \underline{t} \cdot \underline{\lambda} \, dS_F - \int_{S_u} \delta \underline{t} \cdot \underline{\lambda} \, dS_u + \int_V \left[ \delta \underline{\underline{\sigma}} : \frac{1}{2} \left( \text{grad} \, \underline{\lambda} + \text{grad} \, \underline{\lambda}^T \right) - \delta \underline{f} \cdot \underline{\lambda} \right] dV\]
+                        \[+ \int_{S_F} \delta \underline{t} \cdot \underline{\mu} \, dS_F - \int_{S_F} \delta \hat{\underline{t}} \cdot \underline{\mu} \, dS_F\]
+                        
+                        <p>If this scalar equation is required to hold for any variation \(\delta \underline{\underline{\sigma}}\), then it is equivalent to the following set of equations:</p>
+                        
+                        <div class="equation-system">
+                            \[
+                            \begin{cases}
+                            \underline{\underline{\varepsilon}} = \dfrac{1}{2} \left( \text{grad} \, \underline{\lambda} + \text{grad} \, \underline{\lambda}^T \right) & \text{in } \Omega & (1) \\[8pt]
+                            \underline{u} = \underline{\lambda} & \text{in } \Omega & (2) \\[8pt]
+                            \underline{u} = \underline{\mu} & \text{in } S_F & (3) \\[8pt]
+                            \hat{\underline{u}} = \underline{\lambda} & \text{in } S_u & (4) \\[8pt]
+                            \underline{\lambda} = \underline{\mu} & \text{in } S_F & (5)
+                            \end{cases}
+                            \]
+                        </div>
+                        
+                        <p>From conditions (2) and (4) it is clear that the Lagrange multiplier \(\underline{\lambda}\) is the displacement field \(\underline{u}\).</p>
+                        
+                        <p>Thus, the equations can be expressed by replacing \(\underline{\lambda}\) with \(\underline{u}\):</p>
+                        
+                        <div class="key-result">
+                            <h4>Compatibility Conditions</h4>
+                            \[
+                            \begin{cases}
+                            \underline{\underline{\varepsilon}} = \dfrac{1}{2} \left( \text{grad} \, \underline{u} + \text{grad} \, \underline{u}^T \right) & \text{in } \Omega \\[8pt]
+                            \underline{u} = \hat{\underline{u}} & \text{in } S_u
+                            \end{cases}
+                            \]
+                        </div>
+                        
+                        <p>It can be observed, in addition, that \(\underline{\mu}\) is the displacement in \(S_F\).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Minimum Potential Energy Principle -->
+            <section class="section" id="min-potential-energy">
+                <div class="section-header">
+                    <h2>4. Minimum Potential Energy Principle</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>4.1 Derivation</h3>
+                        
+                        <p>It is the energetic counterpart of the PVW. While, as seen, the PVW holds irrespective of the constitutive law, it is now introduced the assumption of <span class="underline">hyperelastic</span> material:</p>
+                        
+                        <div class="boxed-equation">
+                            \[\underline{\underline{\sigma}} = U_{/\underline{\underline{\varepsilon}}} \qquad \left( \text{or} \quad \sigma_{ik} = U_{/\varepsilon_{ik}} \right)\]
+                        </div>
+                        
+                        <p>Consider the PVW: \(\delta W_i = \delta W_e\)</p>
+                        
+                        \[\delta W_i = \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV\]
+                        
+                        \[\delta W_e = \int_V \delta \underline{u} \cdot \underline{f} \, dV + \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F\]
+                        
+                        <p>According to the assumption of hyperelasticity, the internal virtual work reads:</p>
+                        
+                        \[\delta W_i = \int_V \delta \underline{\underline{\varepsilon}} : U_{/\underline{\underline{\varepsilon}}} \, dV = \int_V \delta U \, dV\]
+                        
+                        <p>since \(U = U(\underline{\underline{\varepsilon}}) \Rightarrow \delta U = U_{/\underline{\underline{\varepsilon}}} : \delta \underline{\underline{\varepsilon}}\)</p>
+                        
+                        <p>It follows that:</p>
+                        
+                        <div class="key-result">
+                            <h4>Minimum Potential Energy Principle</h4>
+                            \[\delta W_i = \delta W_e \quad \Rightarrow \quad \boxed{\delta(U + V) = \delta \Pi = 0}\]
+                        </div>
+                        
+                        <p>where: \(\Pi = U + V\)</p>
+                        
+                        <div class="definition">
+                            <ul>
+                                <li>\(U\) = strain energy</li>
+                                <li>\(V\) = potential of external forces</li>
+                                <li>\(\Pi\) = total potential energy</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4.2 Properties</h3>
+                        
+                        <ul>
+                            <li>The Minimum Potential Energy Principle is restricted to the case of hyperelastic materials (not necessarily linear).</li>
+                            <li>Similarly to the PVW it is a variational tool for imposing the equilibrium conditions. The equilibrium conditions are obtained in terms of displacements as far as the constitutive equation is introduced.</li>
+                            <li>Contrarily, the equations obtained via PVW, still representing the equilibrium, are obtained in terms of forces (as no use is made of the constitutive equation).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4.3 Example: Axially Loaded Bar</h3>
+                        
+                        <div class="example">
+                            <h4>Simple Example: Cantilever with Distributed Axial Load</h4>
+                            
+                            <figure class="diagram">
+                                <img src="images/LN_C1_3_Variational_principles/cantilever_beam_distributed_load.png" alt="Simple beam diagram showing a horizontal beam with length l, fixed support at left end, and distributed load indicated with arrows along the beam axis">
+                                <figcaption>Figure: Cantilever beam of length \(l\) with axial stiffness \(EA\) and distributed load \(\hat{n}\)</figcaption>
+                            </figure>
+                            
+                            <div class="comparison-table">
+                                <div class="comparison-item">
+                                    <h5>PVW Approach</h5>
+                                    <p>Internal virtual work:</p>
+                                    \[\delta W_i = \int_0^l \delta u_{,x} N_x \, dx\]
+                                    
+                                    <p>External virtual work:</p>
+                                    \[\delta W_e = \int_0^l \delta u \, \hat{n} \, dx\]
+                                    
+                                    <p>\(\delta W_i = \delta W_e\) leads to:</p>
+                                    \[\boxed{N_{x,x} + \hat{n} = 0}\]
+                                    <p style="text-align: center;"><em>(equilibrium in terms of forces)</em></p>
+                                </div>
+                                <div class="comparison-item">
+                                    <h5>Energy Approach</h5>
+                                    <p>Strain energy:</p>
+                                    \[U = \frac{1}{2} \int_0^l EA \, u_{,x}^2 \, dx\]
+                                    
+                                    <p>Potential of external forces:</p>
+                                    \[V = \int_0^l \hat{n} \, u \, dx\]
+                                    
+                                    <p>\(\delta(U + V) = 0\) leads to:</p>
+                                    \[\boxed{EA \, u_{,xx} + \hat{n} = 0}\]
+                                    <p style="text-align: center;"><em>(equilibrium in terms of displacements)</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Minimum Complementary Potential Energy Principle -->
+            <section class="section" id="menabrea">
+                <div class="section-header">
+                    <h2>5. Minimum Complementary Potential Energy Principle (Menabrea's Theorem)</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>5.1 Derivation</h3>
+                        
+                        <p>It is the energy counterpart of the PCVW. Thus, by assuming that the strains can be derived as:</p>
+                        
+                        <div class="boxed-equation">
+                            \[\underline{\underline{\varepsilon}} = U^*_{/\underline{\underline{\sigma}}} \qquad \text{or} \qquad \varepsilon_{ik} = U^*_{/\sigma_{ik}}\]
+                        </div>
+                        
+                        <p>with \(U^*\) complementary energy density.</p>
+                        
+                        <p>And recalling the PCVW:</p>
+                        
+                        \[\delta W_i^* = \int_V \delta \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} \, dV = \int_V \delta U^* \, dV = \delta U^*\]
+                        
+                        \[\delta W_e^* = \int_V \delta \underline{f} \cdot \underline{u} \, dV + \int_{S_F} \delta \hat{\underline{t}} \cdot \underline{u} \, dS_F + \int_{S_u} \delta \underline{t} \cdot \hat{\underline{u}} \, dS_u = \delta V^*\]
+                        
+                        <div class="key-result">
+                            <h4>Menabrea's Theorem</h4>
+                            \[\delta W_i^* = \delta W_e^* \quad \Rightarrow \quad \boxed{\delta(U^* + V^*) = \delta \Pi^* = 0}\]
+                        </div>
+                        
+                        <div class="definition">
+                            <ul>
+                                <li>\(U^*\) = complementary strain energy</li>
+                                <li>\(V^*\) = complementary potential of external effects</li>
+                                <li>\(\Pi^*\) = total complementary potential energy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Hamilton's Principle -->
+            <section class="section" id="hamilton">
+                <div class="section-header">
+                    <h2>6. Hamilton's Principle</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>6.1 Setup</h3>
+                        
+                        <p>Consider the displacement field \(\underline{u} = \underline{u}(\underline{x}, t)\)</p>
+                        
+                        <p>and consider a virtual variation \(\delta \underline{u}\) such that:</p>
+                        
+                        <div class="boxed-equation">
+                            \[
+                            \begin{aligned}
+                            \delta \underline{u}(\underline{x}, t) &= \underline{0} & \text{in } S_u, \, \forall t \\
+                            \delta \underline{u}(\underline{x}, t_1) &= \delta \underline{u}(\underline{x}, t_2) = 0 & \text{in } \Omega, \, \forall \underline{x}
+                            \end{aligned}
+                            \]
+                        </div>
+                        
+                        <ul>
+                            <li>The first condition is identical to the compatibility requirement used in the context of the PVW.</li>
+                            <li>The second condition states that the perturbed configuration at \(t = t_1\), and \(t = t_2\) is equal to the actual configuration \(\underline{u}\):
+                            \[\underline{u} + \delta \underline{u} \rightarrow = \underline{u} \qquad \text{in} \quad t = t_1, t_2\]</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6.2 PVW with Inertial Forces</h3>
+                        
+                        <p>Consider now the PVW:</p>
+                        
+                        \[\delta W_i = \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV\]
+                        
+                        \[\delta W_e = \int_V \delta \underline{u} \cdot \underline{f} \, dV + \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F - \underbrace{\int_V \delta \underline{u} \cdot \rho \ddot{\underline{u}} \, dV}_{\text{Contribution of the inertial forces}}\]
+                        
+                        <div class="note">
+                            <strong>Note:</strong> The inertial forces are naturally expressed as function of the displacements. This is why the variational approach is formulated starting from the PVW.
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6.3 Time Integration</h3>
+                        
+                        <p>Integrate now between \(t_1\) and \(t_2\):</p>
+                        
+                        \[\int_{t_1}^{t_2} \left[ \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV \right] dt = \int_{t_1}^{t_2} \left[ \int_V \delta \underline{u} \cdot \underline{f} \, dV + \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F - \int_V \rho \, \delta \underline{u} \cdot \ddot{\underline{u}} \, dV \right] dt\]
+                        
+                        <p>The last contribution can be integrated by parts:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">
+                                \[\int_{t_1}^{t_2} \int_V \rho \, \delta \underline{u} \cdot \ddot{\underline{u}} \, dV = - \int_{t_1}^{t_2} \int_V \rho \, \delta \dot{\underline{u}} \cdot \dot{\underline{u}} \, dV \, dt + \left. \int_V \rho \, \delta \underline{u} \cdot \dot{\underline{u}} \, dV \right|_{t_1}^{t_2}\]
+                            </div>
+                            
+                            <div class="derivation-step">
+                                \[= - \int_{t_1}^{t_2} \int_V \rho \, \delta \dot{\underline{u}} \cdot \dot{\underline{u}} \, dV \, dt\]
+                                <p style="margin-left: 20px;">(since \(\delta \underline{u}(\underline{x}, t_1) = 0\) and \(\delta \underline{u}(\underline{x}, t_2) = 0\))</p>
+                            </div>
+                        </div>
+                        
+                        <p>Then:</p>
+                        
+                        \[\int_{t_1}^{t_2} \left[ \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV - \int_V \delta \underline{u} \cdot \underline{f} \, dV - \int_{S_F} \delta \underline{u} \cdot \hat{\underline{t}} \, dS_F - \int_V \rho \, \delta \dot{\underline{u}} \cdot \dot{\underline{u}} \, dV \right] dt = 0\]
+                        
+                        \[\int_{t_1}^{t_2} \delta(U + V - K) \, dt = 0\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6.4 Hamilton's Principle - Final Form</h3>
+                        
+                        <div class="key-result">
+                            <h4>Hamilton's Principle</h4>
+                            \[\boxed{\delta \int_{t_1}^{t_2} L \, dt = 0 \qquad \text{with} \quad L = K - (U + V)}\]
+                        </div>
+                        
+                        <div class="definition">
+                            <ul>
+                                <li>\(L\) = Lagrangian = Kinetic energy minus Total potential energy</li>
+                                <li>\(K\) = kinetic energy = \(\frac{1}{2} \int_V \rho \, \dot{\underline{u}} \cdot \dot{\underline{u}} \, dV\)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="note">
+                            <strong>Physical Interpretation:</strong> The action integral \(\int_{t_1}^{t_2} L \, dt\) is stationary for the true motion. This is the fundamental principle for dynamics and serves as the basis for Lagrangian mechanics.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section class="section" id="summary">
+                <div class="section-header">
+                    <h2>Summary of Variational Principles</h2>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                            <thead>
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 12px; border: 1px solid var(--border-color);">Principle</th>
+                                    <th style="padding: 12px; border: 1px solid var(--border-color);">Statement</th>
+                                    <th style="padding: 12px; border: 1px solid var(--border-color);">Enforces</th>
+                                    <th style="padding: 12px; border: 1px solid var(--border-color);">A Priori Requirement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>PVW</strong></td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">\(\delta W_i = \delta W_e\)</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Equilibrium</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Compatibility</td>
+                                </tr>
+                                <tr style="background: var(--bg-light);">
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>PCVW</strong></td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">\(\delta W_i^* = \delta W_e^*\)</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Compatibility</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Equilibrium</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Min. Potential Energy</strong></td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">\(\delta \Pi = 0\)</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Equilibrium</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Compatibility + Hyperelasticity</td>
+                                </tr>
+                                <tr style="background: var(--bg-light);">
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Menabrea's Theorem</strong></td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">\(\delta \Pi^* = 0\)</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Compatibility</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Equilibrium + Hyperelasticity</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Hamilton's Principle</strong></td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">\(\delta \int L \, dt = 0\)</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Equations of Motion</td>
+                                    <td style="padding: 12px; border: 1px solid var(--border-color);">Compatibility</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Equations for 3D Solids</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --note-bg: #fffbeb;
+            --note-border: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .intro-list {
+            margin: 20px 0 20px 30px;
+        }
+
+        .intro-list li {
+            margin: 8px 0;
+        }
+
+        .boxed-equation {
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .important-box {
+            background: #e6fffa;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .note {
+            background: var(--note-bg);
+            border-left: 4px solid var(--note-border);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note-title {
+            font-weight: bold;
+            color: var(--note-border);
+            margin-bottom: 10px;
+        }
+
+        .derivation {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .derivation-step {
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            background: white;
+        }
+
+        .figure figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .matrix {
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .summary-box {
+            background: #ebf8ff;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .summary-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .case-box {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .case-box h4 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        .remarks {
+            background: #faf5ff;
+            border-left: 4px solid #805ad5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .remarks h4 {
+            color: #805ad5;
+            margin-top: 0;
+        }
+
+        ul.bullet-list {
+            margin: 15px 0 15px 30px;
+        }
+
+        ul.bullet-list li {
+            margin: 10px 0;
+        }
+
+        .equation-annotation {
+            color: #666;
+            font-size: 0.9rem;
+            margin-left: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="document">
+        <header>
+            <h1>BALANCE EQUATIONS FOR 3D SOLIDS</h1>
+        </header>
+        
+        <main>
+            <!-- Introduction -->
+            <section class="section">
+                <h2>Introduction</h2>
+                
+                <p>The partial differential equations (PDE) governing the thermoelastic response of a 3D Continuum are now derived by adopting an axiomatic approach where:</p>
+                
+                <ol class="intro-list">
+                    <li>Conservation of mass</li>
+                    <li>Conservation of the momentum</li>
+                    <li>Conservation of the angular momentum</li>
+                    <li>Conservation of energy</li>
+                </ol>
+                
+                <p>are retained valid a priori.</p>
+                
+                <p>The governing PDE are obtained in the context of the Lagrangian description.</p>
+            </section>
+
+            <!-- Conservation of Mass -->
+            <section class="section">
+                <h2>Conservation of Mass</h2>
+                
+                <p>The balance equation is written by observing that the total mass of the body - before and after the application of the loads (thermal and/or mechanical) - does not change:</p>
+                
+                \[\int_v \rho(\underline{x}, t) \, dv = \text{Const}\]
+                
+                <figure class="figure">
+                    <img src="images/LN_C1_1_Balance_equations/configuration_states_circles.png" alt="Three circular configuration diagrams showing initial and deformed states">
+                    <figcaption>Configuration states: \(\mathcal{B}^0\) (initial configuration) and \(\mathcal{B}^1\) (generic deformed configuration)</figcaption>
+                </figure>
+                
+                <p>Recalling that a generic quantity \(\phi\) can be expressed as function of the Lagrangian coordinates by performing a change of coordinates in the form:</p>
+                
+                \[\phi = \phi(\underline{x}, t) = \phi(\underline{x}(\underline{X}, t), t)\]
+                
+                <p>and recalling that:</p>
+                
+                \[dv = J \, dV\]
+                
+                <p>The balance of mass is written as:</p>
+                
+                <div class="derivation">
+                    \[\int_v \rho(\underline{x}, t) \, dv = \int_V \rho(\underline{X}, t) \, J \, dV = \int_V \rho_0(\underline{X}) \, dV\]
+                </div>
+                
+                <div class="note">
+                    <div class="note-title">Note</div>
+                    <p>\(\rho_0(\underline{X})\) is the density of the configuration \(\mathcal{B}^0\), before the deformation process. It does not depend on time as it is the density associated with a specific time \(t = t_0\).</p>
+                </div>
+                
+                <p>The Lagrangian form of the conservation of mass is then:</p>
+                
+                <div class="boxed-equation">
+                    \[\rho(\underline{X}, t) \, J = \rho_0(\underline{X})\]
+                </div>
+            </section>
+
+            <!-- Balance of Momentum -->
+            <section class="section">
+                <h2>Balance of Momentum</h2>
+                
+                <p>Recall the conservation of momentum:</p>
+                
+                \[\frac{d}{dt}(m\underline{V}) = \underline{F}\]
+                
+                <p>meaning that the time derivative of the momentum is equal to the applied forces \(\underline{F}\).</p>
+                
+                <p>Specializing this equation to the case of a 3D continuum, it is:</p>
+                
+                \[\frac{D}{Dt} \int_v \rho(\underline{x}, t) \underline{v} \, dv = \underbrace{\int_v \rho(\underline{x}, t) \underline{B}(\underline{x}, t) \, dv}_{\text{body forces}} + \underbrace{\int_{\partial} \underline{t}(\underline{x}, t) \, d\partial}_{\text{surface forces}}\]
+                
+                <p>By operating the change of coordinates, from Eulerian to Lagrangian, the three contributions reduce to:</p>
+                
+                <h3>First Contribution (Inertia)</h3>
+                
+                <div class="derivation">
+                    \[\frac{D}{Dt} \int_v \rho(\underline{x}, t) \underline{v} \, dv = \frac{D}{Dt} \int_V \rho(\underline{X}, t) \underline{v} \, J \, dV = \frac{D}{Dt} \int_V \rho_0(\underline{X}) \underline{v} \, dV = \int_V \rho_0(\underline{X}) \underline{a} \, dV\]
+                    <p class="equation-annotation">having observed that \(\frac{D}{Dt} \rho_0(\underline{X}) = 0\) as \(\rho_0\) is time-independent</p>
+                </div>
+                
+                <h3>Second Contribution (Body Forces)</h3>
+                
+                <div class="derivation">
+                    \[\int_v \rho(\underline{x}, t) \underline{B}(\underline{x}, t) \, dv = \int_V \rho(\underline{X}, t) \underline{B}(\underline{X}, t) \, J \, dV = \int_V \rho_0(\underline{X}) \underline{B}(\underline{X}, t) \, dV\]
+                </div>
+                
+                <h3>Third Contribution (Surface Forces)</h3>
+                
+                <div class="derivation">
+                    <p>The third contribution - the one associated with the surface forces - reads:</p>
+                    
+                    \[\int_{\partial} \underline{t}(\underline{x}, t) \, d\partial = \int_{\partial} \underline{\sigma} \cdot \underline{n} \, d\partial\]
+                    <p class="equation-annotation">(using the Cauchy relation \(\underline{\sigma} \cdot \underline{n} = \underline{t}\))</p>
+                    
+                    \[= \int_A \underline{\sigma} \, J \underline{F}^{-T} N \, dA\]
+                    <p class="equation-annotation">(using the Nanson's formula)</p>
+                    
+                    \[= \int_A \underline{P} \, \underline{N} \, dA = \int_V \text{Div}(\underline{P}) \, dV\]
+                </div>
+                
+                <p>Concluding, the balance of momentum, in Lagrangian form, is:</p>
+                
+                <div class="boxed-equation">
+                    \[\rho_0 \underline{a} = \rho_0 \underline{B} + \text{Div} \underline{P}\]
+                </div>
+            </section>
+
+            <!-- Conservation of Angular Momentum -->
+            <section class="section">
+                <h2>Conservation of Angular Momentum</h2>
+                
+                <p>The conservation of angular momentum can be written as:</p>
+                
+                \[\frac{D}{Dt} \int_v \rho(\underline{x}, t) \underline{x} \times \underline{v} \, dv = \int_v \rho(\underline{x}, t) \underline{x} \times \underline{b} \, dv + \int_{\partial} \underline{x} \times \underline{t} \, d\partial\]
+                
+                <ul class="bullet-list">
+                    <li>This balance equation is here used to demonstrate the symmetry of the Cauchy stress tensor \(\underline{\underline{\sigma}}\).</li>
+                    <li>As seen in the conservation of linear momentum, the transformation to the reference configuration \(\mathcal{B}^0\) (characterized by volume V and area A) determines the need for introducing the stress measure \(\underline{P}\) (First Piola-Kirchhoff).</li>
+                </ul>
+                
+                <p>Having now in mind of demonstrating the symmetry of \(\underline{\underline{\sigma}}\), the balance is written on the deformed configuration.</p>
+                
+                <div class="note">
+                    <div class="note-title">Important Property</div>
+                    <p>Before manipulating the expression, it is useful to note that:</p>
+                    \[\frac{D}{Dt} \int_v \rho \underline{A} \, dv = \frac{D}{Dt} \int_V \rho \underline{A} \, J \, dV = \frac{D}{Dt} \int_V \rho_0(\underline{X}) \underline{A} \, dV = \int_V \rho_0(\underline{X}) \frac{D\underline{A}}{Dt} \, dV\]
+                    <p>where \(\underline{A}\) is a generic tensor. This can also be written as:</p>
+                    \[= \int_v \rho(\underline{x}, t) \frac{D\underline{A}}{Dt} \, dv \quad \text{(Eulerian)}\]
+                </div>
+                
+                <h3>Rearranging the Three Contributions</h3>
+                
+                <h4>1) First Contribution</h4>
+                <div class="derivation">
+                    \[\frac{D}{Dt} \int_v \rho(\underline{x}, t) \underline{x} \times \underline{v} \, dv = \int_v \rho(\underline{x}, t) \frac{D}{Dt}(\underline{x} \times \underline{v}) \, dv\]
+                    \[= \int_v \rho(\underline{x}, t) \left[ \frac{D\underline{x}}{Dt} \times \underline{v} + \underline{x} \times \frac{D\underline{v}}{Dt} \right] dv\]
+                    \[= \int_v \rho(\underline{x}, t) \left[ \underline{v} \times \underline{v} + \underline{x} \times \underline{a} \right] dv = \int_v \underline{x} \times (\rho \underline{a}) \, dv\]
+                    <p class="equation-annotation">Having observed that \(\underline{v} \times \underline{v} = \underline{0}\) and the density is a scalar field.</p>
+                </div>
+                
+                <h4>2) Second Contribution</h4>
+                <div class="derivation">
+                    \[\int_v \rho(\underline{x}, t) \underline{x} \times \underline{b} \, dv = \int_v \underline{x} \times (\rho \underline{b}) \, dv\]
+                </div>
+                
+                <h4>3) Third Contribution</h4>
+                <div class="derivation">
+                    \[\int_{\partial} \underline{x} \times \underline{t} \, d\partial = \int_{\partial} \underline{x} \times \underline{\sigma} \cdot \underline{n} \, d\partial = \int_v \text{div}(\underline{x} \times \underline{\sigma}) \, dv\]
+                    <p class="equation-annotation">(divergence theorem)</p>
+                    
+                    \[= \int_v (\underline{x} \times \underline{\sigma})_{ik/k} \, dv\]
+                    <p class="equation-annotation">(denoting with \((\cdot)_{ik}\) the \(ik\) component of the tensor and recalling that \(\text{div} \underline{A} = A_{ik/k}\))</p>
+                    
+                    \[= \int_v \left[ (\underline{x} \times)_{ir/k} \, \underline{\sigma}_{rk} + (\underline{x} \times)_{ir} \, \underline{\sigma}_{rk/k} \right] dv\]
+                    
+                    \[= \int_v \left[ \underline{q} + (\underline{x} \times) \text{div} \underline{\sigma} \right] dv\]
+                </div>
+                
+                <h3>Interpretation of \(\underline{x} \times\)</h3>
+                
+                <div class="remarks">
+                    <h4>What does \(\underline{x} \times\) mean?</h4>
+                    <p>It is a second order tensor, constructed in a specific way starting from the vector \(\underline{x}\). Consider the vector product \(\underline{x} \times \underline{y} = \underline{z}\). We can imagine that a tensor \(\underline{\underline{A}}\) exists such that:</p>
+                    \[\underline{\underline{A}} \underline{y} = \underline{z}\]
+                    <p>In other words, the vector product between two vectors can be seen as the scalar product between a tensor \(\underline{\underline{A}}\), function of \(\underline{x}\), and a vector \(\underline{y}\):</p>
+                    \[\underline{x} \times \underline{y} = \underline{z} \quad \Leftrightarrow \quad \underline{\underline{A}} \underline{y} = \underline{z} \quad \text{with} \quad \underline{\underline{A}} = \underline{x} \times\]
+                    
+                    <p>If the components of \(\underline{x}\) are \(\underline{x} = \{x_1, x_2, x_3\}\), then:</p>
+                    \[(\underline{\underline{A}})_{ik} = \begin{bmatrix} 0 & -x_3 & x_2 \\ x_3 & 0 & -x_1 \\ -x_2 & x_1 & 0 \end{bmatrix}\]
+                </div>
+                
+                <h3>Derivation of Symmetry Condition</h3>
+                
+                <p>The expression of the conservation of angular momentum is so obtained as:</p>
+                
+                \[\int_v \underline{x} \times (\rho \underline{a}) \, dv = \int_v \underline{x} \times (\rho \underline{b}) \, dv + \int_v \left[ \underline{q} + (\underline{x} \times) \text{div} \underline{\sigma} \right] dv\]
+                
+                \[\int_v \underline{x} \times \left( \rho \underline{a} - \rho \underline{b} - \text{div} \underline{\sigma} \right) dv = \int_v \underline{q} \, dv\]
+                
+                <p>The term in parentheses equals zero due to the Eulerian form of the conservation of linear momentum, therefore:</p>
+                
+                \[\int_v \underline{q} \, dv = \underline{0}\]
+                
+                <p>Recall the definition of \(\underline{q}\):</p>
+                \[q_i = (\underline{e}_k \times)_{ir} \, \sigma_{rk}\]
+                <p class="equation-annotation">(The indexes \(r\) and \(k\) are repeated, while \(i\) is a free index ⇒ the result is a vector)</p>
+                
+                <p>With the basis vectors:</p>
+                \[\underline{e}_1 = \{1, 0, 0\} \quad \underline{e}_2 = \{0, 1, 0\} \quad \underline{e}_3 = \{0, 0, 1\}\]
+                
+                <p>The corresponding tensors are:</p>
+                \[\underline{e}_1 \times = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{bmatrix} \quad \underline{e}_2 \times = \begin{bmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 0 \end{bmatrix} \quad \underline{e}_3 \times = \begin{bmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}\]
+                
+                <h4>Evaluating Components</h4>
+                
+                <p>For \(i = 1\):</p>
+                \[(\underline{e}_k \times)_{1r} \, \sigma_{rk} = (\underline{e}_2 \times)_{13} \, \sigma_{32} + (\underline{e}_3 \times)_{12} \, \sigma_{23} = \sigma_{32} - \sigma_{23}\]
+                
+                <p>For \(i = 2\):</p>
+                \[(\underline{e}_k \times)_{2r} \, \sigma_{rk} = (\underline{e}_1 \times)_{23} \, \sigma_{31} + (\underline{e}_3 \times)_{21} \, \sigma_{13} = -\sigma_{31} + \sigma_{13}\]
+                
+                <p>For \(i = 3\):</p>
+                \[(\underline{e}_k \times)_{3r} \, \sigma_{rk} = (\underline{e}_1 \times)_{32} \, \sigma_{21} + (\underline{e}_2 \times)_{31} \, \sigma_{12} = \sigma_{21} - \sigma_{12}\]
+                
+                <p>It is then concluded that:</p>
+                
+                <div class="boxed-equation">
+                    \[\underline{q} = (\sigma_{32} - \sigma_{23}) \underline{e}_1 + (-\sigma_{31} + \sigma_{13}) \underline{e}_2 + (\sigma_{21} - \sigma_{12}) \underline{e}_3\]
+                </div>
+                
+                <p>It follows that \(\underline{q} = 0\) if and only if:</p>
+                
+                <div class="important-box">
+                    \[\sigma_{32} = \sigma_{23} \quad \sigma_{31} = \sigma_{13} \quad \sigma_{21} = \sigma_{12}\]
+                    <p style="text-align: center; margin-top: 10px;"><strong>The Cauchy stress tensor is symmetric!</strong></p>
+                </div>
+            </section>
+
+            <!-- Conservation of Energy -->
+            <section class="section">
+                <h2>Conservation of Energy</h2>
+                
+                <p>The conservation of energy is written by recalling:</p>
+                
+                \[\frac{D}{Dt}(U + K) = W + H\]
+                
+                <p>where:</p>
+                <ul class="bullet-list">
+                    <li>\(U\): internal energy</li>
+                    <li>\(K\): kinetic energy</li>
+                    <li>\(W\): power input (power due to the applied forces)</li>
+                    <li>\(H\): heat input (power due to heat sources and heat fluxes)</li>
+                </ul>
+                
+                <h3>The Contributions</h3>
+                
+                <h4>1) Internal Energy</h4>
+                <div class="derivation">
+                    \[U = \int_v \rho(\underline{x}, t) \, e(\underline{x}, t) \, dv = \int_V \rho_0(\underline{X}) \, E(\underline{X}, t) \, dV\]
+                    
+                    <div class="boxed-equation">
+                        \[\frac{D}{Dt} U = \int_V \rho_0 \, \dot{E} \, dV\]
+                    </div>
+                </div>
+                
+                <h4>2) Kinetic Energy</h4>
+                <div class="derivation">
+                    \[K = \frac{1}{2} \int_v \rho(\underline{x}, t) \, \underline{v} \cdot \underline{v} \, dv = \frac{1}{2} \int_V \rho_0(\underline{X}) \, \underline{v} \cdot \underline{v} \, dV\]
+                    
+                    \[\frac{D}{Dt} K = \frac{1}{2} \int_V \rho_0(\underline{X}) \, \frac{D}{Dt}(\underline{v} \cdot \underline{v}) \, dV\]
+                    
+                    <div class="boxed-equation">
+                        \[\frac{D}{Dt} K = \int_V \rho_0(\underline{X}) \, \underline{v} \cdot \underline{a} \, dV\]
+                    </div>
+                </div>
+                
+                <h4>3) Power Input</h4>
+                <div class="derivation">
+                    \[W = \int_v \rho(\underline{x}, t) \, \underline{v} \cdot \underline{b}(\underline{x}, t) \, dv + \int_{\partial} \underline{v} \cdot \underline{t} \, d\partial\]
+                    
+                    \[= \int_V \rho_0(\underline{X}) \, \underline{v} \cdot \underline{B}(\underline{X}, t) \, dV + \int_A \underline{v} \cdot \underline{\sigma} \, J \underline{F}^{-T} \underline{N} \, dA\]
+                    <p class="equation-annotation">(Nanson's formula)</p>
+                    
+                    \[= \int_V \underline{v} \cdot (\rho_0 \underline{B}) \, dV + \int_V \text{div}(\underline{v} \cdot \underline{P}) \, dV\]
+                    
+                    <p>The second term can be rearranged:</p>
+                    \[\text{div}(\underline{v} \cdot \underline{P}) = (v_i \, P_{ik})_{/k} = v_{i/k} \, P_{ik} + v_i \, P_{ik/k}\]
+                    
+                    <p>Since \(dx_i = F_{ik} \, dX_k \Rightarrow F_{ik} = x_{i/k} \Rightarrow v_{i/k} = \dot{F}_{ik}\):</p>
+                    \[= \dot{F}_{ik} \, P_{ik} + v_i \, P_{ik/k} = \dot{\underline{F}} : \underline{P} + \underline{v} \cdot \text{Div} \underline{P}\]
+                    
+                    <div class="boxed-equation">
+                        \[W = \int_V \left[ \underline{v} \cdot (\rho_0 \underline{B}) + \dot{\underline{F}} : \underline{P} + \underline{v} \cdot \text{Div} \underline{P} \right] dV\]
+                    </div>
+                </div>
+                
+                <h4>4) Heat Input</h4>
+                <div class="derivation">
+                    \[H = \int_v \rho(\underline{x}, t) \, r(\underline{x}, t) \, dv - \int_{\partial} \underline{q}(\underline{x}, t) \cdot \underline{n} \, d\partial\]
+                    
+                    <p>where \(r\) = internal heat generation and \(\underline{q}\) = heat flux</p>
+                    
+                    <figure class="figure">
+                        <img src="images/LN_C1_1_Balance_equations/heat_flux_direction_convention.png" alt="Heat flux direction convention showing inward/outward direction">
+                        <figcaption>Heat flux direction convention: \(H > 0\) when \(\underline{q}\) is directed in the inward direction (\(\underline{q} \cdot \underline{n} < 0 \Rightarrow H > 0\))</figcaption>
+                    </figure>
+                    
+                    \[H = \int_V \rho_0(\underline{X}) \, R(\underline{X}, t) \, dV - \int_A \underline{q}(\underline{X}, t) \, J \underline{F}^{-T} \underline{N} \, dA\]
+                    
+                    \[= \int_V \rho_0 R \, dV - \int_A \underline{Q} \cdot \underline{N} \, dA \quad \text{with} \quad \underline{Q} = J \underline{q} \underline{F}^{-T}\]
+                    
+                    <div class="boxed-equation">
+                        \[H = \int_V (\rho_0 R - \text{Div} \, \underline{Q}) \, dV\]
+                    </div>
+                </div>
+                
+                <h3>Assembling the Energy Equation</h3>
+                
+                <p>The conservation of energy is thus:</p>
+                
+                \[\frac{D}{Dt}(U + K) = W + H\]
+                
+                \[\int_V \left[ \rho_0 \dot{E} + \underline{v} \cdot (\rho_0 \underline{a}) \right] dV = \int_V \left[ \underline{v} \cdot (\rho_0 \underline{B} + \text{Div} \underline{P}) + \dot{\underline{F}} : \underline{P} + \rho_0 R - \text{Div} \, \underline{Q} \right] dV\]
+                
+                <p>Collecting the terms pre-multiplied by \(\underline{v}\):</p>
+                
+                \[\int_V \underline{v} \cdot \underbrace{(\rho_0 \underline{a} - \rho_0 \underline{B} - \text{Div} \underline{P})}_{= 0 \text{ (linear momentum eq.)}} dV + \int_V \rho_0 \dot{E} \, dV = \int_V \left[ \dot{\underline{F}} : \underline{P} + \rho_0 R - \text{Div} \, \underline{Q} \right] dV\]
+                
+                <div class="important-box">
+                    <p style="text-align: center;"><strong>Lagrangian form of the energy equation:</strong></p>
+                    \[\rho_0 \dot{E} = \dot{\underline{F}} : \underline{P} + \rho_0 R - \text{Div} \, \underline{Q}\]
+                </div>
+                
+                <div class="note">
+                    <div class="note-title">Notes on the Energy Equation</div>
+                    <ul class="bullet-list">
+                        <li>\(\dot{\underline{F}} : \underline{P}\) is denoted as <strong>stress power</strong>. It is an energy contribution associated with the internal stress (\(\underline{P}\)) and the time derivative of \(\underline{F}\).</li>
+                        <li>\(\dot{\underline{F}} : \underline{P}\) is responsible for the <strong>coupling</strong> between the energy and the linear momentum equations (it is a form of thermoelastic coupling).</li>
+                        <li>If \(\dot{\underline{F}} : \underline{P}\) is dropped out (neglected) the energy equation can be solved alone; on the contrary a thermoelastic coupling still exists in the linear momentum equation via the constitutive law (which depends on the temperature).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Energy Conjugacy -->
+            <section class="section">
+                <h2>Energy Conjugacy</h2>
+                
+                <p>The energy equation includes a contribution in the form:</p>
+                
+                <div class="boxed-equation">
+                    \[\dot{\underline{F}} : \underline{P} = S_p\]
+                    <p>\(S_p\) = stress power (stress-related × strain-related)</p>
+                </div>
+                
+                <div class="note">
+                    <div class="note-title">Important Observation</div>
+                    <p>In order to obtain an energy, the stress-related quantity should be contracted with a precise strain-related quantity. In other words \(S_p\) cannot be obtained by taking two "randomly" chosen stress/strain quantities.</p>
+                    <p>If \(\underline{\underline{A}} : \underline{\underline{B}} = S_p\) ⇒ \(\underline{\underline{A}}\) and \(\underline{\underline{B}}\) are in an <strong>energy conjugacy relation</strong>.</p>
+                </div>
+                
+                <p>Generally it is useful to re-write \(S_p\) in terms of the strain tensor \(\underline{\underline{\epsilon}}\), which is an objective tensor well suited for expressing the constitutive relation:</p>
+                
+                \[\dot{\underline{\epsilon}} : [?] = S_p\]
+                
+                <p>Which is the stress measure energetically conjugate to \(\dot{\underline{\epsilon}}\)?</p>
+                
+                <p>It is possible to demonstrate that:</p>
+                
+                <div class="boxed-equation">
+                    \[\dot{\underline{\epsilon}} : \underline{S} = \dot{\underline{F}} : \underline{P} = \underline{\underline{d}} : \underline{\sigma} = S_p\]
+                    <p>where the velocity gradient is \(\underline{\underline{d}} = \frac{1}{2}(\text{grad} \underline{v} + \text{grad} \underline{v}^T)\)</p>
+                </div>
+                
+                <h3>Proof of \(S_p = \dot{\underline{\epsilon}} : \underline{S} = \dot{\underline{F}} : \underline{P}\)</h3>
+                
+                <div class="derivation">
+                    <p>Recall that:</p>
+                    \[\underline{\epsilon} = \frac{1}{2}(\underline{F}^T \underline{F} - \underline{I}) \quad \Rightarrow \quad \dot{\underline{\epsilon}} = \frac{1}{2}(\dot{\underline{F}}^T \underline{F} + \underline{F}^T \dot{\underline{F}})\]
+                    
+                    <p>So:</p>
+                    \[\dot{\underline{\epsilon}} : \underline{S} = \frac{1}{2}(\dot{\underline{F}}^T \underline{F} + \underline{F}^T \dot{\underline{F}}) : \underline{S}\]
+                    
+                    \[= \frac{1}{2}(\dot{F}_{ir}^T \, F_{rk} + F_{ir}^T \, \dot{F}_{rk}) \, S_{ik}\]
+                    
+                    \[= \frac{1}{2}(\dot{F}_{ri} \, F_{rk} + F_{ri} \, \dot{F}_{rk}) \, S_{ik}\]
+                    
+                    \[= \frac{1}{2} \dot{F}_{ri} \, F_{rk} \, S_{ki} + \frac{1}{2} F_{rk} \, F_{ri} \, S_{ik}\]
+                    <p class="equation-annotation">(using symmetry of \(\underline{S}\))</p>
+                    
+                    \[= \frac{1}{2} \dot{\underline{F}} : (\underline{F} \underline{S}) + \frac{1}{2} \dot{\underline{F}} : (\underline{F} \underline{S})\]
+                    
+                    \[= \dot{\underline{F}} : \underline{P}\]
+                    <p class="equation-annotation">(having recalled that \(\underline{P} = \underline{F} \underline{S}\))</p>
+                </div>
+                
+                <h3>Energy Conjugacy between \(\underline{\underline{\sigma}}\) and \(\underline{\underline{d}}\)</h3>
+                
+                <p>To demonstrate that \(\underline{\underline{\sigma}}\) and \(\underline{\underline{d}}\) are in energy-conjugacy relation, it is easier (and useful) to write the energy equation in Eulerian form.</p>
+                
+                <div class="derivation">
+                    \[\frac{D}{Dt} \int_v \left[ \rho(\underline{x}, t) \, e(\underline{x}, t) + \frac{1}{2} \rho(\underline{x}, t) \, \underline{v} \cdot \underline{v} \right] dv = \int_v \rho(\underline{x}, t) \, \underline{v} \cdot \underline{b}(\underline{x}, t) \, dv + \int_{\partial} \underline{v} \cdot \underline{t} \, d\partial\]
+                    
+                    <p>The contribution associated with the stress power \(S_p\) can be re-arranged as:</p>
+                    
+                    \[\int_{\partial} \underline{v} \cdot \underline{t} \, d\partial = \int_{\partial} \underline{v} \cdot \underline{\sigma} \, \underline{n} \, d\partial = \int_v \text{div}(\underline{v} \cdot \underline{\sigma}) \, dv\]
+                    <p class="equation-annotation">(Eulerian divergence)</p>
+                    
+                    \[= \int_v (v_i \, \sigma_{ik/k} + v_{i/k} \, \sigma_{ik}) \, dv = \int_v \left[ \underline{v} \cdot \text{div} \, \underline{\sigma} + \underline{\underline{d}} : \underline{\sigma} \right] dv\]
+                    
+                    <p>where \(\underline{\underline{d}} = \frac{1}{2}(\text{grad} \, \underline{v} + \text{grad} \, \underline{v}^T)\)</p>
+                </div>
+            </section>
+
+            <!-- Entropy Balance -->
+            <section class="section">
+                <h2>Entropy Balance</h2>
+                
+                <p>In order to guarantee the thermodynamic consistency of the formulation, it is necessary to satisfy the second principle of thermodynamics (the energy equation is insensitive to the direction of the energy transfer):</p>
+                
+                \[\underbrace{\frac{D}{Dt} \int_v \rho \, s \, dv}_{\text{rate of entropy increase}} \geq \underbrace{\int_v \frac{r}{T} \, dv - \int_{\partial} \frac{\underline{q} \cdot \underline{n}}{T} \, d\partial}_{\text{entropy input rate}}\]
+                
+                <p>The equation can be written in Lagrangian form with the usual procedure:</p>
+                
+                \[\int_V \rho_0 \, \dot{S} \, dV \geq \int_V \left[ \frac{\rho_0 R}{T} - \text{Div}\left(\frac{\underline{Q}}{T}\right) \right] dV\]
+                
+                <p>Using:</p>
+                \[\text{Div} \frac{\underline{Q}}{T} = \frac{Q_{i/i}}{T} - \frac{Q_i \, T_{/i}}{T^2} = \frac{1}{T}\left(\text{Div} \, \underline{Q} - \underline{Q} \cdot \frac{\text{Grad} \, T}{T}\right)\]
+                
+                <p>We obtain:</p>
+                \[\rho_0 \, \dot{S} \geq \frac{\rho_0 R}{T} - \frac{1}{T}\left(\text{Div} \, \underline{Q} - \underline{Q} \cdot \frac{\text{Grad} \, T}{T}\right)\]
+                
+                <div class="boxed-equation">
+                    <p><strong>Entropy equation (Lagrangian):</strong></p>
+                    \[\rho_0 \, T \, \dot{S} \geq \rho_0 R - \text{Div} \, \underline{Q} + \underline{Q} \cdot \frac{\text{Grad} \, T}{T}\]
+                </div>
+                
+                <h3>Introduction of the Helmholtz Free Energy</h3>
+                
+                <p>Recalling the energy equation \(\rho_0 R - \text{Div} \, \underline{Q} = \rho_0 \dot{E} - \underline{S} : \dot{\underline{\epsilon}}\), the entropy equation becomes:</p>
+                
+                \[\rho_0 \, T \, \dot{S} \geq \rho_0 \dot{E} - \underline{S} : \dot{\underline{\epsilon}} + \underline{Q} \cdot \frac{\text{Grad} \, T}{T}\]
+                
+                \[\rho_0 (T \dot{S} - \dot{E}) \geq \underline{Q} \cdot \frac{\text{Grad} \, T}{T} - \underline{S} : \dot{\underline{\epsilon}}\]
+                
+                <p>It is now useful to introduce a potential function. A natural choice is given by the <strong>Helmholtz free energy function</strong> \(\Psi\):</p>
+                
+                \[\Psi = E - TS \quad \Rightarrow \quad \dot{\Psi} = \dot{E} - \dot{T}S - T\dot{S}\]
+                
+                \[\Rightarrow \quad T\dot{S} - \dot{E} = -\dot{\Psi} - \dot{T}S\]
+                
+                <p>Assume also that the thermodynamical state can be described by two different state variables, viz. \(\underline{\underline{\epsilon}}\) and \(T\):</p>
+                
+                \[\Psi = \Psi(\underline{\underline{\epsilon}}, T) \quad \Rightarrow \quad \dot{\Psi} = \Psi_{/\underline{\epsilon}} : \dot{\underline{\epsilon}} + \Psi_{/T} \cdot \dot{T}\]
+                
+                <p>The entropy equation is then:</p>
+                
+                <div class="boxed-equation">
+                    \[\rho_0 \left( \Psi_{/\underline{\epsilon}} : \dot{\underline{\epsilon}} + \Psi_{/T} \cdot \dot{T} + \dot{T}S \right) \leq \underline{S} : \dot{\underline{\epsilon}} - \underline{Q} \cdot \frac{\text{Grad} \, T}{T}\]
+                </div>
+                
+                <h3>Thermodynamic Restrictions</h3>
+                
+                <p>The previous equation should be always verified, for any choice of the state variables, so:</p>
+                
+                <div class="important-box">
+                    <p style="text-align: center;"><strong>Thermodynamic definition of stresses:</strong></p>
+                    \[\underline{S} = \rho_0 \, \Psi_{/\underline{\epsilon}}\]
+                    \[S = -\Psi_{/T}\]
+                    \[-\underline{Q} \cdot \text{Grad} \, T \geq 0 \quad \Rightarrow \quad \underline{K} \text{ positive defined}\]
+                </div>
+            </section>
+
+            <!-- Constitutive Law -->
+            <section class="section">
+                <h2>Constitutive Law</h2>
+                
+                <p>The energy equation was obtained in the form:</p>
+                \[\rho_0 \dot{E} = \rho_0 R - \text{Div} \, \underline{Q} + \underline{S} : \dot{\underline{\epsilon}}\]
+                
+                <p>In terms of Helmholtz free energy \(\Psi = E + TS\):</p>
+                \[\dot{E} = \dot{\Psi} + \dot{T}S + T\dot{S}\]
+                
+                <p>and recalling that:</p>
+                \[\dot{\Psi} = \Psi_{/\underline{\epsilon}} : \dot{\underline{\epsilon}} + \Psi_{/T} \, \dot{T} \quad ; \quad \Psi_{/\underline{\epsilon}} = \frac{1}{\rho_0} \underline{S} \quad ; \quad \Psi_{/T} = -S\]
+                
+                <p>it is:</p>
+                \[\dot{E} = \frac{1}{\rho_0} \underline{S} : \dot{\underline{\epsilon}} - S\dot{T} + \dot{S}S + T\dot{S}\]
+                
+                <p>So the energy equation reads:</p>
+                \[\underline{S} : \dot{\underline{\epsilon}} + \rho_0 \, T \dot{S} = \rho_0 R - \text{Div} \, \underline{Q} + \underline{S} : \dot{\underline{\epsilon}}\]
+                
+                <div class="boxed-equation">
+                    \[\rho_0 \, T \, \dot{S} = \rho_0 R - \text{Div} \, \underline{Q}\]
+                </div>
+                
+                <p>The entropy \(S\) is a state function, which can be described by means of two state variables \(T\) and \(\underline{\underline{\epsilon}}\):</p>
+                
+                \[S = S(T, \underline{\underline{\epsilon}}) \quad \Rightarrow \quad \dot{S} = S_{/T} \, \dot{T} + S_{/\underline{\epsilon}} : \dot{\underline{\epsilon}}\]
+                
+                <p>From the entropy equation: \(S = -\Psi_{/T}\) and \(\frac{1}{\rho_0} \underline{S} = \Psi_{/\underline{\epsilon}}\), so:</p>
+                
+                \[\dot{S} = -\Psi_{/TT} \, \dot{T} - \Psi_{/T\underline{\epsilon}} : \dot{\underline{\epsilon}} = -\Psi_{/TT} \, \dot{T} - \frac{1}{\rho_0} \underline{S}_{/T} : \dot{\underline{\epsilon}}\]
+                
+                <p>Assume now a constitutive law in the form:</p>
+                \[\underline{S} = \underline{\underline{C}} : \underline{\underline{\epsilon}} - \underline{\beta}(T - T_0) \quad \Rightarrow \quad \underline{S}_{/T} = -\underline{\beta}\]
+                
+                \[\Rightarrow \quad \dot{S} = -\Psi_{/TT} \, \dot{T} + \frac{1}{\rho_0} \underline{\beta} : \dot{\underline{\epsilon}}\]
+                
+                <p>The energy equation is thus:</p>
+                \[\rho_0 \, T \, \dot{S} = \rho_0 R - \text{Div} \, \underline{Q}\]
+                
+                \[-\rho_0 T \Psi_{/TT} \dot{T} + T \underline{\beta} : \dot{\underline{\epsilon}} = \rho_0 R - \text{Div} \, \underline{Q}\]
+                
+                <div class="important-box">
+                    <p style="text-align: center;"><strong>Energy equation with thermoelastic coupling:</strong></p>
+                    \[\rho_0 \, C_v \, \dot{T} \left(1 + \frac{T \underline{\beta} : \dot{\underline{\epsilon}}}{\rho_0 \, C_v \, \dot{T}}\right) = \rho_0 R - \text{Div} \, \underline{Q}\]
+                    <p style="text-align: center;">↑ thermoelastic coupling term</p>
+                </div>
+                
+                <p>Whenever the thermoelastic coupling contribution can be neglected, the energy equation reads:</p>
+                
+                <div class="boxed-equation">
+                    <p><strong>Engineering energy equation:</strong></p>
+                    \[\rho_0 C_v \dot{T} = \rho_0 R - \text{Div} \, \underline{Q}\]
+                </div>
+            </section>
+
+            <!-- Adiabatic Transformation -->
+            <section class="section">
+                <h2>Adiabatic Transformation</h2>
+                
+                <p>Consider now the case of an adiabatic transformation, viz. \(R = 0\) and \(\underline{Q} = 0\) (note that sometimes is intended as \(\underline{Q} = 0\) but \(R \neq 0\)).</p>
+                
+                <p>The energy equation is then:</p>
+                \[\rho_0 \, C_v \, \dot{T} + T \, \underline{\beta} : \dot{\underline{\epsilon}} = 0\]
+                
+                <p>Linearize around a reference configuration:</p>
+                \[T = T_0 + \Delta T \quad \Rightarrow \quad \dot{T} = \Delta \dot{T}\]
+                \[\underline{\underline{\epsilon}} = \underline{\underline{\epsilon}}_0 + \Delta \underline{\underline{\epsilon}} \quad \Rightarrow \quad \dot{\underline{\epsilon}} = \Delta \dot{\underline{\epsilon}}\]
+                
+                <p>The equation becomes:</p>
+                \[\rho_0 \, C_v \, \Delta \dot{T} + (T_0 + \Delta T) \underline{\beta} : \Delta \dot{\underline{\epsilon}} = 0\]
+                
+                \[\rho_0 \, C_v \, \Delta \dot{T} + T_0 \, \underline{\beta} : \Delta \dot{\underline{\epsilon}} + \underbrace{\Delta T \, \underline{\beta} : \Delta \dot{\underline{\epsilon}}}_{\text{higher order contribution}} = 0\]
+                
+                <p>Neglecting the higher order term and integrating:</p>
+                \[\rho_0 \, C_v \, \Delta T + T_0 \, \underline{\beta} : \Delta \underline{\epsilon} = 0 \quad \Rightarrow \quad \Delta T = -\frac{T_0}{\rho_0 C_v} \underline{\beta} : \Delta \underline{\epsilon}\]
+                
+                <p>Consider now a linear thermoelastic constitutive law:</p>
+                \[\underline{S} = \underline{\underline{C}} : \underline{\underline{\epsilon}} - \underline{\beta} \, \Delta T\]
+                \[\Rightarrow \quad \Delta \underline{S} = \underline{\underline{C}} : \Delta \underline{\underline{\epsilon}} - \underline{\beta} \, \Delta T\]
+                
+                <p>Substituting the expression for \(\Delta T\):</p>
+                \[\Delta \underline{S} = \underline{\underline{C}} : \left( \Delta \underline{\underline{\epsilon}} + \underline{\beta} \frac{T_0}{\rho_0 C_v} \underline{\beta} : \Delta \underline{\underline{\epsilon}} \right)\]
+                
+                \[= \underline{\underline{C}} : \left( \Delta \underline{\underline{\epsilon}} + \frac{T_0}{\rho_0 C_v} \underline{\beta} \otimes \underline{\beta} : \Delta \underline{\underline{\epsilon}} \right)\]
+                
+                <div class="important-box">
+                    <p style="text-align: center;"><strong>Constitutive law for adiabatic transformation:</strong></p>
+                    \[\Delta \underline{S} = \left( \underbrace{\underline{\underline{C}}}_{\text{isothermal}} + \underbrace{\frac{T_0}{\rho_0 C_v} \underline{\beta} \otimes \underline{\beta}}_{\text{extra contribution}} \right) : \Delta \underline{\underline{\epsilon}}\]
+                </div>
+                
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <p><strong>1. Why considering the adiabatic case?</strong></p>
+                    <p>It is an extreme condition: the material is deformed so fast that it cannot even exchange heat with the surrounding media. This is in contrast with the more "classical" condition of isothermal transformation: the material is deformed relatively slow and, at any time frame, the heat transfer with the external is possible.</p>
+                    
+                    <p><strong>2. Practical implications:</strong></p>
+                    <p>For typical metallic materials it is observed that the extra contribution is negligible with respect to the isothermal one. Therefore:</p>
+                    <ul class="bullet-list">
+                        <li>The isothermal constitutive law can be used even for studying non isothermal conditions with a good degree of accuracy.</li>
+                        <li>The small role played by the "extra-contribution" highlights that the thermoelastic coupling effect in the energy equation can be assumed to be negligible, thus justifying the use of the engineering energy equation.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Summary of Coupling Effects -->
+            <section class="section">
+                <h2>Summary of Thermoelastic Coupling</h2>
+                
+                <p>The energy equation has been expressed in the form:</p>
+                \[\rho_0 C_v \dot{T} \left( 1 + \underbrace{\frac{T \underline{\beta} : \dot{\underline{\epsilon}}}{\rho_0 C_v \dot{T}}}_{\text{thermoelastic coupling}} \right) = \rho_0 R - \text{Div} \, \underline{Q}\]
+                
+                <div class="case-box">
+                    <h4>When coupling cannot be neglected:</h4>
+                    <ol class="intro-list">
+                        <li>If \(\dot{\underline{\epsilon}}\) is "high", the coupling contribution (\(S_p\)) cannot be neglected. <em>Example: impact problems</em></li>
+                        <li>If \(T\) is "high", \(S_p\) cannot be neglected (⇒ high temperatures are responsible for coupling)</li>
+                    </ol>
+                </div>
+                
+                <div class="case-box">
+                    <h4>Effect on constitutive law:</h4>
+                    <p>The effect of the stress-power in terms of constitutive law is the presence of an additional contribution with respect to the isothermal constitutive law:</p>
+                    \[\Delta \underline{S} = \left( \underbrace{\underline{\underline{C}}}_{\text{isothermal}} + \underbrace{\frac{T_0}{\rho_0 C_v} \underline{\beta} \otimes \underline{\beta}}_{\text{adiabatic}} \right) : \Delta \underline{\underline{\epsilon}}\]
+                    <p>The fact that \(\underline{\underline{C}}_{\text{isothermal}} \approx \underline{\underline{C}}_{\text{adiabatic}}\) justifies the possibility of simplifying the energy equation and neglecting \(S_p\).</p>
+                </div>
+            </section>
+
+            <!-- Governing Equations Summary -->
+            <section class="section">
+                <h2>Governing Equations in Lagrangian Form - Summary</h2>
+                
+                <div class="summary-box">
+                    <h3>Field Equations</h3>
+                    
+                    <p><strong>Mass conservation:</strong> (* it is enforced by substitution of \(\rho_0 = \rho J\) in the other equations)</p>
+                    \[\rho_0 = \rho J\]
+                    
+                    <p><strong>Momentum conservation:</strong></p>
+                    \[\rho_0 \underline{a} = \rho_0 \underline{B} + \text{Div} \, \underline{P}\]
+                    
+                    <p><strong>Energy:</strong></p>
+                    \[\rho_0 C_v \dot{T} \left( 1 + \frac{T \underline{\beta} : \dot{\underline{\epsilon}}}{\rho_0 C_v T} \right) = \rho_0 R - \text{Div} \, \underline{Q}\]
+                    
+                    <p><strong>G-L strain (Compatibility):</strong></p>
+                    \[\underline{\underline{\epsilon}} = \frac{1}{2} \left( \underline{F}^T \underline{F} - \underline{I} \right)\]
+                    
+                    <p><strong>Constitutive law:</strong></p>
+                    \[\underline{S} = \Psi(\underline{\underline{\epsilon}}, T)\]
+                </div>
+                
+                <div class="summary-box">
+                    <h3>Boundary Conditions</h3>
+                    
+                    <figure class="figure">
+                        <img src="images/LN_C1_1_Balance_equations/boundary_conditions_schematic.png" alt="Schematic diagram showing boundary surfaces">
+                        <figcaption>Boundary surface decomposition</figcaption>
+                    </figure>
+                    
+                    <p><strong>Mechanical:</strong></p>
+                    \[\underline{u} = \hat{\underline{u}} \quad \text{on } S_u \text{ (imposed displacements)}\]
+                    \[\underline{\sigma} \cdot \underline{n} = \underline{t} \quad \text{on } S_F \text{ (imposed forces)}\]
+                    <p>\(S_U \cup S_F = S\) ; \(S_U \cap S_F = \emptyset\)</p>
+                    
+                    <p><strong>Thermal:</strong></p>
+                    \[T = \hat{T} \quad \text{on } S_T \text{ (temperature boundary)}\]
+                    \[\underline{q} \cdot \underline{n} = q_s \quad \text{on } S_Q \text{ (heat flux boundary)}\]
+                    <p>\(S_T \cup S_Q = S\) ; \(S_T \cap S_Q = \emptyset\)</p>
+                </div>
+            </section>
+
+            <!-- Dynamics -->
+            <section class="section">
+                <h2>Dynamics</h2>
+                
+                <p>From the previous general form of the equations, it is possible to derive the governing equation for some "special" cases.</p>
+                
+                <p>The dynamics is generally studied with a <strong>displacement-based approach</strong>. (As for as the internal forces depend upon the derivative of the displacements, it follows that the displacement formulation is the most "natural" one).</p>
+                
+                <p>In this case:</p>
+                <ol class="intro-list">
+                    <li>\(\underline{\underline{\epsilon}} = \frac{1}{2}(\underline{F}^T \underline{F} - \underline{I})\) is imposed a priori</li>
+                    <li>\(\underline{S} = \Psi(\underline{\underline{\epsilon}}, T)\) is given</li>
+                </ol>
+                
+                <p>It is possible to distinguish between two cases:</p>
+                
+                <div class="case-box">
+                    <h4>1. Fully Coupled Problem (two-way)</h4>
+                    
+                    \[\begin{cases} \rho_0 \underline{a} = \rho_0 \underline{B} + \text{Div} \, \underline{P} & (3 \text{ eqs}) \\ \rho_0 C_v \dot{T} \left( 1 + \frac{T \underline{\beta} : \dot{\underline{\epsilon}}}{\rho_0 C_v T} \right) = \rho_0 R - \text{Div} \, \underline{Q} & (1 \text{ eq}) \end{cases}\]
+                    
+                    <p>+ BCs</p>
+                    
+                    <p>→ The unknowns are taken as \(\underline{u}\) and \(T\)</p>
+                    <p>→ The two equations can be expressed as function of the unknowns \(\underline{u}, T\) (4 eqs, 4 unknowns)</p>
+                </div>
+                
+                <div class="case-box">
+                    <h4>2. Coupled Problem (one-way)</h4>
+                    
+                    \[\begin{cases} \rho_0 \underline{a} = \rho_0 \underline{B} + \text{Div} \, \underline{P} \\ \rho_0 C_v \dot{T} = \rho_0 R - \text{Div} \, \underline{Q} \end{cases}\]
+                    
+                    <p>+ BCs</p>
+                    
+                    <ul class="bullet-list">
+                        <li>The \(S_p\) contribution is neglected. This is an acceptable assumption in those cases previously discussed.</li>
+                        <li>It is called "one way" problem because the coupling still exists, although it is such that the energy equation can be solved first and the linear momentum later on. The two equations do not need to be solved together.</li>
+                    </ul>
+                    
+                    <p>Consider the solution of the problem in terms of temperature \(T\). Recalling the Fourier's law \(\underline{Q} = -\underline{K} \, \text{Grad} \, T\):</p>
+                    
+                    \[\begin{cases} \rho_0 \underline{a} = \rho_0 \underline{B} + \text{Div} \, \underline{P} & \leftarrow \text{Function of } T \text{ and } \underline{u} \\ \rho_0 C_v \dot{T} + \text{Div}(-\underline{K} \, \text{Grad} \, T) = \rho_0 R & \leftarrow \text{Function of } T \end{cases}\]
+                    
+                    <p><strong>Solution procedure:</strong></p>
+                    <ol class="intro-list">
+                        <li>The temperature field can be obtained by solving the energy equation.</li>
+                        <li>Once the temperature field is available, it can be substituted into the linear momentum, as a forcing term, and the displacement field determined.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Statics -->
+            <section class="section">
+                <h2>Statics</h2>
+                
+                <p>Note that \(\underline{S} = \underline{\underline{C}} : (\underline{\underline{\epsilon}} - \underline{\beta} \, \Delta T)\), so \(\text{Div} \, \underline{P}\) depends on \(T\).</p>
+                
+                <p>The statics is sometimes analyzed with a force-based approach, sometimes with a displacement-based approach.</p>
+                
+                <p>For generality the equilibrium and the compatibility equations are both reported:</p>
+                
+                <div class="boxed-equation">
+                    \[\begin{cases} \rho_0 \underline{B} + \text{Div} \, \underline{P} = 0 & \leftarrow \text{equilibrium} \\ \text{Div}(-\underline{K} \, \text{Grad} \, T) = \rho_0 R & \leftarrow \text{energy} \\ \underline{\underline{\epsilon}} - \frac{1}{2}(\underline{F}^T \underline{F} - \underline{I}) = \underline{0} & \leftarrow \text{Compatibility} \end{cases}\]
+                </div>
+                
+                <ul class="bullet-list">
+                    <li>In statics the problem is intrinsically "one-way", as far as \(S_p = 0\).</li>
+                    <li>Again, the steady-state thermal problem can be solved from the energy equation to determine \(T\). Then, in a second step, the equilibrium condition can be imposed by taking the temperature field as a forcing contribution.</li>
+                </ul>
+            </section>
+
+            <!-- Secondary Effects of Thermoelastic Coupling -->
+            <section class="section">
+                <h2>Secondary Effects of Thermoelastic Coupling</h2>
+                
+                <p>While the discussion regarding the coupling between the elastic and the thermal response has regarded the analysis of the governing equations (i.e. the possibility of neglecting \(S_p\)), it is worth noting that <strong>the coupling can be due to the boundary conditions</strong>.</p>
+                
+                <p>Consider the one-way problem:</p>
+                
+                \[\begin{cases} \rho_0 C_v \dot{T} = \rho_0 R - \text{Div}(-\underline{K} \, \text{Grad} \, T) \\ \rho_0 \underline{a} = \rho_0 \underline{B} + \text{Div} \, \underline{P} \end{cases}\]
+                
+                <p>and assume that a boundary condition exists regarding the imposed heat flux:</p>
+                
+                \[\underline{Q} = \hat{\underline{Q}} \quad \text{on } S_Q\]
+                \[= -\underline{K} \, \text{Grad} \, T\]
+                
+                <p>Recall, as obtained when deriving the energy equation, that:</p>
+                
+                \[\underline{Q} = J \underline{q} \underline{F}^{-T}\]
+                
+                <p>↑ \(\underline{F}\) depends on the deformation and so does \(\underline{Q}\)</p>
+                
+                <div class="note">
+                    <div class="note-title">Example: Solar Radiation</div>
+                    <p>For instance, in the presence of Solar radiation \(\underline{q}\) is given:</p>
+                    \[\hat{\underline{Q}} = J \, \underline{q}_{Solar} \, \underline{F}^{-T}\]
+                    <p>⇒ the boundary condition is a function of the deformed configuration</p>
+                    <p>⇒ <strong>the thermoelastic coupling is retrieved via BCs</strong></p>
+                </div>
+            </section>
+            
+        </main>
+    </article>
+</body>
+</html>

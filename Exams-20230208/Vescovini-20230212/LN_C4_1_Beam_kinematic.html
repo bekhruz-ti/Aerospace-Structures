@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinematic Formulation for Beams</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --highlight-bg: #ebf8ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .toc {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin: 40px 0;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin: 25px 0 15px 0;
+        }
+
+        section h4 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .definition {
+            background: var(--highlight-bg);
+            padding: 20px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .important {
+            background: #fffaf0;
+            padding: 20px;
+            border-left: 4px solid #dd6b20;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .equation-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .result-box {
+            background: #c6f6d5;
+            padding: 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        figure figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .remark {
+            background: #faf5ff;
+            padding: 20px;
+            border-left: 4px solid #805ad5;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .remark h4 {
+            color: #805ad5;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .comparison-table td:first-child {
+            font-weight: bold;
+            background: var(--bg-light);
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            section {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Kinematic Formulation for Beams</h1>
+            <p class="subtitle">Timoshenko and Euler-Bernoulli Beam Models</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#conventions">2. Conventions and Coordinate Systems</a></li>
+                <li><a href="#timoshenko">3. Timoshenko Beam Model</a></li>
+                <li><a href="#generalized-stresses">4. Generalized Stresses</a></li>
+                <li><a href="#generalized-forces">5. Generalized Forces</a></li>
+                <li><a href="#equilibrium">6. Equilibrium Conditions</a></li>
+                <li><a href="#constitutive">7. Constitutive Law - Elastic Beam</a></li>
+                <li><a href="#displacement-equations">8. Equations in Terms of Displacements</a></li>
+                <li><a href="#stress-evaluation">9. Evaluation of Stresses</a></li>
+                <li><a href="#boundary-conditions">10. Boundary Conditions</a></li>
+                <li><a href="#critical-remarks">11. Critical Remarks on Timoshenko Model</a></li>
+                <li><a href="#euler-bernoulli">12. Euler-Bernoulli Beam Model</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Section 1: Introduction -->
+            <section id="introduction">
+                <h2>1. Introduction</h2>
+                
+                <p>The beam solutions derived within the framework of the DSV (De Saint-Venant) beam theory provide a fundamental background in structural analysis.</p>
+                
+                <p>It is useful to remind that the solution for \(\sigma_{zz}\) was found as an exact solution of the elastic problem, while shear stresses were obtained by introducing different kinds of approximations. Bredt's solution was derived by assuming constant stresses through the thickness (thus violating the compatibility along the thickness direction), and similarly was done for shear stresses in the context of the semi-monocoque approximation.</p>
+                
+                <p>It is then clear that structural theories aim at identifying <strong>global or average quantities</strong> over a given region of the structure, which are then used for simplifying the solution of the problem. The shear stresses were indeed assumed constant along the thickness, and the shear flows (which are an average quantity):</p>
+                
+                \[q = \int_t \sigma_{se} \, dt\]
+                
+                <p>were used as unknowns of the problem for seeking a solution.</p>
+                
+                <p>These global/average quantities are also denoted as <strong>generalized variables</strong>.</p>
+                
+                <h3>Motivation for Kinematic Approach</h3>
+                
+                <p>Despite the usefulness of the DSV solutions, it is intuitive to formulate the beam problem from a different perspective, by defining generalized variables starting from hypotheses that regard the <em>kinematics</em> of the beam. This means that the starting point of a kinematic formulation is the description of the displacement field by means of generalized variables.</p>
+                
+                <p>The choice of the kinematic field is associated with a degree of approximation, exactly as the assumption of constant thickness-wise stresses was an approximation for DSV solutions.</p>
+                
+                <h4>Reasons for Introducing the Kinematic Approach</h4>
+                
+                <ol>
+                    <li><strong>Facility of implementation in computer codes:</strong> kinematic formulations are "naturally" suitable for computer implementation</li>
+                    <li><strong>Ease of extension</strong> of the beam model to the case of nonlinear problems (both materially and geometrically)</li>
+                    <li><strong>Possibility of extending</strong> the same kind of approach to <strong>plates and shells</strong> (in these latest cases the kinematic strategy is even more relevant as DSV-like solutions for 2D structures are very complex to develop)</li>
+                </ol>
+            </section>
+
+            <!-- Section 2: Conventions -->
+            <section id="conventions">
+                <h2>2. A Preliminary Remark on the Conventions</h2>
+                
+                <p>For consistency with the vast majority of the literature dealing with kinematic formulations, the sign convention used hereinafter considers \(x\) as the beam axis (in contrast to \(z\), as done in the context of the DSV formulation), while \(yz\) describes the plane of the beam section.</p>
+                
+                <p>This convention is also useful for extending in the following the approach to plates and shells, according to the classical conventions used.</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_coordinate_system_3d.png" alt="3D coordinate system for beam with x as beam axis">
+                    <figcaption>Figure 2.1: Coordinate system convention with \(x\) as the beam axis and \(yz\) describing the cross-section plane</figcaption>
+                </figure>
+                
+                <h3>Internal Actions</h3>
+                
+                <p>The internal actions are defined, in consistency with the convention used in the context of DSV approach, as:</p>
+                
+                <div class="equation-box">
+                    \[M_x = \int_A (\sigma_{xz} \, y - \sigma_{xy} \, x) \, dA \quad \text{(twisting moment)}\]
+                    \[M_y = \int_A \sigma_{xx} \, z \, dA \quad \text{(bending moment)}\]
+                    \[M_z = \int_A -\sigma_{xx} \, z \, dA \quad \text{(bending moment)}\]
+                </div>
+                
+                <p>According to this convention the DSV solution for the axial stress reads:</p>
+                
+                <div class="result-box">
+                    \[\sigma_{xx} = \frac{T_x}{A} + \frac{M_y}{J_{yy}} z - \frac{M_z}{J_{zz}} y\]
+                </div>
+            </section>
+
+            <!-- Section 3: Timoshenko Beam Model -->
+            <section id="timoshenko">
+                <h2>3. Timoshenko Beam Model</h2>
+                
+                <p>Consider a planar beam (for simplicity and with no loss of generality; everything can be easily extended to the case of 3D beams).</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/timoshenko_beam_planar_geometry.png" alt="Planar beam geometry for Timoshenko model">
+                    <figcaption>Figure 3.1: Planar beam with \(z\) axis perpendicular to beam axis \(x\)</figcaption>
+                </figure>
+                
+                <div class="definition">
+                    <h4>Timoshenko Kinematic Assumption</h4>
+                    <p>The kinematic model proposed by Timoshenko is formulated by assuming that the displacement field is such that <strong>the sections normal to the beam axis are free to rotate during the deformation process, but are constrained to remain straight</strong>.</p>
+                </div>
+                
+                <p>The displacement of the generic portion of beam can be decomposed into an axial contribution and a bending contribution.</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_deformation_displacement_field.png" alt="Beam deformation showing axial and bending displacement">
+                    <figcaption>Figure 3.2: Decomposition of beam displacement into axial and bending components</figcaption>
+                </figure>
+                
+                <h3>Kinematic Field</h3>
+                
+                <p>It is then assumed that the kinematic field can be represented as:</p>
+                
+                <div class="result-box">
+                    \[u(x,z) = U_o(x) + z \, \phi_x(x)\]
+                    \[w(x,z) = W_o(x)\]
+                </div>
+                
+                <p>Where:</p>
+                <ul>
+                    <li>\(U_o\): axial displacement of beam axis</li>
+                    <li>\(W_o\): bending displacement of beam axis</li>
+                    <li>\(\phi_x\): rotation of the section</li>
+                </ul>
+                
+                <p>This is the <strong>key-point of kinematic models</strong>: starting from the knowledge of few generalized variables — in this case \(U_o(x)\), \(W_o(x)\), \(\phi_x(x)\) — it is possible to recover the full three-dimensional displacement field.</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_generalized_displacements.png" alt="Beam as line with generalized displacements">
+                    <figcaption>Figure 3.3: The beam conceptualized as a line with generalized displacement parameters</figcaption>
+                </figure>
+                
+                <div class="important">
+                    <p><strong>Important:</strong> The generalized parameters \(U_o\), \(W_o\) and \(\phi_x\) are functions of the axis coordinate \(x\) only. They do not depend on \(z\). This interpretation of the kinematic model leads to a clear identification of the beam as a <em>line</em> which condenses the overall section behaviour by means of a kinematic description.</p>
+                </div>
+                
+                <h3>Strain Field</h3>
+                
+                <p>The set of deformations which are associated with the kinematic model due to Timoshenko are:</p>
+                
+                \[\varepsilon_{xx}(x,z) = u_{,x} = U_{o,x} + z \, \phi_{x,x}\]
+                \[\gamma_{xz}(x,z) = w_{,x} + u_{,z} = W_{o,x} + \phi_x\]
+                \[\varepsilon_{zz}(x,z) = w_{,z} = 0\]
+                
+                <p>or, by separating the dependence on \(x\) and \(z\):</p>
+                
+                <div class="equation-box">
+                    \[\begin{Bmatrix} \varepsilon_{xx} \\ \gamma_{xz} \end{Bmatrix} = \begin{Bmatrix} \varepsilon_{o_{xx}} \\ t_z \end{Bmatrix} + z \begin{Bmatrix} k_x \\ 0 \end{Bmatrix}\]
+                </div>
+                
+                <h4>Generalized Deformations</h4>
+                
+                <p>The terms \(\varepsilon_{o_{xx}}\), \(t_z\) and \(k_x\) are defined as:</p>
+                
+                <div class="result-box">
+                    \[\varepsilon_{o_{xx}} = U_{o,x} \quad \text{(membrane strain)}\]
+                    \[t_z = W_{o,x} + \phi_x \quad \text{(transverse shear strain)}\]
+                    \[k_x = \phi_{x,x} \quad \text{(curvature)}\]
+                </div>
+                
+                <p>These represent the <strong>generalized deformations</strong> of the Timoshenko beam model. Note that these terms depend on the \(x\)-position only, thus they are referred to the beam axis. They are denoted as "generalized" because they do not represent the actual deformation in a point of the structure (e.g., \(\varepsilon_{xx} = U_{o,x} + z\phi_{x,x}\)), but are the quantities that allow the evaluation of the deformation in any point of the beam.</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_section_shearing_deformation.png" alt="Shearing deformation in beam section">
+                    <figcaption>Figure 3.4: Shearing deformation showing the difference between section rotation \(\phi_x\) and slope \(W_{o,x}\)</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remark on Shear Deformation</h4>
+                    <p>It can be observed that the axial deformation \(\varepsilon_{xx}\) is given by a membrane contribution, \(U_{o,x}\), which is independent of \(z\), and a bending contribution, \(z\phi_{x,x}\), which is linear with \(z\).</p>
+                    <p>The shearing deformation \(\gamma_{xz}\) is different from zero, meaning that <strong>Timoshenko beam model accounts for shear deformability effects</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Generalized Stresses -->
+            <section id="generalized-stresses">
+                <h2>4. Generalized Stresses</h2>
+                
+                <p>The identification of three global quantities — \(U_o\), \(W_o\), \(\phi_x\) — for describing the displacement field led to the evaluation of generalized strain measures by application of the infinitesimal displacement strain tensor.</p>
+                
+                <p>It is now possible to identify generalized stress measures descending from the kinematic field initially assumed by applying the PVW (Principle of Virtual Work):</p>
+                
+                \[\delta W_i = \int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV\]
+                
+                \[= \int_V \left( \delta \varepsilon_{xx} \, \sigma_{xx} + \delta \gamma_{xz} \, \sigma_{xz} \right) dV\]
+                
+                <p>Since:</p>
+                <ul>
+                    <li>\(\delta \varepsilon_{xx} = \delta U_{o,x} + z \, \delta \phi_{x,x}\)</li>
+                    <li>\(\delta \varepsilon_{zz} = 0\)</li>
+                    <li>\(\delta \gamma_{xz} = \delta W_{o,x} + \delta \phi_x\)</li>
+                </ul>
+                
+                <p>We obtain:</p>
+                
+                \[= \int_V \left( \delta U_{o,x} \, \sigma_{xx} + \delta \phi_{x,x} \cdot \sigma_{xx} \, z + \delta (W_{o,x} + \phi_x) \, \sigma_{xz} \right) dV\]
+                
+                \[= \int_\ell \delta U_{o,x} \int_A \sigma_{xx} \, dA \, dx + \int_\ell \delta \phi_{x,x} \int_A \sigma_{xx} z \, dA \, dx + \int_\ell \delta (W_{o,x} + \phi_x) \int_A \sigma_{xz} \, dA \, dx\]
+                
+                <h3>Definition of Generalized Stresses</h3>
+                
+                <p>Defining:</p>
+                
+                <div class="equation-box">
+                    \[N_x = \int_A \sigma_{xx} \, dA \quad \text{(axial force)}\]
+                    \[M = \int_A z \, \sigma_{xx} \, dA \quad \text{(bending moment)}\]
+                    \[Q_z = \int_A \sigma_{xz} \, dA \quad \text{(shear force)}\]
+                </div>
+                
+                <p>it is obtained that:</p>
+                
+                <div class="result-box">
+                    \[\delta W_i = \int_0^\ell \left( \delta U_{o,x} \, N_x + \delta \phi_{x,x} \, M + \delta (W_{o,x} + \phi_x) \, Q_z \right) dx\]
+                </div>
+                
+                <div class="important">
+                    <p>It is then obtained that the <strong>generalized stress measures</strong> which are in <strong>energy-conjugacy relation</strong> with the generalized deformation measures are the <strong>internal actions</strong>: \(N_x\), \(M\), and \(Q_z\).</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Generalized Forces -->
+            <section id="generalized-forces">
+                <h2>5. Generalized Forces</h2>
+                
+                <p>The external generalized forces can be obtained, as done for the generalized stress measures, by expressing the external virtual work.</p>
+                
+                <p>Consider the presence of the volume forces \(F_x\) and \(F_z\):</p>
+                
+                \[\delta W_e = \int_V \left( \delta u \, F_x + \delta w \, F_z \right) dV\]
+                
+                \[= \int_V \left( \delta U_o F_x + \delta \phi_x \, z \, F_x + \delta W_o \, F_z \right) dV\]
+                
+                \[= \int_\ell \delta U_o \int_A F_x \, dA \, dx + \int_\ell \delta \phi_x \int_A z \, F_x \, dA \, dx + \int_\ell \delta W_o \int_A F_z \, dA \, dx\]
+                
+                <div class="result-box">
+                    \[\delta W_e = \int_\ell \left( \delta U_o \, \hat{n}_x + \delta \phi_x \, \hat{m} + \delta W_o \, \hat{n}_z \right) dx\]
+                </div>
+                
+                <h3>Distributed Loads per Unit Length</h3>
+                
+                <div class="equation-box">
+                    \[\hat{n}_x = \int_A F_x \, dA \quad \longrightarrow \quad \text{axial force per unit length}\]
+                    \[\hat{m} = \int_A z \, F_x \, dA \quad \longrightarrow \quad \text{bending moment per unit length}\]
+                    \[\hat{n}_z = \int_A F_z \, dA \quad \longrightarrow \quad \text{shear force per unit length}\]
+                </div>
+            </section>
+
+            <!-- Section 6: Equilibrium Conditions -->
+            <section id="equilibrium">
+                <h2>6. Equilibrium Conditions</h2>
+                
+                <p>It is now possible to derive the equilibrium conditions for the Timoshenko beam.</p>
+                
+                <p>In addition to the external loads consistent with the kinematic assumptions, any possible concentrated load is now introduced at the ends of the beam.</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_element_distributed_concentrated_loads.png" alt="Beam with distributed and concentrated loads">
+                    <figcaption>Figure 6.1: Beam element showing distributed loads (\(\hat{m}\), \(\hat{n}_x\), \(\hat{n}_z\)) and concentrated end forces</figcaption>
+                </figure>
+                
+                <p>While compatibility requirements are intrinsically satisfied by the model, the equilibrium conditions can be imposed referring to the PVW:</p>
+                
+                \[\int_0^\ell \left[ \delta U_{o,x} \, N_x + \delta \phi_{x,x} \, M + \delta (\phi_x + W_{o,x}) \, Q_z \right] dx =\]
+                \[= \int_0^\ell \left( \delta U_o \, \hat{n}_x + \delta W_o \, \hat{n}_z + \delta \phi_x \, \hat{m}_x \right) dx + \text{concentrated loads}\]
+                
+                <p>The internal virtual work can be integrated by parts to yield:</p>
+                
+                \[\delta W_i = -\int_0^\ell \left( \delta U_o \, N_{x,x} + \delta \phi_x \, M_{,x} + \delta W_o \, Q_{z,x} - \delta \phi_x \, Q_z \right) dx + \delta U_o \, N_x + \delta \phi_x \, M + \delta W_o \, Q_z \Big|_0^\ell\]
+                
+                <h3>Equilibrium Equations</h3>
+                
+                <p>Due to the arbitrariness of the virtual displacements, the equilibrium conditions expressed by the PVW are:</p>
+                
+                <div class="result-box">
+                    <p><strong>Equilibrium Equations</strong> in \(x \in [0, \ell]\):</p>
+                    \[N_{x,x} + \hat{n}_x = 0\]
+                    \[M_{,x} - Q_z + \hat{m} = 0\]
+                    \[Q_{z,x} + \hat{n}_z = 0\]
+                </div>
+                
+                <h3>Boundary Conditions</h3>
+                
+                <table>
+                    <tr>
+                        <th>Natural BC</th>
+                        <th>or</th>
+                        <th>Essential BC</th>
+                    </tr>
+                    <tr>
+                        <td>\(N_x(0) = -\hat{N}_o\)</td>
+                        <td>or</td>
+                        <td>\(\delta U_o(0) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(N_x(\ell) = +\hat{N}_\ell\)</td>
+                        <td>or</td>
+                        <td>\(\delta U_o(\ell) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(M(0) = -\hat{M}_o\)</td>
+                        <td>or</td>
+                        <td>\(\delta \phi_x(0) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(M(\ell) = +\hat{M}_\ell\)</td>
+                        <td>or</td>
+                        <td>\(\delta \phi_x(\ell) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(Q_z(0) = -\hat{Q}_o\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_o(0) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(Q_z(\ell) = +\hat{Q}_\ell\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_o(\ell) = 0\)</td>
+                    </tr>
+                </table>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/infinitesimal_beam_element_equilibrium.png" alt="Infinitesimal beam element equilibrium">
+                    <figcaption>Figure 6.2: Infinitesimal beam element showing internal forces and moment equilibrium</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <ul>
+                        <li>The equilibrium equations could also have been obtained by considering an infinitesimal slice of beam and applying force/moment balance.</li>
+                        <li>The equilibrium conditions obtained define the equilibrium requirements at <strong>global level</strong>, which is exactly what is intrinsic in the definition of a kinematic model where the problem is formulated by identifying global quantities.</li>
+                        <li>The equilibrium equations do not imply the local satisfaction of the 3D equilibrium equations. The 3D equilibrium is satisfied in a global sense.</li>
+                        <li>The equations derived so far are <strong>independent of the constitutive law</strong>, which has not been introduced yet.</li>
+                    </ul>
+                </div>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/volume_force_distribution_comparison.png" alt="Volume force distribution comparison">
+                    <figcaption>Figure 6.3: Different volume force distributions can yield the same generalized load \(\hat{n}_x\)</figcaption>
+                </figure>
+            </section>
+
+            <!-- Section 7: Constitutive Law -->
+            <section id="constitutive">
+                <h2>7. Constitutive Law - Elastic Beam</h2>
+                
+                <p>The beam constitutive law is now introduced in order to express the equilibrium conditions in terms of displacements (recall that kinematic formulations are adopted in the context of displacement-based approaches).</p>
+                
+                <p>The constitutive law establishes a relation between generalized stresses and generalized deformations:</p>
+                
+                \[\begin{Bmatrix} N_x \\ M \\ Q_z \end{Bmatrix} = \begin{bmatrix} ? \end{bmatrix} \begin{Bmatrix} \varepsilon_{o_{xx}} \\ k_x \\ t_z \end{Bmatrix}\]
+                
+                <h3>Axial State of Stress Assumption</h3>
+                
+                <p>The most natural way for identifying this relation consists in assuming an axial state of stress:</p>
+                
+                \[\begin{Bmatrix} \sigma_{xx} \\ \sigma_{xz} \end{Bmatrix} = \begin{bmatrix} E & 0 \\ 0 & G \end{bmatrix} \begin{Bmatrix} \varepsilon_{xx} \\ \gamma_{xz} \end{Bmatrix}\]
+                
+                <h3>Derivation of Section Constitutive Law</h3>
+                
+                <h4>Axial Force:</h4>
+                \[N_x = \int_A \sigma_{xx} \, dA = \int_A E \, \varepsilon_{xx} \, dA = \int_A E \left( U_{o,x} + z \, \phi_{x,x} \right) dA\]
+                \[= E \, A \, U_{o,x} + E \underbrace{\int_A z \, dA}_{=0 \text{ (principal axes)}} \, \phi_{x,x} = E \, A \, U_{o,x} = E \, A \, \varepsilon_{o_{xx}}\]
+                
+                <h4>Bending Moment:</h4>
+                \[M = \int_A \sigma_{xx} \, z \, dA = \int_A E \, z \, \varepsilon_{xx} \, dA = \int_A E \, z \, U_{o,x} \, dA + \int_A E \, z^2 \, \phi_{x,x} \, dA\]
+                \[= E \int_A z^2 \, dA \, \phi_{x,x} = E \, J \, \phi_{x,x} = E \, J \, k_x\]
+                
+                <h4>Shear Force:</h4>
+                \[Q_z = \int_A \sigma_{xz} \, dA = \int_A G \, \gamma_{xz} \, dA = \int_A G \left( \phi_x + W_{o,x} \right) dA\]
+                \[= G \, A \left( \phi_x + W_{o,x} \right) = G \, A \, t_z\]
+                
+                <h3>Beam Constitutive Law</h3>
+                
+                <div class="equation-box">
+                    \[\begin{Bmatrix} N_x \\ M \\ Q_z \end{Bmatrix} = \begin{bmatrix} EA & & \\ & EJ & \\ & & GA \end{bmatrix} \begin{Bmatrix} \varepsilon_{o_{xx}} \\ k_x \\ t_z \end{Bmatrix}\]
+                </div>
+                
+                <h3>Strain Energy</h3>
+                
+                <p>The strain energy can be written as:</p>
+                
+                \[U = \frac{1}{2} \int_0^\ell \left( N_x \, \varepsilon_{o_{xx}} + M \, k_x + Q_z \, t_z \right) dx = \frac{1}{2} \int_0^\ell \left( \frac{N_x^2}{EA} + \frac{M^2}{EJ} + \frac{Q_z^2}{GA} \right) dx\]
+                
+                <p>Comparing with DSV beam formulation:</p>
+                
+                \[U^{DSV} = \frac{1}{2} \int_\ell \left( \frac{N_x^2}{EA} + \frac{M^2}{EJ} + \frac{Q_z^2}{GA^*} \right) dx\]
+                
+                <div class="important">
+                    <p><strong>Important:</strong> The Timoshenko beam model tends to overestimate the shear stiffness (recall that \(GA > GA^*\)). While the term \(GA\) descends naturally from the kinematic assumptions, it is generally corrected as \(GA^*\) in order to provide additional shear flexibility.</p>
+                </div>
+                
+                <h3>Corrected Constitutive Law</h3>
+                
+                <div class="result-box">
+                    <p><strong>Timoshenko Beam Constitutive Law (with shear correction):</strong></p>
+                    \[\begin{Bmatrix} N_x \\ M \\ Q_z \end{Bmatrix} = \begin{bmatrix} EA & & \\ & EJ & \\ & & GA^* \end{bmatrix} \begin{Bmatrix} \varepsilon_{o_{xx}} \\ k_x \\ t_z \end{Bmatrix}\]
+                </div>
+                
+                <div class="remark">
+                    <h4>Important Remarks</h4>
+                    <ul>
+                        <li>The correction of the stiffness \(GA\) as \(GA^*\) can be interpreted as a <strong>link between the kinematic formulation and the DSV results</strong>.</li>
+                        <li>The kinematic approach represents another strategy for dealing with beam problems, but should not be interpreted as completely independent from DSV results.</li>
+                        <li>The formulation is based on initial kinematic assumptions (the displacement field) leading to an expression of the strain energy that is consistent with the model itself, but not necessarily correct.</li>
+                        <li>The correction from \(GA\) to \(GA^*\) can only be done because we know from DSV theory that the shearing stiffness should be \(GA^*\) and not \(GA\).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 8: Displacement Equations -->
+            <section id="displacement-equations">
+                <h2>8. Equations in Terms of Displacement Components</h2>
+                
+                <p>By introducing the constitutive equation for the beam section, it is possible to express the equilibrium conditions in terms of displacement components:</p>
+                
+                \[N_x = E \, A \, U_{o,x}\]
+                \[M = E \, J \, \phi_{x,x}\]
+                \[Q_z = G \, A^* \left( \phi_x + W_{o,x} \right)\]
+                
+                <h3>Equilibrium in Terms of Displacements</h3>
+                
+                \[\left( E \, A \, U_{o,x} \right)_{,x} + \hat{n}_x = 0\]
+                \[\left( E \, J \, \phi_{x,x} \right)_{,x} - G A^* \left( \phi_x + W_{o,x} \right) + \hat{m} = 0\]
+                \[\left[ G \, A^* \left( \phi_x + W_{o,x} \right) \right]_{,x} + \hat{n}_z = 0\]
+                
+                <p>If the section stiffnesses are constant along the beam axis:</p>
+                
+                <div class="result-box">
+                    <p><strong>Governing Equations (constant properties):</strong></p>
+                    \[E \, A \, U_{o,xx} + \hat{n}_x = 0 \quad \text{(axial equilibrium)}\]
+                    \[E \, J \, \phi_{x,xx} - G A^* \left( \phi_x + W_{o,x} \right) + \hat{m} = 0 \quad \text{(bending equilibrium)}\]
+                    \[G \, A^* \left( \phi_{x,x} + W_{o,xx} \right) + \hat{n}_z = 0 \quad \text{(shear equilibrium)}\]
+                </div>
+                
+                <h3>Boundary Conditions in Terms of Displacements</h3>
+                
+                <table>
+                    <tr>
+                        <th>Natural BC</th>
+                        <th>or</th>
+                        <th>Essential BC</th>
+                        <th>Location</th>
+                    </tr>
+                    <tr>
+                        <td>\(E A \, U_{,x} = \mp \hat{N}\)</td>
+                        <td>or</td>
+                        <td>\(\delta U_o = 0\)</td>
+                        <td>\(x = 0, \ell\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(E J \, \phi_{x,x} = \mp \hat{M}\)</td>
+                        <td>or</td>
+                        <td>\(\delta \phi_x = 0\)</td>
+                        <td>\(x = 0, \ell\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(G A^* \left( \phi_x + W_{o,x} \right) = \mp \hat{Q}\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_o = 0\)</td>
+                        <td>\(x = 0, \ell\)</td>
+                    </tr>
+                </table>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <p>The elastic problem is formulated in terms of <strong>3 ordinary differential equations</strong> and <strong>3 unknown functions</strong> representing the generalized displacement components.</p>
+                    <p>After the solution has been obtained it is possible, if needed, to recover the full displacement field by using the initial expression of the beam kinematics.</p>
+                    <p>It can be observed that the first equation (axial equilibrium) is <strong>uncoupled</strong> from the other two equations.</p>
+                </div>
+            </section>
+
+            <!-- Section 9: Stress Evaluation -->
+            <section id="stress-evaluation">
+                <h2>9. Evaluation of the Stresses</h2>
+                
+                <p>The solution of the structural problem, according to the formulation proposed by Timoshenko, leads to the evaluation of the generalized displacement components \(U_o\), \(W_o\) and \(\phi_x\).</p>
+                
+                <p>Once the generalized displacement components are available it is possible to determine:</p>
+                
+                <ol>
+                    <li><strong>The displacement field</strong> (by making use of the kinematic model):
+                        \[u = U_o + z \, \phi_x, \quad w = W_o\]
+                    </li>
+                    <li><strong>The strain field</strong> (by deriving the components of the displacement field):
+                        \[\varepsilon_{xx} = U_{o,x} + z \, \phi_{x,x}, \quad \gamma_{xz} = W_{o,x} + \phi_x\]
+                    </li>
+                    <li><strong>The stress field</strong> (by using the constitutive relation):
+                        <div class="equation-box">
+                            \[\sigma_{xx} = E \left( U_{o,x} + z \, \phi_{x,x} \right)\]
+                            \[\sigma_{xz} = G \left( W_{o,x} + \phi_x \right)\]
+                        </div>
+                    </li>
+                </ol>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/axial_stress_distribution_decomposition.png" alt="Axial stress distribution">
+                    <figcaption>Figure 9.1: Axial stress \(\sigma_{xx}\) decomposed into constant (axial) and linear (bending) parts</figcaption>
+                </figure>
+                
+                <h3>Quality of Stress Predictions</h3>
+                
+                <div class="important">
+                    <p><strong>Axial stress \(\sigma_{xx}\):</strong> Characterized by a constant part (axial contribution) and a linear part (due to bending). This exhibits the <strong>expected behaviour</strong>.</p>
+                    <p><strong>Shear stress \(\sigma_{xz}\):</strong> Constant throughout the thickness direction (does not depend on \(z\)). This is a <strong>poor prediction</strong>.</p>
+                </div>
+                
+                <p>From beam theory it is well known (see Jourawski solution) that the transverse shear stresses are expected to be <strong>quadratic</strong> with \(z\). The prediction of the Timoshenko model, obtained by making use of the constitutive law, is then a raw approximation.</p>
+                
+                <h3>Improved Shear Stress Evaluation</h3>
+                
+                <p>A typical approach (also used in the context of plate models) consists in evaluating the shear stress by integration of the 3D equilibrium equations:</p>
+                
+                \[\sigma_{xx,x} + \sigma_{xz,z} = 0 \quad \Rightarrow \quad \sigma_{xz,z} = -\sigma_{xx,x}\]
+                
+                <p>For a given position \(x = \bar{x}\) along the beam axis:</p>
+                
+                \[\sigma_{xz}(\bar{x}, z) = -\int_{-t/2}^{z} \sigma_{xx,x}(\bar{x}, \xi) \, d\xi\]
+                
+                <p>Recalling that \(\sigma_{xx} = E(U_{o,x} + z \, \phi_{x,x})\), we get:</p>
+                
+                \[\sigma_{xz}(\bar{x}, z) = -E \left[ U_{o,xx} \left( z + \frac{t}{2} \right) + \phi_{x,xx} \left( \frac{z^2}{2} - \frac{t^2}{8} \right) \right]\]
+                
+                <p>which is characterized by a <strong>quadratic behaviour</strong> as expected.</p>
+                
+                <div class="remark">
+                    <h4>Summary</h4>
+                    <ul>
+                        <li>The shear correction \(GA^*\) operates at <strong>energetic level</strong></li>
+                        <li>The effect of transverse shear flexibility is properly accounted for at <strong>global level</strong></li>
+                        <li>The local evaluation of the transverse shear stresses remains poor — alternative procedures (like integration of equilibrium) are usually implemented for obtaining more accurate predictions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 10: Boundary Conditions -->
+            <section id="boundary-conditions">
+                <h2>10. Boundary Conditions</h2>
+                
+                <p>The definition of the boundary conditions depends on the set of constraints applied at the two ends.</p>
+                
+                <h3>Important Remarks</h3>
+                
+                <ol>
+                    <li>The set of boundary conditions has been <strong>automatically derived by applying the PVW</strong>. This illustrates the utility of the PVW: starting from one single (and simple) scalar equation it is possible to obtain the equilibrium equations together with the relevant boundary conditions.</li>
+                    
+                    <li>The boundary conditions <strong>depend on the kinematic model</strong>. Different kinematic assumptions (see later Euler-Bernoulli) would lead to different boundary conditions. In this sense the boundary conditions do not exist in an absolute sense, regardless of the beam theory.</li>
+                    
+                    <li>A distinction of paramount importance has been introduced between <strong>natural</strong> and <strong>essential</strong> conditions:
+                        <ul>
+                            <li><strong>Essential (Dirichlet) conditions:</strong> geometric type, regard the generalized displacement components directly</li>
+                            <li><strong>Natural (Neumann) conditions:</strong> regard the equilibrium at the boundaries with the external loads, involve derivatives of the unknown functions</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <h3>Axial Behaviour</h3>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Configuration</th>
+                        <th>Boundary Conditions</th>
+                    </tr>
+                    <tr>
+                        <td>Free - Free</td>
+                        <td>\(EA \, U_{,x}(0) = -\hat{N}_o\), \(EA \, U_{,x}(\ell) = +\hat{N}_\ell\)</td>
+                    </tr>
+                    <tr>
+                        <td>Fixed - Free</td>
+                        <td>\(U(0) = 0\), \(EA \, U_{,x}(\ell) = \hat{N}_\ell\)</td>
+                    </tr>
+                    <tr>
+                        <td>Fixed - Fixed</td>
+                        <td>\(U(0) = 0\), \(U(\ell) = 0\)</td>
+                    </tr>
+                </table>
+                
+                <h3>Bending Behaviour</h3>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_boundary_conditions_examples.png" alt="Beam boundary condition examples">
+                    <figcaption>Figure 10.1: Various beam boundary condition configurations</figcaption>
+                </figure>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Configuration</th>
+                        <th>Boundary Conditions</th>
+                    </tr>
+                    <tr>
+                        <td>Free - Free</td>
+                        <td>\(GA^*(\phi_x(0) + W_{o,x}(0)) = -\hat{Q}_o\), \(GA^*(\phi_x(\ell) + W_{o,x}(\ell)) = \hat{Q}_\ell\)<br>
+                            \(EJ \, \phi_{x,x}(0) = -\hat{M}_o\), \(EJ \, \phi_{x,x}(\ell) = \hat{M}_\ell\)</td>
+                    </tr>
+                    <tr>
+                        <td>Simply-supported</td>
+                        <td>\(W_o(0) = 0\), \(W_o(\ell) = 0\)<br>
+                            \(EJ \, \phi_{x,x}(0) = -\hat{M}_o\), \(EJ \, \phi_{x,x}(\ell) = \hat{M}_\ell\)</td>
+                    </tr>
+                    <tr>
+                        <td>Clamped - Clamped</td>
+                        <td>\(W_o(0) = 0\), \(\phi_x(0) = 0\), \(W_o(\ell) = 0\), \(\phi_x(\ell) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>Clamped - Simply-supported</td>
+                        <td>\(W_o(0) = 0\), \(\phi_x(0) = 0\), \(W_o(\ell) = 0\), \(EJ \, \phi_{x,x}(\ell) = \hat{M}_\ell\)</td>
+                    </tr>
+                </table>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/clamped_simply_supported_beam.png" alt="Clamped-simply supported beam">
+                    <figcaption>Figure 10.2: Clamped-simply supported beam configuration</figcaption>
+                </figure>
+                
+                <h3>Summary of Constraint Types</h3>
+                
+                <div class="equation-box">
+                    <table>
+                        <tr>
+                            <td><strong>Free:</strong></td>
+                            <td>No essential conditions (all natural)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Simply-supported:</strong></td>
+                            <td>\(W_o = 0\) essential + natural condition on moment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clamped:</strong></td>
+                            <td>\(W_o = 0\); \(\phi_x = 0\) essential (no natural conditions)</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 11: Critical Remarks -->
+            <section id="critical-remarks">
+                <h2>11. Final Critical Remarks on Timoshenko Model</h2>
+                
+                <h3>Displacement-Based Approach</h3>
+                
+                <p>It is important to observe that the theory was developed from a "displacement" point of view. The initial step regarded the definition of a "rule" for describing the displacement field, viz. the kinematic model.</p>
+                
+                <p>The strains were then expressed by applying the definition of strain tensor:</p>
+                \[\varepsilon_{ik} = \frac{1}{2}(u_{i,k} + u_{k,i})\]
+                
+                <p>In this sense, <strong>compatibility is intrinsically satisfied</strong> by the formulation. The PVW, which is applied to impose the equilibrium, is written by expressing the strains according to the expression of the strain tensor. Thus compatibility is automatically fulfilled.</p>
+                
+                <h3>Static Inconsistency</h3>
+                
+                <p>According to the kinematic model, the strain component \(\varepsilon_{zz}\) is obtained as zero. This is <strong>inconsistent</strong> with the assumption of axial state of stress.</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_3d_stress_state_coordinates.png" alt="3D beam stress state">
+                    <figcaption>Figure 11.1: 3D beam coordinate system for stress state analysis</figcaption>
+                </figure>
+                
+                <p>Recall that the axial stress state is obtained as a special case of the generic 3D state of stress. For a beam with axis along \(x\), according to DSV solution: \(\sigma_{zz} = \sigma_{yy} = \sigma_{zy} = 0\).</p>
+                
+                <p>From the 3D constitutive law:</p>
+                \[\varepsilon_{zz} = -\frac{\nu}{E} \sigma_{xx} \neq 0\]
+                
+                <p>This is clearly in contrast with \(\varepsilon_{zz} = 0\) as predicted by Timoshenko model.</p>
+                
+                <h3>Resolution of the Inconsistency</h3>
+                
+                <p>The energy contribution associated with \(\varepsilon_{zz}\) is:</p>
+                \[U^{zz} = \frac{1}{2} \int_\ell \sigma_{zz} \, \varepsilon_{zz} \, dx\]
+                
+                <ul>
+                    <li>Referring to the kinematic model: \(\varepsilon_{zz} = 0\), so \(U^{zz} = 0\)</li>
+                    <li>Referring to the constitutive law: \(\sigma_{zz} = 0\), so \(U^{zz} = 0\)</li>
+                </ul>
+                
+                <div class="important">
+                    <p><strong>Conclusion:</strong> The inconsistency of the model over the \(\varepsilon_{zz}\) does not alter the expected value of the strain energy \(U^{zz}\), which is zero in both cases, although for different reasons.</p>
+                </div>
+                
+                <h3>Nature of the Displacement Field</h3>
+                
+                <div class="remark">
+                    <h4>Important Clarification</h4>
+                    <p>The displacement field \(u = U_o + z\phi_x\); \(w = W_o\) is an <strong>approximation</strong> of the exact solution. It is an intuitive way of describing how the displacement field could reasonably be, starting from the knowledge of few generalized displacement components referred to the beam axis.</p>
+                    <p>The displacement field is <strong>NOT</strong> an initial guess solution that is finally verified to be also the exact solution (as it happened, for instance, for the torsion problem in the context of DSV theory).</p>
+                </div>
+            </section>
+
+            <!-- Section 12: Euler-Bernoulli -->
+            <section id="euler-bernoulli">
+                <h2>12. Euler-Bernoulli Beam Model</h2>
+                
+                <p>An additional level of approximation is introduced by the Euler-Bernoulli beam model (with respect to the Timoshenko one).</p>
+                
+                <div class="definition">
+                    <h4>Euler-Bernoulli Kinematic Assumption</h4>
+                    <p>It is assumed that <strong>sections initially straight and normal to the beam axis remain straight and normal after the deformation happens</strong>.</p>
+                </div>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/euler_bernoulli_beam_section_rotation.png" alt="Euler-Bernoulli beam section rotation">
+                    <figcaption>Figure 12.1: Euler-Bernoulli beam model showing section remains perpendicular to deformed axis</figcaption>
+                </figure>
+                
+                <p>The bending displacement is then approximated as:</p>
+                
+                <div class="result-box">
+                    \[\phi_x = -W_{o,x}\]
+                </div>
+                
+                <p>In other words, the rotation of the section is equal to the first derivative of the bending displacement (apart from the sign).</p>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/infinitesimal_beam_bending_displacement.png" alt="Infinitesimal beam bending">
+                    <figcaption>Figure 12.2: Geometric derivation showing \(\phi_x = -W_{o,x}\) for small rotations</figcaption>
+                </figure>
+                
+                <h3>Kinematic Model</h3>
+                
+                <div class="result-box">
+                    \[u(x,z) = U_o(x) - z \, W_{o,x}(x)\]
+                    \[w(x,z) = W_o(x)\]
+                </div>
+                
+                <p>where \(U_o\) and \(W_o\) are the generalized displacement components, functions of the position along the beam axis.</p>
+                
+                <h3>Strain Field</h3>
+                
+                <div class="equation-box">
+                    \[\varepsilon_{xx} = U_{o,x} - z \, W_{o,xx}\]
+                    \[\gamma_{xz} = W_{,x} + U_{,z} = W_{o,x} - W_{o,x} = 0\]
+                    \[\varepsilon_{zz} = W_{,z} = 0\]
+                </div>
+                
+                <p>Or, by separating the terms:</p>
+                \[\varepsilon_{xx} = \varepsilon_{o_{xx}} + z \, k_x\]
+                
+                <h4>Generalized Deformations (Euler-Bernoulli)</h4>
+                
+                <div class="result-box">
+                    \[\varepsilon_{o_{xx}} = U_{o,x} \quad \text{(membrane strain)}\]
+                    \[k_x = -W_{o,xx} \quad \text{(curvature)}\]
+                </div>
+                
+                <div class="important">
+                    <p><strong>Critical Result:</strong> In contrast to the Timoshenko beam, the shearing strain \(\gamma_{xz}\) is now <strong>zero</strong>. The Euler-Bernoulli beam is thus <strong>incapable of describing shearing deformations</strong> (and consequently cannot account for their contribution to the strain energy).</p>
+                </div>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/timoshenko_euler_bernoulli_comparison.png" alt="Comparison of Timoshenko and Euler-Bernoulli">
+                    <figcaption>Figure 12.3: Comparison showing shear angle \(\theta \neq 0\) in Timoshenko vs. \(\theta = 0\) in Euler-Bernoulli</figcaption>
+                </figure>
+                
+                <h3>Generalized Stress Measures</h3>
+                
+                <p>As done for Timoshenko model, the generalized stress measures energetically conjugate with the generalized deformations are derived by writing the internal virtual work:</p>
+                
+                \[\delta W_i = \int_V \delta \varepsilon_{xx} \, \sigma_{xx} \, dV = \int_V \left( \delta \varepsilon_{o_{xx}} + z \, \delta k_x \right) \sigma_{xx} \, dV\]
+                
+                \[= \int_\ell \left( \delta \varepsilon_{o_{xx}} \, N_x + \delta k_x \, M \right) dx\]
+                
+                <p>Hence the generalized stress measures are the <strong>axial force \(N_x\)</strong> and the <strong>bending moment \(M\)</strong>.</p>
+                
+                <h3>Generalized Forces</h3>
+                
+                <p>The distributed forces consistent with the Euler-Bernoulli beam model are derived by expressing the external virtual work:</p>
+                
+                \[\delta W_e = \int_\ell \left( \delta U_o \, \hat{n}_x + \delta W_o \, \hat{n}_z - \delta W_{o,x} \, \hat{m}_x \right) dx\]
+                
+                <p>The last contribution can be integrated by parts:</p>
+                \[-\int_\ell \delta W_{o,x} \, \hat{m}_x \, dx \longrightarrow \int_\ell \delta W_o \, \hat{m}_{x,x} \, dx\]
+                
+                <div class="remark">
+                    <h4>Model Limitation</h4>
+                    <p>The Euler-Bernoulli model is not influenced by \(\hat{m}_x\), but only by \(\hat{m}_{x,x}\). The model cannot deal with a set of distributed moments as they would promote shearing deformations which are outside the capabilities of the Euler-Bernoulli beam model.</p>
+                </div>
+                
+                <h3>Equilibrium Equations</h3>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_distributed_shearing_load.png" alt="Beam with distributed shearing load">
+                    <figcaption>Figure 12.4: Beam subjected to distributed transverse load and end concentrated forces</figcaption>
+                </figure>
+                
+                <p>The equilibrium conditions are found by means of the PVW. The term involving \(k_x\) requires integration by parts twice:</p>
+                
+                \[\int_0^\ell \delta k_x \, M \, dx = \int_0^\ell -\delta W_{o,xx} \, M \, dx\]
+                
+                <p>After integration by parts:</p>
+                
+                \[\delta W_i = -\int_0^\ell \delta W_o \, M_{,xx} \, dx + \delta W_o \, M_{,x} \Big|_0^\ell - \delta W_{o,x} \, M \Big|_0^\ell\]
+                
+                <p>Imposing \(\delta W_i = \delta W_e\):</p>
+                
+                <div class="result-box">
+                    <p><strong>Equilibrium Equation:</strong></p>
+                    \[M_{,xx} + \hat{n}_z = 0 \quad \text{in } x \in [0, \ell]\]
+                </div>
+                
+                <h4>Boundary Conditions (Euler-Bernoulli)</h4>
+                
+                <table>
+                    <tr>
+                        <th>Natural BC</th>
+                        <th>or</th>
+                        <th>Essential BC</th>
+                    </tr>
+                    <tr>
+                        <td>\(M(0) = -\hat{M}_o\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_{o,x}(0) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(M(\ell) = \hat{M}_\ell\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_{o,x}(\ell) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(M_{,x}(0) = -\hat{Q}_o\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_o(0) = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(M_{,x}(\ell) = \hat{Q}_\ell\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_o(\ell) = 0\)</td>
+                    </tr>
+                </table>
+                
+                <h3>Constitutive Law and Equations in Terms of Displacements</h3>
+                
+                <p>Assuming a state of axial stress: \(\sigma_{xx} = E \, \varepsilon_{xx}\)</p>
+                
+                <p>The beam section constitutive law:</p>
+                
+                \[M = \int_A \sigma_{xx} \, z \, dA = EJ \, k_x = -EJ \, W_{o,xx}\]
+                
+                \[Q_z = \int_A \sigma_{xz} \, dA = \int_A G \, \gamma_{xz} \, dA = 0 \quad \text{(since } \gamma_{xz} = 0\text{)}\]
+                
+                <h4>Governing Equation</h4>
+                
+                <p>The equilibrium condition expressed in terms of displacement:</p>
+                
+                <div class="result-box">
+                    <p><strong>Euler-Bernoulli Beam Equation (constant properties):</strong></p>
+                    \[EJ \, W_{o,xxxx} - \hat{n}_z = 0 \quad \text{in } x \in [0, \ell]\]
+                </div>
+                
+                <h4>Boundary Conditions in Terms of Displacements</h4>
+                
+                <table>
+                    <tr>
+                        <th>Natural BC</th>
+                        <th>or</th>
+                        <th>Essential BC</th>
+                        <th>Location</th>
+                    </tr>
+                    <tr>
+                        <td>\(EJ \, W_{o,xx} = \pm \hat{M}\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_{o,x} = 0\)</td>
+                        <td>\(x = 0, \ell\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(EJ \, W_{o,xxx} = \pm \hat{Q}\)</td>
+                        <td>or</td>
+                        <td>\(\delta W_o = 0\)</td>
+                        <td>\(x = 0, \ell\)</td>
+                    </tr>
+                </table>
+                
+                <h3>Remarks on Euler-Bernoulli Model</h3>
+                
+                <div class="remark">
+                    <h4>Key Observations</h4>
+                    <ul>
+                        <li>The number of unknowns is reduced to <strong>2</strong> (\(U_o\) and \(W_o\)) compared to 3 in Timoshenko.</li>
+                        <li>The set of solving equations is given by <strong>two uncoupled ordinary differential equations</strong>:
+                            \[\begin{cases} EA \, U_{o,xx} + \hat{n}_x = 0 & \text{(axial, 2nd order)} \\ EJ \, W_{o,xxxx} - \hat{n}_z = 0 & \text{(bending, 4th order)} \end{cases}\]
+                        </li>
+                        <li>The shear equilibrium equation is not part of the solving equations. Similarly, internal shear force \(Q_z\) cannot be obtained from the constitutive law (\(Q_z = GA \, \gamma_{xz} = 0\)).</li>
+                    </ul>
+                </div>
+                
+                <h3>Determination of Shear Force</h3>
+                
+                <p>If the shear force is needed, it can be determined a-posteriori by recalling:</p>
+                
+                <div class="equation-box">
+                    \[Q_z = M_{,x} = -(EJ \, W_{o,xx})_{,x}\]
+                </div>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/beam_element_shear_moment_equilibrium.png" alt="Beam element shear moment equilibrium">
+                    <figcaption>Figure 12.5: Infinitesimal beam element showing \(Q_z = M_{,x}\) from moment equilibrium</figcaption>
+                </figure>
+                
+                <p>The internal shear force \(Q_z\) can be seen as the <strong>reaction force imposing the condition of sections remaining normal</strong>.</p>
+                
+                <h3>Boundary Conditions Summary</h3>
+                
+                <figure>
+                    <img src="images/LN_C4_1_Beam_kinematic/euler_bernoulli_boundary_conditions.png" alt="Euler-Bernoulli boundary conditions">
+                    <figcaption>Figure 12.6: Boundary condition examples for Euler-Bernoulli beam</figcaption>
+                </figure>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Constraint Type</th>
+                        <th>Conditions</th>
+                    </tr>
+                    <tr>
+                        <td>Free</td>
+                        <td>No geometric constraints + natural conditions</td>
+                    </tr>
+                    <tr>
+                        <td>Simply-supported</td>
+                        <td>\(W_o = 0\) + natural condition on moment equilibrium</td>
+                    </tr>
+                    <tr>
+                        <td>Clamped</td>
+                        <td>\(W_o = 0\); \(\phi_x = 0\) (i.e., \(W_{o,x} = 0\))</td>
+                    </tr>
+                </table>
+                
+                <h4>Examples</h4>
+                
+                <p><strong>Clamped - Free (Cantilever):</strong></p>
+                <ul>
+                    <li>At \(x = 0\): \(W_o(0) = 0\), \(\phi_x(0) = 0\) (essential)</li>
+                    <li>At \(x = \ell\): \(EJ \, W_{o,xx}(\ell) = -\hat{M}_\ell\), \(EJ \, W_{o,xxx}(\ell) = -\hat{Q}_\ell\) (natural)</li>
+                </ul>
+                
+                <p><strong>Clamped - Simply-supported:</strong></p>
+                <ul>
+                    <li>At \(x = 0\): \(W_o(0) = 0\), \(\phi_x(0) = 0\) (essential)</li>
+                    <li>At \(x = \ell\): \(W_o(\ell) = 0\) (essential), \(EJ \, W_{o,xx}(\ell) = -\hat{M}_\ell\) (natural)</li>
+                </ul>
+                
+                <div class="important">
+                    <h4>Connection to DSV Theory</h4>
+                    <p>The assumption of sections remaining normal to the beam axis was also obtained in the DSV solution for <strong>pure bending</strong>. In this sense the Euler-Bernoulli displacement field can be interpreted as the application of the DSV solution for pure bending in the context of an approximate kinematic theory.</p>
+                </div>
+            </section>
+
+            <!-- Comparison Summary -->
+            <section id="comparison">
+                <h2>Summary: Timoshenko vs. Euler-Bernoulli</h2>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Timoshenko</th>
+                        <th>Euler-Bernoulli</th>
+                    </tr>
+                    <tr>
+                        <td>Key Assumption</td>
+                        <td>Sections remain straight but can rotate independently</td>
+                        <td>Sections remain straight AND normal to beam axis</td>
+                    </tr>
+                    <tr>
+                        <td>Generalized Displacements</td>
+                        <td>\(U_o\), \(W_o\), \(\phi_x\) (3 unknowns)</td>
+                        <td>\(U_o\), \(W_o\) (2 unknowns)</td>
+                    </tr>
+                    <tr>
+                        <td>Rotation-Deflection Relation</td>
+                        <td>\(\phi_x\) independent of \(W_o\)</td>
+                        <td>\(\phi_x = -W_{o,x}\)</td>
+                    </tr>
+                    <tr>
+                        <td>Shear Strain</td>
+                        <td>\(\gamma_{xz} = W_{o,x} + \phi_x \neq 0\)</td>
+                        <td>\(\gamma_{xz} = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>Shear Deformation</td>
+                        <td>Included</td>
+                        <td>Neglected</td>
+                    </tr>
+                    <tr>
+                        <td>Governing Equation (bending)</td>
+                        <td>2nd order coupled system</td>
+                        <td>4th order single equation</td>
+                    </tr>
+                    <tr>
+                        <td>Shear Force from Constitutive Law</td>
+                        <td>\(Q_z = GA^*(\phi_x + W_{o,x})\)</td>
+                        <td>\(Q_z = 0\) (must use \(Q_z = M_{,x}\))</td>
+                    </tr>
+                    <tr>
+                        <td>Best Suited For</td>
+                        <td>Short, thick beams; composite materials</td>
+                        <td>Long, slender beams</td>
+                    </tr>
+                </table>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

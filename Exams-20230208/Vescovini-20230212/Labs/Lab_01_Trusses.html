@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis of Planar Systems of Trusses and Frames</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --bg-code: #2d3748;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --highlight-yellow: #fef3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .document {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 12px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        header .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        header .author {
+            font-size: 1rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .content-list {
+            list-style: disc;
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+
+        .content-list li {
+            margin: 10px 0;
+        }
+
+        .code-block {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 20px 0;
+            white-space: pre-wrap;
+        }
+
+        .code-block.dark {
+            background: var(--bg-code);
+            color: #e2e8f0;
+            border: none;
+        }
+
+        .code-highlight {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .matrix-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .input-data {
+            background: #e5e7eb;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .input-data h4 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .input-data ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .input-data li {
+            margin: 8px 0;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .data-structure {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px 30px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            margin: 20px 0;
+        }
+
+        .data-structure .field {
+            color: var(--text-color);
+        }
+
+        .data-structure .description {
+            color: #64748b;
+        }
+
+        .highlight-box {
+            background: var(--highlight-yellow);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .exercise {
+            background: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .exercise h3 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .results-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .result-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+        }
+
+        .result-box h5 {
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            color: var(--secondary-color);
+        }
+
+        .annotation {
+            background: var(--highlight-yellow);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        .mode-shapes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .mode-shape {
+            text-align: center;
+        }
+
+        .mode-shape img {
+            max-width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .mode-shape p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .two-column,
+            .results-comparison,
+            .mode-shapes {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        table.pointer-table {
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table.pointer-table td {
+            padding: 5px 15px;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .red-text {
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <article class="document">
+        <header>
+            <h1>Analysis of Planar Systems of Trusses and Frames</h1>
+            <p class="subtitle">Course of Spacecraft Structures</p>
+            <p class="subtitle">AY 2017/2018</p>
+            <p class="author">Riccardo Vescovini<br>Politecnico di Milano, Department of Aerospace Science and Technology</p>
+        </header>
+
+        <!-- Introduction -->
+        <section class="section">
+            <h2>Introduction</h2>
+            <ul class="content-list">
+                <li>The main features of a simple program for the analysis of systems of frames and trusses are illustrated</li>
+                <li>The implementation is based upon the use of the stiffness matrices of trusses and beams (obtained using the PCVW)</li>
+                <li>Shear deformability is not accounted for (slender beams are considered)</li>
+                <li>Any kind of planar 2D system of beams and trusses can be analyzed</li>
+            </ul>
+        </section>
+
+        <!-- Overview of Relevant Equations -->
+        <section class="section">
+            <h2>Overview of the Relevant Equations</h2>
+            
+            <h3>Stiffness Matrix of a Beam (Local Reference System)</h3>
+            <div class="matrix-container">
+                \[
+                \mathbf{k} = \begin{bmatrix} 
+                \frac{EA}{l} & 0 & 0 & -\frac{EA}{l} & 0 & 0 \\
+                0 & 12\frac{EJ}{l^3} & 6\frac{EJ}{l^2} & 0 & -12\frac{EJ}{l^3} & 6\frac{EJ}{l^2} \\
+                0 & 6\frac{EJ}{l^2} & 4\frac{EJ}{l} & 0 & -6\frac{EJ}{l^2} & 2\frac{EJ}{l} \\
+                -\frac{EA}{l} & 0 & 0 & \frac{EA}{l} & 0 & 0 \\
+                0 & -12\frac{EJ}{l^3} & -6\frac{EJ}{l^2} & 0 & 12\frac{EJ}{l^3} & -6\frac{EJ}{l^2} \\
+                0 & 6\frac{EJ}{l^2} & 2\frac{EJ}{l} & 0 & -6\frac{EJ}{l^2} & 4\frac{EJ}{l}
+                \end{bmatrix}
+                \]
+            </div>
+            <p>with degrees of freedom sorted as:</p>
+            \[\mathbf{u}^{\mathrm{T}} = \{u_1 \quad v_1 \quad \theta_1 \quad u_2 \quad v_2 \quad \theta_2\}\]
+
+            <h4>Transformation from Global to Local System</h4>
+            <p>\(\mathbf{u} = \mathbf{T}\mathbf{U}\)</p>
+            <p>\(\mathbf{K} = \mathbf{T}^{\mathrm{T}}\mathbf{k}\mathbf{T}\)</p>
+            <p>with:</p>
+            \[
+            \mathbf{T} = \begin{bmatrix} 
+            c & s & 0 & 0 & 0 & 0 \\
+            -s & c & 0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 & 0 & 0 \\
+            0 & 0 & 0 & c & s & 0 \\
+            0 & 0 & 0 & -s & c & 0 \\
+            0 & 0 & 0 & 0 & 0 & 1
+            \end{bmatrix}
+            \]
+            \[\mathbf{U}^{\mathrm{T}} = \{U_1 \quad V_1 \quad \theta_1 \quad U_2 \quad V_2 \quad \theta_2\}\]
+
+            <figure>
+                <img src="images/Lab_01_Trusses/beam_element_local_coordinate_system.png" alt="Beam element diagram showing local coordinate system with nodes, displacement vectors, and angle α relative to global x-y axes">
+                <figcaption>Beam element local coordinate system with nodal degrees of freedom</figcaption>
+            </figure>
+
+            <h3>Stiffness Matrix of a Bar (Local Reference System)</h3>
+            \[
+            \mathbf{k} = \frac{EA}{l} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}
+            \]
+            <p>with degrees of freedom sorted as: \(\mathbf{u}^{\mathrm{T}} = \{u_1 \quad u_2\}\)</p>
+
+            <h4>Transformation from Global to Local System</h4>
+            <p>\(\mathbf{u} = \mathbf{T}\mathbf{U}\)</p>
+            <p>\(\mathbf{K} = \mathbf{T}^{\mathrm{T}}\mathbf{k}\mathbf{T}\)</p>
+            <p>with:</p>
+            \[
+            \mathbf{T} = \begin{bmatrix} 
+            c & s & 0 & 0 & 0 & 0 \\
+            s & c & 0 & 0 & 0 & 0
+            \end{bmatrix}
+            \]
+            \[\mathbf{U}^{\mathrm{T}} = \{U_1 \quad V_1 \quad U_2 \quad V_2\}\]
+
+            <figure>
+                <img src="images/Lab_01_Trusses/bar_element_local_coordinate_system.png" alt="Bar element diagram showing two nodes connected at angle α relative to global x-y coordinate system">
+                <figcaption>Bar element local coordinate system</figcaption>
+            </figure>
+        </section>
+
+        <!-- Example Problem -->
+        <section class="section">
+            <h2>Example: System of 4 Truss Elements</h2>
+            
+            <div class="two-column">
+                <figure>
+                    <img src="images/Lab_01_Trusses/four_element_truss_structure.png" alt="Truss structure with 4 elements showing pin joints, fixed supports, and vertical load P">
+                    <figcaption>4-element truss structure</figcaption>
+                </figure>
+                
+                <div class="input-data">
+                    <h4>Input Data</h4>
+                    <ul>
+                        <li>\(l_1 = 1000 \text{ mm}\)</li>
+                        <li>\(l_2 = 1732 \text{ mm}\)</li>
+                        <li>\(P = 10 \text{ kN}\)</li>
+                        <li>\(E = 72 \text{ GPa}\)</li>
+                        <li>\(A = 160 \text{ mm}^2\)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Node and Element Numbering</h3>
+            <p>The global reference system, the node and element numbering are taken as reported in the figure (these choices are clearly arbitrary).</p>
+            
+            <figure>
+                <img src="images/Lab_01_Trusses/truss_structure_node_element_numbering.png" alt="Truss structure with global coordinate system showing 4 nodes, 4 elements labeled in red, fixed supports at nodes 1 and 4, and roller support at node 3">
+                <figcaption>Node and element numbering: Red = element IDs, Black = node IDs</figcaption>
+            </figure>
+
+            <p>Nodal DOFs are sorted as:</p>
+            \[\mathbf{U}^{\mathrm{T}} = \{U_1 \quad V_1 \quad U_2 \quad V_2 \quad U_3 \quad V_3 \quad U_4 \quad V_4\}\]
+        </section>
+
+        <!-- Program Overview - Main -->
+        <section class="section">
+            <h2>Overview of the Program – Main</h2>
+            <p>The structure of the program is very simple, and consists of three distinct steps: the preparation of data (<strong>pre-process</strong>), the analysis of the structure (<strong>solution</strong>) and the recovery of those quantities to be used during the analysis of results (<strong>post-processing</strong>). The three steps are accomplished by the three functions <code>input_model</code>, <code>analyze_structure</code> and <code>plot_deformed_shape</code>.</p>
+
+            <div class="code-block">% --- 1. Pre-process
+INPUT = input_model;
+
+% --- 2. Solution
+[ ELEMENTS, NODES, MODEL ] = analyze_structure( INPUT );
+
+% --- 3. Post-process: recovery of forces, plot deformed shapes, ...
+ELEMENTS  = force_recovery( MODEL, ELEMENTS );</div>
+        </section>
+
+        <!-- Program Structures -->
+        <section class="section">
+            <h2>Overview of the Program – Structures</h2>
+            <p>Three main functions are used throughout the program: MODEL, NODES, ELEMENTS. The fields of the structures are here illustrated.</p>
+
+            <h3>MODEL Structure</h3>
+            <div class="data-structure">
+                <span class="field">ndof: 8</span>
+                <span class="description">tot number of dofs for the unconstr system</span>
+                <span class="field">nels: 4</span>
+                <span class="description">total number of elements</span>
+                <span class="field">nnodes: 4</span>
+                <span class="description">total number of nodes</span>
+                <span class="field">K: [3×3 double]</span>
+                <span class="description">stiffness matrix of constr structure</span>
+                <span class="field">F: [3×1 double]</span>
+                <span class="description">load vector of constr structure</span>
+                <span class="field">constr_dofs: [1 2 7 8 5]</span>
+                <span class="description">position of constrained dofs</span>
+                <span class="field">free_dofs: [3 4 6]</span>
+                <span class="description">position of free dofs</span>
+                <span class="field">nfree_dofs: 3</span>
+                <span class="description">number of free dofs</span>
+                <span class="field">K_unc: [8×8 double]</span>
+                <span class="description">stiffness matrix of unconstr structure</span>
+                <span class="field">F_unc: [8×1 double]</span>
+                <span class="description">load vector of unconstr struct</span>
+                <span class="field">U: [3×1 double]</span>
+                <span class="description">displacement vector (only free dofs)</span>
+                <span class="field">U_unc: [8×1 double]</span>
+                <span class="description">displacement vector (all dofs)</span>
+            </div>
+
+            <h3>NODES Structure</h3>
+            <div class="data-structure">
+                <span class="field">coord_x</span>
+                <span class="description">node x coordinate</span>
+                <span class="field">coord_y</span>
+                <span class="description">node y coordinate</span>
+                <span class="field">ndof</span>
+                <span class="description">number of nodal dofs (2 for 'truss', 6 for 'beams')</span>
+            </div>
+
+            <h3>ELEMENTS Structure</h3>
+            <div class="data-structure">
+                <span class="field">nodes</span>
+                <span class="description">ID of nodes composing the element</span>
+                <span class="field">EA</span>
+                <span class="description">axial stiffness</span>
+                <span class="field">EJ</span>
+                <span class="description">bending stiffness</span>
+                <span class="field">type</span>
+                <span class="description">'truss' or 'beam'</span>
+                <span class="field">dofs</span>
+                <span class="description">number of element dofs (4: truss; 6: beams)</span>
+                <span class="field">ptrs</span>
+                <span class="description">vector of pointers</span>
+                <span class="field">K_el_loc</span>
+                <span class="description">element stiffness matrix (local system)</span>
+                <span class="field">K_el</span>
+                <span class="description">element stiffness matrix (global system)</span>
+                <span class="field">l</span>
+                <span class="description">element length</span>
+                <span class="field">alpha</span>
+                <span class="description">element angle</span>
+                <span class="field">T</span>
+                <span class="description">element transformation matrix</span>
+                <span class="field">nodal_forces</span>
+                <span class="description">element nodal forces</span>
+            </div>
+        </section>
+
+        <!-- Step 1: Pre-process -->
+        <section class="section">
+            <h2>Step 1, Pre-process: input_model</h2>
+            <p>The input file is written from the user by specifying the characteristics of the model to be analyzed. The data are organized into the structure INPUT, which is divided into different fields.</p>
+
+            <div class="data-structure">
+                <span class="field">elements: [4×3 double]</span>
+                <span class="description">[ID_nodeA, ID_nodeB, ID_prop]</span>
+                <span class="field">nodes: [4×3 double]</span>
+                <span class="description">[ID x y]</span>
+                <span class="field">section_prop: [115200000 0]</span>
+                <span class="description">[EA EJ]</span>
+                <span class="field">load: [2 2 -10000]</span>
+                <span class="description">[ID_node direction magnitude]</span>
+                <span class="field">spc: [5×2 double]</span>
+                <span class="description">[ID_node dof]</span>
+            </div>
+
+            <h3>Example of the Input File</h3>
+            <div class="code-block">function INPUT = input_model
+
+% --- Input
+% INPUT.elements    : [ node_A node_B ID_prop ]
+% INPUT.nodes       : [ ID_node x_coord y_coord ]
+% INPUT.E           : Young's modulus
+% INPUT.section_prop : [ A J ]
+%                      set J = 0 for truss
+% INPUT.mass        : [ ID_node component magn]
+% INPUT.load        : [ ID_node component magn ]
+% INPUT.solution    : 'static' or 'eigenmodes'
+% INPUT.spc         : [ ID_node component ]
+
+% -- Init
+INPUT = struct();
+
+% -- Elements
+INPUT.elements = [1 2 1;
+    3 2 1;
+    1 3 1;
+    4 3 1];
+
+% -- Nodes
+INPUT.nodes = [ 1 0 0;
+    2 1732 0;
+    3 866 500;
+    4 0 1000];
+
+% -- Section properties
+E = 72000;
+A1 = 160;
+INPUT.section_prop = [ E*A1 0 ];
+
+% -- Concentrated mass
+INPUT.mass = [];
+
+% -- Loading conditions
+INPUT.load = [ 2 2 -10000 ];
+
+% -- Boundary conditions
+INPUT.spc = [ 1 1
+              1 2
+              4 1
+              4 2
+              3 1 ];</div>
+
+            <h3>Input Data Interpretation</h3>
+            <figure>
+                <img src="images/Lab_01_Trusses/truss_structure_with_constraints.png" alt="Truss structure diagram showing 4 nodes with element and node numbering, fixed supports at nodes 1 and 4, roller support at node 3">
+                <figcaption>Truss structure with node, element, and constraint definitions</figcaption>
+            </figure>
+
+            <h4>INPUT.elements</h4>
+            <div class="code-block">    1       2       1    → Element 1: node 1, node 2, property 1
+    3       2       1    → Element 2: node 3, node 2, property 1
+    1       3       1
+    4       3       1</div>
+
+            <h4>INPUT.nodes</h4>
+            <div class="code-block">    1       0       0    → Node 1: x_coord, y_coord
+    2    1732.0     0
+    3     866.0   500.0
+    4       0    1000.0</div>
+
+            <h4>INPUT.spc (Boundary Conditions)</h4>
+            <div class="code-block">    1       1  % (node 1, constrained x)
+    1       2  % (node 1, constrained y)
+    4       1  % (node 4, constrained x)
+    4       2  % (node 4, constrained y)
+    3       1  % (node 3, constrained x)</div>
+        </section>
+
+        <!-- Step 2: Solution -->
+        <section class="section">
+            <h2>Step 2, Solution: analyze_structure</h2>
+            <p>The function <code>analyze_structure</code> represents the core of the program, and is divided into a number of functions.</p>
+
+            <div class="code-block">function [ ELEMENTS, NODES, MODEL ] = analyze_structure( INPUT )
+
+% --- Set model
+[ ELEMENTS, NODES, MODEL ] = set_model( INPUT );
+
+% --- Set pointers
+ELEMENTS = set_pointers( ELEMENTS, NODES, MODEL.nels );
+
+% --- Build element stiffness matrices
+ELEMENTS = element_stiffness( ELEMENTS, NODES, MODEL.nels );
+
+% --- Assembly stiffness matrix
+MODEL = assembly_stiffness( ELEMENTS, MODEL );
+
+% --- Impose constraints and solve
+MODEL = solve_structure( MODEL );</div>
+
+            <h3>set_model</h3>
+            <p>Organize data in a form which is suitable from the solution of the problem. INPUT data are transferred into the structures ELEMENTS, NODES, MODEL.</p>
+            
+            <div class="code-block">function [ ELEMENTS, NODES, MODEL ] = set_model( INPUT )</div>
+
+            <p>For example, the fields for element 3 and node 3 are:</p>
+
+            <div class="two-column">
+                <div class="code-block">>> ELEMENTS(3)
+ans = 
+  struct with fields:
+          nodes: [1 3]
+             EA: 115200000
+             EJ: 0
+           type: 'truss'
+           dofs: 2
+           ptrs: (filled later)
+       K_el_loc: (filled later)
+           K_el: (filled later)
+              l: (filled later)
+          alpha: (filled later)
+              T: (filled later)
+   nodal_forces: (filled later)</div>
+
+                <div class="code-block">>> NODES(3)
+ans = 
+  struct with fields:
+    coord_x: 866.0254
+    coord_y: 500
+       ndof: 2</div>
+            </div>
+
+            <figure>
+                <img src="images/Lab_01_Trusses/truss_structure_reference_diagram.png" alt="Truss structure showing 4 nodes, 4 elements with node and element numbering, fixed supports, and global coordinate system">
+                <figcaption>Reference diagram for set_model</figcaption>
+            </figure>
+
+            <div class="code-block">>> MODEL
+ans = 
+struct with fields:
+           ndof: 8
+           nels: 4
+         nnodes: 4
+              K: [8×8 double]
+              F: [8×1 double]
+    constr_dofs: [1 2 7 8 5]
+      free_dofs: [3 4 6]
+     nfree_dofs: 3
+          K_unc: (filled later)
+          F_unc: (filled later)
+              U: (filled later)
+          U_unc: (filled later)</div>
+
+            <p>\(\mathbf{U}^{\mathrm{T}} = \{U_1 \quad V_1 \quad U_2 \quad V_2 \quad U_3 \quad V_3 \quad U_4 \quad V_4\}\)</p>
+
+            <h3>set_pointers</h3>
+            <p>The function writes the pointers associated with the generic i-th element in the field ELEMENT(i).ptrs</p>
+
+            <div class="code-block">ELEMENTS = set_pointers( ELEMENTS, NODES, MODEL.nels )
+
+>> ELEMENTS(1).ptrs
+ans = 
+     1     2     3     4
+
+>> ELEMENTS(2).ptrs
+ans = 
+     5     6     3     4
+
+>> ELEMENTS(3).ptrs
+ans = 
+     1     2     5     6
+
+>> ELEMENTS(4).ptrs
+ans = 
+     7     8     5     6</div>
+
+            <figure>
+                <img src="images/Lab_01_Trusses/truss_structure_pointer_diagram.png" alt="Truss structure showing 4 nodes with element numbering and global x-y coordinate system">
+                <figcaption>Pointer assignments for each element</figcaption>
+            </figure>
+
+            <h3>element_stiffness (1/3)</h3>
+            <div class="code-block">function ELEMENTS = element_stiffness( ELEMENTS, NODES, n_els )
+
+for i = 1 : n_els                    <span class="annotation">Loop over the elements</span>
+
+    el_nodes = ELEMENTS(i).nodes;
+
+    % Determine element length
+    lx = NODES(el_nodes(2)).coord_x - NODES(el_nodes(1)).coord_x;
+    ly = NODES(el_nodes(2)).coord_y - NODES(el_nodes(1)).coord_y;
+
+    l = sqrt( lx^2 + ly^2 );         <span class="annotation">Element length</span>
+
+    c = lx / l; % cos( alpha )
+    s = ly / l; % sin( alpha )
+
+    % Build local stiffness matrix
+    if strcmp( ELEMENTS(i).type, 'truss')
+
+        % Transformation matrix
+        T = [c s 0 0; 0 0 c s];
+
+        % Properties and stiffness matrix
+        EA = ELEMENTS(i).EA;
+
+        ELEMENTS(i).K_el_loc = EA/l*[1 -1; -1 1];  <span class="annotation">Stiffness matrix in local coord</span></div>
+
+            <h3>element_stiffness (2/3)</h3>
+            <div class="code-block">    elseif strcmp( ELEMENTS(i).type, 'beam')
+
+        % Transformation matrix
+        T_node = [c s 0; -s c 0; 0 0 1];
+        T = [T_node zeros(3,3); zeros(3,3) T_node];
+
+        % Properties and stiffness matrix
+        EA = ELEMENTS(i).EA;
+        EJ = ELEMENTS(i).EJ;
+
+        K_aa = [ EA/l 0 0;
+            0 12*EJ/l^3 6*EJ/l^2;
+            0 6*EJ/l^2 4*EJ/l];
+
+        K_ab = [-EA/l 0 0;
+            0 -12*EJ/l^3 6*EJ/l^2;
+            0 -6*EJ/l^2 2*EJ/l];
+
+        K_bb = [EA/l 0 0;
+            0 12*EJ/l^3 -6*EJ/l^2;
+            0 -6*EJ/l^2 4*EJ/l];
+
+        ELEMENTS(i).K_el_loc = [K_aa K_ab; K_ab' K_bb];  <span class="annotation">Stiffness matrix in local coord</span>
+
+    end</div>
+
+            <h3>element_stiffness (3/3)</h3>
+            <div class="code-block">    % Rotate stiffness matrix
+    ELEMENTS(i).K_el = T' * ELEMENTS(i).K_el_loc * T;  <span class="annotation">Stiffness matrix in global coord</span>
+
+    % Store some useful values
+    ELEMENTS(i).l = l;
+    ELEMENTS(i).alpha = atan2(s,c)*180/pi;
+    ELEMENTS(i).T = T;
+
+end</div>
+
+            <h3>assembly_stiffness</h3>
+            <p>The assembly of the stiffness matrix is readily performed by using the vectors of pointers to directly set the contribution of each element in the correct position of the global stiffness matrix.</p>
+
+            <div class="code-block">function MODEL = assembly_stiffness( ELEMENTS, MODEL )
+
+% --- Assembly stiffness matrix
+for i = 1 : MODEL.nels
+
+    ptrs = ELEMENTS( i ).ptrs;
+    K_el = ELEMENTS( i ).K_el;
+
+    MODEL.K( ptrs, ptrs ) = MODEL.K( ptrs, ptrs ) + K_el;
+
+end</div>
+
+            <h3>solve_structure</h3>
+            <div class="code-block">function MODEL = solve_structure( MODEL )
+
+constr_dofs = MODEL.constr_dofs;
+
+% Store unconstrained K and F
+MODEL.K_unc = MODEL.K;
+MODEL.F_unc = MODEL.F;
+
+% Impose constraints
+MODEL.K( constr_dofs, : ) = [];  <span class="annotation">Remove rows of constrained dofs</span>
+MODEL.K( :, constr_dofs ) = [];  <span class="annotation">Remove cols of constrained dofs</span>
+MODEL.F( constr_dofs )    = [];  <span class="annotation">Remove rows of constrained dofs</span>
+
+% Solve problem
+MODEL.U = MODEL.K \ MODEL.F;
+
+% Expand displacements to the global vector
+MODEL.U_unc = zeros( MODEL.ndof, 1);
+MODEL.U_unc( MODEL.free_dofs ) = MODEL.U;</div>
+
+            <h3>Results</h3>
+            <p>Here below the stiffness matrix, the load vector and the displacement for comparison purposes:</p>
+
+            <div class="two-column">
+                <div class="code-block">>> MODEL.K
+
+ans =
+
+   1.0e+05 *
+
+    1.5291   -0.4988    0.4988
+   -0.4988    0.2880   -0.2880
+    0.4988   -0.2880    0.8640
+
+>> MODEL.F
+
+ans =
+
+         0
+    -10000
+         0</div>
+
+                <div class="code-block">>> MODEL.U  <span class="annotation">displacements of unconstrained dofs</span>
+
+ans =
+
+   -0.2604
+   -0.9719
+   -0.1736</div>
+            </div>
+        </section>
+
+        <!-- Step 3: Post-process -->
+        <section class="section">
+            <h2>Step 3, Post-process: force_recovery</h2>
+
+            <div class="code-block">function ELEMENTS  = force_recovery( MODEL, ELEMENTS )
+
+% --- Force recovery
+for i = 1 : MODEL.nels
+
+    T = ELEMENTS(i).T;
+    ptrs = ELEMENTS(i).ptrs;
+
+    U_el_loc = T * MODEL.U_unc( ptrs );  <span class="annotation">Displacements of the element in local coordinates</span>
+
+    nodal_forces = ELEMENTS(i).K_el_loc * U_el_loc;
+
+    %(take force in node 2: >0 in traction)
+    ELEMENTS(i).nodal_forces = nodal_forces(2);
+
+end</div>
+
+            <h3>Results</h3>
+            <div class="two-column">
+                <div class="code-block">ELEMENTS.nodal_forces
+
+ans =
+
+   -1.7321e+04  <span class="annotation">axial force in element 1 (&lt;0: compression)</span>
+    2.0000e+04
+   -1.0000e+04
+    1.0000e+04  <span class="annotation">axial force in element 4 (&gt;0: traction)</span>
+
+MODEL.U_unc
+
+ans =
+
+         0
+         0
+   -0.2604
+   -0.9719
+         0
+   -0.1736
+         0
+         0</div>
+
+                <figure>
+                    <img src="images/Lab_01_Trusses/truss_deformed_shape_with_plot.png" alt="Truss structure with deformed shape overlay showing original configuration (dashed) and deformed configuration (solid red)">
+                    <figcaption>Deformed shape of 4-element truss</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Exercises Introduction -->
+        <section class="section">
+            <h2>Exercises</h2>
+            <ul class="content-list">
+                <li>Complete the program by writing the missing parts of the code</li>
+                <li>Extend to program to include the possibility of performing free-vibration analyses</li>
+                <li>Solve the problems reported in the next slides and check the correctness of the implementation</li>
+            </ul>
+        </section>
+
+        <!-- Exercise 1 -->
+        <div class="exercise">
+            <h3>Exercise 1 – 10 Truss Structure</h3>
+            <p>Evaluate the deformed shape and the free vibrations of the structure in the figure.</p>
+
+            <div class="two-column">
+                <figure>
+                    <img src="images/Lab_01_Trusses/ten_element_truss_structure.png" alt="10-element truss structure showing nodes 1-6, fixed supports at nodes 5 and 6, vertical loads P at nodes 2 and 4">
+                    <figcaption>10-element truss structure</figcaption>
+                </figure>
+
+                <div class="input-data">
+                    <h4>Input Data</h4>
+                    <ul>
+                        <li>\(l = 360 \text{ mm}\)</li>
+                        <li>\(P = 100 \text{ N}\)</li>
+                        <li>\(E = 1\text{e}4 \text{ MPa}\)</li>
+                        <li>\(m = 1\text{e-}4 \text{ t}\) (lumped mass at each node)</li>
+                    </ul>
+                    <p style="margin-top: 15px;">Square section of dimension<br>\(a = \sqrt{10} \text{ mm}\)</p>
+                </div>
+            </div>
+
+            <h4>Deformed Configuration</h4>
+            <p>Solution of the linear static problem: \(\mathbf{KU} = \mathbf{f}\)</p>
+
+            <div class="two-column">
+                <div class="code-block">>> MODEL.U
+
+ans =
+
+    0.8478
+   -3.7951
+   -0.9522
+   -3.9396
+    0.7033
+   -1.6744
+   -0.7367
+   -1.8021</div>
+
+                <figure>
+                    <img src="images/Lab_01_Trusses/truss_deformed_configuration_plot.png" alt="Deformed shape plot of truss structure showing original configuration (dashed) and deformed configuration (solid red)">
+                    <figcaption>Deformed shape</figcaption>
+                </figure>
+            </div>
+
+            <h4>Eigenvalues and Eigenvectors</h4>
+            <p>Solution of the eigenvalue problem: \((-\omega^2 \mathbf{M} + \mathbf{K}) = \mathbf{0}\)</p>
+
+            <div class="code-block">>> sqrt(diag(MODEL.Ome2))
+
+ans =
+
+   1.0e+03 *
+
+    0.3764
+    1.1468
+    1.2102
+    2.0797
+    2.3908
+    2.7817
+    2.8800
+    3.2508</div>
+
+            <figure>
+                <img src="images/Lab_01_Trusses/truss_vibration_mode_shapes.png" alt="Four mode shapes of truss structure showing eigenvalue vibration modes">
+                <figcaption>Mode shapes 1-4 of the 10-element truss structure</figcaption>
+            </figure>
+
+            <h4>Beam Model Structure</h4>
+            <p>Consider now a model of the structure by using beam instead of truss elements.</p>
+
+            <figure>
+                <img src="images/Lab_01_Trusses/beam_model_truss_structure.png" alt="Beam model of truss structure showing 6 nodes with fixed supports">
+                <figcaption>Beam model of the structure</figcaption>
+            </figure>
+
+            <ul class="content-list">
+                <li>Each node is thus characterized by displacement and rotation dofs</li>
+                <li>The boundary condition implies that the both displacements and rotations are set to zero</li>
+                <li>The presence of an axial load path suggests that no differences are expected with respect to the truss model</li>
+            </ul>
+
+            <h4>Comparison of Results</h4>
+            <div class="results-comparison">
+                <div class="result-box">
+                    <h5>Using beam elements</h5>
+                    <pre>>> MODEL.U
+
+ans =
+
+    0.8477  (Ux1)
+   -3.7948  (Uy1)
+   -0.0053  (th1)
+   -0.9522  (Ux2)
+   -3.9392  (Uy2)
+   -0.0055  (th2)
+    0.7033  (Ux3)
+   -1.6741  (Uy3)
+   -0.0054  (th3)
+   -0.7366  (Ux4)
+   -1.8019  (Uy4)
+   -0.0055  (th4)</pre>
+                </div>
+
+                <div class="result-box">
+                    <h5>Using truss elements</h5>
+                    <pre>>> MODEL.U
+
+ans =
+
+    0.8478  (Ux1)
+   -3.7951  (Uy1)
+   -0.9522  (Ux2)
+   -3.9396  (Uy2)
+    0.7033  (Ux3)
+   -1.6744  (Uy3)
+   -0.7367  (Ux4)
+   -1.8021  (Uy4)</pre>
+                </div>
+            </div>
+
+            <p><strong>Note:</strong> The nodal displacements are very similar. Neglecting the bending stiffness does not affect the quality of the predictions as the response is axially-dominated.</p>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise">
+            <h3>Exercise 2 – 15 Truss Structure</h3>
+            <p>Evaluate the deformed shape and the free vibrations of the structure in the figure.</p>
+
+            <div class="two-column">
+                <figure>
+                    <img src="images/Lab_01_Trusses/fifteen_element_truss_structure.png" alt="15-element truss structure showing 8 nodes, fixed supports at nodes 1 and 2, vertical loads P at nodes 4, 6, and 8">
+                    <figcaption>15-element truss structure (bridge configuration)</figcaption>
+                </figure>
+
+                <div class="input-data">
+                    <h4>Input Data</h4>
+                    <ul>
+                        <li>\(l = 2540 \text{ mm}\)</li>
+                        <li>\(h_1 = 3810 \text{ mm}\)</li>
+                        <li>\(h_2 = 5080 \text{ mm}\)</li>
+                        <li>\(P = 35 \text{ N}\)</li>
+                        <li>\(E = 200 \text{ GPa}\)</li>
+                        <li>\(A = 10 \text{ mm}^2\)</li>
+                        <li>\(m = 1\text{e-}4 \text{ t}\) (lumped mass at each node)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>Deformed Configuration</h4>
+            <p>Solution of the linear static problem: \(\mathbf{KU} = \mathbf{f}\)</p>
+
+            <div class="two-column">
+                <div class="code-block">>> MODEL.U
+
+ans =
+
+   -0.0009
+   -0.2134
+    0.0515
+   -0.2079
+    0.0000
+   -0.2351
+    0.0000
+   -0.2241
+    0.0009
+   -0.2134
+   -0.0515
+   -0.2079</div>
+
+                <figure>
+                    <img src="images/Lab_01_Trusses/fifteen_element_truss_deformed_shape.png" alt="Deformed shape plot of 15-element truss structure">
+                    <figcaption>Deformed shape</figcaption>
+                </figure>
+            </div>
+
+            <h4>Eigenvalues and Eigenvectors</h4>
+            <p>Solution of the eigenvalue problem: \((-\omega^2 \mathbf{M} + \mathbf{K}) = \mathbf{0}\)</p>
+
+            <div class="code-block">>> sqrt(diag(MODEL.Ome2))
+
+ans =
+
+   1.0e+03 *
+
+    0.8574
+    1.2536
+    1.5817
+    2.2137</div>
+
+            <figure>
+                <img src="images/Lab_01_Trusses/fifteen_element_truss_mode_shapes.png" alt="Four mode shapes of 15-element truss structure">
+                <figcaption>Mode shapes 1-4 of the 15-element truss structure</figcaption>
+            </figure>
+        </div>
+
+        <footer style="text-align: center; margin-top: 50px; padding: 20px; color: #666; border-top: 1px solid var(--border-color);">
+            <p>Course of Spacecraft Structures, AY 2017/2018</p>
+            <p>Politecnico di Milano, Department of Aerospace Science and Technology</p>
+        </footer>
+    </article>
+</body>
+</html>

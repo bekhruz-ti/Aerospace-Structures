@@ -1,0 +1,82 @@
+{
+  "finite_element_types_4_and_8_node.png": {
+    "suggested_name": "finite_element_types_4_and_8_node",
+    "description": "Two finite element types showing 4-node and 8-node quadrilateral elements with node numbering and coordinate system (ξ,η) in computational domain"
+  },
+  "four_node_element_coordinate_system.png": {
+    "suggested_name": "four_node_element_coordinate_system",
+    "description": "4-node quadrilateral element with coordinate system showing ξ and η axes and node numbering 1-4"
+  },
+  "shape_functions_four_node_element.png": {
+    "suggested_name": "shape_functions_four_node_element",
+    "description": "Four 3D visualizations of shape functions for 4-node bilinear element showing contour surfaces for each node"
+  },
+  "eight_node_element_coordinate_system.png": {
+    "suggested_name": "eight_node_element_coordinate_system",
+    "description": "8-node quadrilateral element with coordinate system showing ξ and η axes and node numbering 1-8 including mid-side nodes"
+  },
+  "shape_functions_eight_node_element.png": {
+    "suggested_name": "shape_functions_eight_node_element",
+    "description": "Eight 3D visualizations of shape functions for 8-node biquadratic element showing contour surfaces for each node including corner and mid-side nodes"
+  },
+  "gauss_integration_schemes.png": {
+    "suggested_name": "gauss_integration_schemes",
+    "description": "Three diagrams showing Gauss integration schemes: 1×1 rule with single point, 2×2 rule with four points, and 3×3 rule with nine points in computational domain"
+  },
+  "open_hole_test_problem_setup.png": {
+    "suggested_name": "open_hole_test_problem_setup",
+    "description": "Open-hole test problem showing rectangular membrane with center hole, boundary conditions, and loading configuration with quarter symmetry model"
+  },
+  "finite_element_mesh_node_element_numbering.png": {
+    "suggested_name": "finite_element_mesh_node_element_numbering",
+    "description": "Finite element mesh for open-hole problem showing node and element numbering with refined mesh near hole region"
+  },
+  "element_connectivity_mesh_detail.png": {
+    "suggested_name": "element_connectivity_mesh_detail",
+    "description": "Finite element mesh showing element connectivity with zoomed detail of mesh region highlighting elements 1 and 2"
+  },
+  "boundary_conditions_mesh.png": {
+    "suggested_name": "boundary_conditions_mesh",
+    "description": "Finite element mesh showing boundary conditions with nodes constrained along x and y directions"
+  },
+  "applied_loads_mesh.png": {
+    "suggested_name": "applied_loads_mesh",
+    "description": "Finite element mesh showing applied loads at edge nodes with force vectors and mesh detail"
+  },
+  "stress_evaluation_integration_points.png": {
+    "suggested_name": "stress_evaluation_integration_points",
+    "description": "Diagram showing 4-node element with integration points and coordinate system for stress evaluation"
+  },
+  "jacobian_matrix_element_distortion.png": {
+    "suggested_name": "jacobian_matrix_element_distortion",
+    "description": "Finite element mesh showing Jacobian matrix values for different elements with element 27 and 33 highlighted"
+  },
+  "deformed_shape_displacement_contour_comparison.png": {
+    "suggested_name": "deformed_shape_displacement_contour_comparison",
+    "description": "Three rows showing deformed shape and displacement contours for meshes with 44, 570, and 2400 bilinear elements"
+  },
+  "stress_components_contour_comparison.png": {
+    "suggested_name": "stress_components_contour_comparison",
+    "description": "Stress component contours (σxx, σyy, σxy) for three different mesh refinements showing convergence of stress field"
+  },
+  "element_27_distorted_mesh.png": {
+    "suggested_name": "element_27_distorted_mesh",
+    "description": "Finite element mesh showing element 27 with distorted geometry for numerical integration analysis"
+  },
+  "element_33_regular_mesh.png": {
+    "suggested_name": "element_33_regular_mesh",
+    "description": "Finite element mesh showing element 33 with regular rectangular geometry for numerical integration analysis"
+  },
+  "hourglass_mode_deformation.png": {
+    "suggested_name": "hourglass_mode_deformation",
+    "description": "Deformed mesh showing hourglass mode with characteristic zero-energy deformation pattern"
+  },
+  "displacement_field_abaqus_matlab_comparison.png": {
+    "suggested_name": "displacement_field_abaqus_matlab_comparison",
+    "description": "Comparison of displacement field contours (Ux, Uy, Utot) between Abaqus and Matlab implementations"
+  },
+  "stress_field_abaqus_matlab_comparison.png": {
+    "suggested_name": "stress_field_abaqus_matlab_comparison",
+    "description": "Comparison of stress field contours (σxx, σyy, σxy) between Abaqus and Matlab implementations"
+  }
+}

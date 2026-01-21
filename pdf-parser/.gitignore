@@ -1,0 +1,29 @@
+# Temporary files
+tmp/
+__pycache__/
+*.pyc
+
+# LLM logs
+llm_outputs.log
+
+# Output files (optional - remove if you want to track outputs)
+# *.html
+# images/
+
+# Python virtual environment
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+

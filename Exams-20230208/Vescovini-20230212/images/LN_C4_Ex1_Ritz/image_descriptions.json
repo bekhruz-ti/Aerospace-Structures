@@ -1,0 +1,34 @@
+{
+  "cantilever_beam_distributed_load.png": {
+    "suggested_name": "cantilever_beam_distributed_load",
+    "description": "Cantilever beam with fixed support at left end and distributed load q along length, showing EJ stiffness and length ℓ"
+  },
+  "cantilever_beam_torsional_moment.png": {
+    "suggested_name": "cantilever_beam_torsional_moment",
+    "description": "Cantilever beam with fixed support at left, distributed moment load mt along length, applied moment θ̄ at right end, showing GJ torsional stiffness and length ℓ"
+  },
+  "cantilever_beam_elastic_foundation.png": {
+    "suggested_name": "cantilever_beam_elastic_foundation",
+    "description": "Cantilever beam with fixed support at left, elastic foundation with stiffness k along length, point load P at right end, showing length ℓ"
+  },
+  "simply_supported_beam_variable_stiffness.png": {
+    "suggested_name": "simply_supported_beam_variable_stiffness",
+    "description": "Simply supported beam with pin supports at both ends, showing variable stiffness EJ(x) and length ℓ"
+  },
+  "cantilever_beam_tip_mass.png": {
+    "suggested_name": "cantilever_beam_tip_mass",
+    "description": "Cantilever beam with fixed support at left, concentrated mass M at right end, showing EJ stiffness and length ℓ"
+  },
+  "cantilever_beam_point_load.png": {
+    "suggested_name": "cantilever_beam_point_load",
+    "description": "Cantilever beam with fixed support at left and point load P at free end"
+  },
+  "cantilever_beam_uniform_load.png": {
+    "suggested_name": "cantilever_beam_uniform_load",
+    "description": "Cantilever beam with fixed support at left and distributed load q along length"
+  },
+  "two_span_continuous_beam.png": {
+    "suggested_name": "two_span_continuous_beam",
+    "description": "Two-span continuous beam with pin supports at three locations, showing EJ and Io properties for each span with lengths ℓ and αℓ"
+  }
+}

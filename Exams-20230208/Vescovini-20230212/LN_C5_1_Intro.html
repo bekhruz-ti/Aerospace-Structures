@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Stability of Structures</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --note-bg: #ebf8ff;
+            --remark-bg: #faf5ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .concept-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .equation-box {
+            background: #fffbeb;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border: 2px solid #f6e05e;
+            text-align: center;
+        }
+
+        .stability-condition {
+            background: #f0fff4;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border: 2px solid var(--accent-color);
+        }
+
+        .numbered-list {
+            margin: 15px 0 15px 30px;
+        }
+
+        .numbered-list li {
+            margin: 10px 0;
+        }
+
+        .example-section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .example-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+        }
+
+        .example-header h2 {
+            color: white;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .example-content {
+            padding: 25px;
+        }
+
+        .problem {
+            padding: 25px;
+            background: var(--bg-light);
+        }
+
+        .problem h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .solution {
+            padding: 25px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .remarks {
+            background: var(--remark-bg);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+            border-left: 4px solid #805ad5;
+        }
+
+        .remarks h4 {
+            color: #805ad5;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: var(--note-bg);
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #3182ce;
+        }
+
+        .note strong {
+            color: #3182ce;
+        }
+
+        .case-analysis {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .case-analysis h5 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .matrix-display {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        table.stability-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table.stability-table th,
+        table.stability-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+
+        table.stability-table th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .toc {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .toc h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+            padding-left: 20px;
+            border-left: 2px solid var(--secondary-color);
+        }
+
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        mjx-container[display="true"] {
+            margin: 20px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section, .example-content, .problem, .solution {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Introduction to Stability of Structures</h1>
+            <p class="subtitle">Lecture Notes on Bifurcation Theory and Structural Buckling</p>
+        </header>
+
+        <nav class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction and Basic Concepts</a></li>
+                <li><a href="#bifurcations">Bifurcations and Limit Points</a></li>
+                <li><a href="#1dof-theory">1 DOF Examples - Energy Principles</a></li>
+                <li><a href="#example1">Example 1: Cantilever with Rotational Spring</a></li>
+                <li><a href="#example1-imperfect">Example 1: Including Imperfections</a></li>
+                <li><a href="#example1-linearized">Example 1: Linearized Analysis</a></li>
+                <li><a href="#example1-postbuckling">Example 1: Post-Buckling Analysis</a></li>
+                <li><a href="#example2">Example 2: Spring at Tip</a></li>
+                <li><a href="#example2-imperfect">Example 2: With Imperfections</a></li>
+                <li><a href="#example3">Example 3: Two-Member Truss</a></li>
+                <li><a href="#2dof">2 DOF Example</a></li>
+                <li><a href="#2dof-linearized">2 DOF Example - Linearized</a></li>
+            </ul>
+        </nav>
+
+        <!-- INTRODUCTION SECTION -->
+        <section class="section" id="introduction">
+            <h2>Introduction and Basic Concepts</h2>
+            
+            <p>Some basic ideas can be introduced by considering simple 1 DOF examples.</p>
+
+            <h3>Two Preliminary Considerations</h3>
+
+            <div class="concept-box">
+                <h4>1. Sources of Instability</h4>
+                <p>Instability phenomena can arise in the presence of <strong>compressive loads</strong>. However, it is worth remarking that this is not the only case of practical interest: instability phenomena can be triggered also by <strong>shear loads</strong>, <strong>bending moments</strong>, ... and, in some cases, also by <strong>traction loads</strong>.</p>
+            </div>
+
+            <div class="concept-box">
+                <h4>2. Nature of Nonlinearity</h4>
+                <p>The phenomena here considered imply the <strong>elastic behavior</strong> of the material. The source of nonlinearity, necessary to analyze the stability, is of <strong>geometrical nature</strong>.</p>
+            </div>
+        </section>
+
+        <!-- BIFURCATIONS SECTION -->
+        <section class="section" id="bifurcations">
+            <h2>Bifurcations</h2>
+
+            <p>For small strains/infinitesimal displacements the uniqueness of the solution is guaranteed a priori. By removing this assumption the uniqueness is no more guaranteed (<strong>instability = loss of uniqueness</strong>).</p>
+
+            <p>Consider a geometrically non-linear system. Its response can be analyzed by "monitoring" two characteristic parameters:</p>
+            <ol class="numbered-list">
+                <li>\(P\): load parameter</li>
+                <li>\(\theta\): displacement parameter</li>
+            </ol>
+
+            <div class="note">
+                <strong>Note:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>1 DOF problem → \(P, \theta\) are the load and the DOF</li>
+                    <li>N DOF problem → \(P, \theta\) are two scalars representative of the behaviour of the structure</li>
+                </ul>
+            </div>
+
+            <h3>The Equilibrium Path</h3>
+            <p>The equilibrium path in the \(P - \theta\) plane can be either linear or nonlinear:</p>
+
+            <figure class="diagram">
+                <img src="images/LN_C5_1_Intro/equilibrium_path_bifurcation_diagram.png" alt="Load-displacement equilibrium path diagram showing P versus theta with linear and nonlinear curves">
+                <figcaption>Figure 1: Equilibrium paths showing linear and nonlinear responses, and bifurcation behavior</figcaption>
+            </figure>
+
+            <p>Due to the non-uniqueness of the solution, <strong>multiple equilibrium paths can exist</strong>.</p>
+
+            <div class="concept-box">
+                <h4>Bifurcation Point</h4>
+                <p>The <strong>bifurcation point</strong> is the intersection between equilibrium paths. The equilibrium condition can change from stable to unstable. After reaching the bifurcation, four scenarios are possible (symmetric stable, symmetric unstable, asymmetric stable, asymmetric unstable).</p>
+            </div>
+
+            <h3>Limit Points</h3>
+
+            <p>Equilibrium paths can be characterized by the presence of <strong>limit points</strong>.</p>
+
+            <figure class="diagram">
+                <img src="images/LN_C5_1_Intro/limit_point_equilibrium_curve.png" alt="Load-displacement curve showing limit point (relative maximum)">
+                <figcaption>Figure 2: Equilibrium path with limit point (relative maximum)</figcaption>
+            </figure>
+
+            <p>After reaching a limit point, an increase in the load parameter can determine a <strong>drastic change of configuration</strong> (snap-through behavior).</p>
+        </section>
+
+        <!-- 1 DOF THEORY SECTION -->
+        <section class="section" id="1dof-theory">
+            <h2>1 DOF Examples - Energy Principles</h2>
+
+            <p>The stability is here analyzed using <strong>energy principles</strong>.</p>
+
+            <div class="equation-box">
+                \[\Delta\Pi = \Pi(\theta + \delta\theta, P) - \Pi(\theta, P)\]
+            </div>
+
+            <p>Taylor expansion gives:</p>
+            \[\Delta\Pi = \Pi'(\theta, P)\Big|_{\theta_{eq}} \delta\theta + \frac{1}{2!}\Pi''(\theta, P)\Big|_{\theta_{eq}} \delta\theta^2 + \frac{1}{3!}\Pi'''(\theta, P)\Big|_{\theta_{eq}} \delta\theta^3 + \cdots\]
+
+            <div class="stability-condition">
+                <h4>Equilibrium Condition</h4>
+                \[\boxed{\Pi'(\theta, P)\Big|_{\theta_{eq}} = 0 \quad \forall \delta\theta}\]
+            </div>
+
+            <p>For an equilibrium configuration, the sign of \(\Delta\Pi\) depends on the second order term:</p>
+
+            <div class="stability-condition">
+                <h4>Stability Condition</h4>
+                \[\boxed{\Pi''(\theta, P)\Big|_{\theta_{eq}} \geq 0 \quad \forall \delta\theta}\]
+            </div>
+
+            <p>The transition from stability \(\left(\Pi''(\theta, P)\Big|_{\theta_{eq}} \geq 0\right)\) to instability is represented by:</p>
+
+            <div class="equation-box">
+                \[\boxed{\Pi''(\theta, P)\Big|_{\theta_{eq}} = 0}\]
+                <p style="margin-top: 10px;"><strong>← NEUTRAL EQUILIBRIUM METHOD</strong></p>
+            </div>
+
+            <div class="note">
+                <strong>Note:</strong> This is not the only possible method; see Trefftz method (later).
+            </div>
+        </section>
+
+        <!-- EXAMPLE 1 -->
+        <section class="example-section" id="example1">
+            <div class="example-header">
+                <h2>Example 1: Cantilever with Rotational Spring</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Problem Setup</h3>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/cantilever_beam_pin_support.png" alt="Cantilever beam with pin support at left end, angle theta, length l, and horizontal force P">
+                    <figcaption>Figure 3: Rigid bar with rotational spring at pin support, loaded by horizontal force P</figcaption>
+                </figure>
+
+                <p>Consider a rigid bar of length \(\ell\) with a rotational spring of stiffness \(K\) at the pin support. A horizontal force \(P\) is applied at the free end.</p>
+            </div>
+
+            <div class="solution">
+                <h3>Solution</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Total Potential Energy</h4>
+                    \[\Pi = \frac{1}{2}K\theta^2 - Pu\]
+                    <p>where the horizontal displacement is:</p>
+                    \[u = \ell(1 - \cos\theta)\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: First Derivative (Equilibrium)</h4>
+                    \[\Pi' = K\theta - P\ell\sin\theta\]
+                    <p>Setting \(\Pi' = 0\) for equilibrium:</p>
+                    <div class="equation-box">
+                        \[\boxed{K\theta = P\ell\sin\theta}\]
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Equilibrium Paths</h4>
+                    <p>Two equilibrium paths can be identified as solutions:</p>
+                    <ol class="numbered-list">
+                        <li><strong>Path 1:</strong> \(\theta = 0\)</li>
+                        <li><strong>Path 2:</strong> \(P = \frac{K}{\ell}\frac{\theta}{\sin\theta}\)</li>
+                    </ol>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 4: Second Derivative (Stability)</h4>
+                    \[\Pi'' = K - P\ell\cos\theta\]
+                </div>
+
+                <div class="case-analysis">
+                    <h5>a. Equilibrium Path 1 (\(\theta = 0\))</h5>
+                    \[\Pi''\Big|_{\theta=0} = K - P\ell \begin{cases} > 0 & \text{if} \quad P < K/\ell \quad \text{(stable)} \\ < 0 & \text{if} \quad P > K/\ell \quad \text{(unstable)} \end{cases}\]
+                </div>
+
+                <div class="case-analysis">
+                    <h5>b. Equilibrium Path 2 \(\left(P = \frac{K}{\ell}\frac{\theta}{\sin\theta}\right)\)</h5>
+                    \[\Pi''\Big|_{P = \frac{K}{\ell}\frac{\theta}{\sin\theta}} = K - \frac{K}{\ell}\frac{\theta}{\sin\theta} \cdot \ell\cos\theta = K\left(1 - \frac{\theta}{\tan\theta}\right) > 0 \quad \forall\theta\]
+                    <p><strong>This path is always stable!</strong></p>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/symmetric_stable_bifurcation_diagram.png" alt="Bifurcation diagram showing P versus theta with stable and unstable equilibrium paths">
+                    <figcaption>Figure 4: Symmetric stable bifurcation diagram for Example 1</figcaption>
+                </figure>
+
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol class="numbered-list">
+                        <li>The bifurcation determines the passage from stable to unstable equilibrium (one of the three paths is unstable)</li>
+                        <li>The bifurcation is, in this case, <strong>symmetric and stable</strong></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMPLE 1 WITH IMPERFECTIONS -->
+        <section class="example-section" id="example1-imperfect">
+            <div class="example-header">
+                <h2>Example 1: Including Imperfections</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Problem Setup</h3>
+                
+                <p>Let's analyze the effect of a small deviation from the nominal geometry on the response of a structure characterized by a symmetric and stable bifurcation.</p>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/inclined_beam_imperfection.png" alt="Inclined beam with pin support, initial angle theta_0, deflection angle theta, length l, and horizontal force P">
+                    <figcaption>Figure 5: Imperfect structure with initial inclination \(\theta_0\)</figcaption>
+                </figure>
+            </div>
+
+            <div class="solution">
+                <h3>Solution</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Total Potential Energy</h4>
+                    \[\Pi = \frac{1}{2}K(\theta - \theta_0)^2 - Pu\]
+                    <p>where:</p>
+                    \[u = \ell\cos\theta_0 - \ell\cos\theta\]
+                    <p>Expanding:</p>
+                    \[\Pi = \frac{1}{2}K\left(\theta^2 + \theta_0^2 - 2\theta\theta_0\right) - P\ell\cos\theta_0 + P\ell\cos\theta\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: Derivatives</h4>
+                    \[\Pi' = K(\theta - \theta_0) - P\ell\sin\theta\]
+                    \[\Pi'' = K - P\ell\cos\theta\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Equilibrium Condition</h4>
+                    \[K(\theta - \theta_0) - P\ell\sin\theta = 0\]
+                    <p><strong>\(\theta = 0\) is not a solution!</strong></p>
+                    <p>The only solution is:</p>
+                    <div class="final-answer">
+                        \[\boxed{P = \frac{K(\theta - \theta_0)}{\ell\sin\theta}}\]
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 4: Stability Analysis</h4>
+                    \[\Pi''\Big|_{P = \frac{K(\theta - \theta_0)}{\ell\sin\theta}} = K - \frac{K(\theta - \theta_0)}{\ell\sin\theta} \cdot \ell\cos\theta = K\left(1 - \frac{\theta - \theta_0}{\tan\theta}\right)\]
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/stability_second_derivative_diagram.png" alt="Stability diagram showing second derivative of potential energy versus theta">
+                    <figcaption>Figure 6: Second derivative of potential energy showing stability transition</figcaption>
+                </figure>
+
+                <div class="case-analysis">
+                    <p>Define \(\bar{\theta}\) such that: \(1 - \frac{\theta - \theta_0}{\tan\theta} = 0\)</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>\(\theta_{cr} < \theta < 0\): <strong>unstable equilibrium</strong></li>
+                        <li>\(\theta = \theta_{cr}\) or \(\theta > 0\): <strong>stable equilibrium</strong></li>
+                    </ul>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/secondary_path_bifurcation.png" alt="Bifurcation diagram showing transition to secondary path">
+                    <figcaption>Figure 7: Bifurcation diagram with imperfection showing modified equilibrium paths</figcaption>
+                </figure>
+
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol class="numbered-list">
+                        <li><strong>No more bifurcation!</strong> As \(P\) is increased, the structure follows the equilibrium path</li>
+                        <li>In the neighborhood of the bifurcation of the "perfect structure" a sudden increase of \(\theta\) is observed for small increments of \(P\) → the critical load of the perfect structure is a useful information</li>
+                        <li>A transition to the secondary path is made possible if energy is introduced in the system</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMPLE 1 LINEARIZED -->
+        <section class="example-section" id="example1-linearized">
+            <div class="example-header">
+                <h2>Example 1: Linearized Analysis</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Motivation</h3>
+                <p>Let's consider the analysis of the elastic stability in the context of a linearized analysis. This is the kind of analysis performed by the majority of finite element codes.</p>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/linearized_cantilever_beam.png" alt="Simple cantilever beam for linearized analysis">
+                    <figcaption>Figure 8: Cantilever beam setup for linearized stability analysis</figcaption>
+                </figure>
+            </div>
+
+            <div class="solution">
+                <h3>Solution</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Total Potential Energy</h4>
+                    \[\Pi = \frac{1}{2}K\theta^2 - P\ell + P\ell\cos\theta\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: Taylor Expansion</h4>
+                    \[\Pi = \delta\Pi + \frac{1}{2!}\delta^2\Pi + \cdots\]
+                    
+                    <p>First variation:</p>
+                    \[\delta\Pi = K\theta \cdot \delta\theta - P\ell\sin\theta\Big|_{\theta=0} \delta\theta = 0\]
+                    
+                    <p>Second variation:</p>
+                    \[\delta^2\Pi = \left(K - P\ell\cos\theta\right)\Big|_{\theta=0} \delta\theta^2 = (K - P\ell)\delta\theta^2\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Quadratic Approximation</h4>
+                    \[\Pi \simeq \frac{1}{2}(K - P\ell)\theta^2 \quad \text{(quadratic } \Pi \text{ = linear equations)}\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 4: Equilibrium</h4>
+                    \[\Pi' = (K - P\ell)\theta = 0\]
+                    <p>This is a <strong>1 × 1 eigenvalue problem</strong>.</p>
+                    
+                    <div class="equation-box">
+                        <p>The equilibrium solutions are:</p>
+                        <ol style="text-align: left; margin-left: 40%;">
+                            <li>\(\theta = 0\) (trivial solution)</li>
+                            <li>\(P = K/\ell\) (non-trivial solution)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/two_path_bifurcation_stable.png" alt="Bifurcation diagram showing two equilibrium paths">
+                    <figcaption>Figure 9: Linearized analysis bifurcation diagram</figcaption>
+                </figure>
+
+                <div class="solution-step">
+                    <h4>Step 5: Stability Analysis</h4>
+                    
+                    <div class="case-analysis">
+                        <h5>a. Equilibrium Path 1 (\(\theta = 0\))</h5>
+                        \[\Pi''\Big|_{\theta=0} = K - P\ell > 0 \quad \text{if} \quad P < K/\ell\]
+                    </div>
+
+                    <div class="case-analysis">
+                        <h5>b. Equilibrium Path 2 (\(P = K/\ell\))</h5>
+                        \[\Pi''\Big|_{P=K/\ell} = K - K = 0\]
+                    </div>
+                </div>
+
+                <div class="remarks">
+                    <h4>Important Limitation</h4>
+                    <p><strong>No information regarding the stability of the equilibrium beyond the bifurcation!</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMPLE 1 POST-BUCKLING -->
+        <section class="example-section" id="example1-postbuckling">
+            <div class="example-header">
+                <h2>Example 1: Initial Post-Buckling Analysis</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Motivation</h3>
+                <p>By considering a second order Taylor expansion for \(\Pi\), nothing can be said on the stability of the equilibrium paths departing from the bifurcation. One possibility is to raise the order of the expansion.</p>
+            </div>
+
+            <div class="solution">
+                <h3>Solution</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Higher Order Expansion</h4>
+                    \[\Pi = \frac{1}{2}K\theta^2 - P\ell + P\ell\cos\theta\]
+                    
+                    <p>Computing derivatives:</p>
+                    \[\delta\Pi = 0 \cdot \delta\theta\]
+                    \[\delta^2\Pi = (K - P\ell)\delta\theta^2\]
+                    \[\delta^3\Pi = P\ell\sin\theta\Big|_{\theta=0} \delta\theta^3 = 0 \cdot \delta\theta^3\]
+                    \[\delta^4\Pi = P\ell\cos\theta\Big|_{\theta=0} \delta\theta^4 = P\ell \cdot \delta\theta^4\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: Fourth-Order Approximation</h4>
+                    \[\Pi = \frac{1}{2}(K - P\ell)\theta^2 + \frac{1}{4!}P\ell\theta^4\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Equilibrium</h4>
+                    <p>For small deviations with respect to \(\theta = 0\), the quartic term is negligible (if compared to the quadratic one):</p>
+                    <ol class="numbered-list">
+                        <li>\(\theta = 0\)</li>
+                        <li>\(P = K/\ell\)</li>
+                    </ol>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 4: Stability with Higher Order Terms</h4>
+                    \[\Pi'' = K - P\ell + \frac{1}{2}P\ell\theta^2\]
+
+                    <div class="case-analysis">
+                        <h5>a. Equilibrium Path 1 (\(\theta = 0\))</h5>
+                        \[\Pi''\Big|_{\theta=0} = K - P\ell > 0 \quad \text{if} \quad P < K/\ell\]
+                    </div>
+
+                    <div class="case-analysis">
+                        <h5>b. Equilibrium Path 2 (\(P = K/\ell\))</h5>
+                        \[\Pi''\Big|_{P=K/\ell} = K - K + \frac{1}{2}\frac{K}{\ell}\ell\theta^2 = \frac{1}{2}K\theta^2 > 0 \quad \forall\theta\]
+                        <p><strong>The secondary path is stable!</strong></p>
+                    </div>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/post_buckling_bifurcation_diagram.png" alt="Post-buckling bifurcation diagram showing stable equilibrium paths">
+                    <figcaption>Figure 10: Post-buckling analysis confirms stable symmetric bifurcation</figcaption>
+                </figure>
+
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol class="numbered-list">
+                        <li>Higher order terms make it possible the investigation of the stability of the equilibrium paths beyond the bifurcation</li>
+                        <li>Far away from \(\theta = 0\), the results here derived could be wrong</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMPLE 2 -->
+        <section class="example-section" id="example2">
+            <div class="example-header">
+                <h2>Example 2: Spring at Tip</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Problem Setup</h3>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/beam_with_spring_support.png" alt="Beam structure with spring support at tip">
+                    <figcaption>Figure 11: Rigid bar with spring at tip measuring vertical displacement</figcaption>
+                </figure>
+
+                <p>In this example, the spring measures the vertical displacement of the tip rather than the rotation at the support.</p>
+            </div>
+
+            <div class="solution">
+                <h3>Solution</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Total Potential Energy</h4>
+                    \[\Pi = \frac{1}{2}K(\ell\sin\theta)^2 - Pu \quad \text{where} \quad u = \ell(1 - \cos\theta)\]
+                    \[\Pi = \frac{1}{2}K\ell^2\sin^2\theta - P\ell + P\ell\cos\theta\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: Equilibrium Condition</h4>
+                    \[\Pi' = K\ell^2\sin\theta\cos\theta - P\ell\sin\theta = 0\]
+                    
+                    <p>Solutions:</p>
+                    <ol class="numbered-list">
+                        <li>\(\theta = 0\)</li>
+                        <li>\(P = K\ell\cos\theta\)</li>
+                    </ol>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Stability Analysis</h4>
+                    \[\Pi'' = K\ell^2\left(\cos^2\theta - \sin^2\theta\right) - P\ell\cos\theta\]
+
+                    <div class="case-analysis">
+                        <h5>a. Equilibrium Path 1 (\(\theta = 0\))</h5>
+                        \[\Pi'' = K\ell^2 - P\ell > 0 \quad \text{if} \quad P < K\ell\]
+                    </div>
+
+                    <div class="case-analysis">
+                        <h5>b. Equilibrium Path 2 (\(P = K\ell\cos\theta\))</h5>
+                        \[\Pi'' = K\ell^2(\cos^2\theta - \sin^2\theta) - K\ell^2\cos^2\theta = -K\ell^2\sin^2\theta < 0 \quad \forall\theta\]
+                        <p><strong>This path is always unstable!</strong></p>
+                    </div>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/asymmetric_unstable_bifurcation.png" alt="Asymmetric unstable bifurcation diagram">
+                    <figcaption>Figure 12: Symmetric <strong>unstable</strong> bifurcation diagram for Example 2</figcaption>
+                </figure>
+
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol class="numbered-list">
+                        <li>The bifurcation is now <strong>symmetric and unstable</strong></li>
+                        <li>After the bifurcation the structure undergoes a <strong>catastrophic failure</strong> (according to this model)</li>
+                        <li>All the equilibrium paths beyond the bifurcation are unstable</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMPLE 2 WITH IMPERFECTIONS -->
+        <section class="example-section" id="example2-imperfect">
+            <div class="example-header">
+                <h2>Example 2: With Imperfections</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Problem Setup</h3>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/beam_imperfection_spring_support.png" alt="Inclined beam with spring at tip and initial imperfection">
+                    <figcaption>Figure 13: Imperfect structure for Example 2 with initial angle \(\theta_0\)</figcaption>
+                </figure>
+            </div>
+
+            <div class="solution">
+                <h3>Solution</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Total Potential Energy</h4>
+                    \[\Pi = \frac{1}{2}K\left(\ell\sin\theta - \ell\sin\theta_0\right)^2 - P\left(\ell\cos\theta_0 - \ell\cos\theta\right)\]
+                    \[\Pi = \frac{1}{2}K\ell^2\left(\sin^2\theta - 2\sin\theta\sin\theta_0\right) + P\ell\cos\theta\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: Equilibrium</h4>
+                    \[\Pi' = K\ell^2\cos\theta\left(\sin\theta - \sin\theta_0\right) - P\ell\sin\theta = 0\]
+                    
+                    <p><strong>\(\theta = 0\) is not a solution!</strong></p>
+                    
+                    <div class="equation-box">
+                        \[P = K\ell\cos\theta\left(1 - \frac{\sin\theta_0}{\sin\theta}\right)\]
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Stability Analysis</h4>
+                    \[\Pi'' = K\ell^2\left(-\sin^2\theta + \cos^2\theta + \sin\theta\sin\theta_0\right) - P\ell\cos\theta\]
+                    
+                    <p>Evaluating at equilibrium:</p>
+                    \[\Pi''\Big|_{eq} = K\ell^2\left(-\sin^2\theta + \frac{\sin\theta_0}{\sin\theta}\right)\]
+                    
+                    <p>Define \(\bar{\theta}\) such that:</p>
+                    \[-\sin^2\bar{\theta} + \frac{\sin\theta_0}{\sin\bar{\theta}} = 0\]
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/complex_bifurcation_limit_load.png" alt="Complex bifurcation diagram with limit load and snap behavior">
+                    <figcaption>Figure 14: Bifurcation diagram for imperfect Example 2 showing limit load and snap-through</figcaption>
+                </figure>
+
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol class="numbered-list">
+                        <li>The perfect structure is characterized by an <strong>unstable post-buckling</strong> response. As a consequence, the introduction of geometric imperfections determines a <strong>drastic reduction</strong> of the max load carried by the structure.</li>
+                        <li>Note the presence of a <strong>limit load</strong>, followed by a <strong>snap</strong></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMPLE 3 -->
+        <section class="example-section" id="example3">
+            <div class="example-header">
+                <h2>Example 3: Two-Member Truss</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Problem Setup</h3>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/two_member_truss_structure.png" alt="Two-member truss structure with vertical load at apex">
+                    <figcaption>Figure 15: Two-member truss with vertical load P at apex</figcaption>
+                </figure>
+
+                <p>A symmetric two-member truss with pin supports at the base and vertical load \(P\) at the apex. Height is \(\ell\cos\theta\).</p>
+            </div>
+
+            <div class="solution">
+                <h3>Bifurcation Analysis Results</h3>
+
+                <p>The following bifurcation diagram can be obtained:</p>
+
+                <ul style="margin-left: 20px;">
+                    <li>The bifurcation is <strong>asymmetric</strong></li>
+                    <li>The perfect structure is characterized by the presence of one stable path and an unstable one (after the bifurcation)</li>
+                    <li>The presence of an unstable path determines a drastic reduction of the max load carried by the imperfect structure</li>
+                </ul>
+
+                <div class="note">
+                    <strong>Key Insight:</strong> Asymmetric bifurcations are particularly dangerous because even small imperfections can lead to significant load-carrying capacity reductions.
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 DOF EXAMPLE -->
+        <section class="example-section" id="2dof">
+            <div class="example-header">
+                <h2>2 DOF Example</h2>
+            </div>
+
+            <div class="problem">
+                <h3>Problem Setup</h3>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/two_dof_truss_system.png" alt="Two-degree-of-freedom system with two bars and springs">
+                    <figcaption>Figure 16: Two-degree-of-freedom system with angles \(\theta_1\) and \(\theta_2\)</figcaption>
+                </figure>
+
+                <p>Two rigid bars of length \(\ell\) connected in series. Rotational springs of stiffness \(K\) at the left support and at the middle joint. Horizontal force \(P\) at the right end.</p>
+            </div>
+
+            <div class="solution">
+                <h3>Solution</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Total Potential Energy</h4>
+                    \[\Pi = \frac{1}{2}K\theta_1^2 + \frac{1}{2}K(\theta_2 - \theta_1)^2 - Pu\]
+                    <p>where:</p>
+                    \[u = 2\ell - \ell\cos\theta_1 - \ell\cos\theta_2\]
+                    <p>Expanding:</p>
+                    \[\Pi = K\theta_1^2 + \frac{1}{2}K\theta_2^2 - K\theta_1\theta_2 + P\ell\cos\theta_2 + P\ell\cos\theta_1\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: Equilibrium Equations</h4>
+                    \[\delta\Pi = \frac{\partial\Pi}{\partial\theta_1}\delta\theta_1 + \frac{\partial\Pi}{\partial\theta_2}\delta\theta_2 = 0 \quad \forall \delta\theta_1, \delta\theta_2\]
+
+                    \[\frac{\partial\Pi}{\partial\theta_1} = 2K\theta_1 - K\theta_2 - P\ell\sin\theta_1\]
+                    \[\frac{\partial\Pi}{\partial\theta_2} = K\theta_2 - K\theta_1 - P\ell\sin\theta_2\]
+
+                    <div class="equation-box">
+                        <p><strong>The nonlinear equilibrium equations:</strong></p>
+                        \[2K\theta_1 - K\theta_2 - P\ell\sin\theta_1 = 0\]
+                        \[-K\theta_1 + K\theta_2 - P\ell\sin\theta_2 = 0\]
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Equilibrium Solutions</h4>
+                    <ol class="numbered-list">
+                        <li>\(\theta_1 = \theta_2 = 0\) (trivial solution)</li>
+                        <li>\(\theta_1 \neq 0\), \(\theta_2 \neq 0\) (can be computed using Newton-Raphson)</li>
+                    </ol>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 4: Stability Analysis</h4>
+                    \[\Delta\Pi = \delta\Pi + \frac{1}{2!}\delta^2\Pi + \cdots\]
+                    
+                    \[\delta^2\Pi = \frac{\partial^2\Pi}{\partial\theta_1^2}\delta\theta_1^2 + \frac{\partial^2\Pi}{\partial\theta_2^2}\delta\theta_2^2 + 2\frac{\partial^2\Pi}{\partial\theta_1\partial\theta_2}\delta\theta_1\delta\theta_2\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 5: Hessian Matrix at \(\theta_1 = \theta_2 = 0\)</h4>
+                    
+                    <p>Second derivatives evaluated at the trivial solution:</p>
+                    \[\frac{\partial^2\Pi}{\partial\theta_1^2}\Big|_{\theta_1=\theta_2=0} = 2K - P\ell\]
+                    \[\frac{\partial^2\Pi}{\partial\theta_2^2}\Big|_{\theta_1=\theta_2=0} = K - P\ell\]
+                    \[\frac{\partial^2\Pi}{\partial\theta_1\partial\theta_2} = -K\]
+
+                    <div class="equation-box">
+                        \[\delta^2\Pi = \underline{\delta\theta}^T \begin{bmatrix} 2K - P\ell & -K \\ -K & K - P\ell \end{bmatrix} \underline{\delta\theta} = \underline{\delta\theta}^T \underline{\underline{H}} \underline{\delta\theta}\]
+                        <p style="margin-top: 10px;">where \(\underline{\underline{H}}\) is the <strong>Hessian matrix</strong></p>
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 6: Stability Criterion</h4>
+                    <p>The solution is <strong>stable</strong> if \(\delta^2\Pi > 0\) \(\forall \delta\theta_1, \delta\theta_2\)</p>
+                    <p>⟹ the eigenvalues of \(\underline{\underline{H}}\) are \(> 0\).</p>
+                    
+                    <p>The solution loses its stability when \(\delta^2\Pi = 0\) for a set \(\underline{\delta\theta} \neq 0\).</p>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 7: Eigenvalue Problem</h4>
+                    \[\det\left(\underline{\underline{H}} - \lambda\underline{\underline{I}}\right) = \lambda^2 + 2(P\ell - 3K)\lambda + K^2 + P^2\ell^2 - 3P\ell K = 0\]
+
+                    <div class="final-answer">
+                        <p><strong>Eigenvalues:</strong></p>
+                        \[\lambda_1 = \frac{3-\sqrt{5}}{2}K - P\ell\]
+                        \[\lambda_2 = \frac{3+\sqrt{5}}{2}K + P\ell\]
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 8: Critical Load Analysis</h4>
+                    <table class="stability-table">
+                        <tr>
+                            <th>Condition</th>
+                            <th>\(\lambda_1\)</th>
+                            <th>\(\lambda_2\)</th>
+                            <th>Stability</th>
+                        </tr>
+                        <tr>
+                            <td>\(P < \frac{3-\sqrt{5}}{2}\frac{K}{\ell}\)</td>
+                            <td>\(> 0\)</td>
+                            <td>\(> 0\)</td>
+                            <td><strong>Stable</strong></td>
+                        </tr>
+                        <tr>
+                            <td>\(P > \frac{3-\sqrt{5}}{2}\frac{K}{\ell}\)</td>
+                            <td>\(< 0\)</td>
+                            <td>\(> 0\)</td>
+                            <td><strong>Unstable</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/three_dimensional_bifurcation_diagram.png" alt="Three-dimensional bifurcation diagram">
+                    <figcaption>Figure 17: 3D bifurcation diagram showing critical loads \(\frac{3-\sqrt{5}}{2}\frac{K}{\ell}\) and \(\frac{3+\sqrt{5}}{2}\frac{K}{\ell}\)</figcaption>
+                </figure>
+
+                <h3>Post-Bifurcation Analysis</h3>
+                <p>The analysis of the stability of the post-bifurcation paths can be performed numerically, by solving the nonlinear equilibrium equations and evaluating the eigenvalues for each equilibrium solution.</p>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/post_bifurcation_paths_diagram.png" alt="Post-bifurcation equilibrium paths with eigenvalue evolution">
+                    <figcaption>Figure 18: Post-bifurcation paths and eigenvalue evolution along different equilibrium branches</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 2 DOF LINEARIZED -->
+        <section class="example-section" id="2dof-linearized">
+            <div class="example-header">
+                <h2>2 DOF Example - Linearized</h2>
+            </div>
+
+            <div class="solution">
+                <h3>Linearized Analysis</h3>
+
+                <div class="solution-step">
+                    <h4>Step 1: Potential Energy with Linearization</h4>
+                    \[\Pi = K\theta_1^2 + \frac{1}{2}K\theta_2^2 - K\theta_1\theta_2 + \underbrace{P\ell\cos\theta_2 + P\ell\cos\theta_1}_{\text{contributions to linearize}}\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 2: Variations</h4>
+                    \[\Delta\Pi = \delta\Pi + \frac{1}{2!}\delta^2\Pi + \cdots\]
+                    
+                    <p>First variation:</p>
+                    \[\delta\Pi = \frac{\partial\Pi}{\partial\theta_1}\delta\theta_1 + \frac{\partial\Pi}{\partial\theta_2}\delta\theta_2\]
+                    \[= (2K\theta_1 - K\theta_2 - P\ell\sin\theta_1)\delta\theta_1 + (K\theta_2 - K\theta_1 - P\ell\sin\theta_2)\delta\theta_2\]
+                    
+                    <p>Second variation:</p>
+                    \[\delta^2\Pi = (2K - P\ell\cos\theta_1)\delta\theta_1^2 + (K - P\ell\cos\theta_2)\delta\theta_2^2 - 2K\delta\theta_1\delta\theta_2\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 3: Linearization Around \(\theta_1 = 0\), \(\theta_2 = 0\)</h4>
+                    
+                    <p>First variation at origin:</p>
+                    \[\delta\Pi\Big|_{\theta_1=\theta_2=0} = 0 \cdot \delta\theta_1 + 0 \cdot \delta\theta_2\]
+                    <p>⟹ \(\theta_1 = 0\), \(\theta_2 = 0\) is an equilibrium solution</p>
+                    
+                    <p>Second variation at origin:</p>
+                    \[\delta^2\Pi\Big|_{\theta_1=\theta_2=0} = (2K - P\ell)\delta\theta_1^2 + (K - P\ell)\delta\theta_2^2 - 2K\delta\theta_1\delta\theta_2\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 4: Matrix Form</h4>
+                    \[\delta^2\Pi = \begin{Bmatrix} \delta\theta_1 & \delta\theta_2 \end{Bmatrix}^T \begin{bmatrix} 2K - P\ell & -K \\ -K & K - P\ell \end{bmatrix} \begin{Bmatrix} \delta\theta_1 \\ \delta\theta_2 \end{Bmatrix} = \underline{\delta\theta}^T \underline{\underline{H}} \underline{\delta\theta}\]
+                </div>
+
+                <div class="solution-step">
+                    <h4>Step 5: Eigenvalues</h4>
+                    \[\begin{vmatrix} 2K - P\ell - \lambda & -K \\ -K & K - P\ell - \lambda \end{vmatrix} = 0\]
+
+                    <div class="final-answer">
+                        \[\lambda_1 = \frac{3-\sqrt{5}}{2}K - P\ell\]
+                        \[\lambda_2 = \frac{3+\sqrt{5}}{2}K + P\ell\]
+                        <p style="margin-top: 10px;">(as obtained previously from nonlinear analysis)</p>
+                    </div>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/LN_C5_1_Intro/critical_load_bifurcation_points.png" alt="Load diagram showing two critical load values">
+                    <figcaption>Figure 19: Critical loads from linearized analysis - bifurcation points identified but post-buckling behavior unknown</figcaption>
+                </figure>
+
+                <div class="remarks">
+                    <h4>Key Conclusion</h4>
+                    <p>As usual, the <strong>linearized approach provides information regarding the bifurcation</strong>, but <strong>not on the stability of the post-bifurcation paths</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUMMARY -->
+        <section class="section">
+            <h2>Summary of Key Results</h2>
+
+            <table class="stability-table">
+                <tr>
+                    <th>Example</th>
+                    <th>Bifurcation Type</th>
+                    <th>Critical Load</th>
+                    <th>Imperfection Sensitivity</th>
+                </tr>
+                <tr>
+                    <td>Example 1</td>
+                    <td>Symmetric Stable</td>
+                    <td>\(P_{cr} = K/\ell\)</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>Example 2</td>
+                    <td>Symmetric Unstable</td>
+                    <td>\(P_{cr} = K\ell\)</td>
+                    <td>High (catastrophic)</td>
+                </tr>
+                <tr>
+                    <td>Example 3</td>
+                    <td>Asymmetric</td>
+                    <td>—</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>2 DOF</td>
+                    <td>Multiple modes</td>
+                    <td>\(P_{cr} = \frac{3-\sqrt{5}}{2}\frac{K}{\ell}\)</td>
+                    <td>Depends on path</td>
+                </tr>
+            </table>
+
+            <div class="concept-box">
+                <h4>Main Takeaways</h4>
+                <ol class="numbered-list">
+                    <li><strong>Linearized analysis</strong> identifies critical loads but cannot determine post-buckling stability</li>
+                    <li><strong>Higher-order analysis</strong> is required for post-buckling behavior</li>
+                    <li><strong>Imperfection sensitivity</strong> is high for unstable bifurcations</li>
+                    <li><strong>Limit points</strong> can lead to snap-through behavior</li>
+                    <li>For <strong>N-DOF systems</strong>, the Hessian matrix eigenvalues determine stability</li>
+                </ol>
+            </div>
+        </section>
+
+    </article>
+</body>
+</html>

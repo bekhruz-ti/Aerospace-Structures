@@ -1,0 +1,142 @@
+{
+  "fem_continuum_discretization_concept.png": {
+    "suggested_name": "fem_continuum_discretization_concept",
+    "description": "Conceptual illustration showing 3D continuum divided into smaller 2D elements and a 3D element representation with nodes"
+  },
+  "truss_beam_system_example.png": {
+    "suggested_name": "truss_beam_system_example",
+    "description": "Simple truss or beam system showing two pin-jointed members forming a triangular structure"
+  },
+  "3d_body_subdivision_mesh.png": {
+    "suggested_name": "3d_body_subdivision_mesh",
+    "description": "3D body subdivision illustration showing transformation from solid body to mesh with finite elements"
+  },
+  "plate_beam_fem_models.png": {
+    "suggested_name": "plate_beam_fem_models",
+    "description": "Four diagrams showing thin plate and slender beam representations in both physical and FEM model forms"
+  },
+  "element_nodal_compatibility.png": {
+    "suggested_name": "element_nodal_compatibility",
+    "description": "3D element representation showing nodes and connectivity with arrow indicating nodal compatibility enforcement"
+  },
+  "pascal_triangle_basis_selection.png": {
+    "suggested_name": "pascal_triangle_basis_selection",
+    "description": "Pascal triangle diagram showing polynomial term selection for finite element basis functions"
+  },
+  "pascal_triangle_choice_annotations.png": {
+    "suggested_name": "pascal_triangle_choice_annotations",
+    "description": "Pascal triangle with choice annotations showing term selection for 2D element formulation"
+  },
+  "two_node_bar_element.png": {
+    "suggested_name": "two_node_bar_element",
+    "description": "Two-node linear bar element with length L and coordinate system"
+  },
+  "bar_element_shape_functions.png": {
+    "suggested_name": "bar_element_shape_functions",
+    "description": "Linear bar element showing shape function interpolation with nodes and coordinate system"
+  },
+  "three_node_quadratic_bar_element.png": {
+    "suggested_name": "three_node_quadratic_bar_element",
+    "description": "Three-node quadratic bar element showing node positions and element length divisions"
+  },
+  "quadratic_shape_functions_plot.png": {
+    "suggested_name": "quadratic_shape_functions_plot",
+    "description": "Quadratic shape functions plotted over three-node element showing parabolic interpolation"
+  },
+  "distributed_load_transformation.png": {
+    "suggested_name": "distributed_load_transformation",
+    "description": "Linear bar element with distributed load showing transformation to nodal forces"
+  },
+  "quadratic_element_distributed_load.png": {
+    "suggested_name": "quadratic_element_distributed_load",
+    "description": "Quadratic bar element with distributed load and nodal force representation"
+  },
+  "equivalent_nodal_forces.png": {
+    "suggested_name": "equivalent_nodal_forces",
+    "description": "Three-node element showing equivalent nodal forces from distributed loading"
+  },
+  "rectangular_membrane_element.png": {
+    "suggested_name": "rectangular_membrane_element",
+    "description": "Rectangular bilinear membrane element with four nodes and coordinate system"
+  },
+  "bilinear_pascal_triangle.png": {
+    "suggested_name": "bilinear_pascal_triangle",
+    "description": "Pascal triangle showing bilinear polynomial terms for 2D element"
+  },
+  "quadrilateral_element_nodes.png": {
+    "suggested_name": "quadrilateral_element_nodes",
+    "description": "Quadrilateral element showing node numbering and shape function construction in physical domain"
+  },
+  "rectangular_element_shape_functions.png": {
+    "suggested_name": "rectangular_element_shape_functions",
+    "description": "Rectangular element with shape function variation illustration showing nodal values"
+  },
+  "two_element_assembly.png": {
+    "suggested_name": "two_element_assembly",
+    "description": "Two-element assembly diagram showing element connectivity and node numbering"
+  },
+  "element_compatibility_assembly.png": {
+    "suggested_name": "element_compatibility_assembly",
+    "description": "Element assembly illustration showing compatibility enforcement at shared nodes"
+  },
+  "assembled_structure_renumbered.png": {
+    "suggested_name": "assembled_structure_renumbered",
+    "description": "Assembled structure showing node renumbering and element connectivity after compatibility enforcement"
+  },
+  "two_element_bar_forces.png": {
+    "suggested_name": "two_element_bar_forces",
+    "description": "Simple two-element bar structure with applied forces showing boundary conditions"
+  },
+  "penalty_spring_boundary_condition.png": {
+    "suggested_name": "penalty_spring_boundary_condition",
+    "description": "Two-element structure with penalty spring showing stiffness modification for boundary conditions"
+  },
+  "triangular_element_parametric.png": {
+    "suggested_name": "triangular_element_parametric",
+    "description": "Triangular element sketch illustrating parametric formulation concept"
+  },
+  "curved_boundary_approximation.png": {
+    "suggested_name": "curved_boundary_approximation",
+    "description": "Curved boundary approximation showing mesh refinement with straight-edged elements"
+  },
+  "isoparametric_mapping_transformation.png": {
+    "suggested_name": "isoparametric_mapping_transformation",
+    "description": "Isoparametric mapping illustration showing transformation from physical to computational domain for various element types"
+  },
+  "mesh_to_reference_element_mapping.png": {
+    "suggested_name": "mesh_to_reference_element_mapping",
+    "description": "Generic 2D mesh showing mapping from physical domain to computational reference element"
+  },
+  "isoparametric_membrane_mapping.png": {
+    "suggested_name": "isoparametric_membrane_mapping",
+    "description": "Isoparametric membrane element showing mapping from physical quadrilateral to reference square domain"
+  },
+  "bilinear_reference_element.png": {
+    "suggested_name": "bilinear_reference_element",
+    "description": "Bilinear reference element in computational coordinates showing shape functions and node positions"
+  },
+  "gauss_integration_points.png": {
+    "suggested_name": "gauss_integration_points",
+    "description": "Gauss integration points illustrated on reference element for numerical integration"
+  },
+  "element_aspect_ratio_quality.png": {
+    "suggested_name": "element_aspect_ratio_quality",
+    "description": "Square element mesh showing aspect ratio and element quality measures with stretched elements"
+  },
+  "gauss_integration_rules.png": {
+    "suggested_name": "gauss_integration_rules",
+    "description": "Gauss integration point diagrams showing 1-point and 2-point integration rules for quadrilateral elements"
+  },
+  "integration_hourglass_modes.png": {
+    "suggested_name": "integration_hourglass_modes",
+    "description": "Comparison of integration schemes showing 1-point rule versus hourglass deformation modes"
+  },
+  "cantilever_beam_stress_distribution.png": {
+    "suggested_name": "cantilever_beam_stress_distribution",
+    "description": "Cantilever beam with distributed load showing stress distribution and bending behavior"
+  },
+  "integration_barlow_points.png": {
+    "suggested_name": "integration_barlow_points",
+    "description": "Integration point and Barlow point locations for stress evaluation in quadrilateral element"
+  }
+}

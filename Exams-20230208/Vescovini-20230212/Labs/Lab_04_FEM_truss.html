@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear and Quadratic Truss Elements in Physical Coordinates</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --bg-remark: #ebf8ff;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .document {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        header .course-info {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        header .author {
+            font-style: italic;
+            color: #666;
+        }
+
+        .section {
+            margin: 50px 0;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .content-block {
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .remark {
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--bg-remark);
+            border-radius: 6px;
+            border-left: 4px solid #3182ce;
+        }
+
+        .remark h4 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        .figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .figure figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .equation-block {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .matrix-system {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+            overflow-x: auto;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="document">
+        <header>
+            <h1>Linear and Quadratic Truss Elements in Physical Coordinates</h1>
+            <p class="course-info">Course of Spacecraft Structures<br>AY 2017/2018</p>
+            <p class="author">Riccardo Vescovini<br>Politecnico di Milano, Department of Aerospace Science and Technology</p>
+        </header>
+
+        <main>
+            <!-- Section 1: Example with Uniform Load -->
+            <section class="section" id="example-uniform-load">
+                <h2>Example: Truss with Uniform Load</h2>
+                
+                <p>Consider a truss with axial stiffness EA, constant along the axis. The bar is loaded with an axial force per unit length, constant along the truss axis. The bar is fixed at one end, and free at the other end.</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/truss_uniform_load_fixed_free.png" alt="Fixed-free truss element with uniform distributed axial load">
+                    <figcaption>Figure 1: Fixed-free truss with uniform distributed load \(q(x) = \bar{q}\)</figcaption>
+                </figure>
+                
+                <h3>Differential Problem</h3>
+                <p>The exact solution of the problem can be obtained by solving the following differential problem:</p>
+                
+                <div class="equation-block">
+                    \[
+                    \begin{cases}
+                    EAu_{,xx} + \bar{q} = 0 \\
+                    u(0) = 0 \\
+                    u_{,x}(0) = 0
+                    \end{cases}
+                    \]
+                </div>
+                
+                <p>whose solution is in the form \(u = u^h + u^p\)</p>
+                
+                <p>and</p>
+                \[u^h = Ax + B \qquad u^p = -\frac{\bar{q}}{2EA}x^2\]
+                
+                <h3>Exact Solutions</h3>
+                <p>After imposing the boundary conditions, the solution is obtained as:</p>
+                \[u(x) = \frac{\bar{q}}{EA}\left(-\frac{x^2}{2} + lx\right)\]
+                
+                <p>while the strains and the axial force read:</p>
+                \[u_{,x} = \xi_{xx} = \frac{\bar{q}}{EA}(-x - l)\]
+                \[N_{xx} = EA\xi_{xx} = \bar{q}(-x - l)\]
+                
+                <div class="remark">
+                    <h4>Note</h4>
+                    <ul>
+                        <li>The displacements are quadratic with x</li>
+                        <li>The strains and the axial force are linear with x</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2: FE Formulation -->
+            <section class="section" id="fe-formulation">
+                <h2>FE Formulation</h2>
+                
+                <p>The finite element (FE) formulation relies upon the variational formulation of the problem, according to the Principle of Virtual Displacements. In particular, it is:</p>
+                
+                \[\int_l \delta\xi_{xx} N_{xx} \mathrm{d}x = \int_l \delta u q \mathrm{d}x\]
+                
+                <p>and recalling the strain-displacement relation \(\xi_{xx} = u_{,x}\)</p>
+                
+                <p>and the bar constitutive law</p>
+                \[N_{xx} = EAu_{,x} \quad \text{where} \quad N_{xx} = \int_A \sigma_{xx} \mathrm{d}A\]
+                
+                <p>It is obtained the weak form formulation of the problem in terms of the displacement component u:</p>
+                \[\int_l \delta u_{,x} EAu_{,x} \mathrm{d}x = \int_l \delta u q \mathrm{d}x\]
+            </section>
+
+            <!-- Section 3: FE Formulation - Linear Elements -->
+            <section class="section" id="fe-linear-elements">
+                <h2>FE Formulation: Linear Elements</h2>
+                
+                <p>The bar is now divided into a number \(N_{el}\) of elements of equal length \(l_{el}\), and corresponding to a total number \(N_{el}+1\) of nodes. The global axis is denoted with x:</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/finite_element_discretization_linear.png" alt="Finite element discretization with linear elements">
+                    <figcaption>Figure 2: Finite element discretization showing bar divided into elements with nodes and shape functions</figcaption>
+                </figure>
+                
+                <h3>Shape Functions</h3>
+                <p>Each element is composed of two nodes, generically denoted as A and B. A local reference system is introduced for defining the shape functions:</p>
+                
+                \[u(\xi) = N_A u_A + N_B u_B = \mathbf{N}\mathbf{u}_{el} \qquad \xi \in [0, l_{el}]\]
+                
+                <div class="two-column">
+                    <div>
+                        \[N_A = 1 - \frac{\xi}{l_{el}}\]
+                        <p>\(N_A(x_A) = 1 \quad N_A(x_B) = 0\)</p>
+                    </div>
+                    <div>
+                        \[N_B = \frac{\xi}{l_{el}}\]
+                        <p>\(N_B(x_A) = 0 \quad N_B(x_B) = 1\)</p>
+                    </div>
+                </div>
+                
+                <h3>Internal Virtual Work</h3>
+                <p>For each element, the internal virtual work reads:</p>
+                \[\delta W_{i,el} = \int_0^{l_{el}} \delta u_{,x} EAu_{,x} \mathrm{d}\xi\]
+                
+                <p>The displacement field is approximated by interpolating the nodal values by means of linear shape functions: \(u = \mathbf{N}\mathbf{u}_{el}\)</p>
+                
+                <p>Observing that the local axis ξ and global one x are related by a rigid translation as:</p>
+                \[\xi = x - x_{el} \quad \Rightarrow \quad \begin{cases} \mathrm{d}x = \mathrm{d}\xi \\ u_{,x} = u_{,\xi} \\ \mathbf{N}_{,x} = \mathbf{N}_{,\xi} \end{cases}\]
+                
+                <p>And so the internal work reads:</p>
+                \[\delta W_{i,el} = \delta\mathbf{u}_{el}^{\mathrm{T}} \int_0^{l_{el}} \mathbf{N}_{,\xi}^{\mathrm{T}} EA\mathbf{N}_{,\xi} \mathrm{d}\xi \; \mathbf{u}_{el} = \delta\mathbf{u}_{el}^{\mathrm{T}} \mathbf{K}_{el} \; \mathbf{u}_{el}\]
+                
+                <p>where the element stiffness matrix is:</p>
+                \[\mathbf{K}_{el} = \int_0^{l_{el}} \mathbf{N}_{,\xi}^{\mathrm{T}} EA\mathbf{N}_{,\xi} \mathrm{d}\xi = \frac{EA}{l_{el}} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}\]
+                
+                <h3>External Virtual Work</h3>
+                <p>The external virtual work is:</p>
+                \[\delta W_{e,el} = \int_{l_{el}} \delta u \bar{q} \mathrm{d}x\]
+                
+                <p>and substituting the finite element approximation is:</p>
+                \[\delta W_{e,el} = \delta\mathbf{u}_{el}^{\mathrm{T}} \bar{q} \int_0^{l_{el}} \mathbf{N}^{\mathrm{T}} \mathrm{d}\xi = \delta\mathbf{u}_{el}^{\mathrm{T}} \mathbf{f}_{el}\]
+                
+                <p>where, according to the uniform distribution of the load, it is:</p>
+                \[\mathbf{f}_{el} = \bar{q} \int_0^{l_{el}} \mathbf{N}^{\mathrm{T}} \mathrm{d}\xi = \bar{q} l_{el} \begin{Bmatrix} 1/2 \\ 1/2 \end{Bmatrix}\]
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/linear_element_load_distribution.png" alt="Load distribution on linear element">
+                    <figcaption>Figure 3: Projection of distributed load onto nodal forces for linear element</figcaption>
+                </figure>
+                
+                <p>The projection of the distributed load using the shape functions corresponds to reporting half of the resultant on the node A, and another half on the node B.</p>
+            </section>
+
+            <!-- Section 4: Results - 1 Linear Element -->
+            <section class="section" id="results-1-linear">
+                <h2>Results: 1 (Linear) Element</h2>
+                
+                <p>The simplest model consists in modeling the structure using one single element.</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/single_element_model_two_nodes.png" alt="Single element model with two nodes">
+                    <figcaption>Figure 4: Single linear element model with fixed support at node 1</figcaption>
+                </figure>
+                
+                <p>The discrete equations expressing the equilibrium conditions of the unconstrained system are:</p>
+                \[\frac{EA}{l_{el}} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \bar{q} l_{el} \begin{Bmatrix} 1/2 \\ 1/2 \end{Bmatrix}\]
+                
+                <p>The boundary condition at the node 1 can be imposed by removing the first row and the first column from the linear system, leading to the scalar problem:</p>
+                \[\frac{EA}{l_{el}} u_2 = \bar{q} l_{el} \frac{1}{2} \quad \Rightarrow \quad u_2 = \frac{\bar{q} l_{el}^2}{2EA}\]
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_one_linear_element_comparison.png" alt="Results comparison for one linear element">
+                    <figcaption>Figure 5: Comparison of FEM results (one linear element) versus exact solution</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <p>The approximation using one element is rather poor. The displacement is approximated as linear over the entire domain, whilst the axial force is constant.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Results - 2 Linear Elements -->
+            <section class="section" id="results-2-linear">
+                <h2>Results: 2 (Linear) Elements</h2>
+                
+                <p>Consider a finite element model with 2 elements.</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/two_element_model_three_nodes.png" alt="Two element model with three nodes">
+                    <figcaption>Figure 6: Two linear elements model with nodes 1, 2, and 3</figcaption>
+                </figure>
+                
+                <p>The linear system is obtained by assembling the contribution of the two elements:</p>
+                \[\frac{EA}{l_{el}} \begin{bmatrix} 1 & -1 & 0 \\ -1 & 1+1 & -1 \\ 0 & -1 & 1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} 1/2 \\ 1/2 + 1/2 \\ 1/2 \end{Bmatrix}\]
+                
+                <p>and imposing the boundary condition at the node 1:</p>
+                \[\frac{EA}{l_{el}} \begin{bmatrix} 1+1 & -1 \\ -1 & 1 \end{bmatrix} \begin{Bmatrix} u_2 \\ u_3 \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} 1/2 + 1/2 \\ 1/2 \end{Bmatrix}\]
+                
+                <p>from which:</p>
+                \[u_2 = \frac{3}{2} \frac{\bar{q}l_{el}^2}{EA} \qquad u_3 = 2\frac{\bar{q}l_{el}^2}{EA}\]
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_two_linear_elements_comparison.png" alt="Results comparison for two linear elements">
+                    <figcaption>Figure 7: Comparison of FEM results (two linear elements) versus exact solution</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <p>The accuracy of the results improves as the number of elements is increased. The displacement field is now piecewise linear, and the axial force is piecewise constant. Note that the exact solution is never achieved (for the problem at hand, it is outside the capabilities of linear elements).</p>
+                </div>
+            </section>
+
+            <!-- Section 6: Results - N Linear Elements -->
+            <section class="section" id="results-n-linear">
+                <h2>Results: N (Linear) Elements</h2>
+                
+                <p>The generic model composed by N nodes is:</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/n_element_model_generic.png" alt="Generic N element model">
+                    <figcaption>Figure 8: Generic finite element model with N nodes</figcaption>
+                </figure>
+                
+                <p>and the relevant set of linear equations reads:</p>
+                \[\frac{EA}{l_{el}} \begin{bmatrix} 1 & -1 & & & \\ -1 & 2 & -1 & & \\ & -1 & 2 & -1 & \\ & & -1 & 2 & -1 \\ & & & \cdots & \cdots & \cdots \\ & & & & -1 & 1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \\ u_4 \\ \vdots \\ u_N \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} 1/2 \\ 1 \\ 1 \\ 1 \\ \vdots \\ 1/2 \end{Bmatrix}\]
+                
+                <p>and imposing the boundary conditions:</p>
+                \[\frac{EA}{l_{el}} \begin{bmatrix} 2 & -1 & & & \\ -1 & 2 & -1 & & \\ & -1 & 2 & -1 & \\ & & & \cdots & \cdots & \cdots \\ & & & & -1 & 1 \end{bmatrix} \begin{Bmatrix} u_2 \\ u_3 \\ u_4 \\ \vdots \\ u_N \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} 1 \\ 1 \\ 1 \\ \vdots \\ 1/2 \end{Bmatrix}\]
+                
+                <h3>Results: 10 Linear Elements</h3>
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_ten_linear_elements_comparison.png" alt="Results comparison for ten linear elements">
+                    <figcaption>Figure 9: Comparison of FEM results (ten linear elements) versus exact solution</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <p>Using 10 elements, the displacement field is almost undistinguishable from the exact one. The difference between the exact and the approximated axial force is more noticeable (indeed the convergence of the generalized stresses is slower).</p>
+                </div>
+                
+                <h3>Results: 20 Linear Elements</h3>
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_twenty_linear_elements_comparison.png" alt="Results comparison for twenty linear elements">
+                    <figcaption>Figure 10: Comparison of FEM results (twenty linear elements) versus exact solution</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <p>With 20 elements, the quality of the approximation is further improved.</p>
+                </div>
+            </section>
+
+            <!-- Section 7: FE Formulation - Quadratic Elements -->
+            <section class="section" id="fe-quadratic-elements">
+                <h2>FE Formulation: Quadratic Elements</h2>
+                
+                <p>The bar is now divided into \(N_{el}\) elements of equal length \(l_{el}\). The elements are now characterized by the presence of a third node in the middle of the element. The global axis is denoted with x:</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/finite_element_discretization_quadratic.png" alt="Finite element discretization with quadratic elements">
+                    <figcaption>Figure 11: Quadratic finite element discretization with three nodes per element and quadratic shape functions</figcaption>
+                </figure>
+                
+                <h3>Shape Functions</h3>
+                <p>Defining with A and C the outer nodes and B the middle node, the displacement field is now approximated as the sum of three contributions:</p>
+                
+                \[u(\xi) = N_A u_A + N_B u_B + N_C u_C = \mathbf{N}\mathbf{u}_{el}\]
+                
+                <p>The quadratic shape functions are:</p>
+                \[N_A = 1 - 3\frac{\xi}{l_{el}} + 2\frac{\xi^2}{l_{el}^2} \qquad N_B = 4\frac{\xi}{l_{el}} - 4\frac{\xi^2}{l_{el}^2} \qquad N_C = -\frac{\xi}{l_{el}} + 2\frac{\xi^2}{l_{el}^2}\]
+                
+                <h3>Element Stiffness Matrix</h3>
+                <p>The element stiffness matrix is obtained by recalling the expression available from the internal virtual work, and considering now the vector of the quadratic shape functions:</p>
+                
+                \[\mathbf{K}_{el} = \int_0^{l_{el}} \mathbf{N}_{,\xi}^{\mathrm{T}} EA\mathbf{N}_{,\xi} \mathrm{d}\xi = \frac{EA}{l_{el}} \begin{bmatrix} 7/3 & -8/3 & 1/3 \\ -8/3 & 16/3 & -8/3 \\ 1/3 & -8/3 & 7/3 \end{bmatrix}\]
+                
+                <h3>Load Vector</h3>
+                <p>In a similar fashion, the vector of the applied loads is available from the expression of the external virtual work, leading to:</p>
+                
+                \[\mathbf{f}_{el} = \bar{q} \int_0^{l_{el}} \mathbf{N}^{\mathrm{T}} \mathrm{d}\xi = \bar{q}l_{el} \begin{Bmatrix} 1/6 \\ 2/3 \\ 1/6 \end{Bmatrix}\]
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/quadratic_element_load_distribution.png" alt="Load distribution on quadratic element">
+                    <figcaption>Figure 12: Projection of distributed load onto nodal forces for quadratic element</figcaption>
+                </figure>
+                
+                <p>Note that the projection of the load onto the quadratic shape functions (consistent nodal loads) leads to a somewhat counterintuitive distribution of the nodal loads. The two outer loads carry 1/6 of the total load acting on the element, while the mid-node carries 2/3 of the total load.</p>
+            </section>
+
+            <!-- Section 8: Results - 1 Quadratic Element -->
+            <section class="section" id="results-1-quadratic">
+                <h2>Results: 1 (Quadratic) Element</h2>
+                
+                <p>The model with 1 element is now characterized by three nodes (and thus three dofs).</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/single_quadratic_element_model.png" alt="Single quadratic element model">
+                    <figcaption>Figure 13: Single quadratic element model with three nodes</figcaption>
+                </figure>
+                
+                <p>The governing equations are:</p>
+                \[\frac{EA}{l_{el}} \begin{bmatrix} 7/3 & -8/3 & 1/3 \\ -8/3 & 16/3 & -8/3 \\ 1/3 & -8/3 & 7/3 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} 1/6 \\ 2/3 \\ 1/6 \end{Bmatrix}\]
+                
+                <p>and after imposing the boundary condition at the node 1:</p>
+                \[\frac{EA}{l_{el}} \begin{bmatrix} 16/3 & -8/3 \\ -8/3 & 7/3 \end{bmatrix} \begin{Bmatrix} u_2 \\ u_3 \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} 2/3 \\ 1/6 \end{Bmatrix}\]
+                
+                <p>and so:</p>
+                \[u_2 = \frac{3}{8} \frac{\bar{q}l_{el}^2}{EA} \qquad u_3 = \frac{1}{2} \frac{\bar{q}l_{el}^2}{EA}\]
+                
+                \[\Rightarrow u = N_2 u_2 + N_3 u_3 = \frac{\bar{q}}{EA}\left(-\frac{x^2}{2} + l_{el}x\right)\]
+                
+                <p><strong>which is the exact solution of the problem</strong></p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_one_quadratic_element_comparison.png" alt="Results comparison for one quadratic element">
+                    <figcaption>Figure 14: Comparison of FEM results (one quadratic element) versus exact solution</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <p>The FEM solution converges to the exact one, using one single element. This is not surprising as three-node elements allow for a quadratic description of the displacement field, and a linear description of the axial force. For the problem at hand, the exact displacement is linear, and the axial force is constant. It follows that the exact solution can be correctly represented by the FEM approximation.</p>
+                </div>
+            </section>
+
+            <!-- Section 9: Example with Linear Load -->
+            <section class="section" id="example-linear-load">
+                <h2>Example: Truss with Linear Load</h2>
+                
+                <p>Consider now a truss with constant axial stiffness EA, and subjected to a linear load. The bar is fixed at one end, and free at the other end.</p>
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/truss_linear_load_fixed_free.png" alt="Fixed-free truss with linear load">
+                    <figcaption>Figure 15: Fixed-free truss with linearly varying distributed load \(q(x) = \bar{q}x\)</figcaption>
+                </figure>
+                
+                <h3>Differential Problem</h3>
+                <p>The exact solution of the problem can be obtained by solving the following differential problem:</p>
+                
+                \[\begin{cases} EAu_{,xx} + \bar{q}x = 0 \\ u(0) = 0 \\ u_{,x}(0) = 0 \end{cases}\]
+                
+                <p>whose solution is in the form \(u = u^h + u^p\)</p>
+                
+                <p>and</p>
+                \[u^h = Ax + B \qquad u^p = -\frac{\bar{q}}{6EA}x^3\]
+                
+                <h3>Exact Solutions</h3>
+                <p>After imposing the boundary conditions, the solution is obtained as:</p>
+                \[u(x) = \frac{\bar{q}}{EA}\left(\frac{l^2 x}{2} - \frac{x^3}{6}\right)\]
+                
+                <p>while the strains and the axial force read:</p>
+                \[u_{,x} = \xi_{xx} = \frac{\bar{q}}{EA}\left(\frac{l^2}{2} - \frac{x^2}{2}\right)\]
+                \[N_{xx} = EA\xi_{xx} = \bar{q}\left(\frac{l^2}{2} - \frac{x^2}{2}\right)\]
+                
+                <div class="remark">
+                    <h4>Note</h4>
+                    <ul>
+                        <li>The displacements are now <strong>cubic</strong> with x</li>
+                        <li>The strains and the axial force are <strong>quadratic</strong> with x</li>
+                        <li>Neither the two-node nor the three-node elements can exactly describe this behaviour; it is then interesting to compare the performance of the two elements</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 10: FE Formulation for Linear Load -->
+            <section class="section" id="fe-formulation-linear-load">
+                <h2>FE Formulation for Linear Load</h2>
+                
+                <p>The stiffness matrix of the linear and quadratic elements are the same obtained in the previous example.</p>
+                
+                <h3>External Virtual Work</h3>
+                <p>The external virtual work modifies as:</p>
+                \[\delta W_{e,el} = \int_{l_{el}} \delta u q \mathrm{d}x = \bar{q} \int_{l_{el}} \delta u x \mathrm{d}x\]
+                
+                <p>and recalling that \(\xi = x - x_1\):</p>
+                \[\delta W_{e,el} = \bar{q} \int_0^{l_{el}} \delta u (\xi + x_1) \mathrm{d}\xi\]
+                
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/element_coordinate_system_linear_load.png" alt="Element coordinate system for linear load">
+                    <figcaption>Figure 16: Element coordinate system showing local coordinate ξ and global coordinate x₁</figcaption>
+                </figure>
+                
+                <p>Substituting the finite element approximation is:</p>
+                \[\delta W_{e,el} = \delta\mathbf{u}_{el}^{\mathrm{T}} \bar{q} \int_0^{l_{el}} \mathbf{N}^{\mathrm{T}} (\xi + x_1) \mathrm{d}\xi = \delta\mathbf{u}_{el}^{\mathrm{T}} \mathbf{f}_{el}\]
+                
+                <h3>Load Vectors</h3>
+                <p>For the two- and three-node elements:</p>
+                
+                <div class="two-column">
+                    <div class="content-block">
+                        <h4>Linear Element (2-node)</h4>
+                        \[\mathbf{f}_{el} = \bar{q}l_{el} \begin{Bmatrix} \frac{l_{el}}{6} + \frac{x_1}{2} \\ \frac{l_{el}}{3} + \frac{x_1}{2} \end{Bmatrix}\]
+                    </div>
+                    <div class="content-block">
+                        <h4>Quadratic Element (3-node)</h4>
+                        \[\mathbf{f}_{el} = \bar{q}l_{el} \begin{Bmatrix} \frac{1}{6}x_1 \\ \frac{1}{3}l_{el} + \frac{2}{3}x_1 \\ \frac{1}{6}l_{el} + \frac{1}{6}x_1 \end{Bmatrix}\]
+                    </div>
+                </div>
+                
+                <h3>Single Element Systems</h3>
+                <p>If one single element is considered, the linear system expressing the equilibrium for the unconstrained problem is:</p>
+                
+                <div class="content-block">
+                    <h4>Linear Element</h4>
+                    \[\frac{EA}{l_{el}} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} \frac{l_{el}}{6} + \frac{x_1}{2} \\ \frac{l_{el}}{3} + \frac{x_1}{2} \end{Bmatrix}\]
+                </div>
+                
+                <div class="content-block">
+                    <h4>Quadratic Element</h4>
+                    \[\frac{EA}{l_{el}} \begin{bmatrix} 7/3 & -8/3 & 1/3 \\ -8/3 & 16/3 & -8/3 \\ 1/3 & -8/3 & 7/3 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix} = \bar{q}l_{el} \begin{Bmatrix} \frac{1}{6}x_1 \\ \frac{1}{3}l_{el} + \frac{2}{3}x_1 \\ \frac{1}{6}l_{el} + \frac{1}{6}x_1 \end{Bmatrix}\]
+                </div>
+            </section>
+
+            <!-- Section 11: Results for Linear Load -->
+            <section class="section" id="results-linear-load">
+                <h2>Results: Linear Load Case</h2>
+                
+                <h3>Results: 1 Element</h3>
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_one_linear_element_linear_load.png" alt="Results for one element with linear load">
+                    <figcaption>Figure 17: Comparison of linear and quadratic elements (1 element) for linear load case</figcaption>
+                </figure>
+                
+                <h3>Results: 2 Elements</h3>
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_two_linear_elements_linear_load.png" alt="Results for two elements with linear load">
+                    <figcaption>Figure 18: Comparison of linear and quadratic elements (2 elements) for linear load case</figcaption>
+                </figure>
+                
+                <h3>Results: 10 Elements</h3>
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/results_ten_linear_elements_linear_load.png" alt="Results for ten elements with linear load">
+                    <figcaption>Figure 19: Comparison of linear and quadratic elements (10 elements) for linear load case</figcaption>
+                </figure>
+            </section>
+
+            <!-- Section 12: Convergence of Results -->
+            <section class="section" id="convergence-results">
+                <h2>Convergence of the Results</h2>
+                
+                <h3>Total Potential Energy Convergence</h3>
+                <p>In analogy with the method of Ritz, the finite element solution is characterized by a monothonic convergence of the total potential energy, which becomes smaller and smaller as the number of dofs is increased.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>\(\bar{\Pi} = \frac{EA}{\bar{q}^2 l^3}\Pi\)</th>
+                            <th>2-node elements</th>
+                            <th>3-node elements</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>N = 1</td>
+                            <td>-5.5556</td>
+                            <td>-6.5972</td>
+                        </tr>
+                        <tr>
+                            <td>N = 2</td>
+                            <td>-6.3368</td>
+                            <td>-6.6623</td>
+                        </tr>
+                        <tr>
+                            <td>N = 5</td>
+                            <td>-6.6116</td>
+                            <td>-6.6666</td>
+                        </tr>
+                        <tr>
+                            <td>N = 10</td>
+                            <td>-6.6528</td>
+                            <td>-6.6667</td>
+                        </tr>
+                        <tr>
+                            <td>N = 100</td>
+                            <td>-6.6665</td>
+                            <td>-6.6667</td>
+                        </tr>
+                        <tr>
+                            <td>exact</td>
+                            <td>-6.6667</td>
+                            <td>-6.6667</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Error Norms</h3>
+                <p>The analysis of the convergence is performed by introducing two norms for measuring the error of the approximate solution (in this simple case the error can be obtained referring to available exact solution; to a more general extent, the reference solution could be taken as the one calculated with a refined mesh):</p>
+                
+                <div class="content-block">
+                    <h4>L₂ Norm</h4>
+                    \[||e^u||_{L_2} = \frac{\sqrt{\int_0^l (u - u_h)^2 \mathrm{d}x}}{\int_0^l u \mathrm{d}x}\]
+                </div>
+                
+                <div class="content-block">
+                    <h4>Energy Norm</h4>
+                    \[||e^u||_{en} = \frac{\sqrt{\int_0^l (u_{,x} - u_{h,x})^2 \mathrm{d}x}}{\int_0^l u_{,x} \mathrm{d}x}\]
+                </div>
+                
+                <p>Note that the energy norm contains the derivatives up to the order contained in the weak-form formulation of the problem. Accordingly, this norm provides a measure of the error in evaluating the derivative-related quantities of the unknown displacement field: (generalized) strains and (generalized) stresses.</p>
+                
+                <h3>Error Comparison Table</h3>
+                <p>Errors using 2- and 3-node elements:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th colspan="2">2-node elements</th>
+                            <th colspan="2">3-node elements</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>\(||e^u||_{L_2} \times 10^2\)</th>
+                            <th>\(||e^u||_{en} \times 10^2\)</th>
+                            <th>\(||e^u||_{L_2} \times 10^2\)</th>
+                            <th>\(||e^u||_{en} \times 10^2\)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>\(N_{el} = 1\)</td>
+                            <td>19.8009</td>
+                            <td>41.4491</td>
+                            <td>2.4714</td>
+                            <td>10.8135</td>
+                        </tr>
+                        <tr>
+                            <td>\(N_{el} = 5\)</td>
+                            <td>0.8672</td>
+                            <td>8.6931</td>
+                            <td>0.0218</td>
+                            <td>0.4686</td>
+                        </tr>
+                        <tr>
+                            <td>\(N_{el} = 10\)</td>
+                            <td>0.2183</td>
+                            <td>4.3709</td>
+                            <td>0.0027</td>
+                            <td>0.1180</td>
+                        </tr>
+                        <tr>
+                            <td>\(N_{el} = 20\)</td>
+                            <td>0.0547</td>
+                            <td>2.1897</td>
+                            <td>0.0003</td>
+                            <td>0.0296</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="remark">
+                    <h4>Remarks</h4>
+                    <ul>
+                        <li>The convergence of quadratic elements is faster with respect to the linear ones, both in terms of displacements and axial force</li>
+                        <li>In both cases, it can be noted that the convergence of displacements is faster with respect to the axial force (which is associated with the first derivative of the displacements)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 13: Convergence of Solution -->
+            <section class="section" id="convergence-solution">
+                <h2>Convergence of the Solution</h2>
+                
+                <p>The order of convergence can be assessed by plotting the results in logarithmic scale. The slope of the curve provides the order of convergence.</p>
+                
+                <h3>Linear Elements Convergence</h3>
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/convergence_linear_elements_log_plots.png" alt="Convergence plots for linear elements">
+                    <figcaption>Figure 20: Logarithmic convergence plots for linear elements showing L₂ and energy norm errors</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks - Linear Elements</h4>
+                    <ul>
+                        <li>The convergence in the L₂ norm has order 2: \(||e^u||_{L_2} = \left(\frac{l_{el}}{l}\right)^2\)</li>
+                        <li>The convergence in the energy norm (thus the convergence of strains, stresses and axial force) has order 1: \(||e^u||_{en} = \left(\frac{l_{el}}{l}\right)^1\)</li>
+                    </ul>
+                </div>
+                
+                <h3>Quadratic Elements Convergence</h3>
+                <figure class="figure">
+                    <img src="images/Lab_04_FEM_truss/convergence_quadratic_elements_log_plots.png" alt="Convergence plots for quadratic elements">
+                    <figcaption>Figure 21: Logarithmic convergence plots for quadratic elements showing L₂ and energy norm errors</figcaption>
+                </figure>
+                
+                <div class="remark">
+                    <h4>Remarks - Quadratic Elements</h4>
+                    <ul>
+                        <li>The convergence in the L₂ norm has order 3: \(||e^u||_{L_2} = \left(\frac{l_{el}}{l}\right)^3\)</li>
+                        <li>The convergence in the energy norm (thus the convergence of strains, stresses and axial force) has order 2: \(||e^u||_{en} = \left(\frac{l_{el}}{l}\right)^2\)</li>
+                    </ul>
+                </div>
+                
+                <h3>General Convergence Theory</h3>
+                <p>The results here presented illustrate a well-known result of the finite element theory, which can be generalized as:</p>
+                
+                \[||e||_{L_2} = Ch^{p+1}\]
+                \[||e||_{en} = Ch^p\]
+                
+                <p>where \(C\) is a constant, while \(p\) defines the order of completeness of the shape functions (for the linear element \(p=1\), and for the quadratic one \(p=2\)).</p>
+                
+                <div class="content-block">
+                    <h4>Key Insights</h4>
+                    <ul>
+                        <li>The refinement of the solution can thus be obtained by reducing the size of the element \(h\), or by increasing the order \(p\) of the polynomial expansion</li>
+                        <li>If the size of the elements is halved, then the error decreases by a factor of \(2^{p+1}\) and \(2^p\) in the L₂ and energy norm, respectively</li>
+                        <li>If linear elements are considered, then the factors are 4 and 2, whilst they are 8 and 4 in the case of quadratic elements</li>
+                        <li><strong>For the above mentioned reasons, quadratic elements usually provide a good tradeoff between number of dofs and accuracy</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 2px solid var(--primary-color); text-align: center; color: #666;">
+            <p>Course of Spacecraft Structures, AY 2017/2018</p>
+            <p>Politecnico di Milano, Department of Aerospace Science and Technology</p>
+        </footer>
+    </article>
+</body>
+</html>

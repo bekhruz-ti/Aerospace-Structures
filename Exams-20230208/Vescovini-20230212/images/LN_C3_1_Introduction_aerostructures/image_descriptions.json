@@ -1,0 +1,22 @@
+{
+  "beam_distributed_load_reactions.png": {
+    "suggested_name": "beam_distributed_load_reactions",
+    "description": "Simple beam diagram showing distributed load with upward reaction forces at supports"
+  },
+  "aeronautical_structure_ribs_spars.png": {
+    "suggested_name": "aeronautical_structure_ribs_spars",
+    "description": "Three-dimensional structural diagram of early aeronautical beam showing ribs, spars, and fabric cover with cross-hatched sections"
+  },
+  "one_cell_wing_cross_section.png": {
+    "suggested_name": "one_cell_wing_cross_section",
+    "description": "Cross-sectional view of 1-cell wing design showing internal structure with vertical and horizontal stiffening elements"
+  },
+  "rectangular_section_stiffeners.png": {
+    "suggested_name": "rectangular_section_stiffeners",
+    "description": "Rectangular cross-section showing stiffeners at corners with labels indicating longitudinal stiffening elements"
+  },
+  "rib_frame_configurations_comparison.png": {
+    "suggested_name": "rib_frame_configurations_comparison",
+    "description": "Two comparative structural diagrams showing rib/frame configurations with different spacing arrangements and buckling load analysis"
+  }
+}

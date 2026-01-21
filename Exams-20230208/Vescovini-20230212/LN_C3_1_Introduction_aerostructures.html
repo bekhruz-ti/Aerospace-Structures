@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Aerospace Structures</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-note: #ebf8ff;
+            --bg-important: #faf5ff;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .lecture-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .numbered-list {
+            margin: 15px 0 15px 30px;
+        }
+
+        .numbered-list li {
+            margin: 10px 0;
+        }
+
+        .bullet-list {
+            list-style-type: disc;
+            margin: 15px 0 15px 30px;
+        }
+
+        .bullet-list li {
+            margin: 8px 0;
+        }
+
+        .sub-list {
+            list-style-type: none;
+            margin: 5px 0 5px 20px;
+        }
+
+        .sub-list li::before {
+            content: "– ";
+        }
+
+        .highlight-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .important-box {
+            background: var(--bg-important);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #805ad5;
+            margin: 20px 0;
+        }
+
+        .note-box {
+            background: var(--bg-note);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #3182ce;
+            margin: 20px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .equation-box {
+            background: #fffff0;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border: 1px solid #ecc94b;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .stiffener-shapes {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 1.3rem;
+        }
+
+        .stiffener-shapes span {
+            text-align: center;
+        }
+
+        .stiffener-shapes .label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .conclusion-section {
+            background: linear-gradient(135deg, #f6f9fc 0%, #e9f2f9 100%);
+            border: 2px solid var(--primary-color);
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="lecture-document">
+        <header>
+            <h1>Introduction to Aerospace Structures</h1>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction to Loads -->
+            <section class="section" id="section-1">
+                <h2>1. Introduction and Load Types</h2>
+                
+                <p>The analysis and the design of aerospace structures starts from the evaluation of the loads acting on the structure.</p>
+                
+                <p>In general, the loads can be of different nature, for instance:</p>
+                
+                <ol class="numbered-list">
+                    <li>Aerodynamic forces</li>
+                    <li>Inertial forces</li>
+                    <li>Loads due to the propulsion system</li>
+                    <li>Pressure loads due to a \(\Delta p\) between inside and outside</li>
+                </ol>
+                
+                <div class="highlight-box">
+                    <p><strong>Note:</strong> For the scopes of this course the loads will always be assumed to be known and available from previous analyses in the form of input data.</p>
+                </div>
+                
+                <h3>The Preliminary Design Phase</h3>
+                
+                <p>The preliminary design phase relies upon simple idealizations of the structure. There is no sense in starting the design process with detailed, complex and costly models.</p>
+                
+                <p>The initial scheme should be:</p>
+                <ul class="bullet-list">
+                    <li>Easily understandable</li>
+                    <li>Provide insight into the role played by the many design variables involved in the design process</li>
+                    <li>Simple enough to allow the analysis of several configurations, design loads, etc.</li>
+                </ul>
+                
+                <div class="important-box">
+                    <p><strong>Important:</strong> Note that <em>simple</em> does not mean <em>simplistic</em>. In the initial phase too many details are not needed, so the mathematical model of the structure does not need to account for them.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Beam Model and Isostatic Schemes -->
+            <section class="section" id="section-2">
+                <h2>2. Beam Model Selection</h2>
+                
+                <p>Based on these considerations, a <strong>beam model</strong> is generally an adequate choice to begin the design process, indeed:</p>
+                
+                <ol class="numbered-list">
+                    <li>Many preliminary analyses can be easily performed</li>
+                    <li>Several details are not available yet</li>
+                </ol>
+                
+                <h3>Isostatic Schemes</h3>
+                
+                <p>The initial scheme can be imagined as an <span class="underline">isostatic</span> (i.e., <span class="underline">statically determined</span>) scheme. It is known that statically indeterminate schemes lead to solutions which are function of the stiffness distribution.</p>
+                
+                <p>It turns out that the analysis of the structure could be dependent on the stiffnesses of other parts of the structure, with the effect of increasing the complexity of the initial design.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Key Advantage:</strong> The adoption of isostatic schemes allows to design the various parts of the structure <span class="underline">independently</span> on the others.</p>
+                </div>
+                
+                <p>Again, note that this is not a suboptimal strategy, but an engineering approach to begin a complex and lengthy design loop.</p>
+            </section>
+
+            <!-- Section 3: Remarks on Isostatic Schemes -->
+            <section class="section" id="section-3">
+                <h2>3. Remarks on Model Selection</h2>
+                
+                <p>It can be useful to remark that:</p>
+                
+                <h3>3.1 Advantage of Isostatic Schemes</h3>
+                
+                <p>If an isostatic scheme is adopted, the internal actions are readily available from the applied loads (no information regarding the structure is needed), e.g.:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C3_1_Introduction_aerostructures/beam_distributed_load_reactions.png" alt="Simple beam diagram showing distributed load with upward reaction forces at supports">
+                    <figcaption>Figure 3.1: Simply supported beam with distributed load showing reaction forces</figcaption>
+                </figure>
+                
+                <div class="note-box">
+                    <p>The shear \(T\) and the bending moment \(M\) do not depend on \(EJ\), \(EA\), \(GJ\), \(GA^*\) (which have to be designed).</p>
+                </div>
+                
+                <h3>3.2 Limitations of Beam Models</h3>
+                
+                <p>While in many cases a beam model is a proper choice, in some other it can be at least questionable.</p>
+                
+                <p>Consider for instance the case of a <strong>wing with low aspect ratio</strong>:</p>
+                
+                <div class="highlight-box" style="text-align: center;">
+                    <p><em>[Delta wing planform illustration]</em></p>
+                    <p>It is hard to imagine this wing as a beam!</p>
+                    <p>A <strong>2D (plate) scheme</strong> would be the most natural (and proper) choice.</p>
+                </div>
+            </section>
+
+            <!-- Section 4: History of Aeronautical Structures -->
+            <section class="section" id="section-4">
+                <h2>4. Evolution of Aeronautical Structures</h2>
+                
+                <p>It is useful to briefly review the history and the evolution of aeronautical structures.</p>
+                
+                <h3>4.1 Early Aeronautical Beams</h3>
+                
+                <p>The early aeronautical beams were characterized by:</p>
+                
+                <ol class="numbered-list">
+                    <li><strong>Longerons (or spars):</strong> 1 or more</li>
+                    <li><strong>Ribs/frames</strong></li>
+                    <li><strong>Fabric cover</strong></li>
+                </ol>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C3_1_Introduction_aerostructures/aeronautical_structure_ribs_spars.png" alt="Three-dimensional structural diagram of early aeronautical beam showing ribs, spars, and fabric cover">
+                    <figcaption>Figure 4.1: Early aeronautical beam structure showing ribs, spars, and fabric cover</figcaption>
+                </figure>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Ribs</h4>
+                        <p>Transverse elements</p>
+                    </div>
+                    <div class="column">
+                        <h4>Spars</h4>
+                        <p>Longitudinal elements (connecting the upper and lower cover)</p>
+                    </div>
+                </div>
+                
+                <h3>4.2 Limitations of Early Designs</h3>
+                
+                <p>Thus:</p>
+                <ul class="bullet-list">
+                    <li>The cover was <strong>not capable</strong> of carrying or transmitting loads</li>
+                    <li>The torsional stiffness was <strong>very low</strong> (and almost due to the differential bending of the spars)</li>
+                </ul>
+                
+                <p>For the early, low speed vehicles the two previous remarks did not represent a strong limitation, and the structural configuration was then adequate.</p>
+                
+                <div class="important-box">
+                    <p><strong>Paradigm Shift:</strong> The increasing speed and needs for performance of the flying vehicles of the successive generations lead to a shift of paradigm of the structural configuration.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Modern Requirements -->
+            <section class="section" id="section-5">
+                <h2>5. Modern Structural Requirements</h2>
+                
+                <p>In particular, increasing velocities determined:</p>
+                
+                <h3>5.1 Higher Aerodynamic Loads</h3>
+                <ul class="bullet-list">
+                    <li>Higher torsional loads</li>
+                    <li>Need for higher torsional stiffnesses (fundamental for coping aeroelastic problems such as static divergence or flutter)</li>
+                </ul>
+                
+                <h3>5.2 Need for Stiffer Covers</h3>
+                <p>In order to guarantee proper aerodynamic shapes, not to alter the aerodynamic behaviour due to structural deformations.</p>
+                
+                <h3>5.3 Modern Structural Solutions</h3>
+                
+                <p>The kind of structural solutions that could address these needs were characterized by:</p>
+                
+                <ol class="numbered-list">
+                    <li><strong>Stressed skin</strong></li>
+                    <li><strong>Longitudinal stiffening elements</strong></li>
+                    <li><strong>Closed-box configurations</strong></li>
+                </ol>
+                
+                <p>Some examples are:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C3_1_Introduction_aerostructures/one_cell_wing_cross_section.png" alt="Cross-sectional view of 1-cell wing design showing internal structure with stiffening elements">
+                    <figcaption>Figure 5.1: Wing cross-section designs - 1 cell and 2 cell configurations</figcaption>
+                </figure>
+                
+                <div class="two-column">
+                    <div class="column" style="text-align: center;">
+                        <h4>1 Cell Design</h4>
+                        <p>Single closed box with stiffeners</p>
+                    </div>
+                    <div class="column" style="text-align: center;">
+                        <h4>2 Cell Design</h4>
+                        <p>Two compartments for increased torsional stiffness</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="text-align: center;">
+                    <h4>Supersonic Profile</h4>
+                    <p>Thin, diamond-shaped cross-section optimized for high-speed flight</p>
+                </div>
+            </section>
+
+            <!-- Section 6: Modern Structure Components -->
+            <section class="section" id="section-6">
+                <h2>6. Components of Modern Aeronautical Structures</h2>
+                
+                <p>The ingredients of a modern aeronautical structure can then be identified as:</p>
+                
+                <h3>6.1 Stressed Skin</h3>
+                
+                <p>The skin contributes to the load-carrying capabilities of the section. It is <strong>completely part of the structure</strong>.</p>
+                
+                <h3>6.2 Longitudinal Stiffening Elements (Stringers)</h3>
+                
+                <p>In addition to the spars, longitudinal elements running along the direction of the beam axis – and denoted as <strong>stringers</strong> or <strong>stiffeners</strong> – were introduced.</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C3_1_Introduction_aerostructures/rectangular_section_stiffeners.png" alt="Rectangular cross-section showing stiffeners at corners">
+                    <figcaption>Figure 6.1: Cross-section with longitudinal stiffeners</figcaption>
+                </figure>
+                
+                <p>They can be characterized by different sections:</p>
+                
+                <div class="stiffener-shapes">
+                    <span>\(\mathsf{Z}\)<span class="label">(zed)</span></span>
+                    <span>\(\mathsf{T}\)<span class="label">(t)</span></span>
+                    <span>\(\Omega\)<span class="label">(omega)</span></span>
+                    <span>\(\Gamma\)<span class="label">(gamma)</span></span>
+                </div>
+                
+                <p>Chosen according to several design considerations.</p>
+                
+                <h4>Functions of Stringers</h4>
+                
+                <p>In any case, the stringers:</p>
+                
+                <ol class="numbered-list" style="list-style-type: lower-alpha;">
+                    <li><strong>Sustain the normal stresses</strong> (thus no more sustained by the spar only)</li>
+                    <li><strong>Increase the buckling load</strong> of the panels of the cover</li>
+                </ol>
+                
+                <div class="equation-box">
+                    <p><strong>Buckling Load Relationship:</strong></p>
+                    <div class="two-column" style="background: transparent;">
+                        <div class="column" style="background: transparent;">
+                            <p>Without stiffeners (width \(b\)):</p>
+                            \[\sigma_{cr} \propto \frac{1}{b^2}\]
+                        </div>
+                        <div class="column" style="background: transparent;">
+                            <p>With stiffeners (width \(b_1 < b\)):</p>
+                            \[\sigma_{cr} \propto \frac{1}{b_1^2}\]
+                        </div>
+                    </div>
+                    <p><em>Smaller panel width → Higher critical buckling stress</em></p>
+                </div>
+            </section>
+
+            <!-- Section 7: Ribs and Frames -->
+            <section class="section" id="section-7">
+                <h2>7. Ribs and Frames</h2>
+                
+                <p>These are <strong>transverse elements</strong>, responsible for three main functions:</p>
+                
+                <ol class="numbered-list" style="list-style-type: lower-alpha;">
+                    <li>They <strong>allow the introduction of loads</strong> in the structure</li>
+                    <li>They <strong>preserve the shape</strong> of the section (as seen it is highly important for aerodynamic requirements)</li>
+                    <li>They <strong>increase the buckling load</strong> of the stiffened panels of the wing cover</li>
+                </ol>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C3_1_Introduction_aerostructures/rib_frame_configurations_comparison.png" alt="Two comparative structural diagrams showing rib/frame configurations with different spacing arrangements">
+                    <figcaption>Figure 7.1: Effect of rib spacing on buckling load - Configuration ① (length \(\ell_1\)) vs Configuration ② (length \(\ell_2 = \ell_1/2\))</figcaption>
+                </figure>
+                
+                <h3>7.1 Euler Buckling Analysis</h3>
+                
+                <p>The Euler buckling load of a beam is:</p>
+                
+                <div class="equation-box">
+                    \[P_{cr} = \frac{\pi^2 EJ}{\lambda^2} \propto \frac{1}{\ell_1^2}\]
+                </div>
+                
+                <p>Therefore, if \(\ell_2 = \ell_1/2\):</p>
+                
+                <div class="equation-box">
+                    \[\Rightarrow 4P_{cr}^{①} = P_{cr}^{②}\]
+                    <p><strong>Halving the rib spacing increases the buckling load by a factor of 4!</strong></p>
+                </div>
+                
+                <div class="important-box">
+                    <p><strong>Design Trade-off:</strong> Clearly the number of ribs cannot be increased just to improve the buckling performances. Each rib determines an <strong>increase of weight</strong>!</p>
+                    <p>The previous example simply demonstrates how a rib determines an increased buckling load.</p>
+                </div>
+            </section>
+
+            <!-- Section 8: Thin-Walled Structures -->
+            <section class="section conclusion-section" id="section-8">
+                <h2>8. Thin-Walled Structures: Conclusions</h2>
+                
+                <p>To conclude, it is remarked that aeronautical beams and structures, as well as most of the structures used in aerospace applications, are designed to be <strong>highly efficient structures</strong>; the <strong>weight is the most crucial aspect</strong>.</p>
+                
+                <p>In many cases – the wing boxes are just one example – the configurations are characterized by <strong>reduced thicknesses</strong> (of the order of few millimeters). The exiguity of the thicknesses should be put in relation also with the typical dimensions of the section, and for this reason, are commonly referred to as <span class="underline"><strong>thin-walled structures</strong></span>.</p>
+                
+                <h3>8.1 Key Aspects of Thin-Walled Structures</h3>
+                
+                <p>For thin-walled structures two aspects become relevant:</p>
+                
+                <div class="highlight-box">
+                    <h4>1. Shear Deformability</h4>
+                    <p>The shear stresses and the corresponding <span class="underline">shear deformability</span> play an important role on the structure's behaviour.</p>
+                    <p>When dealing with thin-walled beams, the shear deformability <strong>cannot be neglected</strong>, as it is commonly done for slender beams with compact sections.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>2. Buckling Susceptibility</h4>
+                    <p>The exiguity of the thicknesses leads to <strong>buckling-prone structures</strong>.</p>
+                    <p>The combination of thin-walled designs with set of loads that can promote instability makes the <strong>buckling behaviour an aspect of crucial importance</strong>.</p>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

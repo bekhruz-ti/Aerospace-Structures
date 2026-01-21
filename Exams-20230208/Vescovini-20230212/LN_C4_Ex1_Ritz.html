@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Mechanics: Ritz and Galerkin Methods - Exercise Solutions</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 15px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .boxed-equation {
+            border: 2px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .comparison-table th {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .note {
+            background: #fef5e7;
+            border-left: 4px solid #f6ad55;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note strong {
+            color: #c05621;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+        }
+
+        .subsection h4 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Structural Mechanics: Ritz and Galerkin Methods</h1>
+            <p class="subtitle">Exercise Solutions — Beam Bending, Torsion, and Vibration Analysis</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1: Cantilever Beam with Distributed Load -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Exercise 1: Cantilever Beam with Distributed Load</h2>
+                    <p class="problem-statement">
+                        Compare the mid-displacement obtained from:
+                    </p>
+                    <ul style="margin-left: 30px; margin-bottom: 20px;">
+                        <li>The exact solution</li>
+                        <li>The Ritz solution using 1, 2, and 3 trigonometric functions</li>
+                        <li>The Galerkin solution using 1 trigonometric function</li>
+                    </ul>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C4_Ex1_Ritz/cantilever_beam_distributed_load.png" alt="Cantilever beam with fixed support at left end and distributed load q along length">
+                        <figcaption>Figure 1: Cantilever beam with distributed load q, stiffness EJ, and length ℓ</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>1. Exact Solution</h4>
+                        <p>The governing equation and boundary conditions are:</p>
+                        \[\begin{cases} EJ \, W_{,xxxx} = q \\ W(0) = 0 \\ W_{,x}(0) = 0 \\ W(\ell) = 0 \\ W_{,x}(\ell) = 0 \end{cases} \leftarrow \text{essential conditions}\]
+                        
+                        <p>The solution is given by \(W = W^H + W^P\) where:</p>
+                        \[W^P = \frac{1}{24} \frac{q}{EJ} x^4\]
+                        \[W^H = A_0 + A_1 x + A_2 x^2 + A_3 x^3\]
+                        
+                        <p>Imposing the boundary conditions:</p>
+                        \[W(0) = 0 \quad \Rightarrow \quad A_0 = 0\]
+                        \[W_{,x}(0) = 0 \quad \Rightarrow \quad A_1 = 0\]
+                        \[W(\ell) = 0 \quad \Rightarrow \quad A_2 + A_3 \ell + \frac{q}{24EJ} \ell^2 = 0\]
+                        \[W_{,x}(\ell) = 0 \quad \Rightarrow \quad 2A_2 + 3A_3 \ell + \frac{q}{6EJ} \ell^2 = 0\]
+                        
+                        <p>Which leads to:</p>
+                        \[A_3 = -\frac{q}{12EJ} \ell \quad ; \quad A_2 = \frac{q}{24EJ} \ell^2\]
+                        
+                        <p>The exact displacement field is:</p>
+                        <div class="boxed-equation">
+                            \[W = \frac{q\ell^4}{24EJ} \left[ \left(\frac{x}{\ell}\right)^2 - 2\left(\frac{x}{\ell}\right)^3 + \left(\frac{x}{\ell}\right)^4 \right]\]
+                        </div>
+                        
+                        <p>Mid-span displacement:</p>
+                        \[W(\ell/2) = \frac{q\ell^4}{384EJ}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>2. Ritz Solution — 1 Term</h4>
+                        <p>The trial function is taken as:</p>
+                        \[\phi_1 = 1 - \cos \frac{2\pi x}{\ell}\]
+                        <p>and \(W = C_1 \phi_1\)</p>
+                        
+                        <p>Note that the trial function satisfies the 4 essential conditions:</p>
+                        \[W(0) = W_{,x}(0) = W(\ell) = W_{,x}(\ell) = 0\]
+                        
+                        <p>The stiffness matrix and the load vectors are:</p>
+                        \[K_{ij} = \int_0^\ell \phi_{i,xx} \, EJ \, \phi_{j,xx} \, dx\]
+                        \[f_i = \int_0^\ell \phi_i \, q \, dx\]
+                        
+                        <p>In this case:</p>
+                        \[K_{11} = \frac{8\pi^4 EJ}{\ell^3} \qquad f_1 = q\ell\]
+                        
+                        <p>The unknown amplitude is:</p>
+                        \[C_1 = \frac{f_1}{K_{11}} = \frac{q\ell^4}{8\pi^4 EJ}\]
+                        
+                        <p>The displacement field is:</p>
+                        \[W = \frac{q\ell^4}{8\pi^4 EJ} \left(1 - \cos \frac{2\pi x}{\ell}\right)\]
+                        
+                        <p>Mid-span displacement:</p>
+                        \[W(\ell/2) = \frac{q\ell^4}{4EJ\pi^4}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>3. Ritz Solution — 2 Terms</h4>
+                        <p>Trial functions:</p>
+                        \[\phi_1 = 1 - \cos \frac{2\pi x}{\ell} \qquad \phi_2 = 1 - \cos \frac{4\pi x}{\ell}\]
+                        
+                        <p>The stiffness matrix reads:</p>
+                        \[K_{11} = \frac{8\pi^4 EJ}{\ell^3} \quad \text{(already available)}\]
+                        \[K_{12} = K_{21} = \int_0^\ell \phi_{1,xx} \, EJ \, \phi_{2,xx} \, dx = 0\]
+                        \[K_{22} = \int_0^\ell \phi_{2,xx} \, EJ \, \phi_{2,xx} \, dx = \frac{128\pi^4 EJ}{\ell^3}\]
+                        
+                        <p>The load vector is:</p>
+                        \[f_1 = q\ell \qquad f_2 = q\ell\]
+                        
+                        <p>The system to be solved is:</p>
+                        \[\begin{bmatrix} K_{11} & 0 \\ 0 & K_{22} \end{bmatrix} \begin{Bmatrix} C_1 \\ C_2 \end{Bmatrix} = \begin{Bmatrix} f_1 \\ f_2 \end{Bmatrix}\]
+                        
+                        <p>Which leads to:</p>
+                        \[C_1 = \frac{q\ell^4}{8EJ\pi^4} \qquad C_2 = \frac{q\ell^4}{128EJ\pi^4}\]
+                        
+                        <p>The displacement at mid-span is still:</p>
+                        \[W(\ell/2) = \frac{q\ell^4}{4EJ\pi^4}\]
+                        
+                        <div class="note">
+                            <strong>Note:</strong> This is not surprising as \(\phi_2(\ell/2) = 0\)
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>4. Ritz Solution — 3 Terms</h4>
+                        <p>Trial functions:</p>
+                        \[\phi_1 = 1 - \cos \frac{2\pi x}{\ell} \; ; \; \phi_2 = 1 - \cos \frac{4\pi x}{\ell} \; ; \; \phi_3 = 1 - \cos \frac{6\pi x}{\ell}\]
+                        
+                        <p>Due to the orthogonality of the functions, the only terms to be computed are:</p>
+                        \[K_{33} = \int_0^\ell \phi_{3,xx} \, EJ \, \phi_{3,xx} \, dx = \frac{648 \, EJ \, \pi^4}{\ell^3}\]
+                        \[f_3 = \int_0^\ell \phi_3 \, q \, dx = q\ell\]
+                        
+                        <p>The final system is:</p>
+                        \[\begin{bmatrix} K_{11} & & \\ & K_{22} & \\ & & K_{33} \end{bmatrix} \begin{Bmatrix} C_1 \\ C_2 \\ C_3 \end{Bmatrix} = \begin{Bmatrix} f_1 \\ f_2 \\ f_3 \end{Bmatrix}\]
+                        
+                        <p>Leading to:</p>
+                        \[C_1 = \frac{q\ell^4}{8EJ\pi^4} \qquad C_2 = \frac{q\ell^4}{128EJ\pi^4} \qquad C_3 = \frac{q\ell^4}{648EJ\pi^4}\]
+                        
+                        <p>The mid-span displacement is then:</p>
+                        \[W(\ell/2) = \frac{41}{162} \frac{q\ell^4}{EJ\pi^4}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>5. Galerkin Solution — 1 Term</h4>
+                        <p>The governing equation reads: \(EJ \, W_{,xxxx} = q\), so:</p>
+                        \[\int_0^\ell \phi_1 \, EJ \, \phi_{1,xxxx} \, dx \, C_1 = \int_0^\ell \phi_1 \, q \, dx\]
+                        
+                        <p>which is:</p>
+                        \[\frac{8EJ\pi^4}{\ell^3} C_1 = q\ell\]
+                        
+                        \[\Rightarrow \quad C_1 = \frac{q\ell^4}{8EJ\pi^4}\]
+                        
+                        <div class="note">
+                            <strong>Note:</strong> Same result obtained with Ritz method.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 2: Torsion Problem -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Exercise 2: Torsion Problem with Distributed Moment</h2>
+                    <p class="problem-statement">
+                        Obtain the exact displacement field and compare it with the 1-term solution obtained using Ritz with polynomial functions.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C4_Ex1_Ritz/cantilever_beam_torsional_moment.png" alt="Cantilever beam with torsional loading">
+                        <figcaption>Figure 2: Cantilever beam with distributed moment m<sub>t</sub>, applied rotation θ̄ at right end, torsional stiffness GJ, and length ℓ</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Exact Solution</h4>
+                        <p>Starting from the principle of virtual work:</p>
+                        \[\delta\Pi = \int_0^\ell \delta\theta_{,x} \, GJ \, \theta_{,x} \, dx - \int_0^\ell \delta\theta \, m_t \, dx\]
+                        \[= -\int_0^\ell \delta\theta \, GJ \, \theta_{,xx} \, dx + \delta\theta \, GJ \, \theta_{,x} \Big|_0^\ell - \int_0^\ell \delta\theta \, m_t \, dx\]
+                        
+                        <p>The governing equations and boundary conditions are:</p>
+                        \[\begin{cases} GJ\theta_{,xx} + m_t = 0 \\ GJ\theta_{,x}(0) = 0 & \text{or} & \delta\theta(0) = 0 \\ GJ\theta_{,x}(\ell) = 0 & \text{or} & \delta\theta(\ell) = 0 \end{cases}\]
+                        
+                        <p>The problem is then:</p>
+                        \[\begin{cases} \theta_{,xx} = -\frac{m_t}{GJ} \\ \theta(0) = 0 \\ \theta(\ell) = \bar{\theta} \end{cases}\]
+                        
+                        <p>The solution is found as \(\theta = \theta^H + \theta^P\) with:</p>
+                        \[\theta^P = -\frac{1}{2} \frac{m_t}{GJ} x^2 \qquad \theta^H = A_0 + A_1 x\]
+                        
+                        <p>Imposing the boundary conditions:</p>
+                        \[\theta(0) = 0 \quad \Rightarrow \quad A_0 = 0\]
+                        \[\theta(\ell) = \bar{\theta} \quad \Rightarrow \quad A_1 \ell - \frac{1}{2} \frac{m_t}{GJ} \ell^2 = \bar{\theta} \quad \Rightarrow \quad A_1 = \frac{\bar{\theta}}{\ell} + \frac{1}{2} \frac{m_t}{GJ} \ell\]
+                        
+                        <p>The exact displacement field is:</p>
+                        <div class="boxed-equation">
+                            \[\theta(x) = \frac{1}{2} \frac{m_t \ell^2}{GJ} \left( \frac{x}{\ell} - \frac{x^2}{\ell^2} \right) + \frac{\bar{\theta}}{\ell} x\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Ritz Solution — 1 Term</h4>
+                        <p>In this case the problem is characterized by two essential conditions. However, one of the two conditions is non-homogeneous.</p>
+                        
+                        <p>The expansion is then taken as:</p>
+                        \[\theta = \sum_{i=1}^{N} C_i \phi_i + \phi_0\]
+                        
+                        <p>where:</p>
+                        <ul style="margin-left: 30px;">
+                            <li>\(\phi_i\) → satisfy the homogeneous part of the essential conditions</li>
+                            <li>\(\phi_0\) → satisfies the non-homogeneous essential boundary conditions</li>
+                        </ul>
+                        
+                        <p>More specifically:</p>
+                        \[\phi_i(0) = 0 \quad \text{and} \quad \phi_0(0) = 0\]
+                        \[\phi_i(\ell) = 0 \quad \text{and} \quad \phi_0(\ell) = \bar{\theta}\]
+                        
+                        <p>The simplest choice for \(\phi_0\) is a linear polynomial:</p>
+                        \[\phi_0(x) = \frac{\bar{\theta}}{\ell} x\]
+                        
+                        <p>The functions \(\phi_i\) should be taken as second order polynomial, so that the two conditions can be imposed:</p>
+                        \[\theta^H = a_0 + a_1 x + a_2 x^2\]
+                        \[\theta(0) = 0 \quad \Rightarrow \quad a_0 = 0\]
+                        \[\theta(\ell) = 0 \quad \Rightarrow \quad a_1 = -a_2 \ell\]
+                        \[\Rightarrow \quad \theta^H = a_2 (x^2 - \ell x)\]
+                        
+                        <p>The Ritz functions are then taken as:</p>
+                        <div class="boxed-equation">
+                            \[\theta = C_1 (x^2 - \ell x) + \frac{\bar{\theta}}{\ell} x\]
+                        </div>
+                        
+                        <p>Due to the fact that the exact solution is quadratic, the assumed Ritz expansion will lead to the exact solution. This is easily verified:</p>
+                        \[\int_0^\ell \delta\theta_{,x} \, GJ \, \theta_{,x} \, dx - \int_0^\ell \delta\theta \, m_t \, dx = 0\]
+                        
+                        <p>Since \(\theta = C_1 \phi_1 + \phi_0\) and \(\delta\theta = \delta C_1 \phi_1\):</p>
+                        \[\delta C_1 \underbrace{\int_0^\ell \phi_{1,x} \, GJ \, \phi_{1,x} \, dx}_{K_{11}} \, C_1 = \delta C_1 \underbrace{\int_0^\ell \left( \phi_1 \, m_t - \phi_{1,x} \, GJ \, \phi_{0,x} \right) dx}_{f_1}\]
+                        
+                        <p>where:</p>
+                        \[K_{11} = GJ \, \ell^3 / 3 \qquad f_1 = -\frac{m_t \ell^3}{6}\]
+                        
+                        <p>and so:</p>
+                        \[C_1 = -\frac{m_t}{2GJ}\]
+                        
+                        <div class="final-answer">
+                            <strong>Result:</strong>
+                            \[\theta = C_1 \phi_1 + \phi_0 = \frac{1}{2} \frac{m_t \ell^2}{GJ} \left( \frac{x}{\ell} - \frac{x^2}{\ell^2} \right) + \frac{\bar{\theta} x}{\ell}\]
+                            <p style="margin-top: 10px;">As obtained previously (exact solution).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 3: Cantilever Beam on Elastic Foundation -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Exercise 3: Cantilever Beam on Elastic Foundation</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C4_Ex1_Ritz/cantilever_beam_elastic_foundation.png" alt="Cantilever beam on elastic foundation with point load">
+                        <figcaption>Figure 3: Cantilever beam with elastic foundation (stiffness k), point load P at free end, and length ℓ</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Essential Conditions</h4>
+                        \[\begin{cases} W(0) = 0 \\ W_{,x}(0) = 0 \end{cases} \quad \Rightarrow \quad \begin{aligned} \phi_i(0) &= 0 \\ \phi_{i,x}(0) &= 0 \end{aligned}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Trial Functions</h4>
+                        <p>The trial functions are taken as:</p>
+                        \[\phi_i = x^{i+1} \qquad i = 1, \ldots, N\]
+                        
+                        <p>Considering one single term:</p>
+                        \[\phi_1 = x^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Principle of Virtual Work</h4>
+                        <p>The PVW reads:</p>
+                        \[\int_0^\ell \delta W_{,xx} \, EJ \, W_{,xx} \, dx + \int_0^{\ell/2} \delta W \, k \, W \, dx + \delta W(\ell) \, K \, W(\ell) = \delta W(\ell) \, P\]
+                        
+                        <p>Upon substitution of the Ritz expansion it is obtained:</p>
+                        \[\delta C_1 \left[ \int_0^\ell \phi_{1,xx} \, EJ \, \phi_{1,xx} \, dx + \int_0^{\ell/2} \phi_1 \, k \, \phi_1 \, dx + \phi_1(\ell) \, K \, \phi_1(\ell) \right] C_1 = \delta C_1 \, \phi_1(\ell) \, P\]
+                        
+                        <p>which leads to:</p>
+                        \[\left( 4EJ\ell + \frac{k\ell^5}{160} + \ell^4 K \right) C_1 = P\ell^2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[C_1 = \frac{160 \, P\ell}{640 \, EJ + k\ell^4 + 160 \, \ell^3 K}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 4: Simply Supported Beam with Variable Stiffness -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Exercise 4: First Bending Frequency — Variable Stiffness Beam</h2>
+                    <p class="problem-statement">
+                        Determine the first bending natural frequency using 1 trigonometric function and the method of Ritz.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C4_Ex1_Ritz/simply_supported_beam_variable_stiffness.png" alt="Simply supported beam with variable stiffness">
+                        <figcaption>Figure 4: Simply supported beam with variable stiffness EJ(x) and length ℓ</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>\(EJ = EJ_0 \sin \frac{\pi x}{\ell}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Ritz Solution — 1 Term</h4>
+                        <p>The essential conditions are:</p>
+                        \[W(0) = 0 \qquad W(\ell) = 0\]
+                        
+                        <p>The Ritz approximation is then taken as:</p>
+                        \[W = C_1 \sin \frac{\pi x}{\ell}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>External Work for Free Vibrations</h4>
+                        <p>To evaluate the free vibrations, the external work is written as:</p>
+                        \[\delta W_e = -\int_V \left( \delta u \, \rho \ddot{u} + \delta w \, \rho \ddot{w} \right) dV\]
+                        
+                        <p>After expanding and simplifying (neglecting rotary inertia \(I_2\) and noting \(I_1 = 0\)):</p>
+                        \[\delta W_e = -\int_0^\ell \left( \delta u_0 \, I_0 \, \ddot{u}_0 + \delta w_0 \, I_0 \, \ddot{w}_0 \right) dx\]
+                        
+                        <p>The first contribution is associated with axial vibrations. The second one contributes to bending vibrations.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Eigenvalue Problem</h4>
+                        <p>Setting \(\delta W_i = \delta W_e\):</p>
+                        \[\int_0^\ell \delta w_{0,xx} \, EJ \, w_{0,xx} \, dx + \int_0^\ell \delta w_0 \, I_0 \, \ddot{w}_0 \, dx = 0\]
+                        
+                        <p>With \(w(x,t) = C_1 e^{i\omega t} \sin \frac{\pi x}{\ell} = C_1 \phi_1 e^{i\omega t}\):</p>
+                        \[\left[ \delta C_1 \underbrace{\int_0^\ell \phi_{1,xx} \, EJ \, \phi_{1,xx} \, dx}_{K_{11}} \, C_1 - \delta C_1 \, \omega^2 \underbrace{\int_0^\ell \phi_1 \, I_0 \, \phi_1 \, dx}_{M_{11}} \, C_1 \right] e^{i\omega t} = 0\]
+                        
+                        <p>The problem is then in the form:</p>
+                        \[(K_{11} - \omega^2 M_{11}) C_1 = 0\]
+                        
+                        <p>where:</p>
+                        \[K_{11} = \frac{4\pi^3 \, EJ_0}{3\ell^3} \qquad M_{11} = I_0 \frac{\ell}{2}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>First Circular Frequency:</strong>
+                        \[\omega_1 = \sqrt{\frac{K_{11}}{M_{11}}} = \sqrt{\frac{EJ_0}{I_0} \frac{8\pi^3}{3\ell^4}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 5: Cantilever Beam with Tip Mass -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Exercise 5: Natural Frequency of Cantilever with Tip Mass</h2>
+                    <p class="problem-statement">
+                        Evaluate the first natural frequency considering a polynomial expansion. Elaborate the possibility of considering one-dof approximations using static deflections.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C4_Ex1_Ritz/cantilever_beam_tip_mass.png" alt="Cantilever beam with tip mass">
+                        <figcaption>Figure 5: Cantilever beam with concentrated mass M at tip, stiffness EJ, density ρ, and length ℓ</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Weak Form</h4>
+                        \[\delta W_i = \int_0^\ell \delta W_{,xx} \, EJ \, W_{,xx} \, dx\]
+                        \[\delta W_e = -\int_0^\ell \delta W \, I_0 \, \ddot{W} \, dx - \delta W(\ell) \, M \ddot{W}(\ell)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Ritz Functions — 1 Term (Polynomial)</h4>
+                        <p>The simplest choice is to consider a polynomial expansion:</p>
+                        \[W = C_1 x^2 \quad \Rightarrow \quad \phi_1 = x^2\]
+                        
+                        <p>(The constant and linear contributions are not accounted for as they do not satisfy the boundary conditions at x = 0)</p>
+                        
+                        <p>Essential conditions:</p>
+                        \[\begin{cases} W(0) = 0 \\ W_{,x}(0) = 0 \end{cases}\]
+                        
+                        <p>Upon substitution in the weak form:</p>
+                        \[\delta C_1 \, K_{11} \, C_1 = -\delta C_1 \, M_{11} \, \ddot{C}_1 \quad \forall \, \delta C_1\]
+                        
+                        <p>where:</p>
+                        \[K_{11} = \int_0^\ell \phi_{1,xx} \, EJ \, \phi_{1,xx} \, dx = 4EJ\ell\]
+                        \[M_{11} = \int_0^\ell \phi_1 \, I_0 \, \phi_1 \, dx + \phi_1(\ell) \, M \, \phi_1(\ell) = \ell^4 \left( \frac{1}{5} I_0 \ell + M \right)\]
+                        
+                        <p>The equation of motion is:</p>
+                        \[M_{11} \ddot{C}_1 + K_{11} C_1 = 0\]
+                        
+                        <p>Setting \(C_1 = \hat{C}_1 \, e^{i\omega t}\):</p>
+                        \[\left( -\omega^2 M_{11} + K_{11} \right) C_1 = 0 \quad \Rightarrow \quad \omega^2 = \frac{K_{11}}{M_{11}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Ritz Functions — 2 Terms</h4>
+                        <p>Expand to the 3rd order:</p>
+                        \[W = C_1 x^2 + C_2 x^3 \quad \Rightarrow \quad \phi_1 = x^2 \; ; \; \phi_2 = x^3\]
+                        
+                        <p>Additional stiffness and mass terms:</p>
+                        \[K_{12} = \int_0^\ell \phi_{1,xx} \, EJ \, \phi_{2,xx} \, dx = 6EJ\ell^2\]
+                        \[M_{12} = \int_0^\ell \phi_1 \, I_0 \, \phi_2 \, dx + \phi_1(\ell) \, M \, \phi_2(\ell) = \ell^5 \left( \frac{1}{6} I_0 \ell + M \right)\]
+                        \[K_{22} = \int_0^\ell \phi_{2,xx} \, EJ \, \phi_{2,xx} \, dx = 12 \, EJ \, \ell^3\]
+                        \[M_{22} = \int_0^\ell \phi_2 \, I_0 \, \phi_2 \, dx + \phi_2(\ell) \, M \, \phi_2(\ell) = \ell^6 \left( \frac{1}{7} I_0 \ell + M \right)\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Ritz Functions — Static Deflections</h4>
+                        <p>The accuracy to dof ratio can be improved if the shape functions are properly selected. A good approach for obtaining a good solution using one single dof consists in selecting a static deflected shape.</p>
+                        
+                        <p><strong>Two cases:</strong></p>
+                        <ul style="margin-left: 30px; margin-bottom: 15px;">
+                            <li>Cantilever with tip load → appropriate when \(M >> I_0 \ell\)</li>
+                            <li>Cantilever with uniform load → appropriate when \(I_0 \ell >> M\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Case 1: \(M >> I_0 \ell\) — Tip Load Static Deflection</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C4_Ex1_Ritz/cantilever_beam_point_load.png" alt="Cantilever beam with point load">
+                            <figcaption>Cantilever beam with point load P at free end</figcaption>
+                        </figure>
+                        
+                        <p>The deflected shape is selected by solving:</p>
+                        \[\begin{cases} EJ \, W_{,xxxx} = 0 \\ W(0) = 0 \\ W_{,x}(0) = 0 \end{cases} \text{(essential)} \qquad \begin{cases} W_{,xx}(\ell) = 0 \\ W_{,xxx}(\ell) = -\frac{P}{EJ} \end{cases} \text{(natural)}\]
+                        
+                        <p>The solution is:</p>
+                        \[W = \frac{P}{6EJ} \left( 3x^2 \ell - x^3 \right)\]
+                        
+                        <p>The Ritz function is then:</p>
+                        \[W = C_1 \phi_1 \quad \text{with} \quad \phi_1 = 3x^2 \ell - x^3\]
+                        
+                        <p>Note that the static analysis allows to obtain one single dof expansion where both quadratic and cubic terms are accounted for. Their relative weight is given by the solution of the static problem.</p>
+                        
+                        <p>The stiffness and mass matrix are:</p>
+                        \[K_{11} = \int_0^\ell \phi_{1,xx} \, EJ \, \phi_{1,xx} \, dx = 12 \, EJ \, \ell^3\]
+                        \[M_{11} = \int_0^\ell \phi_1 \, I_0 \, \phi_1 \, dx + \phi_1(\ell) \, M \, \phi_1(\ell) = \ell^6 \left( \frac{33}{35} I_0 \ell + 4M \right)\]
+                        
+                        <p>and so: \(\omega^2 = K_{11}/M_{11}\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Case 2: \(I_0 \ell >> M\) — Uniform Load Static Deflection</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C4_Ex1_Ritz/cantilever_beam_uniform_load.png" alt="Cantilever beam with distributed load">
+                            <figcaption>Cantilever beam with distributed load q along length</figcaption>
+                        </figure>
+                        
+                        <p>The deflected pattern is found by solving:</p>
+                        \[\begin{cases} EJ \, W_{,xxxx} = q \\ W(0) = 0 \\ W_{,x}(0) = 0 \end{cases} \text{(essential)} \qquad \begin{cases} W_{,xx}(0) = 0 \\ W_{,xxx}(0) = 0 \end{cases} \text{(natural)}\]
+                        
+                        <p>The problem is solved as \(W = W^H + W^P\):</p>
+                        \[W^P = \frac{1}{24} \frac{q}{EJ} x^4 \qquad W^H = A_0 + A_1 x + A_2 x + A_3 x^3\]
+                        
+                        <p>Imposing the boundary conditions:</p>
+                        \[W = \frac{1}{24} \frac{q}{EJ} \left( x^4 - 4x^3 \ell + 6x^2 \ell^2 \right)\]
+                        
+                        <p>The single-dof Ritz representation is:</p>
+                        \[W = C_1 \phi_1 \quad \text{with} \quad \phi_1 = x^4 - 4x^3 \ell + 6x^2 \ell\]
+                        
+                        <p>The stiffness and mass contributions are:</p>
+                        \[K_{11} = \frac{144 \, EJ \, \ell^5}{5}\]
+                        \[M_{11} = \ell^8 \left( \frac{104}{45} I_0 \ell + 9M \right)\]
+                        
+                        <p>and so: \(\omega_1 = K_{11} / M_{11}\)</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Comparison of Results</h4>
+                        <p>The results are compared in terms of predicted circular frequencies using the non-dimensional form:</p>
+                        \[\bar{\omega} = \omega \sqrt{\frac{\ell^3 M}{EJ}}\]
+                        
+                        <p><strong>Case 1: \(M = 10 \, I_0 \ell\)</strong> (Consider \(I_0 = 1\), \(\ell = 1\), \(EJ = 1\), \(M = 10\))</p>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>N</th>
+                                    <th>Polynomial</th>
+                                    <th>Tip Load</th>
+                                    <th>Uniform Load</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>1.9803</td><td>1.7120</td><td>1.7663</td></tr>
+                                <tr><td>2</td><td>1.7170</td><td>—</td><td>—</td></tr>
+                                <tr><td>3</td><td>1.7170</td><td>—</td><td>—</td></tr>
+                                <tr><td>4</td><td>1.7120</td><td>—</td><td>—</td></tr>
+                            </tbody>
+                        </table>
+                        <p style="text-align: center; font-style: italic;">Values of \(\bar{\omega}\)</p>
+                        
+                        <p><strong>Case 2: \(M = \frac{1}{1000} I_0 \ell\)</strong> (Consider \(I_0 = 1\), \(\ell = 1\), \(EJ = 1\), \(M = \frac{1}{1000}\))</p>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>N</th>
+                                    <th>Polynomial</th>
+                                    <th>Tip Load</th>
+                                    <th>Uniform</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>1.4107</td><td>1.1258</td><td>1.1141</td></tr>
+                                <tr><td>2</td><td>1.1149</td><td>—</td><td>—</td></tr>
+                                <tr><td>3</td><td>1.1100</td><td>—</td><td>—</td></tr>
+                                <tr><td>4</td><td>1.1096</td><td>—</td><td>—</td></tr>
+                            </tbody>
+                        </table>
+                        <p style="text-align: center; font-style: italic;">Values of \(\bar{\omega} \cdot 10\)</p>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Comments on the Results:</strong>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>In the first case, the tip load static deflection is the most efficient. The one-dof approximation leads to better results compared to uniform load deflection and polynomial expansion.</li>
+                            <li>In the second case, as expected, the uniform load static deflection is the most appropriate. The one-dof solution is more accurate than the tip-load approximation and polynomial expansion with N = 1 and 2.</li>
+                            <li>The convergence is from above. As the number of dof increases, the stiffness of the structure gets smaller and, consequently, the value of the frequency reduces. The Ritz approximation provides an upper bound estimate of the exact frequency value.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 6: Two-Span Continuous Beam -->
+            <section class="problem-solution-pair" id="problem-6">
+                <div class="problem">
+                    <h2>Exercise 6: Two-Span Continuous Beam</h2>
+                    <p class="problem-statement">
+                        Determine the first natural frequency by using a single-dof approximation.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C4_Ex1_Ritz/two_span_continuous_beam.png" alt="Two-span continuous beam">
+                        <figcaption>Figure 6: Two-span continuous beam with properties EJ, I₀ for each span, lengths ℓ and αℓ</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Weak Form</h4>
+                        <p>Introduce two reference systems as illustrated in the figure (x₁ for left span, x₂ for right span):</p>
+                        \[\delta W_i = \int_0^\ell \delta W^1_{,xx} \, EJ \, W^1_{,xx} \, dx_1 + \int_0^{\alpha\ell} \delta W^2_{,xx} \, EJ \, W^2_{,xx} \, dx_2\]
+                        \[\delta W_e = -\int_0^\ell \delta W^1 \, I_0 \, \ddot{W}^1 \, dx_1 - \int_0^{\alpha\ell} \delta W^2 \, I_0 \, \ddot{W}^2 \, dx_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Essential Conditions</h4>
+                        <p>The essential conditions of the problem are:</p>
+                        <ul style="margin-left: 30px;">
+                            <li>\(W^1(0) = 0\) — Left support</li>
+                            <li>\(W^1(\ell) = W^2(0) = 0\) — Middle support (displacement)</li>
+                            <li>\(W^1_{,x}(\ell) = W^2_{,x}(0)\) — Middle support (rotation continuity)</li>
+                            <li>\(W^2(\alpha\ell) = 0\) — Right support</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Ritz Functions</h4>
+                        <p>A possible choice is given by sine-type functions:</p>
+                        \[W^1 = C_1 \phi_1 \quad \text{with} \quad \phi_1 = \sin \frac{\pi x_1}{\ell}\]
+                        \[W^2 = C_2 \phi_2 \quad \text{with} \quad \phi_2 = \sin \frac{\pi x_2}{\alpha \ell}\]
+                        
+                        <p>The two functions clearly satisfy the essential conditions at the outer supports:</p>
+                        \[W^1(0) = C_1 \sin(0) = 0 \quad \checkmark\]
+                        \[W^2(\alpha\ell) = C_2 \sin \pi = 0 \quad \checkmark\]
+                        
+                        <p>The inner condition on transverse deflection is also satisfied:</p>
+                        \[W^1(\ell) = W^2(0) = 0 \quad \checkmark\]
+                        
+                        <p>The essential condition on rotation must be imposed. Computing the derivatives:</p>
+                        \[W^1_{,x} = \frac{\pi}{\ell} \cos \frac{\pi x_1}{\ell} \, C_1\]
+                        \[W^2_{,x} = \frac{\pi}{\alpha\ell} \cos \frac{\pi x_2}{\alpha\ell} \, C_2\]
+                        
+                        <p>Imposing \(W^1_{,x}(\ell) = W^2_{,x}(0)\):</p>
+                        \[\frac{\pi}{\ell} \cos \pi \, C_1 = \frac{\pi}{\alpha\ell} \cos(0) \, C_2\]
+                        \[-\frac{\pi}{\ell} C_1 = \frac{\pi}{\alpha\ell} C_2\]
+                        
+                        <p>Therefore:</p>
+                        \[C_2 = -\alpha \, C_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>One-DOF Representation</h4>
+                        <p>The one-dof representation of the deflected patterns is:</p>
+                        \[W^1 = C_1 \sin \frac{\pi x_1}{\ell} \qquad W^2 = -C_1 \alpha \sin \frac{\pi x_2}{\alpha\ell}\]
+                        
+                        <p>or equivalently:</p>
+                        \[\phi_1 = \sin \frac{\pi x_1}{\ell} \qquad \phi_2 = -\alpha \sin \frac{\pi x_2}{\alpha\ell}\]
+                        
+                        <p>where \(C_1\) is the single degree of freedom.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Stiffness and Mass Matrices</h4>
+                        <p>The stiffness matrix is obtained as:</p>
+                        \[K_{11} = \int_0^\ell \phi_{1,xx} \, EJ \, \phi_{1,xx} \, dx_1 + \int_0^{\alpha\ell} \phi_{2,xx} \, EJ \, \phi_{2,xx} \, dx_2 = \frac{EJ \, \pi^4 (\alpha + 1)}{2\alpha\ell^3}\]
+                        
+                        <p>The mass matrix reads:</p>
+                        \[M_{11} = \int_0^\ell \phi_1 \, I_0 \, \phi_1 \, dx_1 + \int_0^{\alpha\ell} \phi_2 \, I_0 \, \phi_2 \, dx_2 = \frac{1}{2} I_0 \ell \left( 1 + \alpha^3 \right)\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>First Natural Frequency:</strong>
+                        \[\omega_1^2 = \frac{K_{11}}{M_{11}} = \frac{EJ\pi^4}{(\alpha^2 - \alpha + 1) I_0 \ell^4 \alpha}\]
+                        
+                        <p style="margin-top: 15px;">When \(\alpha = 1\) (two beams of equal length):</p>
+                        \[\omega_1^2 = \frac{EJ\pi^4}{I_0 \ell^4}\]
+                        <p>Corresponding to the value obtained for one single simply-supported beam.</p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </article>
+</body>
+</html>

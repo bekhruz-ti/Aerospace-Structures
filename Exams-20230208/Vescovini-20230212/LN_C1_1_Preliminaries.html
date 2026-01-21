@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tensor Algebra - Preliminaries and Operations</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --note-color: #744210;
+            --note-bg: #fefcbf;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 20px 30px;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .subsection h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .boxed {
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .boxed-accent {
+            background: #ebf8ff;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .definition-box {
+            background: #e6fffa;
+            border: 2px solid #319795;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .definition-box .label {
+            font-weight: bold;
+            color: #319795;
+            margin-bottom: 10px;
+        }
+
+        .warning-box {
+            background: #fff5f5;
+            border: 2px solid #c53030;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box strong {
+            color: #c53030;
+        }
+
+        .note {
+            background: var(--note-bg);
+            border-left: 4px solid var(--note-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .note strong {
+            color: var(--note-color);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .column h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .derivation {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .derivation-step {
+            margin: 10px 0;
+        }
+
+        .result {
+            background: #c6f6d5;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .array-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        mjx-container[display="true"] {
+            margin: 15px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-content {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Tensor Algebra</h1>
+            <p class="subtitle">Preliminaries, Notation, and Fundamental Operations</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Preliminaries -->
+            <section class="section" id="preliminaries">
+                <div class="section-header">
+                    <h2>Preliminaries</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="subsection">
+                        <h3>Vector Notation</h3>
+                        <p>A generic vector \(\underline{V}\) can be expressed as:</p>
+                        \[\underline{V} = V_1 \underline{e}_1 + V_2 \underline{e}_2 + V_3 \underline{e}_3\]
+                        <p>where \(\underline{e}_1\), \(\underline{e}_2\) and \(\underline{e}_3\) are the unit vectors of a Cartesian coordinate system, and \(V_1\), \(V_2\) and \(V_3\) are the components of \(\underline{V}\) along the directions 1, 2 and 3.</p>
+                        
+                        <p>The following notation can be adopted:</p>
+                        \[\underline{V} = V_i \underline{e}_i \qquad i = 1, 2, 3\]
+                        <p>where the summation is implied with respect to the repeated indexes (in this case just \(i\)). In other words:</p>
+                        
+                        <div class="boxed">
+                            <div class="definition-box">
+                                <div class="label">Einstein's Convention</div>
+                                \[\underline{V} = \sum_{i=1}^{3} V_i \underline{e}_i = V_i \underline{e}_i\]
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Second-Order Tensor Notation</h3>
+                        <p>Similarly, a second-order tensor can be represented as:</p>
+                        \[\underline{\underline{A}} = A_{ij} \underline{e}_i \otimes \underline{e}_j\]
+                        <p>where summation is now implied with respect to \(i\) and \(j\), or:</p>
+                        
+                        <div class="boxed">
+                            \[\underline{\underline{A}} = \sum_{i=1}^{3} \sum_{j=1}^{3} A_{ij} \underline{e}_i \otimes \underline{e}_j = A_{ij} \underline{e}_i \otimes \underline{e}_j\]
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Tensor Components and Reference Systems</h3>
+                        <p>The term \(A_{ij}\) identifies the components of the tensor \(\underline{\underline{A}}\) for a given set of unit vectors \(\underline{e}_i\).</p>
+                        
+                        <p>The tensor itself does not depend upon the choice of the reference system, but its components \(A_{ij}\) depend on the reference system.</p>
+                        
+                        \[\underline{\underline{A}} = A_{ij} \underline{e}_i \otimes \underline{e}_j = \hat{A}_{ij} \hat{\underline{e}}_i \otimes \hat{\underline{e}}_j \qquad \Rightarrow \qquad \hat{A}_{ij} \neq A_{ij}\]
+                        
+                        <p>where \(\underline{e}_i\) and \(\hat{\underline{e}}_i\) are different sets of unit vectors.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Array Representation</h3>
+                        <p>Often it is useful to collect the components of vectors and second-order tensors into one- and two-dimensional arrays:</p>
+                        
+                        <div class="array-display">
+                            <div>
+                                \[\underline{V} = V_i \underline{e}_i \quad \Rightarrow \quad \begin{bmatrix} V_1 \\ V_2 \\ V_3 \end{bmatrix}\]
+                            </div>
+                        </div>
+                        
+                        <div class="array-display">
+                            <div>
+                                \[\underline{\underline{A}} = A_{ij} \underline{e}_i \otimes \underline{e}_j \quad \Rightarrow \quad \begin{bmatrix} A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23} \\ A_{31} & A_{32} & A_{33} \end{bmatrix}\]
+                            </div>
+                        </div>
+                        
+                        <p>This is an intuitive way for "storing" the components of a tensor, making it possible to perform tensor operations by means of the techniques of matrix algebra.</p>
+                        
+                        <div class="warning-box">
+                            <strong>Important:</strong> However it is worth highlighting that <strong>tensors are not arrays!</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Scalar Product -->
+            <section class="section" id="scalar-product">
+                <div class="section-header">
+                    <h2>Scalar Product</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="subsection">
+                        <h3>Scalar Product Between Two Vectors</h3>
+                        <p>The scalar product between two vectors \(\underline{a}\) and \(\underline{b}\) is:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[c = \underline{a} \cdot \underline{b}\]</div>
+                            <div class="derivation-step">\[= (a_1 \underline{e}_1 + a_2 \underline{e}_2 + a_3 \underline{e}_3) \cdot (b_1 \underline{e}_1 + b_2 \underline{e}_2 + b_3 \underline{e}_3)\]</div>
+                            <div class="derivation-step">\[= a_1 b_1 \underline{e}_1 \cdot \underline{e}_1 + a_1 b_2 \cancel{\underline{e}_1 \cdot \underline{e}_2} + a_1 b_3 \cancel{\underline{e}_1 \cdot \underline{e}_3} + a_2 b_1 \cancel{\underline{e}_2 \cdot \underline{e}_1} + a_2 b_2 \underline{e}_2 \cdot \underline{e}_2 + a_2 b_3 \cancel{\underline{e}_2 \cdot \underline{e}_3} + a_3 b_1 \cancel{\underline{e}_3 \cdot \underline{e}_1} + a_3 b_2 \cancel{\underline{e}_3 \cdot \underline{e}_2} + a_3 b_3 \underline{e}_3 \cdot \underline{e}_3\]</div>
+                            <div class="derivation-step">\[= a_1 b_1 \underline{e}_1 \cdot \underline{e}_1 + a_2 b_2 \underline{e}_2 \cdot \underline{e}_2 + a_3 b_3 \underline{e}_3 \cdot \underline{e}_3\]</div>
+                            <div class="derivation-step">\[= a_1 b_1 + a_2 b_2 + a_3 b_3\]</div>
+                        </div>
+                        
+                        <p class="note"><strong>Note:</strong> Crossed-out terms indicate orthogonality of unit vectors (\(\underline{e}_i \cdot \underline{e}_j = 0\) when \(i \neq j\)).</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Compact Notation</h3>
+                        <p>Using a compact notation:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[c = \underline{a} \cdot \underline{b}\]</div>
+                            <div class="derivation-step">\[= a_i \underline{e}_i \cdot b_j \underline{e}_j\]</div>
+                            <div class="derivation-step">\[= a_i b_j \underline{e}_i \cdot \underline{e}_j\]</div>
+                            <div class="derivation-step">\[= a_i b_j \delta_{ij}\]</div>
+                            <div class="derivation-step">\[= a_i b_i = a_j b_j\]</div>
+                        </div>
+                        
+                        <div class="note">
+                            <strong>Note:</strong> The indexes used for \(\underline{a}\) and \(\underline{b}\) must be different(!) to avoid any misunderstanding on the repeated indexes.
+                        </div>
+                        
+                        <div class="definition-box">
+                            <div class="label">Kronecker Delta</div>
+                            \[\delta_{ij} = \begin{cases} 0 & \text{if } i \neq j \\ 1 & \text{if } i = j \end{cases}\]
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Scalar Product Between a Tensor and a Vector</h3>
+                        <p>Consider now the scalar product between a second order tensor and a vector:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\underline{\underline{A}} \cdot \underline{b} = \underline{\underline{A}} \underline{b} \qquad \text{(the dot can be explicitly reported or not)}\]</div>
+                            <div class="derivation-step">\[= A_{ij} \underline{e}_i \otimes \underline{e}_j \cdot b_k \underline{e}_k\]</div>
+                            <div class="derivation-step">\[= A_{ij} b_k \underline{e}_i \otimes \underbrace{\underline{e}_j \cdot \underline{e}_k}_{\delta_{jk}}\]</div>
+                            <div class="derivation-step">\[= A_{ij} b_k \underline{e}_i \delta_{jk}\]</div>
+                            <div class="derivation-step">\[= A_{ij} b_k \delta_{jk} \underline{e}_i\]</div>
+                            <div class="derivation-step">\[= A_{ij} b_j \underline{e}_i = A_{ik} b_k \underline{e}_i\]</div>
+                        </div>
+                        
+                        <p>The result is then a vector \(\underline{c}\), whose component \(c_i\) is equal to \(A_{ik} b_k\).</p>
+                        
+                        <p>Expanding the previous expression:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\underline{\underline{A}} \cdot \underline{b} = A_{ik} b_k \underline{e}_i\]</div>
+                            <div class="derivation-step">\[= A_{1k} b_k \underline{e}_1 + A_{2k} b_k \underline{e}_2 + A_{3k} b_k \underline{e}_3\]</div>
+                            <div class="derivation-step">\[= (A_{11} b_1 + A_{12} b_2 + A_{13} b_3) \underline{e}_1 + (A_{21} b_1 + A_{22} b_2 + A_{23} b_3) \underline{e}_2 + (A_{31} b_1 + A_{32} b_2 + A_{33} b_3) \underline{e}_3\]</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Double Scalar Product -->
+            <section class="section" id="double-scalar-product">
+                <div class="section-header">
+                    <h2>Double Scalar Product (Contraction)</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="subsection">
+                        <h3>Introduction</h3>
+                        <p>When dealing with second- (or higher-) order tensors it is possible to introduce a "double" scalar product, which is commonly denoted with a double dot.</p>
+                        
+                        <div class="two-column">
+                            <div class="column">
+                                <h4>Scalar Product</h4>
+                                \[\underline{a} \cdot \underline{b} = c\]
+                                <p style="text-align: center;">A scalar quantity is obtained from two vectors.</p>
+                            </div>
+                            <div class="column">
+                                <h4>Contraction</h4>
+                                \[\underline{\underline{A}} : \underline{\underline{B}} = c\]
+                                <p style="text-align: center;">A scalar quantity is obtained from two second-order tensors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\underline{\underline{A}} : \underline{\underline{B}} = A_{ij} \underline{e}_i \otimes \underline{e}_j : B_{rs} \underline{e}_r \otimes \underline{e}_s\]</div>
+                            <div class="derivation-step">\[= A_{ij} B_{rs} \underline{e}_i \otimes \underline{e}_j : \underline{e}_r \otimes \underline{e}_s\]</div>
+                        </div>
+                        
+                        <p>It is important to establish a convention to define how the double scalar product is taken (this choice is not unique, and different conventions are found in the literature).</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Convention for Double Dot Product</h3>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_1_Preliminaries/tensor_contraction_diagram.png" alt="Schematic diagram showing tensor contraction notation with connecting lines between tensor indices">
+                            <figcaption>Figure 1: Graphical representation of the contraction convention showing which indices are contracted</figcaption>
+                        </figure>
+                        
+                        <p>The convention adopted here considers the scalar products according to the graphical representation above, meaning that:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[= A_{ij} B_{rs} (\underline{e}_i \cdot \underline{e}_r)(\underline{e}_j \cdot \underline{e}_s)\]</div>
+                            <div class="derivation-step">\[= A_{ij} B_{rs} \delta_{ir} \delta_{js}\]</div>
+                            <div class="derivation-step">\[= A_{ij} B_{ij} = A_{rs} B_{rs}\]</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Expanded Form</h3>
+                        <p>The expanded form is then:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\underline{\underline{A}} : \underline{\underline{B}} = A_{ij} B_{ij}\]</div>
+                            <div class="derivation-step">\[= A_{1j} B_{1j} + A_{2j} B_{2j} + A_{3j} B_{3j}\]</div>
+                            <div class="derivation-step">\[= A_{11} B_{11} + A_{12} B_{12} + A_{13} B_{13} + A_{21} B_{21} + A_{22} B_{22} + A_{23} B_{23} + A_{31} B_{31} + A_{32} B_{32} + A_{33} B_{33}\]</div>
+                        </div>
+                        
+                        <div class="result">
+                            \[\underline{\underline{A}} : \underline{\underline{B}} = \sum_{i=1}^{3} \sum_{j=1}^{3} A_{ij} B_{ij}\]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Application - Strain Energy Density -->
+            <section class="section" id="strain-energy">
+                <div class="section-header">
+                    <h2>Application: Strain Energy Density</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="subsection">
+                        <h3>Strain Energy Density Formula</h3>
+                        <p>One example of application of the contraction operation is the evaluation of the strain energy density:</p>
+                        
+                        <div class="boxed-accent">
+                            \[u = \frac{1}{2} \underline{\underline{\sigma}} : \underline{\underline{\varepsilon}}\]
+                        </div>
+                        
+                        <p>where \(\underline{\underline{\sigma}}\) and \(\underline{\underline{\varepsilon}}\) are proper measures of stresses and strains (which are second order tensors).</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Symmetric Tensors</h3>
+                        <p>One can note that if \(\underline{\underline{\sigma}}\) and \(\underline{\underline{\varepsilon}}\) are symmetric then the contraction reads:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} = \sigma_{11} \varepsilon_{11} + \sigma_{12} \varepsilon_{12} + \sigma_{13} \varepsilon_{13} + \sigma_{12} \varepsilon_{12} + \sigma_{22} \varepsilon_{22} + \sigma_{23} \varepsilon_{23} + \sigma_{13} \varepsilon_{13} + \sigma_{23} \varepsilon_{23} + \sigma_{33} \varepsilon_{33}\]</div>
+                            <div class="derivation-step">\[= \sigma_{11} \varepsilon_{11} + \sigma_{22} \varepsilon_{22} + \sigma_{33} \varepsilon_{33} + \sigma_{12} (2\varepsilon_{12}) + \sigma_{13} (2\varepsilon_{13}) + \sigma_{23} (2\varepsilon_{23})\]</div>
+                        </div>
+                        
+                        <p>For this reason, stress and strain components can be collected into one-dimensional arrays as:</p>
+                        
+                        <div class="array-display">
+                            <div>
+                                \[\underline{\underline{\sigma}} \sim \begin{bmatrix} \sigma_{11} \\ \sigma_{22} \\ \sigma_{33} \\ \sigma_{23} \\ \sigma_{13} \\ \sigma_{12} \end{bmatrix}\]
+                            </div>
+                            <div>
+                                \[\underline{\underline{\varepsilon}} \sim \begin{bmatrix} \varepsilon_{11} \\ \varepsilon_{22} \\ \varepsilon_{33} \\ 2\varepsilon_{23} \\ 2\varepsilon_{13} \\ 2\varepsilon_{12} \end{bmatrix}\]
+                            </div>
+                        </div>
+                        
+                        <p class="note"><strong>Note:</strong> The factor of 2 appears on the shear strain components in the array representation.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Voigt Notation</h3>
+                        <p>And the operation of contraction is then represented as:</p>
+                        
+                        \[\underline{\underline{\sigma}} : \underline{\underline{\varepsilon}} \quad \Rightarrow \quad \{ \varepsilon_{11} \quad \varepsilon_{22} \quad \varepsilon_{33} \quad 2\varepsilon_{23} \quad 2\varepsilon_{13} \quad 2\varepsilon_{12} \} \begin{Bmatrix} \sigma_{11} \\ \sigma_{22} \\ \sigma_{33} \\ \sigma_{23} \\ \sigma_{13} \\ \sigma_{12} \end{Bmatrix}\]
+                        
+                        <div class="result">
+                            \[= \underline{\varepsilon}^T \underline{\sigma} = \underline{\sigma}^T \underline{\varepsilon}\]
+                        </div>
+                        
+                        <p>This notation, generally denoted as <strong>Voigt-notation</strong>, is based on the representation of second-order tensor components by means of one-dimensional arrays. While it is useful for performing several algebraic manipulations, it is important to bear in mind that \(\underline{\sigma}\) and \(\underline{\varepsilon}\) <u>are not vectors</u>.</p>
+                        
+                        <div class="warning-box">
+                            <strong>Important:</strong> For instance, the rotation of \(\underline{\sigma}\) and \(\underline{\varepsilon}\) follows the rules of the rotation of a second-order tensor, <strong>not</strong> those of a vector!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Gradient and Divergence -->
+            <section class="section" id="gradient-divergence">
+                <div class="section-header">
+                    <h2>Gradient and Divergence</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="subsection">
+                        <h3>Definitions</h3>
+                        <p>The gradient and divergence operators are defined as:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C1_1_Preliminaries/gradient_divergence_definitions.png" alt="Boxed mathematical definitions showing gradient and divergence operators">
+                            <figcaption>Figure 2: Definitions of gradient and divergence operators</figcaption>
+                        </figure>
+                        
+                        <div class="definition-box">
+                            <div class="label">Gradient</div>
+                            \[\nabla(\cdot) = \text{grad } (\cdot) = \frac{\partial}{\partial x_i} (\cdot) \underline{e}_i\]
+                        </div>
+                        
+                        <div class="definition-box">
+                            <div class="label">Divergence</div>
+                            \[\nabla \cdot (\cdot) = \text{div } (\cdot) = \frac{\partial}{\partial x_i} (\cdot) \cdot \underline{e}_i\]
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Gradient of a Vector</h3>
+                        <p>According to the above definitions, the gradient of a vector \(\underline{a}\) is:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\text{grad } \underline{a} = \frac{\partial \underline{a}}{\partial x_i} \underline{e}_i\]</div>
+                            <div class="derivation-step">\[= \frac{\partial (a_j \underline{e}_j)}{\partial x_i} \underline{e}_i\]</div>
+                            <div class="derivation-step">\[= \frac{\partial a_j}{\partial x_i} \underline{e}_j \otimes \underline{e}_i\]</div>
+                            <div class="derivation-step">\[= a_{j,i} \underline{e}_j \otimes \underline{e}_i = a_{i,j} \underline{e}_i \otimes \underline{e}_j\]</div>
+                        </div>
+                        
+                        <div class="result">
+                            The gradient of a vector produces a <strong>second-order tensor</strong>.
+                        </div>
+                        
+                        <p class="note"><strong>Note:</strong> Comma notation is used for partial derivatives: \(a_{j,i} = \frac{\partial a_j}{\partial x_i}\)</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Divergence of a Vector</h3>
+                        <p>Similarly, the divergence is:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\text{div } \underline{a} = \frac{\partial \underline{a}}{\partial x_i} \cdot \underline{e}_i\]</div>
+                            <div class="derivation-step">\[= \frac{\partial a_j}{\partial x_i} \underline{e}_j \cdot \underline{e}_i\]</div>
+                            <div class="derivation-step">\[= \frac{\partial a_j}{\partial x_i} \delta_{ij} = a_{i,i}\]</div>
+                        </div>
+                        
+                        <div class="result">
+                            The divergence of a vector produces a <strong>scalar</strong>.
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Divergence of a Second-Order Tensor</h3>
+                        <p>The divergence of a second-order tensor is:</p>
+                        
+                        <div class="derivation">
+                            <div class="derivation-step">\[\text{div } \underline{\underline{A}} = \frac{\partial A_{rs}}{\partial x_i} \underline{e}_r \otimes \underbrace{\underline{e}_s \cdot \underline{e}_i}_{\delta_{si}}\]</div>
+                            <div class="derivation-step">\[= A_{rs,i} \delta_{si} \underline{e}_r\]</div>
+                            <div class="derivation-step">\[= A_{ri,i} \underline{e}_r = A_{ir,r} \underline{e}_i\]</div>
+                        </div>
+                        
+                        <div class="result">
+                            The divergence of a second-order tensor produces a <strong>vector</strong>.
+                        </div>
+                        
+                        <p class="note"><strong>Note:</strong> Comma notation: \(A_{rs,i} = \frac{\partial A_{rs}}{\partial x_i}\). The final result shows index contraction on the derivative index.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: #666; font-size: 0.9rem;">
+            <p>Tensor Algebra Notes — Preliminaries and Fundamental Operations</p>
+        </footer>
+    </article>
+</body>
+</html>

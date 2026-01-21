@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation of Section Properties - Exercises</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .note {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #d69e2e;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+        }
+
+        .subsection h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Evaluation of Section Properties</h1>
+            <p class="subtitle">Exercises on Semi-Monocoque Beam Sections</p>
+        </header>
+        
+        <main>
+            <p class="problem-statement">
+                Determine the stiffnesses \(EA\), \(EJ_{xx}\), \(EJ_{yy}\), \(GA_x^*\), \(GA_y^*\) and \(GJ\) for the beam sections reported in the following exercises. (The semi-monocoque scheme is used for solving the section)
+            </p>
+
+            <!-- EXERCISE 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1: Rectangular Cross-Section with Four Corner Nodes</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/rectangular_cross_section_dimensions.png" alt="Rectangular cross-section with dimensions labeled a (height) and b (width), showing four corner nodes">
+                        <figcaption>Figure 1.1: Rectangular cross-section with four corner stringers</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 600\, \text{mm}\)</li>
+                            <li>\(b = 700\, \text{mm}\)</li>
+                            <li>\(A = 300\, \text{mm}^2\)</li>
+                            <li>\(t = 1.5\, \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Principal Axes</h4>
+                        <p>The principal axes are available from the symmetry of the section.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/rectangular_section_coordinate_system.png" alt="Rectangular cross-section with coordinate system showing principal axes">
+                            <figcaption>Figure 1.2: Coordinate system with principal axes</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Moments of Inertia</h4>
+                        \[J_{xx} = 2A\left(\frac{a}{2}\right)^2 \cdot 2 = Aa^2\]
+                        \[J_{yy} = Ab^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Bending Stiffnesses</h4>
+                        \[EJ_{xx} = EAa^2\]
+                        \[EJ_{yy} = EAb^2\]
+                        \[(EA) = E\sum_{i=1}^{4} A_i = 4EA\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_y^*\)</h4>
+                        <p>The evaluation of \(GA_y^*\) requires a previous analysis of the shear flows for an arbitrary force \(T_y\). As the section is open, it is assumed that the shear force is applied on the shear center.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/shear_flow_rectangular_section.png" alt="Rectangular cross-section showing shear flow analysis">
+                            <figcaption>Figure 1.3: Shear flow distribution for vertical shear force</figcaption>
+                        </figure>
+                        
+                        <p>First moments of area:</p>
+                        \[S_{x_1}' = -A \cdot \frac{a}{2}, \quad S_{x_2}' = -Aa, \quad S_{x_3}' = -A \cdot \frac{a}{2}\]
+                        \[J_{xx} = Aa^2\]
+                        
+                        <p>Shear flows:</p>
+                        \[q_1 = -\frac{T_y S_{x_1}'}{J_{xx}} = +\frac{T}{2a}\]
+                        \[q_2 = -\frac{T_y S_{x_2}'}{J_{xx}} = +\frac{T}{a}\]
+                        \[q_3 = -\frac{T_y S_{x_3}'}{J_{xx}} = +\frac{T}{2a}\]
+                        
+                        <p>Energy equivalence:</p>
+                        \[\frac{T^2}{GA_y^*} = \sum_i \frac{q_i^2 \ell_i}{Gt_i} \Rightarrow A_y^* = \frac{T^2}{\sum_i \frac{q_i^2 \ell_i}{t_i}}\]
+                        
+                        \[\sum_i \frac{q_i^2 \ell_i}{t_i} = \left[\left(\frac{T}{2a}\right)^2 b + \left(\frac{T}{a}\right)^2 a + \left(\frac{T}{2a}\right)^2 b\right] \frac{1}{t} = \frac{T^2}{t}\left(\frac{2b + 4a}{4a^2}\right)\]
+                        
+                        \[A_y^* = \frac{4a^2 t}{2b + 4a}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[\boxed{GA_y^* = G\frac{4a^2 t}{2b + 4a}}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_x^*\)</h4>
+                        <p>\(T_x\) is applied on the shear center (the y position is available from the symmetry of the section).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/shear_force_application_section.png" alt="Rectangular cross-section with horizontal shear force">
+                            <figcaption>Figure 1.4: Shear flow for horizontal shear force</figcaption>
+                        </figure>
+                        
+                        <p>The solution is readily found from the symmetry of the section with respect to the x-axis:</p>
+                        \[q_3 = q_1 = \frac{T}{2b}\]
+                        
+                        <p>Energy equivalence:</p>
+                        \[A_x^* = \frac{T^2}{\sum_i \frac{q_i^2 \ell_i}{t_i}} = \frac{t}{\frac{1}{4b} + \frac{1}{4b}} = 2bt\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[\boxed{GA_x^* = G \cdot 2bt}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Torsional Stiffness \(GJ\)</h4>
+                        <p>No torsional stiffness is associated with the semi-monocoque approximation of the section. Note that \(GJ = 0\) is not an intrinsic property of an open section, but is associated with the model considered for describing the section behaviour.</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[\boxed{GJ = 0}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 2 -->
+            <section class="problem-solution-pair" id="exercise-2">
+                <div class="problem">
+                    <h2>Exercise 2: Rectangular Cross-Section with Six Stringers</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/rectangular_section_exercise_2.png" alt="Rectangular cross-section with 6 stringers">
+                        <figcaption>Figure 2.1: Rectangular cross-section with six stringers</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 150\, \text{mm}\)</li>
+                            <li>\(b = 200\, \text{mm}\)</li>
+                            <li>\(t = 1\, \text{mm}\)</li>
+                            <li>\(A = 200\, \text{mm}^2\)</li>
+                            <li>\(E = 72\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                        </ul>
+                        <p class="note">Note: \(A\) includes the contribution of the panels</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Axial Stiffness</h4>
+                        \[(EA) = E\sum_i A_i = 6EA = 86.40 \cdot 10^6\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Bending Stiffness - Principal Axes</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/principal_axes_rectangular_section.png" alt="Cross-section with centroid position">
+                            <figcaption>Figure 2.2: Centroid position</figcaption>
+                        </figure>
+                        
+                        <p>Centroid position:</p>
+                        \[X_{CG} = 0 \quad \text{(from symmetry)}\]
+                        \[Y_{CG} = \frac{4Ab^2}{6A} = \frac{2}{3}b = 133.33\, \text{mm}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/moment_inertia_calculation_section.png" alt="Section with principal axes through centroid">
+                            <figcaption>Figure 2.3: Principal axes through centroid</figcaption>
+                        </figure>
+                        
+                        \[J_{xx} = 4A\left(\frac{1}{3}b\right)^2 + 2A\left(\frac{2}{3}b\right)^2 = \left(\frac{4}{9} + \frac{8}{9}\right)Ab^2 = \frac{4}{3}Ab^2\]
+                        \[J_{yy} = 6A\left(\frac{a}{2}\right)^2 = \frac{3}{2}Aa^2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[EJ_{xx} = \frac{4}{3}EAb^2 = 7.68 \cdot 10^{11}\, \text{Nmm}^2\]
+                        \[EJ_{yy} = \frac{3}{2}EAa^2 = 4.86 \cdot 10^{11}\, \text{Nmm}^2\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_y^*\)</h4>
+                        <p>The x position of the shear center is available from the symmetry of the section. Even the shear flows are readily available from the symmetry of the section.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/shear_flow_symmetry_section.png" alt="Shear flow distribution">
+                            <figcaption>Figure 2.4: Shear flow distribution for \(T_y\)</figcaption>
+                        </figure>
+                        
+                        \[A_y^* = \frac{T_y^2}{\sum_i \frac{q_i^2 \ell_i}{t_i}} = \frac{T_y^2}{T_y^2\left(\frac{1}{4b^2} \cdot b + \frac{1}{4b^2} \cdot b\right)\frac{1}{t}} = 2bt\]
+                        
+                        <p>Note that \(A_y^* = 2bt\) is the total area of the vertical webs. As the shear flow is constant along the webs, \(A_y^* = \chi A_{webs}\) and \(\chi = 1\).</p>
+                        
+                        <p>Shear factor:</p>
+                        \[\chi = \frac{A_y^*}{A_{TOT}} = \frac{2bt}{6A} = 0.33\]
+                        
+                        <p>Note that \(\chi << 1\), meaning a small fraction of the total area contributes to shear stiffness ⟹ the section is characterized by non-negligible shear deformability.</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_y^* = \chi G A_{TOT} = 1.11 \cdot 10^4\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_x^*\)</h4>
+                        <p>The position of the shear center along the y-axis is not available from the symmetry of the section.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/shear_center_position_section.png" alt="Shear center position for horizontal load">
+                            <figcaption>Figure 2.5: Section configuration for \(GA_x^*\)</figcaption>
+                        </figure>
+                        
+                        <p>\(T_x = 1000\, \text{N}\) (arbitrary)</p>
+                        
+                        <p>The shear center (y-position) is obtained by applying:</p>
+                        <ul>
+                            <li>a. 3 shear flow equations</li>
+                            <li>b. 1 equivalence with the internal moment</li>
+                            <li>c. 1 compatibility condition (\(\theta_i' = 0\))</li>
+                        </ul>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/shear_flow_numbered_nodes.png" alt="Shear flow analysis with numbered nodes">
+                            <figcaption>Figure 2.6: Shear flow analysis</figcaption>
+                        </figure>
+                        
+                        <p>First moments of area:</p>
+                        \[S_{y_2}' = -Aa, \quad S_{y_3}' = 0, \quad S_{y_4}' = A \cdot \frac{a}{2}\]
+                        
+                        <p>Open section shear flows:</p>
+                        \[q_2' = -T_x \frac{S_{y_2}'}{J_{yy}} = 4.44\, \text{N/mm}\]
+                        \[q_3' = 0\]
+                        \[q_4' = -T_x \frac{S_{y_4}'}{J_{yy}} = -2.22\, \text{N/mm}\]
+                        
+                        <p>From equivalence and compatibility:</p>
+                        \[Y_{sc} = 85.16\, \text{mm}, \quad q^* = -0.80\, \text{N/mm}\]
+                        
+                        <p>Final shear flows:</p>
+                        \[q_1 = -0.80\, \text{N/mm}, \quad q_2 = 3.64\, \text{N/mm}\]
+                        \[q_3 = -0.80\, \text{N/mm}, \quad q_4 = -3.02\, \text{N/mm}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/shear_flow_values_diagram.png" alt="Shear flow values">
+                            <figcaption>Figure 2.7: Final shear flow distribution</figcaption>
+                        </figure>
+                        
+                        \[A_x^* = \frac{T_x^2}{\frac{q_1^2 b}{t} + \frac{q_3^2 b}{t} + \frac{q_2^2 a}{t} + \frac{q_4^2 a}{2t}} = 341.59\, \text{mm}^2\]
+                        
+                        \[\chi = \frac{A_x^*}{A_{TOT}} = 0.28\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_x^* = \chi G A_{TOT} = 9.46 \cdot 10^6\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Torsional Stiffness \(GJ\)</h4>
+                        <p>The torsional constant \(J\) is obtained from:</p>
+                        \[J = \frac{4\Omega^2}{\oint_\Gamma \frac{1}{t(s)} d\ell}\]
+                        
+                        <p>Where:</p>
+                        \[\oint_\Gamma \frac{1}{t(s)} = \frac{1}{t}(2b + a) + \frac{1}{2t}a = \frac{1}{t}\left(\frac{4b + 3a}{2}\right)\]
+                        \[\Omega^2 = (ab)^2\]
+                        
+                        \[J = \frac{8a^2 b^2 t}{4b + 3a} = 5.76 \cdot 10^6\, \text{mm}^4\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GJ = 1.60 \cdot 10^{11}\, \text{Nmm}^2\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 3 -->
+            <section class="problem-solution-pair" id="exercise-3">
+                <div class="problem">
+                    <h2>Exercise 3: Circular Cross-Section</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/circular_cross_section_exercise.png" alt="Circular cross-section with radius R">
+                        <figcaption>Figure 3.1: Circular cross-section with four nodes at cardinal points</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(R = 100\, \text{mm}\)</li>
+                            <li>\(A = 500\, \text{mm}^2\)</li>
+                            <li>\(t = 1.2\, \text{mm}\)</li>
+                            <li>\(E = 72\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Axial Stiffness</h4>
+                        \[(EA) = E\sum_i A_i = 4EA = 1.44 \cdot 10^8\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Bending Stiffness</h4>
+                        <p>Thanks to the double symmetry of the section, the principal axes are readily available.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/circular_section_coordinate_system.png" alt="Circular section with coordinate system">
+                            <figcaption>Figure 3.2: Principal axes through centroid</figcaption>
+                        </figure>
+                        
+                        \[J_{xx} = 2AR^2\]
+                        \[J_{yy} = J_{xx}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[EJ_{xx} = EJ_{yy} = 1.0 \cdot 10^7\, \text{Nmm}^2\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_x^*\) and \(GA_y^*\)</h4>
+                        <p>The symmetry of the section is such that \(GA_x^* = GA_y^*\). The position of the shear center is available from the double symmetry of the section, and coincides with the centroid.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/circular_section_shear_flow.png" alt="Circular section shear flow">
+                            <figcaption>Figure 3.3: Shear flow distribution</figcaption>
+                        </figure>
+                        
+                        <p>The shear flows are available by exploiting the symmetry:</p>
+                        \[q_i = \frac{T_y}{4R}\]
+                        
+                        \[A_y^* = \frac{T_y^2}{\frac{T_y^2 \cdot 2\pi R}{16R^2 t}} = \frac{8Rt}{\pi} = 305.58\, \text{mm}^2\]
+                        
+                        \[\chi_y = \frac{A_y^*}{A_{TOT}} = 0.15\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_y^* = \chi_y G A_{TOT} = 8.46 \cdot 10^6\, \text{N}\]
+                        \[GA_x^* = GA_y^*\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 4 -->
+            <section class="problem-solution-pair" id="exercise-4">
+                <div class="problem">
+                    <h2>Exercise 4: Rectangular Frame with Two Cells</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/rectangular_frame_three_bays.png" alt="Rectangular frame with three bays">
+                        <figcaption>Figure 4.1: Rectangular frame structure with two cells</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 500\, \text{mm}^2\)</li>
+                            <li>\(a = 100\, \text{mm}\)</li>
+                            <li>\(b = 300\, \text{mm}\)</li>
+                            <li>\(c = 200\, \text{mm}\)</li>
+                            <li>\(t = 1\, \text{mm}\)</li>
+                            <li>\(E = 72\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Axial Stiffness</h4>
+                        \[(EA) = E\sum_i A_i = 6EA\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Bending Stiffness - Principal Axes</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_section_centroid.png" alt="Frame section with centroid">
+                            <figcaption>Figure 4.2: Centroid position</figcaption>
+                        </figure>
+                        
+                        \[X_{CG} = \frac{2A(a+b) + 2A(a)}{6A} = \frac{2a + b}{3} = 166.67\, \text{mm}\]
+                        \[Y_{CG} = 0\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_section_dimensions.png" alt="Frame section with dimensions">
+                            <figcaption>Figure 4.3: Section dimensions relative to centroid</figcaption>
+                        </figure>
+                        
+                        <p>Dimensions:</p>
+                        \[d = X_{CG} = 166.67\, \text{mm}\]
+                        \[e = X_{CG} - a = 66.67\, \text{mm}\]
+                        \[f = a + b - d = 233.33\, \text{mm}\]
+                        
+                        \[J_{xx} = 6A\left(\frac{c}{2}\right)^2 = \frac{3}{2}Ac^2\]
+                        \[J_{yy} = 2Af^2 + 2Ae^2 + 2Ad^2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[EJ_{xx} = \frac{3}{2}EAc^2 = 2.16 \cdot 10^{12}\, \text{Nmm}^2\]
+                        \[EJ_{yy} = 2EA\left(f^2 + e^2 + d^2\right) = 6.24 \cdot 10^{12}\, \text{Nmm}^2\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_y^*\)</h4>
+                        <p>The position of the shear center has to be evaluated. The equations to be applied are:</p>
+                        <ul>
+                            <li>a. 5 shear flow equations</li>
+                            <li>b. 1 equivalence with internal moment</li>
+                            <li>c. 1 compatibility condition (\(\theta'_{c_1} = \theta'_{c_2}\))</li>
+                            <li>d. 1 compatibility condition (\(\theta'_{c_1} = 0\))</li>
+                        </ul>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_shear_flow_six_nodes.png" alt="Frame with six nodes for shear flow">
+                            <figcaption>Figure 4.4: Shear flow analysis with \(T_y = 1000\, \text{N}\)</figcaption>
+                        </figure>
+                        
+                        <p>First moments of area:</p>
+                        \[S_{x_1}' = \frac{Ac}{2}, \quad S_{x_2}' = Ac, \quad S_{x_3}' = \frac{3}{2}Ac\]
+                        \[S_{x_4}' = Ac, \quad S_{x_5}' = \frac{Ac}{2}\]
+                        
+                        <p>Open section shear flows:</p>
+                        \[q_1' = -1.67\, \text{N/mm}, \quad q_2' = -3.33\, \text{N/mm}, \quad q_3' = -5.00\, \text{N/mm}\]
+                        \[q_4' = -3.33\, \text{N/mm}, \quad q_5' = -1.67\, \text{N/mm}\]
+                        
+                        <p>Solving the system of equations:</p>
+                        \[q_1^* = 1.6666\, \text{N/mm}, \quad q_2^* = 3.3332\, \text{N/mm}\]
+                        \[X_{sc} = 166.68\, \text{mm}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_shear_flow_values.png" alt="Frame shear flow values">
+                            <figcaption>Figure 4.5: Final shear flow distribution</figcaption>
+                        </figure>
+                        
+                        <p>Final shear flows:</p>
+                        \[q_1 = q_2 = q_4 = q_5 = 0\]
+                        \[q_3 = -1.67\, \text{N/mm}\]
+                        \[q_6 = q_7 = 1.67\, \text{N/mm}\]
+                        
+                        \[A_y^* = 600\, \text{mm}^2, \quad \chi_y = 0.2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_y^* = \chi_y G A_{TOT} = 1.66 \cdot 10^7\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_x^*\)</h4>
+                        <p>The y-position of the shear center is available from the symmetry of the section.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_horizontal_shear_force.png" alt="Frame with horizontal shear">
+                            <figcaption>Figure 4.6: Shear flow for horizontal shear \(T_x = 1000\, \text{N}\)</figcaption>
+                        </figure>
+                        
+                        <p>First moments of area:</p>
+                        \[S_{y_1}' = -Ad, \quad S_{y_2}' = -Ae + S_{y_1}', \quad S_{y_3}' = Af + S_{y_2}'\]
+                        
+                        <p>Open section shear flows:</p>
+                        \[q_1' = 0.96\, \text{N/mm}, \quad q_2' = 1.35\, \text{N/mm}, \quad q_3' = 0\]
+                        \[q_4' = -1.35\, \text{N/mm}, \quad q_5' = -0.96\, \text{N/mm}\]
+                        
+                        <p>Solving gives \(q_1^* = q_2^* = 0\), and:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_final_shear_flow.png" alt="Frame final shear flow">
+                            <figcaption>Figure 4.7: Final shear flow for \(T_x\)</figcaption>
+                        </figure>
+                        
+                        \[q_1 = 0.96, \quad q_2 = 1.35, \quad q_3 = q_6 = q_7 = 0\]
+                        \[q_4 = -1.35, \quad q_5 = -0.96\]
+                        
+                        \[A_x^* = 786.04\, \text{mm}^2, \quad \chi_x = 0.26\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_x^* = \chi_x G A_{TOT} = 2.17 \cdot 10^7\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Torsional Stiffness \(GJ\)</h4>
+                        <p>The torsional stiffness cannot be evaluated using the formula for single-cell sections. We use:</p>
+                        \[GJ = \frac{M_z}{\theta'}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_applied_moment.png" alt="Frame with applied moment">
+                            <figcaption>Figure 4.8: Applied torsional moment \(M_z = 1 \cdot 10^6\, \text{Nmm}\)</figcaption>
+                        </figure>
+                        
+                        <p>Solving the shear flow equations with compatibility \(\theta_1' = \theta_2'\):</p>
+                        \[q_1^* = 5.26\, \text{N/mm}, \quad q_2^* = 6.58\, \text{N/mm}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_moment_shear_flow.png" alt="Shear flow due to moment">
+                            <figcaption>Figure 4.9: Shear flow distribution due to torsion</figcaption>
+                        </figure>
+                        
+                        \[q_1 = q_5 = q_6 = 5.26\, \text{N/mm}\]
+                        \[q_2 = q_3 = q_4 = 6.58\, \text{N/mm}\]
+                        \[q_7 = 1.32\, \text{N/mm}\]
+                        
+                        \[\theta_1' = \frac{1}{2G\Omega_{c_1} t}\left(q_1 \cdot 2a + q_6 \cdot c - q_7 \cdot c\right) = 1.663 \cdot 10^{-6}\, \text{rad}\]
+                        
+                        \[J = \frac{M_z}{G\theta'} = 2.17 \cdot 10^7\, \text{mm}^4\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GJ = 6.04 \cdot 10^{11}\, \text{N} \cdot \text{mm}^2\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 5 -->
+            <section class="problem-solution-pair" id="exercise-5">
+                <div class="problem">
+                    <h2>Exercise 5: Semicircular Cross-Section</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/semicircular_cross_section.png" alt="Semicircular cross-section">
+                        <figcaption>Figure 5.1: Semicircular cross-section with five nodes</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(R = 100\, \text{mm}\)</li>
+                            <li>\(A = 500\, \text{mm}^2\)</li>
+                            <li>\(t = 1\, \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Axial Stiffness</h4>
+                        \[(EA) = E\sum_i A_i = 5EA = 1.8 \cdot 10^8\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Bending Stiffness</h4>
+                        <p>Centroid position:</p>
+                        \[Y_{CG} = 0\]
+                        \[X_{CG} = \frac{AR + AR/2}{5A} = \frac{3}{10}R = 30\, \text{mm}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/semicircular_section_dimensions.png" alt="Semicircular section dimensions">
+                            <figcaption>Figure 5.2: Section dimensions</figcaption>
+                        </figure>
+                        
+                        <p>Dimensions:</p>
+                        \[d = \frac{3}{10}R = 30\, \text{mm}\]
+                        \[e = R/2 - d = 20\, \text{mm}\]
+                        \[f = R/2 + e = 70\, \text{mm}\]
+                        
+                        \[J_{xx} = 2AR^2\]
+                        \[J_{yy} = 3Ad^2 + Ae^2 + Af^2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[EJ_{xx} = 7.20 \cdot 10^{11}\, \text{Nmm}^2\]
+                        \[EJ_{yy} = 2.88 \cdot 10^{11}\, \text{Nmm}^2\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_y^*\)</h4>
+                        <p>The x-position of the shear center is not known a priori and has to be determined.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/semicircular_shear_flow.png" alt="Semicircular shear flow">
+                            <figcaption>Figure 5.3: Shear flow analysis with \(T_y = 1000\, \text{N}\)</figcaption>
+                        </figure>
+                        
+                        <p>Applying shear flow equations, equivalence, and compatibility conditions:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/semicircular_final_shear_flow.png" alt="Final shear flow values">
+                            <figcaption>Figure 5.4: Final shear flow distribution</figcaption>
+                        </figure>
+                        
+                        \[q_1 = q_2 = 3.06\, \text{N/mm}\]
+                        \[q_3 = q_4 = -1.95\, \text{N/mm}\]
+                        \[q_5 = q_6 = 0\]
+                        \[X_{sc} = 61.10\, \text{mm}\]
+                        
+                        \[A_y^* = 326\, \text{mm}^2, \quad \chi_y = 0.13\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_y^* = \chi G A_{TOT} = 9.03 \cdot 10^6\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_x^*\)</h4>
+                        <p>The y position of the shear center is known from the symmetry.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/semicircular_shear_center.png" alt="Shear center analysis">
+                            <figcaption>Figure 5.5: Shear flow for \(T_x = 1000\, \text{N}\)</figcaption>
+                        </figure>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/semicircular_shear_values.png" alt="Shear flow values">
+                            <figcaption>Figure 5.6: Final shear flow distribution</figcaption>
+                        </figure>
+                        
+                        \[q_1 = 0.74\, \text{N/mm}, \quad q_2 = -0.74\, \text{N/mm}\]
+                        \[q_3 = 3.01\, \text{N/mm}, \quad q_4 = -3.01\, \text{N/mm}\]
+                        \[q_5 = -2.73\, \text{N/mm}, \quad q_6 = -5.23\, \text{N/mm}\]
+                        
+                        \[A_x^* = 213\, \text{mm}^2, \quad \chi_x = 0.09\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_x^* = 5.90 \cdot 10^6\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Torsional Stiffness \(GJ\)</h4>
+                        <p>The section is composed of two cells, so an arbitrary torsional moment is applied:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/semicircular_torsional_moment.png" alt="Torsional moment analysis">
+                            <figcaption>Figure 5.7: Torsional analysis with \(M_z = 10^6\, \text{Nmm}\)</figcaption>
+                        </figure>
+                        
+                        \[\theta_1' = \theta_2' = 1.88 \cdot 10^{-5}\, \text{rad}\]
+                        \[J = \frac{M_z}{G\theta_1'} = 1.92 \cdot 10^6\, \text{mm}^4\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GJ = 5.32 \cdot 10^{10}\, \text{Nmm}^2\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 6 -->
+            <section class="problem-solution-pair" id="exercise-6">
+                <div class="problem">
+                    <h2>Exercise 6: Rectangular Frame with Two Cells (Panel Configuration)</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/six_panel_frame_structure.png" alt="Six panel frame structure">
+                        <figcaption>Figure 6.1: Rectangular frame with two cells</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 400\, \text{mm}^2\)</li>
+                            <li>\(a = 110\, \text{mm}\)</li>
+                            <li>\(b = 70\, \text{mm}\)</li>
+                            <li>\(t = 1.3\, \text{mm}\)</li>
+                            <li>\(E = 72\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                        </ul>
+                        <p class="note">Note: \(A\) denotes the lumped area (the contribution of the panels is already included)</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Axial Stiffness</h4>
+                        \[(EA) = 6EA = 1.73 \cdot 10^8\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Bending Stiffness</h4>
+                        <p>The principal axes are available from the symmetry:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/six_panel_frame_section.png" alt="Frame section with coordinate system">
+                            <figcaption>Figure 6.2: Principal axes through centroid</figcaption>
+                        </figure>
+                        
+                        \[J_{xx} = 6A\left(\frac{b}{2}\right)^2 = \frac{3}{2}Ab^2\]
+                        \[J_{yy} = 4Aa^2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[EJ_{xx} = 2.12 \cdot 10^{11}\, \text{Nmm}^2\]
+                        \[EJ_{yy} = 1.40 \cdot 10^{12}\, \text{Nmm}^2\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_x^*\)</h4>
+                        <p>The y-position of the shear center is available from the symmetry.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_five_nodes_shear.png" alt="Frame with horizontal shear">
+                            <figcaption>Figure 6.3: Shear flow for \(T_x = 1000\, \text{N}\)</figcaption>
+                        </figure>
+                        
+                        <p>The solution can be found easily by noting that:</p>
+                        <ol>
+                            <li>A symmetry with respect to x exists, so: \(q_3 = q_6 = 0\), \(q_1 = q_5\) and \(q_4 = q_2\)</li>
+                            <li>The stringers 2 and 5 are located on the neutral axis ⟹ \(q_1 = q_2\) and \(q_4 = q_5\)</li>
+                        </ol>
+                        
+                        <p>The shear flows are constant along the y-direction: \(q = \frac{T_x}{4a}\)</p>
+                        
+                        \[A_x^* = A_{webs} = 4at\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_x^* = 1.58 \cdot 10^7\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Shear Stiffness \(GA_y^*\)</h4>
+                        <p>The x-position of the shear center cannot be determined from symmetry considerations (panel 3 has thickness \(2t\), while the others \(t\)).</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_vertical_force.png" alt="Frame with vertical shear">
+                            <figcaption>Figure 6.4: Configuration for \(T_y = 1000\, \text{N}\)</figcaption>
+                        </figure>
+                        
+                        <p>Applying the full set of equations:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_shear_center_values.png" alt="Shear flow values and shear center">
+                            <figcaption>Figure 6.5: Shear flow distribution and shear center at 120 mm</figcaption>
+                        </figure>
+                        
+                        \[A_y^* = 33.5\, \text{mm}^2\]
+                        
+                        <p class="note">Note: \(A_y^*\) is smaller than the total area of the vertical webs. When the shear flows are constant and equal on the webs, then \(A^* = A_{web}\); otherwise \(A^* < A_{web}\).</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GA_y^* = 9.28 \cdot 10^6\, \text{N}\]
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>Torsional Stiffness \(GJ\)</h4>
+                        <p>This is a multicell configuration. Applying \(M_z = 1 \cdot 10^6\, \text{Nmm}\):</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_moment_distribution.png" alt="Frame moment distribution">
+                            <figcaption>Figure 6.6: Shear flow due to torsion</figcaption>
+                        </figure>
+                        
+                        \[q_1 = q_6 = 31.09\, \text{N/mm}\]
+                        \[q_2 = q_4 = 33.84\, \text{N/mm}\]
+                        \[q_7 = 2.75\, \text{N/mm}\]
+                        
+                        \[\theta_1' = \theta_2' = 1.59 \cdot 10^{-5}\, \text{rad}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[GJ = \frac{M_z}{\theta'} = 6.28 \cdot 10^{10}\, \text{N} \cdot \text{mm}^2\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 7 -->
+            <section class="problem-solution-pair" id="exercise-7">
+                <div class="problem">
+                    <h2>Exercise 7: Cantilever Beam with Rectangular Cross-Section</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/parallelogram_beam_structure.png" alt="Cantilever beam structure">
+                        <figcaption>Figure 7.1: Cantilever beam with applied load P</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1800\, \text{mm}\)</li>
+                            <li>\(a = 150\, \text{mm}\)</li>
+                            <li>\(b = 250\, \text{mm}\)</li>
+                            <li>\(t = 1.5\, \text{mm}\)</li>
+                            <li>\(E = 72\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(P = 2000\, \text{N}\)</li>
+                            <li>\(A = 300\, \text{mm}^2\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="problem-statement">Evaluate the displacement \(S\) (vertical) due to the applied force \(P\). Quantify the contribution due to the shear deformability.</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Section Properties</h4>
+                        <p>Due to the symmetry, the centroid and shear center are coincident:</p>
+                        
+                        \[J_{xx} = Aa^2\]
+                        \[EJ_{xx} = 4.86 \cdot 10^{11}\, \text{Nmm}^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Shear Stiffness \(GA_y^*\)</h4>
+                        <p>Since the shear center position is known, the shear flow is \(q = \frac{\bar{T}}{2a}\) constant on vertical webs:</p>
+                        \[A_y^* = 2at\]
+                        \[GA_y^* = 1.25 \cdot 10^7\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Torsional Stiffness</h4>
+                        \[J = \frac{4\Omega^2}{\oint_\Gamma \frac{1}{t(s)} ds} = \frac{2ta^2b^2}{a + b}\]
+                        \[GJ = 2.92 \cdot 10^{11}\, \text{Nmm}^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>PCVW Application</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/beam_internal_forces.png" alt="Beam internal forces">
+                            <figcaption>Figure 7.2: Real system internal forces</figcaption>
+                        </figure>
+                        
+                        <p><strong>Real system:</strong></p>
+                        \[T_y = P, \quad M_x = Pz, \quad M_z = -\frac{Pb}{2}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/dummy_system_unit_load.png" alt="Dummy system">
+                            <figcaption>Figure 7.3: Dummy system with unit load</figcaption>
+                        </figure>
+                        
+                        <p><strong>Dummy system:</strong></p>
+                        \[\delta T_y = 1, \quad \delta M_x = z, \quad \delta M_z = \frac{b}{2}\]
+                        
+                        <p>The PCVW:</p>
+                        \[\int_0^\ell \left(\delta M_x \frac{M_x}{EJ} + \delta T_y \frac{T_y}{GA_y^*} + \delta M_z \frac{M_z}{GJ}\right) dz = 1 \cdot S\]
+                        
+                        \[\int_0^\ell \left(\frac{Pz^2}{EJ} + \frac{P}{GA_y^*} - P\frac{b^2}{4GJ}\right) dz = S\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[S = P\left(\frac{\ell^3}{3EJ} + \frac{\ell}{GA_y^*} - \frac{b^2 \ell}{4GJ}\right) = 12.14\, \text{mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Contribution Analysis</h4>
+                        \[S^{shear} = \frac{\ell}{GA_y^*} P = 0.43\, \text{mm}\]
+                        \[S^{bend} = P\frac{\ell^3}{3EJ} = 12\, \text{mm}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 8 -->
+            <section class="problem-solution-pair" id="exercise-8">
+                <div class="problem">
+                    <h2>Exercise 8: Two-Segment Beam Structure</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/parallelogram_beam_exercise.png" alt="Two-segment beam structure">
+                        <figcaption>Figure 8.1: Beam structure with two segments</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 100\, \text{mm}\)</li>
+                            <li>\(b = 300\, \text{mm}\)</li>
+                            <li>\(c = 200\, \text{mm}\)</li>
+                            <li>\(t = 1\, \text{mm}\)</li>
+                            <li>\(A = 500\, \text{mm}^2\)</li>
+                            <li>\(\ell = 900\, \text{mm}\)</li>
+                            <li>\(P = 1000\, \text{N}\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="problem-statement">Evaluate the displacement \(S\) and assess the contribution of shear deformability in relation to the bending one.</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Section Properties (from Exercise 4)</h4>
+                        \[EJ_{xx} = 2.16 \cdot 10^{12}\, \text{Nmm}^2\]
+                        \[GA_y^* = 1.66 \cdot 10^7\, \text{N}\]
+                        \[GJ = 6.01 \cdot 10^{11}\, \text{Nmm}^2\]
+                        \[f = 233.33\, \text{mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Load Transfer to Shear Center</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_shear_center_position.png" alt="Shear center position">
+                            <figcaption>Figure 8.2: Load transfer to shear center</figcaption>
+                        </figure>
+                        
+                        <p>The load \(P\) at the stringer creates a force \(P\) and moment \(Pf\) at the shear center.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Real System Internal Forces</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/beam_system_forces.png" alt="Beam system forces">
+                            <figcaption>Figure 8.3: Real system configuration</figcaption>
+                        </figure>
+                        
+                        <p><strong>Beam 1:</strong></p>
+                        \[T_y^{(1)} = P, \quad M_x^{(1)} = Pz_1, \quad M_z^{(1)} = -Pf\]
+                        
+                        <p><strong>Beam 2:</strong></p>
+                        \[T_y^{(2)} = 2P, \quad M_x^{(2)} = P\ell + 2Pz_2, \quad M_z^{(2)} = -2Pf\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Dummy System</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/diagonal_beam_element.png" alt="Dummy system">
+                            <figcaption>Figure 8.4: Dummy system with unit load</figcaption>
+                        </figure>
+                        
+                        <p><strong>Beam 1:</strong></p>
+                        \[\delta T_y^{(1)} = 1, \quad \delta M_x^{(1)} = z_1, \quad \delta M_z^{(1)} = -f\]
+                        
+                        <p><strong>Beam 2:</strong></p>
+                        \[\delta T_y^{(2)} = 1, \quad \delta M_x^{(2)} = \ell + z_2, \quad \delta M_z^{(2)} = -f\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>PCVW Integration</h4>
+                        \[\int_0^\ell \left(\frac{T_y^{(1)} \delta T_y^{(1)}}{GA_y^*} + \frac{M_x^{(1)} \delta M_x^{(1)}}{EJ_{xx}} + \frac{M_z^{(1)} \delta M_z^{(1)}}{GJ}\right) dz_1 +\]
+                        \[\int_0^\ell \left(\frac{T_y^{(2)} \delta T_y^{(2)}}{GA_y^*} + \frac{M_x^{(2)} \delta M_x^{(2)}}{EJ_{xx}} + \frac{M_z^{(2)} \delta M_z^{(2)}}{GJ}\right) dz_2 = S\]
+                        
+                        <p>After integration:</p>
+                        \[P\left(\frac{7}{2}\frac{\ell^3}{EJ} + \frac{3\ell}{GA_y^*} + \frac{3f^2\ell}{GJ}\right) = S\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[S = 1.59\, \text{mm}\]
+                        \[S_{shear} = \frac{3\ell}{GA_y^*} P = 0.16\, \text{mm}\]
+                        \[S_{bending} = \frac{7}{2}\frac{\ell^3}{EJ} P = 1.18\, \text{mm}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 9 -->
+            <section class="problem-solution-pair" id="exercise-9">
+                <div class="problem">
+                    <h2>Exercise 9: Beam with Spring Supports (Statically Indeterminate)</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/beam_spring_supports.png" alt="Beam with spring supports">
+                        <figcaption>Figure 9.1: Two-segment beam with spring supports</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 100\, \text{mm}\)</li>
+                            <li>\(b = 300\, \text{mm}\)</li>
+                            <li>\(c = 200\, \text{mm}\)</li>
+                            <li>\(t = 1\, \text{mm}\)</li>
+                            <li>\(A = 500\, \text{mm}^2\)</li>
+                            <li>\(\ell = 900\, \text{mm}\)</li>
+                            <li>\(P = 5000\, \text{N}\)</li>
+                            <li>\(k = 10^6\, \text{N/mm}\)</li>
+                            <li>\(E = 72\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="problem-statement">Determine the reaction forces in correspondence of the linear springs.</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Section Properties</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_section_shear_center.png" alt="Section with shear center">
+                            <figcaption>Figure 9.2: Cross-section showing shear center at 233.33 mm</figcaption>
+                        </figure>
+                        
+                        \[EJ_{xx} = 2.16 \cdot 10^{12}\, \text{Nmm}^2\]
+                        \[GA_y^* = 1.66 \cdot 10^7\, \text{N}\]
+                        \[GJ = 6.01 \cdot 10^{11}\, \text{Nmm}^2\]
+                        <p>The shear center coincides with the centroid.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Problem Setup</h4>
+                        <p>The beam is two times statically indeterminate. The problem is solved by applying two times the PCVW.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/beam_end_section.png" alt="End section forces">
+                            <figcaption>Figure 9.3: Spring support configuration with forces X and Y</figcaption>
+                        </figure>
+                        
+                        <p>Internal actions referred to the shear center:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/frame_corner_forces.png" alt="Equivalent loading">
+                            <figcaption>Figure 9.4: Equivalent loading at shear center</figcaption>
+                        </figure>
+                        
+                        <p>At spring support: Force \((X+Y)\) upward, Moment \((Xd - Yf)\)</p>
+                        <p>At load location: Force \(2P\) upward, Moment \(P(d-f)\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Real System Internal Forces</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/beam_system_reactions.png" alt="Real system">
+                            <figcaption>Figure 9.5: Real system configuration</figcaption>
+                        </figure>
+                        
+                        <p><strong>Beam 1:</strong></p>
+                        \[T_y^{(1)} = -(X+Y)\]
+                        \[M_x^{(1)} = -(X+Y)z_1\]
+                        \[M_z^{(1)} = -(Xd - Yf)\]
+                        
+                        <p><strong>Beam 2:</strong></p>
+                        \[T_y^{(2)} = -(2P + X + Y)\]
+                        \[M_x^{(2)} = -(2P + X + Y)z_2 - (X+Y)\ell\]
+                        \[M_z^{(2)} = -(Xd - Yf) - P(d-f)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Dummy System 1</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/dummy_system_1_springs.png" alt="Dummy system 1">
+                            <figcaption>Figure 9.6: Dummy system 1 for reaction X</figcaption>
+                        </figure>
+                        
+                        <p><strong>Beam 1:</strong></p>
+                        \[^1\delta T_y^{(1)} = -1, \quad ^1\delta M_x^{(1)} = -z_1, \quad ^1\delta M_z^{(1)} = -d\]
+                        
+                        <p><strong>Beam 2:</strong></p>
+                        \[^1\delta T_y^{(2)} = -1, \quad ^1\delta M_x^{(2)} = -(\ell + z_2), \quad ^1\delta M_z^{(2)} = -d\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Dummy System 2</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/dummy_system_2_springs.png" alt="Dummy system 2">
+                            <figcaption>Figure 9.7: Dummy system 2 for reaction Y</figcaption>
+                        </figure>
+                        
+                        <p><strong>Beam 1:</strong></p>
+                        \[^2\delta T_y^{(1)} = -1, \quad ^2\delta M_x^{(1)} = -z_1, \quad ^2\delta M_z^{(1)} = f\]
+                        
+                        <p><strong>Beam 2:</strong></p>
+                        \[^2\delta T_y^{(2)} = -1, \quad ^2\delta M_x^{(2)} = -\ell - z_2, \quad ^2\delta M_z^{(2)} = f\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Compatibility Equations</h4>
+                        <p>After integration, the compatibility equations are:</p>
+                        
+                        <p><strong>Equation 1:</strong></p>
+                        \[\left(\frac{8}{3}\frac{\ell^3}{EJ_{xx}} + \frac{2\ell}{GA_y^*} + \frac{2d^2\ell}{GJ} + \frac{1}{k}\right)X + \left(\frac{8}{3}\frac{\ell^3}{EJ_{xx}} + \frac{2\ell}{GA_y^*} - \frac{2df\ell}{GJ}\right)Y\]
+                        \[= \left(-\frac{5}{3}\frac{\ell^3}{EJ_{xx}} - \frac{2\ell}{GA_y^*} + \frac{d(f-d)\ell}{GJ}\right)P\]
+                        
+                        <p><strong>Equation 2:</strong></p>
+                        \[\left(\frac{8}{3}\frac{\ell^3}{EJ_{xx}} + \frac{2\ell}{GA_y^*} - \frac{2df\ell}{GJ}\right)X + \left(\frac{8}{3}\frac{\ell^3}{EJ_{xx}} + \frac{2\ell}{GA_y^*} + \frac{2f^2\ell}{GJ} + \frac{1}{k}\right)Y\]
+                        \[= \left(-\frac{5}{3}\frac{\ell^3}{EJ_{xx}} - \frac{2\ell}{GA_y^*} - \frac{f(f-d)\ell}{GJ}\right)P\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <p>Solving the \(2 \times 2\) linear system:</p>
+                        \[\boxed{X = -1405\, \text{N}}\]
+                        \[\boxed{Y = -1200\, \text{N}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXERCISE 10 -->
+            <section class="problem-solution-pair" id="exercise-10">
+                <div class="problem">
+                    <h2>Exercise 10: Wing Structure with Pressure Loading</h2>
+                    
+                    <figure class="diagram">
+                        <img src="images/LN_C3_Ex1_Stiffness_properties/truss_pressure_load_structure.png" alt="Wing structure with pressure load">
+                        <figcaption>Figure 10.1: Wing-like structure with distributed pressure load and four ribs</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 100\, \text{mm}\)</li>
+                            <li>\(b = 150\, \text{mm}\)</li>
+                            <li>\(t = 1\, \text{mm}\)</li>
+                            <li>\(A = 300\, \text{mm}^2\)</li>
+                            <li>\(\ell = 400\, \text{mm}\)</li>
+                            <li>\(E = 72\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(p_o = 0.02\, \text{N/mm}^2\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="problem-statement">Evaluate the displacement \(S\) due to the pressure load \(p\) (constant along the chordwise direction and linear along the spanwise direction).</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Section Properties</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/section_centroid_shear_center.png" alt="Section with centroid and shear center">
+                            <figcaption>Figure 10.2: Cross-section showing centroid and shear center (coincident)</figcaption>
+                        </figure>
+                        
+                        \[J_{xx} = 4A\left(\frac{a}{2}\right)^2 = Aa^2\]
+                        \[EJ_{xx} = 2.16 \cdot 10^{11}\, \text{Nmm}^2\]
+                        
+                        \[A_y^* = 2at = 200\, \text{mm}^2\]
+                        \[GA_y^* = 5.54 \cdot 10^6\, \text{N}\]
+                        
+                        \[J = \frac{2a^2b^2t}{a+b}\]
+                        \[GJ = 4.98 \cdot 10^{10}\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Structure Analysis</h4>
+                        <p>The structure is 1 time statically indeterminate. The beam is transversally stiffened with 4 ribs (R1, R2, R3, R4) which are responsible for the load introduction.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/beam_distributed_loads_ribs.png" alt="Load distribution on ribs">
+                            <figcaption>Figure 10.3: Load distribution on ribs along span</figcaption>
+                        </figure>
+                        
+                        <p>The pressure varies linearly along the span:</p>
+                        \[p(z) = \frac{3p_o}{3\ell}z = \frac{p_o}{\ell}z\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/rib_load_distribution_3d.png" alt="3D load distribution">
+                            <figcaption>Figure 10.4: Three-dimensional view of load distribution</figcaption>
+                        </figure>
+                        
+                        <p>Integrated loads at each rib:</p>
+                        \[q_1 = \int_0^{\ell/2} p(z)\, dz = \frac{p_o \ell}{8}\]
+                        \[q_2 = \int_{\ell/2}^{3\ell/2} p(z)\, dz = p_o \ell\]
+                        \[q_3 = \int_{3\ell/2}^{5\ell/2} p(z)\, dz = 2p_o \ell\]
+                        \[q_4 = \int_{5\ell/2}^{3\ell} p(z)\, dz = \frac{11}{8} p_o \ell\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Evaluation of Reaction Force</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/beam_shear_forces_locations.png" alt="Shear forces at rib locations">
+                            <figcaption>Figure 10.5: Concentrated forces at rib locations</figcaption>
+                        </figure>
+                        
+                        <p>Shear forces applied at the shear center:</p>
+                        \[F_1 = q_1 b = 150\, \text{N}\]
+                        \[F_2 = q_2 b = 1200\, \text{N}\]
+                        \[F_3 = q_3 b = 2400\, \text{N}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/local_coordinate_systems.png" alt="Local coordinate systems">
+                            <figcaption>Figure 10.6: Local coordinate systems for each beam segment</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Real System Internal Forces</h4>
+                        
+                        <p><strong>Beam #1:</strong></p>
+                        \[T_y^{(1)} = -(X + F_1)\]
+                        \[M_x^{(1)} = -(X + F_1)z_1\]
+                        \[M_z^{(1)} = -X\frac{b}{2}\]
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/beam_2_internal_forces_moments.png" alt="Beam 2 internal forces">
+                            <figcaption>Figure 10.7: Internal forces in Beam 2</figcaption>
+                        </figure>
+                        
+                        <p><strong>Beam #2:</strong></p>
+                        \[T_y^{(2)} = -(X + F_1 + F_2)\]
+                        \[M_x^{(2)} = -(F_1 + X)\ell - (X + F_1 + F_2)z_2\]
+                        \[M_z^{(2)} = -X\frac{b}{2}\]
+                        
+                        <p><strong>Beam #3:</strong></p>
+                        \[T_y^{(3)} = -(X + F_1 + F_2 + F_3)\]
+                        \[M_x^{(3)} = -(X + F_1 + F_2 + F_3)z_3 - (F_1 + X)2\ell - F_2\ell\]
+                        \[M_z^{(3)} = -X\frac{b}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Dummy System for X</h4>
+                        <p><strong>Beam #1:</strong></p>
+                        \[\delta T_y^{(1)} = -1, \quad \delta M_x^{(1)} = -z_1, \quad \delta M_z^{(1)} = -\frac{b}{2}\]
+                        
+                        <p><strong>Beam #2:</strong></p>
+                        \[\delta T_y^{(2)} = -1, \quad \delta M_x^{(2)} = -(\ell + z_2), \quad \delta M_z^{(2)} = -\frac{b}{2}\]
+                        
+                        <p><strong>Beam #3:</strong></p>
+                        \[\delta T_y^{(3)} = -1, \quad \delta M_x^{(3)} = -(2\ell + z_3), \quad \delta M_z^{(3)} = -\frac{b}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Compatibility Condition</h4>
+                        \[\sum_{i=1}^{3} \int_0^\ell \left(\delta T_y^{(i)} \frac{T_y}{GA_y^*} + \delta M_x^{(i)} \frac{M_x}{EJ_{xx}} + \delta M_z^{(i)} \frac{M_z}{GJ}\right) dz_i = 0\]
+                        
+                        <p>Which leads to:</p>
+                        \[\left(\frac{13}{2}\frac{\ell^3}{EJ} + \frac{3\ell}{GA} + \frac{3b^2\ell}{4GJ}\right)X = -\frac{\ell}{GA_y^*}\left(3F_1 + 2F_2 + F_3\right) - \frac{\ell^3}{EJ}\left(\frac{13}{2}F_1 + \frac{13}{6}F_2\right)\]
+                        
+                        \[X = -631\, \text{N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Evaluation of Displacement S</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C3_Ex1_Stiffness_properties/dummy_system_unit_load_3d.png" alt="Dummy system for S">
+                            <figcaption>Figure 10.8: Dummy system for evaluating displacement S</figcaption>
+                        </figure>
+                        
+                        <p>The dummy system differs from the previous one only for the sign of \(\delta M_z^{(i)}\) (now \(+\frac{b}{2}\)).</p>
+                        
+                        <p>The compatibility condition reads:</p>
+                        \[\sum_{i=1}^{3} \int_0^\ell \left(\delta T_y^{(i)} \frac{T_y^{(i)}}{GA_y^*} + \delta M_x^{(i)} \frac{M_x^{(i)}}{EJ_{xx}} + \delta M_z^{(i)} \frac{M_z^{(i)}}{GJ}\right) dz_i = S\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        \[S = \frac{\ell}{GA_y^*}\left(3F_1 + 3X + 2F_2 + F_3\right) + \frac{\ell^3}{EJ}\left(\frac{13}{2}(F_1 + X) + \frac{13}{6}F_2\right) - \frac{3}{4}\frac{b^2\ell X}{GJ}\]
+                        \[\boxed{S = 0.17\, \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

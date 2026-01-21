@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to the Finite Element Method</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .fem-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .toc {
+            background: var(--bg-light);
+            padding: 25px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .toc h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin: 50px 0;
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .definition {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .definition h4 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+
+        .key-equation {
+            background: #fffbeb;
+            padding: 20px;
+            border-radius: 6px;
+            border: 2px solid #f59e0b;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .remark {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            margin: 20px 0;
+        }
+
+        .remark h4 {
+            color: #b45309;
+            margin-top: 0;
+        }
+
+        .step {
+            background: var(--bg-solution);
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+            margin: 15px 0;
+        }
+
+        .step h4 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        figure figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .comparison-table {
+            margin: 25px 0;
+        }
+
+        .comparison-table th {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .procedure-list {
+            background: var(--bg-light);
+            padding: 20px 20px 20px 40px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .procedure-list li {
+            margin: 12px 0;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        .matrix-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .example {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #0284c7;
+            margin: 20px 0;
+        }
+
+        .example h4 {
+            color: #0284c7;
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="fem-document">
+        <header>
+            <h1>Introduction to the Finite Element Method</h1>
+            <p class="subtitle">Lecture Notes on FEM Fundamentals</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#introduction">1. Introduction to FEM</a></li>
+                <li><a href="#formulation">2. Formulation for Linear Static Case (3D Elements)</a></li>
+                <li><a href="#remarks-general">3. General Remarks and Comparison with Ritz</a></li>
+                <li><a href="#stiffness-physical">4. Stiffness Matrix in Physical Coordinates</a></li>
+                <li><a href="#external-loads">5. External Loads</a></li>
+                <li><a href="#membrane-element">6. Bilinear Membrane Element</a></li>
+                <li><a href="#assembly">7. Assembly of Equations and Compatibility</a></li>
+                <li><a href="#boundary-conditions">8. Boundary Conditions</a></li>
+                <li><a href="#parametric">9. Parametric Formulation</a></li>
+                <li><a href="#numerical-integration">10. Numerical Integration</a></li>
+                <li><a href="#stress-recovery">11. Recovery of Stresses</a></li>
+                <li><a href="#convergence">12. Convergence Requirements</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Section 1: Introduction -->
+            <section id="introduction">
+                <h2>1. Introduction to the Finite Element Method</h2>
+                
+                <p>The main idea of the finite element method consists in dividing the continuum — a three dimensional one as well as a plate/shell or beam can be considered — into an assembly of small elementary entities called <strong>elements</strong>. Each element is obtained by connecting the <strong>nodes</strong> and each node is associated with a set of generalized displacements and forces, depending on the kind of element.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/fem_continuum_discretization_concept.png" alt="3D continuum divided into elements">
+                    <figcaption>Figure 1.1: 3D continuum divided into smaller 3D elements (left) and a single 3D element with nodes (right)</figcaption>
+                </figure>
+
+                <p>Considering the example in the figure, the element is composed of 8 nodes; each node is associated with three displacement components and three nodal force components. The relation between nodal forces and displacement is obtained by referring to the FE theoretical framework discussed in these notes.</p>
+
+                <p>The idea of dividing a structure into smaller elementary portions has been already introduced when analyzing systems of trusses and beams.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/truss_beam_system_example.png" alt="System of trusses/beams">
+                    <figcaption>Figure 1.2: System of trusses/beams</figcaption>
+                </figure>
+
+                <p>In this case the procedure for solving the linear static problem consists in assembling the governing equations starting from the force-displacement relation available for each element. It can be useful to highlight that the force-displacement relation was derived by application of the PCVW (Principle of Complementary Virtual Work).</p>
+
+                <p>How can the approach be extended to a generic 2D and 3D case? How can the procedure be developed in a fully consistent displacement-based approach?</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/3d_body_subdivision_mesh.png" alt="3D body subdivision into mesh">
+                    <figcaption>Figure 1.3: 3D body subdivision into small 3D elements</figcaption>
+                </figure>
+
+                <p>How to find force-displacement relations for the elements? How to assemble the contributions?</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/plate_beam_fem_models.png" alt="Plate and beam FEM models">
+                    <figcaption>Figure 1.4: Thin plate and slender beam with their FEM model representations</figcaption>
+                </figure>
+
+                <p>Irrespective of the kind of element, the FEM operates an idealization of the structure and allows to seek for an approximate solution, exactly as in the case of the Ritz and Galerkin methods; in a certain sense, the FEM can be easily seen as a <strong>Ritz-like approach</strong> where the trial functions are defined at local level (and not at global level as in Ritz).</p>
+
+                <h3>1.1 FEM Procedure Steps</h3>
+                
+                <p>To summarize, the method can be conceptually divided into the following steps:</p>
+
+                <ol class="procedure-list">
+                    <li><strong>Subdivision of the structure into small portions.</strong> This operation is the generation of the mesh, where:
+                        <p style="text-align: center; margin: 10px 0;"><em>mesh = nodes + elements</em></p>
+                        <p>The various elements composing the mesh are connected to each other in correspondence of the nodes.</p>
+                        <figure>
+                            <img src="images/LN_C6_1_FEM/element_nodal_compatibility.png" alt="Element nodal compatibility">
+                            <figcaption>Figure 1.5: The compatibility is enforced at nodal level. Along the frontier it is not necessarily satisfied (this depends upon the choice of the shape functions).</figcaption>
+                        </figure>
+                    </li>
+                    
+                    <li><strong>Definition of the elements to be used.</strong> The elements could be 3D/2D/1D, depending on the modelling choices of the analyst. In addition, once the dimensionality of the element is defined, one must choose which type of element to consider in terms of element formulation. Linear interpolating functions? Or quadratic? Or cubic?
+                        <p>FEM codes typically offer a large library of elements that one should choose based on the needs of the analysis, its peculiarities, the experience with the code.</p>
+                    </li>
+                    
+                    <li><strong>Formulation of the equilibrium conditions</strong> (if operating in a displacement-based approach) or, to a more general extent, of the stationarity condition of the variational principle adopted.
+                        <p>For the scopes of this course the variational formulation is always intended in terms of Principle of Virtual Works or Total Potential Energy. Other formulations are clearly possible.</p>
+                    </li>
+                    
+                    <li><strong>Solution of the discrete equations</strong> obtained from the previous step.
+                        <p>As in the case of the method of Ritz, the FEM allows to transform the continuum problem — which is governed by Partial Differential Equations (PDE) — into an algebraic problem.</p>
+                        <p>In the context of a displacement-based formulation, the discrete equations express the equilibrium conditions at the nodes of the mesh.</p>
+                        <p>It can be observed that the solution of the discrete equations leads to the satisfaction of the equilibrium in a weak sense. The solution is indeed approximate, and the equilibrium is not fulfilled locally.</p>
+                    </li>
+                    
+                    <li><strong>Evaluation of the displacement field</strong> (using the shape functions) and <strong>recovery of stress/strain field</strong>.
+                        <p>Once the nodal displacements (i.e. the unknowns of the problem) are known, the displacement field can be reconstructed in the overall domain by making use of the shape functions to interpolate the nodal values.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Section 2: Formulation -->
+            <section id="formulation">
+                <h2>2. Formulation for the Linear Static Case Using 3D Elements</h2>
+                
+                <p>Consider, as a starting point, the case of a 3D body (this is, as a matter of fact, the simplest case as no kinematic models are implied).</p>
+
+                <h3>2.1 Principle of Virtual Works</h3>
+                
+                <p>The Principle of Virtual Works is written as:</p>
+                
+                \[\int_V \delta \underline{\underline{\varepsilon}} : \underline{\underline{\sigma}} \, dV = \int_V \delta \underline{S} \cdot \underline{f} \, dV + \int_A \delta \underline{S} \cdot \underline{f}^A \, dA + \sum_{i=1}^{N} \delta \underline{S}_i \cdot \underline{F}_i^c\]
+
+                <p>where:</p>
+                <ul>
+                    <li>\(\underline{S}^T\): displacement components \(= \{u(x,y,z) \; v(x,y,z) \; w(x,y,z)\}\)</li>
+                    <li>\(\underline{f}\): volume forces</li>
+                    <li>\(\underline{f}^A\): surface forces</li>
+                    <li>\(\underline{F}_i^c\): concentrated load</li>
+                    <li>\(\underline{\underline{\sigma}}, \underline{\underline{\varepsilon}}\): stress/strain tensor</li>
+                </ul>
+
+                <p>By organizing the tensor/vector components into matrices/vectors, it is possible to re-write the PVW as:</p>
+                
+                \[\int_V \delta \underline{\varepsilon}^T \underline{\sigma} \, dV = \int_V \delta \underline{S}^T \underline{f} \, dV + \int_A \delta \underline{S}^T \underline{f}^A \, dA + \sum_{i=1}^{N} \delta \underline{S}_i^T \underline{F}_i^c\]
+
+                <h3>2.2 Displacement Approximation</h3>
+                
+                <p>As in the case of Ritz, the displacement field is approximated as the product between the shape functions and nodal displacements:</p>
+                
+                <div class="key-equation">
+                    \[\underline{S} = \underline{S}(x, y, z) = \underline{\underline{N}}(x, y, z) \underline{u}\]
+                </div>
+
+                <p>where \(\underline{u}\) defines the vector of the nodal displacements (which are independent on \(x, y, z\)).</p>
+
+                <h3>2.3 Strain-Displacement Relation</h3>
+                
+                <p>Accordingly the strain-displacement relation is found as:</p>
+                
+                \[\varepsilon_{ik} = \frac{1}{2} \left( u_{i,k} + u_{k,i} \right)\]
+
+                <p>This leads to:</p>
+                
+                \[\varepsilon_{xx} = u_{,x} \quad \varepsilon_{yy} = v_{,y} \quad \varepsilon_{zz} = w_{,z}\]
+                \[\gamma_{yz} = v_{,z} + w_{,y} \quad \gamma_{xz} = u_{,z} + w_{,x} \quad \gamma_{xy} = u_{,y} + v_{,x}\]
+
+                <p>In matrix form:</p>
+                
+                \[\underline{\varepsilon} = \begin{pmatrix} \varepsilon_{xx} \\ \varepsilon_{yy} \\ \varepsilon_{zz} \\ \gamma_{yz} \\ \gamma_{xz} \\ \gamma_{xy} \end{pmatrix} = \begin{bmatrix} \partial_x & 0 & 0 \\ 0 & \partial_y & 0 \\ 0 & 0 & \partial_z \\ 0 & \partial_z & \partial_y \\ \partial_z & 0 & \partial_x \\ \partial_y & \partial_x & 0 \end{bmatrix} \begin{Bmatrix} u \\ v \\ w \end{Bmatrix}\]
+
+                <p>Or, in compact form:</p>
+                
+                <div class="key-equation">
+                    \[\underline{\varepsilon} = \underline{\underline{D}} \underline{S}\]
+                </div>
+                
+                <p>where \(\underline{\underline{D}}\) is a differential operator collecting the derivatives with respect to \(x, y, z\).</p>
+
+                <h3>2.4 The B Matrix</h3>
+                
+                <p>Introducing now the approximation of the displacement field as \(\underline{S} = \underline{\underline{N}} \underline{u}\), it is possible to express the strains as function of the nodal displacements:</p>
+                
+                \[\underline{\varepsilon} = \underline{\underline{D}} \underline{S} = \underline{\underline{D}} \underline{\underline{N}} \underline{u}\]
+
+                <div class="key-equation">
+                    \[\underline{\varepsilon} = \underline{\underline{B}} \underline{u} \quad \text{where} \quad \underline{\underline{B}} = \underline{\underline{D}} \underline{\underline{N}}\]
+                </div>
+                
+                <p>\(\underline{\underline{B}}\) is the matrix collecting the derivatives of the shape functions.</p>
+
+                <h3>2.5 Constitutive Law</h3>
+                
+                <p>To express the PVW as function of the nodal displacements it is necessary to introduce the constitutive law. In the linear hyperelastic case it can be written as:</p>
+                
+                <div class="key-equation">
+                    \[\underline{\sigma} = \underline{\underline{C}} \underline{\varepsilon}\]
+                </div>
+                
+                <p>which is the matrix representation of the tensor description \(\sigma_{ik} = C_{ikrs} \varepsilon_{rs}\).</p>
+
+                <h3>2.6 Element Stiffness Matrix</h3>
+                
+                <p>The PVW can be reformulated as (consider, for now, the single element):</p>
+                
+                \[\int_V \delta \underline{\varepsilon}^T \underline{\underline{C}} \underline{\varepsilon} \, dV = \int_V \delta \underline{S}^T \underline{f} \, dV + \int_A \delta \underline{S}^T \underline{f}^A \, dA + \sum_{i=1}^{N} \delta \underline{S}_i^T \underline{F}_i^c\]
+
+                <p>Recalling that \(\underline{S} = \underline{\underline{N}} \underline{u}\) and \(\underline{\varepsilon} = \underline{\underline{B}} \underline{u}\):</p>
+                
+                \[\delta \underline{u}^T \int_V \underline{\underline{B}}^T \underline{\underline{C}} \underline{\underline{B}} \, dV \, \underline{u} = \delta \underline{u}^T \int_V \underline{\underline{N}}^T \underline{f} \, dV + \delta \underline{u}^T \int_A \underline{\underline{N}}^T \underline{f}^A \, dA + \sum_i \delta \underline{u}^T \underline{\underline{N}}_i^T \underline{F}_i^c\]
+
+                <h3>2.7 Assembly of Elements</h3>
+                
+                <p>It is now recalled that the continuum is divided into an assembly of elements so:</p>
+                
+                \[\delta W_i = \sum_{e=1}^{N_{el}} \delta W_i^e \quad \text{and} \quad \delta W_e = \sum_{e=1}^{N_{el}} \delta W_e\]
+                
+                <p>In other words, total virtual work is the sum of the contributions of each element.</p>
+
+                <p>And so:</p>
+                
+                \[\sum_{e=1}^{N_{el}} \delta \underline{u}_e^T \int_{V_e} \underline{\underline{B}}_e^T \underline{\underline{C}}_e \underline{\underline{B}}_e \, dV_e \, \underline{u}_e = \sum_{e=1}^{N_{el}} \delta \underline{u}_e^T \int_{V_e} \underline{\underline{N}}_e^T \underline{f}_e \, dV_e + \delta \underline{u}_e^T \int_{A_e} \underline{\underline{N}}_e^T \underline{f}_e^{A_e} \, dA_e + \sum_{e=1}^{N_{el}} \sum_{i=1}^{N} \delta \underline{u}_{e,i}^T \underline{F}_i^C\]
+
+                <p>Or, with a more compact representation:</p>
+                
+                \[\sum_e \delta \underline{u}_e^T \underline{\underline{K}}_e \underline{u}_e = \sum_e \delta \underline{u}_e^T \left( \underline{F}_e^V + \underline{F}_e^A + \sum_i \underline{F}_i^C \right)\]
+
+                <p>where:</p>
+                <ul>
+                    <li>\(\underline{\underline{K}}_e\): stiffness matrix of the element</li>
+                    <li>\(\underline{F}_e^V, \underline{F}_e^A, \underline{F}_i^C\): volume, surface and concentrated forces associated with the element \(e\)</li>
+                </ul>
+
+                <h3>2.8 Global Assembly</h3>
+                
+                <p>The assembly procedure consists in expanding the contribution of each single element at global equation level. Formally one can write this operation as:</p>
+                
+                \[\underline{u}_e = \underline{\underline{\Omega}}_e \underline{u}\]
+                
+                <p>with \(\underline{\underline{\Omega}}_e\) being the Boolean matrix of the element \(e\).</p>
+
+                <p>So:</p>
+                
+                \[\delta \underline{u}^T \left( \sum_e \underline{\underline{\Omega}}_e^T \underline{\underline{K}}_e \underline{\underline{\Omega}}_e \right) \underline{u} = \delta \underline{u}^T \left[ \sum_e \underline{\underline{\Omega}}_e^T \left( \underline{F}_e^V + \underline{F}_e^A + \sum_i \underline{F}_i^C \right) \right]\]
+
+                <p>From which:</p>
+                
+                \[\delta \underline{u}^T \underline{\underline{K}} \underline{u} = \delta \underline{u}^T \underline{F} \quad (\forall \delta \underline{u})\]
+
+                <div class="key-equation">
+                    <p><strong>Fundamental FEM Equation:</strong></p>
+                    \[\underline{\underline{K}} \underline{u} = \underline{F}\]
+                </div>
+
+                <p>With:</p>
+                <ul>
+                    <li>\(\underline{\underline{K}}\): assembled stiffness matrix</li>
+                    <li>\(\underline{F}\): assembled force vector</li>
+                </ul>
+
+                <p>Having denoted:</p>
+                
+                \[\underline{\underline{K}} = \sum_e \underline{\underline{\Omega}}_e^T \underline{\underline{K}}_e \underline{\underline{\Omega}}_e \quad \text{and} \quad \underline{F} = \sum_e \underline{\underline{\Omega}}_e^T \left( \underline{F}_e^V + \underline{F}_e^A + \sum_i \underline{F}_i^C \right)\]
+
+                <div class="remark">
+                    <h4>Important Note</h4>
+                    <p>It is important to recall that the assembly of the equations is never performed using the Boolean matrices \(\underline{\underline{\Omega}}_e\), but is done by directly accumulating the contributions of the elements according to the positions specified by the vectors of pointers.</p>
+                    <p>In this case, it can be written that:</p>
+                    \[\underline{\underline{K}} = \mathop{\mathrm{A}}_{e=1}^{N_{el}} \underline{\underline{K}}_e \quad \text{and} \quad \underline{F} = \mathop{\mathrm{A}}_{e=1}^{N_{el}} \underline{F}_e^V + \underline{F}_e^A + \sum_i \underline{F}_i^C\]
+                    <p>where \(\mathrm{A}\) is the operator indicating the assembly of the equations.</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Remarks -->
+            <section id="remarks-general">
+                <h2>3. General Remarks</h2>
+
+                <h3>3.1 Stiffness Matrix Properties</h3>
+                
+                <p>The stiffness matrix of the structure is, in general, <strong>singular</strong>. As no constraints have been introduced so far, rigid body motions are possible.</p>
+                
+                <p>Regarding the boundary conditions it is thus necessary to impose the essential ones. This operation can be conducted by removing rows and columns associated with the constrained dofs.</p>
+                
+                <p>Note that <strong>natural conditions do not need to be enforced</strong>. They are satisfied in a weak-form sense, as they are included in the variational principle.</p>
+
+                <h3>3.2 Comparison with Ritz Method</h3>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>FEM</th>
+                        <th>RITZ</th>
+                    </tr>
+                    <tr>
+                        <td>\(\underline{\underline{K}} \underline{u} = \underline{F}\)</td>
+                        <td>\(\underline{\underline{K}} \underline{c} = \underline{f}\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unknowns:</strong> nodal displacements (clear "physical" meaning)</td>
+                        <td><strong>Unknowns:</strong> Ritz amplitudes (Lagrangian coordinates)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\underline{\underline{K}}\): <strong>sparse</strong></td>
+                        <td>\(\underline{\underline{K}}\): <strong>high density</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Number of dofs: <strong>high</strong></td>
+                        <td>Number of dofs: <strong>low</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Convergence by:</strong><br>a. reducing element size<br>b. increasing shape functions order</td>
+                        <td><strong>Convergence by:</strong><br>a. increasing trial function order</td>
+                    </tr>
+                </table>
+
+                <h3>3.3 Extension to Dynamics</h3>
+                
+                <p>The formulation has been restricted to the linear static case. The effect of dynamic forces can be easily included by writing the external work as:</p>
+                
+                \[\delta W_e^e = - \int_V \delta \underline{S}^T \rho \ddot{\underline{S}} \, dV = - \int_V \delta \underline{u}^T \underline{\underline{N}}^T \rho \underline{\underline{N}} \ddot{\underline{u}} \, dV\]
+
+                <p>And so:</p>
+                
+                \[\delta W_e = \sum_{e=1}^{N_{el}} \delta W_e^e = \sum_{e=1}^{N_{el}} - \delta \underline{u}_e^T \int_{V_e} \underline{\underline{N}}_e^T \underline{\underline{N}}_e \rho \, dV_e \, \ddot{\underline{u}}_e = \sum_{e=1}^{N_{el}} - \delta \underline{u}_e^T \underline{\underline{M}}_e \ddot{\underline{u}}_e\]
+
+                <p>Where the element mass matrix is:</p>
+                
+                \[\underline{\underline{M}}_e = \int_{V_e} \underline{\underline{N}}_e^T \underline{\underline{N}}_e \rho \, dV_e\]
+
+                <p>The mass matrix of the assembled set of equations is then:</p>
+                
+                \[\underline{\underline{M}} = \mathop{\mathrm{A}}_{e=1}^{N_{el}} \underline{\underline{M}}_e\]
+
+                <p>The final system of equations is then:</p>
+                
+                <div class="key-equation">
+                    <p><strong>Dynamic FEM Equation:</strong></p>
+                    \[\underline{\underline{M}} \ddot{\underline{u}} + \underline{\underline{K}} \underline{u} = \underline{F}\]
+                </div>
+            </section>
+
+            <!-- Section 4: Stiffness in Physical Coordinates -->
+            <section id="stiffness-physical">
+                <h2>4. Stiffness Matrix of Some Elements in Physical Coordinates</h2>
+                
+                <p>To clarify the main aspects of the FE procedure, it is useful to discuss how to derive the stiffness matrix for some simple finite elements.</p>
+                
+                <p>The operation is conducted here in the so-called <strong>physical coordinates</strong>, which are the coordinates where the problem is defined (an alternative procedure, discussed later, is based on the transformation of the problem in the "computational" domain).</p>
+                
+                <p>The shape functions can be constructed by considering simple polynomial expansions (in FE, as opposed to Ritz, low order polynomials are generally used, thus the ill-conditioning issues associated with high-order functions are not generally encountered).</p>
+
+                <h3>4.1 The Pascal Triangle</h3>
+                
+                <p>To this aim, the Pascal Triangle can be taken as a memo for selecting the basis:</p>
+                
+                <figure>
+                    <img src="images/LN_C6_1_FEM/pascal_triangle_basis_selection.png" alt="Pascal Triangle for basis selection">
+                    <figcaption>Figure 4.1: Pascal Triangle showing polynomial term selection for finite element basis functions</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/pascal_triangle_choice_annotations.png" alt="Pascal Triangle with choice annotations">
+                    <figcaption>Figure 4.2: Pascal Triangle with choice annotations showing term selection for 2D element formulation</figcaption>
+                </figure>
+
+                <p>According to <strong>choice 1</strong>, 4 terms are considered (so the element is characterized by 4 nodes) and the expansion is complete up to the 1st order.</p>
+                
+                <p>According to <strong>choice 2</strong>, 9 terms are considered (the element has 9 nodes) and the expansion is complete up to the 2nd order.</p>
+
+                <div class="definition">
+                    <h4>Definition: Completeness</h4>
+                    <p>Completeness of the expansion is achieved up to the order \(N\) if all of the terms of order \(N\) are retained as part of the expansion.</p>
+                </div>
+
+                <p>In the 1D case one can simply consider a polynomial expansion in the form:</p>
+                
+                \[1 \quad x \quad x^2 \quad \cdots \quad x^N\]
+
+                <h3>4.2 Linear Bar Element</h3>
+                
+                <p>Consider a two-node bar element:</p>
+                
+                <figure>
+                    <img src="images/LN_C6_1_FEM/two_node_bar_element.png" alt="Two-node linear bar element">
+                    <figcaption>Figure 4.3: Two-node linear bar element with length \(\ell\) and coordinate system</figcaption>
+                </figure>
+
+                <p>How to construct an interpolating scheme such that \(u = \underline{\underline{N}} \underline{u}\)?</p>
+                
+                <p>As the element is made of two nodes, the expansion is taken as:</p>
+                
+                \[\underline{\underline{X}} = \begin{bmatrix} 1 & x \end{bmatrix}\]
+
+                <p>And the displacement \(u\) is approximated as:</p>
+                
+                \[u = \begin{bmatrix} 1 & x \end{bmatrix} \begin{Bmatrix} \alpha_1 \\ \alpha_2 \end{Bmatrix} = \alpha_1 + \alpha_2 x = \underline{\underline{X}} \underline{\alpha}\]
+                
+                <p>(This is the kind of strategy used in Ritz-like approaches.)</p>
+
+                <p>In FE the idea is that of considering the <strong>nodal displacements as unknowns</strong> instead of the Lagrangian coordinates \(\underline{\alpha}\).</p>
+                
+                <p>It is then imposed:</p>
+                
+                \[u(0) = u_1 \quad \text{and} \quad u(\ell) = u_2\]
+
+                \[\Leftrightarrow \quad \begin{bmatrix} 1 & 0 \\ 1 & \ell \end{bmatrix} \begin{Bmatrix} \alpha_1 \\ \alpha_2 \end{Bmatrix} = \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+
+                <p>From which:</p>
+                
+                \[\alpha_1 = u_1 \quad \text{and} \quad \alpha_2 = \frac{u_2 - u_1}{\ell}\]
+
+                <p>Leading to the following interpolating scheme:</p>
+                
+                \[u = u_1 + \frac{u_2 - u_1}{\ell} x = \left(1 - \frac{x}{\ell}\right) u_1 + \frac{x}{\ell} u_2\]
+
+                <div class="key-equation">
+                    \[u = \begin{bmatrix} 1 - \frac{x}{\ell} & \frac{x}{\ell} \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \underline{\underline{N}} \underline{u}\]
+                </div>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/bar_element_shape_functions.png" alt="Linear bar element shape functions">
+                    <figcaption>Figure 4.4: Shape functions \(N_1\) and \(N_2\) for the linear bar element</figcaption>
+                </figure>
+
+                <p>The shape functions are then linear functions of the coordinate \(x\). They are equal to 1 in correspondence of the associated node and zero on the other node:</p>
+                
+                <ul>
+                    <li>\(N_1 = 0\) at \(x = x_2\); \(N_1 = 1\) at \(x = x_1\)</li>
+                    <li>\(N_2 = 0\) at \(x = x_1\); \(N_2 = 1\) at \(x = x_2\)</li>
+                </ul>
+
+                <h4>Stiffness Matrix Derivation</h4>
+                
+                <p>The stiffness matrix of the single element is available as:</p>
+                
+                \[\underline{\underline{K}} = \int_V \underline{\underline{B}}^T E \underline{\underline{B}} \, dV = EA \int_0^{\ell} \underline{\underline{B}}^T \underline{\underline{B}} \, dx\]
+
+                <p>where:</p>
+                
+                \[\varepsilon_{xx} = u_{,x} = \underline{\underline{D}} \, u\]
+
+                <p>and:</p>
+                
+                \[u = \begin{bmatrix} N_1 & N_2 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+
+                <p>so:</p>
+                
+                \[\underline{\underline{B}} = \underline{\underline{D}} \underline{\underline{N}} = \begin{bmatrix} N_{1,x} & N_{2,x} \end{bmatrix} = \begin{bmatrix} -1/\ell & 1/\ell \end{bmatrix}\]
+
+                \[\underline{\underline{K}} = EA \int_0^{\ell} \begin{bmatrix} -1/\ell \\ 1/\ell \end{bmatrix} \begin{bmatrix} -1/\ell & 1/\ell \end{bmatrix} d\ell\]
+
+                <div class="key-equation">
+                    <p><strong>Linear Bar Element Stiffness Matrix:</strong></p>
+                    \[\underline{\underline{K}} = \frac{EA}{\ell} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}\]
+                </div>
+
+                <h3>4.3 Quadratic Bar Element</h3>
+                
+                <p>One possibility for refining the accuracy of the predictions consists in increasing the order of the interpolation functions. Quadratic elements are widely used and an example is illustrated here with regard to a bar element.</p>
+                
+                <p>The element is now made by three nodes, two external and one internal:</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/three_node_quadratic_bar_element.png" alt="Three-node quadratic bar element">
+                    <figcaption>Figure 4.5: Three-node quadratic bar element showing node positions</figcaption>
+                </figure>
+
+                <p>The expansion, due to the additional dof, is taken as:</p>
+                
+                \[u = \alpha_1 + \alpha_2 x + \alpha_3 x^2\]
+
+                <p>Imposing:</p>
+                
+                \[u(0) = u_1 \quad u(\ell/2) = u_2 \quad u(\ell) = u_3\]
+
+                \[\Rightarrow \begin{bmatrix} 1 & 0 & 0 \\ 1 & \ell/2 & \ell^2/4 \\ 1 & \ell & \ell^2 \end{bmatrix} \begin{Bmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{Bmatrix} = \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix}\]
+
+                <p>From which:</p>
+                
+                \[\alpha_1 = u_1\]
+                \[\alpha_2 = \frac{1}{\ell} \left( -3u_1 + 4u_2 - u_3 \right)\]
+                \[\alpha_3 = \frac{2}{\ell^2} \left( u_1 - 2u_2 + u_3 \right)\]
+
+                <p>The displacement field is then:</p>
+                
+                \[u = \begin{bmatrix} 1 - \frac{3x}{\ell} + \frac{2x^2}{\ell^2} & \frac{4x}{\ell} - \frac{4x^2}{\ell^2} & -\frac{x}{\ell} + \frac{2x^2}{\ell^2} \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix}\]
+                
+                <p>where the functions \(N_i\) are nothing but the <strong>Lagrange polynomials</strong>:</p>
+                
+                \[P_j = \prod_{k \neq j}^{3} \frac{x_k - x}{x_k - x_j}\]
+                
+                <p>i.e., polynomial functions which are equal to 1 at the corresponding node and 0 at the other nodes.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/quadratic_shape_functions_plot.png" alt="Quadratic shape functions">
+                    <figcaption>Figure 4.6: Quadratic shape functions plotted over three-node element. Note: \(N_i(x_j) = \delta_{ij}\)</figcaption>
+                </figure>
+
+                <h4>Stiffness Matrix</h4>
+                
+                <p>The stiffness matrix is obtained as:</p>
+                
+                \[\underline{\underline{K}} = \int_0^{\ell} EA \, \underline{\underline{B}}^T \underline{\underline{B}} \, dx\]
+
+                <p>with \(\underline{\underline{B}} = \underline{\underline{D}} \underline{\underline{N}}\) and \(\underline{\underline{D}} = \partial_x\), so:</p>
+                
+                \[\underline{\underline{B}} = \begin{bmatrix} -\frac{3}{\ell} + \frac{4x}{\ell^2} & \frac{4}{\ell} - \frac{8x}{\ell^2} & -\frac{1}{\ell} + \frac{4x}{\ell^2} \end{bmatrix}\]
+
+                <p>From which:</p>
+                
+                <div class="key-equation">
+                    <p><strong>Quadratic Bar Element Stiffness Matrix:</strong></p>
+                    \[\underline{\underline{K}} = \frac{EA}{\ell} \begin{bmatrix} 7/3 & -8/3 & 1/3 \\ -8/3 & 16/3 & -8/3 \\ 1/3 & -8/3 & 7/3 \end{bmatrix}\]
+                </div>
+            </section>
+
+            <!-- Section 5: External Loads -->
+            <section id="external-loads">
+                <h2>5. External Loads</h2>
+                
+                <p>Any set of external loads has to be transformed into a set of nodal, discrete forces. As a matter of fact, the FEM discretization transforms the equilibrium conditions into a set of discrete equations expressing the equilibrium at nodal level. Accordingly, the forces (external loads) have to be translated into a set of nodal loads.</p>
+                
+                <p>In the case of concentrated loads, which have to be applied in correspondence of nodes, this operation is clearly not necessary.</p>
+                
+                <p>For distributed loads the operation is conducted by projecting the external loads over the shape functions of the FEM approximation.</p>
+
+                <h3>5.1 Linear Bar Element with Distributed Load</h3>
+                
+                <figure>
+                    <img src="images/LN_C6_1_FEM/distributed_load_transformation.png" alt="Distributed load transformation">
+                    <figcaption>Figure 5.1: Linear bar element with distributed load \(\hat{n}\) and transformation to nodal forces</figcaption>
+                </figure>
+
+                <p>The discretization is automatically available after writing the external virtual work:</p>
+                
+                \[\delta W_e = \int_0^{\ell} \delta u \, \hat{n} \, dx = \delta \underline{u}^T \int_0^{\ell} \underline{\underline{N}}^T \hat{n} \, dx\]
+
+                \[= \delta \underline{u}^T \int_0^{\ell} \begin{bmatrix} 1 - x/\ell \\ x/\ell \end{bmatrix} \hat{n} \, dx = \delta \underline{u}^T \begin{bmatrix} \hat{n} \ell/2 \\ \hat{n} \ell/2 \end{bmatrix}\]
+
+                <p>The load is then transformed into two nodal forces of magnitude \(\hat{n} \ell/2\).</p>
+                
+                <p>While this result is quite intuitive (due to the simplicity of the load and the element formulation) the approach is of general validity and can be considered for transforming any set of load into the corresponding conformal loads.</p>
+
+                <h3>5.2 Quadratic Bar Element with Distributed Load</h3>
+                
+                <figure>
+                    <img src="images/LN_C6_1_FEM/quadratic_element_distributed_load.png" alt="Quadratic element distributed load">
+                    <figcaption>Figure 5.2: Quadratic bar element with distributed load</figcaption>
+                </figure>
+
+                <p>How to "translate" the distributed load into the conformal nodal forces?</p>
+                
+                <p>Again, the external virtual work can be written as:</p>
+                
+                \[\delta W_e = \int_0^{\ell} \delta u \, \hat{n} \, dx = \delta \underline{u}^T \int_0^{\ell} \underline{\underline{N}}^T \hat{n} \, dx\]
+
+                \[= \delta \underline{u}^T \int_0^{\ell} \begin{bmatrix} 1 - 3\frac{x}{\ell} + 2\frac{x^2}{\ell^2} \\ 4\frac{x}{\ell} - 4\frac{x^2}{\ell^2} \\ -\frac{x}{\ell} + 2\frac{x^2}{\ell^2} \end{bmatrix} \hat{n} \, dx = \delta \underline{u}^T \begin{bmatrix} \hat{n}\ell/6 \\ 2\hat{n}\ell/3 \\ \hat{n}\ell/6 \end{bmatrix}\]
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/equivalent_nodal_forces.png" alt="Equivalent nodal forces">
+                    <figcaption>Figure 5.3: Equivalent nodal forces for three-node element: \(\frac{1}{6}\hat{n}\ell\) at nodes 1 and 3, \(\frac{2}{3}\hat{n}\ell\) at node 2</figcaption>
+                </figure>
+            </section>
+
+            <!-- Section 6: Bilinear Membrane Element -->
+            <section id="membrane-element">
+                <h2>6. Bilinear Membrane Element</h2>
+                
+                <p>Consider now a 2D element. For simplicity a membrane element (zero bending stiffness) is considered, so that no kinematic models need to be introduced and the number of dofs is restricted to the membrane ones.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/rectangular_membrane_element.png" alt="Rectangular membrane element">
+                    <figcaption>Figure 6.1: Rectangular bilinear membrane element with four nodes and coordinate system</figcaption>
+                </figure>
+
+                <p>The element is made of 4 nodes, so that a linear interpolation is adopted along the directions \(x\) and \(y\). Each node has two degrees of freedom, which are the displacements along \(x\) and \(y\).</p>
+
+                <h3>6.1 Polynomial Basis Selection</h3>
+                
+                <p>Recalling the Pascal Triangle:</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/bilinear_pascal_triangle.png" alt="Bilinear Pascal Triangle">
+                    <figcaption>Figure 6.2: Pascal Triangle showing bilinear polynomial terms for 2D element</figcaption>
+                </figure>
+
+                \[\underline{\underline{X}} = \begin{bmatrix} 1 & x & y & xy \end{bmatrix}\]
+
+                <p>Four polynomial terms are taken, leading to a basis complete up to the first order.</p>
+                
+                <p>According to this choice, the displacement field is interpolated as:</p>
+                
+                \[u = \begin{bmatrix} 1 & x & y & xy \end{bmatrix} \begin{Bmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \\ \alpha_4 \end{Bmatrix}\]
+
+                \[v = \begin{bmatrix} 1 & x & y & xy \end{bmatrix} \begin{Bmatrix} \alpha_5 \\ \alpha_6 \\ \alpha_7 \\ \alpha_8 \end{Bmatrix}\]
+
+                <p>or: \(u = \underline{\underline{X}} \underline{\alpha}_u\) and \(v = \underline{\underline{X}} \underline{\alpha}_v\)</p>
+
+                <h3>6.2 Shape Functions Construction</h3>
+                
+                <p>The shape functions can be built as done in the 1D case:</p>
+                
+                \[u(0,0) = u_1 \quad u(a,0) = u_2 \quad u(a,b) = u_3 \quad u(0,b) = u_4\]
+
+                \[\Leftrightarrow \quad \begin{bmatrix} 1 & 0 & 0 & 0 \\ 1 & a & 0 & 0 \\ 1 & a & b & ab \\ 1 & 0 & b & 0 \end{bmatrix} \begin{Bmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \\ \alpha_4 \end{Bmatrix} = \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \\ u_4 \end{Bmatrix}\]
+
+                <p>From which: \(\underline{\alpha}_u = \underline{\underline{A}}^{-1} \underline{u}_u\) and so:</p>
+                
+                \[u = \underline{\underline{X}} \underline{\alpha}_u = \underline{\underline{X}} \underline{\underline{A}}^{-1} \underline{u}_u = \underline{\underline{N}} \underline{u}_u\]
+
+                <div class="key-equation">
+                    \[\underline{\underline{N}} = \underline{\underline{X}} \underline{\underline{A}}^{-1}\]
+                </div>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/quadrilateral_element_nodes.png" alt="Quadrilateral element shape functions">
+                    <figcaption>Figure 6.3: Quadrilateral element showing shape function construction</figcaption>
+                </figure>
+
+                <p>For a rectangular element it is obtained:</p>
+                
+                \[N_1 = \left(1 - \frac{x}{a}\right)\left(1 - \frac{y}{b}\right)\]
+                \[N_2 = \frac{x}{a}\left(1 - \frac{y}{b}\right)\]
+                \[N_3 = \frac{x}{a} \frac{y}{b}\]
+                \[N_4 = \left(1 - \frac{x}{a}\right) \frac{y}{b}\]
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/rectangular_element_shape_functions.png" alt="Rectangular element shape functions">
+                    <figcaption>Figure 6.4: Shape function \(N_4\) variation over rectangular element</figcaption>
+                </figure>
+
+                <h3>6.3 Stiffness Matrix Evaluation</h3>
+                
+                <p>The evaluation of the stiffness matrix is now:</p>
+                
+                \[\underline{\underline{K}} = \int_A t \, \underline{\underline{B}}^T \underline{\underline{C}} \underline{\underline{B}} \, dA\]
+
+                <p>Recall that \(\underline{\underline{K}}\) is available from the internal work:</p>
+                
+                \[\delta W_i = \int_V \delta \underline{\varepsilon}^T \underline{\sigma} \, dV = \int_V \delta \underline{\varepsilon}^T \underline{\underline{C}} \underline{\varepsilon} \, dV\]
+
+                <p>and, for a plane problem:</p>
+                
+                \[\delta W_i = \int_A \delta \underline{\varepsilon}^T \underline{\underline{C}} \, t \, \underline{\varepsilon} \, dV = \delta \underline{u}^T \int_A \underline{\underline{B}}^T \underline{\underline{C}} \, t \, \underline{\underline{B}} \, dA\]
+
+                <p>where (for plane stress):</p>
+                
+                \[\underline{\underline{C}} = \frac{E}{1-\nu^2} \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & \frac{1-\nu}{2} \end{bmatrix}\]
+
+                <p>and the strain-displacement operator:</p>
+                
+                \[\begin{Bmatrix} \varepsilon_{xx} \\ \varepsilon_{yy} \\ \gamma_{xy} \end{Bmatrix} = \begin{bmatrix} \partial_x & 0 \\ 0 & \partial_y \\ \partial_y & \partial_x \end{bmatrix} \begin{Bmatrix} u \\ v \end{Bmatrix} \quad \Rightarrow \quad \underline{\underline{D}} = \begin{bmatrix} \partial_x & 0 \\ 0 & \partial_y \\ \partial_y & \partial_x \end{bmatrix}\]
+
+                <p>and:</p>
+                
+                \[\underline{\underline{B}} = \underline{\underline{D}} \underline{\underline{N}} = \begin{bmatrix} N_{1,x} & N_{2,x} & N_{3,x} & N_{4,x} & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & N_{1,y} & N_{2,y} & N_{3,y} & N_{4,y} \\ N_{1,y} & N_{2,y} & N_{3,y} & N_{4,y} & N_{1,x} & N_{2,x} & N_{3,x} & N_{4,x} \end{bmatrix}\]
+
+                <div class="remark">
+                    <h4>Limitations of Physical Coordinate Approach</h4>
+                    <p>Despite the simplicity of the approach for constructing the shape functions, this approach is quite <strong>inefficient</strong> as it demands for the evaluation of the trial functions element by element. Each element composing the structure is, in principle, associated with a different matrix \(\underline{\underline{A}}\) to be inverted.</p>
+                    <p>This is one of the motivations for considering <strong>parametric elements</strong>, a class of finite elements where the shape functions are defined on a domain which is the same for all the elements: the computational domain.</p>
+                </div>
+            </section>
+
+            <!-- Section 7: Assembly -->
+            <section id="assembly">
+                <h2>7. Assembly of the Equations (and Compatibility Conditions)</h2>
+                
+                <p>The assembly procedure is conducted by summing up the individual (= of each element) contributions at global level. The operation is performed by placing the stiffness contributions of the elements in specific portions in the global stiffness matrix (by making use of the vectors of pointers).</p>
+                
+                <p><strong>Compatibility</strong> of the displacements at the common nodes is implicitly enforced when assembling the equations.</p>
+
+                <h3>7.1 Two-Element Example</h3>
+                
+                <p>Consider the two-element FEM model below:</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/two_element_assembly.png" alt="Two-element assembly">
+                    <figcaption>Figure 7.1: Two-element bar model with three nodes</figcaption>
+                </figure>
+
+                <p>The model is composed of two elements with two nodes (linear bar elements).</p>
+                
+                <p>The stiffness matrix of the two elements reads:</p>
+                
+                \[\underline{\underline{K}}^{(1)} = \frac{EA_1}{\ell_1} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix} \quad , \quad \underline{\underline{K}}^{(2)} = \frac{EA_2}{\ell_2} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}\]
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/element_compatibility_assembly.png" alt="Element compatibility assembly">
+                    <figcaption>Figure 7.2: If the two elements are considered as separate entities, not connected each other in correspondence of the node 2, the assembled stiffness matrix would be block diagonal</figcaption>
+                </figure>
+
+                <p>However, this is not the case and the two elements share the same node 2. It follows that the compatibility of the nodal displacement is obtained by enforcing:</p>
+                
+                \[u_B = u_C\]
+
+                <p>Note that this operation is particularly simple due to the fact that the unknowns of the problem are the displacements at the nodes. In the context of a Ritz based procedure, where the unknowns are the amplitudes of the trial functions, it is much more challenging to enforce the continuity of the displacements at the frontier.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/assembled_structure_renumbered.png" alt="Assembled structure">
+                    <figcaption>Figure 7.3: After imposing \(u_B = u_C\), the assembled stiffness matrix is obtained with overlapping contributions at the shared node</figcaption>
+                </figure>
+
+                <h3>7.2 Constrained Structure</h3>
+                
+                <p>Considering now the problem of a constrained structure (in the previous case no constraints were introduced and the resulting stiffness matrix was then singular):</p>
+
+                <p>The assembled set of equations is:</p>
+                
+                \[\begin{bmatrix} \frac{EA_1}{\ell_1} & -\frac{EA_1}{\ell_1} & \\ -\frac{EA_1}{\ell_1} & \frac{EA_1}{\ell_1} + \frac{EA_2}{\ell_2} & -\frac{EA_2}{\ell_2} \\ & -\frac{EA_2}{\ell_2} & \frac{EA_2}{\ell_2} \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix} = \begin{Bmatrix} R \\ F_2 \\ F_3 \end{Bmatrix}\]
+
+                <p>The compatibility condition to be enforced, at global equation level, regards the essential condition \(u_1 = 0\).</p>
+                
+                <p>Again, this can be easily done as the prescribed displacement is associated with one single unknown of the problem, which is then removed from the set of solving equations.</p>
+                
+                <p>(Note that the reaction force \(R\), which is an unknown of the problem, does not enter the final set of equations. If needed it can be evaluated once \(u_2\) and \(u_3\) are available.)</p>
+            </section>
+
+            <!-- Section 8: Boundary Conditions -->
+            <section id="boundary-conditions">
+                <h2>8. Boundary Conditions</h2>
+                
+                <p>Other strategies can be implemented for imposing the boundary conditions.</p>
+
+                <h3>8.1 Lagrange Multipliers</h3>
+                
+                <p>The approach consists in "enriching" the variational statement by enforcing the constraint using Lagrange multipliers.</p>
+                
+                <p>Assuming that the constraint is linear, i.e. it can be expressed in the generic form:</p>
+                
+                \[\underline{\underline{A}} \underline{u} = \underline{b}\]
+
+                <p>Then the Total Potential Energy is written as:</p>
+                
+                \[\Pi = \frac{1}{2} \underline{u}^T \underline{\underline{K}} \underline{u} - \underline{u}^T \underline{f} + \underline{\lambda}^T \left( \underline{\underline{A}} \underline{u} - \underline{b} \right)\]
+
+                <p>And so:</p>
+                
+                \[\delta \Pi = \delta \underline{u}^T \left( \underline{\underline{K}} \underline{u} - \underline{f} \right) + \delta \underline{\lambda}^T \left( \underline{\underline{A}} \underline{u} - \underline{b} \right) + \delta \underline{u}^T \underline{\underline{A}}^T \underline{\lambda}\]
+
+                <p>From which the stationarity conditions are:</p>
+                
+                <div class="key-equation">
+                    \[\begin{bmatrix} \underline{\underline{K}} & \underline{\underline{A}}^T \\ \underline{\underline{A}} & \underline{\underline{0}} \end{bmatrix} \begin{Bmatrix} \underline{u} \\ \underline{\lambda} \end{Bmatrix} = \begin{Bmatrix} \underline{f} \\ \underline{b} \end{Bmatrix}\]
+                </div>
+
+                <div class="example">
+                    <h4>Example: Lagrange Multiplier Method</h4>
+                    <p>With reference to the previous example:</p>
+                    \[\underline{\underline{A}} \underline{u} = \underline{b} \quad \rightarrow \quad \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix} = 0\]
+                    
+                    <p>Consider, for simplicity, the case where:</p>
+                    \[\frac{EA_1}{\ell_1} = \frac{EA_2}{\ell_2} = 10 \text{ N/mm} \quad \text{and} \quad F_2 = F_3 = 5 \text{ N}\]
+
+                    <figure>
+                        <img src="images/LN_C6_1_FEM/two_element_bar_forces.png" alt="Two-element bar with forces">
+                        <figcaption>Simple two-element bar structure with applied forces</figcaption>
+                    </figure>
+
+                    <p>The discrete system is then:</p>
+                    \[\begin{bmatrix} 10 & -10 & 0 & 1 \\ -10 & 20 & -10 & 0 \\ 0 & -10 & 10 & 0 \\ 1 & 0 & 0 & 0 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \\ \lambda \end{Bmatrix} = \begin{Bmatrix} 0 \\ 5 \\ 5 \\ 0 \end{Bmatrix}\]
+
+                    <p>The solution of the linear system leads to:</p>
+                    \[u_1 = 0.0 \text{ mm}, \quad u_2 = 1.0 \text{ mm}, \quad u_3 = 1.5 \text{ mm}, \quad \lambda = 10 \text{ N}\]
+
+                    <p>The result illustrates that the augmented system can be solved (\(\underline{\underline{K}}\) becomes non-singular as the constraint is accounted for by the Lagrange multiplier) and, obviously, the imposed boundary condition \(u_1 = 0\) is obtained as part of the solution.</p>
+                    
+                    <p>It is interesting to note that the magnitude of the Lagrange multiplier \(\lambda\) is equal to the magnitude of the reaction force, in this case \(5 + 5 \text{ N} = 10 \text{ N}\).</p>
+                </div>
+
+                <h3>8.2 Penalty Terms</h3>
+                
+                <p>Penalty formulations are commonly used in the context of Ritz-based procedure, as they facilitate the fulfillment of the boundary conditions (they make it possible the adoption of trial functions not respectful of the essential condition of the problem).</p>
+                
+                <p>The same approach can be adopted in the context of finite element procedures.</p>
+                
+                <p>The idea of a penalty approach consists in <strong>replacing the ideal constraint with an "artificial" spring</strong> with a very high stiffness value (in relation to the stiffnesses of the problem under investigation).</p>
+                
+                <p>The ideal case is recovered when the artificial stiffness is infinite. In practice this value should be taken as high as possible, with an upper bound dictated by the possible onset of ill-conditioning of the stiffness matrix.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/penalty_spring_boundary_condition.png" alt="Penalty spring boundary condition">
+                    <figcaption>Figure 8.1: Two-element structure with penalty spring \(k_p\) showing stiffness modification for boundary conditions</figcaption>
+                </figure>
+
+                <p>The presence of the penalty stiffness determines the onset of an additional term to the strain energy in the form:</p>
+                
+                \[U_p = \frac{1}{2} k_p u_1^2\]
+
+                <p>and so:</p>
+                
+                \[\Pi = \Pi_{old} + \frac{1}{2} k_p u_1^2\]
+                
+                <p>(with \(\Pi_{old}\) = potential energy of the system without penalty spring)</p>
+
+                <p>And so an additional contribution is obtained in the discrete equations, in this case in position (1,1). Indeed:</p>
+                
+                \[\delta \Pi = \delta \Pi_{old} + \delta U_p \quad \text{and} \quad \delta U_p = \delta u_1 \, k_p \, u_1\]
+
+                <div class="example">
+                    <h4>Example: Penalty Method</h4>
+                    <p>Considering again \(\frac{EA_1}{\ell_1} = \frac{EA_2}{\ell_2} = 10 \text{ N/mm}\); \(F_2 = F_3 = 5 \text{ N}\)</p>
+                    
+                    <p>One can assume a value for \(k_p\) equal to 100 times the stiffness of the bars, so:</p>
+                    \[k_p = 1000 \text{ N/mm}\]
+
+                    <p>The solving equations are then:</p>
+                    \[\begin{bmatrix} 10 + 1000 & -10 & 0 \\ -10 & 20 & -10 \\ 0 & -10 & 10 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 5 \\ 5 \end{Bmatrix}\]
+
+                    <p>From which:</p>
+                    \[u_1 = 0.01 \text{ mm}, \quad u_2 = 1.01 \text{ mm}, \quad u_3 = 1.51 \text{ mm}\]
+
+                    <p>The results are very close to those obtained before. Note that the displacements are slightly higher as a finite amount of stiffness is now associated with the constraint of node 1.</p>
+                    
+                    <p>As \(k_p\) is increased, the displacements tend asymptotically to the previous solution.</p>
+                </div>
+            </section>
+
+            <!-- Section 9: Parametric Formulation -->
+            <section id="parametric">
+                <h2>9. Parametric Formulation</h2>
+                
+                <p>The approach in physical coordinates is intuitive and can be seen, in a certain sense, as the direct transformation of the method of Ritz into a finite element counterpart. However three (at least) main issues are worth of discussion:</p>
+
+                <ol>
+                    <li><strong>The procedure demands for the evaluation of the shape functions for any individual element composing the mesh.</strong>
+                        <p>The shape functions were obtained as: \(\underline{\underline{N}} = \underline{\underline{X}} \underline{\underline{A}}^{-1}\)</p>
+                        <p>This operation has to be conducted for each element, which is a relatively costly operation.</p>
+                    </li>
+                    
+                    <li><strong>Whenever the element is not regular (square/cube in 2D/3D), one should understand how to perform the integrals for the evaluation of the stiffness matrix.</strong>
+                        <p>In this sense, the approach outlined does not seem particularly adequate to handle distorted elements.</p>
+                        <figure>
+                            <img src="images/LN_C6_1_FEM/triangular_element_parametric.png" alt="Distorted element">
+                            <figcaption>Figure 9.1: How to integrate the stiffness expression if the element is distorted?</figcaption>
+                        </figure>
+                    </li>
+                    
+                    <li><strong>The method does not apply, in a natural way, to the modelling of non-straight edges.</strong>
+                        <figure>
+                            <img src="images/LN_C6_1_FEM/curved_boundary_approximation.png" alt="Curved boundary approximation">
+                            <figcaption>Figure 9.2: Curved edges are approximated as straight. The approximation becomes better as element size is reduced. Using high order elements (larger), the approximation of curved edges can be very poor.</figcaption>
+                        </figure>
+                    </li>
+                </ol>
+
+                <h3>9.1 The Idea of Parametric Formulation</h3>
+                
+                <p>The idea of the parametric formulation consists in operating a <strong>mapping from the physical domain into a reference (or computational) one</strong>. In other words the elements are transformed into a reference element which is equal to itself, irrespective of the shape of the element in the physical domain.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/isoparametric_mapping_transformation.png" alt="Isoparametric mapping">
+                    <figcaption>Figure 9.3: Isoparametric mapping illustration showing transformation from physical to computational domain for 1D, 2D, and 3D elements</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/mesh_to_reference_element_mapping.png" alt="Mesh to reference element mapping">
+                    <figcaption>Figure 9.4: Generic 2D mesh showing mapping from physical domain to computational reference element. Each element, in turn, is mapped in the computational domain.</figcaption>
+                </figure>
+
+                <p>The consequences are that:</p>
+                <ol>
+                    <li>The element distortion should be such that the transformation is possible, meaning that it has to be <strong>biunivoque</strong> (one-to-one).</li>
+                    <li>The shape functions are now defined in the computational domain, so they <strong>do not need to be evaluated for each single element</strong>.</li>
+                </ol>
+
+                <p>The mapping from the physical to the computational domain can be written as:</p>
+                
+                \[x = f(\xi) \quad \text{in 1D}\]
+                \[\begin{Bmatrix} x \\ y \end{Bmatrix} = \underline{f}(\xi, \eta) \quad \text{in 2D}\]
+                \[\begin{Bmatrix} x \\ y \\ z \end{Bmatrix} = \underline{f}(\xi, \eta, \zeta) \quad \text{in 3D}\]
+                
+                <p>In general: \(\underline{x} = \underline{f}(\underline{\xi})\)</p>
+
+                <h3>9.2 Isoparametric Membrane Element</h3>
+                
+                <p>Consider a 2D element (no bending stiffness ⇒ membrane element) whose nodal coordinates are defined in the system \(x, y\). The element is generically distorted.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/isoparametric_membrane_mapping.png" alt="Isoparametric membrane mapping">
+                    <figcaption>Figure 9.5: Isoparametric membrane element showing mapping from physical quadrilateral to reference square domain</figcaption>
+                </figure>
+
+                <p>How to map it into the computational domain?</p>
+                
+                <p>The idea is that of <strong>interpolating the element geometry</strong>, starting from the nodal coordinates, by making use of interpolation functions. Whenever these functions are taken as the shape functions used for interpolating the displacement field, the formulation is said to be <strong>isoparametric</strong>.</p>
+
+                <div class="definition">
+                    <h4>Definitions</h4>
+                    <ul>
+                        <li><strong>Isoparametric:</strong> same interpolation order for geometry and displacements</li>
+                        <li><strong>Superparametric:</strong> higher order geometry interpolation than displacement</li>
+                        <li><strong>Subparametric:</strong> lower order geometry interpolation than displacement</li>
+                    </ul>
+                </div>
+
+                <h3>9.3 Shape Functions in Reference Element</h3>
+                
+                <p>When referring to the bi-unitary reference element, the definition is straightforward:</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/bilinear_reference_element.png" alt="Bilinear reference element">
+                    <figcaption>Figure 9.6: Bilinear reference element in computational coordinates \((\xi, \eta)\) with nodes at \((\pm 1, \pm 1)\)</figcaption>
+                </figure>
+
+                \[N_1 = \frac{1}{4}(1-\xi)(1-\eta)\]
+                \[N_2 = \frac{1}{4}(1+\xi)(1-\eta)\]
+                \[N_3 = \frac{1}{4}(1+\xi)(1+\eta)\]
+                \[N_4 = \frac{1}{4}(1-\xi)(1+\eta)\]
+
+                <p>Accordingly, the mapping of the generic element is performed as:</p>
+                
+                \[\begin{Bmatrix} x \\ y \end{Bmatrix} = \begin{bmatrix} N_1 & N_2 & N_3 & N_4 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & N_1 & N_2 & N_3 & N_4 \end{bmatrix} \begin{Bmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ y_1 \\ y_2 \\ y_3 \\ y_4 \end{Bmatrix}\]
+
+                <p>where \((x_i, y_i)\) are the coordinates of the i-th node in the physical domain. Note that \(N_i = N_i(\xi, \eta)\) so the relation above is indeed a transformation in the form \(\underline{x} = \underline{f}(\underline{\xi})\).</p>
+
+                <h3>9.4 The Jacobian Transformation</h3>
+                
+                <p>It is now necessary to understand how to evaluate the derivatives of the shape functions, which are defined in \((\xi, \eta)\), with respect to the coordinates \((x, y)\), as required for the evaluation of the stiffness matrix.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/gauss_integration_points.png" alt="Jacobian transformation concept">
+                    <figcaption>Figure 9.7: Chain rule relates computational and physical coordinate derivatives</figcaption>
+                </figure>
+
+                <p>Recall that:</p>
+                \[\underline{\underline{K}} = \int_A t \, \underline{\underline{B}}^T \underline{\underline{C}} \underline{\underline{B}} \, dA\]
+
+                <p>where \(\underline{\underline{B}} = \underline{\underline{D}} \underline{\underline{N}}\) and \(\underline{\varepsilon} = \underline{\underline{D}} \underline{u}\).</p>
+
+                <p>This operation can be conducted by observing that:</p>
+                
+                \[\frac{\partial N_i}{\partial \xi} = \frac{\partial N_i}{\partial x} \frac{\partial x}{\partial \xi} + \frac{\partial N_i}{\partial y} \frac{\partial y}{\partial \xi}\]
+                \[\frac{\partial N_i}{\partial \eta} = \frac{\partial N_i}{\partial x} \frac{\partial x}{\partial \eta} + \frac{\partial N_i}{\partial y} \frac{\partial y}{\partial \eta}\]
+
+                <p>Or, in matrix form:</p>
+                
+                \[\begin{Bmatrix} N_{i,\xi} \\ N_{i,\eta} \end{Bmatrix} = \begin{bmatrix} x_{,\xi} & y_{,\xi} \\ x_{,\eta} & y_{,\eta} \end{bmatrix} \begin{Bmatrix} N_{i,x} \\ N_{i,y} \end{Bmatrix} = [J] \begin{Bmatrix} N_{i,x} \\ N_{i,y} \end{Bmatrix}\]
+
+                <p>with \([J]\) = Jacobian of the transformation.</p>
+
+                <p>It follows that:</p>
+                
+                <div class="key-equation">
+                    \[\begin{Bmatrix} N_{i,x} \\ N_{i,y} \end{Bmatrix} = [J]^{-1} \begin{Bmatrix} N_{i,\xi} \\ N_{i,\eta} \end{Bmatrix}\]
+                </div>
+
+                <p>How to construct the Jacobian \([J]\)?</p>
+                
+                \[[J] = \begin{bmatrix} x_{,\xi} & y_{,\xi} \\ x_{,\eta} & y_{,\eta} \end{bmatrix} = \begin{bmatrix} N_{1,\xi} & N_{2,\xi} & N_{3,\xi} & N_{4,\xi} \\ N_{1,\eta} & N_{2,\eta} & N_{3,\eta} & N_{4,\eta} \end{bmatrix} \begin{bmatrix} x_1 & y_1 \\ x_2 & y_2 \\ x_3 & y_3 \\ x_4 & y_4 \end{bmatrix}\]
+
+                <h4>Steps for B Matrix Evaluation</h4>
+                <ol>
+                    <li>Construct \([J]\)</li>
+                    <li>Evaluate \(N_{i,x}\) and \(N_{i,y}\)</li>
+                    <li>Determine \(\underline{\underline{B}}\)</li>
+                </ol>
+
+                <p>The stiffness matrix can be finally obtained as:</p>
+                
+                <div class="key-equation">
+                    \[\underline{\underline{K}} = \int_A t \, \underline{\underline{B}}^T \underline{\underline{C}} \underline{\underline{B}} \, dA = \int_{-1}^{+1} \int_{-1}^{+1} t \, \underline{\underline{B}}^T \underline{\underline{C}} \underline{\underline{B}} \det \underline{\underline{J}} \, d\xi \, d\eta\]
+                </div>
+
+                <h3>9.5 Element Quality Considerations</h3>
+                
+                <p>In general, it is a good practice to create a mesh as regular as possible.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/element_aspect_ratio_quality.png" alt="Element aspect ratio quality">
+                    <figcaption>Figure 9.8: Element quality measures - aspect ratio and distortion</figcaption>
+                </figure>
+
+                <p>In the ideal case of a square element:</p>
+                
+                \[\underline{\underline{J}} = \begin{bmatrix} a & 0 \\ 0 & a \end{bmatrix}\]
+
+                <p>If the element is stretched along one direction:</p>
+                
+                \[\underline{\underline{J}} = \begin{bmatrix} 10a & 0 \\ 0 & a \end{bmatrix}\]
+
+                <p>It is then clear that the <strong>diagonal elements provide a measure of the stretching</strong> of the element. More specifically, the ratio of the diagonal elements provides an indication of the stretching.</p>
+
+                <div class="remark">
+                    <h4>Rule of Thumb</h4>
+                    <p>As a rule of thumb, the element can properly work up to a stretching (aspect ratio) of \(\approx 10\). Higher values can lead to numerical issues.</p>
+                </div>
+
+                <p>Another interesting indication regarding the element shape is provided by the <strong>extra-diagonal terms</strong>, i.e. \(y_{,\xi}\) and \(x_{,\eta}\): they provide a measure of the distortion of the element. High values (of their ratio) indicate a severe distortion, which has to be avoided.</p>
+
+                <p>Another measure for checking the entity of the element deformation is given by \(\det \underline{\underline{J}}\). Indeed:</p>
+                
+                \[dA = \det \underline{\underline{J}} \, d\xi \, d\eta \quad \Rightarrow \quad \det \underline{\underline{J}} = \frac{dA}{d\xi \, d\eta}\]
+
+                <p>which is the ratio between the area of the infinitesimal element in the physical domain and in the computational one.</p>
+            </section>
+
+            <!-- Section 10: Numerical Integration -->
+            <section id="numerical-integration">
+                <h2>10. Numerical Integration</h2>
+                
+                <p>The isoparametric formulation leads to the necessity of integrating numerically the expression of the stiffness matrix (and distributed loads, if any).</p>
+                
+                <p>Indeed a closed-form integration can be performed in simple cases only. When the element is generically distorted the only viable option is the numerical integration.</p>
+
+                <p>The expression of \(\underline{\underline{K}}\) was found as:</p>
+                
+                \[\underline{\underline{K}} = t \int_{-1}^{+1} \int_{-1}^{+1} \underline{\underline{B}}^T(\xi, \eta) \, \underline{\underline{C}} \, \underline{\underline{B}}(\xi, \eta) \det \underline{\underline{J}} \, d\xi \, d\eta\]
+
+                <p>The expression to be integrated is not even polynomial if the element is distorted.</p>
+
+                <h3>10.1 Gauss-Legendre Quadrature</h3>
+                
+                <p>The simplest approach to perform the integral consists in using a <strong>Gauss-Legendre technique</strong>.</p>
+                
+                <p>For a generic function \(f = f(\xi)\), the numerical integration is carried out as:</p>
+                
+                \[\int_{-1}^{+1} f(\xi) \, d\xi \approx \sum_{i=1}^{N_t} f(\xi_i) w_i\]
+
+                <p>where:</p>
+                <ul>
+                    <li>\(\xi_i\): Gauss points</li>
+                    <li>\(w_i\): Gauss weights</li>
+                </ul>
+
+                <p>In two dimensions the integration is then:</p>
+                
+                \[\int_{-1}^{+1} \int_{-1}^{+1} f(\xi, \eta) \, d\xi \, d\eta = \sum_{i=1}^{N_g^i} \sum_{j=1}^{N_g^j} f(\xi_i, \eta_j) w_i w_j\]
+
+                <p>where \(N_g^i\) and \(N_g^j\) are the number of Gauss points along \(\xi\) and \(\eta\), respectively. In most cases \(N_g^i = N_g^j\).</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/gauss_integration_rules.png" alt="Gauss integration rules">
+                    <figcaption>Figure 10.1: Gauss integration point diagrams showing 1-point and 2-point integration rules for quadrilateral elements</figcaption>
+                </figure>
+
+                <table>
+                    <tr>
+                        <th>1-Point Rule</th>
+                        <th>2-Point Rule</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            \(\xi_1 = \eta_1 = 0\)<br>
+                            \(w = 2\)
+                        </td>
+                        <td>
+                            \(\xi_i = \pm 1/\sqrt{3}\)<br>
+                            \(\eta_i = \pm 1/\sqrt{3}\)<br>
+                            \(w_i = 1\)
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="remark">
+                    <h4>Gauss-Legendre Rule Accuracy</h4>
+                    <p>The Gauss-Legendre rule allows to integrate exactly a polynomial expression of order \(2N-1\), where \(N\) is the number of Gauss points.</p>
+                    <p>This means that a two-point rule (\(N=2\)) allows for the exact integration of a cubic polynomial.</p>
+                </div>
+
+                <h3>10.2 Choice of Number of Integration Points</h3>
+                
+                <p>How to choose the number of points?</p>
+                
+                <ul>
+                    <li><strong>Many points</strong> → accurate integration, but high cost to evaluate \(\underline{\underline{K}}\)</li>
+                    <li><strong>Few points</strong> → low cost to build \(\underline{\underline{K}}\) but possible inaccuracies</li>
+                </ul>
+
+                <p>It is commonly defined:</p>
+
+                <div class="definition">
+                    <h4>1. Full Integration</h4>
+                    <p>An integration aimed at integrating exactly the reference element (an element not distorted). In the case of a bilinear membrane it would be \(N = 2\) (in order to integrate exactly a quadratic polynomial).</p>
+                </div>
+
+                <div class="definition">
+                    <h4>2. Reduced Integration</h4>
+                    <p>An integration with less points with respect to the full one.</p>
+                </div>
+
+                <p>A reduced integration, typically with one point less than a full integration, can be a good choice. It offers the advantage of requiring less operations and, in addition, the error associated with the relatively "poor" integration scheme tends to compensate the inherent overstiffness of a discrete model.</p>
+
+                <h3>10.3 Hourglass Modes</h3>
+                
+                <p>When choosing the integration rule it is always necessary to consider issues of ill-conditioning of \(\underline{\underline{K}}\), numerical instabilities or <strong>hourglass phenomena</strong>.</p>
+                
+                <p>These latter are spurious deformation modes made possible by a lack of integration points.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/integration_hourglass_modes.png" alt="Hourglass modes">
+                    <figcaption>Figure 10.2: For a 2D element integrated with 1-point rule, hourglass modes (zero-energy deformation modes) become possible</figcaption>
+                </figure>
+
+                <p>The two deformation modes in the figure are possible with a zero deformation energy. It may happen that the results are characterized by the presence of many elements exhibiting the typical hourglass mode. In these cases it is necessary to increase the order of the integration.</p>
+            </section>
+
+            <!-- Section 11: Stress Recovery -->
+            <section id="stress-recovery">
+                <h2>11. Recovery of Stresses</h2>
+                
+                <p>In the linear static case the discrete problem is obtained in the form:</p>
+                
+                \[\underline{\underline{K}} \underline{u} = \underline{F}\]
+
+                <p>Once the linear system is solved, the displacements \(\underline{u}\) are available at the nodes of the elements. It is then possible to evaluate:</p>
+
+                <h3>11.1 Strains</h3>
+                \[\underline{\varepsilon} = \underline{\underline{B}} \underline{u}\]
+
+                <h3>11.2 Stresses</h3>
+                \[\underline{\sigma} = \underline{\underline{C}} \underline{\underline{B}} \underline{u}\]
+
+                <p>Recalling now that \(\underline{\underline{B}} = \underline{\underline{B}}(\xi, \eta)\) it is necessary to establish how to check the stress levels; in other words, which points \(\xi_i, \eta_i\) one should consider?</p>
+                
+                <p>From a practical standpoint one may be interested in the outermost positions (the nodes) as they can be associated with the highest stress levels.</p>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/cantilever_beam_stress_distribution.png" alt="Cantilever beam stress distribution">
+                    <figcaption>Figure 11.1: Cantilever beam with distributed load - the bending-induced stresses will be highest at the top and the bottom</figcaption>
+                </figure>
+
+                <p>Unfortunately the evaluation of stresses at the nodes leads to <strong>poor results</strong>. The quality of the stresses at the nodes is low.</p>
+                
+                <p>On the contrary, the stresses are nicely captured in correspondence of:</p>
+                <ul>
+                    <li><strong>Integration points</strong></li>
+                    <li><strong>Barlow points</strong> (integration points of the rule of order \(N-1\), where \(N\) is the order of the rule considered for evaluating \(\underline{\underline{K}}\))</li>
+                </ul>
+
+                <figure>
+                    <img src="images/LN_C6_1_FEM/integration_barlow_points.png" alt="Integration and Barlow points">
+                    <figcaption>Figure 11.2: If a 2-point rule is considered: integration points (left, 2×2 arrangement) vs. Barlow point (right, single center point)</figcaption>
+                </figure>
+
+                <h3>11.3 Stress Interpolation</h3>
+                
+                <p>The stresses can be evaluated in these points and extrapolated in any other point using a proper interpolation rule.</p>
+                
+                <p>If considering the points of a 2-point interpolation rule:</p>
+                
+                \[\sigma_{ik} = a_1 + a_2 \xi + a_3 \eta + a_4 \xi \eta\]
+
+                <p>where the coefficients \(a_i\) have to be determined in order to interpolate the values in correspondence of the integration points.</p>
+                
+                <p>Considering, as an example, the component \(\sigma_{xx}\):</p>
+                
+                \[\begin{Bmatrix} \sigma_{xx}(\xi_1, \eta_1) \\ \sigma_{xx}(\xi_1, \eta_2) \\ \sigma_{xx}(\xi_2, \eta_1) \\ \sigma_{xx}(\xi_2, \eta_2) \end{Bmatrix} = \begin{bmatrix} 1 & \xi_1 & \eta_1 & \xi_1 \eta_1 \\ 1 & \xi_1 & \eta_2 & \xi_1 \eta_2 \\ 1 & \xi_2 & \eta_1 & \xi_2 \eta_1 \\ 1 & \xi_2 & \eta_2 & \xi_2 \eta_2 \end{bmatrix} \begin{Bmatrix} a_1 \\ a_2 \\ a_3 \\ a_4 \end{Bmatrix}\]
+
+                \[\underline{\sigma}^{ip} = \underline{\underline{A}} \underline{a}\]
+
+                <p>From which:</p>
+                
+                <div class="key-equation">
+                    \[\underline{a} = \underline{\underline{A}}^{-1} \underline{\sigma}^{ip}\]
+                </div>
+
+                <p>Once the coefficients \(\underline{a}\) are available, it is possible to determine the stress in any point as:</p>
+                
+                \[\sigma_{xx} = a_1 + a_2 \xi + a_3 \eta + a_4 \xi \eta\]
+            </section>
+
+            <!-- Section 12: Convergence -->
+            <section id="convergence">
+                <h2>12. Convergence Requirements</h2>
+                
+                <p>The FEM can be seen as a special case of the method of Ritz. It follows that the same considerations apply in terms of convergence of the solution.</p>
+                
+                <p>In this sense, for a <strong>displacement-based finite element model</strong>:</p>
+
+                <ol>
+                    <li>The Total potential energy \(\Pi\) is <strong>higher</strong> with respect to the exact case</li>
+                    <li>The strain energy \(U\) is <strong>lower</strong> with respect to the exact case</li>
+                    <li>The Total potential energy \(\Pi\) gets <strong>smaller and smaller</strong> when the mesh is progressively refined</li>
+                    <li>The strain energy \(U\) <strong>increases</strong> as the mesh is refined</li>
+                </ol>
+
+                <p>These conclusions hold if:</p>
+
+                <h3>12.1 Elements Must Be Compatible</h3>
+                
+                <p>This means that compatibility should be guaranteed both:</p>
+                <ul>
+                    <li><strong>Internally:</strong> The use of continuous shape functions, in this sense, automatically guarantees the internal compatibility</li>
+                    <li><strong>At the interface:</strong> With the surrounding elements. Nodal continuity is enforced as part of the assembly procedure.</li>
+                </ul>
+                
+                <p>Attention should be paid in the formulation of kinematic elements (such as Euler-Bernoulli beam elements) for which the continuity involves the function along with the first derivative (the rotations).</p>
+                
+                <p>The continuity has to be guaranteed also at the frontier between adjacent edges of the elements. In this case a critical situation can be associated with the presence of curved edges.</p>
+
+                <h3>12.2 Loads Must Be Applied Consistently (Conformal)</h3>
+                
+                <p>This means that any kind of distributed external load is reported at the nodes by projecting it over the shape functions of the element. In other words, the external work should be written as:</p>
+                
+                \[\delta W_e = \int_V \delta \underline{u}^T \underline{\underline{N}}^T \underline{f} \, dV = \underbrace{\delta \underline{u}^T \int_V \underline{\underline{N}}^T \underline{f} \, dV}_{\text{consistent external loads}}\]
+
+                <h3>12.3 Numerical Integration Must Be Exact</h3>
+                
+                <p>The integrals, entering the expression of \(\underline{F}\) and \(\underline{\underline{K}}\), should be evaluated exactly. This operation is possible, in general, only if the element is not distorted.</p>
+
+                <div class="remark">
+                    <h4>Final Remarks</h4>
+                    <p>Whenever the three previous requirements are not verified, it may happen that the total potential energy (and the strain energy) behaves differently from what expected.</p>
+                    <p>In this sense, the model behaviour will be problem-dependent and inherently associated with the kind and degree of violation of the mentioned requirements.</p>
+                    <p>For instance, a model with a few distorted elements does not fulfill the third requirement. However, if the distorted elements are few, it is very likely that they will not affect the global convergence behaviour of the entire structural model.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 2px solid var(--border-color); text-align: center; color: #666;">
+            <p><em>Introduction to the Finite Element Method - Lecture Notes</em></p>
+        </footer>
+    </article>
+</body>
+</html>

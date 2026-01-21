@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plate Theory - Mindlin and Kirchhoff Models</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --mindlin-color: #2c5282;
+            --kirchhoff-color: #744210;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .toc {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .toc .section-group {
+            margin: 15px 0;
+        }
+
+        .toc .section-group-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .part-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            margin: 50px 0 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .part-header.kirchhoff {
+            background: linear-gradient(135deg, var(--kirchhoff-color), #975a16);
+        }
+
+        .part-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .part-header p {
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        section {
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+        }
+
+        section h4 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .definition-box {
+            background: #ebf8ff;
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .equation-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        .important-box {
+            background: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note-box {
+            background: #f0fff4;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .assumptions-list {
+            background: #faf5ff;
+            border-left: 4px solid #805ad5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            margin-top: 12px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .boundary-conditions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .bc-natural, .bc-essential {
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .bc-natural {
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+        }
+
+        .bc-essential {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+        }
+
+        .bc-natural h5, .bc-essential h5 {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .bc-natural h5 {
+            color: #c53030;
+        }
+
+        .bc-essential h5 {
+            color: #276749;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #ebf8ff, #e6fffa);
+            border: 2px solid var(--secondary-color);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .summary-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            section {
+                padding: 20px;
+            }
+
+            .two-column, .boundary-conditions {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Plate Theory</h1>
+            <p class="subtitle">Mindlin and Kirchhoff Plate Models</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <div class="section-group">
+                <div class="section-group-title">Part I: Mindlin Plate Theory</div>
+                <ul>
+                    <li><a href="#mindlin-intro">1. Introduction and Plate Idealization</a></li>
+                    <li><a href="#mindlin-kinematics">2. Kinematic Model</a></li>
+                    <li><a href="#mindlin-deformations">3. Generalized Deformations</a></li>
+                    <li><a href="#mindlin-stresses">4. Generalized Stresses</a></li>
+                    <li><a href="#mindlin-external">5. Generalized External Forces</a></li>
+                    <li><a href="#mindlin-equilibrium">6. Equilibrium Conditions</a></li>
+                    <li><a href="#mindlin-rectangular">7. Rectangular Plates</a></li>
+                    <li><a href="#mindlin-constitutive">8. Plate Constitutive Law</a></li>
+                    <li><a href="#mindlin-displacement-eqs">9. Equilibrium Equations in Terms of Displacements</a></li>
+                </ul>
+            </div>
+            <div class="section-group">
+                <div class="section-group-title">Part II: Kirchhoff Plate Theory</div>
+                <ul>
+                    <li><a href="#kirchhoff-intro">10. Introduction to Kirchhoff Theory</a></li>
+                    <li><a href="#kirchhoff-kinematics">11. Kinematic Model</a></li>
+                    <li><a href="#kirchhoff-stresses">12. Generalized Stresses and Internal Work</a></li>
+                    <li><a href="#kirchhoff-equilibrium">13. Equilibrium Conditions</a></li>
+                    <li><a href="#kirchhoff-condition">14. The Kirchhoff Condition</a></li>
+                    <li><a href="#kirchhoff-rectangular">15. Rectangular Plate Boundary Conditions</a></li>
+                    <li><a href="#kirchhoff-constitutive">16. Plate Constitutive Law</a></li>
+                    <li><a href="#kirchhoff-exact">17. Exact Solution for Simple Case</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- PART I: MINDLIN PLATE THEORY -->
+        <div class="part-header">
+            <h2>Part I: Mindlin Plate Theory</h2>
+            <p>First-Order Shear Deformation Theory</p>
+        </div>
+
+        <section id="mindlin-intro">
+            <h2>1. Introduction and Plate Idealization</h2>
+            
+            <p>A plate idealization can be applied to those 3D solids characterized by one of the three dimensions which is much smaller in comparison to the other two. The smallest dimension is commonly denoted as <strong>thickness</strong>.</p>
+
+            <p>It is worth noting, since the beginning, that the Mindlin plate model (as well as any other plate model) represents a simplified description of a structure that in reality is, in any case, inherently 3D.</p>
+
+            <div class="definition-box">
+                <strong>Definition:</strong> A <em>plate</em> identifies a structure characterized by a <strong>flat middle surface</strong>, whereas <em>shells</em> are those structures characterized by a <strong>curved middle surface</strong>.
+            </div>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/plate_geometry_midsurface.png" alt="3D isometric view of a plate geometry showing midsurface, thickness t, and planar dimensions a and b">
+                <figcaption>Figure 1.1: Geometry of a plate showing midsurface, thickness \(t\), and planar dimensions \(a\) and \(b\)</figcaption>
+            </figure>
+
+            <h3>Coordinate System</h3>
+            
+            <p>Consider now a relatively thin panel, where \(t \ll a\) (say in the range \(a/t > 20\)), characterized by thickness \(t\), and planar dimensions \(a\) and \(b\).</p>
+
+            <p>The midsurface is taken as the surface passing through the middle of the thickness (although it is not strictly necessary; any through-the-thickness position could be considered).</p>
+
+            <p>A Cartesian coordinate system is taken over the midsurface with \(xy\) defining the plane of the midsurface and \(z\) the thickness-wise direction.</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/plate_coordinate_system.png" alt="3D coordinate system showing plate with x, y, z axes">
+                <figcaption>Figure 1.2: Plate coordinate system with \(x\), \(y\) in the midsurface plane and \(z\) in the thickness direction</figcaption>
+            </figure>
+
+            <h3>Kinematic Formulation Approach</h3>
+            
+            <p>The plate model is developed in the context of a <strong>kinematic formulation</strong>, in analogy to the approach adopted in the case of beams. This means that the underlying idea consists in describing the displacement field of the 3D structure (recall, the plate is characterized by \(t \ll a\) but is, in any case, 3D) starting from the knowledge of generalized displacement quantities referred to the reference surface of the plate.</p>
+        </section>
+
+        <section id="mindlin-kinematics">
+            <h2>2. Kinematic Model</h2>
+            
+            <p>The Mindlin plate model, which is the 2D counterpart of the Timoshenko beam model, relies upon the assumption that <strong>sections initially normal to the reference surface can rotate during the deformation process, but are constrained to remain straight</strong>.</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/membrane_bending_displacement_diagrams.png" alt="Membrane and bending displacement diagrams in zx plane">
+                <figcaption>Figure 2.1: Membrane displacement and bending displacement in the \(zx\) plane</figcaption>
+            </figure>
+
+            <div class="assumptions-list">
+                <h4>Kinematic Assumptions:</h4>
+                <ol>
+                    <li>The <strong>membrane part</strong> of the displacement is characterized by an \(x\)-wise displacement equal for all the points belonging to the cross section</li>
+                    <li>The <strong>bending part</strong> is given by a rotation \(\phi_x\), due to a rotation of the section</li>
+                </ol>
+            </div>
+
+            <p>The same kinematic description is adopted with regard to the \(zy\) plane.</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/plate_displacement_zy_plane.png" alt="Plate displacement in zy plane with rotation angles">
+                <figcaption>Figure 2.2: Plate displacement in the \(zy\) plane showing rotation \(\phi_y\)</figcaption>
+            </figure>
+
+            <h3>Kinematic Field Formulation</h3>
+            
+            <div class="equation-box">
+                <p>The kinematic model is formulated as:</p>
+                \[u(x,y,z) = U_o(x,y) + z\phi_x(x,y)\]
+                \[v(x,y,z) = V_o(x,y) + z\phi_y(x,y)\]
+                \[w(x,y,z) = W_o(x,y)\]
+            </div>
+
+            <p>where \(U_o\), \(V_o\), \(W_o\), \(\phi_x\), \(\phi_y\) are the <strong>generalized displacement components</strong> of the Mindlin plate model.</p>
+
+            <p>The kinematic description should be interpreted as a "rule" for describing the 3D displacement field of the plate (\(u\), \(v\) and \(w\) are functions of \(x\), \(y\) and \(z\)), starting from the generalized components which are referred to the plate reference surface (\(U_o\), \(V_o\), \(W_o\), \(\phi_x\) and \(\phi_y\) depend on \(x\) and \(y\) only).</p>
+
+            <h3>Relation to Rotations</h3>
+            
+            <p>The generalized displacement components \(\phi_x\) and \(\phi_y\) are related to the rotations around the \(x\) and \(y\) axes (taken positive according to the right hand rule) by:</p>
+
+            <div class="equation-box">
+                \[\phi_x = \theta_y\]
+                \[\phi_y = -\theta_x\]
+                <p>where \(\theta_x\), \(\theta_y\) are rotations around the \(x\) and \(y\) axes</p>
+            </div>
+
+            <h3>Applicability of the Straight Section Assumption</h3>
+            
+            <p>Note that the assumption of sections remaining straight is, indeed, an assumption. No guarantees exist that the thickness-wise behaviour will be characterized by such behaviour. In many cases of practical interest this is a reasonable approximation leading to sufficiently accurate results.</p>
+
+            <div class="important-box">
+                <p><strong>Attention should be paid</strong> when the assumption is applied to plates characterized by:</p>
+                <ol>
+                    <li><strong>Abrupt variations of mechanical properties</strong> along the thickness direction (e.g., sandwich panels)</li>
+                    <li><strong>Relatively thick panels</strong> (\(a/t \leq 20\)) especially when the transverse shear stiffnesses are relatively weak (e.g., composite panels)</li>
+                </ol>
+            </div>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/displacement_behavior_comparison.png" alt="Comparison of displacement behavior for thin plate, sandwich, and thick composite plate">
+                <figcaption>Figure 2.3: Examples of \(u(x,y,z)\) behavior: thin plate (linear), sandwich (piecewise), and thick composite plate (nonlinear)</figcaption>
+            </figure>
+
+            <h3>Indicial Notation</h3>
+            
+            <p>Given the amount of not null contributions and the number of contributions characterizing the expression of the virtual work, it is convenient to adopt a compact notation. According to the indicial notation, the kinematic field can be expressed as:</p>
+
+            <div class="equation-box">
+                \[U_\alpha(X_\alpha, X_3) = U_{o_\alpha}(X_\alpha) + X_3 \phi_\alpha(X_\alpha) \quad \alpha = 1, 2\]
+                \[W(X_\alpha, X_3) = W_o(X_\alpha) \quad X_3 \equiv z\]
+            </div>
+        </section>
+
+        <section id="mindlin-deformations">
+            <h2>3. Generalized Deformations</h2>
+            
+            <p>By substituting the kinematic field into the expression of the infinitesimal displacement strain tensor:</p>
+
+            <div class="equation-box">
+                \[\varepsilon_{xx} = U_{,x} = U_{o,x} + z\phi_{x,x}\]
+                \[\varepsilon_{yy} = V_{,y} = V_{o,y} + z\phi_{y,y}\]
+                \[\gamma_{xy} = V_{,x} + U_{,y} = V_{o,x} + U_{o,y} + z(\phi_{x,y} + \phi_{y,x})\]
+                \[\gamma_{xz} = W_{,x} + U_{,z} = W_{o,x} + \phi_x\]
+                \[\gamma_{yz} = W_{,y} + V_{,z} = W_{o,y} + \phi_y\]
+                \[\varepsilon_{zz} = W_{,z} = 0\]
+            </div>
+
+            <p>By separating the dependence on \((x,y)\) from the dependence on \(z\):</p>
+
+            <div class="equation-box">
+                \[\begin{pmatrix} \varepsilon_{xx} \\ \varepsilon_{yy} \\ \gamma_{xy} \\ \gamma_{xz} \\ \gamma_{yz} \end{pmatrix} = \begin{pmatrix} U_{o,x} \\ V_{o,y} \\ V_{o,x} + U_{o,y} \\ 0 \\ 0 \end{pmatrix} + z \begin{pmatrix} \phi_{x,x} \\ \phi_{y,y} \\ \phi_{x,y} + \phi_{y,x} \\ 0 \\ 0 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \\ 0 \\ W_{o,x} + \phi_x \\ W_{o,y} + \phi_y \end{pmatrix}\]
+                \[= \underline{\hat{\varepsilon}} + z\underline{K} + \underline{t}\]
+            </div>
+
+            <p>Where:</p>
+            <ul>
+                <li>\(\underline{\hat{\varepsilon}}\): generalized <strong>membrane deformations</strong></li>
+                <li>\(\underline{K}\): generalized <strong>bending deformations</strong> (curvatures)</li>
+                <li>\(\underline{t}\): generalized <strong>transverse shear deformations</strong></li>
+            </ul>
+
+            <h3>Deformations in Indicial Notation</h3>
+            
+            <div class="equation-box">
+                \[\varepsilon_{\alpha\beta} = \hat{\varepsilon}_{\alpha\beta} + X_3 K_{\alpha\beta}\]
+                \[\gamma_{\alpha 3} = W_{,\alpha} + \phi_\alpha\]
+                <p>Where the membrane deformations \(\hat{\varepsilon}_{\alpha\beta}\) and the curvatures \(K_{\alpha\beta}\) are:</p>
+                \[\hat{\varepsilon}_{\alpha\beta} = \frac{1}{2}\left(U_{o_{\alpha,\beta}} + U_{o_{\beta,\alpha}}\right)\]
+                \[K_{\alpha\beta} = \phi_{\alpha,\beta}\]
+            </div>
+        </section>
+
+        <section id="mindlin-stresses">
+            <h2>4. Generalized Stresses</h2>
+            
+            <p>The generalized stresses are obtained by application of the Principle of Virtual Work (PVW):</p>
+
+            <div class="equation-box">
+                \[\delta W_i = \int_V \delta\underline{\varepsilon} : \underline{\sigma} \, dV = \int_V \left( \delta\varepsilon_{\alpha\beta} \, \sigma_{\alpha\beta} + \delta\gamma_{\alpha 3} \, \sigma_{\alpha 3} \right) dV\]
+            </div>
+
+            <p>Substituting the expressions of \(\varepsilon_{\alpha\beta}\) and \(\gamma_{\alpha 3}\) as obtained from the kinematic model:</p>
+
+            \[= \int_V \left[ \left( \delta\hat{\varepsilon}_{\alpha\beta} + z \, \delta K_{\alpha\beta} \right) \sigma_{\alpha\beta} + \delta\gamma_{\alpha 3} \, \sigma_{\alpha 3} \right] dV\]
+
+            \[= \int_A \delta\hat{\varepsilon}_{\alpha\beta} \int_t \sigma_{\alpha\beta} \, dx_3 \, dA + \int_A \delta K_{\alpha\beta} \int_t z \, \sigma_{\alpha\beta} \, dx_3 \, dA + \int_A \delta\gamma_{\alpha 3} \int_t \sigma_{\alpha 3} \, dx_3 \, dA\]
+
+            <h3>Definition of Generalized Stress Resultants</h3>
+            
+            <div class="definition-box">
+                <p><strong>Membrane forces per unit length:</strong></p>
+                \[N_{\alpha\beta} = \int_t \sigma_{\alpha\beta} \, dx_3\]
+                
+                <p><strong>Moments per unit length:</strong></p>
+                \[M_{\alpha\beta} = \int_t z \, \sigma_{\alpha\beta} \, dx_3\]
+                
+                <p><strong>Transverse shear forces per unit length:</strong></p>
+                \[Q_\alpha = \int_t \sigma_{\alpha 3} \, dx_3\]
+            </div>
+
+            <h3>Internal Virtual Work</h3>
+            
+            <div class="equation-box">
+                \[\delta W_i = \int_A \left( \delta\hat{\varepsilon}_{\alpha\beta} \, N_{\alpha\beta} + \delta K_{\alpha\beta} \, M_{\alpha\beta} + \delta\gamma_{\alpha 3} \, Q_\alpha \right) dA\]
+                \[= \int_A \left( \delta\underline{\hat{\varepsilon}} : \underline{N} + \delta\underline{K} : \underline{M} + \delta\underline{\gamma} \cdot \underline{Q} \right) dA\]
+            </div>
+
+            <p>This expression illustrates the <strong>work conjugacy</strong> between:</p>
+            <ul>
+                <li>Stress fluxes \(\underline{N}\) and membrane deformations \(\underline{\hat{\varepsilon}}\)</li>
+                <li>Moment fluxes \(\underline{M}\) and curvatures \(\underline{K}\)</li>
+                <li>Transverse shear fluxes \(\underline{Q}\) and transverse shear deformations \(\underline{\gamma}\)</li>
+            </ul>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/stress_distribution_cross_section.png" alt="Cross-sectional stress distribution along plate thickness">
+                <figcaption>Figure 4.1: Stress distribution \(\sigma_{xx}\) along the thickness and corresponding generalized stress resultants \(N_{xx}\) and \(M_{xx}\)</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/internal_forces_moments_plate_element.png" alt="Internal forces and moments on plate element">
+                <figcaption>Figure 4.2: Internal forces and moments per unit length on a plate element: moments \(M_{xx}\), \(M_{yy}\), \(M_{xy}\); membrane forces \(N_{xx}\), \(N_{yy}\), \(N_{xy}\); transverse shear forces \(Q_x\), \(Q_y\)</figcaption>
+            </figure>
+
+            <div class="note-box">
+                <p><strong>Note:</strong> The moments are <em>not</em> defined according to the right-hand rule. For example, \(M_{xx}\) is not the moment around the \(x\)-axis. Rather, the moments are defined as:</p>
+                \[M_{\alpha\beta} = \int_t \sigma_{\alpha\beta} \, X_3 \, dt\]
+                <p>So \(M_{xx}\) is the moment due to the \(\sigma_{xx}\) components. Also, \(M_{xy}\) is the torsional moment due to the thickness-wise distribution of in-plane shear stresses \(\sigma_{xy}\).</p>
+            </div>
+        </section>
+
+        <section id="mindlin-external">
+            <h2>5. Generalized External Forces</h2>
+            
+            <p>Similarly to the case of the Timoshenko beam model, the Mindlin plate allows for the description of transverse shear deformations. The external loads consistent with this kinematic model are then in the form of:</p>
+            <ul>
+                <li>Distributed axial forces \(\hat{n}_x\), \(\hat{n}_y\)</li>
+                <li>Transverse shear load \(\hat{n}_z = p\)</li>
+                <li>Distributed couples \(\hat{m}_x\) and \(\hat{m}_y\) (thanks to the ability of the model to account for shear deformability)</li>
+            </ul>
+
+            <div class="equation-box">
+                <p><strong>External Virtual Work:</strong></p>
+                \[\delta W_e = \int_A \left( \delta U_{o_\alpha} \, \hat{n}_\alpha + \delta W_o \, p + \delta\phi_\alpha \, \hat{m}_\alpha \right) dA \quad \alpha = 1, 2\]
+            </div>
+
+            <p>Where the generalized external forces are defined as:</p>
+            \[\hat{n}_\alpha = \int_t F_\alpha \, dx_3\]
+            \[p = \int_t F_3 \, dx_3\]
+            \[\hat{m}_\alpha = \int_t F_\alpha \, X_3 \, dx_3\]
+            <p>and \(\underline{F}\) is the volume force vector.</p>
+        </section>
+
+        <section id="mindlin-equilibrium">
+            <h2>6. Equilibrium Conditions</h2>
+            
+            <p>The equilibrium conditions are derived by applying the PVW. The plate is characterized by the boundary \(\Gamma\) which is partially subjected to imposed displacements (\(\Gamma_U\)) and to applied generalized forces (\(\Gamma_F\)):</p>
+
+            \[\Gamma = \Gamma_F \cup \Gamma_U \quad \text{and} \quad \Gamma_F \cap \Gamma_U = \emptyset\]
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/plate_boundary_conditions.png" alt="Plate boundary regions">
+                <figcaption>Figure 6.1: Plate showing boundary regions \(\Gamma_U\) (displacement boundary) and \(\Gamma_F\) (force boundary)</figcaption>
+            </figure>
+
+            <h3>PVW Statement</h3>
+            
+            <div class="equation-box">
+                \[\int_A \left( \delta\hat{\varepsilon}_{\alpha\beta} \, N_{\alpha\beta} + \delta K_{\alpha\beta} \, M_{\alpha\beta} + \delta\gamma_{\alpha 3} \, Q_\alpha \right) dA =\]
+                \[= \int_A \left( \delta U_{o_\alpha} \, \hat{n}_\alpha + \delta\phi_\alpha \, \hat{m}_\alpha + \delta W_o \, p \right) dA + \int_{\Gamma_F} \left( \delta U_{o_\alpha} \, \hat{N}_\alpha + \delta\phi_\alpha \, \hat{M}_\alpha + \delta W_o \, \hat{Q} \right) d\Gamma_F\]
+            </div>
+
+            <h3>Derivation of Equilibrium Equations</h3>
+            
+            <p>The equilibrium equations are obtained by expressing the virtual variations in terms of displacement components and integrating by parts. After collecting virtual variations and applying the PVW condition \(\delta W_i = \delta W_e\):</p>
+
+            <div class="boundary-conditions">
+                <div class="bc-natural">
+                    <h5>Equilibrium Equations in \(\Omega\)</h5>
+                    \[N_{\alpha\beta,\beta} + \hat{n}_\alpha = 0\]
+                    <p>(membrane equilibrium, 2 eqs)</p>
+                    \[M_{\alpha\beta,\beta} - Q_\alpha + \hat{m}_\alpha = 0\]
+                    <p>(moment equilibrium, 2 eqs)</p>
+                    \[Q_{\alpha,\alpha} + p = 0\]
+                    <p>(shear equilibrium, 1 eq)</p>
+                </div>
+                <div class="bc-essential">
+                    <h5>Boundary Conditions</h5>
+                    <p><strong>Natural (in \(\Gamma_F\)):</strong></p>
+                    \[N_{\alpha\beta} \, n_\beta = \hat{N}_\alpha\]
+                    \[M_{\alpha\beta} \, n_\beta = \hat{M}_\alpha\]
+                    \[Q_\alpha \, n_\alpha = \hat{Q}\]
+                    <p><strong>Essential (in \(\Gamma_U\)):</strong></p>
+                    \[\delta U_\alpha = 0, \quad \delta\phi_\alpha = 0, \quad \delta W_o = 0\]
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Key Points:</strong></p>
+                <ul>
+                    <li>This is the <strong>strong-form formulation</strong> of the problem for the Mindlin plate model</li>
+                    <li>The set of equations and boundary conditions is obtained <em>automatically</em> by substituting the kinematic assumptions into the PVW</li>
+                    <li>The problem is <strong>well-posed</strong> and a solution can be obtained</li>
+                    <li>The set of equations is given by <strong>5 PDEs</strong> in the <strong>5 unknowns</strong> \(U_{o_\alpha}\), \(W_o\), \(\phi_\alpha\)</li>
+                </ul>
+            </div>
+
+            <h3>Alternative Derivation via Differential Element</h3>
+            
+            <p>The equilibrium equations could also have been obtained by imposing equilibrium on an infinitesimal plate element.</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/differential_element_membrane_forces.png" alt="Differential plate element with membrane forces">
+                <figcaption>Figure 6.2: Differential plate element showing membrane forces \(N_{xx}\), \(N_{yy}\), \(N_{xy}\) and their increments</figcaption>
+            </figure>
+
+            <p>For example, equilibrium along \(x\):</p>
+            \[(N_{xx} + dN_{xx} - N_{xx}) \, dy + (N_{xy} + dN_{xy} - N_{xy}) \, dx + \hat{n}_x \, dx \, dy = 0\]
+            <p>Dividing by \(dx \, dy\):</p>
+            \[N_{xx,x} + N_{xy,y} + \hat{n}_x = 0\]
+
+            <p>Similarly, equilibrium along \(y\):</p>
+            \[N_{yy,y} + N_{xy,x} + \hat{n}_y = 0\]
+
+            <p>The advantage of the PVW approach is that it provides an <strong>automatic</strong> answer, furnishing both the equilibrium conditions and the boundary conditions consistent with the kinematic model assumed.</p>
+        </section>
+
+        <section id="mindlin-rectangular">
+            <h2>7. Rectangular Plates</h2>
+            
+            <p>The set of governing equations previously derived can be specialized to the case of rectangular plates, which represent one of the most common cases within the typical applications of plate structures.</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/rectangular_plate_geometry.png" alt="Rectangular plate geometry with normal vectors">
+                <figcaption>Figure 7.1: Rectangular plate with dimensions \(a\) and \(b\), showing normal vectors to edges</figcaption>
+            </figure>
+
+            <p>The normal vectors to the 4 edges are:</p>
+            <ul>
+                <li>Top edge: \(\underline{n} = \underline{e}_x\)</li>
+                <li>Bottom edge: \(\underline{n} = -\underline{e}_x\)</li>
+                <li>Right edge: \(\underline{n} = -\underline{e}_y\)</li>
+                <li>Left edge: \(\underline{n} = \underline{e}_y\)</li>
+            </ul>
+
+            <h3>Boundary Conditions in Expanded Form</h3>
+            
+            <div class="equation-box">
+                <p><strong>Membrane part:</strong></p>
+                \[N_{xx} n_x + N_{xy} n_y = \hat{N}_x \quad \text{or} \quad \delta U_x = 0\]
+                \[N_{xy} n_x + N_{yy} n_y = \hat{N}_y \quad \text{or} \quad \delta U_y = 0\]
+                
+                <p><strong>Bending and transverse shear part:</strong></p>
+                \[M_{xx} n_x + M_{xy} n_y = \hat{M}_x \quad \text{or} \quad \delta\phi_x = 0\]
+                \[M_{xy} n_x + M_{yy} n_y = \hat{M}_y \quad \text{or} \quad \delta\phi_y = 0\]
+                \[Q_x n_x + Q_y n_y = \hat{Q} \quad \text{or} \quad \delta W_o = 0\]
+            </div>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/applied_loads_rectangular_plate.png" alt="Applied loads on rectangular plate">
+                <figcaption>Figure 7.2: Applied membrane loads and bending/shear loads on rectangular plate</figcaption>
+            </figure>
+
+            <h3>Common Boundary Condition Types</h3>
+            
+            <p>The boundary conditions express the equilibrium between the internal (generalized) forces and the applied loads. In any portion of the boundary, either a natural condition or an essential condition has to be specified.</p>
+
+            <p>The common sets of boundary conditions (restricting focus to the bending part) are:</p>
+
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Conditions</th>
+                </tr>
+                <tr>
+                    <td><strong>Free edge</strong></td>
+                    <td>No kinematic condition specified</td>
+                    <td>3 natural conditions</td>
+                </tr>
+                <tr>
+                    <td><strong>Simply-supported</strong></td>
+                    <td>Transverse displacement and rotation around normal prevented; rotation around tangent free</td>
+                    <td>2 essential + 1 natural</td>
+                </tr>
+                <tr>
+                    <td><strong>Clamped</strong></td>
+                    <td>All displacement components prevented</td>
+                    <td>3 essential conditions</td>
+                </tr>
+            </table>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/boundary_condition_examples_detailed.png" alt="Boundary condition examples for rectangular plates">
+                <figcaption>Figure 7.3: Examples of mixed and fully simply-supported boundary conditions</figcaption>
+            </figure>
+        </section>
+
+        <section id="mindlin-constitutive">
+            <h2>8. Plate Constitutive Law</h2>
+            
+            <p>In order to express the equations in terms of the generalized displacement components, it is necessary to introduce the plate constitutive law. This is the relation establishing a link between the generalized stresses and the generalized deformations of the kinematic model.</p>
+
+            <h3>Homogeneous Isotropic Material</h3>
+            
+            <p>Consider the case of homogeneous isotropic material. Under the assumption of state of plane stress (viz. \(\sigma_{zz} = 0\)):</p>
+
+            <div class="equation-box">
+                \[\begin{Bmatrix} \sigma_{xx} \\ \sigma_{yy} \\ \sigma_{xy} \end{Bmatrix} = \frac{E}{1-\nu^2} \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & \frac{1-\nu}{2} \end{bmatrix} \begin{Bmatrix} \varepsilon_{xx} \\ \varepsilon_{yy} \\ \gamma_{xy} \end{Bmatrix}\]
+            </div>
+
+            <p>The transverse shear stress components are available from the 3D constitutive law:</p>
+
+            <div class="equation-box">
+                \[\begin{Bmatrix} \sigma_{yz} \\ \sigma_{xz} \end{Bmatrix} = \chi \begin{bmatrix} G & 0 \\ 0 & G \end{bmatrix} \begin{Bmatrix} \gamma_{yz} \\ \gamma_{xz} \end{Bmatrix}\]
+            </div>
+
+            <p>where \(\chi\) is the <strong>shear factor</strong>, taken equal to \(\chi = 5/6\), which is introduced to reduce the intrinsic excess of stiffness of the model (exactly as done for the Timoshenko beam).</p>
+
+            <h3>Membrane Forces</h3>
+            
+            <p>Recalling the expression of the generalized stresses and performing the integration:</p>
+
+            <div class="equation-box">
+                \[\begin{Bmatrix} N_{xx} \\ N_{yy} \\ N_{xy} \end{Bmatrix} = \frac{Et}{1-\nu^2} \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & \frac{1-\nu}{2} \end{bmatrix} \begin{Bmatrix} \hat{\varepsilon}_{xx} \\ \hat{\varepsilon}_{yy} \\ 2\hat{\varepsilon}_{xy} \end{Bmatrix}\]
+            </div>
+
+            <h3>Bending Moments</h3>
+            
+            <p>Defining the <strong>flexural stiffness</strong>:</p>
+            \[D = \frac{Et^3}{12(1-\nu^2)}\]
+
+            <div class="equation-box">
+                \[\begin{Bmatrix} M_{xx} \\ M_{yy} \\ M_{xy} \end{Bmatrix} = D \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & \frac{1-\nu}{2} \end{bmatrix} \begin{Bmatrix} \phi_{x,x} \\ \phi_{y,y} \\ \phi_{x,y} + \phi_{y,x} \end{Bmatrix}\]
+            </div>
+
+            <h3>Transverse Shear Forces</h3>
+            
+            <div class="equation-box">
+                \[\begin{Bmatrix} Q_y \\ Q_x \end{Bmatrix} = \chi \begin{bmatrix} Gt & 0 \\ 0 & Gt \end{bmatrix} \begin{Bmatrix} \phi_y + W_{o,y} \\ \phi_x + W_{o,x} \end{Bmatrix}\]
+            </div>
+
+            <h3>Summary: Constitutive Relations</h3>
+            
+            <div class="summary-box">
+                <h4>General Form</h4>
+                \[\begin{pmatrix} N_{xx} \\ N_{yy} \\ N_{xy} \\ M_{xx} \\ M_{yy} \\ M_{xy} \end{pmatrix} = \begin{bmatrix} A_{11} & A_{12} & 0 & 0 & 0 & 0 \\ A_{12} & A_{22} & 0 & 0 & 0 & 0 \\ 0 & 0 & A_{66} & 0 & 0 & 0 \\ 0 & 0 & 0 & D_{11} & D_{12} & 0 \\ 0 & 0 & 0 & D_{12} & D_{22} & 0 \\ 0 & 0 & 0 & 0 & 0 & D_{66} \end{bmatrix} \begin{Bmatrix} U_{o,x} \\ V_{o,y} \\ U_{o,y} + V_{o,x} \\ \phi_{x,x} \\ \phi_{y,y} \\ \phi_{x,y} + \phi_{y,x} \end{Bmatrix}\]
+
+                \[\begin{Bmatrix} Q_y \\ Q_x \end{Bmatrix} = \begin{bmatrix} A_{44}^* & 0 \\ 0 & A_{55}^* \end{bmatrix} \begin{Bmatrix} \phi_y + W_{o,y} \\ \phi_x + W_{o,x} \end{Bmatrix}\]
+                
+                <p>(The notation \(A_{ii}^*\) reminds that a shear factor has been introduced)</p>
+            </div>
+
+            <div class="note-box">
+                <p>The relations reported above hold for an <strong>isotropic plate</strong>. However, the expression of the constitutive law has the same pattern also for <strong>orthotropic plates</strong>.</p>
+                <p>The case of <strong>generically layered composite plates</strong> can be considered by adopting a similar approach. In this case the only difference would be that, in general, the matrices expressing the constitutive law would be <strong>fully populated</strong>.</p>
+            </div>
+        </section>
+
+        <section id="mindlin-displacement-eqs">
+            <h2>9. Equilibrium Equations in Terms of Displacements</h2>
+            
+            <p>Having introduced the constitutive relation of the plate, it is possible to express the equilibrium equations in terms of displacement components.</p>
+
+            <h3>Extended Form</h3>
+            
+            <div class="equation-box">
+                <p><strong>Equation (1) - Membrane equilibrium in x:</strong></p>
+                \[\left[ A_{11} U_{o,x} + A_{12} V_{o,y} \right]_{,x} + \left[ A_{66} (U_{o,y} + V_{o,x}) \right]_{,y} + \hat{n}_x = 0\]
+
+                <p><strong>Equation (2) - Membrane equilibrium in y:</strong></p>
+                \[\left[ A_{12} U_{o,x} + A_{22} V_{o,y} \right]_{,y} + \left[ A_{66} (U_{o,y} + V_{o,x}) \right]_{,x} + \hat{n}_y = 0\]
+
+                <p><strong>Equation (3) - Moment equilibrium about y:</strong></p>
+                \[\left[ D_{11} \phi_{x,x} + D_{12} \phi_{y,y} \right]_{,x} + \left[ D_{66} (\phi_{x,y} + \phi_{y,x}) \right]_{,y} - A_{55}^* (\phi_x + W_{o,x}) + \hat{m}_x = 0\]
+
+                <p><strong>Equation (4) - Moment equilibrium about x:</strong></p>
+                \[\left[ D_{12} \phi_{x,x} + D_{22} \phi_{y,y} \right]_{,y} + \left[ D_{66} (\phi_{x,y} + \phi_{y,x}) \right]_{,x} - A_{44}^* (\phi_y + W_{o,y}) + \hat{m}_y = 0\]
+
+                <p><strong>Equation (5) - Transverse equilibrium:</strong></p>
+                \[\left[ A_{55}^* (\phi_x + W_{o,x}) \right]_{,x} + \left[ A_{44}^* (\phi_y + W_{o,y}) \right]_{,y} + p = 0\]
+            </div>
+        </section>
+
+        <!-- PART II: KIRCHHOFF PLATE THEORY -->
+        <div class="part-header kirchhoff">
+            <h2>Part II: Kirchhoff Plate Theory</h2>
+            <p>Classical Plate Theory (Thin Plate Theory)</p>
+        </div>
+
+        <section id="kirchhoff-intro">
+            <h2>10. Introduction to Kirchhoff Theory</h2>
+            
+            <p>The plate model due to Kirchhoff can be seen as the <strong>2D counterpart of the Euler-Bernoulli model</strong>. Indeed, the Kirchhoff plate model is based upon a kinematic field which leads to <strong>null transverse shear strains</strong>.</p>
+
+            <p>This means that Kirchhoff model is a suitable plate model for those cases where the <strong>energy contribution due to the transverse shear can be reasonably neglected</strong>.</p>
+
+            <div class="definition-box">
+                <p><strong>Applicability:</strong> This is the case of <strong>thin isotropic plates</strong> and <strong>thin composite plates</strong>. The range of applicability for isotropic plates is generally wider in comparison to the case of composite materials.</p>
+            </div>
+
+            <p>Indeed, the transverse shearing stiffness of typical aerospace composite materials (\(G_{23}\) and \(G_{13}\) shear moduli) is much lower in comparison to the isotropic ones, and the role played by shear deformability is then higher for some values of relative thickness \(a/t\).</p>
+
+            <div class="important-box">
+                <p><strong>Guideline:</strong></p>
+                <ul>
+                    <li>A geometrical ratio \(a/t = 100\) is certainly a situation that can be analyzed referring to the Kirchhoff model, independently on the material type</li>
+                    <li>When the plate gets thicker, say \(a/t = 50\), it could be worth checking the appropriateness of the Kirchhoff model, also in relation to the material</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="kirchhoff-kinematics">
+            <h2>11. Kinematic Model</h2>
+            
+            <p>Consider a plate of dimensions \(a\), \(b\), thickness \(t\) and a Cartesian reference system where \(X_3 \equiv z\) is the thickness-wise coordinate, while the reference surface is identified by \(x_1 - x_2\).</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/kirchhoff_plate_reference_system.png" alt="Kirchhoff plate reference system">
+                <figcaption>Figure 11.1: Kirchhoff plate showing reference surface, coordinate system, and bending displacement</figcaption>
+            </figure>
+
+            <div class="definition-box">
+                <p><strong>Kirchhoff Assumption:</strong> Sections normal to the plate midsurface <strong>remain normal after the deformation process</strong>.</p>
+            </div>
+
+            <p>This means that, in addition to the assumption introduced by Mindlin of section remaining straight, it is now assumed that they remain normal.</p>
+
+            <h3>Displacement Field</h3>
+            
+            <p>According to the above mentioned assumption, the displacement field is expressed as:</p>
+
+            <div class="equation-box">
+                \[U_\alpha (X_\alpha, X_3) = U_{o_\alpha} - X_3 W_{o,\alpha} \quad \alpha = 1, 2\]
+                \[W_o (X_\alpha, X_3) = W_o\]
+            </div>
+
+            <p>Where \(U_{o_\alpha}\), \(W_{o,\alpha}\) and \(W_o\) are the generalized displacement components of the Kirchhoff plate model.</p>
+
+            <div class="note-box">
+                <p><strong>Key observation:</strong> In the context of the Kirchhoff model, the <strong>rotation coincides with the first derivatives</strong> of the out-of-plane displacement field.</p>
+            </div>
+
+            <h3>Strains</h3>
+            
+            <div class="equation-box">
+                \[\varepsilon_{\alpha\beta} = \hat{\varepsilon}_{\alpha\beta} + X_3 K_{\alpha\beta} \quad \alpha, \beta = 1, 2\]
+                \[\gamma_{\alpha 3} = 0\]
+            </div>
+
+            <p>Where the membrane strains and curvatures are:</p>
+            \[\hat{\varepsilon}_{\alpha\beta} = \frac{1}{2} \left( U_{o_{\alpha,\beta}} + U_{o_{\beta,\alpha}} \right)\]
+            \[K_{\alpha\beta} = -W_{o,\alpha\beta}\]
+
+            <h3>Differences with Mindlin Model</h3>
+            
+            <ol>
+                <li><strong>Curvatures \(K_{\alpha\beta}\)</strong> are associated with the <strong>second derivative</strong> of the out-of-plane displacement (on the contrary, the membrane deformations are still equal)</li>
+                <li><strong>Transverse shear deformations \(\gamma_{\alpha 3}\) are null</strong>. The Kirchhoff plate model is thus uncapable of accounting for transverse shear deformability</li>
+            </ol>
+
+            <p>In other words, the Kirchhoff model relies upon the assumption that the strain energy contribution due to the transverse shear deformability is negligible with respect to the bending one. This is in analogy with the assumption adopted in the case of slender beams.</p>
+
+            <div class="note-box">
+                <p><strong>Note on \(\varepsilon_{zz}\):</strong> In analogy with Mindlin, the normal deformation \(\varepsilon_{33} = \varepsilon_{zz}\) is equal to zero. This represents a static inconsistency of the model, as the result \(\varepsilon_{zz} = 0\) is in contrast with the assumption of plane stress condition. However, the effect of the inconsistency is energetically not relevant as the internal work \(\sigma_{zz} \varepsilon_{zz}\) is null.</p>
+            </div>
+        </section>
+
+        <section id="kirchhoff-stresses">
+            <h2>12. Generalized Stresses and Internal Work</h2>
+            
+            <p>The expression of the internal work is formally equal to the one obtained for the Mindlin model. Indeed, the expression of \(\varepsilon_{\alpha\beta}\) is equal and the difference is nested in the expression of the curvatures \(K_{\alpha\beta}\).</p>
+
+            <p>Given the fact that \(\gamma_{\alpha 3} = 0\), the internal work due to the transverse shear is null.</p>
+
+            <div class="equation-box">
+                \[\delta W_i = \int_V \delta\underline{\varepsilon} : \underline{\sigma} \, dV = \int_A \left( \delta\hat{\varepsilon}_{\alpha\beta} \, N_{\alpha\beta} + \delta K_{\alpha\beta} \, M_{\alpha\beta} \right) dA\]
+            </div>
+
+            <p>The definition of \(N_{\alpha\beta}\) and \(M_{\alpha\beta}\) (forces and moments per unit length) is identical to the ones reported in the context of the Mindlin model.</p>
+
+            <h3>Generalized External Forces</h3>
+            
+            <div class="equation-box">
+                \[\delta W_e = \int_A \left( \delta U_{o_\alpha} \, \hat{n}_\alpha + \delta W_o \, p \right) dA\]
+            </div>
+
+            <p>(With respect to the Mindlin model, the distributed moments \(\hat{m}_\alpha\) are <strong>not considered</strong> due to the inability of the model to account for transverse shear deformation effects.)</p>
+        </section>
+
+        <section id="kirchhoff-equilibrium">
+            <h2>13. Equilibrium Conditions</h2>
+            
+            <p>The equilibrium conditions — viz. the strong form formulation of the problem — are derived by applying the PVW.</p>
+
+            <h3>PVW Statement</h3>
+            
+            <div class="equation-box">
+                \[\int_A \left( \delta\hat{\varepsilon}_{\alpha\beta} \, N_{\alpha\beta} + \delta K_{\alpha\beta} \, M_{\alpha\beta} \right) dA =\]
+                \[= \int_A \left( \delta U_{o_\alpha} \, \hat{n}_\alpha + \delta W_o \, p \right) dA + \int_{\Gamma_F} \left( \delta U_{o_\alpha} \, \hat{N}_\alpha - \delta W_{o,\alpha} \, \hat{M}_\alpha + \delta W_o \, \hat{Q} \right) d\Gamma_F\]
+            </div>
+
+            <p>Note that the contribution \(-\delta W_{o,\alpha} \, \hat{M}_\alpha\) is characterized by a negative sign as the rotation is the opposite of the first derivative of \(W_o\).</p>
+
+            <h3>Bending Part Analysis</h3>
+            
+            <p>The membrane part of the PVW is identical to the Mindlin case. The analysis is then restricted to the bending part:</p>
+
+            \[\delta W_i = \int_A \delta K_{\alpha\beta} \, M_{\alpha\beta} \, dA = -\int_A \delta W_{o,\alpha\beta} \, M_{\alpha\beta} \, dA\]
+
+            <p>Integrating by parts twice:</p>
+            \[\delta W_i = -\int_A \delta W_o \, M_{\alpha\beta,\alpha\beta} \, dA + \int_{\Gamma_F} \delta W_o \, M_{\alpha\beta,\beta} \, n_\alpha \, d\Gamma_F - \int_{\Gamma_F} \delta W_{o,\alpha} \, M_{\alpha\beta} \, n_\beta \, d\Gamma_F\]
+
+            <h3>Preliminary Equilibrium Conditions</h3>
+            
+            <p>Applying \(\delta W_i = \delta W_e\), the preliminary (temporary) result is:</p>
+
+            <div class="equation-box">
+                <p><strong>Equilibrium equation in \(\Omega\):</strong></p>
+                \[M_{\alpha\beta,\alpha\beta} + p = 0\]
+                
+                <p><strong>Natural boundary conditions (in \(\Gamma_F\)):</strong></p>
+                \[Q = \hat{Q}\]
+                \[M_{\alpha\beta} \, n_\beta = \hat{M}_\alpha\]
+                
+                <p><strong>Essential boundary conditions (in \(\Gamma_U\)):</strong></p>
+                \[\delta W_o = 0\]
+                \[\delta W_{o,\alpha} = 0\]
+            </div>
+
+            <div class="important-box">
+                <p><strong>Problem:</strong> This formulation is <strong>ill-posed</strong>! The equilibrium equation is fourth-order, requiring 4 boundary conditions, but we have 6 (3 natural + 3 essential). The Kirchhoff condition addresses this issue.</p>
+            </div>
+        </section>
+
+        <section id="kirchhoff-condition">
+            <h2>14. The Kirchhoff Condition</h2>
+            
+            <p>The differential problem defined by the equilibrium condition and the relevant boundary conditions is <strong>ill-posed</strong>, i.e., it cannot be solved in the form that has been obtained.</p>
+
+            <h3>Why the Problem is Ill-Posed</h3>
+            
+            <ol>
+                <li>The equilibrium equation is a <strong>fourth-order PDE</strong>. Indeed \(M_{\alpha\beta}\), when expressed in terms of displacement components, depends upon \(K_{\alpha\beta} = -W_{o,\alpha\beta}\) which is associated with the second derivative of \(W_o\). \(M_{\alpha\beta,\alpha\beta}\) leads to the fourth derivative of \(W_o\).</li>
+                <li>The number of boundary conditions is <strong>6</strong> (3 natural and 3 essential), whereas a number of <strong>4</strong> is needed for a fourth-order differential problem.</li>
+            </ol>
+
+            <h3>Resolution via PVW</h3>
+            
+            <p>It is necessary to reduce the number of unknowns. This operation is based on the application of the PVW.</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/plate_generic_shape_reference_system.png" alt="Plate with generic shape showing reference system">
+                <figcaption>Figure 14.1: Plate with generic shape showing reference system \(S_n\) with tangent \(s\) and normal \(n\) vectors at point \(P\) on boundary</figcaption>
+            </figure>
+
+            <p>The components can be expanded in a reference system \(S_n\), where the axes \(s\) and \(n\) are tangent and normal, respectively, to a generic point \(P \in \Gamma_F\).</p>
+
+            <p>The first term involving \(\delta W_{o,s}\) can still be integrated by parts. The boundary contribution vanishes for a closed boundary (\(\Gamma_{end} \equiv \Gamma_{start}\)).</p>
+
+            <h3>Final Equilibrium Conditions</h3>
+            
+            <div class="boundary-conditions">
+                <div class="bc-natural">
+                    <h5>Equilibrium Equation</h5>
+                    \[M_{\alpha\beta,\alpha\beta} + p = 0\]
+                    
+                    <h5>Natural Boundary Conditions (in \(\Gamma_F\))</h5>
+                    \[Q + M_{sn,s} = \hat{Q} + \hat{M}_{sn,s}\]
+                    <p style="color: #c53030;">(Kirchhoff free-edge condition)</p>
+                    \[M_{nn} = \hat{M}_n\]
+                </div>
+                <div class="bc-essential">
+                    <h5>Essential Boundary Conditions (in \(\Gamma_U\))</h5>
+                    \[\delta W_o = 0\]
+                    \[\delta W_{o,n} = 0\]
+                </div>
+            </div>
+
+            <p>The balance between the order of the equation and the number of boundary conditions is now satisfied!</p>
+
+            <h3>Interpretation of the Kirchhoff Condition</h3>
+            
+            <div class="note-box">
+                <p>The boundary conditions obtained are:</p>
+                <ul>
+                    <li>\(Q + M_{sn,s} = \hat{Q} + \hat{M}_{sn,s}\) — <strong>shear equilibrium</strong></li>
+                    <li>\(M_{nn} = \hat{M}_n\) — <strong>bending equilibrium</strong></li>
+                </ul>
+                <p>In contrast to the case of Mindlin, the equilibrium to the <strong>twisting moment is no longer available</strong>.</p>
+                <p>The effect of an applied twisting moment \(\hat{M}_{sn}\) is reported into the shear condition. The applied twisting moment is then <strong>transformed into a statically equivalent shear</strong>.</p>
+            </div>
+        </section>
+
+        <section id="kirchhoff-rectangular">
+            <h2>15. Rectangular Plate Boundary Conditions</h2>
+            
+            <p>Consider a rectangular plate. For simplicity, assume that none of the edges is free to undergo out-of-plane displacements (so \(W_o = 0\) for all the edges).</p>
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/rectangular_plate_loads_boundary.png" alt="Rectangular plate with applied loads and boundary conditions">
+                <figcaption>Figure 15.1: Rectangular plate showing applied loads (\(\hat{M}_x\), \(\hat{M}_y\)) and natural boundary conditions</figcaption>
+            </figure>
+
+            <h3>Classification of Boundary Conditions</h3>
+            
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Conditions</th>
+                </tr>
+                <tr>
+                    <td><strong>Free edge</strong></td>
+                    <td>No kinematic conditions specified (not considered here)</td>
+                    <td>2 natural conditions</td>
+                </tr>
+                <tr>
+                    <td><strong>Simply-supported</strong></td>
+                    <td>Transverse displacement is zero; rotation around tangent is free</td>
+                    <td>1 essential + 1 natural</td>
+                </tr>
+                <tr>
+                    <td><strong>Clamped</strong></td>
+                    <td>Transverse displacement and rotation around tangent prevented</td>
+                    <td>2 essential conditions</td>
+                </tr>
+            </table>
+
+            <h3>Example: Two Sides Clamped, Two Sides Simply-Supported</h3>
+            
+            <div class="equation-box">
+                <p><strong>Top edge (simply-supported):</strong> \(W_o = 0\), \(M_{xx} = 0\)</p>
+                <p><strong>Bottom edge (clamped):</strong> \(W_o = 0\), \(W_{o,x} = 0\)</p>
+                <p><strong>Left edge (clamped):</strong> \(W_o = 0\), \(W_{o,y} = 0\)</p>
+                <p><strong>Right edge (simply-supported):</strong> \(W_o = 0\), \(M_{yy} = 0\)</p>
+            </div>
+        </section>
+
+        <section id="kirchhoff-constitutive">
+            <h2>16. Plate Constitutive Law</h2>
+            
+            <p>The relation between generalized stresses and deformations is found in analogy to the procedure illustrated in the case of the Mindlin model. It is assumed that the plate is subjected to a plane state of stress.</p>
+
+            <p>For the Kirchhoff plate model the transverse shear forces do not enter the equilibrium equations. The constitutive law is then restricted to:</p>
+
+            <div class="equation-box">
+                \[\begin{Bmatrix} N_{xx} \\ N_{yy} \\ N_{xy} \\ M_{xx} \\ M_{yy} \\ M_{xy} \end{Bmatrix} = \begin{bmatrix} A_{11} & A_{12} & & & & \\ A_{12} & A_{22} & & & & \\ & & A_{66} & & & \\ & & & D_{11} & D_{12} & \\ & & & D_{12} & D_{22} & \\ & & & & & D_{66} \end{bmatrix} \begin{Bmatrix} U_{o,x} \\ V_{o,y} \\ U_{o,y} + V_{o,x} \\ -W_{o,xx} \\ -W_{o,yy} \\ -2W_{o,xy} \end{Bmatrix}\]
+            </div>
+
+            <p>This holds for an orthotropic plate and for an isotropic plate. For the isotropic case:</p>
+
+            <div class="two-column">
+                <div>
+                    <p><strong>Membrane stiffnesses:</strong></p>
+                    \[A_{11} = A_{22} = \frac{Et}{1-\nu^2}\]
+                    \[A_{12} = \nu \frac{Et}{1-\nu^2}\]
+                    \[A_{66} = \frac{Et}{2(1+\nu)}\]
+                </div>
+                <div>
+                    <p><strong>Bending stiffnesses:</strong></p>
+                    \[D_{11} = D_{22} = D\]
+                    \[D_{12} = \nu D\]
+                    \[D_{66} = \frac{1-\nu}{2} D\]
+                </div>
+            </div>
+
+            <h3>Equilibrium Equation in Terms of Displacement</h3>
+            
+            <p>The only equation relative to the bending equilibrium is:</p>
+            \[M_{\alpha\beta,\alpha\beta} + p = 0\]
+
+            <p>In expanded form:</p>
+            \[M_{xx,xx} + 2M_{xy,xy} + M_{yy,yy} + p = 0\]
+
+            <p>Substituting the constitutive equation:</p>
+
+            <div class="equation-box">
+                <p><strong>For orthotropic plate:</strong></p>
+                \[D_{11} W_{o,xxxx} + 2(D_{12} + 2D_{66}) W_{o,xxyy} + D_{22} W_{o,yyyy} = p\]
+            </div>
+
+            <p>Under the assumption of isotropic material:</p>
+
+            <div class="equation-box">
+                <p><strong>For isotropic plate:</strong></p>
+                \[\Delta\Delta W_o = \frac{p}{D}\]
+            </div>
+
+            <p>Where the Laplacian operator \(\Delta\) is defined as:</p>
+            \[\Delta(\cdot) = (\cdot)_{,xx} + (\cdot)_{,yy}\]
+
+            <p>And so:</p>
+            \[\Delta\Delta(\cdot) = (\cdot)_{,xxxx} + 2(\cdot)_{,xxyy} + (\cdot)_{,yyyy}\]
+        </section>
+
+        <section id="kirchhoff-exact">
+            <h2>17. Exact Solution for Simple Case</h2>
+            
+            <p>The strong form formulation for the bending of a thin plate allows an <strong>exact solution</strong> for the case of sinusoidal pressure distribution. This initial simple case serves also as introduction to the <strong>Navier-type solution</strong>.</p>
+
+            <h3>Problem Setup</h3>
+            
+            <p>Consider a plate of dimensions \(a\) and \(b\), subjected to a simply-supported boundary condition along the four edges and loaded with a sinusoidal pressure:</p>
+
+            \[p = p_o \sin\frac{\pi x}{a} \sin\frac{\pi y}{b}\]
+
+            <figure>
+                <img src="images/LN_C4_2_Plates/plate_exact_solution_setup.png" alt="Rectangular plate with sinusoidal pressure distribution">
+                <figcaption>Figure 17.1: Simply-supported rectangular plate with sinusoidal pressure distribution</figcaption>
+            </figure>
+
+            <h3>Strong Form Formulation</h3>
+            
+            <div class="equation-box">
+                \[\begin{cases} \Delta\Delta W_o = p/D & \text{in } \Omega \\ W_o = 0 & \text{in } \partial\Omega \text{ (all four edges)} \\ M_{xx}(0,y) = M_{xx}(a,y) = 0 \\ M_{yy}(x,0) = M_{yy}(x,b) = 0 \end{cases}\]
+            </div>
+
+            <p>In terms of displacement components:</p>
+            <div class="equation-box">
+                \[\begin{cases} \Delta\Delta W_o = p/D \\ W_o(0,y) = W_o(a,y) = W_o(x,0) = W_o(x,b) = 0 & \text{(essential)} \\ W_{o,xx}(0,y) = W_{o,xx}(a,y) = 0 \\ W_{o,yy}(x,0) = W_{o,yy}(x,b) = 0 \end{cases} \text{(natural)}\]
+            </div>
+
+            <h3>Solution</h3>
+            
+            <p>It is straightforward to verify that the solution (guess):</p>
+            \[W_o = \sin\frac{\pi x}{a} \sin\frac{\pi y}{b} A_o\]
+            <p>(with \(A_o\) = scalar to be determined) identically satisfies the boundary conditions (both essential and natural).</p>
+
+            <p>After substituting the guess solution into the equilibrium equation:</p>
+            \[\left[ \left(\frac{\pi}{a}\right)^4 + 2\left(\frac{\pi}{a}\right)^2 \left(\frac{\pi}{b}\right)^2 + \left(\frac{\pi}{b}\right)^4 \right] \sin\frac{\pi x}{a} \sin\frac{\pi y}{b} A_o = \frac{p_o}{D} \sin\frac{\pi x}{a} \sin\frac{\pi y}{b}\]
+
+            <div class="summary-box">
+                <h4>Solution for \(A_o\)</h4>
+                \[A_o = \frac{p_o}{\pi^4 D \left[ \left(\frac{1}{a}\right)^2 + \left(\frac{1}{b}\right)^2 \right]^2}\]
+            </div>
+
+            <h3>Displacement Field</h3>
+            
+            <div class="equation-box">
+                \[W_o = A_o \sin\frac{\pi x}{a} \sin\frac{\pi y}{b}\]
+                <p>with \(A_o\) as given above.</p>
+            </div>
+
+            <h3>Stress Field</h3>
+            
+            <div class="equation-box">
+                \[\begin{Bmatrix} \sigma_{xx}(x,y,z) \\ \sigma_{yy}(x,y,z) \\ \sigma_{xy}(x,y,z) \end{Bmatrix} = \frac{E}{1-\nu^2} \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & \frac{1-\nu}{2} \end{bmatrix} \begin{Bmatrix} -z W_{o,xx} \\ -z W_{o,yy} \\ -2z W_{o,xy} \end{Bmatrix}\]
+            </div>
+
+            <p>Where:</p>
+            \[W_{o,xx} = -A_o \left(\frac{\pi}{a}\right)^2 \sin\frac{\pi x}{a} \sin\frac{\pi y}{b}\]
+            \[W_{o,yy} = -A_o \left(\frac{\pi}{b}\right)^2 \sin\frac{\pi x}{a} \sin\frac{\pi y}{b}\]
+            \[W_{o,xy} = A_o \frac{\pi^2}{ab} \cos\frac{\pi x}{a} \cos\frac{\pi y}{b}\]
+        </section>
+
+        <footer style="margin-top: 60px; padding-top: 30px; border-top: 2px solid var(--border-color); text-align: center; color: #666;">
+            <p>Plate Theory — Mindlin and Kirchhoff Models</p>
+            <p style="font-size: 0.9rem;">Lecture Notes on Structural Mechanics</p>
+        </footer>
+    </article>
+</body>
+</html>

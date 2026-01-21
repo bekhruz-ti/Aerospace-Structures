@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buckling of Thin Plates</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --remark-bg: #fffaf0;
+            --remark-border: #ed8936;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .derivation {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .boxed-equation {
+            background: #e6fffa;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .remarks {
+            background: var(--remark-bg);
+            border-left: 4px solid var(--remark-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .remarks h4 {
+            color: var(--remark-border);
+            margin-top: 0;
+        }
+
+        .remarks ol {
+            margin-left: 20px;
+        }
+
+        .remarks li {
+            margin: 15px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .note {
+            background: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        mjx-container[display="true"] {
+            margin: 15px 0 !important;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Buckling of Thin Plates</h1>
+            <p>Energy Approach and Solutions for Various Loading Conditions</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction and Problem Setup -->
+            <section class="section">
+                <h2>1. Introduction and Problem Formulation</h2>
+                
+                <p>Consider a thin plate subjected to axial compression (the analysis can be extended to the case of multi-axial loading conditions). The goal of this section is to derive the equilibrium and buckling equations by means of the energy approach used for the Euler column.</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/thin_plate_axial_compression_3d.png" alt="3D diagram of thin plate subjected to axial compression">
+                    <figcaption>Figure 1: Thin plate subjected to axial compression with coordinate system (x, y, z), distributed axial force \(\hat{N}_{xx}\), and dimensions (a, b)</figcaption>
+                </figure>
+                
+                <h3>1.1 Strain Tensor Components</h3>
+                
+                <p>The strain tensor components in the Donnell-von Kármán formulation are:</p>
+                
+                \[\epsilon_{ik} = \frac{1}{2}\left(u_{i/k} + u_{k/i} + w_{/i} w_{/k}\right) - w b_{ik} - z w_{/ik}\]
+                
+                <p>For flat plates \(b_{ik} = 0\), and the strain can be written as:</p>
+                
+                \[\epsilon_{ik} = \mathscr{E}_{ik} + z \kappa_{ik}\]
+                
+                <p>with:</p>
+                
+                <div class="boxed-equation">
+                    \[\mathscr{E}_{ik} = \frac{1}{2}\left(u_{i/k} + u_{k/i} + w_{/i} w_{/k}\right) - w b_{ik}\]
+                    \[\kappa_{ik} = -w_{/ik}\]
+                </div>
+            </section>
+
+            <!-- Section 2: Energy Formulation -->
+            <section class="section">
+                <h2>2. Total Potential Energy</h2>
+                
+                <p>The total potential energy is given by:</p>
+                
+                \[\Pi = U + V\]
+                
+                <p>with the strain energy:</p>
+                
+                \[U = \frac{1}{2} \int_V \epsilon_{ik} \sigma_{ik} \, dV\]
+                
+                <p>and the potential of external forces:</p>
+                
+                \[V = \hat{N}_x b \left(u(a) - u(0)\right)\]
+                
+                <div class="derivation">
+                    <h4>Derivation of Strain Energy</h4>
+                    <p>Recalling that \(\epsilon_{ik} = \mathscr{E}_{ik} + z \kappa_{ik}\), the strain energy reads:</p>
+                    
+                    \[U = \frac{1}{2} \int_V \left(\mathscr{E}_{ik} \sigma_{ik} + \kappa_{ik} z \sigma_{ik}\right) dV\]
+                    
+                    \[= \frac{1}{2} \int_A \left(\mathscr{E}_{ik} N_{ik} + \kappa_{ik} M_{ik}\right) dA\]
+                    
+                    <p>with the stress resultants defined as:</p>
+                    
+                    \[N_{ik} = \int_t \sigma_{ik} \, dz \quad ; \quad M_{ik} = \int_t z \sigma_{ik} \, dz\]
+                </div>
+                
+                <p>Thus the total potential energy is:</p>
+                
+                <div class="boxed-equation">
+                    \[\Pi = \frac{1}{2} \int_A \left(\mathscr{E}_{ik} N_{ik} + \kappa_{ik} M_{ik}\right) dA + \hat{N}_x b \left(u(a) - u(0)\right)\]
+                </div>
+            </section>
+
+            <!-- Section 3: Perturbation Analysis -->
+            <section class="section">
+                <h2>3. Perturbation Analysis</h2>
+                
+                <p>Introduce now a perturbation:</p>
+                
+                <ul>
+                    <li>\(u \rightarrow u + \delta u\)</li>
+                    <li>\(v \rightarrow v + \delta v\)</li>
+                    <li>\(w \rightarrow w + \delta w\)</li>
+                </ul>
+                
+                <h3>3.1 Variation of Strain Components</h3>
+                
+                <div class="derivation">
+                    <p>The perturbed membrane strain becomes:</p>
+                    
+                    \[\mathscr{E}_{ik} + \delta \mathscr{E}_{ik} = \frac{1}{2}\left(u_{i/k} + u_{k/i} + w_{/i} w_{/k}\right) - w b_{ik}\]
+                    \[+ \frac{1}{2}\left(\delta u_{i/k} + \delta u_{k/i} + \delta w_{/i} w_{/k} + \delta w_{/k} w_{/i}\right) - \delta w b_{ik}\]
+                    \[+ \frac{1}{2} \delta w_{/i} \delta w_{/k}\]
+                </div>
+                
+                <p>The strain variation can be decomposed into linear and nonlinear parts:</p>
+                
+                <div class="boxed-equation">
+                    \[\delta \mathscr{E}_{ik} = \delta \mathscr{E}_{ik}^L + \delta \mathscr{E}_{ik}^{NL}\]
+                </div>
+                
+                <p>with:</p>
+                \[\delta \mathscr{E}_{ik}^L = \frac{1}{2}\left(\delta u_{i/k} + \delta u_{k/i} + \delta w_{/i} w_{/k} + \delta w_{/k} w_{/i}\right) - \delta w b_{ik}\]
+                \[\delta \mathscr{E}_{ik}^{NL} = \frac{1}{2} \delta w_{/i} \delta w_{/k}\]
+                
+                <h3>3.2 Variation of Stress Resultants</h3>
+                
+                <p>The variation of the membrane stress resultant (assuming no coupling between in-plane and out-of-plane behaviour):</p>
+                
+                \[N_{ik} + \delta N_{ik} = A_{ikrs}\left(\mathscr{E}_{rs} + \delta \mathscr{E}_{rs}^L + \delta \mathscr{E}_{rs}^{NL}\right)\]
+                
+                <div class="boxed-equation">
+                    \[\delta N_{ik} = \delta N_{ik}^L + \delta N_{ik}^{NL}\]
+                </div>
+                
+                <p>with:</p>
+                \[\delta N_{ik}^L = A_{ikrs} \delta \mathscr{E}_{rs}^L \quad ; \quad \delta N_{ik}^{NL} = A_{ikrs} \delta \mathscr{E}_{rs}^{NL}\]
+                
+                <p>For the curvature and bending moment:</p>
+                
+                <div class="boxed-equation">
+                    \[\delta \kappa_{ik} = -\delta w_{/ik}\]
+                    \[\delta M_{ik} = D_{ikrs} \delta \kappa_{rs} = -D_{ikrs} \delta w_{/rs}\]
+                </div>
+                
+                <h3>3.3 Variation of Total Potential Energy</h3>
+                
+                <div class="derivation">
+                    <p>The perturbed total potential energy:</p>
+                    
+                    \[\Pi + \Delta\Pi = \frac{1}{2} \int_A \left[\left(\mathscr{E}_{ik} + \delta \mathscr{E}_{ik}\right)\left(N_{ik} + \delta N_{ik}\right) + \left(\kappa_{ik} + \delta \kappa_{ik}\right)\left(M_{ik} + \delta M_{ik}\right)\right] dA\]
+                    \[+ \hat{N}_x b \left[u(a) + \delta u(a) - u(0) - \delta u(0)\right]\]
+                    
+                    <p>After expansion and collecting terms by order:</p>
+                    
+                    \[\Delta\Pi = \frac{1}{2} \int_A \left(\delta N_{ik}^L \mathscr{E}_{ik} + \delta N_{ik}^{NL} \mathscr{E}_{ik} + \delta \mathscr{E}_{ik}^L N_{ik} + \delta \mathscr{E}_{ik}^{NL} N_{ik} + \ldots\right) dA\]
+                    
+                    <p>The third and fourth order contributions are neglected.</p>
+                </div>
+                
+                <p>The result can be written in the form:</p>
+                
+                <div class="boxed-equation">
+                    \[\Delta\Pi = \delta\Pi + \frac{1}{2!} \delta^2\Pi\]
+                </div>
+                
+                <p>where:</p>
+                \[\Delta\Pi = \frac{1}{2} \int_A \left(\delta N_{ik}^L \mathscr{E}_{ik} + \delta \mathscr{E}_{ik}^L N_{ik} + \delta M_{ik} \kappa_{ik} + \delta \kappa_{ik} M_{ik}\right) dA + \hat{N}_x b \left[\delta u(a) - \delta u(0)\right]\]
+                \[+ \frac{1}{2} \int_A \left(\delta N_{ik}^{NL} \mathscr{E}_{ik} + \delta \mathscr{E}_{ik}^{NL} N_{ik} + \delta \mathscr{E}_{ik}^L \delta N_{ik}^L + \delta \kappa_{ik} \delta M_{ik}\right) dA\]
+            </section>
+
+            <!-- Section 4: Equilibrium Equations -->
+            <section class="section">
+                <h2>4. Equilibrium Equations</h2>
+                
+                <p>The equilibrium condition requires:</p>
+                
+                \[\delta\Pi = 0\]
+                
+                <div class="derivation">
+                    <h4>Symmetry Properties</h4>
+                    <p>Note that:</p>
+                    \[\delta N_{ik}^L \mathscr{E}_{ik} = A_{ikrs} \delta \mathscr{E}_{rs}^L \mathscr{E}_{ik} = A_{ikrs} \delta \mathscr{E}_{ik}^L \mathscr{E}_{rs} = \delta \mathscr{E}_{ik}^L N_{ik}\]
+                    <p>(by symmetry of \(A_{ikrs}\))</p>
+                    
+                    <p>Similarly:</p>
+                    \[\delta M_{ik} \kappa_{ik} = D_{ikrs} \delta \kappa_{rs} \kappa_{ik} = D_{ikrs} \delta \kappa_{ik} \kappa_{rs} = \delta \kappa_{ik} M_{ik}\]
+                    <p>(by symmetry of \(D_{ikrs}\))</p>
+                </div>
+                
+                <p>Therefore:</p>
+                \[\delta\Pi = \int_A \left(\delta \mathscr{E}_{ik}^L N_{ik} + \delta \kappa_{ik} M_{ik}\right) dA + \hat{N}_x b \left[\delta u(a) - \delta u(0)\right]\]
+                
+                <p>Substituting the expressions for the variations:</p>
+                \[\delta \mathscr{E}_{ik}^L = \frac{1}{2}\left(\delta u_{i/k} + \delta u_{k/i} + \delta w_{/i} w_{/k} + \delta w_{/k} w_{/i}\right) - \delta w b_{ik}\]
+                \[\delta \kappa_{ik} = -\delta w_{/ik}\]
+                
+                <div class="derivation">
+                    <h4>Integration by Parts</h4>
+                    <p>Observing that \(N_{ik} = N_{ki}\) and integrating by parts:</p>
+                    
+                    \[\delta\Pi = \int_A \left[\left(\delta u_{i/k} + \delta w_{/k} w_{/i} - \delta w b_{ik}\right) N_{ik} - \delta w_{/ik} M_{ik}\right] dA + \hat{N}_x b \left[\delta u(a) - \delta u(0)\right]\]
+                    
+                    \[= -\int_A \left[\delta u_i N_{ik/k} + \delta w \left(N_{ik} w_{/i}\right)_{/k} + \delta w b_{ik} N_{ik} + \delta w M_{ik/ik}\right] dA + \text{boundary terms}\]
+                </div>
+                
+                <p>The equilibrium equations are then:</p>
+                
+                <div class="boxed-equation">
+                    \[\begin{cases} N_{ik/k} = 0 \\ M_{ik/ik} + N_{ik} w_{/ik} + b_{ik} N_{ik} = 0 \end{cases}\]
+                </div>
+                
+                <p>Or, in their extended form:</p>
+                
+                <div class="boxed-equation">
+                    \[\begin{cases} N_{xx/x} + N_{xy/y} = 0 \\ N_{xy/x} + N_{yy/y} = 0 \\ M_{xx/xx} + 2M_{xy/xy} + M_{yy/yy} + N_{xx} w_{/xx} + 2N_{xy} w_{/xy} + N_{yy} w_{/yy} + b_{xx} N_{xx} + b_{yy} N_{yy} = 0 \end{cases}\]
+                </div>
+                
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol>
+                        <li>The equilibrium equations are, in general, <strong>non-linear equations</strong>. Often the pre-buckling analysis is performed by considering their linearized counterpart but, in principle, the equilibrium condition can be found by solving the non-linear problem.</li>
+                        <li>In the non-linear case, the in-plane and out-of-plane response are <strong>coupled</strong>. In the linearized case, the coupling between in-plane and out-of-plane behaviour is due to the curvature. For flat panels (\(b_{ik} = 0\)) the two responses are uncoupled.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 5: Buckling Equations -->
+            <section class="section">
+                <h2>5. Buckling Equations</h2>
+                
+                <p>Consider the Trefftz criterion:</p>
+                
+                \[\delta\left(\delta\Pi\big|_{@equil.}\right) = 0\]
+                
+                <h3>5.1 Second Variation of Potential Energy</h3>
+                
+                \[\frac{1}{2} \delta^2\Pi = \frac{1}{2} \int_A \left(\delta N_{ik}^{NL} \mathscr{E}_{ik} + \delta \mathscr{E}_{ik}^{NL} N_{ik} + \delta \mathscr{E}_{ik}^L \delta N_{ik}^L + \delta \kappa_{ik} \delta M_{ik}\right) dA\]
+                
+                <p>Note that by symmetry of \(A_{ikrs}\):</p>
+                \[\delta N_{ik}^{NL} \mathscr{E}_{ik} = \delta \mathscr{E}_{ik}^{NL} N_{ik}\]
+                
+                <p>Therefore:</p>
+                \[\frac{1}{2} \delta^2\Pi = \frac{1}{2} \int_A \left(2 \delta \mathscr{E}_{ik}^{NL} N_{ik} + \delta \mathscr{E}_{ik}^L \delta N_{ik}^L + \delta \kappa_{ik} \delta M_{ik}\right) dA\]
+                
+                <p>At equilibrium:</p>
+                \[\frac{1}{2} \delta^2\Pi \bigg|_{@equil.} = \frac{1}{2} \int_A \left[\delta w_{/i} \delta w_{/k} \bar{N}_{ik} + \left(\delta u_{i/k} + \bar{w}_{/i} \delta w_{/k} - \delta w b_{ik}\right) \delta N_{ik}^L - \delta w_{/ik} \delta M_{ik}\right] dA\]
+                
+                <h3>5.2 Derivation of Buckling Equations</h3>
+                
+                <p>To take the first variation of \(\delta^2\Pi\), operate the following replacement:</p>
+                <ul>
+                    <li>\(\delta w \rightarrow w\)</li>
+                    <li>\(\delta u \rightarrow u\)</li>
+                    <li>\(\delta N \rightarrow N\)</li>
+                    <li>\(\delta M \rightarrow M\)</li>
+                </ul>
+                <p class="note">Note: \(w, u, N, M\) should still be intended as variations!</p>
+                
+                <p>This gives:</p>
+                \[\frac{1}{2} \delta^2\Pi \bigg|_{@equil.} = \frac{1}{2} \int_A \left[w_{/i} w_{/k} \bar{N}_{ik} + \left(u_{i/k} + \bar{w}_{/i} w_{/k} - w b_{ik}\right) N_{ik}^L - w_{/ik} M_{ik}\right] dA\]
+                
+                <div class="derivation">
+                    <h4>Setting the Variation to Zero</h4>
+                    <p>Setting \(\delta\left(\delta^2\Pi\big|_{@equil.}\right) = 0\) and integrating by parts:</p>
+                    
+                    \[\delta\left(\delta^2\Pi\big|_{@equil.}\right) = \int_A \left[\delta w_{/k} w_{/i} \bar{N}_{ik} + \left(\delta u_{i/k} + \delta w_{/k} \bar{w}_{/i} - \delta w b_{ik}\right) N_{ik}^L - \delta w_{/ik} M_{ik}\right] dA = 0\]
+                    
+                    \[= -\int_A \left[\delta w \left(w_{/i} \bar{N}_{ik}\right)_{/k} + \delta u_i N_{ik/k}^L + \delta w \left(N_{ik}^L \bar{w}_{/i}\right)_{/k} + \delta w \, b_{ik} N_{ik}^L + \delta w \, M_{ik/ik}\right] dA\]
+                    \[+ \text{boundary terms}\]
+                </div>
+                
+                <p>The buckling equations are:</p>
+                
+                <div class="boxed-equation">
+                    \[\begin{cases} N_{ik/k}^L = 0 \\ M_{ik/ik} + \bar{N}_{ik} w_{/ik} + N_{ik}^L \bar{w}_{/ik} + b_{ik} N_{ik}^L = 0 \end{cases}\]
+                </div>
+                
+                <h3>5.3 Special Case: Flat Panel with No Pre-buckling Out-of-Plane Displacement</h3>
+                
+                <p>Consider the case of:</p>
+                <ol>
+                    <li>Flat panel → \(b_{ik} = 0\)</li>
+                    <li>No pre-buckling out-of-plane displacements (\(\bar{w} = 0\))</li>
+                </ol>
+                
+                <p>The equations become:</p>
+                
+                <div class="boxed-equation">
+                    \[\begin{cases} N_{ik/k}^L = 0 & \text{(2 in-plane buckling equations)} \\ M_{ik/ik} + \bar{N}_{ik} w_{/ik} = 0 & \text{(1 out-of-plane buckling equation)} \end{cases}\]
+                </div>
+                
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol>
+                        <li>For isotropic, homogeneous plates or composite plates with symmetric lay-ups, the pre-buckling solution is characterized by \(\bar{w} = 0\). In the presence of coupled in-plane/out-of-plane response (e.g., non-symmetric laminates), \(\bar{w} \neq 0\). In this case, assuming \(\bar{w} = 0\) is an assumption which is worth checking.</li>
+                        <li>If \(\bar{w} = 0\) (or can be reasonably assumed \(= 0\)), then the last buckling equation can be solved independently from the previous ones.</li>
+                        <li>Although boundary conditions were not considered, it is clear from the expression of \(\Delta\Pi\) that the boundary conditions are:
+                            <ul>
+                                <li>a. homogeneous for the buckling case</li>
+                                <li>b. non-homogeneous for the equilibrium case</li>
+                            </ul>
+                        </li>
+                        <li>In the present approach, the formulation is aimed at deriving the buckling equations (so the problem is formulated in a strong form manner). However, it is worth observing that even the buckling problem can be formulated by means of a direct method (e.g., the method of Ritz), so in a weak form manner. In this case, the Ritz method could be applied to the functional:
+                            \[\frac{1}{2} \delta^2\Pi\bigg|_{@equil.} = \frac{1}{2} \int_A \left[w_{/i} w_{/k} \bar{N}_{ik} + \left(u_{i/k} + \bar{w}_{/i} w_{/k} - w b_{ik}\right) \cdot N_{ik}^L - w_{/ik} M_{ik}\right] dA\]
+                            For the case of flat plates with no coupling between in-plane and out-of-plane response, the functional simplifies to:
+                            \[\frac{1}{2} \delta^2\Pi\bigg|_{@equil.} = \frac{1}{2} \int_A \left[w_{/i} w_{/k} \bar{N}_{ik} - w_{/ik} M_{ik}\right] dA\]
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 6: Simply-Supported Plate Under Axial Compression -->
+            <section class="section">
+                <h2>6. Solution for Axially Compressed Simply-Supported Plate</h2>
+                
+                <p>The equilibrium and buckling equations are now solved for the special case of simply-supported panel, subjected to axial load.</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/simply_supported_plate_axial_load.png" alt="Simply-supported plate under axial compression">
+                    <figcaption>Figure 2: Simply-supported plate panel subjected to axial compression (\(\hat{N}_{xx} > 0\) in compression)</figcaption>
+                </figure>
+                
+                <h3>6.1 Equilibrium Solution</h3>
+                
+                <p>It is straightforward to verify that the solution of the pre-buckling equations can be found as:</p>
+                
+                <div class="boxed-equation">
+                    \[N_{xx} = -\hat{N}_{xx}\]
+                    \[N_{xy} = N_{yy} = 0\]
+                    \[w = 0\]
+                </div>
+                
+                <p>→ equilibrium equations, as well as the boundary conditions, are satisfied</p>
+                
+                <h3>6.2 Buckling Analysis</h3>
+                
+                <p>The out-of-plane buckling equation is:</p>
+                \[M_{ik/ik} + \bar{N}_{ik} w_{/ik} = 0\]
+                
+                <p>Expanding the components:</p>
+                \[M_{xx/xx} + 2M_{xy/xy} + M_{yy/yy} + \bar{N}_{xx} w_{/ik} = 0\]
+                
+                <p>But \(\bar{N}_{xx} = -\hat{N}_{xx}\), so:</p>
+                \[M_{xx/xx} + 2M_{xy/xy} + M_{yy/yy} - \hat{N}_{xx} w_{/xx} = 0\]
+                
+                <h4>Constitutive Equation</h4>
+                <p>Introduce now the constitutive equation (for an isotropic plate):</p>
+                
+                \[\begin{Bmatrix} M_{xx} \\ M_{yy} \\ M_{xy} \end{Bmatrix} = D \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & \frac{1-\nu}{2} \end{bmatrix} \begin{Bmatrix} -w_{/xx} \\ -w_{/yy} \\ -2w_{/xy} \end{Bmatrix}\]
+                
+                <p>So the buckling equation becomes:</p>
+                
+                <div class="boxed-equation">
+                    \[D\left(w_{/xxxx} + 2w_{/xxyy} + w_{/yyyy}\right) + \hat{N}_{xx} w_{/xx} = 0\]
+                    <p>or equivalently:</p>
+                    \[D \Delta \Delta w + \hat{N}_{xx} w_{/xx} = 0\]
+                </div>
+                
+                <h4>Boundary Conditions</h4>
+                <p>The boundary conditions for the simply-supported plate are:</p>
+                
+                <div class="boxed-equation">
+                    \[\begin{array}{ll} w = 0 & \text{on } \partial\Omega \\ w_{/xx} = 0 & \text{on } x = 0, a \\ w_{/yy} = 0 & \text{on } y = 0, b \end{array}\]
+                </div>
+                
+                <h3>6.3 Solution by Fourier Series</h3>
+                
+                <p>The solution can be found by expressing \(w\) as:</p>
+                
+                \[w = \sum_{m=1}^{+\infty} \sum_{n=1}^{+\infty} q_{mn} \sin\frac{m\pi x}{a} \sin\frac{n\pi y}{b}\]
+                
+                <p>This solution (trial, so far) satisfies both the essential (\(w = 0\) on \(\partial\Omega\)) and the natural conditions (\(w_{/xx} = 0\) and \(w_{/yy} = 0\) on the transverse and longitudinal edges).</p>
+                
+                <div class="derivation">
+                    <h4>Substitution into Buckling Equation</h4>
+                    <p>The buckling equation becomes:</p>
+                    
+                    \[\sum_{n=1}^{+\infty} \sum_{m=1}^{+\infty} q_{mn} \left\{D\left[\left(\frac{m\pi}{a}\right)^4 + 2\left(\frac{m\pi}{a}\right)^2\left(\frac{n\pi}{b}\right)^2 + \left(\frac{n\pi}{b}\right)^4\right] - \hat{N}_{xx}\left(\frac{m\pi}{a}\right)^2\right\} \sin\frac{m\pi x}{a} \sin\frac{n\pi y}{b} = 0\]
+                    
+                    <p>The solution \(q_{mn} = 0\) \(\forall m, n\) is the trivial solution.</p>
+                </div>
+                
+                <p>The buckled configuration is found by imposing:</p>
+                
+                \[\hat{N}_{xx}\left(\frac{m\pi}{a}\right)^2 = D\left[\left(\frac{m\pi}{a}\right)^2 + \left(\frac{n\pi}{b}\right)^2\right]^2\]
+                
+                <div class="derivation">
+                    <h4>Derivation of Buckling Load Expression</h4>
+                    
+                    \[\hat{N}_{xx} = D\left(\frac{a}{m\pi}\right)^2\left[\left(\frac{m\pi}{a}\right)^2 + \left(\frac{n\pi}{b}\right)^2\right]^2\]
+                    
+                    \[= D\left[\frac{m\pi}{a} + \frac{n^2\pi}{b^2}\frac{a}{m}\right]^2\]
+                    
+                    <p>Multiplying by \(\frac{b^2}{b^2}\) and defining \(r = a/b\):</p>
+                    
+                    \[= \frac{D\pi^2}{b^2}\left[m\frac{b}{a} + n^2\frac{a}{b}\frac{1}{m}\right]^2\]
+                </div>
+                
+                <p>Therefore:</p>
+                
+                \[\hat{N}_{xx} = \frac{D\pi^2}{b^2}\left(\frac{m}{r} + n^2\frac{r}{m}\right)^2\]
+                
+                <p>A minimum is reached for \(n = 1\), so:</p>
+                
+                <div class="boxed-equation">
+                    \[\hat{N}_{xx} = \frac{D\pi^2}{b^2}\left(\frac{m}{r} + \frac{r}{m}\right)^2\]
+                </div>
+                
+                <p>The number of \(m\) that makes \(\hat{N}_{xx}\) minimum has to be found. To this aim, a graphical representation of the nondimensional parameter \(\left(\frac{m}{r} + \frac{r}{m}\right)^2\) is presented:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/buckling_load_vs_aspect_ratio_graph.png" alt="Buckling load parameter versus aspect ratio">
+                    <figcaption>Figure 3: Buckling load parameter \(\frac{\hat{N}_{xx} b^2}{D\pi^2}\) versus aspect ratio \(r = a/b\) for different mode numbers</figcaption>
+                </figure>
+                
+                <div class="remarks">
+                    <h4>Remarks on the Buckling Solution</h4>
+                    <ol>
+                        <li>The minimum value assumed by the nondimensional parameter \(\frac{\hat{N}_{xx} b^2}{D\pi^2}\left(\frac{m}{r} + \frac{r}{m}\right)^2\) is <strong>4</strong>. This happens for integer values of \(r\). Whenever \(r\) is non-integer, the value of \(\left(\frac{m}{r} + \frac{r}{m}\right)^2\) is higher than 4. Asymptotically, i.e., for \(r \rightarrow +\infty\), the value is equal to 4.</li>
+                        <li>The buckling mode is always characterized by \(n = 1\). On the contrary, the value of \(m\) depends on \(r\). For integer values of \(r\), \(m = r\). This means that the buckling pattern is characterized by <strong>square buckles</strong>.</li>
+                    </ol>
+                </div>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/square_buckling_patterns_plates.png" alt="Square buckling patterns for different aspect ratios">
+                    <figcaption>Figure 4: Buckling mode patterns showing square buckles for \(r = 2\) and \(r = 3\)</figcaption>
+                </figure>
+                
+                <p>If \(r\) is non-integer, the buckles will be not exactly square, but mostly square.</p>
+                
+                <h3>6.4 Coincident Buckling Modes</h3>
+                
+                <p>For some specific values of \(r\) \(\left(r = \sqrt{m(m+1)}\right)\), two coincident buckling modes exist:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/coincident_buckling_modes_graph.png" alt="Coincident buckling modes">
+                    <figcaption>Figure 5: Coincident buckling modes at points A (\(m = 1\) and \(m = 2\)) and B (\(m = 2\) and \(m = 3\))</figcaption>
+                </figure>
+                
+                <p>This means that two buckled configurations are associated with the same buckling load.</p>
+                
+                <h3>6.5 Effect of Boundary Conditions</h3>
+                
+                <p>Different boundary conditions or loading conditions can be handled by means of approximate techniques (Ritz, Galerkin, Levy, ...). In general, the results can still be represented as function of a nondimensional parameter in the form \(\frac{\hat{N}_{xx} b^2}{D\pi^2}\) (for the compressive case).</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/boundary_condition_comparison_graph.png" alt="Comparison of boundary conditions">
+                    <figcaption>Figure 6: Normalized buckling load versus aspect ratio for different boundary conditions (CCCC: all edges clamped; SSSS: all edges simply-supported)</figcaption>
+                </figure>
+            </section>
+
+            <!-- Section 7: Biaxial Compression -->
+            <section class="section">
+                <h2>7. Multi-axial Loading Conditions — Biaxial Compression</h2>
+                
+                <p>In many cases the loading condition is characterized by the presence of transverse and longitudinal compression/traction, shear, etc.</p>
+                
+                <p>For simplicity, consider now the case of biaxial compression:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/plate_biaxial_compression.png" alt="Plate under biaxial compression">
+                    <figcaption>Figure 7: Plate panel under biaxial compression (\(\hat{N}_{xx} > 0\), \(\hat{N}_{yy} > 0\) in compression)</figcaption>
+                </figure>
+                
+                <p>Consider again simply-supported boundary conditions.</p>
+                
+                <h3>7.1 Equilibrium</h3>
+                
+                <div class="boxed-equation">
+                    \[N_{xx} = -\hat{N}_{xx}\]
+                    \[N_{yy} = -\hat{N}_{yy}\]
+                    \[N_{xy} = 0\]
+                    \[w = 0\]
+                </div>
+                
+                <h3>7.2 Buckling</h3>
+                
+                \[D\left(w_{/xxxx} + 2w_{/xxyy} + w_{/yyyy}\right) + \hat{N}_{xx} w_{/xx} + \hat{N}_{yy} w_{/yy} = 0\]
+                
+                <p>+ Boundary conditions (same as previous)</p>
+                
+                <h3>7.3 Solution</h3>
+                
+                <p>The solution is still found by taking:</p>
+                
+                \[w = \sum_{m=1}^{+\infty} \sum_{n=1}^{+\infty} q_{mn} \sin\frac{m\pi x}{a} \sin\frac{n\pi y}{b}\]
+                
+                <p>After substituting \(w\) into the buckling equation and seeking for a non-trivial solution, the following equation is found:</p>
+                
+                \[\hat{N}_{xx}\left(\frac{m\pi}{a}\right)^2 + \hat{N}_{yy}\left(\frac{n\pi}{b}\right)^2 = D\left[\left(\frac{m\pi}{a}\right)^2 + \left(\frac{n\pi}{b}\right)^2\right]^2\]
+                
+                <p>The pre-buckling loading condition can be parametrized by defining:</p>
+                
+                \[\gamma = \frac{\hat{N}_{yy}}{\hat{N}_{xx}}\]
+                
+                <p>so that:</p>
+                
+                \[\hat{N}_{xx} = \frac{D\left[\left(\frac{m\pi}{a}\right)^2 + \left(\frac{n\pi}{b}\right)^2\right]^2}{\left(\frac{m\pi}{a}\right)^2 + \gamma\left(\frac{n\pi}{b}\right)^2}\]
+                
+                <p>and, after rearranging the expression:</p>
+                
+                <div class="boxed-equation">
+                    \[\hat{N}_{xx} = \frac{D\pi^2}{b^2} \frac{\left[\left(\frac{m}{r}\right)^2 + n^2\right]^2}{\left(\frac{m}{r}\right)^2 + n^2 \gamma}\]
+                </div>
+                
+                <p>Notice that the expression is now function of \(\gamma\) (⇒ \(\hat{N}_{xx}\) depends on the loading condition, i.e., the ratio between the transverse and the longitudinal load).</p>
+                
+                <h3>7.4 Interaction Curves</h3>
+                
+                <p>It is then possible to represent the buckling loads obtained for different values of \(\gamma\) in the form of interaction curves:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/biaxial_buckling_interaction_curve.png" alt="Biaxial buckling interaction curve">
+                    <figcaption>Figure 8: Interaction curve showing relationship between \(\hat{N}_{xx}\) and \(\hat{N}_{yy}\) buckling loads</figcaption>
+                </figure>
+                
+                <div class="remarks">
+                    <h4>Remarks</h4>
+                    <ol>
+                        <li>Each point of the curve is associated with a different value of \(\gamma\):
+                            <ul>
+                                <li>Point A is obtained by considering \(\gamma = 1\)</li>
+                                <li>Point B: \(\gamma = 2\), and so forth</li>
+                                <li>Point C: pure transverse compression</li>
+                                <li>Point D: pure longitudinal compression</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/loading_condition_interaction_diagram.png" alt="Loading condition interaction diagram">
+                    <figcaption>Figure 9: Interaction diagram showing points A, B, C, D representing different loading conditions</figcaption>
+                </figure>
+            </section>
+
+            <!-- Section 8: Combined Loading Analysis -->
+            <section class="section">
+                <h2>8. Analysis of Different Loading Quadrants</h2>
+                
+                <p>\(\hat{N}_{xx}\) and \(\hat{N}_{yy}\) were defined \(> 0\) in compression, so:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/buckling_patterns_four_quadrants.png" alt="Buckling patterns in four quadrants">
+                    <figcaption>Figure 10: Plate buckling patterns under different loading conditions in the four quadrants of the \(\hat{N}_{xx}\)-\(\hat{N}_{yy}\) plane</figcaption>
+                </figure>
+                
+                <div class="remarks">
+                    <h4>Key Observations</h4>
+                    <ol type="a">
+                        <li><strong>No instability phenomena</strong> is associated with a biaxial tensile loading condition (pretty obvious!)</li>
+                        <li>The presence of tensile loads has the effect of <strong>raising the buckling load</strong></li>
+                    </ol>
+                </div>
+                
+                <h3>8.1 Combined Compression and Shear</h3>
+                
+                <p>In a similar way, interaction curves can be derived for another common combined loading condition, i.e., compression and shear. In this case the curve is in the form:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/combined_loading_interaction_curve.png" alt="Combined loading interaction curve">
+                    <figcaption>Figure 11: Interaction curve for combined compression and shear loading</figcaption>
+                </figure>
+                
+                <h3>8.2 Buckled Shapes</h3>
+                
+                <p>As seen, the buckled shape for pure compression is characterized by almost square halfwaves.</p>
+                
+                <p>For pure shear, the buckled surface is characterized by <strong>skew halfwaves</strong>:</p>
+                
+                <figure class="diagram">
+                    <img src="images/LN_C5_3_Plates/compression_shear_buckling_patterns.png" alt="Compression and shear buckling patterns">
+                    <figcaption>Figure 12: Buckling patterns for pure compression (square buckles) and pure shear (skewed buckles at ~35° angle)</figcaption>
+                </figure>
+                
+                <p>All the loading conditions with compression and shear will be characterized by an increasing skew angle for an increasing amount of shear.</p>
+                
+                <div class="remarks">
+                    <h4>Final Remarks</h4>
+                    <ol>
+                        <li>The interaction curve is <strong>symmetric with respect to the x-axis</strong> ⇒ the sign of the shear does not affect the buckling load.
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_3_Plates/symmetric_buckling_comparison.png" alt="Symmetric buckling patterns">
+                            <figcaption>Figure 13: Equivalent buckling patterns for opposite shear directions</figcaption>
+                        </figure>
+                        </li>
+                        
+                        <li>The presence of a <strong>tensile load is beneficial</strong> in terms of buckling behaviour. Buckling phenomena can arise in the presence of tensile loads if shear is applied, e.g., points A and B.
+                        
+                        <figure class="diagram">
+                            <img src="images/LN_C5_3_Plates/tensile_load_buckling_interaction.png" alt="Effect of tensile loads on buckling">
+                            <figcaption>Figure 14: Interaction curve showing that buckling can occur with tensile \(\hat{N}_{xx}\) if sufficient shear is present</figcaption>
+                        </figure>
+                        
+                        <p>Note that a higher amount of the traction load (point B) determines a higher buckling load \(\hat{N}_{xy}\).</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 2px solid var(--primary-color); text-align: center; color: #666;">
+            <p>Buckling of Thin Plates — Lecture Notes</p>
+        </footer>
+    </article>
+</body>
+</html>

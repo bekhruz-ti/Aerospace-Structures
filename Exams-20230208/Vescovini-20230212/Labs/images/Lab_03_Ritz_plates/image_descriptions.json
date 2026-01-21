@@ -1,0 +1,30 @@
+{
+  "clamped_clamped_trial_functions.png": {
+    "suggested_name": "clamped_clamped_trial_functions",
+    "description": "Two graphs showing clamped-clamped trial functions - left graph shows polynomial functions with boundary conditions phi=0 and phi_x=0 at both ends, right graph shows trigonometric functions with same boundary conditions"
+  },
+  "clamped_free_trial_functions.png": {
+    "suggested_name": "clamped_free_trial_functions",
+    "description": "Graph showing clamped-free polynomial trial functions with boundary condition phi=0 and phi_x=0 at left end"
+  },
+  "clamped_supported_trial_functions.png": {
+    "suggested_name": "clamped_supported_trial_functions",
+    "description": "Graph showing clamped-supported polynomial trial functions with boundary conditions phi=0 and phi_x=0 at left end, phi=0 at right end"
+  },
+  "supported_supported_trial_functions.png": {
+    "suggested_name": "supported_supported_trial_functions",
+    "description": "Two graphs showing supported-supported trial functions - left graph shows polynomial functions with boundary condition phi=0 at both ends, right graph shows trigonometric functions with same boundary conditions"
+  },
+  "rectangular_plate_coordinate_system.png": {
+    "suggested_name": "rectangular_plate_coordinate_system",
+    "description": "Rectangular plate diagram showing coordinate system with x and y axes, dimensions a and b labeled, representing the problem setup for aluminum plate analysis"
+  },
+  "cccc_plate_bending_response_contours.png": {
+    "suggested_name": "cccc_plate_bending_response_contours",
+    "description": "Eight contour plots showing displacement and moment distributions for CCCC plate with uniformly distributed and concentrated loads - includes w, Mxx, Myy, and Mxy for both load cases"
+  },
+  "cccc_plate_vibration_mode_shapes.png": {
+    "suggested_name": "cccc_plate_vibration_mode_shapes",
+    "description": "Four mode shape contour plots showing first four free vibration modes of CCCC plate with aspect ratio variations"
+  }
+}
