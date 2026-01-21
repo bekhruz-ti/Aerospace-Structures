@@ -1,0 +1,14 @@
+{
+  "cantilever_beam_spring_point_load.png": {
+    "suggested_name": "cantilever_beam_spring_point_load",
+    "description": "Two-dimensional cantilever beam system with fixed support at the base and a spring-force configuration at the top. The beam has total length ℓ (3000 mm per problem data) and is fixed at the bottom with hatched support symbol. At the top of the beam, a horizontal spring (shown with zigzag symbol) connects to the left side, and a vertical downward point load F is applied. The coordinate system shows x-axis pointing upward along the beam length and y-axis pointing horizontally to the right, with origin at the fixed base. The label \"2D\" indicates this is a two-dimensional analysis. This setup is for an Euler-Bernoulli beam problem using the displacement method with polynomial approximation to find critical load (buckling analysis), with given data EA = 1·10⁴ N, EI = 1·10¹² Nmm², ℓ = 3000 mm, and K = 500 N/mm."
+  },
+  "cantilever_beam_two_springs_loads.png": {
+    "suggested_name": "cantilever_beam_two_springs_loads",
+    "description": "Two-dimensional cantilever beam with fixed support at base (hatched symbol) and complex loading system involving two springs and multiple force/displacement components. The beam has total length ℓ (2000 mm) with an upper segment of length ℓ₁ (1000 mm). At the top, spring k₁ (stiffness 1·10⁷ N/mm) connects horizontally with associated displacement v₂ and rotation θ₂. Below this, a vertical downward force F is applied with horizontal displacement w₂. A second spring k₂ (stiffness 1 N/mm) connects horizontally at the left side of the beam. At the fixed base, vertical displacement w₁ and rotation θ₁ are marked with red arrows. The beam section is labeled with properties EA/EI. Given data includes ℓ = 2000 mm, EA = 6·10¹⁰ N, EI = 12·10¹⁰ Nmm², K₁ = 1·10⁷ N/mm, K₂ = 1 N/mm, and ℓ₁ = 1000 mm. This is an exam problem (13/02/2024) for finding critical load F using polynomial approximation with external boundary conditions."
+  },
+  "axial_system_spring_equilibrium.png": {
+    "suggested_name": "axial_system_spring_equilibrium",
+    "description": "Simplified schematic diagram of an axial structural system showing a horizontal bar element with fixed support at the left end (hatched symbol) and a spring connection at the right end. The bar is subjected to an axial force F pointing to the right at an intermediate point, with displacement w₂(ℓ) indicated at the spring connection. The spring has stiffness K₁ and is shown with zigzag symbol. Red arrows indicate the direction of force F and displacement w₂(ℓ). This diagram represents the \"AXIAL SYSTEM\" component referenced in the problem's virtual work formulation, showing axial equilibrium condition F + (EA/c)·w₂(ℓ) + K₁·w₂(ℓ) = 0, where the displacement at the spring location is w₂(ℓ) = (-F/(EA + K₁ℓ))·ℓ = ∂w·ℓ. The system is part of a larger beam analysis involving axial-bending coupling."
+  }
+}

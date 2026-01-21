@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB 7 - Semi-Monocoque Approximation</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --bg-theory: #ebf8ff;
+            --bg-notes: #faf5ff;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .theory-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-theory);
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .theory-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .theory-section h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px 0;
+        }
+
+        .assumptions-list {
+            list-style: disc;
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+
+        .assumptions-list li {
+            margin: 12px 0;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .notes-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-notes);
+            border-radius: 8px;
+            border-left: 5px solid #805ad5;
+        }
+
+        .notes-section h2 {
+            color: #553c9a;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #805ad5;
+        }
+
+        .notes-section h3 {
+            color: #6b46c1;
+            margin: 20px 0 10px 0;
+        }
+
+        .important-note {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #d69e2e;
+            margin: 15px 0;
+        }
+
+        .important-note strong {
+            color: #975a16;
+        }
+
+        .concept-box {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution, .theory-section, .notes-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>LAB 7 - Semi-Monocoque Approximation</h1>
+            <p class="subtitle">Shear Flux Analysis in Thin-Walled Structures</p>
+        </header>
+        
+        <main>
+            <!-- Theory Section -->
+            <section class="theory-section">
+                <h2>Semi-Monocoque Theory</h2>
+                
+                <figure class="diagram">
+                    <img src="images/EX07 - Semi-monocoque I/semi_monocoque_fuselage_structure.png" alt="Semi-monocoque fuselage structure showing ribs, skins, stringers, and spars with shear flow distribution">
+                    <figcaption>Figure 1: Semi-monocoque fuselage structure with shear flow distribution at cross-section</figcaption>
+                </figure>
+                
+                <h3>Semi-Monocoque Assumptions</h3>
+                <ul class="assumptions-list">
+                    <li>Panel thickness \(t\) is small → \(\tau\) is constant through the thickness</li>
+                    <li>Panels carry shear loads only → shear flux is constant between any couple of directly connected stringers</li>
+                    <li>Area of panels is concentrated in the stringers</li>
+                    <li>Stringers must have an area which is smaller than the dimension of the section</li>
+                    <li>Ribs (if present) have <span class="highlight">infinitely high stiffness in-plane</span></li>
+                </ul>
+
+                <h3>Centroid</h3>
+                <div class="concept-box">
+                    <p>Centroid = geometrical center</p>
+                    \[r_c = \frac{\int_A r \, dA}{\int_A dA}\]
+                    
+                    <p>Center of gravity = mass center</p>
+                    \[r_{CG} = \frac{\int_V \rho(r) \, dV}{\int_V dV}\]
+                    
+                    <p>If the density is uniform → centroid = center of gravity</p>
+                    
+                    <p>For discrete areas:</p>
+                    \[\bar{x}_c = \frac{\sum_i A_i \bar{x}_i}{\sum_i A_i} \qquad \bar{y}_c = \frac{\sum_i A_i \bar{y}_i}{\sum_i A_i}\]
+                </div>
+
+                <h3>Static Moments</h3>
+                <div class="concept-box">
+                    \[S_x = \int_A y \, dA \quad \rightarrow \quad S_x = \sum_i A_i \cdot y_i\]
+                    \[S_y = \int_A x \, dA \quad \rightarrow \quad S_y = \sum_i A_i \cdot x_i\]
+                </div>
+
+                <h3>Inertias (with respect to Centroid)</h3>
+                <div class="concept-box">
+                    \[J_{xx} = \int_A y^2 \, dA \quad \rightarrow \quad J_{xx} = \sum_i A_i \cdot y_i^2\]
+                    \[J_{yy} = \int_A x^2 \, dA \quad \rightarrow \quad J_{yy} = \sum_i A_i \cdot x_i^2\]
+                    \[J_{xy} = \int_A x \cdot y \, dA \quad \rightarrow \quad J_{xy} = \sum_i A_i \cdot x_i \cdot y_i\]
+                </div>
+
+                <h3>Principal Inertial Axis</h3>
+                <div class="concept-box">
+                    <p>If \(J_{xy} \neq 0\), \(M_x\) and \(M_y\) are coupled:</p>
+                    \[\begin{bmatrix} M_x \\ M_y \end{bmatrix} = \begin{bmatrix} EJ_{xx} & -EJ_{xy} \\ -EJ_{xy} & J_{yy} \end{bmatrix} \cdot \begin{bmatrix} \varkappa_x \\ \varkappa_y \end{bmatrix}\]
+                    
+                    <p>Then we must rotate \(x\) and \(y\) by an angle \(\alpha\):</p>
+                    \[\alpha = \frac{1}{2} \arctan\left(\frac{2 \cdot J_{xy}}{J_{yy} - J_{xx}}\right)\]
+                </div>
+
+                <h3>Axial Stress in the Stringer</h3>
+                <div class="concept-box">
+                    \[\sigma_{zz,i} = \frac{T_z}{\sum_i A_i} + \frac{M_x}{J_{xx}} \cdot y_i - \frac{M_y}{J_{yy}} \cdot x_i\]
+                </div>
+
+                <h3>Shear Fluxes in the Panel</h3>
+                
+                <h4>Open Cell Fluxes</h4>
+                <figure class="diagram">
+                    <img src="images/EX07 - Semi-monocoque I/open_cell_shear_flux_diagram.png" alt="Open cell shear flux diagram showing flux distribution">
+                    <figcaption>Figure 2: Open cell shear flux distribution</figcaption>
+                </figure>
+                
+                <div class="concept-box">
+                    <p><strong>Assumption:</strong> An open-section beam has negligible torsional stiffness → we are isolating the shear fluxes given by the shear forces applied to the section.</p>
+                    
+                    <p>For each region R of our section:</p>
+                    \[q'_R = -T_y \frac{\sum_i S_{x,i}}{J_{xx}} - T_x \frac{\sum_i S_{y,i}}{J_{yy}}\]
+                    
+                    <p>Sign convention:</p>
+                    <ul>
+                        <li>OUTWARD → Positive</li>
+                        <li>INWARD → Negative</li>
+                    </ul>
+                </div>
+
+                <figure class="diagram">
+                    <img src="images/EX07 - Semi-monocoque I/rectangular_section_shear_flux.png" alt="Rectangular section shear flux analysis">
+                    <figcaption>Figure 3: Shear flux sign convention and calculation regions</figcaption>
+                </figure>
+
+                <h4>Moment Equivalence</h4>
+                <div class="concept-box">
+                    <p>Torsional moment given by the shear fluxes (equivalent to \(T_y\)):</p>
+                    \[M_z = \sum_i q_i \cdot 2\Omega_i\]
+                    <p>where \(\Omega_i\) is the area formed by the chosen point (e.g., centroid) and the panel.</p>
+                </div>
+
+                <h4>Total Shear Flux Decomposition</h4>
+                <figure class="diagram">
+                    <img src="images/EX07 - Semi-monocoque I/shear_flux_torsional_moment.png" alt="Shear flux decomposition into shear and torsional components">
+                    <figcaption>Figure 4: Decomposition of total shear flux</figcaption>
+                </figure>
+                
+                <div class="concept-box">
+                    <p>Define \(q^*\) as the shear flux given by the torsional moment, such that for each panel \(i\):</p>
+                    \[q_i = q'_i + q^*\]
+                    <p>where \(q'_i\) = shear flux from shear forces, \(q^*\) = constant shear flux from torsional moment</p>
+                    
+                    <p><strong>Moment of External Forces = Moment of the Shear Fluxes</strong></p>
+                    \[T_y \cdot \bar{x} = \sum_i (q'_i + q^*) \cdot 2\Omega_i\]
+                </div>
+            </section>
+
+            <!-- Problem 1: Rectangular Section -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: Rectangular Section Shear Fluxes</h2>
+                    <p class="problem-statement">Find the shear fluxes in a rectangular thin-walled section with four stringers at the corners under an applied shear force \(T_y\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX07 - Semi-monocoque I/rectangular_section_centroid.png" alt="Rectangular cross-section with centroid">
+                        <figcaption>Figure 5: Rectangular cross-section with stringer areas A at corners</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Rectangular section with width \(b\) and height \(a\)</li>
+                            <li>Four stringers with area \(A\) at corners</li>
+                            <li>Panel thickness \(t\)</li>
+                            <li>Applied shear force \(T_y\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate Centroid Location</h4>
+                        \[\bar{x}_c = \frac{\sum_i A_i \bar{x}_i}{\sum_i A_i} = \frac{2Ab + 2A \cdot 0}{4A} = \frac{b}{2}\]
+                        \[\bar{y}_c = \frac{\sum_i A_i \bar{y}_i}{\sum_i A_i} = \frac{2Aa + 2a \cdot 0}{4A} = \frac{a}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate Moments of Inertia</h4>
+                        \[J_{xx} = \sum_i A_i \cdot y_i^2 = 2A \cdot \left(\frac{a}{2}\right)^2 + 2A \cdot \left(-\frac{a}{2}\right)^2 = Aa^2\]
+                        \[J_{yy} = \sum_i A_i \cdot x_i^2 = Ab^2\]
+                        \[J_{xy} = \sum_i A_i \cdot x_i \cdot y_i = 0 \quad \text{(x and y are principal axes)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate Static Moment</h4>
+                        \[S_{x1} = -A \cdot \frac{a}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate Open Cell Fluxes</h4>
+                        <p>Region I:</p>
+                        \[q'_1 - 0 = -T_y \cdot \frac{S_{x1}}{J_{xx}} = -T_y \cdot \frac{-\frac{1}{2}Aa}{Aa^2} = \frac{1}{2}\frac{T_y}{a}\]
+                        
+                        <p>Region II:</p>
+                        \[q'_2 = -T_y \cdot \frac{S_{x2}}{J_{xx}} = \frac{1}{2}\frac{T_y}{a}\]
+                        
+                        <p>Region III:</p>
+                        \[q'_3 = -T_y \cdot \frac{(S_{x1} + S_{x4})}{J_{xx}} = -T_y \cdot \frac{-\frac{1}{2}Aa + \frac{1}{2}Aa}{Aa^2} = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Moment Equivalence (with respect to Centroid)</h4>
+                        \[T_y \cdot 0 = \sum_i (q'_i + q^*) \cdot 2\Omega_i\]
+                        \[0 = q^* \cdot 2\Omega_{cell} - q'_1 \cdot 2\Omega_1 + q'_2 \cdot 2\Omega_2\]
+                        \[0 = q^* \cdot 2ab - \frac{T_y}{2a} \cdot 2 \cdot \frac{1}{2} \cdot a \cdot \frac{b}{2} + \frac{T_y}{2a} \cdot 2 \cdot \frac{1}{2} \cdot a \cdot \frac{b}{2}\]
+                        \[q^* \cdot 2ab = 0 \quad \Rightarrow \quad q^* = 0\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong>
+                        \[q_1 = q'_1 - q^* = \frac{T_y}{2a}\]
+                        \[q_2 = q'_2 + q^* = \frac{T_y}{2a}\]
+                        \[q_3 = q'_3 - q^* = 0\]
+                        \[q_4 = q'_4 - q^* = 0\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: Trapezoidal Section -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Trapezoidal Section Analysis</h2>
+                    <p class="problem-statement">Find the shear fluxes in a trapezoidal thin-walled section under combined shear force and bending moment.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX07 - Semi-monocoque I/trapezoidal_section_analysis.png" alt="Trapezoidal cross-section with loads">
+                        <figcaption>Figure 6: Trapezoidal cross-section with applied loads</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>\(A = 250\, \text{mm}^2\)</li>
+                            <li>\(a = 50\, \text{mm}\)</li>
+                            <li>\(b = 600\, \text{mm}\)</li>
+                            <li>\(T_y = 3000\, \text{N}\)</li>
+                            <li>\(M_z = 650{,}000\, \text{N} \cdot \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Centroid and Inertias</h4>
+                        \[\bar{x}_c = \frac{\sum_i A_i \bar{x}_i}{\sum_i A_i} = 0\]
+                        \[\bar{y}_c = \frac{3A \cdot 5a}{5A} = 3a\]
+                        \[J_{xx} = \sum_i A_i y_i^2 = 3A \cdot (2a)^2 + 2A \cdot (3a)^2 = 30Aa^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Static Moments</h4>
+                        \[S_{x1} = S_{x2} = A \cdot (-3a) = -3Aa\]
+                        \[S_{x3} = S_{x4} = S_{x5} = A \cdot (2a) = 2Aa\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Open Cell Fluxes</h4>
+                        <p>Region I:</p>
+                        \[q'_1 = -T_y \cdot \frac{S_{x1}}{J_{xx}} = \frac{T_y}{10a}\]
+                        
+                        <p>Region II:</p>
+                        \[q'_2 = -T_y \cdot \frac{S_{x2}}{J_{xx}} = \frac{T_y}{10a}\]
+                        
+                        <p>Region III:</p>
+                        \[q'_3 = -T_y \cdot \frac{2Aa - 3Aa}{J_{xx}} = \frac{T_y}{10a}\]
+                        
+                        <p>By symmetry: \(q'_3 = q'_4\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Moment Equivalence (with respect to Centroid)</h4>
+                        <figure class="diagram">
+                            <img src="images/EX07 - Semi-monocoque I/moment_equilibrium_shear_flux.png" alt="Moment equilibrium analysis">
+                            <figcaption>Figure 7: Moment equilibrium with shear flux components</figcaption>
+                        </figure>
+                        
+                        <p>Moment of external forces = Moment of shear fluxes:</p>
+                        \[M_z + T_y \cdot 0 = q^* \cdot 2\Omega_{cell} - q'_1 \cdot 2\Omega_1 + q'_2 \cdot 2\Omega_2 + q'_3 \cdot 2\Omega_3 - q'_4 \cdot 2\Omega_4\]
+                        
+                        <p>Cell area:</p>
+                        \[\Omega_{cell} = \left(\frac{1}{2}b \cdot 5a\right) \cdot 3 = \frac{15ab}{2}\]
+                        
+                        <p>Torsional flux:</p>
+                        \[q^* = \frac{M_z}{2\Omega_{cell}} = 1\, \text{N/mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong>
+                        \[q_1 = q'_1 - q^* = 5\, \text{N/mm}\]
+                        \[q_2 = q'_2 + q^* = 7\, \text{N/mm}\]
+                        \[q_3 = q'_3 + q^* = 3\, \text{N/mm}\]
+                        \[q_4 = q'_4 - q^* = 1\, \text{N/mm}\]
+                        \[q_5 = q'_5 + q^* = 1\, \text{N/mm}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: EXAM 16/06/2021 -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Cantilever Frame Structure (EXAM 16/06/2021)</h2>
+                    <p class="problem-statement">Find the axial stress \(\sigma_{zz,4}\) at position \(z = \ell_3/2\) for an L-shaped cantilever frame.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX07 - Semi-monocoque I/cantilever_frame_structure.png" alt="L-shaped cantilever frame structure">
+                        <figcaption>Figure 8: L-shaped cantilever frame with applied load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>\(\ell_1 = 600\, \text{mm}\)</li>
+                            <li>\(\ell_2 = 250\, \text{mm}\)</li>
+                            <li>\(\ell_3 = 2000\, \text{mm}\)</li>
+                            <li>\(A = 800\, \text{mm}^2\)</li>
+                            <li>\(F = 8000\, \text{N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Stress Formula</h4>
+                        \[\sigma_{zz,4}(z) = \frac{T_z(z)}{\sum_i A_i} + \frac{M_x(z)}{J_{xx}} \cdot y_4 - \frac{M_y(z)}{J_{yy}} \cdot x_4\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Centroid Location</h4>
+                        \[x_c = \ell_1/2 \qquad y_c = \ell_2/2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Moments of Inertia</h4>
+                        \[J_{xx} = 4A \cdot \left(\frac{\ell_2}{2}\right)^2 = A\ell_2^2\]
+                        \[J_{yy} = 4A \cdot \left(\frac{\ell_1}{2}\right)^2 = A\ell_1^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Internal Actions</h4>
+                        \[T_y = -F\]
+                        \[M_x = F \cdot (-z) = -Fz\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate Stress at Node 4</h4>
+                        \[\sigma_{zz,4}\left(\frac{\ell_3}{2}\right) = \frac{M_x(\ell_3/2)}{J_{xx}} \cdot y_4\]
+                        \[= \frac{-F \cdot \frac{\ell_3}{2}}{A\ell_2^2}\left(-\frac{\ell_2}{2}\right) = \frac{1}{4}\frac{F\ell_3}{A\ell_2}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\sigma_{zz,4}\left(\frac{\ell_3}{2}\right) = 32\, \text{MPa}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: EXAM 13/02/2024 -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: Triangular Section Rotation (EXAM 13/02/2024)</h2>
+                    <p class="problem-statement">Find \(\theta\), the rotation of the free extremity for a triangular thin-walled section.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX07 - Semi-monocoque I/triangular_section_open_cell.png" alt="Triangular cross-section for rotation analysis">
+                        <figcaption>Figure 9: Right triangular cross-section with applied loads</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>\(a = 500\, \text{mm}\)</li>
+                            <li>\(A = 400\, \text{mm}^2\)</li>
+                            <li>\(t = 1\, \text{mm}\)</li>
+                            <li>\(\ell = 4000\, \text{mm}\)</li>
+                            <li>\(E = 70\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(F = 10\, \text{kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Centroid (Original Axes)</h4>
+                        \[\bar{x}_c = \frac{-Aa}{3A} = \frac{a}{3} \qquad \bar{y}_c = \frac{Aa}{3A} = \frac{a}{3}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Check for Principal Axes</h4>
+                        \[J_{xy} = \sum_i A_i \cdot x_i \cdot y_i = A \cdot \frac{a}{3} \cdot \left(-\frac{a}{3}\right) + A\left(-\frac{2}{3}a\right) \cdot \left(-\frac{a}{3}\right) + A\left(\frac{a}{3}\right) \cdot \left(\frac{2}{3}a\right) = \frac{Aa^2}{3}\]
+                        <p>Since \(J_{xy} \neq 0\), we must rotate the section.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Rotated Coordinate System</h4>
+                        \[b = \frac{\sqrt{2}}{2}a \qquad c = 2b = \sqrt{2} \cdot a\]
+                        
+                        <p>After rotation:</p>
+                        \[J_{xy} = A\left(\frac{2}{3}b\right) \cdot 0 + A\left(-\frac{b}{3}\right)\left(\frac{c}{2}\right) + A\left(-\frac{b}{3}\right)\left(-\frac{c}{2}\right) = 0\]
+                        \[J_{xx} = 2A\left(\frac{c}{2}\right)^2 = 2Ab^2\]
+                        \[J_{yy} = 2A\left(\frac{b}{3}\right)^2 + A\left(\frac{2}{3}b\right)^2 = \frac{2}{3}Ab^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Static Moments</h4>
+                        \[S_{x1} = -S_{x3} = -A \cdot \frac{c}{2} = -Ab \qquad S_{x2} = 0\]
+                        \[S_{y1} = S_{y3} = +\frac{Ab}{3} \qquad S_{y2} = -\frac{2}{3}Ab\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Load Components</h4>
+                        \[T_y = \frac{\sqrt{2}}{2}F \qquad T_x = \frac{\sqrt{2}}{2}F\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Open Cell Fluxes</h4>
+                        <p>Region I:</p>
+                        \[q'_1 = -T_y \cdot \frac{S_{x1}}{J_{xx}} - T_x \cdot \frac{S_{y1}}{J_{yy}} = \frac{\sqrt{2}}{2}F \cdot \frac{Ab}{2Ab^2} - \frac{\sqrt{2}}{2}F \cdot \frac{Ab}{2Ab^2} = 0\]
+                        
+                        <p>Region II:</p>
+                        \[q'_2 = +T_y \cdot \frac{S_{x3}}{J_{xx}} + T_x \cdot \frac{S_{y3}}{J_{yy}} = \frac{\sqrt{2}F}{2} \cdot \left(\frac{1}{2b} + \frac{1}{2b}\right) = \frac{\sqrt{2}F}{2b}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Moment Equivalence (with respect to point 2)</h4>
+                        <figure class="diagram">
+                            <img src="images/EX07 - Semi-monocoque I/triangular_shear_flux_equilibrium.png" alt="Triangular section moment equilibrium">
+                            <figcaption>Figure 10: Shear flux equilibrium and rotation angle calculation</figcaption>
+                        </figure>
+                        
+                        \[0 = q^* \cdot 2\Omega_{cell} \quad \Rightarrow \quad q^* = 0\]
+                        \[q_2 = q'_2 - q^* = \frac{\sqrt{2}}{2}\frac{F}{b}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 8: Angle Computation</h4>
+                        \[\theta' = \frac{d\theta}{dz} = \frac{1}{2\Omega_{cell} \cdot G} \cdot \sum_i \frac{q_i \cdot \ell_i}{t_i}\]
+                        
+                        <p>where \(G = \frac{E}{2(1+\nu)}\) and \(\Omega_{cell} = \frac{1}{2}a^2\)</p>
+                        
+                        \[\theta' = \frac{1}{2} \cdot \frac{2}{a^2} \cdot \frac{2(1+\nu)}{E} \cdot \frac{\sqrt{2}F}{2b} \cdot \frac{a}{t}\]
+                        
+                        \[\theta' = \frac{2(1+\nu)}{Eat} \cdot \frac{\sqrt{2}F}{2} \cdot \frac{2}{\sqrt{2}a} = \frac{2(1+\nu) \cdot F}{Ea^2t} = 1.49 \times 10^{-6}\, \text{rad/mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 9: Total Rotation at Free End</h4>
+                        \[\theta(\ell) - \theta(0) = \int_0^\ell \theta' \, dz\]
+                        
+                        <p>Boundary condition: \(\theta(0) = 0\) (clamped end)</p>
+                        
+                        \[\theta(\ell) = \theta' \cdot \ell\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\theta(\ell) = 5.9 \times 10^{-3}\, \text{rad}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 5: EXAM 23/01/2024 -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Problem 5: Shear Center Location (EXAM 23/01/2024)</h2>
+                    <p class="problem-statement">Find the shear center location for a right triangular thin-walled section.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX07 - Semi-monocoque I/right_triangle_section_properties.png" alt="Right triangular section for shear center calculation">
+                        <figcaption>Figure 11: Right triangular cross-section</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>\(a = 1000\, \text{mm}\)</li>
+                            <li>\(A = 4000\, \text{mm}^2\)</li>
+                            <li>\(E = 10^4\, \text{MPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Geometric Relationship</h4>
+                        \[b = \frac{\sqrt{2}}{2}a\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Centroid Location</h4>
+                        \[\bar{x}_c = \frac{2}{3}b \qquad \bar{y}_c = 0\]
+                        
+                        <p>By symmetry: \(y_{SC} = 0\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Inertias and Static Moments</h4>
+                        \[J_{xx} = 2Ab^2\]
+                        \[S_{x1} = -Ab \qquad S_{x2} = Ab \qquad S_{x3} = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Shear Center Definition</h4>
+                        <figure class="diagram">
+                            <img src="images/EX07 - Semi-monocoque I/triangular_open_cell_flux.png" alt="Open cell flux analysis for shear center">
+                            <figcaption>Figure 12: Open cell shear flux analysis for shear center determination</figcaption>
+                        </figure>
+                        
+                        <p>Define a shear force \(T_y = 1\) passing through the shear center. The rotation of the section due to \(T_y\) must be zero.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Open Cell Fluxes</h4>
+                        \[q'_1 = T_y \cdot \frac{S_{x2}}{J_{xx}} = \frac{Ab}{2Ab^2} = \frac{1}{2b}\]
+                        \[q'_2 = T_y \cdot \frac{S_{x1}}{J_{xx}} = \frac{-Ab}{2Ab^2} = -\frac{1}{2b}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Moment Equivalence (with respect to point 2)</h4>
+                        \[T_y \cdot \left(\frac{2}{3}b + x_{SC}\right) = 2\Omega_{cell} \cdot q^*\]
+                        \[q^* = \frac{\frac{2}{3}b + x_{SC}}{2b^2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Rotation Angle Condition</h4>
+                        \[\theta' = \frac{d\theta}{dz} = \frac{1}{2\Omega_{cell} \cdot G} \cdot \left(\frac{q^* \cdot 2a}{t} + \frac{q^* \cdot 2b}{2t} - \frac{q'_1 \cdot a}{t} + \frac{q'_2 \cdot a}{t}\right)\]
+                        
+                        <p>Impose \(\theta' = 0\):</p>
+                        \[q^* = \frac{a}{b(2a+b)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 8: Solve for Shear Center</h4>
+                        <p>Combining the expressions for \(q^*\):</p>
+                        \[\frac{\frac{2}{3}b + x_{SC}}{2b^2} = \frac{a}{b(2a+b)}\]
+                        
+                        \[x_{SC} = \frac{2ab^2}{b(2a+b)} - \frac{2}{3}b\]
+                        
+                        <p>Substituting \(b = \frac{\sqrt{2}}{2}a\):</p>
+                        \[x_{SC} = \frac{2a \cdot \frac{1}{2}a^2}{\frac{\sqrt{2}}{2}a\left(2a + \frac{\sqrt{2}}{2}a\right)} - \frac{\sqrt{2}}{3}a\]
+                        
+                        \[= \frac{a^3}{a^2\left(\sqrt{2} + \frac{1}{2}\right)} - \frac{\sqrt{2}}{3}a\]
+                        
+                        \[= \left(\frac{1}{\sqrt{2} + \frac{1}{2}} - \frac{\sqrt{2}}{3}\right)a\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{x_{SC} = 51.00\, \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes Section -->
+            <section class="notes-section" id="notes">
+                <h2>Notes on the Coordinate Systems</h2>
+                
+                <figure class="diagram">
+                    <img src="images/EX07 - Semi-monocoque I/coordinate_systems_centroid_inertia.png" alt="Coordinate system conventions for centroid and inertia">
+                    <figcaption>Figure 13: Coordinate system effects on centroid and inertia calculations</figcaption>
+                </figure>
+                
+                <h3>Centroid</h3>
+                <div class="concept-box">
+                    <p>For coordinate origin at lower left corner:</p>
+                    \[x = \frac{2Ab}{4A} = 2b \qquad y = \frac{2Aa}{4A} = 2a\]
+                    
+                    <p>For coordinate origin at upper right corner:</p>
+                    \[x = \frac{-2Ab}{4A} = -2b \qquad y = \frac{-2Aa}{4A} = -2a\]
+                </div>
+                
+                <div class="important-note">
+                    <strong>Key Point:</strong> The position of the centroid does NOT depend on the coordinate system. It is a section property.
+                </div>
+                
+                <h3>Inertia</h3>
+                <div class="concept-box">
+                    <p>For different coordinate system placements (all with respect to centroid):</p>
+                    \[J_{xx} = 2A \cdot \left(-\frac{a}{2}\right)^2 + 2A \cdot \left(\frac{a}{2}\right)^2 = Aa^2\]
+                    
+                    <p>Result is the same regardless of axis direction.</p>
+                </div>
+                
+                <div class="important-note">
+                    <strong>Key Point:</strong> Inertias depend on the position of the reference axes, but do NOT depend on their direction.
+                </div>
+                
+                <h3>Static Moments</h3>
+                <figure class="diagram">
+                    <img src="images/EX07 - Semi-monocoque I/static_moments_flux_systems.png" alt="Static moment and flux sign conventions">
+                    <figcaption>Figure 14: Static moment and shear flux sign conventions</figcaption>
+                </figure>
+                
+                <div class="concept-box">
+                    <p><strong>OUTWARD system:</strong></p>
+                    \[S_{x1} = A \cdot \left(-\frac{a}{2}\right) = -\frac{Aa}{2}\]
+                    \[S_{y1} = A \cdot \left(-\frac{b}{2}\right) = -\frac{Ab}{2}\]
+                    
+                    <p><strong>INWARD system:</strong></p>
+                    \[S_{x1} = A\left(\frac{a}{2}\right) = \frac{Aa}{2}\]
+                    \[S_{y1} = A\left(\frac{b}{2}\right) = \frac{Ab}{2}\]
+                </div>
+                
+                <div class="important-note">
+                    <strong>Key Point:</strong> For static moments and fluxes, we must select a surface, defined by its normal vector, and keep it!
+                </div>
+                
+                <h3>Open Cell Fluxes</h3>
+                <div class="concept-box">
+                    <p>The fluxes orientation is <strong>ARBITRARY</strong> and does not depend on \(\vec{z}\), but we must keep the same normal.</p>
+                    
+                    <p><strong>OUTWARD:</strong> \(q'_1 > 0\), \(q'_2 > 0\)</p>
+                    <p><strong>INWARD:</strong> \(q'_1 < 0\), \(q'_2 < 0\)</p>
+                </div>
+                
+                <h3>Closed Cell Fluxes</h3>
+                <figure class="diagram">
+                    <img src="images/EX07 - Semi-monocoque I/inward_system_rotation.png" alt="Inward system rotation convention">
+                    <figcaption>Figure 15: Rotation direction convention for inward system</figcaption>
+                </figure>
+                
+                <div class="concept-box">
+                    <p>The positive rotation is given by the normal axis \(z\):</p>
+                    <ul>
+                        <li><strong>OUTWARD</strong> → ANTI-CLOCKWISE</li>
+                        <li><strong>INWARD</strong> → CLOCKWISE</li>
+                    </ul>
+                    
+                    <p>The direction of \(q^*\) is <strong>ARBITRARY</strong>.</p>
+                </div>
+                
+                <h3>Angle</h3>
+                <div class="concept-box">
+                    <p>The sign of \(\theta'\) depends on the normal axis \(z\).</p>
+                </div>
+                
+                <div class="important-note">
+                    <strong>GOOD PRACTICE:</strong> Choose a surface and always keep it throughout the analysis.
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

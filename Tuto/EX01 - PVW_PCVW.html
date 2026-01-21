@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principle of Virtual Work - Antonio Maria Caporale</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --bg-note: #fffaf0;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --red-accent: #c53030;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        header .email {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 20px 30px;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .concept-block {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .concept-block h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .definition {
+            background: #ebf8ff;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #3182ce;
+        }
+
+        .definition h4 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: var(--bg-note);
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #dd6b20;
+        }
+
+        .note strong {
+            color: #c05621;
+        }
+
+        .warning {
+            background: #fff5f5;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid var(--red-accent);
+        }
+
+        .warning strong {
+            color: var(--red-accent);
+        }
+
+        .derivation {
+            background: var(--bg-solution);
+            padding: 25px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border: 1px solid #9ae6b4;
+        }
+
+        .derivation h4 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-label {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            padding: 10px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .matrix-equation {
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .two-column > div {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .two-column h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .final-result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .final-result strong {
+            color: var(--accent-color);
+        }
+
+        .method-box {
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .method-box .method-header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        .method-box .method-content {
+            padding: 20px;
+        }
+
+        ul, ol {
+            margin: 10px 0 10px 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .red-text {
+            color: var(--red-accent);
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .section-content {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Principle of Virtual Work</h1>
+            <p class="author">Antonio Maria Caporale</p>
+            <p class="email">antoniomaria.caporale@polimi.it</p>
+        </header>
+        
+        <main>
+            <!-- Section 1: Introduction to PVW -->
+            <section class="section" id="introduction">
+                <div class="section-header">
+                    <h2>1. Introduction to the Principle of Virtual Work</h2>
+                </div>
+                <div class="section-content">
+                    <div class="definition">
+                        <h4>Static Equilibrium Condition</h4>
+                        <p>The Principle of Virtual Work states:</p>
+                        \[\delta W_i = \delta W_e\]
+                        <p>for any arbitrary virtual compatible displacement \(\delta u\) and \(\delta \varepsilon\).</p>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3>Virtual Work Expression</h3>
+                        \[\delta W = F \cdot \delta \eta\]
+                        <p>We are looking for the only equilibrated solution among the infinite compatible ones.</p>
+                    </div>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/truss_element_axial_load.png" alt="Truss element subjected to axial loading with nodes, displacements, and forces labeled">
+                        <figcaption>Figure 1.1: Horizontal truss element with length ℓ, nodal displacements u₁ and u₂, and axial force F</figcaption>
+                    </figure>
+
+                    <div class="concept-block">
+                        <h3>Linear Elastic Constitutive Law</h3>
+                        \[\sigma_{zz} = \frac{F}{A} = E \cdot \varepsilon_{zz}\]
+                        \[\varepsilon_{zz} = \frac{u_z}{\ell} = \frac{\Delta \ell}{\ell}\]
+                        <div class="note">
+                            <strong>Note:</strong> This relation holds for infinitesimal displacements.
+                        </div>
+                        <p><strong>TRUSS:</strong> It can carry only axial load.</p>
+                    </div>
+
+                    <div class="derivation">
+                        <h4>Virtual Internal Work Derivation</h4>
+                        <div class="step">
+                            <div class="step-label">Starting Expression:</div>
+                            \[\delta W_i = \int_V \delta \varepsilon_{zz} \cdot \sigma_{zz} \, dV = \int_0^\ell \int_A \delta \varepsilon_{zz} \cdot \sigma_{zz} \, dA \cdot dz\]
+                        </div>
+                        <div class="step">
+                            <div class="step-label">Separating Integrals:</div>
+                            \[= \int_0^\ell \delta \varepsilon_{zz} \cdot \int_A \sigma_{zz} \, dA \cdot dz = \int_0^\ell \delta \varepsilon_{zz} \cdot F \, dz = \delta \Delta \ell \cdot F\]
+                        </div>
+                        <div class="step">
+                            <div class="step-label">Final Form:</div>
+                            \[= \delta(u_1 - u_2) \cdot F\]
+                            <div class="note">
+                                <strong>Important:</strong> It's not the position, it's the displacements.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Spring Element Formulation -->
+            <section class="section" id="spring-element">
+                <div class="section-header">
+                    <h2>2. Spring Element Formulation</h2>
+                </div>
+                <div class="section-content">
+                    <p>We can describe our truss as a spring, which kinematics is described by \(u_1\) and \(u_2\).</p>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/spring_system_two_nodes.png" alt="Simple spring element with two nodes and displacement degrees of freedom">
+                        <figcaption>Figure 2.1: Spring element with nodal displacements u₁ and u₂</figcaption>
+                    </figure>
+
+                    <div class="concept-block">
+                        <h3>Spring Force-Displacement Relation</h3>
+                        \[F = K(u_1 - u_2) = K \cdot [1 \quad -1] \cdot \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+                        <p>Note: Curly brackets denote column vectors.</p>
+                    </div>
+
+                    <div class="derivation">
+                        <h4>PVW: \(\delta W_i = \delta W_e\)</h4>
+                        
+                        <div class="two-column">
+                            <div>
+                                <h4>REAL</h4>
+                                <p>\(W_i\) and \(W_e\):</p>
+                                \[(u_1 - u_2) \cdot F = \Delta \ell \cdot F\]
+                            </div>
+                            <div>
+                                <h4>VIRTUAL</h4>
+                                <p>\(\delta W_i\) and \(\delta W_e\):</p>
+                                \[\delta(u_1 - u_2) \cdot F = \delta \Delta \ell \cdot F\]
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-label">Elongation:</div>
+                            \[\Delta \ell = u_1 - u_2\]
+                            \[\Delta \ell = [1 \quad -1] \cdot \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+                            \[\delta \Delta \ell = [1 \quad -1] \cdot \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+                        </div>
+
+                        <div class="step">
+                            <div class="step-label">Virtual Internal Work:</div>
+                            \[\delta W_i = \int_V \delta \underline{\varepsilon} \cdot \underline{\underline{\sigma}} \, dV = \delta \Delta \ell \cdot F\]
+                            \[= \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \cdot \begin{bmatrix} 1 \\ -1 \end{bmatrix} \cdot K [1 \quad -1] \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3>Outer Scalar Product</h3>
+                        \[\begin{bmatrix} 1 \\ -1 \end{bmatrix} \otimes [1 \quad -1] = \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}\]
+                    </div>
+
+                    <div class="final-result">
+                        <strong>Stiffness Matrix of the Spring:</strong>
+                        \[\delta W_i = \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \cdot \begin{bmatrix} K & -K \\ -K & K \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+                    </div>
+
+                    <div class="step">
+                        <div class="step-label">Virtual External Work:</div>
+                        \[\delta W_e = \delta \Delta \ell \cdot F = \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \cdot \begin{bmatrix} 1 \\ -1 \end{bmatrix} \cdot F = \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \cdot \begin{bmatrix} F \\ -F \end{bmatrix}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Spring Constitutive Equation -->
+            <section class="section" id="constitutive-equation">
+                <div class="section-header">
+                    <h2>3. Spring Constitutive Equation</h2>
+                </div>
+                <div class="section-content">
+                    <div class="derivation">
+                        <h4>PVW: \(\delta W_i = \delta W_e\)</h4>
+                        \[\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \cdot \begin{bmatrix} K & -K \\ -K & K \end{bmatrix} \cdot \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \cdot \begin{Bmatrix} F \\ -F \end{Bmatrix}\]
+                    </div>
+
+                    <div class="warning">
+                        <strong>TBN (To Be Noted):</strong> You cannot eliminate \(\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T\) from both sides of the equation:
+                        <ul>
+                            <li>It's mathematically <strong>WRONG</strong></li>
+                            <li>It's conceptually misleading</li>
+                        </ul>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3>What We Actually Do:</h3>
+                        \[\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \left( \begin{bmatrix} K & -K \\ -K & K \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} - \begin{Bmatrix} F \\ -F \end{Bmatrix} \right) = \emptyset\]
+                        <p>This must be \(\emptyset\) for any value of \(\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T\).</p>
+                    </div>
+
+                    <div class="final-result">
+                        <strong>Spring Constitutive Equation:</strong>
+                        \[\begin{bmatrix} K & -K \\ -K & K \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} - \begin{Bmatrix} F \\ -F \end{Bmatrix} = 0\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Multi-Spring System -->
+            <section class="section" id="multi-spring">
+                <div class="section-header">
+                    <h2>4. Multi-Spring System (Series Configuration)</h2>
+                </div>
+                <div class="section-content">
+                    <p>Let's try with a more complex system.</p>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/multi_spring_system_fixed_support.png" alt="Series spring system with fixed support and applied force">
+                        <figcaption>Figure 4.1: Two springs K₁ and K₂ in series with fixed support at left end</figcaption>
+                    </figure>
+
+                    <div class="concept-block">
+                        <h3>Individual Spring Stiffness Matrices</h3>
+                        <p>For the first spring:</p>
+                        \[\begin{Bmatrix} f_1 \\ f_2 \end{Bmatrix} = \begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1 \end{bmatrix} \cdot \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}\]
+                        
+                        <p>For the second spring:</p>
+                        \[\begin{Bmatrix} f_2 \\ f_3 \end{Bmatrix} = \begin{bmatrix} K_2 & -K_2 \\ -K_2 & K_2 \end{bmatrix} \cdot \begin{Bmatrix} u_2 \\ u_3 \end{Bmatrix}\]
+                    </div>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/two_spring_series_system.png" alt="Two-spring series system showing three nodes">
+                        <figcaption>Figure 4.2: Series spring configuration with nodes and displacements</figcaption>
+                    </figure>
+
+                    <div class="derivation">
+                        <h4>Virtual Work Formulation</h4>
+                        <div class="step">
+                            <div class="step-label">Internal Virtual Work:</div>
+                            \[\delta W_i = \delta W_{i_1} + \delta W_{i_2} = \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} + \delta \begin{Bmatrix} u_2 \\ u_3 \end{Bmatrix}^T \begin{bmatrix} K_2 & -K_2 \\ -K_2 & K_2 \end{bmatrix} \begin{Bmatrix} u_2 \\ u_3 \end{Bmatrix}\]
+                        </div>
+                        <div class="step">
+                            <div class="step-label">External Virtual Work:</div>
+                            \[\delta W_e = \delta \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix}^T \begin{Bmatrix} f_1 \\ f_2 \\ f_3 \end{Bmatrix}\]
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3>Applying Boundary Conditions</h3>
+                        <p>Let's add the BC: \(u_3 = \emptyset\) and \(\delta u_3 = \emptyset\)</p>
+                        
+                        \[\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} + \delta u_2 \cdot K_2 \cdot u_2 = \delta u_1 \cdot f_1\]
+                    </div>
+
+                    <div class="step">
+                        <div class="step-label">Expanding:</div>
+                        \[\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} + \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \begin{bmatrix} \emptyset & \emptyset \\ \emptyset & K_2 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} - \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \cdot \begin{Bmatrix} f_1 \\ \emptyset \end{Bmatrix} = 0\]
+                    </div>
+
+                    <div class="step">
+                        <div class="step-label">Factoring:</div>
+                        \[\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \left( \begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} + \begin{bmatrix} \emptyset & \emptyset \\ \emptyset & K_2 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} - \begin{Bmatrix} f_1 \\ \emptyset \end{Bmatrix} \right) = \emptyset\]
+                    </div>
+
+                    <div class="final-result">
+                        <strong>Assembled System:</strong>
+                        \[\begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1 + K_2 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} - \begin{Bmatrix} f_1 \\ \emptyset \end{Bmatrix} = 0\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Assembly Method -->
+            <section class="section" id="assembly">
+                <div class="section-header">
+                    <h2>5. Alternative Assembly Method</h2>
+                </div>
+                <div class="section-content">
+                    <p>Let's do it in a different way.</p>
+
+                    <div class="concept-block">
+                        <h3>Global Assembly</h3>
+                        \[\begin{pmatrix} f_1 \\ f_2 \\ f_3 \end{pmatrix} = \begin{bmatrix} K_1 & -K_1 & \emptyset \\ -K_1 & K_1+K_2 & -K_2 \\ \emptyset & -K_2 & K_2 \end{bmatrix} \cdot \begin{pmatrix} u_1 \\ u_2 \\ u_3 \end{pmatrix}\]
+                    </div>
+
+                    <div class="derivation">
+                        <h4>PVW with Full Assembly</h4>
+                        \[\delta \begin{pmatrix} u_1 \\ u_2 \\ u_3 \end{pmatrix}^T \begin{bmatrix} K_1 & -K_1 & \emptyset \\ -K_1 & K_1+K_2 & -K_2 \\ \emptyset & -K_2 & K_2 \end{bmatrix} \begin{pmatrix} u_1 \\ u_2 \\ u_3 \end{pmatrix} = \delta \begin{Bmatrix} u_1 \\ u_2 \\ u_3 \end{Bmatrix}^T \cdot \begin{Bmatrix} f_1 \\ f_2 \\ f_3 \end{Bmatrix}\]
+                    </div>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/spring_system_series_configuration.png" alt="Spring system in series configuration with boundary conditions">
+                        <figcaption>Figure 5.1: Series configuration with fixed support at u₃</figcaption>
+                    </figure>
+
+                    <div class="step">
+                        <div class="step-label">After applying B.C.:</div>
+                        \[\delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \begin{bmatrix} K_1 & -K_1 \\ -K_2 & K_1+K_2 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} - \delta \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix}^T \begin{Bmatrix} F \\ \emptyset \end{Bmatrix} = \emptyset\]
+                    </div>
+
+                    <div class="step">
+                        <div class="step-label">Final form:</div>
+                        \[\begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1+K_2 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} - \begin{Bmatrix} F \\ \emptyset \end{Bmatrix} = \emptyset\]
+                    </div>
+
+                    <div class="final-result">
+                        <strong>Solution for Series Springs:</strong>
+                        \[u_1 = F \left( \frac{1}{K_1} + \frac{1}{K_2} \right)\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: PVW vs PCVW Comparison -->
+            <section class="section" id="pvw-pcvw">
+                <div class="section-header">
+                    <h2>6. PVW vs PCVW Comparison</h2>
+                </div>
+                <div class="section-content">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>PVW</th>
+                                <th>PCVW</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Problem formulation</td>
+                                <td>displacements / strains</td>
+                                <td>forces / stresses</td>
+                            </tr>
+                            <tr>
+                                <td>Virtual quantities</td>
+                                <td>displacements</td>
+                                <td>forces</td>
+                            </tr>
+                            <tr>
+                                <td>Enforce a priori</td>
+                                <td>compatibility<br>Dirichlet/Essential BC</td>
+                                <td>equilibrium<br>Neumann/Natural BC</td>
+                            </tr>
+                            <tr>
+                                <td>Find solution that is</td>
+                                <td>equilibrated</td>
+                                <td>compatible</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 7: Series Spring Analysis with PCVW -->
+            <section class="section" id="series-pcvw">
+                <div class="section-header">
+                    <h2>7. Series Spring Analysis using PCVW</h2>
+                </div>
+                <div class="section-content">
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/spring_system_equilibrium_forces.png" alt="Spring system showing equilibrium and internal forces">
+                        <figcaption>Figure 7.1: Series spring system with equilibrium analysis</figcaption>
+                    </figure>
+
+                    <div class="concept-block">
+                        <h3>Equilibrium along z-axis</h3>
+                        \[F + R = 0 \quad \Rightarrow \quad R = -F\]
+                    </div>
+
+                    <div class="note">
+                        <strong>SERIES Configuration:</strong> The internal force is constant along the structure.
+                        <ul>
+                            <li>Is this statically determined? Is this ISOSTATIC? <strong>YES</strong></li>
+                        </ul>
+                        <p>If our structure is isostatic, we can solve our elastic problem simply IMPOSING THE EQUILIBRIUM.</p>
+                    </div>
+
+                    <div class="derivation">
+                        <h4>PCVW Analysis</h4>
+                        <p>Constitutive relation: \(F = K \cdot \delta \ell\)</p>
+                        
+                        <div class="step">
+                            <div class="step-label">Internal Virtual Work:</div>
+                            \[\delta W_i = \delta W_{i_1} + \delta W_{i_2} = \delta F_1 \cdot \Delta \ell_1 + \delta F_2 \cdot \Delta \ell_2\]
+                            \[= \delta F_1 \cdot \frac{F_1}{K_1} + \delta F_2 \cdot \frac{F_2}{K_2}\]
+                        </div>
+
+                        <div class="note">
+                            <strong>For Series:</strong>
+                            \[\delta F = \delta F_1 = \delta F_2\]
+                            \[F = F_1 = F\]
+                        </div>
+
+                        <div class="step">
+                            <div class="step-label">Simplifying:</div>
+                            \[\delta W_i = \delta F \left( \frac{F}{K_1} + \frac{F}{K_2} \right)\]
+                        </div>
+
+                        <div class="step">
+                            <div class="step-label">External Virtual Work:</div>
+                            \[\delta W_e = \delta F \cdot u_1 + \delta F \cdot \cancel{u_3}\]
+                            \[= \delta F \cdot u_1\]
+                            <p class="note"><strong>Note:</strong> The reaction forces don't produce work.</p>
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3>PCVW: \(\delta W_i = \delta W_e\)</h3>
+                        \[\delta F \cdot F \left( \frac{1}{K_1} + \frac{1}{K_2} \right) - u_1 \cdot \delta F = 0\]
+                        \[\delta F \left( F \left( \frac{1}{K_1} + \frac{1}{K_2} \right) - u_1 \right) = 0\]
+                    </div>
+
+                    <div class="final-result">
+                        <strong>Solution:</strong>
+                        \[u_1 = F \left( \frac{1}{K_1} + \frac{1}{K_2} \right)\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Parallel Spring System (Hyperstatic) -->
+            <section class="section" id="parallel-hyperstatic">
+                <div class="section-header">
+                    <h2>8. Parallel Spring System (Hyperstatic)</h2>
+                </div>
+                <div class="section-content">
+                    <div class="note">
+                        <strong>TBN:</strong> We have only axial behavior.
+                        <p><strong>PARALLEL:</strong> \(\Delta \ell = \Delta \ell_1 = \Delta \ell_2\)</p>
+                    </div>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/hyperstatic_spring_system.png" alt="Hyperstatic parallel spring system">
+                        <figcaption>Figure 8.1: Parallel spring configuration with springs K₁ and K₂</figcaption>
+                    </figure>
+
+                    <div class="concept-block">
+                        <h3>Problem Statement</h3>
+                        <p>Given \(F\), let's find \(u\).</p>
+                        <ul>
+                            <li>Statically determined? <strong>3 rigid DOF</strong></li>
+                            <li><strong>NO!</strong> The system is hyperstatic.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-label">Impose equilibrium along z:</div>
+                        \[F - R_1 - R_2 = \emptyset\]
+                        <p class="red-text">Two unknowns in one equation!</p>
+                    </div>
+
+                    <div class="method-box">
+                        <div class="method-header">First Method: PCVW</div>
+                        <div class="method-content">
+                            <p>Virtual system with \(\delta F = 1\):</p>
+                            \[\delta F = \delta F_1 + \delta F_2\]
+                            
+                            <div class="step">
+                                <div class="step-label">Internal Virtual Work:</div>
+                                \[\delta W_i = \delta W_{i_1} + \delta W_{i_2} = \cancel{\delta F_1} \cdot \frac{F_1}{K_1} + \delta F_2 \cdot \frac{F_2}{K_2}\]
+                            </div>
+
+                            <div class="step">
+                                <div class="step-label">External Virtual Work:</div>
+                                \[\delta W_e = \delta F \cdot u = u \quad [N \cdot mm]\]
+                            </div>
+
+                            <p>With \(\delta F_2 = \delta F\):</p>
+                            \[\delta F_2 \cdot \frac{F_2}{K_2} = u \quad \Rightarrow \quad \frac{F_2}{K_2} = u\]
+
+                            <p>Similarly, \(\frac{F_1}{K_1} = u\) and \(F_1 = F - F_2\)</p>
+
+                            \[u = \frac{F_1}{K_1} = \frac{F - F_2}{K_1} = \frac{F_2}{K_2}\]
+                        </div>
+                    </div>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/spring_system_internal_forces.png" alt="Parallel spring system with internal force distribution">
+                        <figcaption>Figure 8.2: Internal force distribution in parallel springs</figcaption>
+                    </figure>
+
+                    <div class="derivation">
+                        <h4>Solving for F₂</h4>
+                        \[K_2 F - K_2 F_2 - F_2 K_1 = \emptyset\]
+                        \[F_2 = F \cdot \frac{K_2}{K_1 + K_2}\]
+                    </div>
+
+                    <div class="final-result">
+                        <strong>Displacement:</strong>
+                        \[u = \frac{F_2}{K_2} = \frac{F}{K_1 + K_2}\]
+                    </div>
+
+                    <div class="concept-block">
+                        <h3>Smarter System of Equilibrated Forces</h3>
+                        <p>We can choose a smarter system of EQUILIBRATED FORCES.</p>
+                        <p>With \(F_1 = F - F_2\):</p>
+                        
+                        <div class="step">
+                            <div class="step-label">Virtual Internal Work:</div>
+                            \[\delta W_i = \delta F_2 \cdot \frac{F_2}{K_2} + \delta F_1 \cdot \frac{F_1}{K_1}\]
+                            \[= -1 \cdot \frac{F_2}{K_2} + 1 \cdot \frac{F - F_2}{K_1}\]
+                        </div>
+
+                        <div class="step">
+                            <div class="step-label">External Virtual Work:</div>
+                            \[\delta W_e = u \cdot \emptyset = \emptyset\]
+                        </div>
+
+                        <p>Leading to:</p>
+                        \[-K_1 F_2 + K_2 F - K_2 F_2 = \emptyset\]
+                        \[-F_2(K_1 + K_2) = -K_2 F\]
+                        \[F_2 = F \cdot \frac{K_2}{K_1 + K_2}\]
+                    </div>
+
+                    <div class="method-box">
+                        <div class="method-header">Second Method: PVW</div>
+                        <div class="method-content">
+                            \[\delta u \cdot K_1 u + \delta u \cdot K_2 u = \delta u \cdot F\]
+                            \[F = (K_1 + K_2) u\]
+                            
+                            <div class="final-result">
+                                \[u = \frac{F}{K_1 + K_2}\]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Vertical Parallel Spring System -->
+            <section class="section" id="vertical-parallel">
+                <div class="section-header">
+                    <h2>9. Vertical Parallel Spring System</h2>
+                </div>
+                <div class="section-content">
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/vertical_spring_system_fixed_ends.png" alt="Vertical parallel spring system with fixed ends">
+                        <figcaption>Figure 9.1: Vertical parallel spring system (NOT a series configuration)</figcaption>
+                    </figure>
+
+                    <div class="warning">
+                        <strong>TBN:</strong> This is NOT a SERIES configuration!
+                        <p>If \(K_1 \neq K_2\), then \(F_1 \neq F_2\)</p>
+                        <p>\(F = F_1 + F_2\)</p>
+                    </div>
+
+                    <div class="method-box">
+                        <div class="method-header">I) PVW Method</div>
+                        <div class="method-content">
+                            \[\delta \begin{Bmatrix} \emptyset \\ u \end{Bmatrix}^T \begin{bmatrix} K_1 & -K_1 \\ -K_1 & K_1 \end{bmatrix} \begin{Bmatrix} \emptyset \\ u \end{Bmatrix} + \delta \begin{Bmatrix} u \\ \emptyset \end{Bmatrix}^T \begin{bmatrix} K_2 & -K_2 \\ -K_2 & K_2 \end{bmatrix} \begin{Bmatrix} u \\ \emptyset \end{Bmatrix} = \delta u \cdot F\]
+
+                            \[\delta u \cdot K_1 \cdot u + \delta u \cdot K_2 \cdot u - \delta u \cdot F = \emptyset\]
+
+                            <div class="final-result">
+                                \[(K_1 + K_2) \cdot u = F\]
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="method-box">
+                        <div class="method-header">II) PCVW Method</div>
+                        <div class="method-content">
+                            <p><strong>VIRTUAL 1:</strong> \(\delta F = 1\)</p>
+                            \[\delta F \cdot \frac{F_1}{K_1} = \delta F \cdot u \quad \Rightarrow \quad u = \frac{F_1}{K_1}\]
+
+                            <p><strong>VIRTUAL 2:</strong> \(\delta F = 2\) (both negative)</p>
+                            \[\delta F \cdot \frac{F_2}{K_2} = \delta F \cdot u \quad \Rightarrow \quad u = \frac{F_2}{K_2}\]
+
+                            <p>Combining:</p>
+                            \[u = \frac{F_1}{K_1} = \frac{F_2}{K_2} = \frac{F - F_2}{K_1}\]
+
+                            \[\frac{F_2}{K_2} = \frac{F - F_2}{K_1} \quad \Rightarrow \quad K_1 F_2 = (F - F_2) K_2\]
+
+                            \[F = \frac{(K_1 + K_2)}{K_2} F_2 = (K_1 + K_2) \cdot u\]
+
+                            <div class="final-result">
+                                \[u(K_1 + K_2) = F\]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Four-Spring Network System -->
+            <section class="section" id="four-spring">
+                <div class="section-header">
+                    <h2>10. Four-Spring Network System</h2>
+                </div>
+                <div class="section-content">
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/four_spring_network_system.png" alt="Complex four-spring network system">
+                        <figcaption>Figure 10.1: Four-spring network in mixed series-parallel configuration</figcaption>
+                    </figure>
+
+                    <div class="concept-block">
+                        <h3>Problem Statement</h3>
+                        <p>Given \(F\), find \(u\).</p>
+                        <ul>
+                            <li>Is it isostatic? <strong>No</strong>, thus it's not statically determined.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-label">Reaction Forces:</div>
+                        \[F_2 = F\]
+                        \[F_3 = F_4 = F - F_1\]
+                    </div>
+
+                    <div class="concept-block">
+                        <h3>Using PCVW Two Times</h3>
+                        <ul>
+                            <li>One to find the reaction forces</li>
+                            <li>One to find \(u\)</li>
+                        </ul>
+                    </div>
+
+                    <figure class="diagram">
+                        <img src="images/EX01 - PVW_PCVW/virtual_spring_equilibrated_forces.png" alt="Virtual spring system with equilibrated forces">
+                        <figcaption>Figure 10.2: VIRTUAL 1 - Smart system of equilibrated forces</figcaption>
+                    </figure>
+
+                    <div class="method-box">
+                        <div class="method-header">VIRTUAL 1: Finding Reaction Forces</div>
+                        <div class="method-content">
+                            <p>As we did before, let's choose a smart system of equilibrated forces.</p>
+
+                            \[1 \cdot \frac{F_1}{K_1} - 1 \cdot \frac{(F - F_1)}{K_3} - 1 \cdot \frac{(F - F_1)}{K_4} = 1 \cdot \emptyset\]
+
+                            <ul>
+                                <li>\(\frac{F_1}{K_1}\): <span class="red-text">positive: TENSED</span></li>
+                                <li>\(\frac{(F-F_1)}{K_3}\): <span class="red-text">negative: COMPRESSED</span></li>
+                                <li>\(\frac{(F-F_1)}{K_4}\): <span class="red-text">negative: COMPRESSED</span></li>
+                            </ul>
+
+                            <div class="step">
+                                <div class="step-label">Expanding:</div>
+                                \[K_3 K_4 \cdot F_1 - K_1 K_4 (F - F_1) - K_1 K_3 (F - F_1) = \emptyset\]
+                            </div>
+
+                            <div class="final-result">
+                                \[F_1 = \frac{K_1 K_4 + K_1 K_3}{K_3 K_4 + K_1 K_4 + K_1 K_3} \cdot F\]
+                                <p>Then \(F_1, F_2, F_3, F_4\) are known.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="method-box">
+                        <div class="method-header">VIRTUAL 2: Finding Displacement u</div>
+                        <div class="method-content">
+                            <p>If we want to find \(u\), let's put \(\delta F_1 = 1\) there.</p>
+
+                            \[1 \cdot \frac{F_1}{K_1} + 1 \cdot \frac{F}{K_2} = 1 \cdot u\]
+
+                            <div class="final-result">
+                                <strong>Final Answer:</strong>
+                                \[u = \frac{F_1}{K_1} + \frac{F}{K_2}\]
+                                <p>where \(F_1 = \frac{K_1 K_4 + K_1 K_3}{K_3 K_4 + K_1 K_4 + K_1 K_3} \cdot F\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

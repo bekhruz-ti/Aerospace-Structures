@@ -1,0 +1,22 @@
+{
+  "cantilever_beam_point_load.png": {
+    "suggested_name": "cantilever_beam_point_load",
+    "description": "Cantilever beam with fixed support (hatched symbol) at the left end and free right end. Vertical upward force F labeled in green with magnitude F = 6000 N applied at the free end. Coordinate system shown with y-axis vertical (upward positive), z-axis horizontal along beam length, and x-axis out of page. Beam length dimension labeled as ℓ = 4000 mm. Cross-sectional second moment of area Jxx = 500,000 mm⁴ and elastic modulus E = 200 GPa given in problem data. Problem involves finding vertical displacement v using principle of virtual work (PCVW) method for beam displacement analysis."
+  },
+  "beam_distributed_load_spring_support.png": {
+    "suggested_name": "beam_distributed_load_spring_support",
+    "description": "Simply supported beam with total length 2ℓ (two equal spans of length ℓ each). Left end A has pinned support (circular symbol with cross), right end B has spring support with stiffness K = 750 N/mm shown as coil symbol attached to ground (hatched). Uniform distributed load p = 12 N/mm applied downward across entire beam length, shown as series of downward arrows. Point C marked at mid-span with vertical displacement Vc indicated downward in green. Problem data: ℓ = 1200 mm, EJ = 10¹² N·mm². System labeled as isostatic. Objective is to find vertical displacement Vc at point C. Reaction forces labeled as R2A at left support and RYB at right support, with spring force F = -RYB shown in interface equilibrium diagram."
+  },
+  "3d_truss_structure_force_diagram.png": {
+    "suggested_name": "3d_truss_structure_force_diagram",
+    "description": "Three-dimensional truss structure forming a tetrahedron with base triangle ABP and apex point at top. Base length ℓ = 750 mm. Vertical force F = 1000 N applied downward at point A. Members labeled with forces: member from apex shows 2P force, diagonal members show P forces. Coordinate system with x, y, z axes shown at upper right. Circular cross-section detail shown at right with diameter 30 mm and radius r marked. Material properties: E = 200 GPa (elastic modulus), G = 77 GPa (shear modulus), ρ = 0.08 N/mm (density). Cross-sectional area A = πr² = 706.86 mm², second moments Jxx = Jyy = πr⁴/4 = 39,761 mm⁴, polar moment Jp = Jxx + Jyy = 79,522 mm⁴. Displacement components UA (blue arrow horizontal) and φA (red curved arrow for rotation) indicated at point A. Problem involves finding displacements UA and rotation φA using virtual work method with consideration of axisymmetric section properties and torsional stiffness GJp."
+  },
+  "beam_spring_support_virtual_system.png": {
+    "suggested_name": "beam_spring_support_virtual_system",
+    "description": "Real system diagram for beam displacement analysis showing horizontal beam with uniform distributed load. Left end A has pinned support with upward reaction force RYA. Right end has spring support with stiffness K, showing downward spring force F and upward reaction RYB. Uniform distributed load shown as series of downward arrows across beam span. Point C marked at mid-span with label in blue. Beam appears to have total length 2ℓ based on problem context. This is the \"REAL\" system diagram used in virtual work analysis, corresponding to problem with data: ℓ = 1200 mm, p = 12 N/mm, EJ = 10¹² N·mm², K = 750 N/mm. Diagram shows actual loading and boundary conditions for calculating displacement at point C."
+  },
+  "beam_pin_spring_supports.png": {
+    "suggested_name": "beam_pin_spring_supports",
+    "description": "Real system diagram labeled \"REAL\" showing horizontal beam with three downward arrows representing distributed loading. Left end A has pinned support (circle with cross symbol). Right end B has spring support shown as coil symbol attached to ground (hatched base). Point C marked at mid-span in blue. Beam spans appear equal on either side of point C. Reaction forces RYA shown upward at left support A and RYB shown upward at right support B. Spring force F shown downward at spring support. This represents the actual loading configuration for a beam displacement problem using virtual work method, where the objective is to find displacement at point C under the given distributed load with mixed pin and spring boundary conditions."
+  }
+}

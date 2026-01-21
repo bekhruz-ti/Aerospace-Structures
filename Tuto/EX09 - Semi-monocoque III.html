@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 09 - Semi-monocoque III</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --method-color: #805ad5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .method-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f0ff;
+            border-radius: 8px;
+            border-left: 4px solid var(--method-color);
+        }
+
+        .method-section h4 {
+            color: var(--method-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .subsection {
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 4px;
+        }
+
+        .subsection h5 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .note {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #d69e2e;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .equations-group {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 4px;
+        }
+
+        .virtual-label {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        .real-label {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>EX 09 - Semi-monocoque III</h1>
+            <p>Analysis of Semi-monocoque Structure with Spring Supports</p>
+            <p><em>Accounting for Beam Shear Deformability</em></p>
+        </header>
+        
+        <main>
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: Spring Reaction Forces in Semi-monocoque Beam</h2>
+                    
+                    <p class="problem-statement">
+                        Determine the reaction forces at the base of the two springs for a semi-monocoque cylindrical beam with a semicircular cross-section, accounting for beam shear deformability.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX09 - Semi-monocoque III/semi_monocoque_cylinder_spring_supports.png" alt="Semi-monocoque cylindrical structure with fixed support at right end and two spring supports at left end">
+                        <figcaption>Figure 1: Semi-monocoque cylindrical beam with spring supports and applied load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(E = 70 \text{ GPa}\) — Young's modulus</li>
+                            <li>\(\nu = 0.3\) — Poisson's ratio</li>
+                            <li>\(A = 200 \text{ mm}^2\) — Stringer cross-sectional area</li>
+                            <li>\(t = 1 \text{ mm}\) — Panel thickness (for all panels)</li>
+                            <li>\(R = 200 \text{ mm}\) — Radius</li>
+                            <li>\(\ell = 2000 \text{ mm}\) — Length</li>
+                            <li>\(K = 10^6 \text{ N/mm}\) — Spring stiffness</li>
+                            <li>\(P = 1 \text{ kN}\) — Applied load</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Determine Shear Fluxes as Function of Generic Shear Load</h4>
+                        <p>Let's find the shear fluxes \(q_i\) as a function of a generic shear load \(T_y\):</p>
+                        \[q_i = q_i(T_y)\]
+                        
+                        <div class="subsection">
+                            <h5>Centroid Location</h5>
+                            \[\bar{y}_c = 0\]
+                            \[\bar{x}_c = \frac{RA}{4A} = \frac{R}{4}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Second Moments of Area (Inertias)</h5>
+                            \[J_{xx} = 2AR^2\]
+                            
+                            <p>Static moments:</p>
+                            \[S_{x1} = -A \cdot R\]
+                            \[S_{x2} = S_{x4} = 0\]
+                            \[S_{x3} = AR\]
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Open Cell Fluxes</h4>
+                        
+                        <p>For node 3:</p>
+                        \[q_1^1 = T_y \cdot \frac{S_{x3}}{J} = T_y \cdot \frac{AR}{2AR^2} = \frac{T_y}{2R}\]
+                        
+                        <p>For node 5:</p>
+                        \[q_5^1 = 0\]
+                        
+                        <p>For node 1:</p>
+                        \[q_2^1 = -T_y \frac{S_{x1}}{J_{xx}} = \frac{T_y}{2R}\]
+                        
+                        <p>Therefore:</p>
+                        \[q_1^1 = q_2^1 = q^1\]
+                        
+                        <figure class="diagram">
+                            <img src="images/EX09 - Semi-monocoque III/shear_force_node_diagram.png" alt="Nodal shear flow equilibrium diagram">
+                            <figcaption>Figure 2: Shear flow distribution at structural node</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Moment Equivalence with respect to G</h4>
+                        
+                        \[LHS = 0\]
+                        \[RHS = 2 \cdot q_1^* \cdot \Omega_{cell1} + 2 \cdot q_2^* \cdot \Omega_{cell2}\]
+                        
+                        <p>where:</p>
+                        \[\Omega_{cell1} = \Omega_{cell2} = \frac{\pi R^2}{2} = \Omega\]
+                        
+                        <p>This gives:</p>
+                        \[q_1^* = -q_2^* = q^*\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Compatibility Equations</h4>
+                        
+                        \[\theta_1' = \frac{1}{2\Omega Gt} \left( q_1^* \left(2R + \frac{2\pi R}{4}\right) - q_2^* R - q_2^1 \cdot R \right)\]
+                        
+                        \[\theta_2' = \frac{1}{2\Omega Gt} \left( q_2^* \left(2R + \frac{2\pi R}{4}\right) - q_1^* R - q_2^1 \cdot R \right)\]
+                        
+                        <p>Setting \(\theta_1' = \theta_2'\):</p>
+                        \[q^*(2R + \frac{\pi R}{2}) + q^* R - q^1 R = -q^*(2R + \frac{\pi R}{2}) - q^* R - q^1 R\]
+                        
+                        <p>Solving yields:</p>
+                        \[q^* = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Total Fluxes</h4>
+                        
+                        \[q_1 = q_1^1 - q_1^* = \frac{T_y}{2R}\]
+                        \[q_2 = q_2^1 - q_2^* = \frac{T_y}{2R}\]
+                        \[q_3 = q_3^* = 0\]
+                        \[q_4 = q_4^* = 0\]
+                        \[q_5 = q_5^1 + q_1^* - q_2^* = 0\]
+                    </div>
+                    
+                    <!-- Method 1 -->
+                    <div class="method-section">
+                        <h4>HYPERSTATIC REACTION — 1st Method: Deformation Work of Panels</h4>
+                        
+                        <p>The internal work related to shear forces and torsional moments is computed directly inside panels.</p>
+                        
+                        <div class="equations-group">
+                            <p>Internal virtual work expression:</p>
+                            \[\delta W_i = \int_V \delta \sigma \cdot \varepsilon \, dV = \int_0^\ell T_z^1 \frac{T_z}{EA} \, dz + \int_0^\ell M_x^1 \frac{M_x}{EJ_{xx}} \, dz + \int_0^\ell M_y^1 \frac{M_y}{J_y} \, dz + \ldots\]
+                            
+                            <p>Plus contributions from panels and springs:</p>
+                            \[\int_{V_p} \delta \sigma : \varepsilon \, dV_p + F^1 \cdot \frac{F}{K}\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX09 - Semi-monocoque III/beam_virtual_springs_point_load.png" alt="Beam diagram with virtual springs and point load">
+                            <figcaption>Figure 3: Beam configuration showing sections 1 and 2 with virtual load applications</figcaption>
+                        </figure>
+                        
+                        <div class="subsection">
+                            <h5>Internal Actions — Section 1</h5>
+                            
+                            <p><span class="real-label">REAL:</span></p>
+                            \[T_{y1} = -P - R_{y1}\]
+                            \[M_{x1} = -(P + R_{y1}) \cdot z_1\]
+                            
+                            <p><span class="virtual-label">VIRTUAL 1:</span></p>
+                            \[T_{y1}^1 = -1\]
+                            \[M_{x1}^1 = -z_1\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Internal Actions — Section 2</h5>
+                            
+                            <p><span class="real-label">REAL:</span></p>
+                            \[T_y = -P - R_{y1} - R_{y2}\]
+                            \[M_x = -(P + R_{y1})\left(\frac{\ell}{2} + z_2\right) - R_{y2} \cdot z_2\]
+                            
+                            <p><span class="virtual-label">VIRTUAL 1:</span></p>
+                            \[T_y^1 = -1\]
+                            \[M_x^1 = -\left(\frac{\ell}{2} + z_2\right)\]
+                            
+                            <p><span class="virtual-label">VIRTUAL 2:</span></p>
+                            \[T_y^{''} = -1\]
+                            \[M_x^{''} = -z_2\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Panels Internal Work</h5>
+                            
+                            <p>Starting from the general expression:</p>
+                            \[\delta W_{ip} = \int_{V_p} \delta \sigma : \varepsilon \, dV_p = \int_{V_p} \delta \tau : \gamma \, dV_p\]
+                            
+                            <p>Using constitutive relations \(\tau = G \cdot \gamma\) and \(\gamma = \frac{\tau}{G}\):</p>
+                            \[= \int_{V_p} \delta \tau \cdot \frac{\tau}{G} \, dV_p = \int_\ell \int_R \int_t \delta \tau \frac{\tau}{G} \, dx \cdot dy \cdot dz\]
+                            
+                            <p>We know that \(\tau = \frac{q}{t}\) and \(\delta \tau = \frac{\delta q}{t}\)</p>
+                            <p>Also, \(q_i = f(T_y)\) and \(\delta q_i = f(T_y^1)\)</p>
+                            
+                            <p>In our case, \(T_y\) depends only on \(z\), thus \(q\) does too:</p>
+                            \[= \int_\ell \frac{\delta q}{t} \cdot \frac{1}{Gt} \int_R \int_t dx \, dy \, dz = \frac{R \cdot t}{t^2 G} \int_\ell \delta q \cdot q \, dz\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>PCVW — Virtual 1</h5>
+                            
+                            <p>External virtual work:</p>
+                            \[\delta W_e = 0\]
+                            
+                            <p>Internal virtual work:</p>
+                            \[\delta W_i = \int_0^{\frac{\ell}{2}} M_{x1}^1 \cdot \frac{M_{x1}}{EJ_{xx}} \, dz_1 + \int_0^{\frac{\ell}{2}} M_{x2}^1 \cdot \frac{M_{x2}}{EJ_{xx}} + \ldots \quad \text{(stringers)}\]
+                            
+                            \[+ \frac{R}{tG} \left( \int_0^{\frac{\ell}{2}} \delta q_1(T_{y1}^1) \cdot q_1(T_{y1}) \, dz_1 + \int_0^{\frac{\ell}{2}} \delta q_1(T_{y2}^1) \cdot q_1(T_{y2}) \, dz_2 \right) \quad \text{(panel 1)}\]
+                            
+                            \[+ \int_0^{\frac{\ell}{2}} \delta q_2(T_{y1}^1) \cdot q_2(T_{y1}) \, dz_1 + \int_0^{\frac{\ell}{2}} \delta q_2(T_{y2}^1) \cdot q_2(T_{y2}) \, dz_2 \quad \text{(panel 2)}\]
+                            
+                            \[+ 1 \cdot \frac{R_{y1}}{K}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>PCVW — Virtual 2</h5>
+                            
+                            <p>External virtual work:</p>
+                            \[\delta W_{e2} = 0\]
+                            
+                            <p>Internal virtual work:</p>
+                            \[\delta W_{i2} = \int_0^{\frac{\ell}{2}} M_{x2}^1 \cdot \frac{M_{x2}}{EJ_{xx}} \, dz_2 + \frac{R}{tG} \left( \int_0^{\frac{\ell}{2}} \delta q_1(T_{y2}^{''}) \cdot q_1(T_{y2}) \, dz_2 + \ldots \right.\]
+                            
+                            \[\left. + \int_0^{\frac{\ell}{2}} \delta q_2(T_{y2}^{''}) \cdot q_2(T_{y2}) \, dz_2 \right) + 1 \cdot \frac{R_{y2}}{K}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Solution System</h5>
+                            <p>Solve the system:</p>
+                            \[\begin{cases} \delta W_{i1} = \delta W_{e1} \\ \delta W_{i2} = \delta W_{e2} \end{cases} \quad \rightarrow \quad R_{y1}, \, R_{y2}\]
+                        </div>
+                    </div>
+                    
+                    <!-- Method 2 -->
+                    <div class="method-section">
+                        <h4>2nd Method: Section Properties</h4>
+                        
+                        <p>Shear fluxes are used to compute the section properties \(GA^*\), \(GJ\), and shear center. Knowing them, all the internal work can be computed without directly computing the internal work in the panels.</p>
+                        
+                        <div class="equations-group">
+                            \[\delta W_i = \int_0^\ell T_z^1 \frac{T_z}{EA} + \int_0^\ell M_x^1 \cdot \frac{M_x}{EJ_{xx}} \, dz + \int_0^\ell M_y^1 \cdot \frac{M_y}{EJ_{yy}} \, dz + \int_0^\ell T_y^1 \cdot \frac{T_y}{GA^*} \, dz\]
+                            
+                            \[+ \int_0^\ell T_x^1 \frac{T_x}{GA^*} \, dz + \int_0^\ell M_z^1 \cdot \frac{M_z}{GJ} \, dz\]
+                        </div>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX09 - Semi-monocoque III/semicircular_cross_section_shear_center.png" alt="Semicircular cross-section showing shear center analysis">
+                            <figcaption>Figure 4: Cross-section geometry for shear center determination</figcaption>
+                        </figure>
+                        
+                        <div class="subsection">
+                            <h5>Finding \(GA^*\) and Shear Center</h5>
+                            
+                            <p>Apply unit shear force: \(T_y = 1\)</p>
+                            
+                            <p>Moment Equivalence with respect to G:</p>
+                            \[LHS = T_y \cdot d\]
+                            \[RHS = 2q_1^* \Omega + 2q_2^* \Omega \quad \text{(as before)}\]
+                            
+                            <p>Solve the system with compatibility conditions \(\theta_1' = \theta_2'\):</p>
+                            \[\begin{cases} \theta_1' = \theta_2' \\ \theta_1' = \theta_2' = 0 \end{cases} \quad \rightarrow \quad d, \, q_1^*, \, q_2^*\]
+                            
+                            <p>Then compute shear stiffness (with \(T_y\) applied at the shear center):</p>
+                            \[GA^* = G \frac{T_y^2}{\sum q_i^2 \cdot \frac{L_i}{t_i}}\]
+                            <p>where the sum is over all panels and \(L_i\) is the panel length.</p>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Finding \(GJ\)</h5>
+                            
+                            <p>Apply unit torsional moment at shear center: \(M_z = 1\), \(T_y = T_x = 0\)</p>
+                            
+                            <p>Moment Equilibrium with respect to G:</p>
+                            \[LHS = M_z\]
+                            \[RHS = \text{as before}\]
+                            
+                            <p>Note: \(q_i^1 = 0\) (no shear from open cell fluxes)</p>
+                            
+                            <p>Solve:</p>
+                            \[\begin{cases} LHS = RHS \\ \theta_1' = \theta_2' \end{cases} \quad \rightarrow \quad q_1^*, \, q_2^* \quad \rightarrow \quad \theta'\]
+                            
+                            <p>Then:</p>
+                            \[M_z = GJ \cdot \theta' \quad \Rightarrow \quad GJ = \frac{M_z}{\theta'}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Internal Actions with Torsion</h5>
+                            
+                            <p>We have already computed \(T_y\) and \(M_x\). The torsional moments are:</p>
+                            
+                            <figure class="diagram">
+                                <img src="images/EX09 - Semi-monocoque III/cylinder_internal_forces_cut_section.png" alt="Cut section showing internal forces">
+                                <figcaption>Figure 5: Cut section analysis for internal torsional moment</figcaption>
+                            </figure>
+                            
+                            <p><strong>Section 1:</strong></p>
+                            \[\begin{cases} M_{z1} = (P + R_{y1}) \cdot d \\ M_{z1}^1 = d \end{cases}\]
+                            
+                            <p><strong>Section 2:</strong></p>
+                            \[\begin{cases} M_{z2} = (P + R_{y1} + R_{2y}) \cdot d \\ M_{z2}^1 = d \\ M_{z2}^{''} = d \end{cases}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>PCVW — Virtual 1</h5>
+                            
+                            \[\delta W_{e1} = 0\]
+                            
+                            \[\delta W_{i1} = \int_0^{\frac{\ell}{2}} \left( T_{y1}^1 \cdot \frac{T_{y1}}{GA^*} + M_{z1}^1 \frac{M_{z1}}{GJ} + M_{x1}^1 \frac{M_{x1}}{EJ_{xx}} \right) dz_1 + \ldots\]
+                            
+                            \[\ldots + \int_0^{\frac{\ell}{2}} \left( T_{y2}^1 \cdot \frac{T_{y2}}{GA^*} + M_{z2}^1 \frac{M_{z2}}{GJ} + M_{x1}^1 \frac{M_{x1}}{EJ_{xx}} \right) dz_2 + 1 \cdot \frac{R_{y1}}{K}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>PCVW — Virtual 2</h5>
+                            
+                            \[\delta W_{e2} = 0\]
+                            
+                            \[\delta W_{i2} = \int_0^{\frac{\ell}{2}} \left( T_{y2}^{''} \cdot \frac{T_{y2}}{GA^*} + M_{z2}^{''} \frac{M_{z2}}{GJ} + M_{x2}^{''} \frac{M_{x1}}{EJ_{xx}} \right) dz_2 + 1 \cdot \frac{R_{y2}}{K}\]
+                        </div>
+                        
+                        <div class="subsection">
+                            <h5>Solution System</h5>
+                            <p>Solve the system:</p>
+                            \[\begin{cases} \delta W_{e1} = \delta W_{i1} \\ \delta W_{o2} = \delta W_{e2} \end{cases} \quad \rightarrow \quad R_{y1}, \, R_{y2}\]
+                        </div>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        <br><br>
+                        \[\boxed{R_{y1} = -998.7155 \text{ N}}\]
+                        <br>
+                        \[\boxed{R_{y2} = -2.746 \text{ N}}\]
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Notes:</strong>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li>Two methods were presented: the 1st method uses deformation work of panels directly, while the 2nd method uses section properties (\(GA^*\), \(GJ\), shear center).</li>
+                            <li>Both methods utilize the Principle of Complementary Virtual Work (PCVW).</li>
+                            <li>The negative signs in the final answers indicate that both spring reactions are compressive (the springs are being compressed).</li>
+                            <li>The first spring carries nearly the entire reaction (\(\approx 999\) N), while the second spring carries a much smaller load (\(\approx 2.7\) N).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

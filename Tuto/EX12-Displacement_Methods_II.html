@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Session 12 - Structural Mechanics</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --matlab-bg: #1e1e1e;
+            --matlab-text: #d4d4d4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .exam-info {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-left: 15px;
+            font-weight: normal;
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .find-statement {
+            background: #e6fffa;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid #38b2ac;
+            margin: 20px 0;
+        }
+
+        .find-statement strong {
+            color: #234e52;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .matlab-section {
+            margin-top: 25px;
+            background: var(--matlab-bg);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .matlab-section h4 {
+            background: #2d2d2d;
+            color: #569cd6;
+            padding: 10px 15px;
+            margin: 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .matlab-code {
+            padding: 15px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            color: var(--matlab-text);
+            overflow-x: auto;
+        }
+
+        .matlab-code pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .matlab-output {
+            background: #252526;
+            padding: 15px;
+            border-top: 1px solid #3d3d3d;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .matlab-output .label {
+            color: #9cdcfe;
+        }
+
+        .matlab-output .value {
+            color: #b5cea8;
+        }
+
+        .matlab-comment {
+            color: #6a9955;
+        }
+
+        .matlab-keyword {
+            color: #569cd6;
+        }
+
+        .matlab-string {
+            color: #ce9178;
+        }
+
+        .matlab-number {
+            color: #b5cea8;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        .equation-note {
+            font-style: italic;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .side-note {
+            background: #fef3c7;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border-left: 3px solid #f59e0b;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .exam-info {
+                display: block;
+                margin: 10px 0 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Exercise Session 12</h1>
+            <p class="subtitle">Structural Mechanics - Finite Element Methods & Virtual Work</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Exercise 1 <span class="exam-info">Exam 25/01/2023</span></h2>
+                    
+                    <p class="problem-statement">
+                        A cantilever beam with a fixed support at the left end and a spring support at the right end is subjected to a linearly varying distributed load. Find the displacement \(v\) using a 1-term polynomial approximation.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX12-Displacement_Methods_II/cantilever_beam_triangular_load_spring_support.png" alt="Cantilever beam with triangular load and spring support">
+                        <figcaption>Cantilever beam with triangular distributed load and spring support at right end</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(p = 14 \text{ N/mm}\) (maximum distributed load intensity)</li>
+                            <li>\(\ell = 2000 \text{ mm}\) (beam length)</li>
+                            <li>\(EJ = 10^{10} \text{ N} \cdot \text{mm}^2\) (flexural rigidity)</li>
+                            <li>\(k = 100 \text{ N/mm}\) (spring stiffness)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="find-statement">
+                        <strong>Find:</strong> Displacement \(v\) using 1-term polynomial approximation
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Assume displacement function</h4>
+                        <p>Assume a polynomial form for the displacement:</p>
+                        \[v(x) = a_0 + a_1 x + a_2 x^2\]
+                        
+                        <p>Apply boundary conditions:</p>
+                        <ul>
+                            <li>\(v(0) = 0 \Rightarrow a_0 = 0\)</li>
+                            <li>\(v'_x(0) = 0 \Rightarrow a_1 = 0\)</li>
+                        </ul>
+                        
+                        <p>Therefore, the displacement function reduces to:</p>
+                        \[v(x) = a x^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Compute virtual work expressions</h4>
+                        <p>External virtual work:</p>
+                        \[\delta W_e = \int_0^\ell -\delta v \cdot q(x) \, dx - \delta v(\ell) \cdot k \cdot v(\ell)\]
+                        
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell \delta v_{/xx} \, EJ \, v_{/xx} \, dx\]
+                        
+                        <p>With:</p>
+                        \[\delta v = \delta a \cdot x^2\]
+                        \[v_{/xx} = a \cdot 2 \qquad \delta v_{/xx} = \delta a \cdot 2\]
+                        \[q(x) = p \cdot \frac{x}{\ell}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply Principle of Virtual Work</h4>
+                        <p>PVW: \(\delta W_i = \delta W_e\)</p>
+                        \[\delta a \int_0^\ell 2 EJ \cdot 2a \, dx = -\delta a \left( \int_0^\ell x^2 \cdot p \cdot \frac{x}{\ell} \, dx + \ell^2 \cdot k \cdot a \cdot \ell^2 \right)\]
+                        
+                        \[a \cdot 4EJ \cdot \ell = -\frac{1}{4} \frac{p\ell^4}{\ell} - a \cdot k\ell^4\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Solve for coefficient \(a\)</h4>
+                        \[a = -\frac{p\ell^2}{16EJ + 4k\ell^3}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate displacement at \(x = \ell\)</h4>
+                        \[v(\ell) = a \cdot \ell^2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{v(\ell) = -66.67 \text{ mm}}\]
+                    </div>
+                    
+                    <div class="matlab-section">
+                        <h4>MATLAB Verification</h4>
+                        <div class="matlab-code">
+<pre><span class="matlab-keyword">clear</span> variables
+<span class="matlab-keyword">close</span> all
+home
+
+<span class="matlab-comment">% Data</span>
+f = <span class="matlab-number">14</span>;      <span class="matlab-comment">% [N/mm]</span>
+EJ = <span class="matlab-number">1E+10</span>;  <span class="matlab-comment">% [Nmm^2]</span>
+l = <span class="matlab-number">2000</span>;    <span class="matlab-comment">% [mm]</span>
+k = <span class="matlab-number">100</span>;     <span class="matlab-comment">% [N/mm]</span>
+
+<span class="matlab-comment">% Solution</span>
+<span class="matlab-keyword">syms</span> c x
+
+q = f*x/l;
+Phi = x^<span class="matlab-number">2</span>;
+w = c*Phi;
+
+LHS = int(diff(Phi, x, <span class="matlab-number">2</span>)^<span class="matlab-number">2</span>*EJ*c, x, <span class="matlab-number">0</span>, l);
+RHS = int(-Phi*q, x, <span class="matlab-number">0</span>, l) - subs(Phi, x, l)^<span class="matlab-number">2</span>*c*k;
+
+c_d = double(solve(LHS == RHS, c));
+
+w_a = double(subs(w, [c x], [c_d l]))</pre>
+                        </div>
+                        <div class="matlab-output">
+                            <span class="label">w_a = </span><span class="value">-66.666666666666671</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Exercise 2 <span class="exam-info">Exam 05/07/2023</span></h2>
+                    
+                    <p class="problem-statement">
+                        A beam with fixed support at the left end is subjected to a uniform distributed axial load. Using two linear finite elements, find the displacement \(U_3\) at the free end.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX12-Displacement_Methods_II/beam_uniform_load_finite_elements.png" alt="Beam with uniform load discretized into finite elements">
+                        <figcaption>Beam discretized into two linear finite elements with uniform distributed load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 3000 \text{ mm}\) (total beam length)</li>
+                            <li>\(EA = 7 \times 10^5 \text{ N}\) (axial rigidity)</li>
+                            <li>\(p(x) = 10 \text{ N/mm}\) (uniform distributed load)</li>
+                            <li>LINEAR FE ELEMENTS</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="find-statement">
+                        <strong>Find:</strong> \(U_3\) (displacement at node 3)
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define element parameters</h4>
+                        <p>Element length:</p>
+                        \[\ell_e = \frac{\ell}{2}\]
+                        
+                        <p>Local reference system for each element with shape functions:</p>
+                        \[u_e(x) = N_1(x) \cdot u_1 + N_2(x) \cdot u_2 = \underline{N}_e \cdot \underline{q}_e = \begin{bmatrix} N_1 & N_2 \end{bmatrix} \begin{bmatrix} u_1 \\ u_2 \end{bmatrix}\]
+                        
+                        \[N_1(x) = \frac{x_2 - x}{\ell_e}\]
+                        \[N_2(x) = \frac{x - x_1}{\ell_e}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Compute strain-displacement relation</h4>
+                        \[\varepsilon_e(x) = u_{e/x}(x) = \sum_i N_{i/x} \cdot u_i\]
+                        \[= -\frac{1}{\ell_e} \cdot u_1 + \frac{1}{\ell_e} u_2 = \begin{bmatrix} -\frac{1}{\ell_e} & \frac{1}{\ell_e} \end{bmatrix} \begin{bmatrix} u_1 \\ u_2 \end{bmatrix} = \underline{B}_e \cdot \underline{q}_e\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Compute element stiffness matrix</h4>
+                        <p>Internal virtual work:</p>
+                        \[\delta W_{i_e} = \int_{x_1}^{x_2} \delta \varepsilon_e^T \cdot EA \, \varepsilon_e \, dx = \delta \underline{q}_e^T \cdot \underline{K}_e \cdot \underline{q}_e\]
+                        
+                        <p>Element stiffness matrix:</p>
+                        \[\underline{K}_e = \frac{EA}{\ell_e} \cdot \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Compute element force vector</h4>
+                        <p>External virtual work:</p>
+                        \[\delta W_{e_e} = \int_{x_1}^{x_2} \delta \underline{u}_e^T \cdot p(x) \, dx = \delta \underline{q}_e^T \cdot \begin{bmatrix} 1 \\ 1 \end{bmatrix} \frac{p \cdot \ell_e}{2} = \delta \underline{q}_e^T \cdot \underline{f}_e\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Assemble global system</h4>
+                        <p>Assembly mapping:</p>
+                        <ul>
+                            <li>Element #1: \(u_1 = U_1\), \(u_2 = U_2\)</li>
+                            <li>Element #2: \(u_1 = U_2\), \(u_2 = U_3\)</li>
+                        </ul>
+                        
+                        <p>Global displacement vector:</p>
+                        \[\underline{q} = \begin{bmatrix} U_1 \\ U_2 \\ U_3 \end{bmatrix}\]
+                        
+                        <p>Global stiffness matrix:</p>
+                        \[\underline{K} = \begin{bmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix} \cdot \frac{EA}{\ell_e}\]
+                        
+                        <p>Global force vector:</p>
+                        \[\underline{f} = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} \frac{p \cdot \ell_e}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solve the system</h4>
+                        <p>Apply boundary condition: \(U_1 = 0\)</p>
+                        
+                        \[\frac{EA}{\ell} \begin{bmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix} \cdot \begin{bmatrix} U_1 \\ U_2 \\ U_3 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} \frac{p \cdot \ell_e}{2}\]
+                        
+                        <p>Reduced system (eliminating first row/column):</p>
+                        \[\begin{cases} 2U_2 - U_3 = \frac{p\ell_e^2}{EA} \\ \\ -U_2 + U_3 = \frac{p\ell_e^2}{2EA} \end{cases}\]
+                        
+                        <p>Solution:</p>
+                        \[\begin{cases} U_2 = \frac{3}{2} \frac{p\ell_e^2}{EA} \\ \\ U_3 = 2 \frac{p\ell_e^2}{EA} \end{cases}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{U_3 = 64.286 \text{ mm}}\]
+                    </div>
+                    
+                    <div class="matlab-section">
+                        <h4>MATLAB Verification</h4>
+                        <div class="matlab-code">
+<pre><span class="matlab-keyword">close</span> all
+<span class="matlab-keyword">clear</span> variables
+home
+
+<span class="matlab-comment">% Data</span>
+f = <span class="matlab-number">10</span>;       <span class="matlab-comment">% N/mm</span>
+l = <span class="matlab-number">3000</span>;     <span class="matlab-comment">% mm</span>
+EA = <span class="matlab-number">7E+05</span>;   <span class="matlab-comment">% N</span>
+
+<span class="matlab-comment">% Solution</span>
+<span class="matlab-keyword">syms</span> x_e u_1 u_2 u_3
+
+l_e = l/<span class="matlab-number">2</span>;
+
+N_1 = (l_e-x_e)/l_e;
+N_2 = (x_e)/l_e;
+
+Ne_1 = [N_1 N_2 <span class="matlab-number">0</span>];
+Ne_2 = [<span class="matlab-number">0</span>   N_1 N_2];
+
+u = [u_1; u_2; u_3];
+
+Be_1 = diff(Ne_1, x_e, <span class="matlab-number">1</span>);
+Be_2 = diff(Ne_2, x_e, <span class="matlab-number">1</span>);
+
+K = (int(Be_1.'*EA*Be_1, x_e, <span class="matlab-number">0</span>, l_e) + int(Be_2.'*EA*Be_2, x_e, <span class="matlab-number">0</span>, l_e));
+
+dW_e = (int(Ne_1.', x_e, <span class="matlab-number">0</span>, l_e) + int(Ne_2.', x_e, <span class="matlab-number">0</span>, l_e))*f;
+
+sol = solve(K(<span class="matlab-number">2</span>:end, <span class="matlab-number">2</span>:end)*u(<span class="matlab-number">2</span>:end) == dW_e(<span class="matlab-number">2</span>:end), u(<span class="matlab-number">2</span>:end));
+
+double(sol.u_3)</pre>
+                        </div>
+                        <div class="matlab-output">
+                            <span class="label">ans = </span><span class="value">64.285714285714292</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Exercise 3 <span class="exam-info">Exam 05/09/2023</span></h2>
+                    
+                    <p class="problem-statement">
+                        A simply supported beam with a spring attached at midspan is subjected to a uniform distributed load. Find the displacement \(v\) at midspan using a trigonometric approximation.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX12-Displacement_Methods_II/simply_supported_beam_uniform_load_spring.png" alt="Simply supported beam with spring at midspan">
+                        <figcaption>Simply supported beam with uniform load and spring support at midspan</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1000 \text{ mm}\)</li>
+                            <li>\(EJ = 1 \times 10^{12} \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(k = 8 \text{ MPa} \left( \frac{\text{N}}{\text{mm}} \cdot \frac{1}{\text{mm}} \right)\)</li>
+                            <li>\(f = 100 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="find-statement">
+                        <strong>Find:</strong> \(v\) using trigonometric approximation
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Assume trigonometric displacement function</h4>
+                        <p>To satisfy boundary conditions \(v(0) = 0\) and \(v(\ell) = 0\):</p>
+                        \[v(x) = A \cdot \sin\left(\frac{\pi \cdot x}{\ell}\right) = A \cdot \phi(x)\]
+                        
+                        <p>Derivatives:</p>
+                        \[v_{/x}(x) = A \frac{\pi}{\ell} \cdot \cos\left(\frac{\pi x}{\ell}\right) = A \, \phi_{/x}(x)\]
+                        \[v_{/xx}(x) = -A \frac{\pi^2}{\ell^2} \cdot \sin\left(\frac{\pi x}{\ell}\right) = A \cdot \phi_{/xx}(x)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Write virtual work expressions</h4>
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell \delta v_{/xx} \, EJ \, v_{/xx} \, dx\]
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = -\int_0^\ell \delta v \cdot f(x) \, dx - \int_0^\ell \delta v \, k \cdot v \, dx\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Evaluate integrals</h4>
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \delta A \cdot \int_0^\ell -\frac{\pi^2}{\ell^2} \sin\left(\frac{\pi x}{\ell}\right) EJ \cdot \left( -\frac{\pi^2}{\ell^2} \right) \cdot A \cdot \sin\left(\frac{\pi x}{\ell}\right) dx\]
+                        
+                        <p class="side-note">Known integral: \(\int_0^\ell \sin^2\left(\frac{\pi x}{\ell}\right) dx = \frac{\ell}{2}\)</p>
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = \delta A \cdot \left( -\int_0^\ell \sin\left(\frac{\pi x}{\ell}\right) \cdot f \, dx - \int_0^\ell \sin^2\left(\frac{\pi x}{\ell}\right) \cdot k \cdot A \, dx \right)\]
+                        
+                        <p class="side-note">Known integral: \(\int_0^\ell \sin\left(\frac{\pi x}{\ell}\right) dx = \frac{2\ell}{\pi}\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply PVW and solve for A</h4>
+                        <p>PVW: \(\delta W_i = \delta W_e\)</p>
+                        \[EJ \cdot A \cdot \frac{\pi^4}{\ell^3} \cdot \frac{\ell}{2} = -f \cdot \frac{2\ell}{\pi} - kA \cdot \frac{\ell}{2}\]
+                        
+                        <p>Solving for \(A\):</p>
+                        \[A = -\frac{f \cdot \frac{2\ell}{\pi}}{\frac{1}{2}EJ\frac{\pi^4}{\ell^3} + k\frac{\ell}{2}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate displacement at midspan</h4>
+                        \[v\left(\frac{\ell}{2}\right) = A \cdot \sin\left(\frac{\pi \cdot \ell/2}{\ell}\right) = A \cdot \sin\left(\frac{\pi}{2}\right) = A\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{v\left(\frac{\ell}{2}\right) = -1.208 \text{ mm}}\]
+                    </div>
+                    
+                    <div class="matlab-section">
+                        <h4>MATLAB Verification</h4>
+                        <div class="matlab-code">
+<pre><span class="matlab-keyword">close</span> all
+<span class="matlab-keyword">clear</span> variables
+home
+
+<span class="matlab-comment">% Data</span>
+l = <span class="matlab-number">1000</span>;     <span class="matlab-comment">% mm</span>
+EJ = <span class="matlab-number">1E+12</span>;   <span class="matlab-comment">% Nmm^2</span>
+k = <span class="matlab-number">8</span>;        <span class="matlab-comment">% MPa</span>
+f = <span class="matlab-number">100</span>;      <span class="matlab-comment">% N/mm</span>
+
+<span class="matlab-comment">% Solution</span>
+<span class="matlab-keyword">syms</span> z A
+
+phi = sin(pi*z/l);
+
+LHS = int(diff(phi, <span class="matlab-number">2</span>, z)^<span class="matlab-number">2</span>*EJ*A, z, <span class="matlab-number">0</span>, l) + ...
+      int(phi*f, z, <span class="matlab-number">0</span>, l) + ...
+      int(phi*k*A*phi, z, <span class="matlab-number">0</span>, l);
+
+sol = solve(LHS == <span class="matlab-number">0</span>, A);
+
+v = double(sol*subs(phi, z, l/<span class="matlab-number">2</span>))</pre>
+                        </div>
+                        <div class="matlab-output">
+                            <span class="label">v = </span><span class="value">-1.20790297306587</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Exercise 4 <span class="exam-info">Exam 13/06/2023</span></h2>
+                    
+                    <p class="problem-statement">
+                        The two-node finite element sketched in the figure is loaded by the distributed force \(f(x)\). Compute the virtual work of the force for the virtual displacement of node #2. The overall length of the finite element is equal to 1 mm.
+                    </p>
+                    <p>(Unit for result: N·mm)</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX12-Displacement_Methods_II/two_node_element_curved_distributed_load.png" alt="Two-node element with curved distributed load">
+                        <figcaption>Two-node finite element with curved distributed load \(f(x) = -4x^2 + 4x\)</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(f(x) = -4x^2 + 4x \text{ N/mm}\)</li>
+                            <li>\(\ell = 1 \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="find-statement">
+                        <strong>Find:</strong> Virtual work contribution from node 2:
+                        \[\delta W_e = \delta u_1 \cdot [\ldots] + \delta u_2 \cdot [\text{THIS}]\]
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define shape functions</h4>
+                        <p>For a two-node element with unit length:</p>
+                        \[N_1(x) = (1 - x)\]
+                        \[N_2(x) = x\]
+                        
+                        <p>Displacement interpolation:</p>
+                        \[u(x) = N_1 \cdot u_1 + N_2 \cdot u_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Write external virtual work expression</h4>
+                        \[\delta W_e = \int_0^\ell \delta u \cdot f(x) \, dx\]
+                        \[= \delta u_1 \cdot \int_0^\ell N_1 \cdot f(x) \, dx + \delta u_2 \cdot \underline{\underline{\int_0^\ell N_2 \cdot f(x) \, dx}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Evaluate the integral for node 2</h4>
+                        \[\int_0^\ell N_2 \cdot f(x) \, dx = \int_0^\ell x \left( -4x^2 + 4x \right) dx\]
+                        \[= \int_0^\ell -4x^3 + 4x^2 \, dx\]
+                        \[= \left[ -x^4 + \frac{4}{3} x^3 \right]_0^\ell\]
+                        \[= -1 + \frac{4}{3} = \frac{1}{3}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\int_0^\ell N_2 \cdot f(x) \, dx = \frac{1}{3} \text{ N} \cdot \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 5 -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Exercise 5 <span class="exam-info">Exam 09/09/2024</span></h2>
+                    
+                    <p class="problem-statement">
+                        The single bilinear finite element sketched in the figure has the displacement of the top left, bottom left and bottom right nodes completely constrained. The element has unit thickness, and the material works in a state of plane stress, so that:
+                    </p>
+                    
+                    \[\begin{Bmatrix} \sigma_{xx} \\ \sigma_{yy} \\ \tau_{xy} \end{Bmatrix} = \frac{E}{1-\nu^2} \begin{bmatrix} 1 & \nu & 0 \\ \nu & 1 & 0 \\ 0 & 0 & (1-\nu)/2 \end{bmatrix} \begin{Bmatrix} \varepsilon_{xx} \\ \varepsilon_{yy} \\ \gamma_{xy} \end{Bmatrix}\]
+                    
+                    <p>The top right node is loaded by the vertical force \(F\), as sketched. Compute the horizontal displacement \(u\) of the top right node.</p>
+                    <p>(Unit for result: mm)</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX12-Displacement_Methods_II/rectangular_bilinear_element_plane_stress.png" alt="Rectangular bilinear element in plane stress">
+                        <figcaption>Rectangular bilinear finite element with constrained nodes and applied force F</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(t = 1 \text{ mm}\) (thickness)</li>
+                            <li>\(a = 4 \text{ mm}\) (width)</li>
+                            <li>\(b = 3 \text{ mm}\) (height)</li>
+                            <li>\(E = 72000 \text{ MPa}\) (Young's modulus)</li>
+                            <li>\(\nu = 0.3\) (Poisson's ratio)</li>
+                            <li>\(F = 100 \text{ N}\) (applied force)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="find-statement">
+                        <strong>Find:</strong> Horizontal displacement \(u_2\) of top right node
+                    </div>
+                    
+                    <div class="side-note">
+                        <strong>Note:</strong> BILINEAR means that \(u(x)\) and \(v(x)\) are linear in both \(x\) and \(y\) directions.
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Apply boundary conditions</h4>
+                        <p>From boundary conditions (nodes 1, 3, 4 constrained):</p>
+                        \[\begin{cases} u_1, u_3, u_4 = 0 \\ v_1, v_3, v_4 = 0 \end{cases}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Write PVW for plane stress</h4>
+                        \[\int_V \delta \underline{\varepsilon}^T \cdot \underline{\sigma} \, dV = \delta \underline{u}^T(a,b) \cdot \underline{F}\]
+                        
+                        <p>Since everything is constant in \(z\) for plane stress:</p>
+                        \[\int_V \delta \underline{\varepsilon}^T \cdot \underline{\sigma} \, dV = \int_A \delta \underline{\varepsilon}^T \cdot \underline{\sigma} \, dA \cdot t \quad \text{where } t = 1\]
+                        
+                        <p>With:</p>
+                        \[\underline{u} = \begin{Bmatrix} u(x,y) \\ v(x,y) \end{Bmatrix} \qquad \underline{F} = \begin{Bmatrix} 0 \\ -F \end{Bmatrix}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Define displacement interpolation</h4>
+                        <p>Since nodes 1, 3, 4 are constrained, the displacement field depends only on \(u_2\) and \(v_2\):</p>
+                        \[\underline{u}(x,y) = \begin{Bmatrix} u(x,y) \\ v(x,y) \end{Bmatrix} = \begin{bmatrix} \frac{xy}{ab} & 0 \\ 0 & \frac{xy}{ab} \end{bmatrix} \begin{Bmatrix} u_2 \\ v_2 \end{Bmatrix} = \underline{N} \cdot \underline{q}\]
+                        
+                        <p class="side-note">
+                            <strong>Interpolation explanation:</strong> From \(u_2\), fix \(y = b\), get \(u(x)\) using interpolation \(N_{x_2} = \frac{x}{a}\), so \(u(x) = u_2 \cdot \frac{x}{a}\). Then interpolate \(u(x)\) in \(y\) using \(N_{y_2} = \frac{y}{b}\), giving \(u(x,y) = (u_2 \cdot \frac{x}{a}) \cdot \frac{y}{b}\)
+                        </p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Compute strain-displacement matrix</h4>
+                        \[\underline{\varepsilon} = \begin{Bmatrix} \varepsilon_{11} \\ \varepsilon_{22} \\ \gamma_{12} \end{Bmatrix} = \begin{bmatrix} \partial/\partial x & 0 \\ 0 & \partial/\partial y \\ \partial/\partial y & \partial/\partial x \end{bmatrix} \underline{u}\]
+                        
+                        \[\underline{\varepsilon} = \begin{bmatrix} \frac{y}{ab} & 0 \\ 0 & \frac{x}{ab} \\ \frac{x}{ab} & \frac{y}{ab} \end{bmatrix} \cdot \begin{Bmatrix} u_2 \\ v_2 \end{Bmatrix} = \underline{B} \cdot \underline{q}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Constitutive relation</h4>
+                        <p>Stress as function of strain:</p>
+                        \[\underline{\sigma} = \underline{D} \cdot \underline{\varepsilon}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Compute virtual work terms</h4>
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_A \delta \underline{q}^T \cdot \underline{B}^T \cdot \underline{D} \cdot \underline{B} \cdot \underline{q} \, dA\]
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = \delta \underline{q}^T \cdot \underline{N}^T(a,b) \cdot \underline{F} = \delta \underline{q}^T \cdot \underline{F} = -\delta v_2 \cdot F\]
+                        
+                        <p>Note: \(\underline{N}^T(a,b) = \underline{I}\) (identity) since the shape functions equal 1 at node 2.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Apply PVW and solve</h4>
+                        \[\delta \underline{q}^T \cdot \underbrace{\int_A \underline{B}^T \underline{D} \underline{B} \, dA}_{\underline{K}} \cdot \underline{q} = \delta \underline{q}^T \cdot \underline{F}\]
+                        
+                        <p>Solve:</p>
+                        \[\underline{K} \, \underline{q} = \underline{f} \quad \text{for} \quad \underline{q} = \begin{Bmatrix} u_2 \\ v_2 \end{Bmatrix}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{u_2 = 1.08 \times 10^{-3} \text{ mm}}\]
+                    </div>
+                    
+                    <div class="matlab-section">
+                        <h4>MATLAB Verification</h4>
+                        <div class="matlab-code">
+<pre><span class="matlab-keyword">close</span> all
+<span class="matlab-keyword">clear</span> variables
+home
+
+<span class="matlab-keyword">syms</span> x y z u_2 v_2 t a b E nu F
+
+q = [u_2; v_2];
+B = [
+    y/a/b <span class="matlab-number">0</span>;
+    <span class="matlab-number">0</span> x/a/b;
+    x/a/b y/a/b
+];
+D = E/(<span class="matlab-number">1</span>-nu^<span class="matlab-number">2</span>)*[
+    <span class="matlab-number">1</span> nu <span class="matlab-number">0</span>;
+    nu <span class="matlab-number">1</span> <span class="matlab-number">0</span>;
+    <span class="matlab-number">0</span> <span class="matlab-number">0</span> (<span class="matlab-number">1</span>-nu)/<span class="matlab-number">2</span>
+];
+F_v = [
+    <span class="matlab-number">0</span>;
+    -F
+];
+
+RHS = F_v;
+K = int(...
+    int( ...
+    int( ...
+    transpose(B)*D*B, x, <span class="matlab-number">0</span>, a ...
+    ), y, <span class="matlab-number">0</span>, b ...
+    ), z, <span class="matlab-number">0</span>, t);
+
+LHS = K*q;
+
+<span class="matlab-comment">% Data</span>
+t = <span class="matlab-number">1</span>;
+a = <span class="matlab-number">4</span>;
+b = <span class="matlab-number">3</span>;
+E = <span class="matlab-number">72000</span>;
+nu = <span class="matlab-number">.3</span>;
+F = <span class="matlab-number">100</span>;
+
+sol = solve(subs(LHS) == subs(RHS), q);
+
+u_2_d = double(sol.u_2)</pre>
+                        </div>
+                        <div class="matlab-output">
+                            <span class="label">u_2_d = </span><span class="value">0.00108480136937375</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: #666;">
+            <p>Exercise Session 12 - Structural Mechanics</p>
+            <p style="font-size: 0.9rem;">MATLAB verifications published with MATLAB® R2022b</p>
+        </footer>
+    </article>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "3d_frame_structure_l_shaped_beam.png": {
+    "suggested_name": "3d_frame_structure_l_shaped_beam",
+    "description": "Three-dimensional L-shaped frame structure consisting of two perpendicular beam segments meeting at point C. The structure has a fixed support at point A (located at origin) and a fixed support at point B (at coordinates 0, 1000, 1000 mm). Point C is located at coordinates 0, 0, 1000 mm, and point D is at coordinates 1000, 0, 1000 mm. A horizontal force F is applied at point C in the positive x-direction, with displacement u indicated in red. The coordinate system shows x, y, and z axes with origin at point A. The diagram is labeled \"Hyperstatic\" indicating a statically indeterminate structure. Two simplified views are shown below: a side elevation view (left) showing the vertical segment A-B of length ℓ and horizontal segment C-D of length ℓ, and a plan view (right) showing the horizontal segment. Given data includes F = 1000 N, EA = 10⁶ N, EIxx = EIyy = GJ = 10¹⁰ Nmm², and ℓ = 1000 mm."
+  },
+  "triangular_truss_structure_axial_loads.png": {
+    "suggested_name": "triangular_truss_structure_axial_loads",
+    "description": "Planar triangular truss structure with three members of equal length ℓ forming an equilateral configuration. The truss has fixed supports at nodes 1 (top left) and 2 (bottom), with node 4 (right vertex) free. A horizontal force F is applied at node 4 pointing leftward. The three members are labeled: member connecting nodes 1-4 (top diagonal), member connecting nodes 2-4 (bottom diagonal), and member connecting nodes 1-2 (left vertical/diagonal). Members are labeled with ℓ and circled numbers (1), (2), and (4) identify the nodes. The structure is noted as \"ALL TRUSS\" with \"ONLY AXIAL LOADS\" and \"NO MOMENTS, NO SHEARS\" indicating truss assumptions. The angle θ = 30° is specified. Given data includes ℓ = 1000 mm, EA = 10⁸ N, EIxx = EIyy = 10¹³ Nmm², GJ = 7×10⁹ Nmm², and F = 1000 N. The problem is labeled \"ISOSTATIC\" indicating a statically determinate structure."
+  }
+}

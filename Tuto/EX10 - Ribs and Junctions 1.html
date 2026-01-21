@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 10 - Ribs and Junctions</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        header .exam-info {
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+            break-inside: avoid;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .note {
+            background: #fefcbf;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #d69e2e;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .subsection h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        .equation-note {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .given-data ul {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>EX 10 - Ribs and Junctions</h1>
+            <p class="exam-info">Structural Analysis Examination</p>
+        </header>
+        
+        <main>
+            <!-- Problem 1: Riveted Connection -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: Riveted Connection Between Thin Plates</h2>
+                    <p class="problem-statement">EXAM 05/07/2023 — Find the shear stress in rivet #1 for a riveted connection between three thin rectangular plates.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX10 - Ribs and Junctions 1/riveted_connection_thin_plates.png" alt="Riveted connection between three thin rectangular plates showing front elevation view with rivet #1 circled">
+                        <figcaption>Figure 1: Riveted connection assembly with three plates and rivet layout</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(J_{xx} = 1.5 \times 10^4 \text{ N} \cdot \text{mm}\)</li>
+                            <li>\(A_1 = A_2 = A = 5000 \text{ mm}^2\)</li>
+                            <li>\(A_3 = 3500 \text{ mm}^2\)</li>
+                            <li>\(P = 100 \text{ mm}\)</li>
+                            <li>\(\phi = 7 \text{ mm}\) (rivet diameter)</li>
+                            <li>\(a = 500 \text{ mm}\)</li>
+                            <li>\(b = 240 \text{ mm}\)</li>
+                            <li>\(F = 1000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Shear Fluxes in the Panels</h4>
+                        <p>The shear flux in the panel is given by:</p>
+                        \[q = -F \cdot \frac{S_{x1}}{J_{xx}} = -P \cdot \left( -\frac{A \cdot \frac{b}{2}}{J_{xx}} \right)\]
+                        <p class="note">Note: Here there is not a stringer (i.e., axial load), thus \(q\) is constant along all the panel side.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Analysis of Plate 3</h4>
+                        <p>The force transmitted through the rivet in plate 3:</p>
+                        \[F_3 = q \cdot P\]
+                        <p>The shear stress in the rivet for plate 3:</p>
+                        \[\tau_3 = \frac{F_3}{A_{rivet}} = \frac{q \cdot P}{\pi \left( \frac{\phi}{2} \right)^2}\]
+                        <p>This represents the area of influence \(\int q \cdot P\).</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Analysis of Plate 2</h4>
+                        <p>The shear flux from plate 3 is distributed to plate 2. The force in the rivet:</p>
+                        \[F_2 = \frac{F_3}{2} = \frac{q \cdot P}{2}\]
+                        <p>The shear stress in rivet #1:</p>
+                        \[\tau_1 = \frac{F_2}{A_{rivet}} = \frac{\frac{1}{2} q \cdot P}{\pi \left( \frac{\phi}{2} \right)^2}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Shear Stress in Rivet #1:</strong>
+                        \[\boxed{\tau_1 = \frac{q \cdot P}{2\pi \left( \frac{\phi}{2} \right)^2}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: Clamped Beam Assembly -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Clamped Beam Assembly with Distributed Loads</h2>
+                    <p class="problem-statement">For a rectangular box beam with clamped support, find the shear flux \(q_i\) and normal stress \(\sigma_{zz}\) at \(\ell/2\) from the clamp, and plot the internal actions in the rib.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX10 - Ribs and Junctions 1/clamped_beam_assembly_3d.png" alt="Three-dimensional view of rectangular box beam with clamped support and distributed loads">
+                        <figcaption>Figure 2: Clamped beam assembly with distributed pressures and point load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1500 \text{ mm}\)</li>
+                            <li>\(a = 400 \text{ mm}\)</li>
+                            <li>\(b = 250 \text{ mm}\)</li>
+                            <li>\(t_1 = 1 \text{ mm}\)</li>
+                            <li>\(t_2 = 2 \text{ mm}\)</li>
+                            <li>\(t_3 = 1.5 \text{ mm}\)</li>
+                            <li>\(A_1 = 2000 \text{ mm}^2\)</li>
+                            <li>\(A_2 = 1000 \text{ mm}^2\)</li>
+                            <li>\(F = 10 \text{ kN}\)</li>
+                            <li>\(p_1 = 90 \text{ N/mm}\)</li>
+                            <li>\(p_2 = 300 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Section Properties</h4>
+                        <figure class="diagram">
+                            <img src="images/EX10 - Ribs and Junctions 1/rectangular_cross_section_properties.png" alt="Rectangular cross-section with corner stringers showing centroid location">
+                            <figcaption>Figure 3: Cross-section geometry and stringer locations</figcaption>
+                        </figure>
+                        
+                        <p>Centroid location:</p>
+                        \[\bar{y}_C = \frac{2 A_2 b}{2A_1 + 2A_2} = \frac{1}{3} b\]
+                        
+                        <p>Second moment of area:</p>
+                        \[J_{xx} = 2A_2 \left( \frac{2}{3} b \right)^2 + 2A_1 \left( -\frac{1}{3} b \right)^2 = \frac{4}{3} A_2 b^2\]
+                        
+                        <p>First moments of area:</p>
+                        \[S_{x1} = S_{x2} = -A_1 \cdot \frac{b}{3} = -\frac{2}{3} A_2 b\]
+                        \[S_{x3} = S_{x4} = \frac{2}{3} A_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Open Cell Fluxes</h4>
+                        <p>Computing fluxes for a generic \(T_y\) and \(M_z\):</p>
+                        \[q_1' = -T_y \frac{S_{x1}}{J_{xx}} = \frac{T_y}{2b} = -q_3'\]
+                        \[q_2' = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Moment Equilibrium (wrt point 2)</h4>
+                        <p>Left-hand side:</p>
+                        \[LHS = M_z - T_y \cdot \frac{a}{2}\]
+                        
+                        <p>Right-hand side:</p>
+                        \[RHS = 2 q^* \Omega_{cell} - 2 q_1' \Omega_1\]
+                        
+                        <p>Where \(\Omega_{cell} = a \cdot b\) and \(\Omega_1 = a \cdot \frac{b}{2}\)</p>
+                        
+                        <p>Equilibrium equation:</p>
+                        \[M_z - T_y \frac{a}{2} = 2q^* ab - 2 \frac{T_y}{2b} \cdot \frac{ab}{2}\]
+                        
+                        <p>Solving for closed cell flux:</p>
+                        \[q^* = \frac{M_z}{2ab}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Lumped Forces from External Loads</h4>
+                        <figure class="diagram">
+                            <img src="images/EX10 - Ribs and Junctions 1/beam_internal_actions_distributed_load.png" alt="Beam segment showing internal actions at two cross-sections">
+                            <figcaption>Figure 4: Internal actions diagram for beam sections</figcaption>
+                        </figure>
+                        
+                        <p>From point load \(F\):</p>
+                        \[T_{yF} = F\]
+                        \[M_{zF} = -F \cdot \frac{a}{2}\]
+                        
+                        <p>From distributed load \(p_1\):</p>
+                        \[T_{yP1} = p_1 \cdot a\]
+                        \[M_{zP1} = 0\]
+                        
+                        <p>From triangular distributed load \(p_2\):</p>
+                        \[T_{yP2} = \frac{1}{2} P_2 \cdot a\]
+                        \[M_{zP2} = -\left( \frac{1}{2} P_2 \cdot a \right) \cdot \frac{1}{6} a\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Internal Actions in the Beam</h4>
+                        
+                        <p><strong>Section ①:</strong></p>
+                        \[\begin{cases} T_{y1} = -T_{yF} - T_{yP1} \\ M_{x1} = -(T_{yF} + T_{yP1}) \cdot z_z \\ M_{z1} = M_{zF} + M_{zP1} \end{cases}\]
+                        
+                        <p><strong>Section ②:</strong></p>
+                        \[\begin{cases} T_{y2} = -T_{yP2} - T_{yP1} - T_{yF} \\ M_{x2} = -T_{yP2} \cdot z_2 - (T_{yP1} + T_{yF}) \cdot (\ell + z_2) \\ M_{z2} = M_{zP2} + M_{zP1} + M_{zF} \end{cases}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Shear Fluxes at \(z_2 = \frac{\ell}{2}\)</h4>
+                        \[q_1 = q_1' - q^* = \frac{T_{y2}}{2b} - \frac{M_{z2}}{2ab} = -262 \text{ N/mm}\]
+                        \[q_2 = q_2' - q^* = -30 \text{ N/mm}\]
+                        \[q_3 = q_3' - q^* = 182 \text{ N/mm}\]
+                        \[q_4 = -q^* = -30 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Axial Stress in Stringers at \(z_2 = \ell/2\)</h4>
+                        \[\sigma_{zz1} = -\frac{M_{x2}}{J_{xx}} \cdot \frac{1}{3} b = 168.5 \text{ MPa} = \sigma_{zz2}\]
+                        \[\sigma_{zz3} = \sigma_{zz4} = \frac{M_{x2}}{J_{xx}} \cdot \frac{2}{3} b = -297 \text{ MPa}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 8: Internal Actions in the Rib</h4>
+                        <figure class="diagram">
+                            <img src="images/EX10 - Ribs and Junctions 1/rib_equilibrium_shear_flux.png" alt="Rib equilibrium diagram showing shear flux discontinuity">
+                            <figcaption>Figure 5: Rib equilibrium and shear flux jump</figcaption>
+                        </figure>
+                        
+                        <p>Shear flux continuity and jump relations:</p>
+                        \[q_{z2} = q_{z1}\]
+                        \[q_{zR} = q_{z2} - q_{z1}\]
+                        
+                        <p class="note">The rib equilibrates: (1) the external force \(p_2\), and (2) the shear fluxes jump in the panel. The rib must be in equilibrium.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 9: Beam Model of the Rib</h4>
+                        <figure class="diagram">
+                            <img src="images/EX10 - Ribs and Junctions 1/rib_distributed_bending_moment.png" alt="Rib analysis showing distributed bending moment from shear flux discontinuity">
+                            <figcaption>Figure 6: Distributed bending moment in rib from shear flux discontinuity</figcaption>
+                        </figure>
+                        
+                        <p>This model allows an estimation of the internal actions in the rib, along one of its sides.</p>
+                        
+                        <p>Note: \(q_{2R} = q_{3R} = q^*\)</p>
+                        
+                        <p>Distributed bending moment given by \(q_{2R}\) and \(q_{4R}\):</p>
+                        \[m = 2 q_{2R} \cdot \Omega + 2 q_{4R} \cdot \Omega = 2(q_{2R} + q_{4R}) \cdot \left( \frac{1}{2} \frac{b}{2} d\eta \right)\]
+                        
+                        <p>For \(d\eta = 1\): \(m\) = bending moment per unit length given by \(q_{2R}\) and \(q_{4R}\)</p>
+                        
+                        <p>Internal shear in rib:</p>
+                        \[T = -q_{3R} \cdot b - \frac{1}{2} \left( \frac{\eta}{a} P_2 \right) \cdot \eta\]
+                        
+                        <p>Internal moment in rib:</p>
+                        \[M = -2 q_{3R} \left( \frac{1}{2} b \eta \right) - \left( \frac{1}{2} \left( \frac{\eta}{a} \cdot P_2 \right) \eta \right) \cdot \left( \frac{1}{3} \eta \right) - \int_0^{\eta} m \, d\eta\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Results at \(z_2 = \ell/2\):</strong><br>
+                        \[\boxed{q_1 = -262 \text{ N/mm}, \quad q_2 = -30 \text{ N/mm}, \quad q_3 = 182 \text{ N/mm}, \quad q_4 = -30 \text{ N/mm}}\]
+                        \[\boxed{\sigma_{zz1} = \sigma_{zz2} = 168.5 \text{ MPa}, \quad \sigma_{zz3} = \sigma_{zz4} = -297 \text{ MPa}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: Square Hollow Section Beam -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Square Hollow Section Beam with Riveted Connections</h2>
+                    <p class="problem-statement">For a square hollow section beam with clamped support, find the normal stress \(\sigma_{zz}\) at \(\ell/2\) and the shear stress in the rivets.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX10 - Ribs and Junctions 1/square_hollow_section_beam_3d.png" alt="Square hollow section beam with clamped support and corner stringers">
+                        <figcaption>Figure 7: Square hollow section beam with corner stringers</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A_1 = 300 \text{ mm}^2 = 2A\)</li>
+                            <li>\(A_2 = 150 \text{ mm}^2 = A\)</li>
+                            <li>\(t = 1.5 \text{ mm}\) (all panels)</li>
+                            <li>\(w = 100 \text{ mm}\)</li>
+                            <li>\(E = 72000 \text{ MPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(\ell = 1500 \text{ mm}\)</li>
+                            <li>\(d_1 = 2 \text{ mm}\), \(p_1 = 10 \text{ mm}\)</li>
+                            <li>\(d_2 = 3 \text{ mm}\), \(p_2 = 12 \text{ mm}\)</li>
+                            <li>\(F = 15 \text{ kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Section Properties</h4>
+                        <p>If we rotate the section 45°, it becomes symmetric with respect to \(x\) and \(y\) axes, so \(J_{xy} = 0\).</p>
+                        
+                        <p>Second moments of area:</p>
+                        \[J_{xx} = 2 A_1 \left( \frac{\sqrt{2}}{2} w \right)^2 = A_1 w^2 = 2Aw^2\]
+                        \[J_{yy} = 2 A_2 \left( \frac{\sqrt{2}}{2} w \right)^2 = A_2 w^2 = Aw^2\]
+                        
+                        <p>First moments of area:</p>
+                        \[S_{x1} = -S_{x3} = -A_1 \frac{\sqrt{2}}{2} w = -\sqrt{2} Aw\]
+                        \[S_{x2} = S_{x4} = 0\]
+                        \[S_{y1} = S_{y3} = 0\]
+                        \[S_{y2} = -S_{y4} = A_2 \frac{\sqrt{2}}{2} w = \frac{\sqrt{2}}{2} Aw\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Open Cell Fluxes</h4>
+                        <figure class="diagram">
+                            <img src="images/EX10 - Ribs and Junctions 1/diamond_cross_section_open_cell.png" alt="Diamond-shaped cross-section with open cell shear flux analysis">
+                            <figcaption>Figure 8: Open cell shear flux analysis for rotated section</figcaption>
+                        </figure>
+                        
+                        \[q_1' = -F_y \frac{S_{x1}}{J_{xx}} - F_x \frac{S_{y1}}{J_{yy}} = 0\]
+                        \[q_2' = -F_y \frac{S_{x1} + S_{x2}}{J_{xx}} - F_y \frac{S_{y1} + S_{y2}}{J_{yy}} = 0\]
+                        \[q_3' = -F_y \frac{S_{x4}}{J_{xx}} - F_x \frac{S_{y4}}{J_{yy}} = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Moment Equivalence (wrt point 2)</h4>
+                        \[LHS = 0\]
+                        \[RHS = 2q^* w^2 - 2q_3' \frac{w^2}{2}\]
+                        
+                        <p>Solving for closed cell flux:</p>
+                        \[q^* = \frac{q_3'}{2} = \frac{1}{2} \left( F_x \cdot \frac{\sqrt{2}}{2} w \right) = \frac{\sqrt{2} F_x}{4}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Closed Cell Total Fluxes</h4>
+                        \[q_1 = q_1' + q^*\]
+                        \[q_2 = q_2' + q^*\]
+                        \[q_3 = q_3' - q^*\]
+                        \[q_4 = -q^*\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Reaction Forces and Internal Actions</h4>
+                        <p>Support reactions:</p>
+                        \[R_x = F_x \qquad RM_x = F_y \cdot \ell\]
+                        \[R_y = -F_y \qquad RM_y = F_x \cdot \ell\]
+                        
+                        <p class="note">We don't care about \(RM_z\) because it doesn't act on stringers.</p>
+                        
+                        <p>Internal actions at section \(z\):</p>
+                        \[T_x = -F_x\]
+                        \[T_y = F_y\]
+                        \[M_x = F_y (z - \ell)\]
+                        \[M_y = F_x (z - \ell)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Stress in Stringers at \(z = \frac{\ell}{2}\)</h4>
+                        \[\sigma_{zz1} = + \frac{M_x(\frac{\ell}{2})}{J_{xx}} \cdot y = + \frac{F_y \cdot \frac{\ell}{2}}{J_{xx}} \left( + \frac{\sqrt{2}}{2} w \right) = 187.5 \text{ MPa} = -\sigma_{zz3}\]
+                        \[\sigma_{zz2} = - \frac{M_y}{J_{yy}} \cdot x = + \frac{(+F_x \cdot z_1)}{J_{yy}} \cdot \left( \frac{\sqrt{2}}{2} w \right) = 375.0 \text{ MPa} = -\sigma_{zz4}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Shear Stress in Rivets</h4>
+                        <p>Rivet forces from shear flux:</p>
+                        \[F_1 = q_3 \cdot p_1\]
+                        \[F_2 = q_2 \cdot p_2\]
+                        
+                        <p>Shear stresses in rivets:</p>
+                        \[\tau_1 = \frac{F_1}{\pi \left( \frac{d_1}{2} \right)^2} = \frac{q_3 \cdot p_1}{\pi \left( \frac{d_1}{2} \right)^2} = 119.37 \text{ MPa}\]
+                        \[\tau_2 = \frac{F_2}{\pi \left( \frac{d_2}{2} \right)^2} = \frac{q_2 \cdot p_2}{\pi \left( \frac{d_2}{2} \right)^2} = 190.99 \text{ MPa}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Results:</strong><br>
+                        \[\boxed{\sigma_{zz1} = 187.5 \text{ MPa}, \quad \sigma_{zz2} = 375.0 \text{ MPa}}\]
+                        \[\boxed{\sigma_{zz3} = -187.5 \text{ MPa}, \quad \sigma_{zz4} = -375.0 \text{ MPa}}\]
+                        \[\boxed{\tau_1 = 119.37 \text{ MPa}, \quad \tau_2 = 190.99 \text{ MPa}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: Rectangular Box Beam Rib Analysis -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: Moment in Rib of Rectangular Box Beam</h2>
+                    <p class="problem-statement">For a rectangular box beam with a rib, find the moment in the rib at \(\eta = \frac{a}{3}\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX10 - Ribs and Junctions 1/rectangular_box_beam_3d.png" alt="Rectangular box beam with rib showing local coordinates">
+                        <figcaption>Figure 9: Rectangular box beam with rib location</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 500 \text{ mm}\)</li>
+                            <li>\(b = 250 \text{ mm}\)</li>
+                            <li>\(t = 0.6 \text{ mm}\)</li>
+                            <li>\(A = 500 \text{ mm}^2\)</li>
+                            <li>\(\ell = 2000 \text{ mm}\)</li>
+                            <li>\(P = 1000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Open Cell Fluxes</h4>
+                        <figure class="diagram">
+                            <img src="images/EX10 - Ribs and Junctions 1/square_cross_section_open_cell_torque.png" alt="Square cross-section with open cell flux analysis under applied shear">
+                            <figcaption>Figure 10: Open cell shear flux analysis for rectangular section</figcaption>
+                        </figure>
+                        
+                        \[q_1' = q_2' = \frac{T_y}{2b}\]
+                        \[q_3' = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Moment Equivalence (wrt point 4)</h4>
+                        \[LHS = 0\]
+                        \[RHS = 2q^* ab + 2 \frac{T_y}{2b} \cdot \frac{ab}{2}\]
+                        
+                        <p>Solving for closed cell flux:</p>
+                        \[q^* = -\frac{T_y}{4b}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Total Fluxes</h4>
+                        \[q_1 = q_1' - q^* = \frac{T_y}{2b} + \frac{T_y}{4b} = \frac{3}{4} \frac{T_y}{b}\]
+                        \[q_2 = q_2' + q^* = \frac{T_y}{4b}\]
+                        \[q_3^* = -q^* = \frac{T_y}{4b}\]
+                        \[q_4 = -q^* = \frac{T_y}{4b}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Internal Action in the Rib</h4>
+                        <p>Shear flux jumps in the rib (with \(T_y = P\)):</p>
+                        \[q_{1R} = \frac{3}{4} \frac{P}{b} \qquad q_{3R} = \frac{P}{4b}\]
+                        \[q_{2R} = \frac{P}{4b} \qquad q_{4R} = \frac{P}{4b}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Moment Distribution in Rib</h4>
+                        <p>The moment at position \(\eta\) along the rib:</p>
+                        \[M(\eta) = 2 \cdot q_{1R} \left( \frac{b\eta}{2} \right) + 2 q_{3R} \left( \frac{b\eta}{4} \right) + 2 \cdot q_{4R} \left( \frac{b\eta}{4} \right) - P \cdot \eta\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Moment at \(\eta = \frac{a}{3}\):</strong>
+                        \[\boxed{M\left( \frac{a}{3} \right) = 0}\]
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerospace Structures - Lecture Notes</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        .course-info {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .course-info h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .instructor-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .instructor {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .instructor strong {
+            color: var(--secondary-color);
+        }
+
+        .exam-structure {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .exam-structure h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .exam-structure table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .exam-structure td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exam-structure .points {
+            text-align: right;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .bonus-info {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #c6f6d5;
+            border-radius: 4px;
+            color: var(--accent-color);
+        }
+
+        .contact {
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .contact a {
+            color: var(--secondary-color);
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .concept-box {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .concept-box h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .equations-list {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .side-note {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #d69e2e;
+        }
+
+        .side-note strong {
+            color: #b7791f;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .instructor-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>AEROSPACE STRUCTURES</h1>
+            <p class="subtitle">Lecture Notes on Structures and Stress Analysis</p>
+        </header>
+        
+        <main>
+            <!-- Course Information Section -->
+            <section class="course-info">
+                <h2>Course Information</h2>
+                
+                <div class="instructor-info">
+                    <div class="instructor">
+                        <strong>Marco Morandini</strong><br>
+                        Room B12, 2nd Floor
+                    </div>
+                    <div class="instructor">
+                        <strong>Prof. Caporale</strong><br>
+                        Room B14
+                    </div>
+                </div>
+
+                <div class="exam-structure">
+                    <h3>Exam Structure</h3>
+                    <table>
+                        <tr>
+                            <td>6 Exercises</td>
+                            <td class="points">3 points each</td>
+                        </tr>
+                        <tr>
+                            <td>6 Multiple Choice</td>
+                            <td class="points">1 point each</td>
+                        </tr>
+                        <tr>
+                            <td>2 Open Questions</td>
+                            <td class="points">6 points in total</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 15px;"><strong>Duration:</strong> 2 hours (30 minutes for open questions)</p>
+                    
+                    <div class="bonus-info">
+                        <strong>Bonus:</strong> If grade \(\geq 24\) → 3 additional points
+                    </div>
+                </div>
+
+                <p class="contact">
+                    <strong>Contact:</strong> <a href="mailto:marco.morandini@polimi.it">marco.morandini@polimi.it</a>
+                </p>
+            </section>
+
+            <!-- Section 1: Structures & Stress Tensor -->
+            <section class="problem-solution-pair" id="section-1">
+                <div class="problem">
+                    <h2>Section 1: Structures & Stress Tensor</h2>
+                    
+                    <p class="problem-statement">
+                        This section introduces the fundamental concepts of structural analysis and the stress tensor, focusing on equilibrium conditions for statically determined structures.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/01-Introduction/beam_fixed_pin_support_point_loads.png" alt="Beam with fixed support at left end and pin support at middle, with point loads Q at both ends">
+                        <figcaption>Figure 1: Beam with fixed support and pin support subjected to point loads Q</figcaption>
+                    </figure>
+
+                    <div class="concept-box">
+                        <h4>Beam Configuration</h4>
+                        <ul>
+                            <li>Fixed support at left end (prevents translation and rotation)</li>
+                            <li>Pin/hinge support at middle (prevents vertical translation, allows rotation)</li>
+                            <li>Point load \(Q\) at left end (downward)</li>
+                            <li>Point load \(Q\) at right end (downward)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Equilibrium Conditions</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Force Equilibrium</h4>
+                        <p>The sum of all forces must equal zero:</p>
+                        \[\sum_{i=1}^{3} \underline{F}_i = \underline{0}\]
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Moment Equilibrium</h4>
+                        <p>The sum of all moments about point O must equal zero:</p>
+                        \[\sum_{i=1}^{3} (\underline{P}_i - O) \times \underline{F}_i = \underline{0}\]
+                    </div>
+
+                    <div class="side-note">
+                        <strong>Note:</strong> Underlined symbols indicate vector quantities. These equilibrium equations form the basis for analyzing <strong>STATICALLY DETERMINED</strong> structures.
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Reaction Force Analysis</h4>
+                        <p>For the beam with loads \(F\) at both ends and a pin support at the middle:</p>
+                        <ul>
+                            <li>Downward force \(F\) at left</li>
+                            <li>Downward force \(F\) at right</li>
+                            <li>Reaction at middle support: \(X = 2F\) (upward)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Equilibrium, Stiffness, and Strength Requirements -->
+            <section class="problem-solution-pair" id="section-2">
+                <div class="problem">
+                    <h2>Section 2: Structural Requirements</h2>
+                    
+                    <p class="problem-statement">
+                        Three fundamental requirements govern structural design: Equilibrium, Stiffness, and Strength. This section examines each requirement through various structural configurations.
+                    </p>
+
+                    <div class="concept-box">
+                        <h4>Cantilever Beam Analysis</h4>
+                        <p>For a cantilever beam with force \(F\) at the free end:</p>
+                        <ul>
+                            <li>Applied force: \(F\) (downward at free end)</li>
+                            <li>Reaction force: \(F\) (upward at fixed support)</li>
+                            <li>Internal moment varies along the beam length</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Analysis of Requirements</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Moment Calculation</h4>
+                        <p>The internal moment at distance \(x\) from the free end:</p>
+                        \[M = F \cdot x\]
+                        <p>At the support, the reaction moment equals \(F \cdot x\) where \(x\) is the beam length.</p>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>1. Equilibrium Requirement</h4>
+                        <figure class="diagram">
+                            <img src="images/01-Introduction/curved_element_distributed_forces_equilibrium.png" alt="Curved structural element with distributed forces showing equilibrium">
+                            <figcaption>Figure 2: Equilibrium of a curved element with distributed loading and concentrated force Q</figcaption>
+                        </figure>
+                        <p>The equilibrium diagram shows a curved structural element subjected to:</p>
+                        <ul>
+                            <li>Distributed upward forces along top surfaces</li>
+                            <li>Distributed downward forces along bottom surfaces</li>
+                            <li>Concentrated force \(Q\) at the center (downward)</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>2. Stiffness Requirement</h4>
+                        <p>The stiffness requirement ensures that structural deformations remain within acceptable limits. The deflected shape must not exceed serviceability criteria.</p>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>3. Strength Requirement</h4>
+                        <p>The strength requirement ensures that internal stresses do not exceed material capacity. This involves analyzing the structural member under applied loads to verify adequate strength.</p>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Simply Supported Beam Example</h4>
+                        <p>For a beam with pin support at center and forces \(F\) at both ends:</p>
+                        <ul>
+                            <li>Downward force \(F\) on left side</li>
+                            <li>Downward force \(F\) on right side</li>
+                            <li>Reaction force: \(2F\) upward at center support</li>
+                        </ul>
+                        <p>The deflected shape shows sagging on both sides of the support.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Beam Support Configurations -->
+            <section class="problem-solution-pair" id="section-3">
+                <div class="problem">
+                    <h2>Section 3: Beam Support Configurations</h2>
+                    
+                    <p class="problem-statement">
+                        This section compares different beam support configurations and develops the equilibrium equations for free body diagram analysis.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/01-Introduction/beam_support_configurations_comparison.png" alt="Comparison of two beam configurations with different support conditions">
+                        <figcaption>Figure 3: Comparison of beam configurations - Left: Fixed-pin support, Right: Pin-pin support</figcaption>
+                    </figure>
+
+                    <div class="concept-box">
+                        <h4>Support Types</h4>
+                        <ul>
+                            <li><strong>Fixed Support:</strong> Prevents translation and rotation (hatched wall symbol)</li>
+                            <li><strong>Pin/Hinge Support:</strong> Prevents translation, allows rotation (triangular symbol)</li>
+                            <li><strong>Roller/Cart Support:</strong> Prevents vertical translation only, allows horizontal movement and rotation</li>
+                        </ul>
+                    </div>
+
+                    <div class="given-data">
+                        <h3>Configuration Details:</h3>
+                        <ul>
+                            <li><strong>Left Configuration:</strong> Fixed support at left end, pin support at interior, load \(F\) between supports</li>
+                            <li><strong>Right Configuration:</strong> Pin support at left end, pin support at interior, load \(F\) at right free end</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Free Body Diagram Analysis</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Reaction Forces</h4>
+                        <p>Define the following reaction forces:</p>
+                        <ul>
+                            <li>\(M\) = Moment reaction at fixed support</li>
+                            <li>\(H\) = Vertical reaction at left support</li>
+                            <li>\(R\) = Vertical reaction at interior support</li>
+                            <li>\(F\) = Applied load</li>
+                            <li>\(d_1\) = Distance from left support to interior support</li>
+                            <li>\(\ell\) = Distance from left support to applied load</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Vertical Force Equilibrium</h4>
+                        <p>Sum of vertical forces equals zero:</p>
+                        \[H + R - F = 0\]
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Moment Equilibrium</h4>
+                        <p>Sum of moments about the left support equals zero:</p>
+                        \[M + R \cdot d_1 - F \cdot \ell = 0\]
+                    </div>
+
+                    <div class="final-answer">
+                        <strong>Equilibrium Equations:</strong>
+                        \[\boxed{H + R - F = 0}\]
+                        \[\boxed{M + R \cdot d_1 - F \cdot \ell = 0}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Truss and Beam Configurations -->
+            <section class="problem-solution-pair" id="section-4">
+                <div class="problem">
+                    <h2>Section 4: Truss and Beam Structural Systems</h2>
+                    
+                    <p class="problem-statement">
+                        This section compares two fundamental structural systems for carrying vertical loads: truss structures and continuous beam structures.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/01-Introduction/truss_and_beam_configurations.png" alt="Triangular truss and three-span beam configurations">
+                        <figcaption>Figure 4: Comparison of structural systems - Left: Triangular truss, Right: Three-span continuous beam</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="solution">
+                    <h3>Structural System Comparison</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Triangular Truss Structure (Left)</h4>
+                        <ul>
+                            <li>Apex at top center with pin joint</li>
+                            <li>Vertical downward point load \(F\) applied at apex</li>
+                            <li>Two inclined members connecting apex to base</li>
+                            <li>Pin supports at both base corners</li>
+                            <li>Forms an isosceles triangle configuration</li>
+                            <li><strong>Load Transfer:</strong> Members carry axial loads only (tension or compression)</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Three-Span Continuous Beam (Right)</h4>
+                        <ul>
+                            <li>Horizontal beam with three pin supports</li>
+                            <li>Left support: pin connection</li>
+                            <li>Middle support: pin connection</li>
+                            <li>Right support: pin connection</li>
+                            <li>Vertical downward point load \(F\) applied at middle support location</li>
+                            <li><strong>Load Transfer:</strong> Members carry bending moments and shear forces</li>
+                        </ul>
+                    </div>
+
+                    <div class="final-answer">
+                        <strong>Key Difference:</strong><br>
+                        Trusses transfer loads through <em>axial forces</em> in members, while beams transfer loads through <em>bending moments and shear forces</em>.
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: #666;">
+            <p>Aerospace Structures - Politecnico di Milano</p>
+            <p>Instructors: Marco Morandini & Prof. Caporale</p>
+        </footer>
+    </article>
+</body>
+</html>

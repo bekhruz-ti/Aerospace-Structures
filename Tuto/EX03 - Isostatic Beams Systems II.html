@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB 3 - Isostatic Beams Systems II</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .subsection {
+            margin: 25px 0;
+        }
+
+        .subsection h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .equation-box {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>LAB 3</h1>
+            <p class="subtitle">Isostatic Beams Systems II</p>
+        </header>
+        
+        <main>
+            <!-- Problem 1: 2D Cantilever with Triangular Load -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: 2D Cantilever Beam with Triangular Distributed Load</h2>
+                    
+                    <p class="problem-statement">
+                        Analyze a 2D isostatic cantilever beam system with a triangular distributed load. The beam has length \(\ell\) with a fixed support at the left end and a roller support at the right end. A linearly varying distributed load increases from zero at the left to maximum intensity \(p\) [N/mm] at the right end.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/EX03 - Isostatic Beams Systems II/cantilever_beam_triangular_distributed_load.png" alt="2D cantilever beam with triangular distributed load">
+                        <figcaption>Figure 1: Cantilever beam with triangular distributed load</figcaption>
+                    </figure>
+
+                    <div class="given-data">
+                        <h3>Objectives:</h3>
+                        <ul>
+                            <li>Find Reaction Forces</li>
+                            <li>Find Internal Actions</li>
+                        </ul>
+                    </div>
+
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Beam length: \(\ell\)</li>
+                            <li>Maximum load intensity: \(p\) [N/mm]</li>
+                            <li>Load function: \(f(z)\) with \(f(\ell) = p\)</li>
+                            <li>System is Isostatic</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Determine the Load Function</h4>
+                        <p>The load function has the form:</p>
+                        \[f(z) = m \cdot z + q\]
+                        <p>where \(m = \frac{p}{\ell}\)</p>
+                        <p>Since \(f(0) = 0\), we have \(q = 0\)</p>
+                        <div class="equation-box">
+                            \[f(z) = \frac{p}{\ell} \cdot z\]
+                        </div>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate the Equivalent Force</h4>
+                        \[R = \int_0^\ell f(z) \, dz = \int_0^\ell \frac{p}{\ell} z \, dz = \left[\frac{1}{2} \frac{p}{\ell} z^2\right]_0^\ell = \frac{1}{2} p \cdot \ell\]
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Step 3: Find the Equivalent Application Point</h4>
+                        \[z_{eq} = \frac{1}{R} \int_0^\ell f(z) \cdot z \cdot dz = \frac{2}{3} \ell\]
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Reaction Forces</h4>
+                        <p>Equilibrium in z-direction:</p>
+                        \[R_{zA} = 0\]
+                        
+                        <p>Equilibrium in y-direction:</p>
+                        \[R_{yA} + R_{yB} + \frac{1}{2}p\ell = 0\]
+                        
+                        <p>Moment equilibrium about point A:</p>
+                        \[-R_{yB} \cdot \ell - \frac{1}{2} p\ell \cdot \frac{2}{3}\ell = 0\]
+                        
+                        <div class="final-answer">
+                            \[R_{yB} = -\frac{1}{3} p\ell\]
+                            \[R_{yA} = -\frac{1}{6} p\ell\]
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Internal Actions - From the Left</h4>
+                        <p>For a cut at position \(z_1\) from the left:</p>
+                        
+                        \[T_{z1} = 0\]
+                        
+                        \[T_{y1} = \frac{1}{6}p\ell - \frac{1}{2}\frac{p}{\ell} \cdot z_1 \cdot z_1\]
+                        <p class="note">Note: The second term represents the area of the triangle (½ × height × base)</p>
+                        
+                        \[M_{x1} = \frac{1}{6}p\ell \cdot z_1 - \frac{1}{2}\frac{p}{\ell}z_1^2 \cdot \frac{1}{3}z_1\]
+                        <p class="note">Note: The moment arm for the triangular load is \(\frac{1}{3}z_1\)</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Internal Actions - From the Right</h4>
+                        <p>Load intensity relationships:</p>
+                        \[p - p\left(1-\frac{z_z}{\ell}\right) = \frac{p}{\ell}z_z\]
+                        \[\frac{p}{\ell}(\ell - z_z) = p\left(1 - \frac{z_z}{\ell}\right)\]
+                        
+                        <p>For a cut at position \(z_2\) from the right:</p>
+                        
+                        \[T_{z2} = 0\]
+                        
+                        \[T_{y2} = -\frac{1}{2}\frac{p}{\ell}z_2 \cdot z_2 - p\left(1-\frac{z_2}{\ell}\right) \cdot z_2 + \frac{1}{3}p\ell\]
+                        
+                        \[M_{x2} = \frac{1}{3}p\ell \cdot z_2 - \frac{1}{2}\frac{p}{\ell}z_2^2 \cdot \frac{2}{3}z_2 - p\left(1-\frac{z_2}{\ell}\right) \cdot z_2 \cdot \frac{1}{2}z_2\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: 3D Cantilever with Uniform Load -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: 3D Cantilever Beam with Uniform Distributed Load</h2>
+                    
+                    <p class="problem-statement">
+                        Analyze a three-dimensional cantilever beam with a uniform distributed load \(p\) [N/mm²] applied over a partial length \(c\). The beam has total length \(\ell\) and is fixed at the left end.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/EX03 - Isostatic Beams Systems II/cantilever_beam_uniform_load_3d.png" alt="3D cantilever beam with uniform distributed load">
+                        <figcaption>Figure 2: 3D cantilever beam with uniform distributed load over partial length</figcaption>
+                    </figure>
+
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Total beam length: \(\ell\)</li>
+                            <li>Load applied over length: \(c\)</li>
+                            <li>Load intensity: \(p\) [N/mm²]</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate Resultant Force and Position</h4>
+                        <p>Resultant force:</p>
+                        \[R = \frac{1}{2}p \cdot c\]
+                        
+                        <p>Position of resultant from reference:</p>
+                        \[x_0 = \frac{1}{2}c - \frac{2}{3}c = -\frac{1}{6}c\]
+                        
+                        <p>Fixed-end moment:</p>
+                        \[M_z = R \cdot x_0 = -\frac{1}{2}pc \cdot \frac{1}{6}c = -\frac{1}{12}pc^2\]
+                        
+                        <p class="note">Note: Units are Moment × unit length: \(\left[\frac{N}{mm^2} \cdot mm^2 = \frac{N \cdot mm}{mm}\right]\)</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Reaction Forces</h4>
+                        <p>Equilibrium in z-direction:</p>
+                        \[R_z = 0\]
+                        
+                        <p>Equilibrium in y-direction:</p>
+                        \[R_y = -\frac{1}{2}pc\ell\]
+                        
+                        <p>Rotation about X-axis:</p>
+                        \[RM_x = -\frac{1}{2}pc\ell \cdot \frac{1}{2}\ell\]
+                        
+                        <p>Rotation about Z-axis (torsional moment):</p>
+                        \[RM_z = \frac{1}{12}pc^2 \cdot \ell\]
+                        
+                        <div class="final-answer">
+                            \[R_z = 0, \quad R_y = -\frac{1}{2}pc\ell\]
+                            \[RM_x = -\frac{1}{4}pc\ell^2, \quad RM_z = \frac{1}{12}pc^2\ell\]
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Internal Actions</h4>
+                        <p>For a cut at position \(z_1\):</p>
+                        
+                        \[T_y = -\frac{1}{2}pc \cdot z_1\]
+                        
+                        \[M_x = -\frac{1}{2}pcz_1 \cdot \frac{1}{2}z_1 = -\frac{1}{4}pcz_1^2\]
+                        
+                        \[M_z = \frac{1}{12}pc^2 \cdot z_1\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: 3D Frame with Inclined Member -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: 3D Frame Structure with Inclined Member</h2>
+                    
+                    <p class="problem-statement">
+                        Analyze a three-dimensional isostatic frame structure consisting of an inclined beam (member 3) connected to a horizontal beam with supports at points A and B. The inclined beam carries a uniform distributed load \(p \cdot c\) [N/mm] along its length \(\ell\). A concentrated force \(F\) is applied at the center of the horizontal beam.
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/EX03 - Isostatic Beams Systems II/3d_beam_system_inclined_member.png" alt="3D frame structure with inclined member">
+                        <figcaption>Figure 3: 3D isostatic frame with inclined member and distributed load</figcaption>
+                    </figure>
+
+                    <div class="given-data">
+                        <h3>Objectives:</h3>
+                        <ul>
+                            <li>Find Reaction Forces (RF)</li>
+                            <li>Find Internal Actions (AI)</li>
+                        </ul>
+                    </div>
+
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>System is Isostatic</li>
+                            <li>Distributed load: \(p \cdot c\) [N/mm]</li>
+                            <li>Member length: \(\ell\)</li>
+                            <li>Horizontal spans: \(\ell/4\), \(\ell/4\)</li>
+                            <li>Note: The inclined beam is out-of-plane</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate Resultant of Distributed Load</h4>
+                        \[R = pc \cdot \ell\]
+                        \[z_0 = \frac{\ell}{2}\]
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Reaction Forces</h4>
+                        
+                        <p>Equilibrium in z-direction:</p>
+                        \[R_{zC} = 0\]
+                        
+                        <p>Equilibrium in x-direction:</p>
+                        \[R_{xB} + R_{xC} = 0 \quad \rightarrow \quad R_{xB} = R_{xC} = 0\]
+                        
+                        <p>Equilibrium in y-direction:</p>
+                        \[R_{yA} + R_{yB} + R_{yC} - F + pc\ell = 0 \quad (*)\]
+                        
+                        <p><strong>Moment Equilibrium about point C:</strong></p>
+                        
+                        <p>Rotation about X:</p>
+                        \[pc\ell \cdot \frac{\ell}{2} + R_{yB} \cdot \ell - F \cdot \ell + R_{yA} \cdot \ell = 0 \quad (**)\]
+                        
+                        <p>Rotation about Y:</p>
+                        \[R_{xB} \cdot \ell = 0\]
+                        
+                        <p>Rotation about Z:</p>
+                        \[F \cdot \frac{\ell}{4} - R_{yA} \cdot \frac{\ell}{2} = 0\]
+                        
+                        <div class="final-answer">
+                            \[R_{yA} = \frac{1}{2}F\]
+                            \[R_{yB} = \frac{1}{2}(F - pc\ell)\]
+                            \[R_{yC} = -\frac{1}{2}pc\ell\]
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Internal Actions</h4>
+                        
+                        <p><strong>Section ①:</strong></p>
+                        \[T_{z1} = 0\]
+                        \[T_{y1} = -\frac{1}{2}F\]
+                        \[M_{x1} = -\frac{1}{2}F \cdot z_1\]
+                        
+                        <p><strong>Section ②:</strong></p>
+                        \[T_{y2} = F - \frac{1}{2}F = \frac{1}{2}F\]
+                        \[M_{x2} = F \cdot z_2 - \frac{1}{2}F \cdot \left(\frac{\ell}{4} + z_2\right)\]
+                        
+                        <p><strong>Section ③ (Inclined member):</strong></p>
+                        \[T_{y3} = \frac{1}{2}pc\ell - pc \cdot z_3\]
+                        \[M_{x3} = \frac{1}{2}pc\ell \cdot z_3 - pc \cdot z_3 \cdot \frac{z_3}{2}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: 2D Frame with Trapezoidal Load -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: 2D Frame with Trapezoidal Distributed Load</h2>
+                    
+                    <p class="problem-statement">
+                        Analyze a 2D frame structure consisting of a horizontal beam connected to an inclined member. The horizontal beam has a trapezoidal distributed load varying from intensity \(p_1\) [N/mm] at the left end to \(p_1 + p_2\) at the right end. The structure has a roller support at C (left), a pin connection at A, and a pin support at B (bottom).
+                    </p>
+
+                    <figure class="diagram">
+                        <img src="images/EX03 - Isostatic Beams Systems II/angled_beam_distributed_load.png" alt="2D frame with trapezoidal distributed load">
+                        <figcaption>Figure 4: 2D frame structure with trapezoidal distributed load</figcaption>
+                    </figure>
+
+                    <div class="given-data">
+                        <h3>Objectives:</h3>
+                        <ul>
+                            <li>Find Reaction Forces</li>
+                            <li>Find Internal Actions</li>
+                        </ul>
+                    </div>
+
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Horizontal spans: \(\ell\), \(\ell\)</li>
+                            <li>Vertical height: \(\ell\)</li>
+                            <li>Load intensity varies from \(p_1\) to \(p_1 + p_2\)</li>
+                            <li>Resultant forces: \(R_1 = 2p_1\ell\), \(R_2 = p_2\ell\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+
+                    <figure class="diagram">
+                        <img src="images/EX03 - Isostatic Beams Systems II/beam_interface_equilibrium_diagram.png" alt="Free body diagram showing equilibrium at interface">
+                        <figcaption>Figure 5: Free body diagram showing equilibrium at the interface</figcaption>
+                    </figure>
+                    
+                    <div class="subsection">
+                        <h4>Reaction Forces - Equilibrium Equations</h4>
+                        
+                        <p><strong>Horizontal member equilibrium:</strong></p>
+                        
+                        <p>z-direction:</p>
+                        \[R_{zC} + R_{zA} = 0 \quad (1)\]
+                        
+                        <p>y-direction:</p>
+                        \[R_{yC} + R_{yA} + R_1 + R_2 = 0 \quad (2)\]
+                        
+                        <p>Moment about A:</p>
+                        \[R_{yC} \cdot \ell + R_1 \cdot \ell + R_2 \cdot \frac{2}{3}\ell = 0 \quad (3)\]
+                        
+                        <p><strong>Equilibrium at interface:</strong></p>
+                        
+                        <p>z-direction:</p>
+                        \[R_{zB} - R_{zC} = 0 \quad (4)\]
+                        
+                        <p>y-direction:</p>
+                        \[R_{yB} - R_{yC} = 0 \quad (5)\]
+                        
+                        <p>Moment about B:</p>
+                        \[-R_{yC}\ell - R_{zC}\ell = 0 \quad (6)\]
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>Step 2: Solve for Reactions</h4>
+                        
+                        <p>From equation (3):</p>
+                        \[R_{yC} = -R_1 - R_2 = -\left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                        
+                        <p>From equation (6):</p>
+                        \[R_{zC} = -R_{yC} = \left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                        
+                        <p>From equation (1):</p>
+                        \[R_{zA} = -R_{zC} = -\left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                        
+                        <p>From equation (2):</p>
+                        \[R_{yA} = -R_{yC} - R_1 - R_2 = \left(2p_1 + \frac{2}{3}p_2\right)\ell - 2p_1\ell - p_2\ell = -\frac{1}{3}p_2\ell\]
+                        
+                        <p>From equation (4):</p>
+                        \[R_{zB} = R_{zC} = \left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                        
+                        <p>From equation (5):</p>
+                        \[R_{yB} = R_{yC} = -\left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                        
+                        <div class="final-answer">
+                            <strong>Reaction Forces:</strong>
+                            \[R_{yC} = -\left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                            \[R_{zC} = \left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                            \[R_{zA} = -\left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                            \[R_{yA} = -\frac{1}{3}p_2\ell\]
+                            \[R_{zB} = \left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                            \[R_{yB} = -\left(2p_1 + \frac{2}{3}p_2\right)\ell\]
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h4>Internal Actions</h4>
+                        
+                        <p><strong>Section ① (Left portion of horizontal beam):</strong></p>
+                        \[T_{z1} = 0\]
+                        \[T_{y1} = -p_1 \cdot z_1 - \frac{1}{2} \cdot \frac{p_2}{2\ell} \cdot z_1\]
+                        \[M_{x1} = -\frac{1}{2}p_1 z_1^2 - \frac{1}{6}\frac{p_2}{2\ell}z_1^2\]
+                        
+                        <p><strong>Section ② (Right portion of horizontal beam):</strong></p>
+                        \[T_{z2} = 0\]
+                        \[T_{y2} = -p_1(\ell + z_2) - \frac{1}{2}\frac{p_2}{2\ell}(\ell + z_2) + 2p_1\ell + \frac{2}{3}p_2\ell\]
+                        
+                        \[T_{z2} = -2p_1\ell - \frac{2}{3}p_2\ell\]
+                        
+                        \[M_{x2} = -\frac{1}{2}p_1(\ell + z_2)^2 - \frac{1}{6}\frac{p_2}{2\ell}(\ell + z_2)^2 + \left(2p_1\ell + \frac{2}{3}p_2\ell\right) \cdot z_2\]
+                        
+                        <p><strong>Section ③ (Inclined member):</strong></p>
+                        \[T_{y3} = 0\]
+                        \[M_{x3} = 0\]
+                        \[T_{z3} = \sqrt{2} \cdot \left(2p_1\ell + \frac{2}{3}p_2\ell\right)\]
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

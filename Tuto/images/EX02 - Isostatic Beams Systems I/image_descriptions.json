@@ -1,0 +1,34 @@
+{
+  "cantilever_beam_point_load.png": {
+    "suggested_name": "cantilever_beam_point_load",
+    "description": "Two-dimensional cantilever beam diagram showing a horizontal beam with fixed support (indicated by hatched lines) at the left end and free right end. The beam has length ℓ (labeled as \"known\" in red). A 3D coordinate system is shown with x-axis horizontal (along beam), y-axis vertical, and z-axis out of page. The diagram is labeled as problem 1) and relates to an isostatic beam system analysis where the task is to find reaction forces and internal actions. The beam represents a system with n rigid degrees of freedom equal to n constraints."
+  },
+  "cantilever_beam_3d_coordinate_system.png": {
+    "suggested_name": "cantilever_beam_3d_coordinate_system",
+    "description": "Diagram showing equilibrium analysis of beam segments with internal forces and moments. Left side shows a beam segment labeled (A) with length ℓ/2, subjected to vertical force F and reaction force ½Fℓ. Right side shows segment (B) with length ℓ/2 also with force F. Both segments include coordinate systems and force vectors. The diagram illustrates the concept that \"EVERYTHING IS IN EQUILIBRIUM\" including the full beam, beam parts, and interface between segments. Forces are shown with arrows indicating direction, and moments are represented with curved arrows. This represents a method for computing internal actions by analyzing beam segments in equilibrium."
+  },
+  "angled_beam_free_body_diagram.png": {
+    "suggested_name": "angled_beam_free_body_diagram",
+    "description": "Free body diagram of an angled beam structure showing equilibrium analysis. The beam consists of an inclined segment of length ℓ connected to a horizontal segment of length ℓ/2. A vertical upward force F is applied at the junction point. The diagram includes reaction forces at the fixed support: Rx, Ry, and moment RMx. Equilibrium equations are shown: X-direction: Rx = 0; Y-direction: Ry + F = 0, giving Ry = -F; Z-direction: Rz = 0; and moment equation: RMx - F·ℓ = 0, giving RMx = F·ℓ. The coordinate system shows x-horizontal, y-vertical, and z-axis out of page."
+  },
+  "beam_internal_actions_interface.png": {
+    "suggested_name": "beam_internal_actions_interface",
+    "description": "Detailed diagram showing internal actions at beam interface between two segments. The angled beam (segment 2) connects to horizontal beam (segment 1) at a junction point. Internal forces and moments are labeled: Tx2, Ty2, Tz2 (shear forces), Mx2, My2, Mz2 (moments) at the interface. The diagram shows segment 2 with length ℓ at an angle, meeting segment 1 (horizontal, length ℓ/2) where vertical force F is applied. Red annotations indicate \"those are the IA computed for z₁ = ℓ/2\" and \"we are imposing the equilibrium of the interface.\" Equilibrium equations listed show Tx2 = 0, Ty2 = -F, Tz2 = 0, Mx2 = -F·z2, My2 = 0, Mz2 = ½Fℓ, with notation \"wrt O\" (with respect to point O)."
+  },
+  "cantilever_beam_distributed_pressure.png": {
+    "suggested_name": "cantilever_beam_distributed_pressure",
+    "description": "Cantilever beam with distributed pressure P applied on the top surface. The beam has fixed support (hatched) at left end, total length ℓ, with segments labeled ℓ₁ and ℓ₂. Vertical downward force F is shown. The diagram is labeled \"2D\" and notes \"This is the beam section.\" A 3D coordinate system shows x, y, z axes. Below the main diagram is a detailed 3D view showing the beam cross-section with pressure distribution P applied over length Leq, with dimension xeq marked. The problem involves finding an equivalent line load Leq [N/m] that is equivalent to the pressure P [N/m²], requiring the right magnitude to give equivalent force distribution and the right point of application to give equivalent moment distribution."
+  },
+  "cantilever_beam_equivalent_load.png": {
+    "suggested_name": "cantilever_beam_equivalent_load",
+    "description": "Cantilever beam diagram showing conversion from distributed load to concentrated equivalent load. Top portion shows beam with fixed support at left, distributed pressure P·c applied over length, with downward force F and dimension zeq marked. The problem states \"Let's find a concentrated load Feq [N] which is equivalent to Leq [N/m].\" Integration equations are shown: Feq = ∫₀ℓ Leq·dz = ∫₀ℓ pc·dz = [pcz]₀ℓ = pc·ℓ (circled in red). The centroid location zeq is calculated as zeq = (1/Feq)∫₀ℓ Leq·z·dz = (1/pcℓ)∫₀ℓ pc·z·dz = (1/pcℓ)·(1/2)·pc·ℓ² = ℓ/2 (marked with red \"b\"). A simplified diagram below shows the beam with single concentrated load Feq at location zeq."
+  },
+  "3d_frame_structure_three_supports.png": {
+    "suggested_name": "3d_frame_structure_three_supports",
+    "description": "Three-dimensional frame structure with inclined member and horizontal beam. The system consists of an inclined member of length ℓ (shown in red) connecting from upper left point A to lower junction point, and a horizontal beam connecting three points B, C at ground level with pinned supports (shown as triangular symbols). Vertical upward force F is applied at the junction point above the horizontal beam. Dimensions show ℓ/4 spacing between supports. The coordinate system shows x-horizontal, y-vertical, z-axis. The problem states \"The system is isostatic\" and notes \"External loads don't generate translations in x or rotations in y.\" Reaction forces are labeled at supports: RxA, RyA, RzA at point A; RxB, RyB at point B; and RyC at point C. Equilibrium equations are provided: z-direction: RzA = 0; x-direction: RxA = RxB = 0; y-direction: RyA + RyB + RyC + F = 0 (marked with asterisk)."
+  },
+  "frame_member_unloaded_segment.png": {
+    "suggested_name": "frame_member_unloaded_segment",
+    "description": "Diagram showing internal actions analysis for an unloaded frame member (segment 3) connecting points A to B. The structure shows three segments: inclined unloaded member 3 from A to B, vertical segment at B with force F applied upward, and horizontal segment to C with forces ½F downward at each end. Two detailed free body diagrams are shown: Diagram (4) shows internal actions at point B with shear Ty1 and moment Mx1, with equations Ty1 = ½F and Mx1 = ½F·z1. Diagram (2) shows segment with forces F and ½F, dimensions z2 and ℓ/4, with equations Ty2 = ½F + F = -½F and Mx2 = ½F·(ℓ/4 + z2) - F·z2. The analysis demonstrates how to compute internal actions in unloaded members by examining adjacent loaded segments."
+  }
+}

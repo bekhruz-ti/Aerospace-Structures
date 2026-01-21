@@ -1,0 +1,22 @@
+{
+  "semi_monocoque_cylinder_spring_supports.png": {
+    "suggested_name": "semi_monocoque_cylinder_spring_supports",
+    "description": "Semi-monocoque cylindrical structure with fixed support at right end and two spring supports at left end. The cylinder has radius R = 200 mm and length ℓ = 2000 mm, with four longitudinal stringers labeled 'A' at corners and thin panels (t = 1 mm) forming the walls. A vertical point load P = 1 kN is applied at the top left corner. Two spring supports with stiffness K = 10⁶ N/mm are positioned at the bottom left corner and at mid-height on the left face. The right end shows hatching indicating a fixed/clamped boundary condition. Coordinate system shows z-axis along cylinder length and ℓ/2 dimension marked. Problem context indicates analysis for beam shear deformability with given material properties E = 70 GPa, ν = 0.3, A = 200 mm² for stringers. The diagram includes dashed lines showing the cylindrical geometry and cross-sectional features."
+  },
+  "shear_force_node_diagram.png": {
+    "suggested_name": "shear_force_node_diagram",
+    "description": "Nodal shear flow equilibrium diagram showing a junction point with multiple shear flow vectors. The node has six shear flow components labeled q₁, q₂, q₃, q₄, q₅ (some with superscripts indicating different states). Red arrows indicate shear flows q₁², q₂¹, q₂², and q₄² entering/leaving the node. Blue arrows show q₁¹, q₂¹, and other flow components. Green arrows indicate q₁² and q₂². A vertical force vector Ty is shown below the node pointing downward. The diagram represents a free body diagram of a node in a thin-walled structure where shear flows must satisfy equilibrium. Small circles mark the node points where flows converge. This is part of a semi-monocoque analysis showing the relationship between shear flows at a structural junction, with the semicircular cross-section sketch shown to the right indicating the geometric context."
+  },
+  "beam_virtual_springs_point_load.png": {
+    "suggested_name": "beam_virtual_springs_point_load",
+    "description": "Description not available"
+  },
+  "semicircular_cross_section_shear_center.png": {
+    "suggested_name": "semicircular_cross_section_shear_center",
+    "description": "Semicircular thin-walled cross-section showing shear center location analysis. The cross-section consists of a semicircular arc with vertical diameter, with four node points marked by small circles at the ends and quarter-points of the arc. A horizontal dimension 'd' is marked with red arrows showing the distance from the vertical diameter to the shear center location. The vertical force Ty is shown acting downward at the shear center position (marked with red arrow and label). A blue dimension 'q' marks a reference point on the left vertical edge. The diagram is labeled \"GA*\" at the top, indicating this is for shear center (GA*) calculation. This cross-section geometry is used to determine the location of the shear center through moment equilibrium, where applied shear force Ty = 1 produces no torsion when acting through the shear center."
+  },
+  "cylinder_internal_forces_cut_section.png": {
+    "suggested_name": "cylinder_internal_forces_cut_section",
+    "description": "Description not available"
+  }
+}

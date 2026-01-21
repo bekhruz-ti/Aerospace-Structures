@@ -1,0 +1,46 @@
+{
+  "truss_element_axial_load.png": {
+    "suggested_name": "truss_element_axial_load",
+    "description": "Horizontal truss element subjected to axial loading, representing a one-dimensional structural member. The element has length ℓ with nodes at each end. Left end (node 2) has displacement u₂ marked with leftward arrow, right end (node 1) has displacement u₁ marked with rightward arrow. Axial force F is applied at the left end (pointing left) and at point A on the right end (pointing right). Cross-sectional area A is labeled at the right end. Coordinate system shows z-axis along the element length. This diagram illustrates the principle of virtual work for a truss element that can carry only axial loads, with the constitutive relation σ_zz = F/A = E·ε_zz where ε_zz = u_z/ℓ = Δℓ/ℓ for infinitesimal displacements."
+  },
+  "spring_system_two_nodes.png": {
+    "suggested_name": "spring_system_two_nodes",
+    "description": "Simple spring element with two nodes showing displacement degrees of freedom. Left node (node 2) has displacement u₂ marked with leftward arrow, right node (node 1) has displacement u₁ marked with rightward arrow. The spring kinematics is described by the force relation F = K(u₁ - u₂), representing the spring force as a function of relative nodal displacements. This is a fundamental element used in the Principle of Virtual Work (PVW) formulation for spring systems."
+  },
+  "multi_spring_system_fixed_support.png": {
+    "suggested_name": "multi_spring_system_fixed_support",
+    "description": "Series spring system with fixed support at left end and applied force F at right end. System consists of three springs in series: spring K₂ connected to fixed wall (shown with hatching), followed by spring K₁ at intermediate node with displacement u₂, and terminating at right node with displacement u₁ where force F is applied. Node 3 at the fixed support has displacement u₃ = 0. This represents a more complex system for demonstrating the Principle of Virtual Work, where the spring constitutive equation relates nodal forces to displacements through the stiffness matrix."
+  },
+  "two_spring_series_system.png": {
+    "suggested_name": "two_spring_series_system",
+    "description": "Two-spring series system showing three nodes connected by springs K₂ and K₁. Springs are represented by zigzag lines with circular nodes at connection points. Displacement u₂ is marked at the middle node and u₁ at the right node. This simplified diagram illustrates the series configuration where internal forces must be equal in both springs for equilibrium, used in virtual work formulations."
+  },
+  "spring_system_series_configuration.png": {
+    "suggested_name": "spring_system_series_configuration",
+    "description": "Spring system in series configuration with fixed support at left end (shown with hatching) and applied force F at right end. System consists of spring K₂ connected to the fixed wall at node u₃, followed by spring K₁ at intermediate node u₂, terminating at node u₁ where horizontal force F is applied (arrow pointing right). Displacement markers show u₃ at fixed support, u₂ at middle node, and u₁ at free end. This configuration demonstrates that in a series arrangement, the internal force is constant along the structure, with the total displacement being the sum of individual spring deformations."
+  },
+  "spring_system_equilibrium_forces.png": {
+    "suggested_name": "spring_system_equilibrium_forces",
+    "description": "Detailed spring system diagram showing equilibrium and internal forces. Top diagram shows reaction force R at left end, two springs K₂ and K₁ in series with displacements u₂ and u₁, and applied force F at right end. Coordinate system with z-axis horizontal is shown. Equilibrium equation along z-axis: F + R = 0, giving R = -F. Middle section labeled \"PCVW\" shows the same system with internal forces F₂ and F₁ marked in red at spring interfaces. Bottom diagram shows virtual work formulation with virtual forces δF₂ and δF₁, and virtual displacement δF at the right end. The analysis demonstrates that in series configuration, internal forces are equal (δF = δF₁ = δF₂) and the real forces satisfy F₁ = F₂ = F."
+  },
+  "hyperstatic_spring_system.png": {
+    "suggested_name": "hyperstatic_spring_system",
+    "description": "Hyperstatic (statically indeterminate) spring system with two springs K₁ and K₂ arranged in parallel configuration. Both springs connect between fixed supports at left and right ends, with a common displacement u at the junction point where force F is applied. Coordinate system shows z-axis horizontal. The system has 3 rigid degrees of freedom but the structure is hyperstatic, meaning equilibrium equation F - R₁ - R₂ = 0 has two unknown reactions R₁ and R₂. The diagram shows the system is analyzed using PCVW (Principle of Complementary Virtual Work) method. Internal forces F₁ and F₂ in the springs are marked, with the relationship δF = δF₁ + δF₂. The solution requires compatibility conditions in addition to equilibrium, yielding u = F₁/K₁ = (F - F₂)/K₁ = F₂/K₂."
+  },
+  "spring_system_internal_forces.png": {
+    "suggested_name": "spring_system_internal_forces",
+    "description": "Parallel spring system showing internal force distribution. Two springs K₁ and K₂ are arranged in parallel between fixed supports (shown with hatching). System labeled as \"II\" with \"REAL\" configuration showing reaction forces R₁ and R₂ at left ends, internal forces F₁ and F₂ in red, and applied force F at right junction. The relationship F₁ = F - F₂ is noted. Below is the \"VIRTUAL\" configuration showing the same system with coordinate axes (z-axis horizontal, y-axis vertical) and displacement u marked. The analysis demonstrates that this is a \"smarter system of EQUILIBRATED FORCES\" where the force distribution is F₂ = F·K₂/(K₁+K₂) and u = F₂/K₂ = F/(K₁+K₂), representing the parallel spring equivalent stiffness relationship."
+  },
+  "vertical_spring_system_fixed_ends.png": {
+    "suggested_name": "vertical_spring_system_fixed_ends",
+    "description": "Vertical parallel spring system with fixed supports at both top and bottom ends (shown with hatching). Two springs K₁ and K₂ are arranged in parallel vertically. External force F is applied downward at the common junction point with displacement u marked. Internal forces F₁ and F₂ are labeled in red at each spring. The system is noted as \"NOT a SERIES\" configuration because if K₁ ≠ K₂, then F₁ ≠ F₂. The total applied force is F = F₁ + F₂. Analysis using PVW (Principle of Virtual Work) and PCVW (Principle of Complementary Virtual Work) is shown, with virtual displacement δu and virtual forces δF₁ and δF₂. The equilibrium equation yields (K₁ + K₂)·u = F, demonstrating parallel spring behavior where stiffnesses add directly."
+  },
+  "four_spring_network_system.png": {
+    "suggested_name": "four_spring_network_system",
+    "description": "Complex spring network system with four springs in mixed series-parallel configuration. Left side shows two fixed supports (hatching) with springs K₄ (labeled F₄) on top branch and K₁ (labeled F₁) on bottom branch. These connect to a common node, then spring K₃ (labeled F₃) continues in series to another node where spring K₂ (labeled F₂) branches downward. Applied force F is at the rightmost node with displacement u marked. The system is statically indeterminate (not isostatic) as noted in the problem statement. Reaction forces are shown with the relationships F₂ = F, F₃ = F₄ = F - F₁. The diagram illustrates a network requiring both equilibrium and compatibility equations for solution, demonstrating principles beyond simple series or parallel configurations."
+  },
+  "virtual_spring_equilibrated_forces.png": {
+    "suggested_name": "virtual_spring_equilibrated_forces",
+    "description": "Spring network diagram labeled \"VIRTUAL 1\" showing a smart system of equilibrated forces. The network consists of four springs: K₄ and K₁ in the top branch, K₃ in series, and K₂ branching downward, with K₁ in the bottom branch. Forces are marked at each spring with arrows indicating direction. The virtual work equation shows: 1·F₁/K₁ - 1·(F-F₁)/K₃ - 1·(F-F₂)/K₄ = 1·0, where terms are labeled as \"positive: TENSED\", \"negative: COMPRESSED\", and \"negative: COMPRESSED\" respectively. The equilibrium equation K₃K₄·F₁ - K₁K₄(F-F₁) - K₁K₃(F-F₂) = 0 leads to the solution F₁ = (K₁K₄ + K₁K₃)/(K₃K₄ + K₁K₄ + K₁K₃)·F. This demonstrates the PCVW (Principle of Complementary Virtual Work) method applied twice: once to find reaction forces and once to find displacement u."
+  }
+}

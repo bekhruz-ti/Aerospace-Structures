@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB 6 - Displacement of Beams Systems II</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .structure-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hyperstatic {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .isostatic {
+            background: #c6f6d5;
+            color: #276749;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .coordinates {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #805ad5;
+            margin: 20px 0;
+        }
+
+        .coordinates h3 {
+            color: #805ad5;
+            margin-bottom: 10px;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .internal-actions {
+            margin: 20px 0;
+        }
+
+        .element-analysis {
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .element-analysis h5 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .load-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .load-case {
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .load-case.real {
+            background: #e2e8f0;
+        }
+
+        .load-case.virtual1 {
+            background: #bee3f8;
+        }
+
+        .load-case.virtual2 {
+            background: #feebc8;
+        }
+
+        .load-case h6 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .note {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #d69e2e;
+        }
+
+        .note strong {
+            color: #975a16;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .truss-properties {
+            background: #e9d8fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .truss-properties ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .truss-properties li {
+            margin: 5px 0;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .load-cases {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>LAB 6</h1>
+            <p class="subtitle">Displacement of Beams Systems II</p>
+        </header>
+        
+        <main>
+            <!-- Problem 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: EXAM 13/06/2023</h2>
+                    <span class="structure-type hyperstatic">Hyperstatic</span>
+                    
+                    <p class="problem-statement">
+                        Analyze the 3D L-shaped frame structure and determine the displacement \(u\) at point C.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX06 - Displacement of Beams Systems II/3d_frame_structure_l_shaped_beam.png" alt="Three-dimensional L-shaped frame structure with fixed support at A, showing coordinate system and applied force F at point C">
+                        <figcaption>3D L-shaped frame structure with applied horizontal force F at point C</figcaption>
+                    </figure>
+                    
+                    <div class="coordinates">
+                        <h3>Node Coordinates:</h3>
+                        <ul>
+                            <li>\(A: (0, 1000, 0)\, \text{mm}\)</li>
+                            <li>\(B: (0, 1000, 1000)\, \text{mm}\)</li>
+                            <li>\(C: (0, 0, 1000)\, \text{mm}\)</li>
+                            <li>\(D: (1000, 0, 1000)\, \text{mm}\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(F = 1000\, \text{N}\)</li>
+                            <li>\(EA = 10^6\, \text{N}\)</li>
+                            <li>\(EI_{xx} = EI_{yy} = GJ = 10^{10}\, \text{N} \cdot \text{mm}^2\)</li>
+                            <li>\(\ell = 1000\, \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="note">
+                        <strong>Strategy:</strong> If we are smart, we can avoid computing all the reaction forces by using the Principle of Complementary Virtual Work (PCVW) with appropriate virtual systems.
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Virtual Systems Setup</h4>
+                        <p><strong>Virtual 1:</strong> Apply unit force at point A in the \(z\)-direction (same direction as unknown reaction \(R_{zA}\)). This will be used to find the redundant reaction.</p>
+                        <p><strong>Virtual 2:</strong> Apply unit force at point C in the direction of desired displacement \(u\). This will be used to find the displacement once \(R_{zA}\) is known.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Internal Actions</h4>
+                        
+                        <div class="internal-actions">
+                            <div class="element-analysis">
+                                <h5>Element 1 (Segment along \(z_1\))</h5>
+                                <div class="load-cases">
+                                    <div class="load-case real">
+                                        <h6>Real</h6>
+                                        \[T_{z1} = -R_{zA}\]
+                                    </div>
+                                    <div class="load-case virtual1">
+                                        <h6>Virtual 1</h6>
+                                        \[T_{z1}^1 = -1\]
+                                    </div>
+                                    <div class="load-case virtual2">
+                                        <h6>Virtual 2</h6>
+                                        <p>Unloaded</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="element-analysis">
+                                <h5>Element 2 (Segment along \(z_2\))</h5>
+                                <div class="load-cases">
+                                    <div class="load-case real">
+                                        <h6>Real</h6>
+                                        \[\begin{cases} T_{y2} = -R_{zA} \\ M_{x2} = -R_{zA} \cdot z_2 \end{cases}\]
+                                    </div>
+                                    <div class="load-case virtual1">
+                                        <h6>Virtual 1</h6>
+                                        \[\begin{cases} T_{y2}^1 = -1 \\ M_{x2}^1 = -z_2 \end{cases}\]
+                                    </div>
+                                    <div class="load-case virtual2">
+                                        <h6>Virtual 2</h6>
+                                        <p>Unloaded</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="element-analysis">
+                                <h5>Element 3 (Segment along \(z_3\), includes applied force F)</h5>
+                                <div class="load-cases">
+                                    <div class="load-case real">
+                                        <h6>Real</h6>
+                                        \[\begin{cases} T_{y3} = -R_{zA} - F \\ M_{x3} = -(R_{zA} + F) \cdot z_3 \\ M_{z3} = -R_{zA} \cdot \ell \end{cases}\]
+                                    </div>
+                                    <div class="load-case virtual1">
+                                        <h6>Virtual 1</h6>
+                                        \[\begin{cases} T_{y3}^1 = -1 \\ M_{x3}^1 = -z_3 \\ M_{z3}^1 = -\ell \end{cases}\]
+                                    </div>
+                                    <div class="load-case virtual2">
+                                        <h6>Virtual 2</h6>
+                                        \[\begin{cases} T_{y3}^{11} = -1 \\ M_{x3}^{11} = -z_3 \\ M_{z3}^{11} = 0 \end{cases}\]
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>PCVW - Virtual 1 (Finding \(R_{zA}\))</h4>
+                        <p>External virtual work:</p>
+                        \[\delta W_e = 1 \cdot 0 = 0\]
+                        
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell T_{z1}^1 \cdot \frac{T_{z1}}{EA} \, dz_1 + \int_0^\ell M_{x2}^1 \cdot \frac{M_{x2}}{EI} \, dz_2 + \int_0^\ell \left( M_{x3}^1 \frac{M_{x3}}{EI} + M_{z3}^1 \frac{M_{z3}}{GJ} \right) dz_3\]
+                        
+                        <p>Substituting the internal actions:</p>
+                        \[\delta W_i = \frac{1}{EA} \int_0^\ell R_{zA} \, dz_1 + \frac{1}{EI} \int_0^\ell R_{zA} \cdot z_1^2 \, dz_1 + \frac{1}{EI} \int_0^\ell (R_{zA}+F) z_3^2 \, dz_3 + \frac{1}{GJ} \int_0^\ell R_{zA} \ell^2 \, dz_3\]
+                        
+                        <p>Evaluating the integrals:</p>
+                        \[\delta W_i = \frac{R_{zA} \ell}{EA} + \frac{R_{zA} \ell^3}{3EI} + \frac{(R_{zA}+F)\ell^3}{3EI} + \frac{R_{zA} \ell^3}{GJ}\]
+                        
+                        <p>Applying \(\delta W_e = \delta W_i\):</p>
+                        \[\boxed{R_{zA} = -125\, \text{N}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>PCVW - Virtual 2 (Finding displacement \(u\))</h4>
+                        <p>External virtual work:</p>
+                        \[\delta W_e = 1 \cdot u\]
+                        
+                        <p>Internal virtual work (only Element 3 contributes):</p>
+                        \[\delta W_i = \int_0^\ell M_{x3}^{11} \cdot \frac{M_{x3}}{EI} \, dz_3 = \frac{1}{EI} \int_0^\ell (R_{zA} + F) \cdot z_3^2 \, dz_3\]
+                        
+                        <p>Evaluating:</p>
+                        \[\delta W_i = \frac{1}{EI} \left[ \frac{1}{3} (R_{zA} + F) \cdot z_3^3 \right]_0^\ell = \frac{(R_{zA} + F)\ell^3}{3EI}\]
+                        
+                        <p>Substituting \(R_{zA} = -125\, \text{N}\), \(F = 1000\, \text{N}\), \(\ell = 1000\, \text{mm}\), \(EI = 10^{10}\, \text{N} \cdot \text{mm}^2\):</p>
+                        \[u = \frac{(-125 + 1000)(1000)^3}{3 \times 10^{10}} = \frac{875 \times 10^9}{3 \times 10^{10}}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{u = 29.1667\, \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Problem 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: EXAM 09/09/2024</h2>
+                    <span class="structure-type isostatic">Isostatic</span>
+                    
+                    <p class="problem-statement">
+                        Analyze the triangular truss structure and compute the horizontal displacement \(u\) at the loaded node.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX06 - Displacement of Beams Systems II/triangular_truss_structure_axial_loads.png" alt="Triangular truss structure with three members, fixed supports at nodes 1 and 2, and horizontal force F at node 4">
+                        <figcaption>Planar triangular truss structure with applied horizontal force F</figcaption>
+                    </figure>
+                    
+                    <div class="truss-properties">
+                        <h4>Truss Properties:</h4>
+                        <ul>
+                            <li>→ ALL TRUSS</li>
+                            <li>→ ONLY AXIAL LOADS</li>
+                            <li>→ NO MOMENTS, NO SHEARS</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Note:</strong> Node 4 is free to translate. The bending and torsional stiffnesses given are a "BAIT" - they are not needed since truss members carry only axial loads!
+                    </div>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1000\, \text{mm}\)</li>
+                            <li>\(EA = 10^8\, \text{N}\)</li>
+                            <li>\(EI_{xx} = EI_{yy} = 10^{13}\, \text{N} \cdot \text{mm}^2\) (not needed for truss)</li>
+                            <li>\(GJ = 7 \times 10^9\, \text{N} \cdot \text{mm}^2\) (not needed for truss)</li>
+                            <li>\(F = 1000\, \text{N}\)</li>
+                            <li>\(\theta = 30°\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Internal Actions - Using Symmetry</h4>
+                        <p>Due to symmetry of the structure and loading, the vertical reactions at the supports are \(F/2\) each, and the horizontal reactions are \(1/2\) each.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Member 1 Analysis (Diagonal members)</h4>
+                        
+                        <p><strong>Real Loading:</strong></p>
+                        <p>From equilibrium at the loaded node:</p>
+                        \[T_1 \cdot \cos\theta = F\]
+                        \[T_1 = \frac{F}{\cos\theta} = \frac{F}{\cos 30°} = \frac{F}{\frac{\sqrt{3}}{2}} = \frac{2F}{\sqrt{3}}\]
+                        
+                        <p><strong>Virtual Loading:</strong></p>
+                        <p>Apply unit force in direction of desired displacement:</p>
+                        \[T_1^1 \cdot \cos\theta = \frac{1}{2}\]
+                        \[T_1^1 = \frac{1}{2\cos 30°} = \frac{1}{\sqrt{3}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Member 2 Analysis (Vertical/side member)</h4>
+                        
+                        <p><strong>Real Loading:</strong></p>
+                        <p>Horizontal equilibrium (trivial):</p>
+                        \[T_1 \cdot \cos\theta = \frac{F}{2}\]
+                        
+                        <p>Vertical equilibrium:</p>
+                        \[T_2 = T_1 \sin\theta = \frac{F}{\sqrt{3}} \cdot \frac{1}{2} = \frac{F}{2\sqrt{3}}\]
+                        
+                        <p><strong>Virtual Loading:</strong></p>
+                        \[T_2^1 = \frac{1}{2\sqrt{3}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>PCVW Application</h4>
+                        <p>External virtual work:</p>
+                        \[\delta W_e = 1 \cdot u\]
+                        
+                        <p>Internal virtual work (factor of 2 for symmetric diagonal members):</p>
+                        \[\delta W_i = 2 \cdot \frac{1}{EA} \int_0^\ell T_1^1 \, T_1 \, dz_1 + \frac{1}{EA} \int_0^\ell T_2^1 \, T_2 \, dz_2\]
+                        
+                        <p>Computing the products:</p>
+                        \[T_1^1 \cdot T_1 = \frac{1}{\sqrt{3}} \cdot \frac{F}{\sqrt{3}} = \frac{F}{3}\]
+                        \[T_2^1 \cdot T_2 = \frac{1}{2\sqrt{3}} \cdot \frac{F}{2\sqrt{3}} = \frac{F}{12}\]
+                        
+                        <p>Substituting:</p>
+                        \[\delta W_i = \frac{2}{EA} \int_0^\ell \frac{F}{3} \, dz_1 + \frac{1}{EA} \int_0^\ell \frac{F}{12} \, dz_2\]
+                        
+                        \[\delta W_i = \frac{2F\ell}{3EA} + \frac{F\ell}{12EA}\]
+                        
+                        <p>Applying \(\delta W_e = \delta W_i\):</p>
+                        \[u = \frac{2F\ell}{3EA} + \frac{F\ell}{12EA} = \frac{F\ell}{EA}\left(\frac{2}{3} + \frac{1}{12}\right) = \frac{F\ell}{EA} \cdot \frac{9}{12} = \frac{3F\ell}{4EA}\]
+                        
+                        <p>Substituting values: \(F = 1000\, \text{N}\), \(\ell = 1000\, \text{mm}\), \(EA = 10^8\, \text{N}\):</p>
+                        \[u = \frac{3 \times 1000 \times 1000}{4 \times 10^8} = \frac{3 \times 10^6}{4 \times 10^8} = 0.0075\, \text{mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{u = 0.0075\, \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

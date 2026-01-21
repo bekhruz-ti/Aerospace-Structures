@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB 8 - Semi-monocoque II - Multicell Sections</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .substep {
+            margin: 15px 0;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+
+        .note {
+            font-style: italic;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>LAB 8 - Semi-monocoque II - Multicell Sections</h1>
+        </header>
+        
+        <main>
+            <!-- Problem 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: EXAM 25/01/2023</h2>
+                    <p class="problem-statement">Analyze a two-cell rectangular cross-section under torsion. Find the rate of twist \(\theta'\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX08 - Semi-monocoque II/multicell_rectangular_section_geometry.png" alt="Rectangular multicell cross-section diagram showing two adjacent cells with width a each, height b, stringer areas A at corners, and wall thicknesses t₁ and t₂">
+                        <figcaption>Figure 1: Two-cell rectangular cross-section with dimensions and wall thicknesses</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 600\, \text{mm}\)</li>
+                            <li>\(b = 300\, \text{mm}\)</li>
+                            <li>\(A = 500\, \text{mm}^2\)</li>
+                            <li>\(t_1 = 1\, \text{mm}\)</li>
+                            <li>\(t_2 = 2\, \text{mm}\)</li>
+                            <li>\(E = 70\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(M_z = 5 \cdot 10^6\, \text{N} \cdot \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Open Cell Fluxes</h4>
+                        <p>Since there are no transverse shear forces:</p>
+                        \[T_x = T_y = 0 \quad \Rightarrow \quad q_i^1 = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Closed Cell Fluxes</h4>
+                        <p>Define closed-cell shear flows \(q_1^*\) for the left cell and \(q_2^*\) for the right cell, both with counterclockwise positive direction.</p>
+                        
+                        <p>The shear flow in the middle web is \((q_1^* - q_2^*)\) or \((q_2^* - q_1^*)\) depending on direction.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Moment Equivalence with respect to point P</h4>
+                        \[M_z = 2q_1^* \Omega_{cell1} + 2q_2^* \Omega_{cell2} = 2ab(q_1^* + q_2^*)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Angle of Twist Expressions</h4>
+                        <p>For cell 1:</p>
+                        \[\theta_1' = \frac{d\theta_1}{dz} = \frac{1}{2\Omega_{cell1} \cdot G} \left( \frac{2q_1^* \cdot a}{t_2} + \frac{q_1^* \cdot b}{t_2} + \frac{(q_1^* - q_2^*)b}{t_1} \right)\]
+                        
+                        <p>For cell 2:</p>
+                        \[\theta_2' = \frac{1}{2\Omega_{cell2} \cdot G} \left( \frac{2q_2^* \cdot a}{t_2} + \frac{q_2^* \cdot b}{t_1} + \frac{(q_2^* - q_1^*)b}{t_1} \right)\]
+                        
+                        <p>Where the shear modulus is:</p>
+                        \[G = \frac{E}{2(1+\nu)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Compatibility Condition</h4>
+                        <p>For a rigid cross-section, both cells must rotate at the same rate:</p>
+                        \[\theta_1' = \theta_2'\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solve the System</h4>
+                        <p>Solving the system of equations (Moment Equivalence + Compatibility) to find \(q_1^*\) and \(q_2^*\):</p>
+                        \[\begin{cases} \text{Moment Eq.} \\ \text{Compatibility} \end{cases} \longrightarrow \text{solve to find } q_1^*, q_2^*\]
+                        
+                        <p>Once we have them, we can use the angle expressions to find:</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\theta' = 1.019 \cdot 10^{-6}\, \frac{\text{rad}}{\text{mm}}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: EXAM 05/07/2023</h2>
+                    <p class="problem-statement">Analyze a cantilever beam with a two-cell rectangular cross-section under torsion. Find the rotation at \(z = \frac{\ell}{3}\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX08 - Semi-monocoque II/cantilever_beam_fixed_support_3d.png" alt="Three-dimensional view of cantilever beam with two-cell rectangular cross-section, fixed support at right end, length ℓ">
+                        <figcaption>Figure 2: Cantilever beam with two-cell cross-section and fixed support</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(t = 1\, \text{mm}\) for all the panels</li>
+                            <li>\(\ell = 6000\, \text{mm}\)</li>
+                            <li>\(a = 1000\, \text{mm}\)</li>
+                            <li>\(b = 500\, \text{mm}\)</li>
+                            <li>\(A_1 = 500\, \text{mm}^2\)</li>
+                            <li>\(A_2 = 1000\, \text{mm}^2\)</li>
+                            <li>\(E = 70\, \text{GPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(M_z = 10^9\, \text{N} \cdot \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Open Cell Fluxes</h4>
+                        <p>Since there are no transverse shear forces:</p>
+                        \[T_x = T_y = 0 \quad \Rightarrow \quad q_i^1 = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Closed Cell Fluxes</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX08 - Semi-monocoque II/closed_cell_flux_distribution.png" alt="Shear flow distribution in two-cell closed section showing counterclockwise flows q₁* and q₂*">
+                            <figcaption>Figure 3: Closed-cell shear flow distribution</figcaption>
+                        </figure>
+                        
+                        <p>The enclosed area of each cell:</p>
+                        \[\Omega_{cell} = a \cdot b\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Moment Equivalence with respect to point P</h4>
+                        \[M_z = 2q_1^* \cdot \Omega_{cell1} + 2 \cdot q_2^* \cdot \Omega_{cell2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Angle of Twist Expressions</h4>
+                        <p>For cell 1:</p>
+                        \[\theta_1' = \frac{1}{2\Omega_{cell1} \cdot G} \left( \frac{q_1^*(2a + 2b)}{t} - \frac{q_2^* b}{t} \right)\]
+                        
+                        <p>For cell 2:</p>
+                        \[\theta_2' = \frac{1}{2\Omega_{cell2} \cdot G} \left( \frac{q_2^*(2a + 2b)}{t} - \frac{q_1^* \cdot b}{t} \right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Compatibility Condition</h4>
+                        <p>We impose \(\theta_1' = \theta_2'\):</p>
+                        \[\frac{1}{2\Omega_{cell1} G \cdot t} (q_1^*(2a+2b) - q_2^* b) = \frac{1}{2\Omega_{cell2} G \cdot t} (q_2^*(2a+2b) - q_1^* b)\]
+                        
+                        <p>Simplifying:</p>
+                        \[q_1^*(2a + 2b) + q_1^* b = q_2^*(2a + 2b) + q_2^* b\]
+                        \[q_1^*(2a + 3b) = q_2^*(2a + 3b)\]
+                        
+                        <p>Therefore:</p>
+                        \[q_1^* = q_2^* = q^*\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solve for Closed-Cell Flux</h4>
+                        \[q^* = \frac{M_z}{4\Omega_{cell}} = \frac{M_z}{4ab}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Rate of Twist</h4>
+                        \[\theta' = \frac{1}{2ab \cdot G \cdot t} \cdot \frac{M_z}{4ab} \cdot (2a + b)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 8: Compute the Rotation</h4>
+                        <p>At the clamped (fixed) end, \(\theta(0) = 0\). Integrating:</p>
+                        \[\theta\left(\frac{\ell}{3}\right) - \theta(0) = \int_0^{\frac{\ell}{3}} \theta' \, dz = \theta' \cdot \frac{\ell}{3}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\theta\left(\frac{\ell}{3}\right) = 0.0929\, \text{rad}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3 -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: EXAM 05/09/2023</h2>
+                    <p class="problem-statement">Analyze a triangular truss structure (semi-monocoque section) with a vertical load. Find the shear flow \(q_1\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX08 - Semi-monocoque II/truss_structure_vertical_load.png" alt="Truss structure with rectangular frame and diagonal members, width a, height b, vertical force F at bottom center">
+                        <figcaption>Figure 4: Triangular truss structure with vertical load F</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 3000\, \text{mm}\)</li>
+                            <li>\(b = 300\, \text{mm}\)</li>
+                            <li>\(A = 500\, \text{mm}^2\)</li>
+                            <li>\(t = 3\, \text{mm}\) for all the panels</li>
+                            <li>\(F = 30\, \text{kN}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate Inertias</h4>
+                        <p>Second moment of area about x-axis:</p>
+                        \[J_{xx} = 6A\left(\frac{b}{2}\right)^2 = \frac{3}{2}Ab^2\]
+                        
+                        <p>First moments of area for each stringer:</p>
+                        \[S_{x1} = S_{x2} = S_{x3} = -\frac{Ab}{2}\]
+                        \[S_{x4} = S_{x5} = \frac{3}{4}Ab\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Open Cell Fluxes</h4>
+                        <p><strong>Section I:</strong></p>
+                        \[q_1^1 = +F \cdot \frac{S_{x4}}{J_{xx}} = F \cdot \frac{\frac{3}{4}Ab}{\frac{3}{2}Ab^2} = \frac{F}{2b}\]
+                        
+                        <p><strong>Section II:</strong></p>
+                        \[q_2^1 = q_1^1 = \frac{F}{2b}\]
+                        
+                        <p><strong>Section III:</strong></p>
+                        \[q_3^1 = q_1^1 + F \cdot \frac{S_{x1}}{J_{xx}} = \frac{F}{2b} - \frac{F}{3b} = \frac{F}{6b} = q_4^1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Closed Cell Fluxes</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX08 - Semi-monocoque II/multicell_closed_flux_diagram.png" alt="Multicell closed section showing shear flow distribution with flows q₁*, q₂*, q₃*">
+                            <figcaption>Figure 5: Closed-cell shear flow distribution for three-cell configuration</figcaption>
+                        </figure>
+                        
+                        <p>Define closed-cell fluxes \(q_1^*\), \(q_2^*\), \(q_3^*\) for each cell with counterclockwise positive direction.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Moment Equivalence with respect to node 2</h4>
+                        \[0 = 2q_1^* \Omega_{cell1} + 2q_2^* \cdot \Omega_{cell2} + 2q_3^* \cdot \Omega_{cell3} + 2q_1^1 \Omega_{cell3} - 2q_1^1 \Omega_{cell2}\]
+                        
+                        <p>Where the cell areas are:</p>
+                        \[\Omega_{cell1} = \frac{ab}{2} \qquad \Omega_{cell2} = \Omega_{cell3} = \frac{ab}{4}\]
+                        
+                        <p>Simplifying:</p>
+                        \[0 = q_1^* + \frac{1}{2}q_2^* + \frac{1}{2}q_3^*\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Angle of Twist Expressions</h4>
+                        <p>The length of the diagonal member is:</p>
+                        \[\ell_d = \sqrt{\left(\frac{a}{2}\right)^2 + b^2}\]
+                        
+                        <p>For cell 1:</p>
+                        \[\theta_1' = \frac{1}{2 \cdot \frac{1}{2}ab \cdot G \cdot t} \left( a \cdot q_1^* + (2q_2^* - q_2^* - q_3^*) \ell_d \right)\]
+                        
+                        <p>For cell 2:</p>
+                        \[\theta_2' = \frac{1}{2 \cdot \frac{1}{4}ab \cdot G \cdot t} \left( b(q_2^* - q_1^1) + \frac{a}{2}(q_2^* - q_3^1) + (q_2^* - q_1^*) \cdot \ell_d \right)\]
+                        
+                        <p>For cell 3:</p>
+                        \[\theta_3' = \frac{1}{2 \cdot \frac{1}{4}ab \cdot G \cdot t} \left( b(q_3^* + q_2^1) + \frac{a}{2}(q_3^* + q_4^1) + (q_3^* - q_2^*) \cdot \ell_d \right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solve the System</h4>
+                        <p>Apply compatibility conditions:</p>
+                        \[\text{solve} \begin{cases} \text{MOM. EQ.} \\ \theta_1' = \theta_2' \\ \theta_3' = \theta_2' \end{cases} \longrightarrow q_1^*, q_2^*, q_3^*\]
+                        
+                        <p>The shear flow in panel 1 is:</p>
+                        \[q_1 = q_1^1 - q_2^*\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Alternative Method: Exploiting Symmetry</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX08 - Semi-monocoque II/symmetric_multicell_flux_structure.png" alt="Symmetric multicell structure showing how symmetry reduces unknowns">
+                            <figcaption>Figure 6: Exploiting symmetry in the multicell analysis</figcaption>
+                        </figure>
+                        
+                        <p>Due to symmetry, the following relationships hold:</p>
+                        \[q_1 = q_2\]
+                        \[q_3 = q_4\]
+                        \[q_6 = q_7\]
+                        \[q_5 = 0 \quad \Rightarrow \quad q_5 = -q_3^* = 0\]
+                        
+                        <p>Also:</p>
+                        \[\theta_i' = 0\]
+                        \[q_1^* = -q_2^* = q^*\]
+                        
+                        <p><strong>Open Cell Fluxes (from symmetry cut):</strong></p>
+                        \[q_1^1 = -F \cdot \frac{-\frac{Ab}{2}}{\frac{3}{2}Ab^2} = \frac{F}{3b}\]
+                        
+                        <p>Force equilibrium:</p>
+                        \[F = b(2q_1^1 + 2q_6^1)\]
+                        \[q_6^1 = \frac{F}{2b} - q_1^1 = \frac{F}{6b}\]
+                        
+                        <p>From zero twist condition:</p>
+                        \[\theta_1' = 0 = \frac{1}{2\Omega_1 G t} \left( q^*(b + \ell_d + \frac{a}{2}) + q_6^1 \cdot \ell_d - q_1^1 b \right) = 0\]
+                        
+                        <p>Solving for \(q^*\):</p>
+                        \[q^* = \frac{-q_6^1 \ell_d + q_1^1 b}{b + \ell_d + \frac{a}{2}}\]
+                        
+                        <p>Finally:</p>
+                        \[q_1 = q_1^1 - q^*\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{q_1 = 37.9869\, \frac{\text{N}}{\text{mm}}}\]
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

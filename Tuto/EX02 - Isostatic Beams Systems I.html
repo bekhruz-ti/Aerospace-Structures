@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB 2 - Isostatic Beams Systems I</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 15px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .concept-box {
+            background: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .concept-box h4 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: #fefcbf;
+            border-left: 4px solid #d69e2e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .approach-label {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .equations-system {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>LAB 2</h1>
+            <p class="subtitle">Isostatic Beams Systems I</p>
+        </header>
+        
+        <main>
+            <!-- Concept Introduction -->
+            <div class="concept-box">
+                <h4>Definition: Isostatic System</h4>
+                <p><strong>Isostatic</strong> → n rigid DOF = n constraints</p>
+                <p>When this condition is satisfied, we can compute the reaction forces using the equilibrium equations.</p>
+            </div>
+
+            <!-- Problem 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: 2D Cantilever Beam with Point Load</h2>
+                    
+                    <p class="problem-statement">Analyze a cantilever beam system to find the reaction forces and internal actions.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX02 - Isostatic Beams Systems I/cantilever_beam_point_load.png" alt="Two-dimensional cantilever beam with fixed support at left end, force F applied, and length ℓ marked">
+                        <figcaption>Figure 1: Cantilever beam with point load F and length ℓ (known)</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Beam length: \(\ell\) (known)</li>
+                            <li>Applied force: \(F\)</li>
+                            <li>Fixed support at left end</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="given-data">
+                        <h3>Find:</h3>
+                        <ul>
+                            <li>Reaction Forces</li>
+                            <li>Internal Actions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="concept-box">
+                        <h4>Isostatic Check (2D)</h4>
+                        <p>3 rigid DOF = 3 constraints → <strong>YES, the system is isostatic!</strong></p>
+                        <p>Therefore, we can compute the reaction forces using the equilibrium equations.</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Reaction Forces</h4>
+                        <p>Setting up equilibrium equations with reactions \(R_z\), \(R_y\), and \(RM_x\) at point A:</p>
+                        
+                        <p><strong>Translation in z:</strong></p>
+                        \[R_z = 0\]
+                        
+                        <p><strong>Translation in y:</strong></p>
+                        \[R_y + F = 0 \quad \Rightarrow \quad R_y = -F\]
+                        
+                        <p><strong>Rotation about x (with respect to A):</strong></p>
+                        \[RM_x + F \cdot \ell = 0 \quad \Rightarrow \quad RM_x = -F\ell\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Reaction Forces:</strong>
+                        \[R_z = 0, \quad R_y = -F, \quad RM_x = -F\ell\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Internal Actions</h4>
+                        <p>Let's virtually cut our beam and analyze the internal forces.</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX02 - Isostatic Beams Systems I/cantilever_beam_3d_coordinate_system.png" alt="Beam segments showing internal forces and equilibrium">
+                            <figcaption>Figure 2: Beam segments (A) and (B) showing internal actions and equilibrium</figcaption>
+                        </figure>
+                        
+                        <p>For the cut section at position \(z_2\) from the fixed end:</p>
+                        
+                        <p><strong>With respect to origin O:</strong></p>
+                        \[T_{z2} = R_z = 0\]
+                        \[T_{y2} = -R_y = F\]
+                        \[M_{x2} = RM_x - R_y \cdot z_2 = -F\ell + F \cdot z_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Compute Internal Action at \(z = \frac{\ell}{2}\)</h4>
+                        \[M_{x2} = -F\ell + F \cdot \frac{\ell}{2} = -F\frac{\ell}{2}\]
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Key Principle:</strong> EVERYTHING IS IN EQUILIBRIUM:
+                        <ul>
+                            <li>Full beam</li>
+                            <li>Beam parts</li>
+                            <li>Interface between segments</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Internal Actions:</strong>
+                        \[T_{z1} = 0, \quad T_{y1} = -F, \quad M_{x1} = -F \cdot z_1\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: 3D Angled Beam Structure</h2>
+                    
+                    <p class="problem-statement">Analyze a 3D angled beam structure consisting of an inclined member connected to a horizontal segment.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX02 - Isostatic Beams Systems I/angled_beam_free_body_diagram.png" alt="L-shaped 3D beam with fixed support and applied force F">
+                        <figcaption>Figure 3: 3D angled beam with inclined segment (length ℓ) and horizontal segment (length ℓ/2)</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Inclined segment length: \(\ell\)</li>
+                            <li>Horizontal segment length: \(\frac{1}{2}\ell\)</li>
+                            <li>Vertical upward force: \(F\) applied at junction</li>
+                            <li>Fixed support at upper end</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="given-data">
+                        <h3>Find:</h3>
+                        <ul>
+                            <li>Reaction Forces</li>
+                            <li>Internal Actions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="concept-box">
+                        <h4>Isostatic Check (3D)</h4>
+                        <p>6 rigid DOF = 6 constraints → <strong>YES, the system is isostatic!</strong></p>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Sign Convention:</strong>
+                        <ul>
+                            <li>↑ Force (upward positive)</li>
+                            <li>↗ Moment (counterclockwise positive when viewed from positive axis direction)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Reaction Forces</h4>
+                        
+                        <p><strong>Force equilibrium:</strong></p>
+                        \[X: \quad R_x = 0\]
+                        \[Y: \quad R_y + F = 0 \quad \Rightarrow \quad R_y = -F\]
+                        \[Z: \quad R_z = 0\]
+                        
+                        <p><strong>Moment equilibrium:</strong></p>
+                        \[\text{rot } X: \quad RM_x - F \cdot \ell = 0 \quad \Rightarrow \quad RM_x = F \cdot \ell\]
+                        \[\text{rot } Y: \quad RM_y = 0\]
+                        \[\text{rot } Z: \quad RM_z + F \cdot \frac{1}{2}\ell = 0 \quad \Rightarrow \quad RM_z = -\frac{1}{2}F \cdot \ell\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Reaction Forces:</strong>
+                        \[R_x = 0, \quad R_y = -F, \quad R_z = 0\]
+                        \[RM_x = F\ell, \quad RM_y = 0, \quad RM_z = -\frac{1}{2}F\ell\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Internal Actions - Segment ①</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX02 - Isostatic Beams Systems I/beam_internal_actions_interface.png" alt="Internal actions at beam interface">
+                            <figcaption>Figure 4: Internal actions at beam segments interface</figcaption>
+                        </figure>
+                        
+                        <p>For segment ① (horizontal segment), with respect to origin O:</p>
+                        \[T_{y1} = -F\]
+                        \[T_{z1} = 0\]
+                        \[M_{x1} = -F \cdot z_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Internal Actions - Segment ② (Piecewise Approach)</h4>
+                        
+                        <p class="approach-label">Method I: Piecewise Approach</p>
+                        
+                        <p>To compute the internal actions of segment ②, we will use the internal actions of segment ① computed at its extremity (\(z_1 = \frac{1}{2}\ell\)).</p>
+                        
+                        <p><strong>We are imposing the equilibrium of the interface.</strong></p>
+                        
+                        <p>Internal actions for segment ② with respect to O:</p>
+                        \[T_{x2} = 0\]
+                        \[T_{y2} = -F\]
+                        \[T_{z2} = 0\]
+                        \[M_{x2} = -F \cdot z_2\]
+                        \[M_{y2} = 0\]
+                        \[M_{z2} = \frac{1}{2}F\ell\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Internal Actions - Segment ② (Global Approach)</h4>
+                        
+                        <p class="approach-label">Method II: Global Approach</p>
+                        
+                        <p>Computing internal actions directly with respect to O:</p>
+                        \[T_{x2} = 0\]
+                        \[T_{y2} = -F\]
+                        \[T_{z2} = 0\]
+                        \[M_{x2} = -F \cdot z_2\]
+                        \[M_{y2} = 0\]
+                        \[M_{z2} = F \cdot \frac{1}{2}\ell\]
+                    </div>
+                    
+                    <div class="note">
+                        <h4>Important Note on Vector Products</h4>
+                        <p>When computing a moment, is the sign of the arm relevant?</p>
+                        <p><strong>Vector Product:</strong></p>
+                        \[M = F \times b \quad \text{where} \quad |M| = |F| \cdot |b| \cdot \sin\theta\]
+                        <p><strong>Sign properties:</strong></p>
+                        \[a \times (-b) = -(a \times b)\]
+                        \[(-a) \times b = -(a \times b)\]
+                        <p><strong>Examples:</strong></p>
+                        \[M_x = F \cdot b = Fb \quad \text{(positive arm)}\]
+                        \[M_x = F \cdot (-b) = -Fb \quad \text{(negative arm)}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3 -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Cantilever Beam with Distributed Pressure</h2>
+                    
+                    <p class="problem-statement">A pressure P is applied on the beam's top surface. Find the equivalent loads, reaction forces, and internal actions.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX02 - Isostatic Beams Systems I/cantilever_beam_distributed_pressure.png" alt="Cantilever beam with distributed pressure on top surface">
+                        <figcaption>Figure 5: 2D cantilever beam with distributed pressure P and point load F</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Beam length: \(\ell\) (with segments \(\ell_1\) and \(\ell_2\))</li>
+                            <li>Distributed pressure: \(P\) [N/m²]</li>
+                            <li>Point load: \(F\) (downward)</li>
+                            <li>Beam width: \(c\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="given-data">
+                        <h3>Find:</h3>
+                        <ul>
+                            <li>Equivalent line load \(L_{eq}\) [N/m]</li>
+                            <li>Equivalent concentrated load \(F_{eq}\) [N]</li>
+                            <li>Reaction Forces (RF)</li>
+                            <li>Internal Actions (IA)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Find Equivalent Line Load \(L_{eq}\)</h4>
+                        
+                        <p>Let's find a line load [N/m] \(L_{eq}\) which is equivalent to P [N/m²].</p>
+                        
+                        <p>\(L_{eq}\) must have:</p>
+                        <ul>
+                            <li>The right <strong>MAGNITUDE</strong> to give an equivalent FORCE distribution</li>
+                            <li>The right <strong>POINT OF APPLICATION</strong> to give an equivalent MOMENT distribution</li>
+                        </ul>
+                        
+                        <p><strong>Magnitude calculation:</strong></p>
+                        \[L_{eq} = \int_0^c P(x,z) \, dx = \int_0^c P \, dx = \left[P \cdot x\right]_0^c = P \cdot c\]
+                        
+                        <p><strong>Point of application (centroid):</strong></p>
+                        \[x_{eq} = \frac{1}{L_{eq}} \int_0^c P(x,y) \cdot x \cdot dx = \frac{1}{Pc} \int_0^c P \cdot x \cdot dx = \frac{1}{Pc} \cdot \frac{1}{2} \cdot Pc^2 = \frac{1}{2}c\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Find Equivalent Concentrated Load \(F_{eq}\)</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX02 - Isostatic Beams Systems I/cantilever_beam_equivalent_load.png" alt="Conversion from distributed load to concentrated equivalent load">
+                            <figcaption>Figure 6: Equivalent concentrated load calculation</figcaption>
+                        </figure>
+                        
+                        <p>Let's find a concentrated load \(F_{eq}\) [N] which is equivalent to \(L_{eq}\) [N/m].</p>
+                        
+                        <p><strong>Equivalent force:</strong></p>
+                        \[F_{eq} = \int_0^\ell L_{eq} \cdot dz = \int_0^\ell pc \cdot dz = \left[pcz\right]_0^\ell = pc\ell\]
+                        
+                        <p><strong>Location of equivalent force (centroid):</strong></p>
+                        \[z_{eq} = \frac{1}{F_{eq}} \cdot \int_0^\ell L_{eq} \cdot z \cdot dz = \frac{1}{pc\ell} \int_0^\ell pc \cdot z \, dz\]
+                        \[= \frac{1}{pc\ell} \cdot \left[\frac{1}{2} pc \, z^2\right]_0^\ell = \frac{1}{2} \frac{1}{pc\ell} \cdot pc\ell^2 = \frac{1}{2}\ell\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Equivalent Loads:</strong>
+                        \[F_{eq} = pc\ell \quad \text{applied at} \quad z_{eq} = \frac{\ell}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Reaction Forces</h4>
+                        
+                        <p>Using equilibrium with \(F_{eq} = p \cdot c \cdot \ell\):</p>
+                        
+                        <p><strong>Force equilibrium (y-direction):</strong></p>
+                        \[R_y - F + pc\ell = 0 \quad \Rightarrow \quad R_y = F - pc\ell\]
+                        
+                        <p><strong>Force equilibrium (z-direction):</strong></p>
+                        \[R_z = 0\]
+                        
+                        <p><strong>Moment equilibrium (with respect to A):</strong></p>
+                        \[RM_x - F \cdot \ell_1 + pc\ell \cdot \frac{\ell}{2} = 0\]
+                        \[RM_x = F \cdot \ell_1 - pc\frac{\ell^2}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Internal Actions - Segment ①</h4>
+                        
+                        <p>For segment ① (under distributed load):</p>
+                        \[T_{y1} = -p \cdot c \cdot z_1\]
+                        \[T_{z1} = 0\]
+                        \[M_{x1} = -pcz_1 \cdot \frac{z_1}{2} = -pc\frac{z_1^2}{2}\]
+                        
+                        <p><em>Note: The moment arm is \(\frac{z_1}{2}\) because the resultant of the distributed load over length \(z_1\) acts at the centroid.</em></p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Internal Actions - Segment ②</h4>
+                        
+                        <p>For segment ② (under both distributed load and point load F):</p>
+                        \[T_{y2} = F - pc(\ell_2 + z_2)\]
+                        \[T_{z2} = 0\]
+                        \[M_{x2} = +Fz_2 - pc(\ell_2 + z_2) \cdot \frac{(\ell_2 + z_2)}{2}\]
+                        
+                        <p><em>Note: The moment arm for the distributed load is \(\frac{(\ell_2 + z_2)}{2}\) representing the centroid of the loaded length.</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4 -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: 3D Frame Structure with Three Supports</h2>
+                    
+                    <p class="problem-statement">Analyze a 3D frame structure consisting of an inclined member and a horizontal beam with pinned supports.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX02 - Isostatic Beams Systems I/3d_frame_structure_three_supports.png" alt="3D frame with inclined member and horizontal beam with three supports">
+                        <figcaption>Figure 7: 3D frame structure with inclined member (segment 3) and horizontal beam (segments 1 and 2)</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given:</h3>
+                        <ul>
+                            <li>Inclined member (segment 3): length \(\ell\), unloaded</li>
+                            <li>Horizontal beam with supports at points A, B, and C</li>
+                            <li>Support spacing: \(\frac{\ell}{4}\) between each support</li>
+                            <li>Vertical upward force: \(F\) applied at junction</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="given-data">
+                        <h3>Find:</h3>
+                        <ul>
+                            <li>Reaction Forces (RF)</li>
+                            <li>Internal Actions (IA)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="concept-box">
+                        <h4>System Analysis</h4>
+                        <p><strong>The system is isostatic.</strong></p>
+                        <p>External loads don't generate translations in x or rotations in y.</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Reaction Forces - Initial Equilibrium</h4>
+                        
+                        <p>Reactions at supports: \(R_{xA}\), \(R_{yA}\), \(R_{zA}\) at A; \(R_{xB}\), \(R_{yB}\) at B; \(R_{yC}\) at C</p>
+                        
+                        <p><strong>Force equilibrium:</strong></p>
+                        \[z: \quad R_{zA} = 0\]
+                        \[x: \quad R_{xA} = R_{xB} = 0\]
+                        \[y: \quad R_{yA} + R_{yB} + R_{yC} + F = 0 \quad (*)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Reaction Forces - Moment Equations (with respect to B)</h4>
+                        
+                        <p><strong>Rotation about x (wrt B):</strong></p>
+                        \[R_{yA} \cdot \ell = 0 \quad \Rightarrow \quad R_{yA} = 0\]
+                        
+                        <p><strong>Rotation about z (wrt B):</strong></p>
+                        \[F \cdot \frac{\ell}{4} + R_{yC} \cdot \frac{\ell}{2} = 0 \quad \Rightarrow \quad R_{yC} = -\frac{1}{2}F\]
+                        
+                        <p><strong>Substituting into equation (*):</strong></p>
+                        \[R_{yB} + R_{yC} + F = 0\]
+                        \[R_{yB} - \frac{1}{2}F + F = 0 \quad \Rightarrow \quad R_{yB} = -\frac{1}{2}F\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Reaction Forces:</strong>
+                        \[R_{xA} = R_{xB} = R_{zA} = R_{yA} = 0\]
+                        \[R_{yB} = -\frac{1}{2}F, \quad R_{yC} = -\frac{1}{2}F\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Internal Actions</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX02 - Isostatic Beams Systems I/frame_member_unloaded_segment.png" alt="Internal actions analysis for frame members">
+                            <figcaption>Figure 8: Internal actions for segments showing force distribution</figcaption>
+                        </figure>
+                        
+                        <p>The structure shows:</p>
+                        <ul>
+                            <li>Segment ③: Inclined unloaded member from A to B</li>
+                            <li>Segment ②: Between B and load application point</li>
+                            <li>Segment ①: Between load point and C</li>
+                            <li>Forces: \(\frac{1}{2}F\) downward at both B and C</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Internal Actions - Segment ①</h4>
+                        
+                        <p>For segment ① (between load point and support C):</p>
+                        \[T_{y1} = \frac{1}{2}F\]
+                        \[M_{x1} = \frac{1}{2}F \cdot z_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Internal Actions - Segment ②</h4>
+                        
+                        <p>For segment ② (between support B and load application point):</p>
+                        \[T_{y2} = \frac{1}{2}F + F = -\frac{1}{2}F\]
+                        \[M_{x2} = \frac{1}{2}F \cdot \left(\frac{\ell}{4} + z_2\right) - F \cdot z_2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Internal Actions Summary:</strong>
+                        <p><strong>Segment ①:</strong></p>
+                        \[T_{y1} = \frac{1}{2}F, \quad M_{x1} = \frac{1}{2}F \cdot z_1\]
+                        <p><strong>Segment ②:</strong></p>
+                        \[T_{y2} = -\frac{1}{2}F, \quad M_{x2} = \frac{1}{2}F \cdot \left(\frac{\ell}{4} + z_2\right) - F \cdot z_2\]
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Note:</strong> Segment ③ (the inclined member) is unloaded, meaning the internal actions can be determined from equilibrium at the interface with the loaded segments.
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

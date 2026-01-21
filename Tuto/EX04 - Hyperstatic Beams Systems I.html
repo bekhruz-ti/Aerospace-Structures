@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB 4: Hyperstatic Beams Systems I</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --theory-bg: #ebf8ff;
+            --theory-border: #3182ce;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .theory-section {
+            background: var(--theory-bg);
+            border-left: 4px solid var(--theory-border);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .theory-section h2 {
+            color: var(--theory-border);
+            margin-bottom: 15px;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .column h5 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .column.virtual h5 {
+            color: var(--theory-border);
+        }
+
+        .system-equations {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .note {
+            background: #fffbeb;
+            border-left: 4px solid #d69e2e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>LAB 4: Hyperstatic Beams Systems I</h1>
+            <p class="subtitle">Principle of Complementary Virtual Work (PCVW) for Statically Indeterminate Beams</p>
+        </header>
+        
+        <main>
+            <!-- Theory Section -->
+            <section class="theory-section">
+                <h2>Theoretical Foundation</h2>
+                
+                <p><strong>Principle of Complementary Virtual Work (PCVW):</strong></p>
+                \[\delta W_i = \delta W_e\]
+                
+                <p>For beams, the external virtual work is:</p>
+                \[\delta W_e = (\delta F) \cdot (u) + (\delta M) \cdot (\varphi)\]
+                <p style="text-align: center;"><em>where virtual forces/moments act on real displacements/rotations</em></p>
+                
+                <p>The internal virtual work for a system of \(i\) beams (Euler beam assumption):</p>
+                \[\delta W_i = \int_V \delta \underline{\sigma} : \underline{\varepsilon} \, dV = \sum_i \int_\ell \left( T'_{xi} \frac{T_{xi}}{GA^*} + T'_{yi} \frac{T_{yi}}{GA^*} + T'_{zi} \frac{T_{zi}}{EA} + M'_{xi} \frac{M_{xi}}{EJ_{xx}} + M'_{yi} \frac{M_{yi}}{EJ_{yy}} + M'_{zi} \frac{M_{zi}}{GJ_p} \right) dz_i\]
+                
+                <p class="note"><strong>Note:</strong> It is not mandatory to have the same constraints in the REAL and VIRTUAL systems.</p>
+            </section>
+
+            <!-- Problem 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: Point Load on Hyperstatic Beam</h2>
+                    
+                    <p class="problem-statement">
+                        A beam with a fixed support at point B and a roller support at point A is subjected to a point load F at the free end. Determine the reaction force at point A using the Principle of Complementary Virtual Work.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX04 - Hyperstatic Beams Systems I/cantilever_beam_fixed_roller_point_load.png" alt="Hyperstatic beam with fixed support at B, roller support at A, and point load F at free end">
+                        <figcaption>Figure 1: Hyperstatic beam system with point load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 4000 \text{ mm}\)</li>
+                            <li>\(F = 6000 \text{ N}\)</li>
+                            <li>\(E = 200{,}000 \text{ MPa}\)</li>
+                            <li>\(I_{xx} = 500{,}000 \text{ mm}^4\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Structural Analysis:</strong></p>
+                    \[3 \text{ rigid DoF} < 4 \text{ Constraints} \rightarrow \text{Hyperstatic}\]
+                    <p>We cannot compute the reaction forces by simply imposing equilibrium.</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Reaction Forces Setup</h4>
+                        
+                        <div class="two-column">
+                            <div class="column">
+                                <h5>REAL System</h5>
+                                <p>At point B (fixed support):</p>
+                                <ul>
+                                    <li>\(R_{zB}\), \(R_{yB}\), \(RM_{xB}\)</li>
+                                </ul>
+                                <p>At point A (roller support):</p>
+                                <ul>
+                                    <li>\(R_{yA}\) (unknown to find)</li>
+                                </ul>
+                                <p>Applied load: \(F\) at free end</p>
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL System</h5>
+                                <p>Apply unit load at A:</p>
+                                \[\begin{cases} R'_{zB} = 0 \\ R'_{yB} = -1 \\ RM'_{xB} = -1 \cdot 2\ell \end{cases}\]
+                            </div>
+                        </div>
+                        
+                        <p><strong>Equilibrium equations (REAL system):</strong></p>
+                        \[\begin{cases} R_{zB} = 0 \\ R_{yB} + R_{yA} + F = 0 \\ RM_{xB} + R_{yA} \cdot 2\ell + F \cdot 3\ell = 0 \end{cases}\]
+                        <p>2 equations, 3 unknowns → Undetermined (need PCVW)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Internal Actions</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX04 - Hyperstatic Beams Systems I/beam_free_body_diagram_reactions.png" alt="Free body diagram showing internal forces">
+                            <figcaption>Figure 2: Free body diagram for internal actions analysis</figcaption>
+                        </figure>
+                        
+                        <p><strong>Section 1</strong> (from free end, \(0 \leq z_1 \leq \ell\)):</p>
+                        <div class="two-column">
+                            <div class="column">
+                                <h5>REAL</h5>
+                                \[\begin{cases} T_{z1} = 0 \\ T_{y1} = -F \\ M_{x1} = -F \cdot z_1 \end{cases}\]
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL (Unloaded)</h5>
+                                \[\begin{cases} T'_{z1} = 0 \\ T'_{y1} = 0 \\ M'_{x1} = 0 \end{cases}\]
+                            </div>
+                        </div>
+                        
+                        <p><strong>Section 2</strong> (from A toward B, \(0 \leq z_2 \leq 2\ell\)):</p>
+                        <div class="two-column">
+                            <div class="column">
+                                <h5>REAL</h5>
+                                \[\begin{cases} T_{y2} = -R_{yA} - F \\ M_{x2} = -R_{yA} \cdot z_2 - F \cdot (\ell + z_2) \end{cases}\]
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL</h5>
+                                \[\begin{cases} T'_{y2} = -1 \\ M'_{x2} = -1 \cdot z_2 \end{cases}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply PCVW</h4>
+                        
+                        <p>External virtual work (displacement at A in direction of virtual unit load):</p>
+                        \[\delta W_e = \delta F \cdot u = 1 \cdot 0 = 0\]
+                        
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell M'_{x1} \cdot \frac{M_{x1}}{EJ_{xx}} \, dz_1 + \int_0^{2\ell} M'_{x2} \cdot \frac{M_{x2}}{EJ_{xx}} \, dz_2\]
+                        
+                        <p>Since \(M'_{x1} = 0\), the first integral vanishes:</p>
+                        \[\delta W_i = \frac{1}{EJ_{xx}} \int_0^{2\ell} (-z_2) \cdot (-R_{yA} \cdot z_2 - F\ell - Fz_2) \, dz_2 = 0\]
+                        
+                        <p>Expanding:</p>
+                        \[\int_0^{2\ell} (R_{yA} \cdot z_2^2 + F\ell z_2 + Fz_2^2) \, dz_2 = 0\]
+                        
+                        <p>Integrating:</p>
+                        \[\left[ \frac{1}{3} R_{yA} \cdot z_2^3 + \frac{1}{2} F\ell z_2^2 + \frac{1}{3} F z_2^3 \right]_0^{2\ell} = 0\]
+                        
+                        <p>Evaluating at limits:</p>
+                        \[\frac{8}{3} R_{yA} \cdot \ell^3 + 2F\ell^3 + \frac{8}{3} F\ell^3 = 0\]
+                        
+                        <p>Simplifying (divide by \(\ell^3\)):</p>
+                        \[\frac{8}{3} R_{yA} + 2F + \frac{8}{3} F = 0\]
+                        
+                        <p>Solving for \(R_{yA}\):</p>
+                        \[R_{yA} = -\frac{14}{8} F = -\frac{7}{4} F\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{R_{yA} = -\frac{14}{8} F = -7000 \text{ N}}\]
+                        <p style="font-size: 0.9rem; margin-top: 10px;">(Negative sign indicates the reaction acts downward)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Distributed Load on Hyperstatic Beam</h2>
+                    
+                    <p class="problem-statement">
+                        A beam with a fixed support at point B and a roller support at point A is subjected to a uniformly distributed load p over the right segment. Determine the reaction force at point A.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX04 - Hyperstatic Beams Systems I/cantilever_beam_distributed_load.png" alt="Hyperstatic beam with distributed load p on right segment">
+                        <figcaption>Figure 3: Hyperstatic beam with uniformly distributed load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 4000 \text{ mm}\)</li>
+                            <li>\(p = 1 \text{ N/mm}\)</li>
+                            <li>\(E = 200{,}000 \text{ MPa}\)</li>
+                            <li>\(I_{xx} = 500{,}000 \text{ mm}^4\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Structural Analysis:</strong></p>
+                    \[3 \text{ DoF} < 4 \text{ Constraints} \rightarrow \text{Hyperstatic}\]
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Reaction Forces Setup</h4>
+                        
+                        <div class="two-column">
+                            <div class="column">
+                                <h5>REAL System</h5>
+                                <p>Equilibrium equations:</p>
+                                \[\begin{cases} R_{yB} + R_{yA} + 3p\ell = 0 \\ RM_{xB} = -3p\ell \cdot \frac{3\ell}{2} - R_{yA} \cdot 2\ell \end{cases}\]
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL System</h5>
+                                <p>Unit load at A:</p>
+                                \[\begin{cases} R'_{yB} = -1 \\ RM'_{xB} = -1 \cdot 2\ell \end{cases}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Internal Actions</h4>
+                        
+                        <p><strong>Section 1:</strong> Virtual system is unloaded → No virtual work contribution</p>
+                        
+                        <p><strong>Section 2</strong> (from A, \(0 \leq z_2 \leq 2\ell\)):</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX04 - Hyperstatic Beams Systems I/beam_internal_forces_distributed_load.png" alt="Internal forces diagram for distributed load">
+                            <figcaption>Figure 4: Internal forces for section with distributed load</figcaption>
+                        </figure>
+                        
+                        <div class="two-column">
+                            <div class="column">
+                                <h5>REAL</h5>
+                                \[\begin{cases} T_{y2} = -R_{yA} - p(\ell + z_2) \\ M_{x2} = -R_{yA} \cdot z_2 - \frac{1}{2} p(\ell + z_2)^2 \end{cases}\]
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL</h5>
+                                \[\begin{cases} T'_{y2} = -1 \\ M'_{x2} = -1 \cdot z_2 \end{cases}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply PCVW</h4>
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = 0\]
+                        
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \frac{1}{EJ_{xx}} \int_0^{2\ell} M'_{x2} \cdot M_{x2} \, dz_2 = 0\]
+                        
+                        <p>Substituting:</p>
+                        \[\frac{1}{EJ_{xx}} \int_0^{2\ell} (-z_2) \cdot \left(-R_{yA} \cdot z_2 - \frac{1}{2} p(\ell + z_2)^2\right) dz_2 = 0\]
+                        
+                        <p>Expanding \((\ell + z_2)^2 = \ell^2 + 2\ell z_2 + z_2^2\):</p>
+                        \[\int_0^{2\ell} \left(R_{yA} \cdot z_2^2 + \frac{1}{2} p\ell^2 z_2 + p\ell z_2^2 + \frac{1}{2} p z_2^3\right) dz_2 = 0\]
+                        
+                        <p>Integrating:</p>
+                        \[\left[ \frac{1}{3} R_{yA} z_2^3 + \frac{1}{4} p\ell^2 z_2^2 + \frac{1}{3} p\ell z_2^3 + \frac{1}{8} p z_2^4 \right]_0^{2\ell} = 0\]
+                        
+                        <p>Evaluating:</p>
+                        \[\frac{8}{3} R_{yA} \ell^3 + p\ell^4 + \frac{8}{3} p\ell^4 + 2p\ell^4 = 0\]
+                        
+                        <p>Solving for \(R_{yA}\):</p>
+                        \[R_{yA} = -\frac{17}{8} p\ell\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{R_{yA} = -\frac{17}{8} p\ell = -2125 \text{ N}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3 -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Beam with Slider Constraint</h2>
+                    
+                    <p class="problem-statement">
+                        A beam with a fixed support at point B and a slider constraint at point A is subjected to a point load F at the midpoint. The slider permits y-translation and x-rotation but prevents x-translation. Determine all reaction forces at point A.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX04 - Hyperstatic Beams Systems I/cantilever_beam_slider_constraint.png" alt="Beam with fixed support at B and slider constraint at A">
+                        <figcaption>Figure 5: Beam with slider constraint (permits y-translation and x-rotation)</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 4000 \text{ mm}\)</li>
+                            <li>\(F = 6000 \text{ N}\)</li>
+                            <li>\(E = 200 \text{ GPa}\)</li>
+                            <li>\(I_{xx} = 500{,}000 \text{ mm}^4\)</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Structural Analysis:</strong></p>
+                    \[3 \text{ DoF} < 5 \text{ Constraints} \rightarrow \text{Hyperstatic}\]
+                    <p>We will need <strong>2 virtual systems</strong> to solve for the two unknowns at A.</p>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Reaction Forces Setup</h4>
+                        
+                        <p><strong>REAL System:</strong></p>
+                        \[\begin{cases} R_{zB} = 0 \\ R_{yB} = -F - R_{yA} \\ RM_{xB} = -F\ell - R_{yA} \cdot 2\ell - RM_{xA} \end{cases}\]
+                        
+                        <div class="two-column">
+                            <div class="column virtual">
+                                <h5>VIRTUAL System 1</h5>
+                                <p>Unit force at A:</p>
+                                \[\begin{cases} R'_{yB} = -1 \\ RM'_{xB} = -2\ell \end{cases}\]
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL System 2</h5>
+                                <p>Unit moment at A:</p>
+                                \[RM''_{xB} = -1\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Internal Actions - Section 1 (\(0 \leq z_1 \leq \ell\))</h4>
+                        
+                        <p><strong>REAL:</strong></p>
+                        \[\begin{cases} T_{y1} = -R_{yA} \\ M_{x1} = -R_{yA} \cdot z_1 - RM_{xA} \end{cases}\]
+                        
+                        <div class="two-column">
+                            <div class="column virtual">
+                                <h5>VIRTUAL 1</h5>
+                                \[\begin{cases} T'_{y1} = -1 \\ M'_{x1} = -z_1 \end{cases}\]
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL 2</h5>
+                                \[\begin{cases} T''_{y1} = 0 \\ M''_{x1} = -1 \end{cases}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Internal Actions - Section 2 (\(0 \leq z_2 \leq \ell\))</h4>
+                        
+                        <p><strong>REAL:</strong></p>
+                        \[\begin{cases} T_{y2} = -F - R_{yA} \\ M_{x2} = -F \cdot z_2 - R_{yA}(\ell + z_2) - RM_{xA} \end{cases}\]
+                        
+                        <div class="two-column">
+                            <div class="column virtual">
+                                <h5>VIRTUAL 1</h5>
+                                \[\begin{cases} T'_{y2} = -1 \\ M'_{x2} = -(\ell + z_2) \end{cases}\]
+                            </div>
+                            <div class="column virtual">
+                                <h5>VIRTUAL 2</h5>
+                                \[\begin{cases} T''_{y2} = 0 \\ M''_{x2} = -1 \end{cases}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply PCVW - Virtual System 1</h4>
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = 0\]
+                        
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell M'_{x1} \cdot \frac{M_{x1}}{EJ_{xx}} \, dz_1 + \int_0^\ell M'_{x2} \cdot \frac{M_{x2}}{EJ_{xx}} \, dz_2 = 0\]
+                        
+                        <p>This yields the first equation relating \(R_{yA}\) and \(RM_{xA}\).</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Apply PCVW - Virtual System 2</h4>
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = 0\]
+                        
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell M''_{x1} \cdot \frac{M_{x1}}{EJ_{xx}} \, dz_1 + \int_0^\ell M''_{x2} \cdot \frac{M_{x2}}{EJ_{xx}} \, dz_2 = 0\]
+                        
+                        <p>This yields the second equation. Solving the system of two equations:</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answers:</strong>
+                        \[\boxed{R_{yA} = -2000 \text{ N}}\]
+                        \[\boxed{RM_{xA} = 1{,}000{,}000 \text{ N} \cdot \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section class="theory-section" style="background: #f0fff4; border-color: #38a169;">
+                <h2>Summary of Results</h2>
+                
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                    <thead>
+                        <tr style="background: #c6f6d5;">
+                            <th style="padding: 12px; border: 1px solid #38a169; text-align: left;">Problem</th>
+                            <th style="padding: 12px; border: 1px solid #38a169; text-align: left;">Configuration</th>
+                            <th style="padding: 12px; border: 1px solid #38a169; text-align: left;">Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #38a169;">1</td>
+                            <td style="padding: 12px; border: 1px solid #38a169;">Fixed-Roller, Point Load</td>
+                            <td style="padding: 12px; border: 1px solid #38a169;">\(R_{yA} = -7000 \text{ N}\)</td>
+                        </tr>
+                        <tr style="background: #f7fafc;">
+                            <td style="padding: 12px; border: 1px solid #38a169;">2</td>
+                            <td style="padding: 12px; border: 1px solid #38a169;">Fixed-Roller, Distributed Load</td>
+                            <td style="padding: 12px; border: 1px solid #38a169;">\(R_{yA} = -2125 \text{ N}\)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #38a169;">3</td>
+                            <td style="padding: 12px; border: 1px solid #38a169;">Fixed-Slider, Point Load</td>
+                            <td style="padding: 12px; border: 1px solid #38a169;">\(R_{yA} = -2000 \text{ N}\), \(RM_{xA} = 1{,}000{,}000 \text{ N·mm}\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 13 - Displacement Methods and Instability</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .note {
+            background: #fefcbf;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            border-left: 3px solid #d69e2e;
+        }
+
+        .equation-system {
+            margin: 15px 0;
+            padding: 10px 20px;
+        }
+
+        .label {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin: 5px 0;
+        }
+
+        .label.beam { background: #2c5282; }
+        .label.spring { background: #805ad5; }
+        .label.axial { background: #dd6b20; }
+        .label.bending { background: #38a169; }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>EX 13 - Displacement Methods and Instability</h1>
+            <p>Critical Load Analysis using Polynomial Approximation and Principle of Virtual Work</p>
+        </header>
+        
+        <main>
+            <!-- Problem 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1 — EXAM 05/07/2023</h2>
+                    
+                    <p class="problem-statement">Find the critical load for a 2D cantilever beam with a horizontal spring and vertical point load using a polynomial approximation and the Principle of Virtual Work (PVW) for an Euler-Bernoulli beam.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX13 - Instability/cantilever_beam_spring_point_load.png" alt="2D cantilever beam with spring at top and vertical point load F. Fixed support at bottom, coordinate system with x pointing up and y pointing right.">
+                        <figcaption>Figure 1: Cantilever beam with spring and point load configuration</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(EA = 1 \cdot 10^4 \text{ N}\)</li>
+                            <li>\(EJ = 1 \cdot 10^{12} \text{ Nmm}^2\)</li>
+                            <li>\(\ell = 3000 \text{ mm}\)</li>
+                            <li>\(K = 500 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Euler-Bernoulli Beam Kinematics</h4>
+                        <p>For an Euler-Bernoulli beam, define the displacement fields:</p>
+                        <ul>
+                            <li>\(U(x)\) → \(x\)-displacement</li>
+                            <li>\(V(x)\) → \(y\)-displacement</li>
+                        </ul>
+                        \[
+                        \begin{cases} 
+                        U(x) = U_o(x) - y \cdot V_{o,x}(x) \\
+                        V(x) = V_o(x)
+                        \end{cases}
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Green-Lagrange Strain Tensor (Finite Displacement)</h4>
+                        <p>In the assumption of FINITE displacement, the Green-Lagrange strain tensor is:</p>
+                        \[
+                        \mathcal{E}_{ik} = \frac{1}{2} \left( \underbrace{U_{i/k} + U_{k/i}}_{\text{linear strain}} + U^j_{/k} \cdot U^j_{/i} \right)
+                        \]
+                        <p>For the \(xx\)-component in a 3D case:</p>
+                        \[
+                        \mathcal{E}_{xx} = \frac{1}{2} \left( U_{/x} + U_{/x} + \left( U_{/x} \right)^2 + \left( V_{/x} \right)^2 + \left( W_{/x} \right)^2 \right)
+                        \]
+                        <p>Assuming infinitesimal displacement in \(x\) and finite displacement in \(y\):</p>
+                        \[
+                        \mathcal{E}_{xx} = U_{/x} + \frac{1}{2} \left( V_{/x} \right)^2
+                        \]
+                        <p>Substituting the Euler-Bernoulli kinematics:</p>
+                        \[
+                        \mathcal{E}_{xx} = U_{o/x} - y \cdot V_{o/xx} + \frac{1}{2} \left( V_{o/x} \right)^2
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Virtual Internal Work</h4>
+                        <p>Using the variation identity: \(\delta(V_{/x} \cdot V_{/x}) = \delta V_{/x} \cdot V_{/x} + V_{/x} \cdot \delta V_{/x}\)</p>
+                        \[
+                        \delta W_i = \int_V \delta \mathcal{E}_{xx} \cdot \sigma_{xx} \, dV
+                        \]
+                        <p>The variation of strain:</p>
+                        \[
+                        \delta \mathcal{E}_{xx} = \delta U_{/x} - y \cdot \delta V_{/xx} + \delta V_{/x} \cdot V_{/x}
+                        \]
+                        <p>Expanding the virtual internal work:</p>
+                        \[
+                        \delta W_i = \int_V \left[ \left( \delta U_{/x} + \delta V_{/x} V_{/x} \right) \cdot \sigma_{xx} - \delta V_{/xx} \cdot y \cdot \sigma_{xx} \right] dV
+                        \]
+                        <p>Using the stress resultant definitions:</p>
+                        \[
+                        \int_A \sigma_{xx} \, dA = N \quad \text{and} \quad \int_A y \cdot \sigma_{xx} \, dA = M = -EJ \cdot V_{/xx}
+                        \]
+                        <p>The virtual internal work becomes:</p>
+                        \[
+                        \delta W_i = \int_\ell \left[ \underbrace{\left( \delta U_{/x} + \delta V_{/x} \cdot V_{/x} \right) \cdot N + \delta V_{/xx} \, EJ \, V_{/xx}}_{\text{BEAM}} \right] dx + \underbrace{\delta V(\ell) \cdot K \cdot V(\ell)}_{\text{SPRING}}
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Virtual External Work</h4>
+                        \[
+                        \delta W_e = - \int_0^\ell \delta U_x \cdot F \, dx = - \delta U(\ell) \cdot F
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Principle of Virtual Work (PVW)</h4>
+                        <p>Setting \(\delta W_i = \delta W_e\):</p>
+                        \[
+                        \int_0^\ell \underbrace{\delta U_{/x} (N + F) \, dx}_{\text{AXIAL}} + \int_0^\ell \underbrace{\left( \delta V_{/x} \, N \, V_{/x} + \delta V_{/xx} \, EJ \, V_{/xx} \right)}_{\text{BENDING}} dx + \delta V(\ell) \cdot K \cdot V(\ell) = 0
+                        \]
+                        <p>From axial equilibrium: \(N = -F\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Polynomial Approximation with Boundary Conditions</h4>
+                        <p>Assume a polynomial form satisfying boundary conditions:</p>
+                        \[
+                        V(x) = C \cdot x^2 \qquad \delta V(x) = \delta C \cdot x^2
+                        \]
+                        <p>Computing derivatives:</p>
+                        \[
+                        V_{/x} = 2Cx \qquad \delta V_{/x} = 2 \delta C \cdot x
+                        \]
+                        \[
+                        V_{/xx} = 2C \qquad \delta V_{/xx} = 2 \delta C
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Substitution and Integration</h4>
+                        <p>Substituting into the PVW equation:</p>
+                        \[
+                        \delta C \cdot \left[ \int_0^\ell \left( 2 \, EJ \cdot 2C - 2x \cdot F \cdot 2x \, C \right) dx + \ell^2 \cdot K \cdot C \, \ell^2 \right] = 0
+                        \]
+                        <p>After integration:</p>
+                        \[
+                        \left[ 4 \, EJ\ell - \frac{4}{3} F\ell^3 + K\ell^4 \right] \cdot C = 0
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 8: Critical Load Determination</h4>
+                        <p>For non-trivial solution (\(C \neq 0\)), we require:</p>
+                        \[
+                        4 \, EJ\ell - \frac{4}{3} F\ell^3 + K\ell^4 = 0
+                        \]
+                        <p>Solving for \(F\):</p>
+                        \[
+                        F = \frac{(4EJ + K\ell^3) \cdot 3}{4\ell^2}
+                        \]
+                        <p>Substituting values: \(EJ = 1 \times 10^{12}\), \(K = 500\), \(\ell = 3000\):</p>
+                        \[
+                        F = \frac{(4 \times 10^{12} + 500 \times 27 \times 10^9) \cdot 3}{4 \times 9 \times 10^6}
+                        \]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{F_{cr} = 1.46 \times 10^6 \text{ N}}\]
+                        <p style="margin-top: 10px; font-size: 0.9rem;">The case \(C = 0\) corresponds to no transversal displacement (trivial solution).</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Problem 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2 — EXAM 13/02/2024</h2>
+                    
+                    <p class="problem-statement">Find the critical load \(F\) for a cantilever beam system with two springs using a polynomial approximation with external boundary conditions.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX13 - Instability/cantilever_beam_two_springs_loads.png" alt="2D cantilever beam with two springs k₁ and k₂, fixed support at base, with labeled displacements w₁, w₂, v₁, v₂ and rotations θ₁, θ₂.">
+                        <figcaption>Figure 2: Cantilever beam with two springs and complex loading system</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 2000 \text{ mm}\)</li>
+                            <li>\(EA = 6 \cdot 10^{10} \text{ N}\)</li>
+                            <li>\(EJ = 12 \cdot 10^{10} \text{ Nmm}^2\)</li>
+                            <li>\(K_1 = 1 \cdot 10^7 \text{ N/mm}\)</li>
+                            <li>\(K_2 = 1 \text{ N/mm}\)</li>
+                            <li>\(\ell_1 = 1000 \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Polynomial Approximation with External Boundary Conditions</h4>
+                        <p>Define polynomial approximations for the displacements:</p>
+                        \[
+                        W_1 = \partial_{w1} \cdot z_1 \qquad W_2 = \partial_{w2} \cdot z_2
+                        \]
+                        \[
+                        V_1 = \partial_1 \cdot z_1^2 \qquad V_2 = \partial_2 \cdot z_2^2
+                        \]
+                        
+                        <p><strong>Internal BC — Vertical displacement continuity:</strong></p>
+                        \[
+                        \partial_{w1} \cdot \ell = - \partial_{w2} \cdot \ell_1
+                        \]
+                        <p>This gives:</p>
+                        \[
+                        \partial_{w1} = - \partial_{w2} \cdot \frac{\ell_1}{\ell} = \partial_w \qquad \Rightarrow \qquad \partial_{w2} = - \partial_w \frac{\ell}{\ell_1}
+                        \]
+                        
+                        <p><strong>Transversal displacement continuity:</strong></p>
+                        \[
+                        \partial_1 \cdot \ell^2 = - \partial_2 \cdot \ell_1
+                        \]
+                        <p>This gives:</p>
+                        \[
+                        \partial_1 = - \partial_2 \cdot \frac{\ell_1}{\ell^2} = \partial \qquad \Rightarrow \qquad \partial_2 = -\partial \frac{\ell^2}{\ell_1}
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Virtual Internal Work</h4>
+                        <p>The virtual internal work includes contributions from the beam, axial action, and both springs:</p>
+                        
+                        <p><span class="label beam">BEAM</span></p>
+                        \[
+                        \delta W_i = \int_0^\ell \delta W_{1/z_1} \cdot N \, dz_1 + \int_0^\ell \left( \delta V_{1/z_1 z_1} \, EJ \cdot V_{1/z_1 z_1} + \delta V_{1/z_1} \, N \, V_{1/z_1} \right) dz_1
+                        \]
+                        
+                        <p><span class="label spring">SPRING 1</span> (axial internal action in spring):</p>
+                        \[
+                        + \int_0^{\ell_1} \delta W_{2/z_2} \, N_{K1} \, dz_2 + \int_0^{\ell_1} \delta V_{2/z_2} \, N_{K1} \, V_{2/z_2} \, dz_2
+                        \]
+                        
+                        <p><span class="label spring">SPRING 2</span>:</p>
+                        \[
+                        + \delta V_1(\ell) \cdot K_2 \cdot V_1(\ell)
+                        \]
+                        
+                        <p><strong>Constitutive relations:</strong></p>
+                        \[
+                        N = EA \, w_{1/z_1} = EA \cdot \partial_w
+                        \]
+                        \[
+                        N_{K1} = K_1 \cdot w_2(\ell_1) = - K_1 \cdot \partial_w \cdot \ell
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Virtual External Work</h4>
+                        \[
+                        \delta W_e = - \delta W_1(\ell) \cdot F
+                        \]
+                        <p class="note">Note: The parameters \(\partial_w\) and \(\partial\) are dependent through the compatibility conditions.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Axial System Equilibrium</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX13 - Instability/axial_system_spring_equilibrium.png" alt="Simplified axial system showing horizontal bar with fixed support, spring K₁, force F, and displacement w₁(ℓ).">
+                            <figcaption>Figure 3: Axial system equilibrium diagram</figcaption>
+                        </figure>
+                        
+                        <p><span class="label axial">AXIAL EQUILIBRIUM</span></p>
+                        \[
+                        F + \frac{EA}{c} \cdot w_1(\ell) + K_1 \cdot w_1(\ell) = 0
+                        \]
+                        <p>Solving for the displacement at the spring location:</p>
+                        \[
+                        w_1(\ell) = \frac{-F}{EA + K_1 \ell} \cdot \ell = \partial_w \cdot \ell
+                        \]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Combined Virtual Work Equation</h4>
+                        <p>Combining axial and bending contributions:</p>
+                        \[
+                        \delta \partial_w \left( \int_0^\ell EA \cdot \partial_w \, dz_1 + \int_0^{\ell_1} \left( -\frac{\ell}{\ell_1} \right) \cdot \left( K_1 \cdot \left( - \partial_w \cdot \frac{\ell}{\ell_1} \right) \cdot \ell_1 \right) dz_2 \right) = - \delta \partial_w \cdot F
+                        \]
+                        
+                        <p><span class="label beam">BEAM</span> contribution:</p>
+                        \[
+                        \delta \partial \cdot \left( \int_0^\ell \left( 2z_1 \cdot 2z_1 \cdot \partial \cdot EA \cdot \left( -\frac{F}{EA + K_1 \ell} \right) + 4 \, EJ \cdot \partial \right) dz_1 \right)
+                        \]
+                        <p>where \(N = EA \cdot \partial_w = EA \, w_{1/z_1}\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Final Integration</h4>
+                        <p>Including the spring 1 bending contribution:</p>
+                        \[
+                        + \int_0^{\ell_1} \left( \left( -\frac{\ell^2}{\ell_1} \right) \cdot \partial \cdot \left( -\frac{\ell^2}{\ell_1} \right) \cdot \left( -K_1 \cdot \partial_w \cdot \ell \right) \right) \cdot dz_1 = - \delta \partial \cdot \ell^2 K_2 \, \partial \, \ell^2
+                        \]
+                        <p>where the terms under the brackets are \(\partial_2\) and \(N_{K1}\) respectively.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Critical Load Determination</h4>
+                        <p>Solving the characteristic equation yields two cases:</p>
+                        <ul>
+                            <li>\(\partial = 0\): No transversal displacement (trivial solution)</li>
+                            <li>\(\partial \neq 0\): Non-trivial solution gives the critical load</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{F_{cr} = 244{,}000 \text{ N}}\]
+                        <p style="margin-top: 10px; font-size: 0.9rem;">The case \(\partial = 0\) corresponds to no transversal displacement (trivial solution).</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Session 13 - Structural Mechanics</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .matlab-code {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            margin: 15px 0;
+        }
+
+        .matlab-code pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .matlab-output {
+            background: #2d2d2d;
+            color: #9cdcfe;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .keyword { color: #569cd6; }
+        .comment { color: #6a9955; }
+        .number { color: #b5cea8; }
+        .string { color: #ce9178; }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Exercise Session 13</h1>
+            <p>Structural Mechanics - Critical Load and Virtual Work Problems</p>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Exercise 1 (Exam 05/07/2023)</h2>
+                    <p class="problem-statement">Find the critical load using polynomial approximation for a cantilever beam with spring support.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX13-Instability_-_Displacement_Methods_III/cantilever_beam_spring_support.png" alt="Vertical cantilever beam with fixed support at top, spring element k, and point load F">
+                        <figcaption>Cantilever beam with spring support and applied load F</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(EA = 4 \cdot 10^8 \text{ N}\)</li>
+                            <li>\(EJ = 1 \cdot 10^{12} \text{ Nmm}^2\)</li>
+                            <li>\(\ell = 3000 \text{ mm}\)</li>
+                            <li>\(k = 500 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define Strain Assumptions</h4>
+                        <p>Infinitesimal displacement in x-direction, small displacement in y-direction.</p>
+                        
+                        <p>Green-Lagrange strain tensor:</p>
+                        \[\varepsilon_{ik} = \frac{1}{2}\left(u_{i/k} + u_{k/i} + u_{/i} \cdot u_{/k}\right)\]
+                        
+                        <p>With notation: \(u_x = u\), \(u_y = v\), \(u_z = w\)</p>
+                        
+                        \[\varepsilon_{xx} = \frac{1}{2}\left(u_{/x} + u_{/x} + u_{/x}^2 + v_{/x}^2 + w_{/x}^2\right)\]
+                        
+                        \[\varepsilon_{xx} = u_{/x} + \frac{1}{2}v_{/x}^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Euler-Bernoulli Beam Kinematics</h4>
+                        <p>For EB beam:</p>
+                        \[u = u_o - y \cdot v_{o/x}\]
+                        \[v = v_o\]
+                        <p>where \(u_o = u_o(x)\) and \(v_o = v_o(x)\)</p>
+                        
+                        <p>Therefore:</p>
+                        \[\varepsilon_{xx} = u_{o/x} - y \cdot v_{o/xx} + \frac{1}{2}v_{o/x}^2\]
+                        <p class="note">From now on, subscript "o" will be dropped.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Internal Virtual Work</h4>
+                        \[\delta W_i = \int_V \delta\varepsilon_{xx} \cdot \sigma_{xx} \, dV\]
+                        
+                        <p>where:</p>
+                        \[\delta\varepsilon_{xx} = \delta u_{/x} + \delta v_{/x} \cdot v_{/x} - y\delta v_{/xx}\]
+                        
+                        <p>Using: \(\delta(v_{/x} \cdot v_{/x}) = \delta v_{/x} \cdot v_{/x} + v_{/x} \delta v_{/x}\)</p>
+                        
+                        \[\delta W_i = \int_V \left[\left(\delta u_{/x} + \delta v_{/x} \cdot v_{/x}\right)\sigma_{xx} - \delta v_{/xx} \cdot y \cdot \sigma_{xx}\right] dV\]
+                        
+                        <p>Known relations:</p>
+                        \[\int_A \sigma_{xx} \, dA = N \qquad \int_A y \sigma_{xx} \, dA = M = -EJ v_{/xx}\]
+                        
+                        <p>So:</p>
+                        \[\delta W_i = \int_\ell \left(\delta u_{/x} + \delta v_{/x} \cdot v_{/x}\right) N + \delta v_{/xx} EJ v_{/xx} \, dx\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: External Virtual Work</h4>
+                        \[\delta W_e = -\delta v(\ell) \cdot k \cdot v(\ell) - \delta u(\ell) \cdot F\]
+                        
+                        <p>Known:</p>
+                        \[\int_0^\ell \delta u_{/x} \cdot F \, dx = \delta u(\ell) F - \delta u(0)F = \delta u(\ell) F\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Principle of Virtual Work</h4>
+                        <p>PVW: \(\delta W_i = \delta W_e\)</p>
+                        
+                        \[\int_0^\ell \delta u_{/x} (N + F) + \int_0^\ell \delta v_{/x} N v_{/x} + \delta v_{/xx} EJ v_{/xx} \, dx + \delta v(\ell) k \, v(\ell) = 0\]
+                        
+                        <p>Stating the axial equilibrium: \(N = -F\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Polynomial Approximation</h4>
+                        <p>Assume:</p>
+                        \[v(x) = Cx^2 \qquad \delta v(x) = \delta C \, x^2\]
+                        \[v_{/x}(x) = 2Cx \qquad \delta v_{/x}(x) = \delta C \cdot 2x\]
+                        \[v_{/xx}(x) = 2C \qquad \delta v_{/xx}(x) = \delta C \cdot 2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Substitution and Solution</h4>
+                        \[\delta C \left[\int_0^\ell \left(2EJ \cdot 2C - 2x \cdot F \cdot 2xC\right) dx + \ell^2 k C \ell^2\right] = 0\]
+                        
+                        \[\left[4EJ\ell - \frac{4}{3}F\ell^3 + k\ell^4\right] C = 0\]
+                        
+                        <p>For non-trivial solution (\(C \neq 0\)):</p>
+                        \[F = \frac{(4EJ + k\ell^3) \cdot 3}{4\ell^2}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Critical Load:</strong>
+                        \[\boxed{F_{crit} = 1.46 \cdot 10^6 \text{ N}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>MATLAB Verification</h4>
+                        <div class="matlab-code">
+<pre><span class="keyword">close</span> all
+<span class="keyword">clear</span> variables
+home
+
+<span class="comment">% Data</span>
+EA = <span class="number">10^8</span>;        <span class="comment">% N</span>
+EJ = <span class="number">10^12</span>;       <span class="comment">% Nmm^2</span>
+l = <span class="number">3000</span>;         <span class="comment">% mm</span>
+k = <span class="number">500</span>;          <span class="comment">% N/mm</span>
+
+<span class="comment">% Solution</span>
+F = (<span class="number">3</span>/l^<span class="number">3</span>/<span class="number">4</span>) * (<span class="number">4</span>*EJ*l + k*l^<span class="number">4</span>)</pre>
+                        </div>
+                        <div class="matlab-output">
+                            <pre>F = 1.4583e+06</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 2 -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Exercise 2 (Exam 13/02/2024)</h2>
+                    <p class="problem-statement">Find the critical load using polynomial approximation for a beam with two spring supports.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX13-Instability_-_Displacement_Methods_III/beam_two_springs_point_load.png" alt="Vertical beam with two spring supports k1 and k2, and point load F">
+                        <figcaption>Beam system with two spring supports and applied loading</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 2000 \text{ mm}\)</li>
+                            <li>\(EA = 6 \cdot 10^{10} \text{ N}\)</li>
+                            <li>\(EJ = 12 \cdot 10^{10} \text{ Nmm}^2\)</li>
+                            <li>\(k_2 = 1 \text{ N/mm}\)</li>
+                            <li>\(k_1 = 1 \cdot 10^3 \text{ N/mm}\)</li>
+                            <li>\(\ell_1 = 1000 \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Internal Work Formulation</h4>
+                        <p>Internal work for beam with nonlinear GL strain (infinitesimal z, small y):</p>
+                        \[\delta W_i = \int_0^\ell \delta w_{/z} N \, dz + \int_0^\ell \delta v_{/zz} EJ v_{/zz} + \delta v_{/z} N v_{/z} \, dz\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Polynomial Approximations</h4>
+                        <p>Take approximations:</p>
+                        <ul>
+                            <li>LINEAR: \(w_1 = a_{w_1} \cdot z_1\)</li>
+                            <li>LINEAR: \(w_2 = a_{w_2} \cdot z_2\)</li>
+                            <li>QUADRATIC: \(v_1 = a_1 z_1^2\)</li>
+                            <li>LINEAR: \(v_2 = a_2 z_2\)</li>
+                        </ul>
+                        
+                        <p>Boundary conditions:</p>
+                        \[a_{w_1} = -a_{w_2} \cdot \frac{\ell_1}{\ell} = a_w \quad \Rightarrow \quad a_{w_2} = -a_w \frac{\ell}{\ell_1}\]
+                        \[a_1 = -a_2 \frac{\ell_1}{\ell^2} = a \quad \Rightarrow \quad a_2 = -a\frac{\ell^2}{\ell_1}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Virtual Work Expressions</h4>
+                        <p>Internal virtual work on beam:</p>
+                        \[\delta W_i = \int_0^\ell \delta w_{1/z_1} N \, dz_1 + \int_0^\ell \delta v_{1/z_1} N v_{/z_1} + \delta v_{1/z_1 z_1} EJ v_{1/z_1 z_1} \, dz_1\]
+                        
+                        <p>On spring \(k_1\):</p>
+                        \[+ \int_0^{\ell_1} \delta w_{2/z_2} N_{k_1} dz_2 + \int_0^{\ell_1} \delta v_{2/z_2} N_{k_1} v_{2/z_2} \, dz_2\]
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = -\delta w_1(\ell) F - \delta v_1(\ell) k v_1(\ell)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Known Relations</h4>
+                        \[N_{k_1} = k_1 \cdot w_2(\ell_1) = -k_1 \cdot a_w \cdot \ell\]
+                        \[N = EA \, w_{1/z_1} = EA \, a_w\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Finding \(a_w\)</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/EX13-Instability_-_Displacement_Methods_III/free_body_diagram_beam_spring.png" alt="Free body diagram showing equilibrium of beam with spring">
+                            <figcaption>Free body diagram for determining \(a_w\)</figcaption>
+                        </figure>
+                        
+                        <p>From equilibrium:</p>
+                        \[F + \frac{EA}{\ell} \cdot w_1(\ell) + k_1 w_1(\ell) = 0\]
+                        
+                        \[w_1(\ell) = -\frac{F}{EA + k_1 \ell} \cdot \ell = a_w \cdot \ell\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solve for Critical Load</h4>
+                        <p>Substituting and collecting terms for \(\delta a\):</p>
+                        \[\delta a \left(\int_0^\ell 2z_1 \cdot 2z_1 a \cdot EA \cdot \left(-\frac{F}{EA + k_1 \ell}\right) + 4EJ a \, dz_1 + \ldots \right)\]
+                        
+                        <p>where \(N = EA \, a_w = EA \, w_{/z_1}\)</p>
+                        
+                        \[\left( + \int_0^\ell \left(-\frac{\ell^2}{\ell_1}\right) \cdot a \left(-\frac{\ell^2}{\ell_1}\right) \cdot \left(-k_1 \cdot a_w \cdot \ell\right) dz_2 \right) = -\delta a \cdot \ell^2 k_2 \cdot a \cdot \ell^2\]
+                        
+                        <p>Solve for \(a = 0\) (trivial) or \(a \neq 0\) (critical load):</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Critical Load:</strong>
+                        \[\boxed{F_{crit} = 244{,}000 \text{ N}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>MATLAB Verification</h4>
+                        <div class="matlab-code">
+<pre><span class="keyword">close</span> all
+<span class="keyword">clear</span> variables
+home
+
+<span class="comment">% Data</span>
+l = <span class="number">2000</span>;
+EA = <span class="number">6*10^10</span>;
+EJ = <span class="number">12*10^10</span>;
+k_1 = <span class="number">10^7</span>;
+k_2 = <span class="number">1</span>;
+l_1 = <span class="number">1000</span>;
+
+<span class="comment">% Symbolic solution</span>
+<span class="keyword">syms</span> a_w a z_1 z_2 F N
+
+w_1 = a_w*z_1;
+w_2 = -a_w*l/l_1*z_2;
+
+v_1 = a*z_1^<span class="number">2</span>;
+v_2 = -a*l^<span class="number">2</span>/l_1^<span class="number">2</span>*z_2;
+
+<span class="comment">% PVW equations</span>
+a_w_r = solve(int(EA*a_w, z_1, <span class="number">0</span>, l) + int((-l/l_1)*k_1*subs(w_2, z_2, l_1), z_2, <span class="number">0</span>, l_1) == -F*l, a_w);
+
+simplify(int(<span class="number">2</span>*z_1*<span class="number">2</span>*a*z_1*EA*a_w_r + <span class="number">2</span>*EJ*<span class="number">2</span>*a, z_1, <span class="number">0</span>, l) == -l^<span class="number">2</span>*k_2*a*l^<span class="number">2</span> - int((-l^<span class="number">2</span>/l_1)*a*(-l^<span class="number">2</span>/l_1)*(-k_1*a_w_r*l), z_2, <span class="number">0</span>, l_1))</pre>
+                        </div>
+                        <div class="matlab-output">
+                            <pre>ans = 
+F == 244000 | a == 0</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Exercise 3 (Exam 09/09/2024)</h2>
+                    <p class="problem-statement">Find the critical load using polynomial approximation for an L-shaped frame structure with spring supports.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX13-Instability_-_Displacement_Methods_III/frame_structure_springs_segments.png" alt="L-shaped frame with springs k1 and k2, and applied load F">
+                        <figcaption>L-shaped frame structure with spring supports</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1000 \text{ mm}\)</li>
+                            <li>\(GA^* = 1 \cdot 10^{10} \text{ N}\)</li>
+                            <li>\(EJ = 12 \cdot 10^9 \text{ Nmm}^2\)</li>
+                            <li>\(EA = 1 \cdot 10^{10} \text{ N}\)</li>
+                            <li>\(k_1 = 1.5 \cdot 10^7 \text{ N/mm}\)</li>
+                            <li>\(k_2 = 2500 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Polynomial Approximations</h4>
+                        <ul>
+                            <li>LINEAR: \(w_1(z_1) = a_{w_1} \cdot z_1\)</li>
+                            <li>LINEAR: \(w(z) = a_w \cdot z\)</li>
+                            <li>QUADRATIC: \(v(z) = a \, z^2\)</li>
+                            <li>CONSTANT: \(v_1(z) = a_1\)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Boundary Conditions</h4>
+                        \[w_1\left(\frac{\ell}{2}\right) = -w(\ell) \quad \Rightarrow \quad a_{w_1} = -2a_w\]
+                        \[v_1\left(\frac{\ell}{2}\right) = -v(\ell) \quad \Rightarrow \quad a_1 = -a \cdot \ell^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Virtual Work Expressions</h4>
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^\ell \delta w_{/z} N \, dz + \int_0^{\ell/2} \delta w_{1/z_1} N_{k_1} \, dz_1 + \int_0^\ell \left(\delta v_{/zz} EJ \, v_{/zz} + \delta v_{/z} N \, v_{/z}\right) dz\]
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = -\delta w(\ell) \cdot F - \delta v\left(\frac{\ell}{2}\right) k_2 \, v\left(\frac{\ell}{2}\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Known Relations</h4>
+                        \[N = EA \cdot a_w\]
+                        \[N_{k_1} = k_1 \cdot w_1\left(\frac{\ell}{2}\right) = -k_1 a_w \cdot \ell\]
+                        
+                        <p>Same as Exercise 2:</p>
+                        \[a_w = -\frac{F}{EA + k_1 \ell}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Equation for \(\delta a\)</h4>
+                        \[\delta a \cdot \int_0^\ell \left(4EJ a + 4a z^2 \cdot N\right) dz = -\delta a \frac{\ell^2}{4} k_2 a \frac{\ell^2}{4}\]
+                        
+                        <p>where \(N = EA \cdot \left(-\frac{F}{EA + k_1 \ell}\right)\)</p>
+                        
+                        <p>Solve for \(a \neq 0\):</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Critical Load:</strong>
+                        \[\boxed{F_{crit} = 3.830 \cdot 10^5 \text{ N}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>MATLAB Verification</h4>
+                        <div class="matlab-code">
+<pre><span class="keyword">close</span> all
+<span class="keyword">clear</span> variables
+home
+
+l = <span class="number">1000</span>;
+EJ = <span class="number">12E+09</span>;
+EA = <span class="number">1E+10</span>;
+k_1 = <span class="number">1.5E+7</span>;
+k_2 = <span class="number">2500</span>;
+
+<span class="keyword">syms</span> F a_w z z_1
+LHS = [
+    int(EA*a_w, z, <span class="number">0</span>, l) + int(<span class="number">2</span>*k_1*a_w*l, z_1, <span class="number">0</span>, l/<span class="number">2</span>) + l*F;
+    int(<span class="number">4</span>*EJ + <span class="number">4</span>*EA*a_w*z^<span class="number">2</span>, z, <span class="number">0</span>, l) + l^<span class="number">2</span>/<span class="number">4</span>*l^<span class="number">2</span>/<span class="number">4</span>*k_2
+    ];
+RHS = [<span class="number">0</span>; <span class="number">0</span>];
+[a_w, F] = solve(LHS == RHS, [a_w, F]);
+F = double(F)</pre>
+                        </div>
+                        <div class="matlab-output">
+                            <pre>F = 3.8297e+05</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 4 -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Exercise 4 (Exam 29/08/2022)</h2>
+                    <p class="problem-statement">Find the virtual work of the force for a unitary virtual displacement of point A in the vertical direction.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX13-Instability_-_Displacement_Methods_III/frame_distributed_load_deformation.png" alt="Rectangular frame with triangular distributed load and deformed shape">
+                        <figcaption>Frame structure with distributed load (top) and deformed shape for unitary displacement (bottom)</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 2 \text{ mm}\)</li>
+                            <li>\(b = 3 \text{ mm}\)</li>
+                            <li>\(p = 10 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Parabolic Element Approximation</h4>
+                        <p>Deformed shape for unitary displacement \(v_A\):</p>
+                        \[v(\eta) = \left(-\frac{4\eta^2}{b^2} + 1\right) v_A\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Load Distribution</h4>
+                        <p>The triangular distributed load:</p>
+                        \[f(\eta) = \frac{p}{b} \cdot \eta + \frac{p}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: External Virtual Work</h4>
+                        \[\delta W_e = \int_{-\frac{b}{2}}^{\frac{b}{2}} \delta v \cdot f \, d\eta\]
+                        
+                        \[= \int_{-\frac{b}{2}}^{\frac{b}{2}} \delta v_A \cdot \left(-\frac{4\eta^2}{b^2} + 1\right) \cdot \left(\frac{p}{b}\eta + \frac{p}{2}\right) d\eta\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Virtual Work of Force:</strong>
+                        \[\boxed{\delta W_e = \delta v_A \cdot \frac{1}{3}bp}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 5 -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Exercise 5 (Exam 23/08/2022)</h2>
+                    <p class="problem-statement">Find the rotation \(\theta\) using trigonometric approximation with one term.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/EX13-Instability_-_Displacement_Methods_III/continuous_beam_four_supports.png" alt="Continuous beam with four supports, moment M and load F">
+                        <figcaption>Continuous beam with multiple supports, applied moment and point load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1000 \text{ mm}\)</li>
+                            <li>\(EJ = 6 \cdot 10^8 \text{ Nmm}^2\)</li>
+                            <li>\(M = 4 \cdot 10^5 \text{ Nmm}\)</li>
+                            <li>\(F = 2000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Trigonometric Approximation</h4>
+                        <p>Assume displacement field:</p>
+                        \[v(z) = C \cdot \sin\left(\frac{\pi z}{\ell}\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Internal Virtual Work</h4>
+                        \[\delta W_i = \int_0^{4\ell} \delta v_{/zz} \, EJ \, v_{/zz} \, dz\]
+                        
+                        \[= \delta C \, EJ \frac{\pi^4}{\ell^4} \cdot C \int_0^{4\ell} \sin^2\left(\frac{\pi z}{\ell}\right) dz\]
+                        
+                        \[= \delta C \cdot EJ \cdot C \cdot \frac{2\pi^4}{\ell^3}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: External Virtual Work</h4>
+                        \[\delta W_e = -\delta v_{/z}(2\ell) \cdot M + \delta v\left(\frac{7}{2}\ell\right) \cdot F\]
+                        
+                        \[= \delta C \left(-\frac{\pi}{\ell} \cdot M - F\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply PVW</h4>
+                        <p>From \(\delta W_i = \delta W_e\):</p>
+                        \[C = -\frac{F + \frac{\pi}{\ell} \cdot M}{\frac{2\pi^4}{\ell^3} EJ}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate Rotation</h4>
+                        \[\theta = -v_{/z}(\ell) = + C \cdot \frac{\pi}{\ell}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Rotation at Support:</strong>
+                        \[\boxed{\theta = -\frac{F + \frac{\pi}{\ell} M}{\frac{2\pi^4}{\ell^3} EJ} \cdot \frac{\pi}{\ell}}\]
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border-color); color: #666;">
+            <p>Exercise Session 13 - Structural Mechanics</p>
+            <p>Problems from Exams: 05/07/2023, 13/02/2024, 09/09/2024, 29/08/2022, 23/08/2022</p>
+        </footer>
+    </article>
+</body>
+</html>
