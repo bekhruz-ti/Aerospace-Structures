@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 from .llm_utils import llm_call, LLM
 
@@ -46,6 +46,95 @@ def encode_image_to_base64(image_path: Path) -> str:
     with open(image_path, 'rb') as f:
         image_data = f.read()
     return base64.standard_b64encode(image_data).decode('utf-8')
+
+
+def annotate_image_with_grid(img: Image.Image) -> Image.Image:
+    """
+    Annotate an image with a grid overlay at 0.1 increments.
+    
+    Draws vertical and horizontal lines at 10% intervals with labels
+    to help the LLM estimate normalized bounding box coordinates.
+    
+    Args:
+        img: PIL Image to annotate
+        
+    Returns:
+        New PIL Image with grid overlay (original unchanged)
+    """
+    # Create a copy to avoid modifying the original
+    annotated = img.copy()
+    
+    # Convert to RGBA if needed for transparency support
+    if annotated.mode != 'RGBA':
+        annotated = annotated.convert('RGBA')
+    
+    # Create a transparent overlay for the grid
+    overlay = Image.new('RGBA', annotated.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    
+    width, height = annotated.size
+    
+    # Grid line color (semi-transparent red)
+    line_color = (255, 0, 0, 100)
+    # Label background color (semi-transparent white)
+    label_bg_color = (255, 255, 255, 180)
+    # Label text color
+    text_color = (255, 0, 0, 255)
+    
+    # Try to get a font, fall back to default if not available
+    try:
+        # Calculate font size based on image dimensions (roughly 1.5% of smaller dimension)
+        font_size = max(12, min(width, height) // 60)
+        font = ImageFont.truetype("arial.ttf", font_size)
+    except (IOError, OSError):
+        try:
+            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+        except (IOError, OSError):
+            font = ImageFont.load_default()
+    
+    # Draw grid lines and labels at 0.1 increments
+    for i in range(1, 10):  # 0.1 to 0.9
+        normalized = i / 10
+        label = f"{normalized:.1f}"
+        
+        # Vertical line at x = normalized
+        x = int(normalized * width)
+        draw.line([(x, 0), (x, height)], fill=line_color, width=2)
+        
+        # Label at top of vertical line
+        bbox = draw.textbbox((0, 0), label, font=font)
+        text_width = bbox[2] - bbox[0]
+        text_height = bbox[3] - bbox[1]
+        label_x = x - text_width // 2
+        label_y = 5
+        # Draw label background
+        draw.rectangle(
+            [label_x - 2, label_y - 2, label_x + text_width + 2, label_y + text_height + 2],
+            fill=label_bg_color
+        )
+        draw.text((label_x, label_y), label, fill=text_color, font=font)
+        
+        # Horizontal line at y = normalized
+        y = int(normalized * height)
+        draw.line([(0, y), (width, y)], fill=line_color, width=2)
+        
+        # Label at left of horizontal line
+        label_x = 5
+        label_y = y - text_height // 2
+        # Draw label background
+        draw.rectangle(
+            [label_x - 2, label_y - 2, label_x + text_width + 2, label_y + text_height + 2],
+            fill=label_bg_color
+        )
+        draw.text((label_x, label_y), label, fill=text_color, font=font)
+    
+    # Composite the overlay onto the annotated image
+    annotated = Image.alpha_composite(annotated, overlay)
+    
+    # Convert back to RGB for PNG encoding
+    annotated = annotated.convert('RGB')
+    
+    return annotated
 
 
 def describe_images_with_claude(
@@ -221,28 +310,36 @@ def detect_diagram_bounding_boxes(
     content_blocks = []
     content_blocks.append({
         "type": "text",
-        "text": f"""Analyze these {len(page_pngs)} pages and identify the MAIN engineering diagram on each page.
+        "text": f"""Analyze these {len(page_pngs)} pages and identify the MAIN engineering diagram for EACH PROBLEM.
 
-CRITICAL: Extract only ONE primary diagram per page - the largest, most prominent structural diagram that shows the problem setup. Ignore small details, annotations, or solution sketches.
+CRITICAL: Each page typically has 2-3 problems. Extract ONE diagram per problem (expect 2-3 diagrams per page). Do not skip any problems - if there's a problem, extract its diagram.
 
-For each main diagram found, provide:
-- Normalized bounding box (0-1 range)
+For each diagram found, provide:
+- Normalized bounding box (0-1 range) with safety margins
 - Technical description
 - Suggested filename"""
     })
     
-    # Add each page image
+    # Add each page image with grid overlay
     for page_num, png_path in page_pngs:
         content_blocks.append({
             "type": "text",
             "text": f"\n--- PAGE {page_num} ---"
         })
         
-        # Read and encode PNG
-        with open(png_path, 'rb') as f:
-            png_data = f.read()
+        # Load image, annotate with grid, and encode to base64 in memory
+        img = Image.open(png_path)
+        annotated_img = annotate_image_with_grid(img)
         
-        png_base64 = base64.standard_b64encode(png_data).decode('utf-8')
+        # Encode annotated image to base64
+        buffer = io.BytesIO()
+        annotated_img.save(buffer, format='PNG')
+        png_base64 = base64.standard_b64encode(buffer.getvalue()).decode('utf-8')
+        
+        # # Print base64 for viewing with online tools (data URL format)
+        # print(f"\n=== PAGE {page_num} ANNOTATED IMAGE (base64) ===")
+        # print(f"data:image/png;base64,{png_base64}")
+        # print("=" * 50)
         
         content_blocks.append({
             "type": "image",
@@ -256,7 +353,7 @@ For each main diagram found, provide:
     try:
         # Call Claude Vision API
         logger.info("Sending pages to Claude for diagram detection...")
-        _, response = llm_call(
+        messages, response = llm_call(
             system_prompt=system_prompt,
             user_prompt=content_blocks,
             model=model,
@@ -321,6 +418,122 @@ For each main diagram found, provide:
                 logger.info(f"✓ Page {page_num}: {name} at {bbox}")
         
         logger.info(f"✓ Detected {len(diagrams)} diagrams across {len(page_pngs)} pages")
+        
+        # === FEEDBACK LOOP: Verify bounding boxes with cropped images ===
+        if diagrams:
+            logger.info("Starting feedback loop to verify bounding boxes...")
+            
+            # Build page_num -> png_path mapping
+            page_png_map = {page_num: png_path for page_num, png_path in page_pngs}
+            
+            # Create verification content blocks with cropped images
+            feedback_blocks = []
+            feedback_blocks.append({
+                "type": "text",
+                "text": """I've cropped the diagrams using your bounding boxes. Please review each cropped image below.
+
+For each diagram, check if the bounding box correctly captured the COMPLETE diagram including all labels, annotations, and margins.
+
+If a crop is CORRECT, respond with:
+<diagram_name>correct</diagram_name>
+
+If a crop needs adjustment (cut off labels, too tight, includes too much extra content), provide the UPDATED bounding box:
+<diagram_name>
+  <bbox>x1,y1,x2,y2</bbox>
+</diagram_name>
+
+Here are the cropped diagrams:"""
+            })
+            
+            # Crop each diagram and add to feedback
+            for diagram in diagrams:
+                page_num = diagram['page']
+                bbox = diagram['bbox']
+                name = diagram['name']
+                
+                png_path = page_png_map.get(page_num)
+                if not png_path or not png_path.exists():
+                    continue
+                
+                try:
+                    # Crop image in memory
+                    img = Image.open(png_path)
+                    width, height = img.size
+                    
+                    x1 = int(bbox[0] * width)
+                    y1 = int(bbox[1] * height)
+                    x2 = int(bbox[2] * width)
+                    y2 = int(bbox[3] * height)
+                    
+                    # Validate coordinates
+                    if x1 >= x2 or y1 >= y2:
+                        logger.warning(f"Invalid bbox for {name}, skipping feedback")
+                        continue
+                    
+                    cropped = img.crop((x1, y1, x2, y2))
+                    
+                    # Encode cropped image to base64
+                    buffer = io.BytesIO()
+                    cropped.save(buffer, format='PNG')
+                    cropped_base64 = base64.standard_b64encode(buffer.getvalue()).decode('utf-8')
+                    
+                    # Add diagram label and cropped image
+                    feedback_blocks.append({
+                        "type": "text",
+                        "text": f"\n--- {name} (page {page_num}, bbox: {bbox}) ---"
+                    })
+                    feedback_blocks.append({
+                        "type": "image",
+                        "source": {
+                            "type": "base64",
+                            "media_type": "image/png",
+                            "data": cropped_base64
+                        }
+                    })
+                    
+                except Exception as e:
+                    logger.warning(f"Failed to crop {name} for feedback: {e}")
+            
+            # Make second LLM call with feedback
+            if len(feedback_blocks) > 1:  # More than just the instruction text
+                logger.info("Sending cropped images for verification...")
+                _, feedback_response = llm_call(
+                    system_prompt=system_prompt,
+                    user_prompt=feedback_blocks,
+                    model=model,
+                    tag="result",
+                    history=messages
+                )
+                
+                if feedback_response:
+                    # Parse feedback and update bounding boxes
+                    updates_applied = 0
+                    for diagram in diagrams:
+                        name = diagram['name']
+                        
+                        # Look for updated bbox
+                        update_pattern = rf'<{re.escape(name)}>\s*<bbox>\s*([\d.,\s]+)\s*</bbox>\s*</{re.escape(name)}>'
+                        update_match = re.search(update_pattern, feedback_response, re.DOTALL)
+                        
+                        if update_match:
+                            bbox_str = update_match.group(1).strip()
+                            try:
+                                bbox_parts = [float(x.strip()) for x in bbox_str.split(',')]
+                                if len(bbox_parts) == 4:
+                                    old_bbox = diagram['bbox']
+                                    diagram['bbox'] = tuple(bbox_parts)
+                                    logger.info(f"✓ Updated bbox for {name}: {old_bbox} -> {diagram['bbox']}")
+                                    updates_applied += 1
+                            except ValueError:
+                                logger.warning(f"Failed to parse updated bbox for {name}: {bbox_str}")
+                        else:
+                            # Check if marked as correct
+                            correct_pattern = rf'<{re.escape(name)}>\s*correct\s*</{re.escape(name)}>'
+                            if re.search(correct_pattern, feedback_response, re.IGNORECASE):
+                                logger.info(f"✓ Bbox confirmed correct for {name}")
+                    
+                    logger.info(f"Feedback loop complete: {updates_applied} bounding boxes updated")
+        
         return diagrams
         
     except Exception as e:

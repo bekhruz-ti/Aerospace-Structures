@@ -80,9 +80,7 @@ def process_single_pdf(pdf_path: str, args) -> Tuple[str, bool]:
                 pdf_path=str(pdf_path),
                 temp_dir=temp_dir,
                 start_page=None,
-                end_page=None,
-                model=args.model if hasattr(args, 'model') else None,
-                temperature=args.temperature if hasattr(args, 'temperature') else 0
+                end_page=None
             )
             html_content = processor.process()
             image_descriptions = processor.image_descriptions
@@ -92,9 +90,7 @@ def process_single_pdf(pdf_path: str, args) -> Tuple[str, bool]:
                 pdf_path=str(pdf_path),
                 temp_dir=temp_dir,
                 start_page=None,
-                end_page=None,
-                model=args.model if hasattr(args, 'model') else None,
-                temperature=args.temperature if hasattr(args, 'temperature') else 0
+                end_page=None
             )
             html_content = processor.process()
             image_descriptions = {}
