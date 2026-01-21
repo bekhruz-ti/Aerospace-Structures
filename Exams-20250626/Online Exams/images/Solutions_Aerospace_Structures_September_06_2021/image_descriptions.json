@@ -1,0 +1,26 @@
+{
+  "two_segment_beam_prescribed_displacement.png": {
+    "suggested_name": "two_segment_beam_prescribed_displacement",
+    "description": "Two-segment horizontal beam structure for Exercise 6. Left end has a fixed support (shown with hatched symbol preventing translation and rotation). Middle section has a roller support (triangular symbol with hatched ground) allowing horizontal movement but preventing vertical translation. Right end is free with prescribed downward displacement ū indicated by downward arrow. Left segment labeled \"EJ, ℓ\" and right segment labeled \"EJ, ℓ\" indicating identical flexural rigidity and length for both sections. Vertical reaction force V=? shown at middle support with upward arrow. Problem asks to determine reaction force when structure is loaded with prescribed displacement ū. Given data: ℓ = 1500(1+E/10) mm, ū = 10 mm, EJ = 10¹¹."
+  },
+  "inclined_beam_rigid_link_moment.png": {
+    "suggested_name": "inclined_beam_rigid_link_moment",
+    "description": "L-shaped frame structure for Exercise 7 consisting of an inclined beam and horizontal rigid link. Inclined member labeled \"ℓ, EJ\" extends from lower left to upper right at an angle, with fixed support (hatched) at top end. Horizontal member labeled \"ℓ, GJ\" extends leftward from the junction point. Applied moment M̂ₑ shown with curved arrow (counterclockwise) at right end of horizontal member. Vertical downward force V=? indicated at left end of horizontal member with downward arrow. Problem asks to determine vertical displacement (positive in downward direction) due to torsional moment M̂ₑ. Given data: ℓ = 1200 mm, M̂ₑ = 10⁵(1+E/10) N·mm, EJ = 10¹⁰ N·mm², GJ = 10⁸ N·mm²."
+  },
+  "beam_distributed_load_spring_support.png": {
+    "suggested_name": "beam_distributed_load_spring_support",
+    "description": "Horizontal beam for Exercise 8 with uniform distributed load and spring support. Left end has fixed support (hatched symbol). Uniform downward distributed load q shown across entire beam length with multiple downward arrows. Right end has spring support with stiffness k (shown with zigzag spring symbol and hatched ground). Beam divided into two equal segments, each labeled \"EJ, ℓ\". Vertical displacement V=? indicated at midspan with downward arrow. Problem asks to determine vertical displacement v. Given data: ℓ = 1200 mm, EJ = 10¹² N·mm², k = 750(1+G/10) N/mm, q = 12 N/mm."
+  },
+  "l_shaped_rigid_link_beam.png": {
+    "suggested_name": "l_shaped_rigid_link_beam",
+    "description": "L-shaped structure for Exercise 11 consisting of rigid horizontal link and inclined flexible beam. Thick horizontal rigid link at top connects to fixed support (hatched) at upper right end. Vertical downward force F applied at left end of rigid link, with vertical displacement V=? indicated. Inclined beam labeled \"ℓ, EJ, GJ(x)\" extends downward and leftward from junction point to pinned support (circle symbol) at lower left, with angle θ̂ marked at pin. Coordinate axis x shown along inclined beam direction. Problem asks to determine vertical displacement V at tip of rigid link. Rigid body is loaded at x = ℓ/2 (middle of beam). Instructions specify using polynomial expansion and lowest possible number of DOFs. Given data: ℓ = 1200 mm, L = 200 mm, EJ = 10¹¹ N·mm², GJ₀ = 10¹⁰ N·mm², GJ₁ = 2·10¹⁰ N·mm², F = 5000(1+b/10), θ̂ = 10 deg."
+  },
+  "circular_bar_distributed_moment.png": {
+    "suggested_name": "circular_bar_distributed_moment",
+    "description": "Circular arc bar for Exercise 12 with distributed torsional moment loading. Curved member with radius ℓ forms quarter-circle arc, labeled \"ℓ, GJ\". Left end has fixed support (hatched). Right end has pinned support (circle symbol) with angle θ̂ marked. Distributed torsional moment mₜ shown along arc length with multiple curved arrows indicating twisting moments about local tangent direction. Coordinate system shows x-axis tangent to arc at right end. Problem asks to evaluate rotation θ̂ at x = ℓ/2 solving problem exactly for circular bar, reporting result in degrees. Given data: ℓ = 1500 mm, GJ = 10⁸ N·mm², mₜ = 200(1+b/10) N."
+  },
+  "three_dimensional_rib_structure.png": {
+    "suggested_name": "three_dimensional_rib_structure",
+    "description": "Three-dimensional rib structure for Exercise 24 shown in isometric and side views. Left isometric view shows rectangular box-like structure with rib member. Structure has length ℓ₁ in longitudinal direction, with cross-sectional dimensions ℓ₃ (height) and width. Four corner stringers labeled A run longitudinally, with cross-sectional areas marked as A at corners. Rib spans diagonally across structure at midspan location (ℓ₂/2), labeled \"ℓ₂/2\" on both diagonal segments. Vertical upward forces F applied at two lower corners. Fixed supports (hatched) shown at upper corners. Right side view shows rib cross-section as rectangular profile with height ℓ₃, length ℓ₁, and z-axis indicated. Problem asks to model rib as beam and determine bending moment at x = ℓ₁/2. Given data: ℓ₁ = 500 mm, ℓ₂ = 1500 mm, ℓ₃ = 150 mm, t = 1.0 mm, A = 500 mm², F = 6000 N."
+  }
+}

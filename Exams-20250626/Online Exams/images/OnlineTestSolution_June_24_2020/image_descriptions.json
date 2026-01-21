@@ -1,0 +1,34 @@
+{
+  "cantilever_beam_triangular_load.png": {
+    "suggested_name": "cantilever_beam_triangular_load",
+    "description": "Cantilever beam with fixed support at left end (shown with hatched wall symbol) and free right end. Triangular distributed load applied along entire beam length, varying linearly from maximum intensity h at the fixed end to zero at the free end, with load arrows pointing downward. Beam has length L, axial rigidity EA, and flexural rigidity EJ. Coordinate system shows x-axis along beam length from left to right. Problem asks to find displacement at x = L/3. Given data: L = 2000 mm, EA = 1.8·10⁶ N, EJ = 1.8·10⁸ N·mm², h = 2(1 + F/10) N/mm where F = 0 in the solution."
+  },
+  "beam_displacement_analysis.png": {
+    "suggested_name": "beam_displacement_analysis",
+    "description": "Schematic diagram showing coordinate system transformation for beam displacement analysis. Left sketch labeled \"Real\" shows cantilever beam with triangular load and x-axis pointing right. Right sketch shows dimensioned beam segment with x-axis reversed (pointing left), indicating analysis region from L/2 to 2/3 L. Annotation states \"As before\" and \"§N = +1\" for x ≥ 2/3 L, indicating unit load application for displacement calculation using virtual work method. This represents the setup for evaluating displacement at a specific location along the beam."
+  },
+  "rectangular_hollow_section_torque.png": {
+    "suggested_name": "rectangular_hollow_section_torque",
+    "description": "Cross-section of rectangular hollow section subjected to torsion. Rounded rectangular profile with outer dimensions h (height) and b (width), showing four corner points labeled A. Wall thicknesses labeled as t₁ (vertical and horizontal walls) and t₂ (top horizontal wall). Applied torque M_t shown with curved arrow indicating clockwise rotation direction. Coordinate system with vertical dimension h marked on right side. Problem asks to determine shear stress τ in panel of thickness t₂. Given data: A = 500 mm², h = 200(1 + E/10) mm, b = 150 mm, t₁ = 1.3 mm, t₂ = 4.6 mm, M_t = 10⁷ N·mm. Solution uses shear flow formula 2q·Ω = M_t where Ω = bh + πh²/4, yielding τ = q/t₂ = 50.88 MPa."
+  },
+  "rectangular_frame_shear_flow.png": {
+    "suggested_name": "rectangular_frame_shear_flow",
+    "description": "Rectangular frame cross-section for shear flow analysis. Four corner points labeled A (bottom corners) and 2A (top corners), connected by panels with thicknesses t₁ (horizontal and right vertical) and t₂ (left vertical, with unknown shear flow q₂ = ?). Frame dimensions: width b (horizontal) and height a (vertical). Applied vertical force T shown with upward arrow at bottom left corner. Problem asks to calculate shear flow q₂ in left vertical panel. Given data: A = 800(1 + A/10) mm², T = 7600 N, a = 250 mm, b = 600 mm, t₁ = 1 mm, t₂ = 2(1 + C/10) mm. Solution diagram shows numbered corners (1-4) with shear flow directions q₁, q₃, q₄ and coordinate system (x, y axes). First moment of area expressions provided: S'ₓₓ = (3/2)Aa², S'ₓ₃ = Aa/2, S'ₓ₄ = (3/2)Aa, S'ₓ₁ = S'ₓ₃."
+  },
+  "beam_spring_support_triangular_load.png": {
+    "suggested_name": "beam_spring_support_triangular_load",
+    "description": "Beam with fixed support at left end and spring support at midspan, subjected to triangular distributed load. Beam total length L divided into two equal segments of L/2. Fixed support shown with hatched wall symbol at left end. Spring with stiffness k located at x = L/2, with roller support at right end (x = L). Triangular distributed load q varies linearly from zero at left to maximum intensity q at right end, shown with upward-pointing arrows. Beam has flexural rigidity EJ for both segments. Problem uses Ritz method with 1-DOF polynomial approximation to determine vertical displacement corresponding to spring deflection. Given data: L = 950 mm, EJ = 1.25·10⁸ N·mm², k = 50(1 + A/10) N/mm, q = 2. Solution yields displacement w(L/2) = -L³/8 · q₁ = 4.768 mm using energy method with deflection function W = (x³ - Lx²)q₁."
+  },
+  "l_frame_angled_load.png": {
+    "suggested_name": "l_frame_angled_load",
+    "description": "L-shaped frame with horizontal and vertical members meeting at right angle. Horizontal member (length L) has fixed support at left end (hatched wall symbol) with properties EA₁ and EJ. Vertical member (length L) extends downward from right end of horizontal member with properties EA₂ and EJ, terminating in fixed support at bottom (hatched ground symbol). Point load P applied at junction at 45° angle (labeled \"45°\") with unknown displacement S = ? to be determined. Coordinate system shows x₁-axis along horizontal member. Given data: L = 730 mm, EA₁ = 1.15·10⁶(1 + F/10) N, EA₂ = 3·10⁵ N, EJ = 1.8·10⁷ N·mm², P = 2500(1 + A/10) N. Problem uses Ritz method with simplest polynomial approximation for evaluating displacement S. Solution diagram shows force components Pₓ and Pᵧ with local coordinate systems (x₁, x₂) for each member. Note states that due to uncoupling between axial and bending, only axial response of beam 1 and bending of beam 2 need be considered."
+  },
+  "ribbed_structure_3d.png": {
+    "suggested_name": "ribbed_structure_3d",
+    "description": "Three-dimensional ribbed panel structure showing two parallel ribs (Rib #1 and Rib #2) connected by panels. Isometric view with coordinate system showing x-axis along ribs. Front curved panel connects lower corners with dimensions c (height) and a (width). Two longitudinal ribs span length L, separated by transverse distance b. Upper panel shows distributed load q with upward arrows. Vertical point load P applied at front lower left corner with upward arrow. Dimensions labeled: a = 700 mm (panel width), b = 200 mm (rib spacing), c = 100 mm (front panel height), L = 2000 mm (rib length), t = 0.6 mm (thickness), A = 700 mm² (cross-sectional area). Additional parameters: P = 2000 N, q = 2(1 + F/10) N/mm, M_ref = 9.8·10⁵ N·mm. Problem asks to model Rib #2 as a beam and evaluate bending moment at x = a/2 as M/M_ref."
+  },
+  "beam_distributed_load_reactions.png": {
+    "suggested_name": "beam_distributed_load_reactions",
+    "description": "Simply supported beam with uniform distributed load q applied over entire span, showing support reactions and moment diagram. Top diagram shows beam with uniformly distributed load q (upward arrows) and downward reaction forces qa/2 at left support and qa/2 at right support. Middle diagram labeled \"beam model\" shows same configuration. Bottom diagram shows free body diagram with distributed load q (upward arrows), left reaction qa/2 (downward), coordinate x-axis, and moment M indicated by curved arrow. Bending moment expression given as M(x) = qa/2·x - q·x²/2. Evaluation at x = a/2 yields M(a/2)/M_ref = 0.125. This represents equilibrium analysis for determining internal forces in uniformly loaded beam."
+  }
+}

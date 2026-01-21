@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Mechanics Exam Solutions</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .mcq-section {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .mcq-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .mcq-question {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .mcq-question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .mcq-options {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .mcq-options li {
+            margin: 5px 0;
+            padding: 5px 10px;
+        }
+
+        .mcq-correct {
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        .mcq-incorrect {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Structural Mechanics Exam Solutions</h1>
+        </header>
+        
+        <main>
+            <!-- Exercise 1 -->
+            <section class="problem-solution-pair" id="exercise-1">
+                <div class="problem">
+                    <h2>Exercise 1</h2>
+                    <p class="problem-statement">Determine the shear force \(T\) at the fixed end.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_June_16_2021/l_frame_spring_support_distributed_load.png" alt="L-shaped frame structure with spring supports at corner junction">
+                        <figcaption>L-shaped frame with spring supports and applied force ρ</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell_1 = 1000 \text{ mm}\)</li>
+                            <li>\(\ell_2 = 1000 \text{ mm}\)</li>
+                            <li>\(EA_1 = 1 \cdot 10^6 \text{ N}\)</li>
+                            <li>\(EA_2 = 3 \cdot 10^6 \text{ N}\)</li>
+                            <li>\(EJ_1 = 2 \cdot 10^{12} \text{ N mm}^2\)</li>
+                            <li>\(EJ_2 = 1 \cdot 10^{12} \text{ N mm}^2\)</li>
+                            <li>\(k = 2000\left(1 + A/_{10}\right)\)</li>
+                            <li>\(\rho = 1000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Real System Analysis</h4>
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolutions_June_16_2021/l_frame_real_system_forces.png" alt="Real system with internal forces">
+                            <figcaption>Real system showing internal forces and reactions</figcaption>
+                        </figure>
+                        <p>Analyzing the real system with horizontal force \(W\) and vertical force \(V\) at the corner junction:</p>
+                        <p><strong>Beam 1 (horizontal):</strong></p>
+                        \[N_1 = \rho\]
+                        <p><strong>Beam 2 (vertical):</strong></p>
+                        \[N_2 = -V\]
+                        \[M_2 = -\rho x_2 - W x_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Dummy System #1</h4>
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolutions_June_16_2021/l_frame_dummy_systems.png" alt="Dummy systems for virtual work">
+                            <figcaption>Dummy systems #1 and #2 for virtual work analysis</figcaption>
+                        </figure>
+                        <p>Apply unit vertical force at corner junction:</p>
+                        <p><strong>Beam 1:</strong> \(^1\delta N_1 = 0\)</p>
+                        <p><strong>Beam 2:</strong> \(^1\delta N_2 = -1\), \(^1\delta M_2 = 0\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Dummy System #2</h4>
+                        <p>Apply unit horizontal force at corner junction:</p>
+                        <p><strong>Beam 1:</strong> \(^2\delta N_1 = 0\)</p>
+                        <p><strong>Beam 2:</strong> \(^2\delta N_2 = 0\), \(^2\delta M_2 = -x_2\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Application of PVCW</h4>
+                        <p><strong>Equation 1:</strong></p>
+                        \[\int_0^{\ell_2} \frac{N_2 \cdot ^1\delta N_2}{EA_2} dx_2 + \frac{V}{k} = 0 \quad \Rightarrow \quad V = 0\]
+                        
+                        <p><strong>Equation 2:</strong></p>
+                        \[\int_0^{\ell_2} \frac{M_2 \cdot ^2\delta M_2}{EJ_2} dx_2 + \frac{W}{k} = 0\]
+                        
+                        <p>From which:</p>
+                        \[W = -\frac{\rho k \ell_2^3}{k\ell_2^3 + 3EJ_2} = -400 \text{ N}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate Shear Force T</h4>
+                        <p>The shear force at the fixed end reads:</p>
+                        \[T = \rho + W = 1000 + (-400) = 600 \text{ N}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{T = 600 \text{ N}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 3 -->
+            <section class="problem-solution-pair" id="exercise-3">
+                <div class="problem">
+                    <h2>Exercise 3</h2>
+                    <p class="problem-statement">Determine the unknown reaction force \(X\) as reported in the sketch.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_June_16_2021/simply_supported_beam_uniform_load.png" alt="Simply supported beam with uniform load">
+                        <figcaption>Simply supported beam with uniform distributed load and unknown reaction moment X</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1000\left(1 + c/_{10}\right)\)</li>
+                            <li>\(q = 0.1 \text{ N/mm}\)</li>
+                            <li>\(EA = 1 \cdot 10^6 \text{ N}\)</li>
+                            <li>\(EJ = 1 \cdot 10^9 \text{ N mm}^2\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Exploit Symmetry</h4>
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolutions_June_16_2021/beam_symmetry_analysis.png" alt="Beam symmetry analysis">
+                            <figcaption>Splitting the beam using symmetry conditions</figcaption>
+                        </figure>
+                        <p>To simplify the solution, the symmetry of the problem can be exploited (clearly this is not strictly necessary).</p>
+                        <p>The beam is split into two symmetric half-beams, each of length \(\ell/2\).</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Real System</h4>
+                        <p>For the half-beam with moment \(W\) at the end:</p>
+                        \[M = -W - \frac{qx^2}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Dummy System</h4>
+                        <p>Apply unit moment at the end:</p>
+                        \[^1\delta M = -1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Application of PCVW</h4>
+                        <p>By application of the Principle of Complementary Virtual Work:</p>
+                        \[\int_0^{\ell/2} \frac{M \cdot \delta M}{EJ} dx = 0\]
+                        
+                        <p>From which:</p>
+                        \[W = -\frac{q\ell^2}{24}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate Reaction Force X</h4>
+                        <p>The reaction force \(X\) is then:</p>
+                        \[X = W + q\left(\frac{\ell}{2}\right)^2 \cdot \frac{1}{2} = \frac{1}{12} q\ell^2 = 8333 \text{ N mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{X = \frac{1}{12} q\ell^2 = 8333 \text{ N·mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 10 -->
+            <section class="problem-solution-pair" id="exercise-10">
+                <div class="problem">
+                    <h2>Exercise 10</h2>
+                    <p class="problem-statement">Determine the vertical displacement \(V\). Solve the problem using the Ritz method and consider the smallest possible number of dofs using a polynomial representation.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_June_16_2021/l_frame_cantilever_distributed_load.png" alt="L-shaped cantilever frame with distributed load">
+                        <figcaption>L-shaped cantilever frame with distributed loads</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1300\left(1 + A/_{10}\right)\)</li>
+                            <li>\(q = 100 \text{ N/mm}\)</li>
+                            <li>\(n = 70 \text{ N/mm}\)</li>
+                            <li>\(EA_1 = 3 \cdot 10^6 \text{ N}\)</li>
+                            <li>\(EJ_1 = 4 \cdot 10^{12} \text{ N mm}^2\)</li>
+                            <li>\(EA_2 = 6 \cdot 10^6 \text{ N}\)</li>
+                            <li>\(EJ_2 = 8 \cdot 10^{12} \text{ N mm}^2\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define Trial Functions</h4>
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolutions_June_16_2021/l_frame_displacement_analysis.png" alt="Frame displacement analysis">
+                            <figcaption>Displacement fields and trial functions</figcaption>
+                        </figure>
+                        <p>The following set of trial functions is considered (10 dof initially):</p>
+                        \[u_1 = a_0 + a_1 \left(\frac{x_1}{\ell}\right)\]
+                        \[w_1 = b_0 + b_1\left(\frac{x_1}{\ell}\right) + b_2\left(\frac{x_1}{\ell}\right)^2\]
+                        \[u_2 = c_0 + c_1\left(\frac{x_2}{\ell}\right)\]
+                        \[w_2 = d_0 + d_1\left(\frac{x_2}{\ell}\right) + d_2\left(\frac{x_2}{\ell}\right)^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply Essential Boundary Conditions (due to constraints)</h4>
+                        <p>At base of member 1:</p>
+                        \[u_1(0) = 0 \quad \Rightarrow \quad u_1 = a_1\left(\frac{x_1}{\ell}\right)\]
+                        \[w_1(0) = 0, \quad w_1'(0) = 0 \quad \Rightarrow \quad w_1 = b_2\left(\frac{x_1}{\ell}\right)^2\]
+                        
+                        <p>At base of member 2:</p>
+                        \[u_2(0) = 0 \quad \Rightarrow \quad u_2 = c_1\left(\frac{x_2}{\ell}\right)\]
+                        \[w_2(0) = 0, \quad w_2'(0) = 0 \quad \Rightarrow \quad w_2 = d_2\left(\frac{x_2}{\ell}\right)^2\]
+                        <p>(6 constraints applied)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply Essential Boundary Conditions at Interface</h4>
+                        <p>Continuity conditions at the junction:</p>
+                        \[u_1(\ell) = w_2(\ell) \quad \Rightarrow \quad a_1 = d_2\]
+                        \[w_1(\ell) = u_2(\ell) \quad \Rightarrow \quad b_2 = c_1\]
+                        \[w_1'(\ell) = -w_2'(\ell) \quad \Rightarrow \quad b_2 = -d_2\]
+                        <p>(3 additional constraints)</p>
+                        
+                        <p>So the unknown amplitudes can be expressed as a function of one single amplitude, e.g. \(a_1\):</p>
+                        \[d_2 = a_1, \quad c_1 = -a_1, \quad b_2 = -a_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply PVW</h4>
+                        <p>Internal virtual work:</p>
+                        \[\delta W_i = \int_0^{\ell} \left(\delta u_1' EA_1 u_1' + \delta w_1'' EJ_1 w_1''\right) dx_1 + \int_0^{\ell} \left(\delta u_2' EA_2 u_2' + \delta w_2'' EJ_2 w_2''\right) dx_2\]
+                        
+                        <p>External virtual work:</p>
+                        \[\delta W_e = \int_0^{\ell} \delta u_1 \, n \, dx_1 + \int_0^{\ell} \delta w_2 \, q \, dx_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve the Linear System</h4>
+                        <p>From the virtual work equation:</p>
+                        \[K = \frac{EA_1}{\ell} + \frac{EA_2}{\ell} + \frac{4EJ_1}{\ell^3} + \frac{4EJ_2}{\ell^3}\]
+                        \[F = \frac{n\ell}{2} + \frac{q\ell}{3}\]
+                        
+                        <p>The linear static problem is:</p>
+                        \[K a_1 = F\]
+                        
+                        <p>From which:</p>
+                        \[a_1 = 3.0876 \text{ mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{V = u_1(\ell) = a_1 = 3.0876 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise (Torsion) -->
+            <section class="problem-solution-pair" id="exercise-torsion">
+                <div class="problem">
+                    <h2>Exercise (Torsion)</h2>
+                    <p class="problem-statement">Compute the rotation of the loaded end.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_June_16_2021/truss_3d_structure_cross_sections.png" alt="3D truss structure with cross sections">
+                        <figcaption>Three-dimensional truss structure with cross-sectional views</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 5000 \text{ mm}\)</li>
+                            <li>\(t = 0.8 \text{ mm}\)</li>
+                            <li>\(d_1 = 500\left(1 + F/_{10}\right) \text{ mm}\)</li>
+                            <li>\(d_2 = 250\left(1 + E/_6\right) \text{ mm}\)</li>
+                            <li>\(A = 500 \text{ mm}^2\)</li>
+                            <li>\(P = 8000 \text{ N}\)</li>
+                            <li>\(G = 27000 \text{ MPa}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate Section Properties</h4>
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolutions_June_16_2021/truss_cross_section_analysis.png" alt="Cross section analysis">
+                            <figcaption>Cross-section geometry for torsion analysis</figcaption>
+                        </figure>
+                        <p>Enclosed area:</p>
+                        \[\Omega = \frac{d_1 d_2}{2}\]
+                        
+                        <p>Diagonal length:</p>
+                        \[d_3 = \sqrt{\left(\frac{d_1}{2}\right)^2 + \left(\frac{d_2}{2}\right)^2}\]
+                        
+                        <p>Moment arm:</p>
+                        \[d = \frac{d_2}{2} \cos 45°\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate Torsional Constant using Bredt's Formula</h4>
+                        <p>The torsional constant of the section is evaluated referring to Bredt's formula:</p>
+                        \[J = \frac{4\Omega^2}{\oint_p \frac{1}{t} dn} = \frac{4\Omega^2}{4d_3/t} = \frac{\Omega^2 t}{d_3}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate Rotation</h4>
+                        <p>The torsional moment is:</p>
+                        \[M_t = Pd = GJ\theta'\]
+                        
+                        <p>So the rate of twist:</p>
+                        \[\theta' = \frac{Pd}{GJ}\]
+                        
+                        <p>And the total rotation:</p>
+                        \[\theta = \theta' \ell\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\theta = 0.6711°}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 20 -->
+            <section class="problem-solution-pair" id="exercise-20">
+                <div class="problem">
+                    <h2>Exercise 20</h2>
+                    <p class="problem-statement">Compute the vertical displacement at \(x = \ell/2\) using Ritz and choosing between the approximations below:</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_June_16_2021/beam_triangular_distributed_load.png" alt="Beam with triangular distributed load">
+                        <figcaption>Simply supported beam with triangular distributed load</figcaption>
+                    </figure>
+                    
+                    <p>Trial function options:</p>
+                    <ul>
+                        <li>\(w = c \cos \frac{\pi x}{\ell}\)</li>
+                        <li>\(w = c x^2 (x - \ell)^2\)</li>
+                        <li>\(w = c x\)</li>
+                        <li>\(w = c x (x - \ell)\)</li>
+                        <li>\(w = c x^2 (x - \ell)\)</li>
+                    </ul>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 1500 \left(1 + A/_{10}\right) \text{ mm}\)</li>
+                            <li>\(EJ = 10^{10} \text{ N mm}^2\)</li>
+                            <li>\(a = 1.0 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Choose Approximation</h4>
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolutions_June_16_2021/beam_triangular_load_solution.png" alt="Solution with chosen approximation">
+                            <figcaption>Solution using the trial function \(w = cx(x-\ell)\)</figcaption>
+                        </figure>
+                        <p>Consider the approximation:</p>
+                        \[w = c x (x - \ell)\]
+                        
+                        <p>So:</p>
+                        \[w' = c \cdot 2x - c\ell = c(2x - \ell)\]
+                        \[w'' = 2c\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply PVW</h4>
+                        <p>The Principle of Virtual Work reads:</p>
+                        \[\int_0^{\ell} \delta w'' \, EJ \, w'' dx = \int_0^{\ell} \delta w \, \frac{x}{\ell} \, a \, dx\]
+                        
+                        <p>Upon substitution of the approximation:</p>
+                        \[\delta c \int_0^{\ell} 4 EJ \, dx \cdot c = \delta c \int_0^{\ell} x(x - \ell) \frac{x}{\ell} \, dx\]
+                        
+                        <p>So:</p>
+                        \[(4 EJ \ell) c = -\frac{a\ell^3}{12}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Solve for c</h4>
+                        <p>And then:</p>
+                        \[c = -\frac{a\ell^2}{48 EJ}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate Displacement</h4>
+                        <p>The displacement at \(x = \ell/2\) is then:</p>
+                        \[w = c \, x (x - \ell) \bigg|_{x = \ell/2} = c \cdot \frac{\ell}{2} \cdot \left(\frac{\ell}{2} - \ell\right) = c \cdot \frac{\ell}{2} \cdot \left(-\frac{\ell}{2}\right) = -\frac{c\ell^2}{4}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{w\left(\frac{\ell}{2}\right) = 2.64 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercise 23 -->
+            <section class="problem-solution-pair" id="exercise-23">
+                <div class="problem">
+                    <h2>Exercise 23</h2>
+                    <p class="problem-statement">Determine the axial stress \(\sigma_{zz}\) in the stringer #4 at \(z = \ell_3/2\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_June_16_2021/3d_frame_structure_numbered_nodes.png" alt="3D frame structure with numbered nodes">
+                        <figcaption>Three-dimensional frame structure with numbered stringers</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell_1 = 400 \text{ mm}\)</li>
+                            <li>\(\ell_2 = 250 \left(1 + B/_{10}\right) \text{ mm}\)</li>
+                            <li>\(\ell_3 = 2000 \text{ mm}\)</li>
+                            <li>\(A = 500 \text{ mm}^2\)</li>
+                            <li>\(F = 8000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate Second Moment of Area</h4>
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolutions_June_16_2021/rectangular_cross_section_nodes.png" alt="Rectangular cross section with nodes">
+                            <figcaption>Cross-section showing stringer locations</figcaption>
+                        </figure>
+                        <p>The second moment of area about the x-axis:</p>
+                        \[J_{xx} = 4A \left(\frac{\ell_2}{2}\right)^2 = A\ell_2^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate Bending Moment</h4>
+                        <p>The bending moment reads:</p>
+                        \[M(z) = -Fz\]
+                        
+                        <p>So at \(z = \ell_3/2\):</p>
+                        \[M\left(\frac{\ell_3}{2}\right) = -\frac{F\ell_3}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate Axial Stress</h4>
+                        <p>Using the bending stress formula:</p>
+                        \[\sigma_{zz} = -\frac{M \cdot y}{J_{xx}}\]
+                        
+                        <p>For stringer #4 at \(y = -\ell_2/2\):</p>
+                        \[\sigma_{zz} = -\frac{F\ell_3}{2}\left(-\frac{\ell_2}{2}\right)\frac{1}{J_{xx}} = \frac{F\ell_3}{4A\ell_2}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\sigma_{zz} = 32 \text{ MPa}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Multiple Choice Questions -->
+            <section class="problem-solution-pair" id="mcq">
+                <div class="mcq-section">
+                    <h2>Multiple Choice Questions</h2>
+                    
+                    <div class="mcq-question">
+                        <p>• In the finite element method, the analysis of a statically indetermined structure:</p>
+                        <ul class="mcq-options">
+                            <li class="mcq-correct">✓ is done with no differences with the case of a statically determined one</li>
+                            <li class="mcq-incorrect">requires special compatibility requirements to be added to the solving equations</li>
+                            <li class="mcq-incorrect">cannot be performed due to the overconstraints</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mcq-question">
+                        <p>• The rotation of a multi-cell thin walled cross section with N cells:</p>
+                        <ul class="mcq-options">
+                            <li class="mcq-incorrect">can be computed using Bredt's formula</li>
+                            <li class="mcq-correct">✓ can be computed by solving a system of equations with N-1 compatibility equations and 1 equilibrium equation</li>
+                            <li class="mcq-incorrect">can be computed by finding the location of the shear center</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mcq-question">
+                        <p>• The buckling load of a compressed beam is function:</p>
+                        <ul class="mcq-options">
+                            <li class="mcq-correct">✓ of the cross-section bending stiffness</li>
+                            <li class="mcq-incorrect">of the cross-section torsional stiffness</li>
+                            <li class="mcq-incorrect">of the cross-section axial stiffness</li>
+                            <li class="mcq-incorrect">of the cross-sections shear stiffness</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mcq-question">
+                        <p>• The internal forces in a statically determined structure depend on the material elastic properties:</p>
+                        <ul class="mcq-options">
+                            <li class="mcq-incorrect">True</li>
+                            <li class="mcq-correct">✓ False</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mcq-question">
+                        <p>• The Timoshenko beam model does not account for transverse shear deformability:</p>
+                        <ul class="mcq-options">
+                            <li class="mcq-incorrect">True</li>
+                            <li class="mcq-correct">✓ False</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mcq-question">
+                        <p>• The position of the shear center of a thin-walled beam depends on the loading conditions:</p>
+                        <ul class="mcq-options">
+                            <li class="mcq-incorrect">True</li>
+                            <li class="mcq-correct">✓ False</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

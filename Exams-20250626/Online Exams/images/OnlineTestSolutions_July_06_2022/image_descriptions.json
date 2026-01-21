@@ -1,0 +1,46 @@
+{
+  "beam_structure_3d_coordinate_system.png": {
+    "suggested_name": "beam_structure_3d_coordinate_system",
+    "description": "Three-dimensional beam structure diagram showing spatial configuration with labeled points A, B, C, D, and K. Right-handed coordinate system with x, y, and z axes shown at lower left. Beam segment extends from point B to point A with length ℓ marked. Point D is located at distance e from point B along the beam axis. Force vector Fx shown acting in positive x-direction at point C. Additional force vectors and displacement components (u, v, w) indicated at various points. Diagonal members connect points showing 3D structural geometry. Problem involves computing displacement in z-direction at point D given constraints on hinges at points A and B (three displacement components u, v, w) and constraint on displacement in y-direction only at point B."
+  },
+  "beam_element_free_body_diagram.png": {
+    "suggested_name": "beam_element_free_body_diagram",
+    "description": "Free body diagram of a 3D beam element showing internal forces and moments at nodes. Three local coordinate systems labeled (1), (2), and (3) shown with axes x₃, y₃, z₃. Node forces include axial force F, shear forces, and moments. External force F shown at distance ℓ from left end, with reaction force F/2 at right end. Reaction force Rxc shown at left end. Internal force and moment components labeled including z₁, y₁, z₃, y₃ at nodes. Accompanying equilibrium equations show moment relationships: M_x = Fz, M_z = Fℓ, M_x = -Fz for different sections, and force equilibrium N_z = R_x + F with moment expressions M_x = +Fℓ - F/2·z₃ and M_y = -Fℓ + F/2·z₃."
+  },
+  "beam_element_force_diagram.png": {
+    "suggested_name": "beam_element_force_diagram",
+    "description": "Simplified beam element diagram showing force F applied at angle to beam axis. Two local coordinate systems shown: one at origin O with axes labeled 1, x₃, y₃, z₃, and another showing axes 0, x, z. Vertical axis labeled with 1 and 0 markers. Accompanying equations show virtual work integral ∫M_y = 1 from 0 to 2ℓ, leading to integral expression ∫(δN_z(R_x+F)/EA)dz₃ = 0, which yields R_x = -F. Additional equation shows δM_y = -1/2·z₃ for range 0 < z₃ < ℓ, with expression = -1/2·z₃ + 2·z₃·ℓ = 1/2·z₃ - ℓ."
+  },
+  "cantilever_beam_point_load.png": {
+    "suggested_name": "cantilever_beam_point_load",
+    "description": "Cantilever beam with fixed support (hatched) at left end and free right end. Beam total length 2ℓ with point load F applied downward at distance ℓ from fixed support (point A marked with X). Local coordinate system shows z-axis horizontal along beam, y-axis vertical. Curved arrow indicates rotation ϕy at support. Dimensions marked as ℓ for left segment and ℓ for right segment. Problem asks to compute rotation ϕy at point A. Given data: ℓ = 4000 mm, EI_yy = 6E11 N·mm², F = 8000 N. Moment expressions provided: M_y = -Fz for 0 < z < ℓ, and M_y = -Fz + R_x(z-ℓ) for ℓ < z < 2ℓ, with virtual work expression δM_y shown for both ranges."
+  },
+  "cantilever_beam_loading_cases.png": {
+    "suggested_name": "cantilever_beam_loading_cases",
+    "description": "Cantilever beam diagram showing combined loading case with fixed support at left end. Beam subjected to distributed load along left portion and point load F at right end. Local coordinate system with z-axis horizontal and y-axis vertical, with rotation ϕy indicated. Reaction force R_x shown at fixed support. Upper sketch shows force F at distance ℓ from support, lower sketch shows reaction forces 5F/2 upward and distributed loading. Accompanying calculations show moment expressions and final result ϕy = 1/4·Fℓ²/EI_yy = 0.053 rad. Equations include -5/6·F + 1/3·R_x = 0 leading to R_x = 5/2·F, and moment equation M_y = -F(z+ℓ) + 5/2·Fz for 0 < z < ℓ."
+  },
+  "semi_monocoque_beam_3d_model.png": {
+    "suggested_name": "semi_monocoque_beam_3d_model",
+    "description": "Three-dimensional isometric view of semi-monocoque beam structure showing rectangular cross-section with internal stringers. Fixed support (hatched) at right end with distributed pressure loading on top surface. Beam length a with cross-sectional dimensions labeled. Four corner stringers marked as points A (corners) with areas 2A at top corners and A at bottom corners. Internal web labeled with points B, C showing diagonal bracing. Coordinate axes ℓ, e, e shown along edges. Problem involves pressure distribution constant along beam span varying linearly from 0 to p along upper side with dimension a. Given data: ℓ = 2000 mm, p = 0.2 MPa, a = 800 mm, h = 150 mm, A = 500 mm², t = 4 mm, E = 92000 MPa, ν = 0.3. Problem asks to compute shear stress in panel (1) at distance 2ℓ-ε from clamp, accounting for external load introduction by ribs."
+  },
+  "rectangular_cross_section_shear_stress.png": {
+    "suggested_name": "rectangular_cross_section_shear_stress",
+    "description": "Rectangular cross-section diagram showing shear stress distribution with labels for shear flow components. Rectangle with height dimension labeled on left and right sides as q₁ and q₄, top edge labeled q₃, bottom edge labeled q₄. Internal shear flow labeled as SS with curved arrow indicating circulation direction Cᵖᵃ. Accompanying equations show: R = (pa/2)·ℓ·5/2 and moment M = (pa/2)·5/2·ℓ·(a/2 - a/3) = 5/24·pa²ℓ. Shear flow relationships: q₁' = q₂' = R/(2a), shear stress qᵃ = M/(2aℓ), and final expressions q₁ = q₁' - qᵃ leading to q₂ = q₁/t₁ = 297.94 MPa."
+  },
+  "two_cell_truss_cross_section.png": {
+    "suggested_name": "two_cell_truss_cross_section",
+    "description": "Two-cell semi-monocoque truss cross-section showing rectangular configuration with dimensions. Top and bottom edges of length 2a with center vertical web dividing section into two cells. Corner stringers labeled A with intermediate stringers labeled 6 and 2A at various locations. Height dimension b on left side. Width dimension a marked for each cell (total width 2a). Lower diagram shows two rectangular cells side by side with shear flow circulation arrows Cq₁ᵇ and Cq₂ᵃ indicating counterclockwise flow in each cell. Problem asks to compute torsional stiffness. Given data: a = 200 mm, b = 100 mm, t = 1 mm, A = 1000 mm², E = 92000 MPa, ν = 0.3. Equations show q₁ᵇ = q₂ᵃ and twist rate expression θ̇₁ = 1/(2aℓG)·(2a+b)/t·q₃ᵇ = [1/(2aℓ)·(2a+b)/t·1/(4aℓ)]·M_z with final result q₁ᵇ = M_z/(4aℓ)."
+  },
+  "semi_monocoque_beam_rivet_connection.png": {
+    "suggested_name": "semi_monocoque_beam_rivet_connection",
+    "description": "Three-dimensional semi-monocoque beam structure with rivet connection detail. Isometric view shows rectangular beam with fixed support (hatched) at right end. Distributed pressure loading on top surface with arrows indicating direction. Internal structure shows stringers at corners labeled A with areas 2A (top) and A (bottom), and points B, C, 4 marked on webs. Rivet row indicated at distance 2ℓ from clamp connecting to upper panel. Coordinate dimensions ℓ, e, e shown along edges. Problem asks to compute force transmitted by one rivet in the row. Given data: ℓ = 900 mm, E = 92000 MPa, ν = 0.3, t = 2 mm, p = 30 mm, A = 800 mm², a = 400 mm, h = 200 mm, p = 0.3 MPa, d = 3 mm. Rivet pitch p and diameter d specified for connection analysis."
+  },
+  "rectangular_section_stress_components.png": {
+    "suggested_name": "rectangular_section_stress_components",
+    "description": "Rectangular cross-section showing shear stress components at edges. Rectangle with shear flow labels q₁ on left edge, q₃ on top edge, q₂ on right edge, and q₄ on bottom edge. Curved arrow labeled Cq indicating circulation direction. Below diagram, equations show: R = (pa/2) and moment M = (paℓ/2)·(a/2 - a/3). Shear flow relationships: q₁' = q₂' = R/(2a), shear stress qᵃ = M/(2aℓ), leading to q₁ = qᵃ - qᵃ and final expression q₃ = q₁' - qᵃ. Result shows Pc = q₃·p = 525 N for rivet force calculation."
+  },
+  "three_node_parabolic_element_distributed_load.png": {
+    "suggested_name": "three_node_parabolic_element_distributed_load",
+    "description": "Three-node parabolic finite element with distributed loading. Horizontal beam element with nodes labeled (1), (3), (2) at positions x = -2, 0, 2 respectively along x-axis. Uniform distributed load μ (force per unit length) shown as upward arrows along top surface. Y-axis shown vertical with dotted line at center node. Problem asks to compute virtual work of load for unit virtual displacement in y-direction at node (1) located at x = -2. Given data: μ = 0.56 N/mm. Shape function N₁ = x(x-2)/8 provided. Integration expression shows ∫₋₂²(x²/8 - x/4)μ dx = (x³/24 - x²/8)|₋₂² μ = 2/3 μ = 0.373 N·mm, with unit for result specified as N·mm."
+  }
+}

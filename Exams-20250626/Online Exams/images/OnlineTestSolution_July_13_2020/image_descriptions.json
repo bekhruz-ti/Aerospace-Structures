@@ -1,0 +1,34 @@
+{
+  "cantilever_beam_distributed_load.png": {
+    "suggested_name": "cantilever_beam_distributed_load",
+    "description": "Cantilever beam with fixed support (hatched) at right end and free left end. Uniform upward distributed load q applied along entire beam length, shown by three vertical arrows pointing upward. Beam has length L and flexural rigidity EJ (constant). Coordinate system shows x-axis pointing right from left end. Problem context: optimization to find minimum EJ/EJ₀ ratio such that vertical displacement at x = L/2 is smaller than maximum displacement W_max. Given data includes L = √200(1 + B/10) mm, EJ₀ = 6·10⁷ N·mm², q = 1.0·(1 + C/10) N/mm, and W_max = 5.0 mm."
+  },
+  "cantilever_beam_reaction_force.png": {
+    "suggested_name": "cantilever_beam_reaction_force",
+    "description": "Simplified cantilever beam diagram showing fixed support (hatched) at right end with uniform upward distributed load q indicated by three vertical arrows. Vertical reaction force X shown at fixed support pointing upward. This is a free body diagram used to determine unknown reaction force X for the displacement analysis problem. Same beam configuration as main problem with length L and flexural rigidity EJ."
+  },
+  "rectangular_frame_cross_sections.png": {
+    "suggested_name": "rectangular_frame_cross_sections",
+    "description": "Two rectangular frame cross-sections for torsional stiffness comparison. Section #1 (left): rectangular frame with width dimension a and height dimension b, four corner nodes with cross-sectional areas labeled A at corners and 2A at midpoints of vertical sides, wall thickness t throughout. Section #2 (right): rectangular frame with width dimension b and height dimension a (dimensions swapped), four corner nodes with areas 2A at top corners and A at bottom corners, wall thickness t throughout. Problem asks to calculate ratio of torsional stiffness GJ₂/GJ₁ between the two sections. Given data: a = 200(1 + F/10) mm, b = 100 mm, A = 500(1 + A/10) mm², t = 1 mm. Solution provided shows GJ₂/GJ₁ = 1.0."
+  },
+  "truss_frame_spring_support.png": {
+    "suggested_name": "truss_frame_spring_support",
+    "description": "Three-dimensional truss frame structure with square base of dimension a × a and inclined members extending to length L. Four corner nodes at base labeled A (cross-sectional area), with bottom-left node supported by spring with stiffness k (shown as zigzag symbol). Vertical downward force P applied at bottom-left node. Three diagonal members extend from base to upper right, forming triangulated structure. Coordinate system shows x-axis pointing right. Problem asks to determine vertical displacement of spring support. Given data: A = 250 mm², a = 150 mm, t = 0.6(1 + B/10) mm, L = 1200(1 + F/10) mm, k = 100 N/mm, E = 72000 MPa, ν = 0.3, P = 1900 N."
+  },
+  "rectangular_section_shear_forces.png": {
+    "suggested_name": "rectangular_section_shear_forces",
+    "description": "Rectangular cross-section diagram showing shear force distribution with four corner nodes connected by straight edges. Vertical shear forces T/2a labeled at left and right sides pointing upward (indicated by triangular arrows). Horizontal shear force T pointing right at bottom edge. Section labeled for shear analysis with cross-sectional area A* = 2at and shear-related area GA* = 2atG. This is part of solution showing section properties can be evaluated by exploiting section symmetries. Equations shown: A* = 2at for shear area, GA* = 2atG for shear stiffness."
+  },
+  "cantilever_beam_variable_stiffness.png": {
+    "suggested_name": "cantilever_beam_variable_stiffness",
+    "description": "Cantilever beam with fixed support (hatched) at left end and free right end. Beam has length L with variable axial stiffness EA(x) that varies linearly along length. Horizontal distributed load h applied along top surface (shown by three rightward arrows). Spring support with stiffness k at right end, with force K indicated. Coordinate system shows x-axis pointing right. Problem uses Ritz method with 2-DOF polynomial approximation to determine strain energy. Given data: L = 2700 mm, EA₀ = 2.8·10⁵ N, EA₁ = 8.5·10⁵ N, k = 300(1 + B/10) N/mm, h = 2(1 + F/10) N/mm. Axial stiffness varies as EA(x) = α + βx where α = EA₀ and β = (EA₁ - EA₀)/L."
+  },
+  "two_segment_beam_rigid_link.png": {
+    "suggested_name": "two_segment_beam_rigid_link",
+    "description": "Two-segment beam system connected by rigid link. Lower horizontal segment has length L₁ with pinned supports at both ends (left and right), subjected to downward force P at left support and upward force P at right support. Upper inclined segment has length L₂ with bending stiffness EJ and variable torsional stiffness GJ(x), connected to right end of lower beam via rigid link (shown with hatched pattern). Coordinate system shows x-axis pointing right along inclined member. Problem uses Ritz method with 1-DOF polynomial approximation to determine strain energy, with GJ varying linearly from GJ₀ at x = 0 to GJ₁ at x = L₂. Given data: L₁ = 180 mm, L₂ = 1800 mm, GJ₀ = 1.1·10⁸ N·mm², GJ₁ = 3.3·10⁸ N·mm², P = 50(1 + D/10) N. Torsional stiffness function: GJ(x) = α + βx where α = GJ₀ and β = (GJ₁ - GJ₀)/L₂."
+  },
+  "truss_structure_diagonal_members.png": {
+    "suggested_name": "truss_structure_diagonal_members",
+    "description": "Description not available"
+  }
+}

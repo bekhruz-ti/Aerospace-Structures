@@ -1,0 +1,54 @@
+{
+  "cantilever_beam_two_segments_distributed_point_loads.png": {
+    "suggested_name": "cantilever_beam_two_segments_distributed_point_loads",
+    "description": "Two-segment cantilever beam system with fixed support at left end and free right end. Left segment has properties EA₂, EJ₂, ℓ₂ and right segment has properties EA₁, EJ₁, ℓ₁. Uniform upward distributed load q applied over right segment (shown with upward arrows). Concentrated downward force X applied at junction between segments. Point load P applied at free right end (horizontal direction). Coordinate system shows vertical Y-axis at segment junction. Problem involves determining force X such that vertical displacement at corresponding point of application is zero. Given data: ℓ₁ = 1000(1+8/10) mm, ℓ₂ = 1500 mm, q = 1 N/mm, P = 1000 N, with specified axial and flexural rigidities for each segment."
+  },
+  "beam_system_two_segments_fixed_support.png": {
+    "suggested_name": "beam_system_two_segments_fixed_support",
+    "description": "Two-segment beam system with fixed support at left end. Left segment labeled with properties EA₂, EJ₂, ℓ₂ and right segment with EA₁, EJ₁, ℓ₁. Uniform upward distributed load q shown with vertical arrows over right segment. Horizontal force P applied at right free end. Vertical force X applied upward at segment junction. Local coordinate systems shown: z₂ pointing left for left segment, z₁ pointing left for right segment. Vertical Y-axis shown at junction. This represents the \"Real system\" for structural analysis with specified boundary conditions and loading configuration."
+  },
+  "two_segment_beam_coordinate_system.png": {
+    "suggested_name": "two_segment_beam_coordinate_system",
+    "description": "Simplified two-segment beam diagram labeled \"Dummy system\" showing fixed support at left end. Left segment has properties EA₂, EJ₂, ℓ₂ and right segment has EA₁, EJ₁, ℓ₂. Local coordinate z₂ points left for left segment. Vertical unit load labeled \"1\" applied upward at segment junction. Beam extends horizontally with no distributed loading shown. This represents a virtual/dummy system for displacement analysis. Includes note \"Beam 2\" and equation δM = -z₂ indicating virtual moment expression."
+  },
+  "cantilever_beam_spring_support_distributed_load.png": {
+    "suggested_name": "cantilever_beam_spring_support_distributed_load",
+    "description": "Cantilever beam with fixed support at left end, total length 2ℓ divided into two equal segments of length ℓ each. Left segment has properties EJ, right segment has properties EJ. Uniform upward distributed load q shown with vertical arrows over left segment only. Spring support with stiffness k located at midpoint (junction between segments). Free right end extends to length 2ℓ. Problem from Exercise 4 asks to determine vertical displacement w at correspondence of the spring. Given data: ℓ = 1000 mm, EJ = 10¹² N·mm², k = 1500(1+8/10) N/mm, q = 15 N/mm."
+  },
+  "cantilever_beam_distributed_load_coordinate_system.png": {
+    "suggested_name": "cantilever_beam_distributed_load_coordinate_system",
+    "description": "Cantilever beam with fixed support at left end, length ℓ, properties EJ. Uniform upward distributed load q shown with vertical arrows over entire beam length. Coordinate system with x-axis pointing left (opposite to beam direction) and Y-axis pointing upward. Labeled as \"Real system\" for analysis. Free body diagram shows moment M = -qx - qx²/2 at arbitrary section. Below, \"Dummy system\" shows same beam with no distributed load, only coordinate system with x pointing left and vertical unit load \"1\" at free end, with virtual moment δM = -x."
+  },
+  "simply_supported_beam_uniform_load.png": {
+    "suggested_name": "simply_supported_beam_uniform_load",
+    "description": "Simply supported beam with pinned support at left end (labeled K₁) and roller support at right end. Beam length ℓ with properties EJ. Uniform upward distributed load q shown with vertical arrows across entire span. Problem from Exercise 5 asks to determine strain energy stored in spring of torsional stiffness K₁. Given data: ℓ = 1000 mm, EJ = 10¹² N·mm², K₁ = 10⁹ N·mm, q = 1 N/mm. Diagram shows beam elevation view with support symbols clearly marked."
+  },
+  "simply_supported_beam_reactions_moments.png": {
+    "suggested_name": "simply_supported_beam_reactions_moments",
+    "description": "Simply supported beam analysis diagram labeled \"Real system\" showing beam of length ℓ with properties EJ. Pinned support at left end, roller support at right end. Uniform upward distributed load q across entire span. Reaction forces V at left support (downward) and W at right support (downward). Moment X shown at left support (counterclockwise). Equilibrium equations shown: V+W = qℓ, X = qℓ²/2 - Wℓ, leading to V = qℓ/2 + X/ℓ. Free body diagram shows section with distributed load, shear V, and moment M = -X + Vx - qx²/2. Below, \"Dummy system\" shows beam with unit vertical load at left support, virtual shear δT = -1, virtual moment δM = -1 + ½x."
+  },
+  "multi_segment_system_rigid_links_spring.png": {
+    "suggested_name": "multi_segment_system_rigid_links_spring",
+    "description": "Multi-segment structural system from Exercise 9 with inclined flexible member of length ℓ₁ at angle to horizontal, labeled with properties EJ and variable torsional rigidity GJ(x) = GJ₀ + GJ₁(x/ℓ₁). Inclined member connects to horizontal rigid link at point A. Spring support with stiffness k at left end of horizontal rigid link (grounded). Vertical upward force P applied at point A. Horizontal rigid link extends right from A. Dimensions shown: ℓ₂ and ℓ₃ marked below horizontal member. Unknown vertical displacement w at point A to be determined. Problem asks to use simplest polynomial approximation and Ritz method. Given data: ℓ₁ = 1300 mm, ℓ₂ = 500 mm, ℓ₃ = 700 mm, EJ = 10¹² N·mm², GJ₀ = 2·10¹¹ N·mm², GJ₁ = 5·10¹¹ N·mm², k = 500(1+4/10) N/mm, P = 7000 N."
+  },
+  "structural_system_variable_properties_boundary_conditions.png": {
+    "suggested_name": "structural_system_variable_properties_boundary_conditions",
+    "description": "Solution diagram for multi-segment system showing inclined member with length ℓ₁, properties EJ and GJ(x), connected to horizontal rigid link at point A. Spring support k at left end (grounded). Vertical force P at point A. Horizontal rigid link segments of lengths ℓ₂ and ℓ₃. Coordinate system with θ for rotation and w for vertical displacement. Essential boundary conditions listed in box: θ(0)=0, w(0)=0, w|ₓ(0)=0. Torsional rigidity expression GJ(x) = GJ₀ + GJ₁·x/ℓ₁ shown. Text indicates simplest polynomial trial functions satisfying essential boundary conditions are: θ(x) = c₁(x/ℓ₁) with θ' = c₁/ℓ₁, and w(x) = d₁(x/ℓ₁)² with w'' = d₁·2/ℓ₁²."
+  },
+  "simply_supported_beam_uniform_distributed_load.png": {
+    "suggested_name": "simply_supported_beam_uniform_distributed_load",
+    "description": "Simply supported beam from Exercise 14 with pinned support at left end and roller support at right end. Beam length ℓ with properties EJ. Uniform upward distributed load q shown with vertical arrows across entire span. Coordinate system with x-axis pointing right (labeled with arrow). Problem asks to determine vertical displacement at middle using Ritz approximation with one trigonometric trial function. Recall integration formula provided: ∫₀ᵃ(sin πx/a)² dx = 4a/3π. Given data: ℓ = 1700(1+9/10) mm, EJ₀ = 10¹² N·mm², q = 15 N/mm."
+  },
+  "simply_supported_beam_distributed_load_properties.png": {
+    "suggested_name": "simply_supported_beam_distributed_load_properties",
+    "description": "Solution diagram for simply supported beam with pinned support at left end (triangle symbol) and roller support at right end (triangle symbol). Beam length ℓ with properties EJ. Uniform upward distributed load q shown with vertical arrows. Coordinate system with x-axis pointing right. Essential boundary conditions listed: w(0)=0, w(ℓ)=0. Natural boundary conditions: w''(0)=0, w''(ℓ)=0. Text indicates a sine-type equation satisfies both essential and natural conditions, assuming single-DOF approximation: w(x) = a·sin(πx/ℓ). Application of Principle of Virtual Work (PVW) shown: ∫₀ℓ δw''·EJ(x)·w''·dx = ∫₀ℓ δw·q·dx."
+  },
+  "cantilever_beam_rectangular_cross_section.png": {
+    "suggested_name": "cantilever_beam_rectangular_cross_section",
+    "description": "Exercise 22 showing cantilever beam with fixed support at left end, length ℓ. Uniform upward distributed load p shown with vertical arrows across entire span. Rectangular cross-section shown in separate detail view with dimensions: width a, height b, wall thickness t at top and sides, forming hollow rectangular section with four corner points labeled A. Problem asks to determine dimension a such that maximum displacement is u = 3 mm. Given data: ℓ = 3000(1+A/10) mm, a = 200 mm, b = 150 mm, t = 1.2 mm, p = 1.6·10⁻³ N/mm², E = 72000 MPa, G = 27000 MPa."
+  },
+  "cantilever_beam_distributed_load_fixed_support.png": {
+    "suggested_name": "cantilever_beam_distributed_load_fixed_support",
+    "description": "Solution diagram for cantilever beam with fixed support at left end (hatched symbol), length ℓ. Uniform upward distributed load q = pa shown with vertical arrows. Coordinate system with x-axis pointing left (opposite to beam direction). Labeled as \"Real system\" showing free body diagram with shear force T = -qx and moment M = -qx²/2. Below, \"Dummy system\" shows same beam configuration with unit vertical load \"1\" at free end, virtual shear δT = -1, virtual moment δM = -x. Application of PCVW (Principle of Complementary Virtual Work) equation shown: ∫₀ℓ(δM·M/EJ + δT·T/GA*)dx = u, leading to displacement expression u = qℓ⁴/(8·EJ) + qℓ²/(2·GA*)."
+  }
+}

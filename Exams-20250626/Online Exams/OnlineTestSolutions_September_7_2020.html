@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Mechanics Examination</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .given-data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .note {
+            background: #fefcbf;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid #d69e2e;
+            font-style: italic;
+        }
+
+        .theory-section {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .theory-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .theory-question {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .theory-question p {
+            margin-bottom: 10px;
+        }
+
+        .theory-answer {
+            font-weight: bold;
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .given-data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Structural Mechanics Examination</h1>
+        </header>
+        
+        <main>
+            <!-- Problem 1: L-shaped Frame -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: L-Shaped Frame Analysis</h2>
+                    <p class="problem-statement">Determine the axial force at \(x = L/2\)</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_September_7_2020/l_shaped_frame_fixed_pin_supports.png" alt="L-shaped frame structure with fixed and pinned supports">
+                        <figcaption>Figure 1: L-shaped frame with horizontal and vertical members. Fixed support at left end, pinned support at bottom. Force P applied at junction.</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="given-data-grid">
+                            <ul>
+                                <li>\(L = 1200 \left(1 + D/10\right) \text{ mm}\)</li>
+                                <li>\(EA_1 = 2.0 \cdot 10^4 \text{ N}\)</li>
+                                <li>\(EA_2 = 1.0 \cdot 10^4 \text{ N}\)</li>
+                                <li>\(EA_3 = 2.9 \cdot 10^4 \text{ N}\)</li>
+                            </ul>
+                            <ul>
+                                <li>\(EJ = 1.5 \cdot 10^{10} \text{ N} \cdot \text{mm}^2\)</li>
+                                <li>\(P = 1200 \left(1 + F/10\right) \text{ N}\)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (D = F = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define coordinate systems</h4>
+                        <p>Two systems are established:</p>
+                        <ul>
+                            <li><strong>Real system:</strong> L-shaped frame with force \(P\) applied upward at junction. Local coordinates \((z_1, y_1)\) for vertical member and \((z_2, y_2)\) for horizontal member.</li>
+                            <li><strong>Dummy system:</strong> Same geometry with unit load applied upward in the direction of desired displacement.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Define internal forces for beam 1 (vertical member)</h4>
+                        \[N = -X \qquad \delta N = -1 \qquad \text{(beam 1)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Define internal moments for beam 2 (horizontal member)</h4>
+                        \[M_x = -(P + X) z_2 \qquad \delta M_x = -z_2 \qquad \text{(beam 2)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply virtual work equation (compatibility)</h4>
+                        \[\int_0^L \frac{N \cdot \delta N}{EA_3} \, dz_1 + \int_0^L \frac{M_x \cdot \delta M_x}{EJ} \, dz_2 = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve for redundant force X</h4>
+                        \[X = -\frac{PL^2/3}{\dfrac{EJ}{EA_3} + \dfrac{L^2}{3}} = -577.59 \text{ N}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{X = -577.59 \text{ N}}\]
+                        <p>(Negative sign indicates compression in the vertical member)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: Three-Rib Arch Panel -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Three-Rib Arch Panel Structure</h2>
+                    <p class="problem-statement">Evaluate the shear flow in the panel with thickness \(t_2\) at \(x = 0\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_September_7_2020/three_rib_arch_panel_structure.png" alt="Three-rib arch panel structure with distributed load">
+                        <figcaption>Figure 2: Three-dimensional arch structure with three parallel ribs supporting a curved panel under distributed pressure load.</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="given-data-grid">
+                            <ul>
+                                <li>\(A = 700 \text{ mm}^2\)</li>
+                                <li>\(b = 600 \text{ mm}\)</li>
+                                <li>\(h = 150 \text{ mm}\)</li>
+                                <li>\(t_1 = 1 \text{ mm}\)</li>
+                            </ul>
+                            <ul>
+                                <li>\(t_2 = 1.5 \text{ mm}\)</li>
+                                <li>\(L = 1800 \left(1 + A/10\right) \text{ mm}\)</li>
+                                <li>\(p = 2.5 \cdot 10^{-2} \left(1 + B/10\right) \text{ N/mm}^2\)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = B = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate shear force at x = 0</h4>
+                        <p>The shear at \(x = 0\) is:</p>
+                        \[T = p \cdot L \cdot (b - 2h)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate shear flow from symmetry</h4>
+                        <p>From the symmetry of the section:</p>
+                        \[q = \frac{T}{2h} = 45 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{q = 45 \text{ N/mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: Cantilever Beam with Rigid Link -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Cantilever Beam with Rigid Link - Ritz Method</h2>
+                    <p class="problem-statement">Using the Ritz method and a 1-DOF polynomial approximation for any displacement component, determine the strain energy.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_September_7_2020/cantilever_beam_rigid_link.png" alt="Cantilever beam with rigid link and variable properties">
+                        <figcaption>Figure 3: Cantilever beam with variable properties EJ(x) and EA(x), rigid link of length d at free end, horizontal force P applied at bottom of rigid link.</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="given-data-grid">
+                            <ul>
+                                <li>\(L = 1200 \text{ mm}\)</li>
+                                <li>\(d = 45 \text{ mm}\)</li>
+                                <li>\(EA_0 = 1.15 \cdot 10^6 \text{ N}\)</li>
+                                <li>\(EA_1 = 6.5 \cdot 10^5 \left(1 + B/10\right) \text{ N}\)</li>
+                            </ul>
+                            <ul>
+                                <li>\(EJ_0 = 1.5 \cdot 10^9 \text{ N} \cdot \text{mm}^2\)</li>
+                                <li>\(EJ_1 = 7.5 \cdot 10^9 \text{ N} \cdot \text{mm}^2\)</li>
+                                <li>\(P = 600 \text{ N}\)</li>
+                            </ul>
+                        </div>
+                        <p class="note"><strong>Note:</strong> EA and EJ vary linearly with x from \(EA_0/EJ_0\) to \(EA_1/EJ_1\).</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (B = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define displacement approximations</h4>
+                        \[u = q_1 x \qquad w = q_2 x^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Define stiffness variations</h4>
+                        \[EJ(x) = \alpha + \beta x\]
+                        \[EA(x) = \delta + \gamma x\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Define coefficients</h4>
+                        \[\alpha = EJ_0 \qquad \beta = \frac{EJ_1 - EJ_0}{L}\]
+                        \[\delta = EA_0 \qquad \gamma = \frac{EA_1 - EA_0}{L}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Write virtual work equation</h4>
+                        \[\int_0^L \left( \delta u_{,x} \cdot EA(x) \cdot u_{,x} + \delta w_{,xx} \cdot EJ(x) \cdot w_{,xx} \right) dx = - \delta u(L) \cdot P - \delta w_{,x}(L) \cdot P \cdot d\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Substitute approximations and form matrix equation</h4>
+                        \[\begin{bmatrix} \delta L + \gamma L^2/2 & 0 \\ 0 & 4(\alpha L + \beta L^2/2) \end{bmatrix} \begin{Bmatrix} q_1 \\ q_2 \end{Bmatrix} = \begin{Bmatrix} -PL \\ -2LPd \end{Bmatrix}\]
+                        <p>This can be written as: \(\underline{K} \, \underline{q} = \underline{f}\)</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Solve for q and evaluate strain energy U</h4>
+                        <p>Solving for \(\underline{q}\) and evaluating \(U\):</p>
+                        \[U = \frac{1}{2} \underline{q}^T \underline{K} \, \underline{q} = 599.47 \text{ N} \cdot \text{mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{U = 599.47 \text{ N} \cdot \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: Rectangular Frame with Two Ribs -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: Rectangular Frame with Two Ribs</h2>
+                    <p class="problem-statement">Model Rib #2 as a beam and evaluate the bending moment at \(x = a/3\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_September_7_2020/rectangular_frame_two_ribs.png" alt="Rectangular frame structure with two parallel ribs">
+                        <figcaption>Figure 4: Three-dimensional rectangular frame with two parallel ribs. Vertical forces P applied at top corners. Panel thickness t on all sides.</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="given-data-grid">
+                            <ul>
+                                <li>\(a = 500 \left(1 + A/10\right) \text{ mm}\)</li>
+                                <li>\(b = 250 \text{ mm}\)</li>
+                                <li>\(t = 0.6 \text{ mm}\)</li>
+                            </ul>
+                            <ul>
+                                <li>\(A = 500 \text{ mm}^2\)</li>
+                                <li>\(L = 2000 \text{ mm}\)</li>
+                                <li>\(P = 1000 \text{ N}\)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Determine equilibrating shear flows</h4>
+                        <p>The equilibrating shear flows are found as:</p>
+                        <ul>
+                            <li>Top edge: \(\frac{1}{4} \frac{P}{b}\) (horizontal)</li>
+                            <li>Left edge: \(\frac{3}{4} \frac{P}{b}\) (vertical, downward)</li>
+                            <li>Bottom edge: \(\frac{1}{4} \frac{P}{b}\) (horizontal)</li>
+                            <li>Right edge: \(\frac{1}{4} \frac{P}{b}\) (vertical, downward)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Convert to equivalent beam loading</h4>
+                        <p>The shear flow distribution on Rib #2 is converted to equivalent beam loads:</p>
+                        <ul>
+                            <li>Vertical force \(\frac{1}{4}P\) upward at left end</li>
+                            <li>Vertical force \(\frac{1}{4}P\) downward at right end</li>
+                            <li>Distributed moment along the span with \(M = 0\) in center region</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="note">
+                        <p>The bending moment at \(x = a/3\) is evaluated using the equivalent beam model derived from the shear flow analysis.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 5: Two-Segment Frame -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Problem 5: Two-Segment Frame - Torsional Stiffness Ratio</h2>
+                    <p class="problem-statement">Find the value of \(GJ_2/GJ_1\) such that \(S = S_{max}\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_September_7_2020/two_segment_frame_inclined.png" alt="Two-segment frame with horizontal and inclined members">
+                        <figcaption>Figure 5: Two-segment frame with horizontal member (properties EJ₁, GJ₁) and inclined member (properties EJ₂, GJ₂). Fixed support at top of inclined member.</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="given-data-grid">
+                            <ul>
+                                <li>\(L_1 = 300 \text{ mm}\)</li>
+                                <li>\(L_2 = 750 \text{ mm}\)</li>
+                                <li>\(EJ_1 = 2 \cdot 10^9 \text{ N} \cdot \text{mm}^2\)</li>
+                                <li>\(EJ_2 = 3 \cdot 10^9 \text{ N} \cdot \text{mm}^2\)</li>
+                            </ul>
+                            <ul>
+                                <li>\(GJ_1 = 9 \cdot 10^7 \text{ N} \cdot \text{mm}^2\)</li>
+                                <li>\(P = 1200 \text{ N}\)</li>
+                                <li>\(S_{max} = 15 \left(1 + F/10\right)\)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (F = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define coordinate systems</h4>
+                        <p><strong>Real system:</strong> Member 1 (horizontal) with local axes \((z_1, y_1)\), Member 2 (inclined) with local axes \((z_2, y_2)\). Force \(P\) upward at left, force \(P\) downward at joint.</p>
+                        <p><strong>Dummy system:</strong> Same geometry with unit load applied upward at left end (location of \(S\)).</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Define bending moments for beam 1</h4>
+                        \[M_1 = -Pz_1 \qquad \delta M_1 = -z_1 \qquad \text{(beam 1)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Define moments for beam 2</h4>
+                        \[M_2 = -2PL_1 \qquad \delta M_2 = -L_1 \qquad \text{(beam 2)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply virtual work equation</h4>
+                        \[\int_0^{L_1} \frac{\delta M_1 \cdot M_1}{EJ_1} \, dz_1 + \int_0^{L_2} \frac{\delta M_2 \cdot M_2}{GJ_2} \, dz_2 = S = S_{max}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve for GJ₂</h4>
+                        <p>From which:</p>
+                        \[GJ_2 = \frac{2PL_1^2 L_2}{S_{max} - \dfrac{PL_1^3}{3EJ_1}}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Calculate ratio</h4>
+                        \[\frac{GJ_2}{GJ_1} = 187.5\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\frac{GJ_2}{GJ_1} = 187.5}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 6: Cylindrical Tube -->
+            <section class="problem-solution-pair" id="problem-6">
+                <div class="problem">
+                    <h2>Problem 6: Cylindrical Tube - Shear Deformability</h2>
+                    <p class="problem-statement">Evaluate the contribution of shear deformability to the displacement \(S\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_September_7_2020/cylindrical_tube_circular_cross_section.png" alt="Cylindrical tube with circular cross-section">
+                        <figcaption>Figure 6: Cylindrical tube with circular cross-section (diameter 2R, wall thickness t). Fixed support at right end, vertical force P at top of left end.</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="given-data-grid">
+                            <ul>
+                                <li>\(L = 2300 \text{ mm}\)</li>
+                                <li>\(R = 150 \text{ mm}\)</li>
+                                <li>\(t = 0.8 \left(1 + A/10\right) \text{ mm}\)</li>
+                            </ul>
+                            <ul>
+                                <li>\(P = 1700 \left(1 + B/10\right) \text{ N}\)</li>
+                                <li>\(G = 27000 \text{ MPa}\)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = B = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate effective shear area</h4>
+                        <p>For a thin-walled circular tube:</p>
+                        \[A^* = \frac{8 \, t \, R}{\pi}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate shear contribution to displacement</h4>
+                        \[S_{shear} = \frac{PL}{GA^*} = 0.4739 \text{ mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{S_{shear} = 0.4739 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 7: Theoretical Questions -->
+            <section class="problem-solution-pair" id="problem-7">
+                <div class="theory-section">
+                    <h2>Problem 7: Theoretical Questions (True/False)</h2>
+                    
+                    <div class="theory-question">
+                        <p><strong>1.</strong> A beam model cannot be used for evaluating local effects due to load introduction.</p>
+                        <p class="theory-answer">True</p>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>2.</strong> The semi-monocoque approximation provides the exact shear stress distribution along the panels' thickness.</p>
+                        <p class="theory-answer">False</p>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>3.</strong> Essential boundary conditions are more important than natural ones.</p>
+                        <p class="theory-answer">False</p>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>4.</strong> The semi-inverse approach for the De Saint Venant solution for isotropic, homogeneous beams...</p>
+                        <p class="theory-answer">leads to the exact solution of the problem.</p>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>5.</strong> The shear center of beam section with one closed cell...</p>
+                        <p class="theory-answer">requires application of the compatibility equation \(\theta' = 0\)</p>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>6.</strong> The trial functions in the Ritz method...</p>
+                        <p class="theory-answer">must be part of a complete set</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

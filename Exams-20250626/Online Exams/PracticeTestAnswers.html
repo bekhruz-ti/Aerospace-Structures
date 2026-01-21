@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Mechanics Exam</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .theory-section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theory-section h2 {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.5rem;
+        }
+
+        .theory-content {
+            padding: 30px;
+        }
+
+        .qa-pair {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .qa-pair .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .qa-pair .answer {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Structural Mechanics Exam</h1>
+        </header>
+        
+        <main>
+            <!-- Problem 1: L-shaped Frame with Spring Support -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: L-Shaped Frame with Spring Support</h2>
+                    <p class="problem-statement">Find the rotation \(\theta\) (in degrees) at \(x = L/2\)</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/PracticeTestAnswers/l_shaped_frame_spring_support.png" alt="L-shaped frame structure with vertical member connected to horizontal member, spring support at left end, and horizontal force P at right end">
+                        <figcaption>L-shaped frame with spring support and applied horizontal force P</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 400 \left(1 + A/10\right) \text{ mm}\)</li>
+                            <li>\(EA = 7.2 \cdot 10^4 \text{ N}\)</li>
+                            <li>\(EJ = 1.25 \cdot 10^6 \left(1 + C/10\right) \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(K = 60 \text{ N/mm}\)</li>
+                            <li>\(P = 5000 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = C = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Evaluate the reaction force at the spring</h4>
+                        <p>Using the unit load method with "Real" and "Dummy" load cases:</p>
+                        <p><strong>Real system:</strong> Force \(P + X\) applied at spring location</p>
+                        <p><strong>Dummy system:</strong> Unit force 1 applied at spring location</p>
+                        <p>Bending moment expressions:</p>
+                        \[M_y = -(P + X)z \qquad \delta M_y = -z\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply compatibility condition</h4>
+                        <p>The displacement at the spring must equal the spring deformation:</p>
+                        \[\int_0^L \frac{M_y \cdot \delta M_y}{EJ} \, dz + \frac{X}{K} = 0\]
+                        <p>From which:</p>
+                        \[X = -\frac{P}{\left(1 + \frac{3EJ}{KL^3}\right)}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Evaluate the rotation</h4>
+                        <p>Apply a new dummy load case with unit moment at the point of interest:</p>
+                        <p><strong>Real system:</strong> Frame with forces X and P</p>
+                        <p><strong>Dummy system:</strong> Unit moment at top (where rotation is sought)</p>
+                        <p>For \(z \geq L/2\):</p>
+                        \[\delta M_y = -1\]
+                        <p>Apply the virtual work equation:</p>
+                        \[\int_{L/2}^{L} \frac{M_y \cdot \delta M_y}{EJ} \, dz = \theta\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate final rotation</h4>
+                        <p>From the integration:</p>
+                        \[\theta = \frac{3L^2(P + X)}{8EJ} = 12.23°\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\theta = 12.23°}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: Triangular Truss Shear Center -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Triangular Truss - Shear Center Location</h2>
+                    <p class="problem-statement">Find the vertical position of the shear center (measured from \(x = 0\)).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/PracticeTestAnswers/triangular_truss_pin_joints.png" alt="Isosceles triangular truss with apex at top and horizontal base, showing pin joints at corners">
+                        <figcaption>Triangular truss with pin joints and member thicknesses t₁ and t₃</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 500 \text{ mm}^2\)</li>
+                            <li>\(h = 150 \text{ mm}\)</li>
+                            <li>\(t_1 = 1 \cdot (1 + F/10)\)</li>
+                            <li>\(t_3 = 2 \cdot (1 + A/10)\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = F = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate section properties</h4>
+                        <p>Second moment of area about y-axis:</p>
+                        \[J_{yy} = 2A \left(\frac{h}{2}\right)^2 \cdot 2 = Ah^2\]
+                        <p>First moments of area:</p>
+                        \[S_{y_1}' = 2A \cdot \frac{h}{2} = Ah\]
+                        \[S_{y_2}' = Ah\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply shear flow equation</h4>
+                        <p>Apply force \(T = 1000 \text{ N}\) at arbitrary distance \(d\) from reference position.</p>
+                        <p>Applying the shear flow equation two times:</p>
+                        \[q_1' = -T \frac{S_{y_1}'}{J_{yy}} = -\frac{T}{h} = -6.67 \text{ N/mm}\]
+                        \[q_2' = -T \frac{S_{y_2}'}{J_{yy}} = -\frac{T}{h} = -6.67 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Moment equivalence about point 1</h4>
+                        \[2q_* \Omega + 2q_2' \Omega = -Td\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Impose zero twist condition</h4>
+                        <p>Impose \(\theta' = 0\):</p>
+                        \[\theta' = \frac{1}{2G\Omega} \sum_i \frac{q_i \ell_i}{t_i} = 0\]
+                        \[\frac{q_1 h}{t_1} + \frac{q_2 h}{t_1} + \frac{q_3 h}{t_3} = 0\]
+                        <p>Substituting the shear flow components:</p>
+                        \[(q_1' + q^*) + (q_2' + q^*) + \frac{t_1}{t_3} q^* = 0\]
+                        \[\Rightarrow q^* = \frac{2T}{h} \cdot \frac{1}{2 + t_1/t_3} = 5.33 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate shear center position</h4>
+                        \[d = -\frac{2\Omega (q_* + q_1')}{T} = 25.98 \text{ mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{d = 25.98 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: Rectangular Section with Diagonal Brace -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Rectangular Section with Diagonal Brace - Torsional Stiffness</h2>
+                    <p class="problem-statement">Find the torsional stiffness of the section \(GJ/GJ_{ref}\)</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/PracticeTestAnswers/rectangular_section_diagonal_brace.png" alt="Square cross-section with diagonal brace from bottom-left to top-right corner">
+                        <figcaption>Square thin-walled section with diagonal brace</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 600 \text{ mm}^2\)</li>
+                            <li>\(a = 400 \cdot (1 + B/10) \text{ mm}\)</li>
+                            <li>\(t = 1 \cdot (1 + A/10) \text{ mm}\)</li>
+                            <li>\(G = 2.7 \cdot 10^4 \text{ MPa}\)</li>
+                            <li>\(GJ_{ref} = 1 \cdot 10^{10} \text{ N} \cdot \text{mm}^2\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = B = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Identify symmetry</h4>
+                        <p>From the symmetries of the section, it is immediate to note that the position of the shear center is in the middle of the section. Therefore, the shear flow along the oblique panel does not provide any torsional resistance.</p>
+                        <p>Owing to the symmetry of the section, the flows on the four remaining panels are equal.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply Bredt's formula</h4>
+                        <figure class="diagram">
+                            <img src="images/PracticeTestAnswers/square_section_shear_flow.png" alt="Square section showing uniform shear flow q around perimeter with torsional moment Mt at center">
+                            <figcaption>Shear flow distribution in the square section</figcaption>
+                        </figure>
+                        <p>Torsional moment relationship:</p>
+                        \[M_t = 2\Omega_c \cdot q \qquad \text{with } \Omega_c = a^2\]
+                        <p>Therefore:</p>
+                        \[q = \frac{M_t}{2a^2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate torsional stiffness</h4>
+                        <p>From the shear flow analysis:</p>
+                        \[GJ = G a^3 t\]
+                        <p>And so:</p>
+                        \[\frac{GJ}{GJ_{ref}} = \frac{6a^3 t}{GJ_{ref}} = 172.80\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\frac{GJ}{GJ_{ref}} = 172.80}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: Circular Section Torsional Shaft -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: Circular Thin-Walled Shaft - Torsional Rotation</h2>
+                    <p class="problem-statement">Evaluate the rotation \(\theta\) (in degrees) at the free end.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/PracticeTestAnswers/circular_section_torsional_shaft.png" alt="Circular thin-walled shaft with torsional loading from force couple at one end">
+                        <figcaption>Thin-walled circular shaft with applied torsional moment from force couple</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 500 \text{ mm}^2\)</li>
+                            <li>\(R = 80 \text{ mm}\)</li>
+                            <li>\(t = 1.2 \left(1 + A/10\right) \text{ mm}\)</li>
+                            <li>\(L = 2500 \left(1 + F/10\right) \text{ mm}\)</li>
+                            <li>\(G = 27000 \text{ MPa}\)</li>
+                            <li>\(P = 7500 \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = F = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Apply Bredt's formula for torsional stiffness</h4>
+                        <p>For a thin-walled circular section:</p>
+                        \[GJ = G \cdot 2\pi R^3 t\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate rate of twist</h4>
+                        <p>The torsional moment is \(M_t = 2PR\) (from the force couple).</p>
+                        \[\theta' = \frac{M_t}{G \cdot 2\pi R^3 t} = \frac{2PR}{G \cdot 2\pi R^3 t} = \frac{P}{G\pi R^2 t}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate total rotation</h4>
+                        <p>The rotation at the free end is:</p>
+                        \[\theta = \theta' \cdot L\]
+                        \[\theta = 1.65°\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\theta = 1.65°}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 5: Cantilever Beam with Distributed Torsion -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Problem 5: Cantilever Beam with Distributed Torsion - Ritz Method</h2>
+                    <p class="problem-statement">Use the Ritz method and a 1-DOF polynomial approximation to determine the torsional moment \(M_t / M_{t_{ref}}\) at \(x = L/2\)</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/PracticeTestAnswers/cantilever_beam_distributed_torsion.png" alt="Cantilever beam with distributed torsional moment and spring support">
+                        <figcaption>Cantilever beam with distributed torsional load and torsional spring at fixed end</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 3700 \text{ mm}\)</li>
+                            <li>\(GJ = 2.2 \cdot 10^6 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(k = 1 \cdot 10^4 \left(1 + D/10\right) \text{ N} \cdot \text{mm}\)</li>
+                            <li>\(m_t = 520 \left(1 + A/10\right) \text{ N}\)</li>
+                            <li>\(M_{t_{ref}} = 3 \cdot 10^4 \text{ N} \cdot \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (A = D = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define trial function</h4>
+                        <p>Assume a linear polynomial approximation for the twist angle:</p>
+                        \[\theta = x \, q_1 \qquad ; \qquad \theta' = q_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply virtual work principle</h4>
+                        <p>The weak form equation including the spring at the support:</p>
+                        \[\int_0^L \delta\theta' \, GJ \, \theta' \, dx + \delta\theta(L) \, k \, \theta(L) = \int_0^L \delta\theta \, m_t \, dx\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Substitute trial function and solve</h4>
+                        <p>Substituting the trial function:</p>
+                        \[\delta q_1 \left(GJL + kL^2\right) q_1 = \delta q_1 \frac{L^2}{2} m_t\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate torsional moment</h4>
+                        <p>The torsional moment is:</p>
+                        \[M_t = GJ\theta' = GJ q_1 = \frac{GJ \cdot L^2 \, m_t}{2(GJL + kL^2)}\]
+                        \[\frac{M_t}{M_{t_{ref}}} = 1.8\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\frac{M_t}{M_{t_{ref}}} = 1.8}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 6: Two-Span Beam -->
+            <section class="problem-solution-pair" id="problem-6">
+                <div class="problem">
+                    <h2>Problem 6: Two-Span Continuous Beam - Ritz Method</h2>
+                    <p class="problem-statement">Use the Ritz method and a 1-DOF trigonometric approximation to determine the vertical displacement at \(x = L/2\)</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/PracticeTestAnswers/two_span_beam_uniform_load.png" alt="Two-span continuous beam with uniform distributed load and pinned supports">
+                        <figcaption>Two-span continuous beam with uniform load q</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 300 \left(1 + B/10\right) \text{ mm}\)</li>
+                            <li>\(EJ = 1.25 \cdot 10^6 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(q = 0.2 \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution (B = 0)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Define trial functions for each span</h4>
+                        <p>Using local coordinates \(x_1\) for the left span and \(x_2\) for the right span:</p>
+                        \[w_1 = \sin \frac{\pi x_1}{L} \, q_1\]
+                        \[w_2 = \sin \frac{\pi x_2}{2L} \, q_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply boundary conditions</h4>
+                        <p>Continuity of displacement at middle support:</p>
+                        \[w_1(L) = w_2(0) \quad \rightarrow \quad \text{identically satisfied}\]
+                        <p>Continuity of slope at middle support (to be imposed):</p>
+                        \[w_{1/x}(L) = w_{2/x}(0)\]
+                        <p>This leads to:</p>
+                        \[w_1 = \sin \frac{\pi x_1}{L} \, q_1\]
+                        \[w_2 = -2 \sin \frac{\pi x_2}{2L} \, q_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply virtual work equation</h4>
+                        \[\int_0^L \delta w_{1/xx} \, EJ \, w_{1/xx} \, dx_1 + \int_0^{2L} \delta w_{2/xx} \, EJ \, w_{2/xx} \, dx_2 = \int_0^{2L} \delta w_2 \, q \, dx_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Solve for the generalized coordinate</h4>
+                        <p>From the virtual work equation:</p>
+                        \[q_1 = -\frac{8L}{\pi} \, q \, \frac{1}{\left(\frac{\pi}{L}\right)^4 EJ \, \frac{3}{4} \, L}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate displacement at x = L/2</h4>
+                        <p>The displacement at \(x = L/2\) is:</p>
+                        \[w_1\left(L/2\right) = \sin \frac{\pi}{2} \, q_1 = q_1 = -0.452 \text{ mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{w_1(L/2) = -0.452 \text{ mm}}\]
+                        <p>(Negative sign indicates downward displacement)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Theory Questions Section -->
+            <section class="theory-section" id="theory-questions">
+                <h2>Theory Questions</h2>
+                <div class="theory-content">
+                    
+                    <div class="qa-pair">
+                        <p class="question">Q: The Principle of Complementary Virtual Energy is used to find the equilibrium solution.</p>
+                        <p class="answer">A: False</p>
+                    </div>
+                    
+                    <div class="qa-pair">
+                        <p class="question">Q: De Saint Venant solution should not be used for evaluation of stresses near abrupt changes of section geometry.</p>
+                        <p class="answer">A: True</p>
+                    </div>
+                    
+                    <div class="qa-pair">
+                        <p class="question">Q: The shear flow equation is derived from an equilibrium condition. Therefore, the shear flow equation does not account for compatibility requirements.</p>
+                        <p class="answer">A: True</p>
+                    </div>
+                    
+                    <div class="qa-pair">
+                        <p class="question">Q: The solution of the elastic problem</p>
+                        <p class="answer">A: must guarantee equilibrium and compatibility</p>
+                    </div>
+                    
+                    <div class="qa-pair">
+                        <p class="question">Q: The semi-monocoque approximation provides</p>
+                        <p class="answer">A: an approximate solution for the shear stresses</p>
+                    </div>
+                    
+                    <div class="qa-pair">
+                        <p class="question">Q: The linear static response of simply-supported beam with bending stiffness EJ and loaded with a uniform load</p>
+                        <p class="answer">A: can be analyzed by imposing symmetry conditions</p>
+                    </div>
+                    
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Mechanics Exam Solutions</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 15px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .multiple-choice-section {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .multiple-choice-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .question-block {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .question-block h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .question-block ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .question-block li {
+            margin: 8px 0;
+            padding: 5px 10px;
+        }
+
+        .correct-answer {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .true-false-block {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .true-false-block p {
+            margin-bottom: 10px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Structural Mechanics Examination</h1>
+            <p>Complete Solutions and Theory Questions</p>
+        </header>
+        
+        <main>
+            <!-- Problem 1: 3D Beam Frame -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: 3D Beam Frame — Displacement Calculation</h2>
+                    
+                    <p class="problem-statement">
+                        The hinges at points A and B constrain the three components of displacement, \(u\), \(v\) and \(w\). The constraint at point B constrains only the displacement in the \(y\) direction, \(v\). Compute the displacement in the \(z\) direction of point D.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/beam_structure_3d_coordinate_system.png" alt="Three-dimensional beam structure with points A, B, C, D and coordinate system">
+                        <figcaption>Figure 1.1: 3D beam structure with applied force and boundary conditions</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(EA = 7.2 \times 10^7 \text{ N·mm}^2\)</li>
+                            <li>\(E\bar{I}_{xx} = E\bar{I}_{yy} = 6 \times 10^{11} \text{ N·mm}^2\)</li>
+                            <li>\(GJ = 2E\bar{I}_{xx}\)</li>
+                            <li>\(\ell = 1200 \text{ mm}\)</li>
+                            <li>\(F = 2500 \text{ N}\)</li>
+                            <li>Beam cross-section stiffness in a local reference system</li>
+                        </ul>
+                        <p><strong>Unit for result:</strong> mm</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/beam_element_free_body_diagram.png" alt="Free body diagram showing internal forces and moments">
+                        <figcaption>Figure 1.2: Free body diagram with local coordinate systems for each member</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Internal forces and moments for each member</h4>
+                        <p><strong>Member (1):</strong></p>
+                        \[M_x = Fz\]
+                        
+                        <p><strong>Member (2):</strong></p>
+                        \[M_z = F\ell\]
+                        \[M_x = -Fz\]
+                        
+                        <p><strong>Member (3):</strong></p>
+                        \[N_z = R_x + F\]
+                        \[M_x = +F\ell - \frac{F}{2}z_3\]
+                        \[M_y = -F\ell + \frac{F}{2}z_3\]
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/beam_element_force_diagram.png" alt="Beam element with virtual forces">
+                        <figcaption>Figure 1.3: Virtual force system for displacement calculation</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Virtual axial force for member 3</h4>
+                        \[3: \quad \delta N_z = 1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply virtual work equation for axial deformation</h4>
+                        \[\int_0^{2\ell} \frac{\delta N_z (R_x + F)}{EA} \, dz_3 = 0 \quad \Rightarrow \quad R_x = -F\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Virtual moment for member 3</h4>
+                        <p>For \(0 < z_3 < \ell\):</p>
+                        \[\delta M_y = -\frac{1}{2}z_3\]
+                        
+                        <p>Extended expression:</p>
+                        \[= -\frac{1}{2}z_3 + z_3 - \ell = \frac{1}{2}z_3 - \ell\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Virtual work integration for bending</h4>
+                        \[\int_0^{\ell} \frac{\delta M_y \cdot M_y}{E\bar{I}_{yy}} \, dz_3 + \int_{\ell}^{2\ell} \frac{\delta M_y \cdot M_y}{E\bar{I}_{yy}} \, dz_3\]
+                        
+                        \[= \frac{1}{E\bar{I}_{yy}} F\ell^3 \left(\frac{1}{6} + \frac{1}{12}\right) = \frac{F\ell^3}{E\bar{I}_{yy}} \cdot \frac{1}{4}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{w_D = 1.8 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: Cantilever Beam Rotation -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Cantilever Beam — Rotation Calculation</h2>
+                    
+                    <p class="problem-statement">
+                        Compute the rotation \(\phi_y\) of the beam at point A.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/cantilever_beam_point_load.png" alt="Cantilever beam with point load">
+                        <figcaption>Figure 2.1: Cantilever beam with point load F at distance ℓ from support</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 4000 \text{ mm}\)</li>
+                            <li>\(E\bar{I}_{yy} = 6 \times 10^{11} \text{ N·mm}^2\)</li>
+                            <li>\(F = 8000 \text{ N}\)</li>
+                        </ul>
+                        <p><strong>Unit for result:</strong> rad</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Bending moment expressions</h4>
+                        <p>For \(0 < z < \ell\):</p>
+                        \[M_y = -Fz\]
+                        
+                        <p>For \(\ell < z < 2\ell\):</p>
+                        \[M_y = -Fz + R_x(z - \ell)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Virtual moment</h4>
+                        \[\delta M_y = \begin{cases} 0 & 0 < z < \ell \\ (z - \ell) & \ell < z < 2\ell \end{cases}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Set up virtual work integral</h4>
+                        \[\frac{1}{E\bar{I}_{yy}} \int_{\ell}^{2\ell} \left[-Fz^2 + Fz\ell + R_x\left(z^2 + \ell^2 - 2\ell z\right)\right] dz\]
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/cantilever_beam_loading_cases.png" alt="Cantilever beam with reactions">
+                        <figcaption>Figure 2.2: Beam with computed reaction forces</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Evaluate integral</h4>
+                        \[= \frac{1}{E\bar{I}_{yy}} \left(-\frac{1}{3}Fz^3 + \frac{1}{2}F\ell z^2 + \frac{1}{3}R_x z^3 + R_x \ell^2 z - R_x \ell z^2\right)\Big|_{\ell}^{2\ell}\]
+                        
+                        \[= \frac{1}{E\bar{I}_{yy}} \left[F\ell^3\left(-\frac{8}{3} + 2 + \frac{1}{3} - \frac{1}{2}\right) + R_x \ell^3\left(\frac{8}{3} + 2 - 4 - \frac{1}{3} - 1 + 1\right)\right] = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve for reaction</h4>
+                        \[-\frac{5}{6}F + \frac{1}{3}R_x = 0\]
+                        \[R_x = \frac{5}{2}F\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Updated moment expression</h4>
+                        <p>For \(0 < z < \ell\):</p>
+                        \[M_y = -F(z + \ell) + \frac{5}{2}Fz\]
+                        
+                        <p>Virtual moment:</p>
+                        \[\delta M_y = 1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 7: Compute rotation</h4>
+                        \[\int_0^{\ell} \frac{-F(z + \ell) + \frac{5}{2}Fz}{E\bar{I}_{yy}} \, dz = (-1) \cdot \phi_y\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\phi_y = \frac{1}{4} \frac{F\ell^2}{E\bar{I}_{yy}} = 0.053 \text{ rad}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: Semi-Monocoque Beam Shear Stress -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Semi-Monocoque Beam — Shear Stress Calculation</h2>
+                    
+                    <p class="problem-statement">
+                        The semi-monocoque beam model in the figure is loaded by a pressure distribution that is constant along the beam span and varies linearly from 0 to \(p\) along the upper side with dimension \(a\). Compute the shear stress in panel (1) at a distance \(2\ell - \varepsilon\), with \(0 < \varepsilon < \ell\), accounting for the fact that the external load is introduced by the ribs.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/semi_monocoque_beam_3d_model.png" alt="Semi-monocoque beam 3D model">
+                        <figcaption>Figure 3.1: Semi-monocoque beam with pressure loading and internal structure</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 2000 \text{ mm}\)</li>
+                            <li>\(E = 72000 \text{ MPa}\)</li>
+                            <li>\(p = 0.2 \text{ MPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(a = 800 \text{ mm}\)</li>
+                            <li>\(h = 150 \text{ mm}\)</li>
+                            <li>\(A = 500 \text{ mm}^2\)</li>
+                            <li>\(t = 4 \text{ mm}\)</li>
+                        </ul>
+                        <p><strong>Unit for result:</strong> MPa</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/rectangular_cross_section_shear_stress.png" alt="Cross-section shear flow diagram">
+                        <figcaption>Figure 3.2: Cross-section showing shear flow components</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate resultant force</h4>
+                        \[R = \frac{pa}{2} \cdot \ell \cdot \frac{5}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate moment (torsion)</h4>
+                        \[M = \frac{pa}{2} \cdot \frac{5}{2}\ell \cdot \left(\frac{a}{2} - \frac{a}{3}\right) = \frac{5}{24} p a^2 \ell\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate shear flows from shear force</h4>
+                        \[q_1' = q_2' = \frac{R}{2h}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate shear flow from torsion</h4>
+                        \[q^{\alpha} = \frac{M}{2ah}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate net shear flow in panel 1</h4>
+                        \[q_1 = q_1' - q^{\alpha}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Calculate shear stress</h4>
+                        \[\tau_1 = \frac{q_1}{t_1}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\tau_1 = 277.78 \text{ MPa}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: Two-Cell Torsional Stiffness -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: Two-Cell Semi-Monocoque — Torsional Stiffness</h2>
+                    
+                    <p class="problem-statement">
+                        Consider the two-cells semi-monocoque cross section model sketched in the figure. Compute its torsional stiffness.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/two_cell_truss_cross_section.png" alt="Two-cell cross-section">
+                        <figcaption>Figure 4.1: Two-cell semi-monocoque cross-section with shear flow circulation</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 200 \text{ mm}\)</li>
+                            <li>\(b = 100 \text{ mm}\)</li>
+                            <li>\(t = 1 \text{ mm}\)</li>
+                            <li>\(A = 1000 \text{ mm}^2\)</li>
+                            <li>\(E = 72000 \text{ MPa}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                        </ul>
+                        <p><strong>Unit for result:</strong> N·mm²/rad</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Symmetry condition</h4>
+                        <p>By symmetry of the two-cell section:</p>
+                        \[q_1^0 = q_2^0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Shear flow expression</h4>
+                        \[q_1^* = \frac{M_z}{4ab}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Twist rate equation</h4>
+                        \[\dot{\theta}_1 = \frac{1}{2abG} \cdot \frac{(2a+b)}{t} q_1^0 = \left[\frac{1}{2ab} \cdot \frac{(2a+b)}{t} \cdot \frac{1}{4ab}\right] \cdot M_z\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate torsional stiffness</h4>
+                        \[K_{\theta} = \frac{G}{\left[\frac{1}{2ab} \cdot \frac{(2a+b)}{t} \cdot \frac{1}{4ab}\right]}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{K_{\theta} = \frac{1.77 \times 10^{11}}{6.48 \times 10^{6}} \text{ N·mm/rad}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 5: Semi-Monocoque Rivet Force -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Problem 5: Semi-Monocoque Beam — Rivet Force Calculation</h2>
+                    
+                    <p class="problem-statement">
+                        The semi-monocoque beam model in the figure is loaded by a pressure distribution that is constant along the beam span and varies linearly from 0 to \(p\) along the side with dimension \(a\). The rib at \(2\ell\) from the clamp is connected to the upper panel by means of a row of rivets, with pitch \(\rho\) and diameter \(d\). Compute the force transmitted by one of these rivets.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/semi_monocoque_beam_rivet_connection.png" alt="Semi-monocoque beam with rivet connection">
+                        <figcaption>Figure 5.1: Semi-monocoque beam with rivet connection detail at rib location</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\ell = 700 \text{ mm}\)</li>
+                            <li>\(A = 800 \text{ mm}^2\)</li>
+                            <li>\(E = 72000 \text{ MPa}\)</li>
+                            <li>\(a = 400 \text{ mm}\)</li>
+                            <li>\(\nu = 0.3\)</li>
+                            <li>\(b = 200 \text{ mm}\)</li>
+                            <li>\(t = 2 \text{ mm}\)</li>
+                            <li>\(p = 0.3 \text{ MPa}\)</li>
+                            <li>\(\rho = 30 \text{ mm}\) (rivet pitch)</li>
+                            <li>\(d = 3 \text{ mm}\) (rivet diameter)</li>
+                        </ul>
+                        <p><strong>Unit for result:</strong> N</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/rectangular_section_stress_components.png" alt="Cross-section shear flow components">
+                        <figcaption>Figure 5.2: Rectangular cross-section with shear flow components</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate resultant shear force</h4>
+                        \[R = \frac{pa\ell}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate moment (torsion)</h4>
+                        \[M = \frac{pa\ell}{2}\left(\frac{a}{2} - \frac{a}{3}\right)\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate shear flows from shear force</h4>
+                        \[q_1' = q_2' = \frac{R}{2h}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate shear flow from torsion</h4>
+                        \[q^{\alpha} = \frac{M}{2ah}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate shear flow in panel 3</h4>
+                        \[q_3 = q^{\alpha}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 6: Calculate rivet force</h4>
+                        \[P_c = q_3 \cdot \rho\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{P_c = 525 \text{ N}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 6: Parabolic Element Virtual Work -->
+            <section class="problem-solution-pair" id="problem-6">
+                <div class="problem">
+                    <h2>Problem 6: Three-Node Parabolic Element — Virtual Work</h2>
+                    
+                    <p class="problem-statement">
+                        The three-node parabolic element sketched in the figure is loaded by a constant force per unit of length. Compute the virtual work of the load for a unit virtual displacement in the \(y\) direction of node (1) (the node at \(x = -2\)).
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolutions_July_06_2022/three_node_parabolic_element_distributed_load.png" alt="Three-node parabolic element">
+                        <figcaption>Figure 6.1: Three-node parabolic finite element with distributed load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(\mu = 0.56 \text{ N/mm}\)</li>
+                            <li>Node positions: \(x_1 = -2\), \(x_3 = 0\), \(x_2 = 2\)</li>
+                        </ul>
+                        <p><strong>Unit for result:</strong> N·mm</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Shape function for node 1</h4>
+                        \[N_1 = \frac{x \cdot (x-2)}{8}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Set up virtual work integral</h4>
+                        \[\int_{-2}^{2} N_1 \cdot \mu \, dx = \int_{-2}^{2} \left(\frac{x^2}{8} - \frac{x}{4}\right) \mu \, dx\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Evaluate integral</h4>
+                        \[= \left(\frac{x^3}{24} - \frac{x^2}{8}\right)\Big|_{-2}^{2} \cdot \mu\]
+                        
+                        <p>Computing the limits:</p>
+                        \[= \left[\left(\frac{8}{24} - \frac{4}{8}\right) - \left(\frac{-8}{24} - \frac{4}{8}\right)\right] \cdot \mu\]
+                        \[= \frac{2}{3}\mu\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Substitute numerical value</h4>
+                        \[W_{virtual} = \frac{2}{3} \times 0.56 = 0.373 \text{ N·mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{W_{virtual} = 0.373 \text{ N·mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 7: Multiple Choice Questions -->
+            <section class="problem-solution-pair" id="problem-7">
+                <div class="multiple-choice-section">
+                    <h2>Theory Questions — Multiple Choice</h2>
+                    
+                    <h3 style="color: var(--secondary-color); margin: 25px 0 15px 0;">True/False Questions</h3>
+                    
+                    <div class="true-false-block">
+                        <p><strong>Statement:</strong> The assumption of plane strain implies that a component of strain is null.</p>
+                        <p><span class="answer-label">Answer: True</span></p>
+                    </div>
+                    
+                    <div class="true-false-block">
+                        <p><strong>Statement:</strong> The Neumann boundary conditions are satisfied in a weak sense by the Principle of Virtual Work.</p>
+                        <p><span class="answer-label">Answer: True</span></p>
+                    </div>
+                    
+                    <div class="true-false-block">
+                        <p><strong>Statement:</strong> According to the semi-monocoque model, the shear stress in the panels can be computed from the axial derivative of the axial stress \(\sigma_{zz}\).</p>
+                        <p><span class="answer-label">Answer: False</span></p>
+                    </div>
+                    
+                    <h3 style="color: var(--secondary-color); margin: 25px 0 15px 0;">Multiple Choice Questions</h3>
+                    
+                    <div class="question-block">
+                        <h4>Question 1: The shear flux in a thin panel is equal to</h4>
+                        <ul>
+                            <li>(a) the shear stress divided by the panel thickness</li>
+                            <li class="correct-answer">(b) the shear stress multiplied by the panel thickness ✓</li>
+                            <li>(c) the shear stress</li>
+                            <li>(d) the derivative of the axial stress in the panel</li>
+                            <li>(e) none of the above</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question-block">
+                        <h4>Question 2: The critical buckling compression force for the Euler instability of a beam is function of:</h4>
+                        <ul>
+                            <li>(a) only the beam length and the constraints</li>
+                            <li>(b) only the beam bending stiffness and the constraints</li>
+                            <li>(c) only the beam torsional stiffness and the constraints</li>
+                            <li>(d) only the beam axial stiffness and the constraints</li>
+                            <li>(e) the beam length, the axial stiffness and the constraints</li>
+                            <li class="correct-answer">(f) the beam length, the bending stiffness and the constraints ✓</li>
+                            <li>(g) the beam length, the bending stiffness, the cross-section area and the constraints</li>
+                            <li>(h) the beam length, the torsional stiffness and the constraints</li>
+                            <li>(i) none of the above</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question-block">
+                        <h4>Question 3: The axial stiffness for a thin-walled beam:</h4>
+                        <ul>
+                            <li>(a) is null</li>
+                            <li>(b) is generally larger with respect to a corresponding (same material and cross-section area of the material) compact section</li>
+                            <li>(c) is generally smaller with respect to a corresponding (same material and cross-section area of the material) compact section</li>
+                            <li class="correct-answer">(d) is equal to that of a corresponding (same material and cross-section area of the material) compact section ✓</li>
+                            <li>(e) can be neglected</li>
+                            <li>(f) none of the above</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: #666;">
+            <p>Structural Mechanics Examination — Complete Solutions</p>
+        </footer>
+    </article>
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Mechanics Exam - Complete Solutions</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .theory-section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theory-section h2 {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.5rem;
+        }
+
+        .theory-content {
+            padding: 30px;
+        }
+
+        .theory-question {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .theory-question p {
+            margin-bottom: 10px;
+        }
+
+        .theory-answer {
+            font-weight: bold;
+            color: var(--accent-color);
+            padding: 8px 15px;
+            background: #c6f6d5;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .column h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Structural Mechanics Examination</h1>
+            <p class="subtitle">Complete Solutions with Detailed Calculations</p>
+        </header>
+        
+        <main>
+            <!-- Problem 1: Cantilever Beam Optimization -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: Cantilever Beam Displacement Optimization</h2>
+                    <p class="problem-statement">
+                        Find the minimum value \(EJ/EJ_0\) such that the vertical displacement at \(x = L/2\) is smaller than \(W_{max}\).
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_July_13_2020/cantilever_beam_distributed_load.png" alt="Cantilever beam with fixed support at right end, uniform upward distributed load q along entire length, beam length L with flexural rigidity EJ">
+                        <figcaption>Figure 1.1: Cantilever beam with distributed load and fixed support</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 1200 \left(1 + B/10\right) \text{ mm}\)</li>
+                            <li>\(EJ_0 = 6 \cdot 10^7 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(q = 1.0 \cdot \left(1 + C/10\right) \text{ N/mm}\)</li>
+                            <li>\(W_{max} = 5.0 \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((B = C = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Find the unknown reaction force X</h4>
+                        <p>Using the virtual work method with real and dummy load systems:</p>
+                        
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolution_July_13_2020/cantilever_beam_reaction_force.png" alt="Free body diagram showing cantilever with reaction force X">
+                            <figcaption>Figure 1.2: Real and dummy load systems for determining reaction force</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Express bending moments</h4>
+                        <p>Real system bending moment:</p>
+                        \[M_x = -Xz - \frac{qz^2}{2}\]
+                        <p>Dummy system bending moment:</p>
+                        \[\delta M_x = -z\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply compatibility condition</h4>
+                        \[\int_0^L \frac{M_x \delta M_x}{EJ} \, dz = 0\]
+                        <p>Solving for X:</p>
+                        \[X = -\frac{3}{8} qL\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Evaluate the displacement at x = L/2</h4>
+                        <p>Dummy moment for displacement calculation:</p>
+                        \[\delta M_x = -z + \frac{L}{2}\]
+                        <p>Applying the displacement integral:</p>
+                        \[\int_{L/2}^{L} \frac{\delta M_x M_x}{EJ} \, dz = S = W_{max}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve for required flexural rigidity</h4>
+                        <p>From the displacement condition:</p>
+                        \[EJ = \frac{1}{W_{max}} \int_{L/2}^{L} \delta M_x M_x \, dz\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Expression for Stiffness Ratio:</strong>
+                        \[\boxed{\frac{EJ}{EJ_0} = \frac{1}{EJ_0} \cdot \frac{L^3 (40X + 17qL)}{384 \, W_{max}}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: Torsional Stiffness Ratio -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Torsional Stiffness Ratio of Rectangular Frame Sections</h2>
+                    <p class="problem-statement">
+                        Calculate the ratio between the torsional stiffness of the two sections \(GJ_2 / GJ_1\).
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_July_13_2020/rectangular_frame_cross_sections.png" alt="Two rectangular frame cross-sections with different stringer area distributions">
+                        <figcaption>Figure 2.1: Section #1 (left) and Section #2 (right) - rectangular frame cross-sections for torsional stiffness comparison</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 200 \left(1 + F/10\right) \text{ mm}\)</li>
+                            <li>\(b = 100 \text{ mm}\)</li>
+                            <li>\(A = 500 \left(1 + A/10\right) \text{ mm}^2\)</li>
+                            <li>\(t = 1 \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Analysis</h4>
+                        <p>Both sections have the same enclosed area and wall thickness. The torsional stiffness for thin-walled closed sections depends on the enclosed area and perimeter, which remain equivalent when dimensions are swapped.</p>
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\frac{GJ_2}{GJ_1} = 1.0}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: Truss Frame with Spring Support -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Truss Frame with Spring Support</h2>
+                    <p class="problem-statement">
+                        Determine the vertical displacement in correspondence of the spring. (Refer to the x axis in the figure)
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_July_13_2020/truss_frame_spring_support.png" alt="Three-dimensional truss frame with spring support at bottom-left node">
+                        <figcaption>Figure 3.1: Truss frame structure with spring support and applied load P</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="two-column">
+                            <div class="column">
+                                <ul>
+                                    <li>\(A = 250 \text{ mm}^2\)</li>
+                                    <li>\(a = 150 \text{ mm}\)</li>
+                                    <li>\(t = 0.6 \left(1 + B/10\right) \text{ mm}\)</li>
+                                    <li>\(L = 1200 \left(1 + F/10\right) \text{ mm}\)</li>
+                                    <li>\(k = 100 \text{ N/mm}\)</li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <ul>
+                                    <li>\(E = 72000 \text{ MPa}\)</li>
+                                    <li>\(\nu = 0.3\)</li>
+                                    <li>\(P = 1700 \text{ N}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((B = F = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Evaluate section properties using symmetry</h4>
+                        
+                        <figure class="diagram">
+                            <img src="images/OnlineTestSolution_July_13_2020/rectangular_section_shear_forces.png" alt="Rectangular section with shear force distribution">
+                            <figcaption>Figure 3.2: Section properties from symmetry analysis</figcaption>
+                        </figure>
+                        
+                        <p><strong>Shear:</strong></p>
+                        \[A^* = 2at\]
+                        \[GA^* = 2atG\]
+                        
+                        <p><strong>Torsional:</strong></p>
+                        \[GJ = Ga^3t\]
+                        
+                        <p><strong>Bending:</strong></p>
+                        \[EJ = EAa^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Set up real and dummy load systems</h4>
+                        <p>Evaluate the unknown reaction force \(X\) at the spring location.</p>
+                        
+                        <div class="two-column">
+                            <div class="column">
+                                <h4>Real System</h4>
+                                <ul>
+                                    <li>\(T = P + X\)</li>
+                                    <li>\(M = (P + X)z\)</li>
+                                    <li>\(M_t = (P - X)\frac{a}{2}\)</li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <h4>Dummy System</h4>
+                                <ul>
+                                    <li>\(\delta T = 1\)</li>
+                                    <li>\(\delta M = z\)</li>
+                                    <li>\(\delta M_t = -\frac{a}{2}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply virtual work equation (compatibility)</h4>
+                        \[\int_0^L \left( \frac{\delta T \cdot T}{GA^*} + \frac{\delta M \cdot M}{EJ} + \frac{\delta M_t \cdot M_t}{GJ} \right) dz + \frac{X}{k} = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Solve for reaction force X</h4>
+                        \[X = P \cdot \frac{\dfrac{a^2}{4GJ} - \dfrac{L^2}{3EJ} - \dfrac{1}{6A^*}}{\dfrac{1}{GA^*} + \dfrac{L^2}{3EJ} + \dfrac{a^2}{4GJ} + \dfrac{1}{kL}} = -222.55 \text{ N}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer - Vertical Displacement:</strong>
+                        \[\boxed{S = \frac{X}{k} = -2.23 \text{ mm}}\]
+                        <p style="margin-top: 10px; font-size: 0.9rem;">(Negative sign indicates upward movement)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: Ritz Method 2-DOF -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: Strain Energy Using Ritz Method (2-DOF)</h2>
+                    <p class="problem-statement">
+                        Using the Ritz method and a 2-DOF polynomial approximation, determine the strain energy.
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_July_13_2020/cantilever_beam_variable_stiffness.png" alt="Cantilever beam with variable axial stiffness and spring support">
+                        <figcaption>Figure 4.1: Cantilever beam with variable axial stiffness EA(x), distributed load h, and spring support k</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="two-column">
+                            <div class="column">
+                                <ul>
+                                    <li>\(L = 2700 \text{ mm}\)</li>
+                                    <li>\(EA_0 = 2.8 \cdot 10^5 \text{ N}\)</li>
+                                    <li>\(EA_1 = 6.5 \cdot 10^5 \text{ N}\)</li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <ul>
+                                    <li>\(k = 300 \left(1 + B/10\right) \text{ N/mm}\)</li>
+                                    <li>\(h = 2\left(1 + F/10\right) \text{ N/mm}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((B = F = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Assume displacement field</h4>
+                        \[u(x) = q_1 x + q_2 x^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Write virtual work equation</h4>
+                        \[\int_0^L \delta u_{,x} \, EA(x) \, u_{,x} \, dx + \delta u(L) \, k \, u(L) = \int_0^L \delta u \, h \, dx\]
+                        
+                        <p>With axial stiffness variation:</p>
+                        \[EA(x) = \alpha + \beta x\]
+                        <p>where:</p>
+                        \[\alpha = EA_0 \quad ; \quad \beta = \frac{EA_1 - EA_0}{L}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Compute stiffness matrix coefficients</h4>
+                        \[k_{11} = \alpha L + \frac{\beta L^2}{2} + kL^2\]
+                        \[k_{12} = k_{21} = \alpha L^2 + \frac{2}{3} \beta L^3 + kL^3\]
+                        \[k_{22} = \frac{4}{3} \alpha L^3 + \beta L^4 + kL^4\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Compute force vector coefficients</h4>
+                        \[f_1 = \frac{L^2}{2} h\]
+                        \[f_2 = \frac{L^3}{3} h\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve the system \(\underline{K} \, \underline{q} = \underline{f}\)</h4>
+                        \[q_1 = 9.23 \cdot 10^{-3}\]
+                        \[q_2 = -2.51 \cdot 10^{-6}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer - Strain Energy:</strong>
+                        \[\boxed{U = \frac{1}{2} \underline{q}^T \underline{K} \, \underline{q} = 17151 \text{ N} \cdot \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 5: Ritz Method 1-DOF Torsion -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Problem 5: Strain Energy Using Ritz Method (1-DOF Torsion)</h2>
+                    <p class="problem-statement">
+                        Using the Ritz method and a 1-DOF polynomial approximation, determine the strain energy. (\(GJ\) varies linearly from \(GJ_0\) at \(x = 0\) to \(GJ_1\) at \(x = L_2\))
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_July_13_2020/two_segment_beam_rigid_link.png" alt="Two-segment beam system connected by rigid link">
+                        <figcaption>Figure 5.1: Two-segment beam system with rigid link connection and variable torsional stiffness</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L_1 = 180 \text{ mm}\)</li>
+                            <li>\(L_2 = 1800 \text{ mm}\)</li>
+                            <li>\(GJ_0 = 1.1 \cdot 10^8 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(GJ_1 = 3.3 \cdot 10^8 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(P = 50 \left(1 + D/10\right) \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((D = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Assume rotation field</h4>
+                        \[\theta = q_1 x\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Define torsional stiffness variation</h4>
+                        \[GJ(x) = \alpha + \beta x\]
+                        <p>where:</p>
+                        \[\alpha = GJ_0 \quad ; \quad \beta = \frac{GJ_1 - GJ_0}{L_2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Write virtual work equation</h4>
+                        \[\int_0^{L_2} \delta\theta' \, GJ(x) \, \theta' \, dx = \delta\theta(L_2) \, P L_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Substitute and simplify</h4>
+                        \[\left(\alpha L_2 + \frac{\beta L_2^2}{2}\right) q_1 = P L_1 L_2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Solve for generalized coordinate</h4>
+                        \[q_1 = 4.091 \cdot 10^{-5}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer - Strain Energy:</strong>
+                        \[\boxed{U = \frac{1}{2} \left(\alpha L_2 + \frac{\beta L_2^2}{2}\right) q_1^2 = 331.36 \text{ N} \cdot \text{mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 6: Axial Stress in Stringer -->
+            <section class="problem-solution-pair" id="problem-6">
+                <div class="problem">
+                    <h2>Problem 6: Axial Stress in Stringer</h2>
+                    <p class="problem-statement">
+                        Evaluate the axial stress in stringer #1 at \(x = 0\).
+                    </p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_July_13_2020/truss_structure_diagonal_members.png" alt="Three-dimensional truss structure with stringer #1 labeled">
+                        <figcaption>Figure 6.1: Truss structure with applied load P and stringer #1 identification</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <div class="two-column">
+                            <div class="column">
+                                <ul>
+                                    <li>\(a = 180 \text{ mm}\)</li>
+                                    <li>\(A = 350 \text{ mm}^2\)</li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <ul>
+                                    <li>\(L = 1600 \left(1 + A/10\right) \text{ mm}\)</li>
+                                    <li>\(P = 1300 \left(1 + F/10\right) \text{ N}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((A = F = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate second moment of area</h4>
+                        \[J_{xx} = Aa^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Determine bending moment at x = 0</h4>
+                        <p>The bending moment at \(x = 0\) is:</p>
+                        \[M = PL\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply bending stress formula</h4>
+                        <p>The distance from neutral axis to stringer #1 includes the geometric factor:</p>
+                        \[\sigma = \frac{M}{J_{xx}} \cdot \frac{a\sqrt{2}}{2}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer - Axial Stress:</strong>
+                        \[\boxed{\sigma = 23.35 \text{ MPa}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Theory Questions -->
+            <section class="theory-section" id="theory-questions">
+                <h2>Theoretical Questions</h2>
+                <div class="theory-content">
+                    
+                    <div class="theory-question">
+                        <p><strong>Question 1:</strong> The solution due to De Saint Venant does not account for local effects because local effects are always negligible.</p>
+                        <span class="theory-answer">False</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>Question 2:</strong> The Hooke's law is a constitutive law for linear elastic materials.</p>
+                        <span class="theory-answer">True</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>Question 3:</strong> Shear deformability effects are generally more relevant for thin-walled beams than for compact beams.</p>
+                        <span class="theory-answer">True</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>Question 4:</strong> The elastic problem can be formulated in terms of displacements:</p>
+                        <span class="theory-answer">Always</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>Question 5:</strong> The shear center of open section thin-walled beam section modeled according to the semi-monocoque scheme:</p>
+                        <span class="theory-answer">Can be determined by imposing the equivalence of torsional moment</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>Question 6:</strong> The Timoshenko beam model:</p>
+                        <span class="theory-answer">Accounts for shear deformability</span>
+                    </div>
+                    
+                </div>
+            </section>
+
+        </main>
+    </article>
+</body>
+</html>

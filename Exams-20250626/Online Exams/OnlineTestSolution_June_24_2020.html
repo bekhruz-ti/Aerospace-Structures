@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Mechanics Exam</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+            --bg-light: #f7fafc;
+            --bg-solution: #f0fff4;
+            --border-color: #e2e8f0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .exam-document {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .problem-solution-pair {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            padding: 30px;
+            background: var(--bg-light);
+        }
+
+        .problem h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .given-data {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 15px;
+        }
+
+        .given-data h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .given-data ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .given-data li {
+            margin: 8px 0;
+        }
+
+        .diagram {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .diagram figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .solution {
+            padding: 30px;
+            background: var(--bg-solution);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .solution h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-step h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .final-answer {
+            margin-top: 25px;
+            padding: 20px;
+            background: #c6f6d5;
+            border-radius: 6px;
+            border: 2px solid var(--accent-color);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .theory-section {
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theory-section h2 {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.5rem;
+        }
+
+        .theory-content {
+            padding: 30px;
+        }
+
+        .theory-question {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .theory-question p {
+            margin-bottom: 10px;
+        }
+
+        .theory-answer {
+            font-weight: bold;
+            color: var(--accent-color);
+            padding: 8px 15px;
+            background: #c6f6d5;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* MathJax spacing */
+        mjx-container {
+            margin: 10px 0 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .problem, .solution {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="exam-document">
+        <header>
+            <h1>Structural Mechanics Examination</h1>
+        </header>
+        
+        <main>
+            <!-- Problem 1: Cantilever Beam with Triangular Load -->
+            <section class="problem-solution-pair" id="problem-1">
+                <div class="problem">
+                    <h2>Problem 1: Cantilever Beam Displacement</h2>
+                    <p class="problem-statement">Find the displacement at \(x = L/3\) for a cantilever beam with triangular distributed load.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/cantilever_beam_triangular_load.png" alt="Cantilever beam with triangular distributed load varying from maximum h at fixed end to zero at free end">
+                        <figcaption>Figure 1: Cantilever beam with triangular distributed load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 2000 \text{ mm}\)</li>
+                            <li>\(EA = 1.8 \cdot 10^6 \text{ N}\)</li>
+                            <li>\(EJ = 1.8 \cdot 10^8 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(h = 2(1 + F/10) \text{ N/mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((F = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Evaluate the unknown reaction force X</h4>
+                        <p>Using the virtual work method with a unit dummy load:</p>
+                        <p>For the real system:</p>
+                        \[N = X + \frac{hx^2}{2L}\]
+                        <p>For the dummy system:</p>
+                        \[\delta N = 1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply compatibility condition</h4>
+                        \[\int_0^L \frac{N \delta N}{EA} dx = 0\]
+                        <p>Solving for X:</p>
+                        \[X = -\frac{hL}{6}\]
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/beam_displacement_analysis.png" alt="Coordinate system transformation for displacement analysis">
+                        <figcaption>Figure 2: Setup for displacement evaluation at x = L/3</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Evaluate the displacement</h4>
+                        <p>For the region \(x \geq \frac{2}{3}L\):</p>
+                        \[\delta N = +1\]
+                        <p>Applying the virtual work integral:</p>
+                        \[\int_{2/3 L}^{L} \frac{N \delta N}{EA} dx = S\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate final displacement</h4>
+                        \[S = \frac{54X + 19Lh}{162 \, EA} \cdot L\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{S = 0.274 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 2: Rectangular Hollow Section Torsion -->
+            <section class="problem-solution-pair" id="problem-2">
+                <div class="problem">
+                    <h2>Problem 2: Torsion of Hollow Section</h2>
+                    <p class="problem-statement">Determine the shear stress \(\tau\) in the panel of thickness \(t_2\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/rectangular_hollow_section_torque.png" alt="Rectangular hollow section with rounded corners subjected to torsion">
+                        <figcaption>Figure 3: Rectangular hollow section under applied torque M<sub>t</sub></figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 500 \text{ mm}^2\)</li>
+                            <li>\(h = 200(1 + E/10) \text{ mm}\)</li>
+                            <li>\(b = 150 \text{ mm}\)</li>
+                            <li>\(t_1 = 1.3 \text{ mm}\)</li>
+                            <li>\(t_2 = 1.6 \text{ mm}\)</li>
+                            <li>\(M_t = 10^7 \text{ N} \cdot \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((E = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Apply Bredt's formula for shear flow</h4>
+                        <p>The shear flow in the panels is obtained from:</p>
+                        \[2q\Omega = M_t\]
+                        <p>where the enclosed area is:</p>
+                        \[\Omega = bh + \frac{\pi h^2}{4}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Calculate shear stress</h4>
+                        <p>The shear stress in the panel of thickness \(t_2\):</p>
+                        \[\tau = \frac{q}{t_2}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\tau = 50.88 \text{ MPa}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 3: Rectangular Frame Shear Flow -->
+            <section class="problem-solution-pair" id="problem-3">
+                <div class="problem">
+                    <h2>Problem 3: Shear Flow in Frame Cross-Section</h2>
+                    <p class="problem-statement">Calculate the shear flow \(q_2\) in the left vertical panel.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/rectangular_frame_shear_flow.png" alt="Rectangular frame cross-section with corner areas and applied vertical force">
+                        <figcaption>Figure 4: Rectangular frame cross-section for shear flow analysis</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(A = 800(1 + A/10) \text{ mm}^2\)</li>
+                            <li>\(T = 7600 \text{ N}\)</li>
+                            <li>\(a = 250 \text{ mm}\)</li>
+                            <li>\(b = 600 \text{ mm}\)</li>
+                            <li>\(t_1 = 1 \text{ mm}\)</li>
+                            <li>\(t_2 = 2(1 + C/10) \text{ mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((A = C = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Calculate section properties</h4>
+                        <p>Second moment of area and first moments:</p>
+                        \[J_{xx} = \frac{3}{2} A a^2\]
+                        \[S'_{x_3} = \frac{Aa}{2}\]
+                        \[S'_{x_4} = \frac{3}{2} Aa\]
+                        \[S'_{x_1} = S'_{x_3}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply the shear flow equation</h4>
+                        \[q'_3 = -T \frac{S'_{x_3}}{J_{xx}} = -\frac{T}{3a}\]
+                        \[q'_1 = q'_3\]
+                        \[q'_4 = -T \frac{S'_{x_4}}{J_{xx}} = -\frac{T}{a}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply torsional equivalence condition</h4>
+                        \[2\Omega_c q^* + 2q'_3 \Omega_3 + 2q'_4 \Omega_4 = 0\]
+                        <p>where:</p>
+                        \[\Omega_c = ab \quad ; \quad \Omega_3 = \Omega_4 = \frac{ab}{2}\]
+                        <p>Therefore:</p>
+                        \[2q^* + q'_3 + q'_4 = 0\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Solve for closed shear flow</h4>
+                        \[q^* = \frac{2}{3} \frac{T}{a} = 20.27 \text{ N/mm}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{q_2 = q^* = 20.27 \text{ N/mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 4: Beam with Spring Support -->
+            <section class="problem-solution-pair" id="problem-4">
+                <div class="problem">
+                    <h2>Problem 4: Beam with Spring Support - Ritz Method</h2>
+                    <p class="problem-statement">Using the Ritz method and a 1-DOF polynomial approximation, determine the vertical displacement in correspondence of the spring.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/beam_spring_support_triangular_load.png" alt="Beam with fixed support, spring at midspan, and triangular distributed load">
+                        <figcaption>Figure 5: Beam with spring support and triangular load</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 750 \text{ mm}\)</li>
+                            <li>\(EJ = 1.25 \cdot 10^8 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(K = 50(1 + A/10) \text{ N/mm}\)</li>
+                            <li>\(q = 2\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((A = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Assume displacement shape function</h4>
+                        <p>Choose a polynomial that satisfies boundary conditions at the fixed end:</p>
+                        \[W = (x^3 - Lx^2)q_1\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Apply the principle of virtual work</h4>
+                        \[\int_0^L \delta W_{,xx} \, EJ \, W_{,xx} \, dx + \delta w(L/2) \, k \, w(L/2) = \int_0^L \delta W \cdot q \frac{x}{L} \, dx\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Solve the equilibrium equation</h4>
+                        \[\left(4EJL^3 + \frac{K}{64} L^6\right) q_1 = -\frac{1}{20} q L^4\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Calculate displacement at spring location</h4>
+                        \[w(L/2) = -\frac{L^3}{8} q_1\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{w(L/2) = 4.768 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 5: L-Frame with Angled Load -->
+            <section class="problem-solution-pair" id="problem-5">
+                <div class="problem">
+                    <h2>Problem 5: L-Frame Analysis - Ritz Method</h2>
+                    <p class="problem-statement">Use the Ritz method and the simplest polynomial approximation for evaluating the displacement \(S\) at the junction.</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/l_frame_angled_load.png" alt="L-shaped frame with 45-degree load at junction">
+                        <figcaption>Figure 6: L-frame with angled load P at 45°</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(L = 730 \text{ mm}\)</li>
+                            <li>\(EA_1 = 1.15 \cdot 10^6 (1 + F/10) \text{ N}\)</li>
+                            <li>\(EA_2 = 3 \cdot 10^5 \text{ N}\)</li>
+                            <li>\(EJ = 1.8 \cdot 10^7 \text{ N} \cdot \text{mm}^2\)</li>
+                            <li>\(P = 2500(1 + A/10) \text{ N}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((A = F = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Identify uncoupled behavior</h4>
+                        <p>Due to uncoupling between axial and bending, we can consider only the axial response of beam 1 and the bending one of beam 2.</p>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Assume displacement functions</h4>
+                        <p>For axial displacement of beam 1:</p>
+                        \[u_1 = q_1 x\]
+                        <p>For transverse displacement of beam 2:</p>
+                        \[W_2 = q_2 x^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Apply compatibility at junction</h4>
+                        <p>The compatibility condition requires:</p>
+                        \[u_1(L) = W_2(L) \Rightarrow q_1 = q_2 L\]
+                        <p>Therefore:</p>
+                        \[u_1 = q_2 x_1 L\]
+                        \[W_2 = q_2 x_2^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Apply virtual work principle</h4>
+                        \[\int_0^L \delta u_{1,x} \, EA_1 \, u_{1,x} \, dx_1 + \int_0^L \delta W_{2,xx} \, EJ \, W_{2,xx} \, dx_2 = \delta u_1(L) \, P_x\]
+                        <p>This leads to:</p>
+                        \[(EA_1 L^3 + 4 EJL) q_2 = P_x L^2\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 5: Calculate displacement</h4>
+                        \[S = W_2(L) = q_2 L^2\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{S = 1.12 \text{ mm}}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem 6: Ribbed Panel Structure -->
+            <section class="problem-solution-pair" id="problem-6">
+                <div class="problem">
+                    <h2>Problem 6: Ribbed Panel Structure</h2>
+                    <p class="problem-statement">Model Rib #2 as a beam, and evaluate the bending moment at \(x = a/2\) as \(M/M_{ref}\).</p>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/ribbed_structure_3d.png" alt="Three-dimensional ribbed panel structure with two ribs and connecting panels">
+                        <figcaption>Figure 7: 3D ribbed panel structure with applied loads</figcaption>
+                    </figure>
+                    
+                    <div class="given-data">
+                        <h3>Given Data:</h3>
+                        <ul>
+                            <li>\(a = 700 \text{ mm}\)</li>
+                            <li>\(b = 200 \text{ mm}\)</li>
+                            <li>\(c = 100 \text{ mm}\)</li>
+                            <li>\(L = 2000 \text{ mm}\)</li>
+                            <li>\(t = 0.6 \text{ mm}\)</li>
+                            <li>\(A = 700 \text{ mm}^2\)</li>
+                            <li>\(P = 2000 \text{ N}\)</li>
+                            <li>\(q = 2(1 + F/10) \text{ N/mm}\)</li>
+                            <li>\(M_{ref} = 9.8 \cdot 10^5 \text{ N} \cdot \text{mm}\)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <h3>Solution \((F = 0)\)</h3>
+                    
+                    <div class="solution-step">
+                        <h4>Step 1: Determine equilibrating shear flows on Rib #2</h4>
+                        <p>The equilibrating shear flows are obtained as:</p>
+                        <ul>
+                            <li>Top edge: \(qa\) (upward)</li>
+                            <li>Left and right edges: \(\frac{qa}{2b}\) (downward)</li>
+                        </ul>
+                    </div>
+                    
+                    <figure class="diagram">
+                        <img src="images/OnlineTestSolution_June_24_2020/beam_distributed_load_reactions.png" alt="Beam model showing distributed load and reactions">
+                        <figcaption>Figure 8: Beam model of Rib #2 with equilibrating loads</figcaption>
+                    </figure>
+                    
+                    <div class="solution-step">
+                        <h4>Step 2: Model as simply supported beam</h4>
+                        <p>The rib is modeled as a beam with:</p>
+                        <ul>
+                            <li>Uniformly distributed load \(q\) (upward)</li>
+                            <li>Support reactions \(\frac{qa}{2}\) at each end (downward)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 3: Calculate bending moment distribution</h4>
+                        \[M(x) = \frac{qa}{2} \cdot x - q \cdot \frac{x^2}{2}\]
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>Step 4: Evaluate moment at midspan</h4>
+                        <p>At \(x = a/2\):</p>
+                        \[\frac{M(a/2)}{M_{ref}}\]
+                    </div>
+                    
+                    <div class="final-answer">
+                        <strong>Final Answer:</strong>
+                        \[\boxed{\frac{M(a/2)}{M_{ref}} = 0.125}\]
+                    </div>
+                </div>
+            </section>
+
+            <!-- Theory Questions -->
+            <section class="theory-section" id="theory-questions">
+                <h2>Theory Questions</h2>
+                
+                <div class="theory-content">
+                    <div class="theory-question">
+                        <p><strong>1.</strong> The Principle of Virtual Works can be applied only for hyperelastic constitutive laws.</p>
+                        <span class="theory-answer">False</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>2.</strong> An hyperelastic constitutive law is not necessarily linear.</p>
+                        <span class="theory-answer">True</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>3.</strong> The assumption of infinitesimal displacements implies that the equilibrium conditions are referred to the undeformed configuration.</p>
+                        <span class="theory-answer">True</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>4.</strong> The equivalence between the Principle of Virtual Works and the Principle of Minimum Potential Energy:</p>
+                        <span class="theory-answer">holds for hyperelastic material law</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>5.</strong> The shear flows acting on the rib are:</p>
+                        <span class="theory-answer">the flows equilibrating the applied load</span>
+                    </div>
+                    
+                    <div class="theory-question">
+                        <p><strong>6.</strong> In finite elements, the hourglass phenomenon:</p>
+                        <span class="theory-answer">can be due to an excessively low number of integration points</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </article>
+</body>
+</html>

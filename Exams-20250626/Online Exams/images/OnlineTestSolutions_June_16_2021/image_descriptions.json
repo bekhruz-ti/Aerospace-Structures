@@ -1,0 +1,54 @@
+{
+  "l_frame_spring_support_distributed_load.png": {
+    "suggested_name": "l_frame_spring_support_distributed_load",
+    "description": "L-shaped frame structure with vertical member (length ℓ₂) fixed at top with horizontal force T applied leftward at the fixed support. Vertical member has properties EA₂, EJ₂, ℓ₂. Horizontal member (length ℓ₁) extends rightward with properties EA₁, EJ₁, ℓ₁, terminating at point labeled ρ. Junction between vertical and horizontal members has two spring supports labeled k, one on each side of the corner. Fixed support at top shown with hatching symbol. Problem asks to determine shear force T at the fixed end."
+  },
+  "l_frame_real_system_forces.png": {
+    "suggested_name": "l_frame_real_system_forces",
+    "description": "L-shaped frame labeled \"Real system\" showing vertical member (EA₂, EJ₂, ℓ₂) fixed at top with horizontal force T applied leftward, and horizontal member (EA₁, EJ₁, ℓ₁) extending rightward to point ρ. Horizontal force W applied leftward at corner junction, vertical reaction force V shown upward at junction. Two free body diagrams shown below: Beam 1 (horizontal member) with axial forces N₁ at both ends and equation N₁ = ρ; Beam 2 (vertical member) showing coordinate z₂ upward, axial force N₂ upward, moment M₂ counterclockwise, with equations N₂ = -V and M₂ = -ρz₂ - Wz₂. Point labeled \"ρ+W\" with upward force V shown at bottom of Beam 2."
+  },
+  "l_frame_dummy_systems.png": {
+    "suggested_name": "l_frame_dummy_systems",
+    "description": "Two L-shaped frame configurations labeled \"Dummy system #1\" and \"Dummy system #2\". Dummy system #1: vertical member (EA₂, EJ₂, ℓ₂) fixed at top, horizontal member (EA₁, EJ₁, ℓ₁) with unit upward force \"1\" applied at corner junction. Associated equations show Beam 1: ¹δN₁ = 0; Beam 2: ¹δN₂ = -1, ¹δM₂ = 0. Dummy system #2: horizontal unit force \"1\" applied leftward at corner junction. Associated equations show Beam 1: ²δN = 0; Beam 2: ²δN₂ = 0, ²δM₂ = -z₂. Below diagrams, text states \"By application of PVCW:\" followed by integral equation ∫₀^ℓ₂ (N₂ ¹δN₂/EA₂)dz₂ + V/k = 0 ⟹ V = 0."
+  },
+  "simply_supported_beam_uniform_load.png": {
+    "suggested_name": "simply_supported_beam_uniform_load",
+    "description": "Simply supported beam with pinned supports at both ends (shown with hatching symbols), subjected to uniform upward distributed load shown by vertical arrows. Beam has properties EA, EJ, ℓ labeled at center. Coordinate axis x shown pointing rightward. Curved arrow labeled X shown at left end indicating unknown reaction force. Problem statement asks to \"Determine the unknown reaction force X as reported in the sketch.\""
+  },
+  "beam_symmetry_analysis.png": {
+    "suggested_name": "beam_symmetry_analysis",
+    "description": "Solution approach showing full simply supported beam with uniform upward distributed load (EA, EJ, ℓ) at top. Below, problem is split into two symmetric half-beams each of length ℓ/2 with properties EA, EJ, ℓ/2. Left half-beam shows fixed support at left end, right half-beam shows roller support at right with moment W. Real system diagram shows half-beam with upward distributed load, horizontal force M at left, moment M at left, with equation M = -W - qx²/2. Dummy system diagram shows half-beam with horizontal unit force \"1\" at left, moment ²δM at left, with equation ²δM = -1."
+  },
+  "l_frame_cantilever_distributed_load.png": {
+    "suggested_name": "l_frame_cantilever_distributed_load",
+    "description": "L-shaped cantilever frame with vertical member (height h) fixed at base (shown with hatching), having properties EA₁, EJ₁, ℓ. Horizontal cantilever member extends rightward with length ℓ, properties EA₂, EJ₂, ℓ, fixed at right end (shown with hatching). Uniform upward distributed load q applied along entire horizontal member. Unknown vertical displacement V indicated with upward arrow and question mark at corner junction. Problem asks to \"Determine the vertical displacement V. Solve the problem using the Ritz method and consider the smallest possible number of dofs using a polynomial representation.\""
+  },
+  "l_frame_displacement_analysis.png": {
+    "suggested_name": "l_frame_displacement_analysis",
+    "description": "L-shaped frame solution diagram showing vertical member (height h) with displacement field -u₁, w₁ and horizontal member (length ℓ) with displacement field u₂, w₂. Coordinate z₁ shown at base, z₂ shown at right end. Distributed load q applied upward on horizontal member. Trial functions listed: u₁ = |a₀| + a₁(z₁/ℓ), w₁ = |b₀| + |b₁|(z₁/ℓ) + b₂(z₁/ℓ)², u₂ = |c₀| + c₁(z₂/ℓ), w₂ = |d₀| + |d₁|(z₂/ℓ) + d₂(z₂/ℓ)². Note indicates \"10 dof\". Essential boundary conditions listed: u₁(0) = 0 ⟹ u₁ = a₁(z₁/ℓ), w₁(0) = 0 ⟹ w₁ = b₂(z₁/ℓ)², w₁'(0) = 0, marked as \"6 constr\". Equations show d₂ = -c₁ℓ and a₁ = -c₁."
+  },
+  "truss_3d_structure_cross_sections.png": {
+    "suggested_name": "truss_3d_structure_cross_sections",
+    "description": "Three-dimensional truss structure shown in perspective view with fixed support at upper right (hatching symbols). Truss consists of triangulated members forming cantilever extending diagonally downward to left, with length ℓ labeled. Vertical force P applied upward at free end (lower left). Two cross-sectional views shown to right: \"Section\" view shows square cross-section with diagonal members labeled d₁; second section view shows square rotated 45° with diagonal d₂ and 45° angle marked. Problem asks to \"Compute the rotation of the loaded end.\" Given data: ℓ = 5000 mm, t = 0.8 mm, d₁ = 500(1+F/10) mm, d₂ = 250(1+E/6) mm, A = 500 mm², P = 8000 N, G = 27000 MPa."
+  },
+  "truss_cross_section_analysis.png": {
+    "suggested_name": "truss_cross_section_analysis",
+    "description": "Square cross-section diagram with four corner nodes labeled A (three corners) and center point. Diagonal members labeled d₁, d₂, d₃ connecting corners through center. Coordinate axes show vertical force P upward and horizontal dimension d. Equations shown: Ω = d₁d₂/2, d₃ = √((d₁/2)² + (d₂/2)²), d = d₂/2 cos 45°. Text states \"The torsional constant of the section is evaluated referring to the Bredt's formula:\" followed by J = (4Ω²)/(∮ₚ(t/dn)) = (4Ω²)/(4d₃/t) = (Ω²t)/d₃. Additional note: \"but Mₜ = Pd = GJ θ', So: θ' = Pd/GJ\" and \"And so: θ = θ'ℓ = 0.6741 deg\"."
+  },
+  "beam_triangular_distributed_load.png": {
+    "suggested_name": "beam_triangular_distributed_load",
+    "description": "Simply supported beam with pinned supports at both ends (shown with sun/star symbols), length ℓ, properties EA, EJ, ℓ labeled. Triangular distributed load increasing linearly from left to right with maximum intensity q = x/ℓ a at right end, shown by vertical arrows of increasing length. Coordinate x shown pointing rightward from left support. Problem asks to \"Compute the vertical displacement at x = ℓ/2 using Ritz and choosing between the approximations below:\" followed by three trial function options: w = c cos(πx/ℓ), w = cx²(x-ℓ)², w = cx, and three additional options: w = cx(x-ℓ), w = cx²(x-ℓ)."
+  },
+  "beam_triangular_load_solution.png": {
+    "suggested_name": "beam_triangular_load_solution",
+    "description": "Solution diagram showing simply supported beam with triangular distributed load q = x/ℓ a increasing from left to right, length ℓ, properties EJ. Pinned supports at both ends shown with sun/star symbols. Coordinate x pointing rightward. Text states \"Consider the approximation w = cx(x-ℓ)\" followed by derivatives: w' = c2x - cℓ, w'' = c2. The PVW (Principle of Virtual Work) equation shown: ∫₀^ℓ δw''EJw''dx = ∫₀^ℓ δw x/ℓ a dx. Upon substitution of the approximation: δc∫₀^ℓ 4EJ dx c = δc∫₀^ℓ x(x-ℓ) x/ℓ dx, leading to: (4EJℓ)c = -aℓ²/12."
+  },
+  "3d_frame_structure_numbered_nodes.png": {
+    "suggested_name": "3d_frame_structure_numbered_nodes",
+    "description": "Three-dimensional frame structure shown in isometric view with fixed support at upper right (hatching symbols). Rectangular base frame in horizontal plane with four nodes numbered 1, 2, 3, 4 at corners. Node 1 at upper left, node 2 at upper right, node 3 at lower right, node 4 at lower left. Horizontal members: length ℓ₁ between nodes 4-3 (bottom), length ℓ₂ between nodes 1-4 (left side). Two diagonal members labeled ℓ₃ extend from nodes 2 and 3 upward to fixed support. Vertical force F applied upward at node 4. Coordinate z shown pointing diagonally. Problem asks to \"Determine the axial stress σ_zz in the stringer #4 at z = ℓ₃/2.\" Given data: ℓ₁ = 400 mm, ℓ₂ = 250(1+B/10) mm, ℓ₃ = 2000 mm, A = 500 mm², F = 8000 N."
+  },
+  "rectangular_cross_section_nodes.png": {
+    "suggested_name": "rectangular_cross_section_nodes",
+    "description": "Rectangular cross-section diagram showing four corner nodes numbered 1 (upper left), 2 (upper right), 3 (lower right), 4 (lower left). Height dimension ℓ₂ shown on left side. Coordinate system with y-axis pointing upward and x-axis pointing rightward, origin at center. Equation shown: J_xx = 4A(ℓ₂/2)² = Aℓ₂². Text states \"the bending moment reads:\" followed by M(z) = -Fz and M(ℓ₃/2) = -Fℓ₃/2. Final equation: σ_zz = -(Fℓ₃/2)(-ℓ₂/2)(1/J_xx) = (Fℓ₃)/(4Aℓ₂) = 32 MPa."
+  }
+}

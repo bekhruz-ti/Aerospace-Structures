@@ -1,0 +1,66 @@
+{
+  "l_frame_distributed_load_vertical_displacement.png": {
+    "suggested_name": "l_frame_distributed_load_vertical_displacement",
+    "description": "L-shaped frame structure with fixed support at lower left end (indicated by hatched support symbol) and roller support at upper right end (indicated by hatched diagonal support). The vertical member has length 2ℓ with uniformly distributed load q₁ applied along its length. The horizontal member has length ℓ with triangular distributed load varying from q₂ = 12q₁ at the joint to zero at the free end. Vertical displacement v is queried at the joint between vertical and horizontal members. Coordinate system shows vertical member along inclined axis and horizontal member perpendicular to it. Problem involves determining vertical displacement considering bending stiffness EJ and torsional stiffness GJ, with shear deformability negligible."
+  },
+  "l_frame_solution_diagram_coordinates.png": {
+    "suggested_name": "l_frame_solution_diagram_coordinates",
+    "description": "Solution diagram for L-frame showing same geometry as problem statement with added coordinate system. Vertical displacement v marked with upward arrow at joint. Horizontal member shows triangular load distribution q₂ = 12q₁ and coordinate axis X pointing upward (perpendicular to member). Circled numbers ① and ② indicate joint locations. Dimensions labeled as ℓ for horizontal span and 2ℓ for vertical span. Diagram establishes local coordinate systems for structural analysis with x₁ and x₂ coordinates marked for each member."
+  },
+  "l_frame_dummy_system_unit_load.png": {
+    "suggested_name": "l_frame_dummy_system_unit_load",
+    "description": "Dummy system #1 for L-frame showing unit load configuration. L-shaped frame with same support conditions (fixed at lower left, roller at upper right) but loaded with unit vertical force (magnitude 1) applied downward at the joint where vertical displacement is sought. No distributed loads present. Circled numbers ① and ② mark joint locations. Dimensions shown as ℓ for horizontal member and 2ℓ for vertical member. This dummy system is used in virtual work calculations to determine the actual displacement, with corresponding moment expressions δM₁ = -x₁ for vertical member and δM₂ = -x₂ and δMₜ = ℓ for horizontal member shown in accompanying equations."
+  },
+  "l_frame_dummy_system_second_configuration.png": {
+    "suggested_name": "l_frame_dummy_system_second_configuration",
+    "description": "Dummy system #2 for L-frame with unit vertical load (magnitude 1) applied at joint. Same L-shaped geometry with fixed support at lower left and roller support at upper right. Vertical member length 2ℓ, horizontal member length ℓ. Circled numbers ① and ② indicate joints. This second dummy system is introduced for evaluating displacement, with moment expression ²δM₂ = -x₂ for the horizontal member shown. Used in conjunction with Principle of Virtual Work (PCVW) to calculate displacement, with resulting calculation showing s = (ℓ³/3EJ)(X + 41ℓq) = 2.85 mm."
+  },
+  "rectangular_frame_spring_support_horizontal_load.png": {
+    "suggested_name": "rectangular_frame_spring_support_horizontal_load",
+    "description": "Rectangular frame composed of three beams, each with length ℓ and bending stiffness EJ. Frame has fixed support (hatched symbol) at lower left corner and pinned support (hatched symbol) at lower right corner. Upper right corner has spring support with stiffness k. Horizontal force P applied at left side pointing rightward. All three members labeled with properties ℓ, EJ. Problem involves determining strain energy stored in spring, with shear deformability and axial stiffness contributions negligible. Frame forms rectangular configuration with vertical members on left and right, horizontal member on top."
+  },
+  "rectangular_frame_real_system_forces.png": {
+    "suggested_name": "rectangular_frame_real_system_forces",
+    "description": "Real system free body diagram for rectangular frame showing internal forces and reactions. Frame with horizontal force P at left, unknown reaction force X at spring location (upper right). Circled numbers ①, ②, ③ mark joints. Three beam segments shown with free body diagrams: Beam 1 (left vertical) with axial force N = +V; Beam 2 (top horizontal) with axial force N = -X, shear V, and moment M = +Vx₂; Beam 3 (right vertical) with axial force N = -V and moment M = +Vℓ + (P-X)x₃. Equilibrium equation -Vℓ + Xℓ - Pℓ = 0 yields V = X - P. Force and moment conventions shown with arrows on member segments."
+  },
+  "rectangular_frame_dummy_system_unit_loads.png": {
+    "suggested_name": "rectangular_frame_dummy_system_unit_loads",
+    "description": "Dummy system for rectangular frame with unit load (magnitude 1) applied at spring location (upper right corner) pointing rightward. Same frame geometry with fixed support at lower left and pinned support at lower right. Circled numbers ①, ②, ③ mark joints. Free body diagrams show: Beam 1 with δN = 1; Beam 2 with δN = -1, δM = x₂; Beam 3 with δN = -1, δM = ℓ - x₃. Unit load system used for virtual work calculation to determine spring displacement and strain energy."
+  },
+  "two_span_continuous_beam_distributed_load.png": {
+    "suggested_name": "two_span_continuous_beam_distributed_load",
+    "description": "Two-span continuous beam with three supports: pinned support at left end, roller support at center, and free end at right. Left span has length ℓ with bending stiffness EJ₁. Right span has length ℓ with bending stiffness EJ₂. Uniformly distributed load q applied upward (shown with vertical arrows) over right span only. Vertical displacement w marked at free end. Problem involves determining bending stiffness ratio EJ2/EJ1 such that vertical displacement at free end equals w when structure is loaded with uniform distributed force per unit length q."
+  },
+  "two_span_beam_solution_reactions_moments.png": {
+    "suggested_name": "two_span_beam_solution_reactions_moments",
+    "description": "Solution diagrams for two-span continuous beam showing reaction forces and moment distributions. Top diagram shows full beam with supports and distributed load q over right span. Second diagram shows simplified beam with reaction V at center support, with equilibrium equation qℓ(3/2)ℓ + Vℓ = 0 yielding V = -(3/2)qℓ. Real system section shows beam with distributed load and reaction forces, with local coordinates x₁ and x₂ marked. Free body diagrams show moment distributions: left span with M = -qx₁²/2, right span with M = -qℓ²/2 - (V+qℓ)x₂. Arrows indicate direction of forces and moments at cut sections."
+  },
+  "two_span_beam_dummy_system_coordinates.png": {
+    "suggested_name": "two_span_beam_dummy_system_coordinates",
+    "description": "Dummy system for two-span continuous beam with unit downward force (magnitude 1) applied at free end. Beam spans labeled EJ₁ and EJ₂ with pinned support at left and roller at center. Downward force labeled as 2 at free end. Local coordinates x₁ and x₂ marked with arrows for each span (0 ≤ x₁ ≤ ℓ and 0 ≤ x₂ ≤ ℓ). Virtual moment expressions given: δM = -x₁ for left span, δM = +x₂ - ℓ for right span. Application of Principle of Virtual Work (PCVW) shown with integral equation and solution yielding EJ₂/EJ₁ = 0.325 after substitution of reaction V."
+  },
+  "thin_walled_beam_racetrack_cross_section_shear.png": {
+    "suggested_name": "thin_walled_beam_racetrack_cross_section_shear",
+    "description": "Thin-walled beam cross-section with racetrack (obround) shape consisting of rectangular center section of width a and two semicircular ends of radius R, giving total height 2R. Six lumped stringers marked with solid dots at corners and midpoints of straight sections. Vertical force P applied at top center, referred to shear center sc marked on centerline. Shear stress τ queried at location marked with \"τ = ?\" on right curved section. Cross-section shows width dimension a and height dimension 2R. Problem involves determining shear stress using semi-monocoque approximation, with lumped stringer area A including panel contribution and panel thickness t."
+  },
+  "thin_walled_racetrack_shear_flow_distribution.png": {
+    "suggested_name": "thin_walled_racetrack_shear_flow_distribution",
+    "description": "Solution diagram for racetrack cross-section showing shear flow distribution. Same geometry as problem (width a, height 2R, six stringers) with vertical force P at top center and shear center sc marked. Shear flow magnitude q indicated with arrows showing counterclockwise circulation pattern around perimeter. Equilibrium equation q·2R·2 = P yields q = P/(4R) = 50 N/mm. Shear stress in panel calculated as τ = q/t_z = 41.67 MPa. Arrows with magnitude q marked at multiple locations around cross-section perimeter indicating constant shear flow in each panel segment due to symmetry."
+  },
+  "two_cell_rectangular_cross_section.png": {
+    "suggested_name": "two_cell_rectangular_cross_section",
+    "description": "Two-cell rectangular thin-walled cross-section with overall dimensions 3a wide by a tall. Vertical web at x = a divides section into left cell (width a) and right cell (width 2a). Nine stringers marked with solid dots at corners and web intersections. Dimensions labeled: left cell width a, right cell width 2a, height a. Problem involves determining torsional stiffness GJ using semi-monocoque approximation. Lumped stringer area (including panel contribution) equal to A, panel thickness equal to t, shear modulus G. Result to be reported as GJ/GJref where GJref is reference value."
+  },
+  "two_cell_section_shear_flow_directions.png": {
+    "suggested_name": "two_cell_section_shear_flow_directions",
+    "description": "Solution diagram for two-cell rectangular section showing shear flow directions. Same geometry (left cell width a, right cell width 2a, height a) with nine stringers at corners and intersections. Curved arrows indicate shear flow directions: q₁* in left cell (counterclockwise), q₂* in right cell (counterclockwise). Equilibrium moment equation: 2Ω₁q₁* + 2Ω₂q₂* = Mₜ with cell areas Ω₁ = a², Ω₂ = 2Ω₁. Compatibility equations: 2GΩ₁tθ₁' = q₁*·4a - q₂*·a and 2GΩ₂tθ₂' = q₂*·6a - q₁*·a. Imposing equal twist rates θ₁' = θ₂' yields relationship q₁* = (8/9)q₂*. Dimensions and cell boundaries clearly marked."
+  },
+  "thin_walled_circular_beam_concentrated_forces.png": {
+    "suggested_name": "thin_walled_circular_beam_concentrated_forces",
+    "description": "Thin-walled circular beam with fixed support at right end (hatched symbol) and free end at left. Beam length ℓ with segment length ℓ/6 marked near free end. Two concentrated forces applied at free end: F₁ pointing upward, F₂ pointing downward. Cross-section view shows circular shape with radius R, eight stringers marked with solid dots (four labeled A, four labeled t) distributed around perimeter. Lumped stringer area (including panel contribution) equal to A, panel thickness t, shear modulus G. Problem involves determining rotation angle at distance ℓ/3 from free end using semi-monocoque approximation, with result reported as absolute value in degrees."
+  },
+  "circular_beam_torsion_equivalent_cantilever.png": {
+    "suggested_name": "circular_beam_torsion_equivalent_cantilever",
+    "description": "Solution diagram showing circular beam with forces F₁ (upward) and F₂ (downward) at free end, with segment ℓ/6 marked and total length (2/3)ℓ to evaluation point. Shear center position readily available due to section symmetry. Equivalent cantilever beam representation shown below with distributed torsional moment: F₁R over length ℓ/6, then (F₁+F₂)R over remaining length to fixed end. Torsional constant calculation using Bredt's formula: J = 4Ω²/∮(ds/t) where Ω = πR², yielding J = 2πR³t. Torsion angle expression θ' = Mₜ/GJ leads to final formula θ' = (F₁+F₂)R/GJ for rotation evaluation."
+  }
+}
