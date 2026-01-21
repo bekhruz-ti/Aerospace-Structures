@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WrittenTest_Jan_25_2023</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .student-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 4px solid #007bff;
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .data-section {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .data-section strong {
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .answer-space {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 2px solid #333;
+            margin-left: 10px;
+        }
+
+        .answer-solution {
+            display: block;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+
+        .true-false {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .true-false li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .multiple-choice {
+            list-style-type: decimal;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .multiple-choice li {
+            margin: 20px 0;
+        }
+
+        .multiple-choice ol {
+            list-style-type: lower-alpha;
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+
+        .multiple-choice ol li {
+            margin: 5px 0;
+        }
+
+        .page-break {
+            page-break-before: always;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ccc;
+        }
+
+        @media print {
+            .page-break {
+                page-break-before: always;
+                border-top: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>WrittenTest_Jan_25_2023</h1>
+            <p class="metadata">Extracted from: C:\Users\bekhr\Downloads\Aerospace Structres\Exams-20230208\Online Exams\WrittenTest_Jan_25_2023.pdf</p>
+            <p class="metadata">Processing: pages 1-4</p>
+        </header>
+
+        <section class="course-header">
+            <p>Course of Aerospace Structures Written test, Jan 25th, 2023</p>
+        </section>
+
+        <section class="student-info">
+            <p>Name</p>
+            <p>Surname</p>
+            <p>Person code:</p>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 1</h3>
+            <p>The beam sketched in the figure, with bending stiffness \(EI\), is loaded by the concentrated force \(F\). Compute the bending moment at point A. (Unit for result: N mm)</p>
+
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jan_25_2023/page_1_img_1.png" alt="Rectangular frame structure with fixed support and spring support">
+                <figcaption>
+                    <strong>Rectangular frame structure with fixed support at lower left corner and spring support (labeled k) at upper left. Vertical downward force F applied at top. Frame has total length a (horizontal dimension labeled at bottom) and height b (vertical dimension labeled on right side). Internal point A marked at center of frame. Vertical forces b and b/2 shown acting downward at right side locations. Frame appears to be a structural analysis problem setup.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 400\, \text{mm}\)<br>
+                \(b = 800\, \text{mm}\)<br>
+                \(EA = 1.0 \times 10^5\, \text{N}\)<br>
+                \(EI = 6.0 \times 10^{10}\, \text{Nmm}^2\)<br>
+                \(K = 100\, \text{N/mm}\)<br>
+                \(F = 5000\, \text{N}\)
+            </div>
+
+            <p><strong>Answer</strong></p>
+            <span class="answer-solution">
+                <strong>Solution:</strong><br>
+                Define redundant force \(X\) at the spring support. The moment expressions for each segment are:<br>
+                \[M_{x_1} = (F - X)z_1, \quad M_{x_2} = (F - X)a, \quad M_{x_3} = (F - X)z_3\]
+                Virtual moments: \(M'_{x_1} = -z_1\), \(M'_{x_2} = -a\), \(M'_{x_3} = -z_3\)<br><br>
+                
+                Applying compatibility using PVW and including axial and spring deformation:
+                \[\frac{-EI\,b + X}{EA} - \frac{1}{3}a^3 F + \frac{1}{3}a^3 X + a^2 b X - a^2 b F - \frac{1}{3}a^3 F + \frac{1}{3}a^3 X + \frac{EI}{K}X = 0\]
+                
+                Solving for \(X\):
+                \[X = \frac{\frac{2}{3}a^3 + a^2 b + \frac{bEI}{EA}}{\frac{bEI}{EA} + \frac{2}{3}a^3 + \frac{EI}{K}} \cdot F\]
+                
+                The bending moment at point A:
+                \[M = (F - X) \cdot a\]
+                
+                <strong>Final Answer:</strong> \(M_b(A) = 9.59 \times 10^5\, \text{Nmm}\)
+            </span>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 2</h3>
+            <p>The FE mesh sketched in the figure has two bilinear planar element and eight nodes. It is loaded by the distributed load sketched in the figure, with a maximum load per unit of length equal to \(f\). Compute the virtual external work for the unitary virtual vertical displacement of node 5. (Unit for result: N mm)</p>
+
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jan_25_2023/page_1_img_2.png" alt="Rectangular frame structure with distributed load">
+                <figcaption>
+                    <strong>Rectangular frame structure with height b and total width 2a (divided into two equal segments a). Triangular distributed load applied along top horizontal member, with load intensity increasing from left to right. Vertical members labeled 1, 2, and 3 from left to right. Points labeled 5 and 6 at top corners. Upward reaction force shown at left support, downward force at right support. Coordinate system shows y-axis vertical.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 4\, \text{mm}\)<br>
+                \(b = 6\, \text{mm}\)<br>
+                \(f = 20\, \text{N/mm}\)
+            </div>
+
+            <p><strong>Answer</strong></p>
+            <span class="answer-solution">
+                <strong>Solution:</strong><br>
+                For bilinear elements, the shape functions along the top edge are:
+                \[N_1 = 1 - \frac{x}{a}, \quad N_2 = \frac{x}{a}\]
+                
+                The virtual displacement field: \(\delta u = N_1 \delta u_1 + N_2 \delta u_2\)<br><br>
+                
+                For the triangular distributed load with maximum value \(f\), the load intensity varies as \(\bar{f}(x) = \frac{f \cdot x}{a}\)<br><br>
+                
+                Virtual external work for element containing node 5:
+                \[\int_0^a \delta u_2 \cdot N_2(x) \cdot f(x)\, dx = \delta u \int_0^a \frac{x}{a} \cdot \frac{f}{a} \cdot x\, dx = \frac{1}{3}a\bar{f}\]
+                
+                Considering contributions from both elements meeting at node 5:
+                \[\delta W_e(\text{node } 5) = \frac{2}{3}a\bar{f}\]
+                
+                <strong>Final Answer:</strong> \(\delta W_e = \frac{2}{3} \times 4 \times 20 = 53.33\, \text{Nmm}\)
+            </span>
+        </section>
+
+        <section class="page-break">
+            <h2>Page 2</h2>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 3</h3>
+            <p>The semi-monocoque beam cross section model in the figure is loaded by a concentrated moment \(M_z\). It has six stringers, each with concentrated area \(A\). Compute the derivative of the cross section rotations angle with respect to the beam axis. (Unit for result: rad/mm)</p>
+
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jan_25_2023/page_2_img_1.png" alt="Rectangular frame panel with thickness labels">
+                <figcaption>
+                    <strong>Rectangular frame structure with total width 2a (two segments of length a) and height b. Frame consists of corner nodes labeled A and internal members with thickness labels t₁ and t₂. Moment M_z shown with curved arrow at bottom center. Coordinate system indicates horizontal x-axis (top) and vertical b dimension (left). Frame appears symmetric about vertical centerline marked with X symbol.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 600\, \text{mm}\)<br>
+                \(b = 300\, \text{mm}\)<br>
+                \(A = 500\, \text{mm}^2\)<br>
+                \(t_1 = 1\, \text{mm}\)<br>
+                \(t_2 = 2\, \text{mm}\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)<br>
+                \(M_z = 5 \times 10^6\, \text{Nmm}\)
+            </div>
+
+            <p><strong>Answer</strong></p>
+            <span class="answer-solution">
+                <strong>Solution:</strong><br>
+                For the two-cell cross section with shear flows \(q_1\) and \(q_2\), the rate of twist equations are:<br><br>
+                
+                For cell 1:
+                \[\dot{\theta}_1 = \frac{1}{4abG}\left(\frac{4a+b}{t_1} + \frac{b}{t_2}\right)q_1 + \frac{1}{4abG}\left(\frac{2a+2b}{t_1}\right)q_2\]
+                
+                For cell 2:
+                \[\dot{\theta}_2 = \frac{1}{2abG}\left(\frac{2a+b}{t_1}\right)q_1 + \frac{1}{2abG}\left(\frac{2a+2b}{t_1}\right)q_2\]
+                
+                Compatibility condition: \(\dot{\theta}_1 - \dot{\theta}_2 = 0\)<br>
+                Moment equilibrium: \(4ab\,q_1 + 2ab\,q_2 = M_z\)<br><br>
+                
+                Solving the system of equations:
+                \[q_1 = 7.25\, \text{N/mm}, \quad q_2 = -0.6\, \text{N/mm}\]
+                
+                <strong>Final Answer:</strong> \(\dot{\theta} = 1 \times 10^{-6}\, \text{rad/mm}\)
+            </span>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 4</h3>
+            <p>Consider the semi-monocoque cross section model sketched in the figure. Compute the x positions of the shear center. (Unit for result: mm)</p>
+
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jan_25_2023/page_2_img_2.png" alt="L-shaped frame with member areas">
+                <figcaption>
+                    <strong>L-shaped frame structure with horizontal member of length a and vertical member of height b. Members labeled with cross-sectional areas: A₁ and A₂ for different segments. Member thicknesses labeled as t₁, t₂, and t₃. Horizontal dimension x shown at bottom right. Coordinate system shows vertical b dimension on left side. Frame nodes marked with solid dots at corners and joints.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(a = 400\, \text{mm}\)<br>
+                \(b = 800\, \text{mm}\)<br>
+                \(t_1 = 1\, \text{mm}\)<br>
+                \(t_2 = 2\, \text{mm}\)<br>
+                \(t_3 = 3\, \text{mm}\)<br>
+                \(A_1 = 500\, \text{mm}^2\)<br>
+                \(A_2 = 1000\, \text{mm}^2\)<br>
+                \(E = 70000\, \text{MPa}\)<br>
+                \(\nu = 0.3\)
+            </div>
+
+            <p><strong>Answer</strong></p>
+            <span class="answer-solution">
+                <strong>Solution:</strong><br>
+                First, find the centroid location:<br>
+                \[x_{CG} = \frac{a}{2}\]
+                
+                For the y-coordinate of centroid:
+                \[\frac{A_2(b - y_{CG}) - A_1(y_{CG})}{A_1 + A_2} = 0\]
+                \[y_{CG} = \frac{b \cdot A_2}{A_1 + A_2}\]
+                
+                Second moment of area:
+                \[I_{xx} = 2A_2(b - y_{CG})^2 + 2A_1 y_{CG}^2\]
+                
+                Shear flow analysis with applied shear force \(T_y\):
+                \[q_2 = \frac{T_y}{b}\]
+                \[q_1 = \frac{-T_y S'_x}{I_{xx}}, \quad \text{where } S'_x = -A_1 y_{CG}\]
+                \[q_3 = q_1\]
+                
+                Taking moments about a convenient point:
+                \[-q_3 \cdot b \cdot a = T_y \cdot x_{sc}\]
+                \[x_{sc} = -\frac{q_3 \cdot b}{T_y}\]
+                
+                <strong>Final Answer:</strong> \(x_{sc} = -200\, \text{mm}\)
+            </span>
+        </section>
+
+        <section class="page-break">
+            <h2>Page 3</h2>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 5</h3>
+            <p>The beam sketched in the figure is loaded by the concentrated force \(F\) at \(x = l\) and by the distributed force for unit of length \(q\). By resorting to the displacement method, and using a trigonometric approximation with only one term, estimate the vertical displacement in the y direction of point A (the point at \(x = l/2\) from the hinge). Account for the axial pre-stress. (Unit for result: mm)</p>
+
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jan_25_2023/page_3_img_1.png" alt="Beam with distributed load and pinned-roller supports">
+                <figcaption>
+                    <strong>Beam of length ℓ with pinned support at left end (labeled EA, EI) and roller support at right end (labeled F_x with value 000/111). Uniform distributed load q applied downward over segment of length ℓ₂ near left end. Segment A marked in middle portion of beam. Coordinate system shows y-axis vertical and x-axis horizontal. Material properties EA and EI indicated at left support.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(q = 1.2\, \text{N/mm}\)<br>
+                \(F_x = 10000\, \text{N}\)<br>
+                \(EA = 1 \times 10^8\, \text{N}\)<br>
+                \(EI = 1 \times 10^{11}\, \text{Nmm}^2\)<br>
+                \(l = 4000\, \text{mm}\)
+            </div>
+
+            <p><strong>Answer</strong></p>
+            <span class="answer-solution">
+                <strong>Solution:</strong><br>
+                Using a one-term trigonometric approximation:
+                \[w = a\sin\left(\frac{\pi x}{l}\right)\]
+                
+                Derivatives:
+                \[w' = \frac{\pi}{l}a\cos\left(\frac{\pi x}{l}\right), \quad w'' = -\frac{\pi^2}{l^2}w\]
+                
+                Applying PVW with axial pre-stress:
+                \[\int_0^l \left(\delta w'' \cdot EI \cdot w'' + \delta w' \cdot w' \cdot F_x\right)dx = \int_0^l -\delta w \cdot q\, dx\]
+                
+                After integration:
+                \[\delta a \left(\frac{\pi}{l}\right)^4 EI \frac{l}{2} a + \delta a \left(\frac{\pi}{l}\right)^2 \frac{l}{2} F_x a = -\delta a \frac{l}{\pi}\cos\left(\frac{\pi x}{l}\right)\Big|_0^l \cdot q = -\delta a \frac{2l}{\pi} q\]
+                
+                Simplifying:
+                \[\left[\left(\frac{\pi}{l}\right)^4 EI \frac{l}{2} + \left(\frac{\pi}{l}\right)^2 F_x \frac{l}{2}\right] a = -2q\frac{l}{\pi}\]
+                
+                Solving for \(a\):
+                \[a = \frac{-2q\frac{l}{\pi}}{\left(\frac{\pi}{l}\right)^4 EI \frac{l}{2} + \left(\frac{\pi}{l}\right)^2 F_x \frac{l}{2}}\]
+                
+                <strong>Final Answer:</strong> \(w\left(\frac{l}{2}\right) = a = -34.55\, \text{mm}\)
+            </span>
+        </section>
+
+        <section class="exercise">
+            <h3>Exercise 6</h3>
+            <p>The beam sketched in the figure is loaded by a triangular force per unit of length, going from 0 N/mm to \(f\) N/mm. By resorting to the displacement method, and using a polynomial approximation with only one term, compute the vertical displacement in the y direction of point A. (Unit for result: mm)</p>
+
+            <figure class="diagram">
+                <img src="images/WrittenTest_Jan_25_2023/page_3_img_2.png" alt="Beam with triangular load and fixed-spring supports">
+                <figcaption>
+                    <strong>Beam of length ℓ with fixed support at left end and spring support (stiffness k) at right end, with ground symbol below spring. Triangular distributed load applied along top surface, with load intensity increasing linearly from left to right, reaching maximum value p at right end. Load labeled as EI along beam. Point A marked on beam. Coordinate system shows y-axis vertical and x-axis horizontal.</strong>
+                </figcaption>
+            </figure>
+
+            <div class="data-section">
+                <strong>Data</strong>
+                \(f = 14\, \text{N/mm}\)<br>
+                \(l = 2000\, \text{mm}\)<br>
+                \(EI = 1 \times 10^{10}\, \text{Nmm}^2\)<br>
+                \(K = 100\, \text{N/mm}\)
+            </div>
+
+            <p><strong>Answer</strong></p>
+            <span class="answer-solution">
+                <strong>Solution:</strong><br>
+                Using a polynomial approximation that satisfies boundary conditions at the fixed end:
+                \[v = az^2, \quad v'' = 2a\]
+                
+                The triangular load: \(p(z) = \frac{f}{l}z\)<br><br>
+                
+                Applying PVW including spring contribution at \(z = l\):
+                \[\delta a \int_0^l 4EI\, dz \cdot a + \delta a \cdot l^4 K \cdot a = \delta a \int_0^l -\frac{f}{l}z \cdot z^2\, dz\]
+                
+                Evaluating the integrals:
+                \[\delta a (4EI \cdot l + K \cdot l^4) a = \delta a \left(-\frac{1}{4}\frac{f}{l}l^4\right) = \delta a \left(-\frac{1}{4}f l^3\right)\]
+                
+                Solving for \(a\):
+                \[a = \frac{-\frac{1}{4}f l^3}{4EI \cdot l + K \cdot l^4}\]
+                
+                Displacement at point A (at \(z = l\)):
+                \[v = a \cdot l^2\]
+                
+                <strong>Final Answer:</strong> \(v = -66.67\, \text{mm}\)
+            </span>
+        </section>
+
+        <section class="page-break">
+            <h2>Page 4</h2>
+        </section>
+
+        <section>
+            <h3>True/False Questions (Put a T (true) or F (false) at the end of the sentence)</h3>
+            
+            <ol class="true-false">
+                <li>a beam is loaded with a shear force; the torsional moment is equal to the value of the force multiplied by the distance between the force line of action and the barycenter: <span class="answer-solution" style="display: inline; padding: 2px 8px;"><strong>F</strong> (False - it should be the distance to the shear center, not the barycenter)</span></li>
+                
+                <li>the bending moment of over-constrained beam structures cannot be computed by resorting to the PVW: <span class="answer-solution" style="display: inline; padding: 2px 8px;"><strong>F</strong> (False - PVW can be used for over-constrained structures)</span></li>
+                
+                <li>the axial stress of a beam transmitting a given bending moment \(M_x\) is function of the beam material elasic modulus \(E\): <span class="answer-solution" style="display: inline; padding: 2px 8px;"><strong>F</strong> (False - axial stress from bending depends on geometry and moment, not on E)</span></li>
+            </ol>
+        </section>
+
+        <section>
+            <h3>Multiple Choice questions (Circle the correct answer)</h3>
+            
+            <ol class="multiple-choice">
+                <li>"Differential bending" is related to:
+                    <ol>
+                        <li>the different bending behavior of beams around the principal axis x and y</li>
+                        <li><strong style="color: green;">torsional stiffness ✓</strong></li>
+                        <li>interaction between axial and bending stiffness of a beam</li>
+                        <li>the derivative of the axial stress in the panel of a thin-walled cross-section</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+                
+                <li>The PCVW:
+                    <ol>
+                        <li>cannot be applied to staticaly determined systems</li>
+                        <li>can be applied to statically determined systems, but only in order to compute the reaction forces and moments</li>
+                        <li><strong style="color: green;">can be applied to statically determined systems only in order to compute the displacemnt and/or the rotation of a given point ✓</strong></li>
+                        <li>is equivalent to the PVW for statically determined systems</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+                
+                <li>Hermitian shape functions:
+                    <ol>
+                        <li>are used to approximate the torsional moment using the Ritz method</li>
+                        <li><strong style="color: green;">are required in order to build Euler-Bernoulli beam FEs ✓</strong></li>
+                        <li>are special C2 shape functions required to build high-performance beam FEs</li>
+                        <li>need to be avoided because they reduce the order of convergence</li>
+                        <li>are useless</li>
+                        <li>none of the above</li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+    </article>
+</body>
+</html>
