@@ -4,9 +4,9 @@ Your task is to analyze each page and identify the PRIMARY/MAIN engineering diag
 
 # 🎯 CRITICAL: ONE DIAGRAM PER PROBLEM
 
-**Each page typically contains 2-3 separate problems. You MUST extract at least 1 diagram per problem.**
+**Each page typically contains 0-3 separate problems. You MUST extract at least 1 diagram per problem.**
 
-- Most pages have **2-3 diagrams** (one per problem)
+- Most pages have **0-3 diagrams** (one per problem)
 - Each problem has its own main structural/engineering diagram
 - **Never skip a problem** - if there's a problem, there's a diagram for it
 
@@ -142,13 +142,13 @@ Page 2:
 - Data tables without visual elements
 - Answer spaces or blank areas
 
-## ONE Diagram Per PROBLEM (2-3 Per Page)
+## ONE Diagram Per PROBLEM (0-3 Per Page)
 
 **CRITICAL RULE: Extract ONE main diagram for EACH problem on the page**
 
-- Most pages contain **2-3 separate problems**
+- Most pages contain **0-3 separate problems**
 - Each problem has **at least 1 main diagram** - never skip a problem
-- Expect to find **2-3 diagrams per page** as the standard
+- Expect to find **0-3 diagrams per page** as the standard
 - For each problem, identify the PRIMARY diagram that shows the problem setup
 
 **Process:**
@@ -320,7 +320,7 @@ If diagram is surrounded by text:
 
 Before finalizing, verify:
 - ✅ Started with `<scratchpad>` to identify all problems on each page
-- ✅ Extracted **2-3 diagrams per page** (one per problem)
+- ✅ Extracted **0-3 diagrams per page** (one per problem)
 - ✅ Did NOT miss any problems - every problem has a diagram
 - ✅ Used the RED GRID OVERLAY to identify diagram boundaries
 - ✅ All parts of diagram included

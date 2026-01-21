@@ -312,6 +312,17 @@ Here are pages {chunk[0][0]}-{chunk[-1][0]}:"""
 **DIAGRAM PATHS FOR HTML:**
 {diagram_info}
 
+**CRITICAL STRUCTURE REQUIREMENT:**
+The source PDF may have all problems listed first, followed by all solutions later.
+You MUST reorganize the content so that each SOLUTION appears DIRECTLY BELOW its corresponding PROBLEM.
+Do NOT list all problems first then all solutions - pair them together as problem-solution units.
+
+Example structure:
+- Problem 1 → Solution 1
+- Problem 2 → Solution 2
+- Exercise 1 → Solution to Exercise 1
+etc.
+
 Please synthesize ALL transcriptions from our conversation into a complete HTML document.
 Follow the synthesis prompt instructions exactly. Return ONLY the HTML."""
             
