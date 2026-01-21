@@ -7,7 +7,7 @@ import io
 import logging
 import re
 from pathlib import Path
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Optional
 
 from PIL import Image
 
@@ -51,7 +51,9 @@ def encode_image_to_base64(image_path: Path) -> str:
 def describe_images_with_claude(
     image_paths: List[Path], 
     system_prompt: str,
-    model: LLM = LLM.CLAUDE_4_5_SONNET
+    model: LLM = LLM.CLAUDE_4_5_SONNET,
+    user_message_modifier: Optional[str] = None,
+    context_image_paths: Optional[List[Path]] = None
 ) -> Dict[str, Dict[str, str]]:
     """
     Use Claude Vision API to describe images with engineering focus.
@@ -60,6 +62,8 @@ def describe_images_with_claude(
         image_paths: List of paths to image files
         system_prompt: System prompt for Claude
         model: LLM model to use
+        user_message_modifier: Optional text to append to the user prompt
+        context_image_paths: Optional list of context images (e.g., full page) mapping 1:1 with image_paths
         
     Returns:
         Dictionary mapping filenames to {suggested_name, description}
@@ -74,7 +78,7 @@ def describe_images_with_claude(
     content_blocks = []
     image_filenames = []
     
-    for img_path in image_paths:
+    for idx, img_path in enumerate(image_paths):
         if not img_path.exists():
             logger.warning(f"Image file not found: {img_path}")
             continue
@@ -83,13 +87,31 @@ def describe_images_with_claude(
         image_filenames.append(filename)
         
         try:
-            # Encode image to base64
+            # Add context image first (full page) if provided
+            if context_image_paths and idx < len(context_image_paths):
+                context_path = context_image_paths[idx]
+                if context_path and context_path.exists():
+                    context_base64 = encode_image_to_base64(context_path)
+                    content_blocks.append({
+                        "type": "text",
+                        "text": f"[Full page context for {filename}]"
+                    })
+                    content_blocks.append({
+                        "type": "image",
+                        "source": {
+                            "type": "base64",
+                            "media_type": "image/png",
+                            "data": context_base64
+                        }
+                    })
+            
+            # Encode diagram image to base64
             image_base64 = encode_image_to_base64(img_path)
             
-            # Add to content blocks
+            # Add diagram to content blocks
             content_blocks.append({
                 "type": "text",
-                "text": f"[Image: {filename}]"
+                "text": f"[Diagram: {filename}]"
             })
             content_blocks.append({
                 "type": "image",
@@ -108,9 +130,13 @@ def describe_images_with_claude(
         return {}
     
     # Add instruction at the beginning
+    base_instruction = f"Analyze these {len(image_filenames)} engineering diagrams and provide suggested filenames and technical descriptions for each."
+    if user_message_modifier:
+        base_instruction += f"\n\n{user_message_modifier}"
+    
     content_blocks.insert(0, {
         "type": "text",
-        "text": f"Analyze these {len(image_filenames)} engineering diagrams and provide suggested filenames and technical descriptions for each."
+        "text": base_instruction
     })
     
     try:
@@ -340,6 +366,7 @@ def extract_diagrams_from_pages(
 ) -> Dict[str, str]:
     """
     Extract diagrams using bounding boxes and save as separate images.
+    Also generates detailed descriptions for each extracted diagram.
     
     Args:
         diagram_data: List of diagram info [{"page": int, "bbox": tuple, "description": str, "name": str}, ...]
@@ -379,6 +406,52 @@ def extract_diagrams_from_pages(
             logger.warning(f"Failed to extract diagram {name}: {e}")
     
     logger.info(f"✓ Successfully extracted {len(extracted)} diagrams")
+    
+    # Get detailed descriptions for extracted diagrams
+    if extracted:
+        # Build diagram paths and corresponding context paths (full page images)
+        diagram_paths = []
+        context_paths = []
+        for diagram in diagram_data:
+            diagram_path = output_dir / f"{diagram['name']}.png"
+            if diagram_path.exists():
+                diagram_paths.append(diagram_path)
+                # Add corresponding page image as context
+                page_png = page_png_dir / f"page_{diagram['page']}.png"
+                context_paths.append(page_png if page_png.exists() else None)
+        
+        # Load engineering prompt for detailed descriptions
+        prompt_path = Path(__file__).parent.parent / "prompts" / "engineering_image_analysis.md"
+        system_prompt = prompt_path.read_text(encoding='utf-8') if prompt_path.exists() else ""
+        
+        logger.info("Getting detailed diagram descriptions with page context...")
+        detailed = describe_images_with_claude(
+            image_paths=diagram_paths,
+            system_prompt=system_prompt,
+            user_message_modifier="""IMPORTANT: For each diagram, I'm showing you:
+1. The FULL PAGE - to understand the problem context, labels, and annotations
+2. The CROPPED DIAGRAM - the specific figure to describe
+
+Use the full page to understand what the diagram represents (problem statement, given values, etc.).
+The cropped diagram may have captured some surrounding text - ignore peripheral artifacts.
+
+Provide a DETAILED technical description including:
+- What the diagram represents in the context of the problem
+- All geometric shapes, dimensions, and spatial relationships
+- All labels, variables, and annotations visible
+- Force vectors, moments, and their directions
+- Coordinate systems and reference points
+- Enough detail to accurately reproduce the diagram""",
+            context_image_paths=context_paths
+        )
+        
+        # Update diagram_data with detailed descriptions (in-place)
+        for diagram in diagram_data:
+            filename = f"{diagram['name']}.png"
+            if filename in detailed:
+                diagram['description'] = detailed[filename].get('description', diagram['description'])
+                logger.info(f"✓ Updated description for {diagram['name']}")
+    
     return extracted
 
 
